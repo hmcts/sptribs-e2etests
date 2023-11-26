@@ -1,0 +1,14 @@
+{
+  "name": "testProject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JakeCG/testProject.git",
+  "author": "Jake Gowler <jakecgowler@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "configure": "yarn playwright install"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
