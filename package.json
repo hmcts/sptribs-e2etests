@@ -1,12 +1,15 @@
 {
   "name": "testProject",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/JakeCG/testProject.git",
-  "author": "Jake Gowler <jakecgowler@gmail.com>",
-  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=18.16.0"
+  },
   "scripts": {
-    "configure": "yarn playwright install"
+    "configure": "yarn playwright install",
+    "test:ui": "npx playwright test --headed",
+    "test:crossbrowser": "npx playwright test --project webkit --project firefox",
+    "test:report": "yarn playwright show-report"
   },
   "dependencies": {
     "lodash": "^4.17.21"
