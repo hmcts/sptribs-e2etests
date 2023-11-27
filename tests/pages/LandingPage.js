@@ -12,7 +12,8 @@ module.exports = {
     await page.waitForSelector(`.govuk-body-l:has-text("${LandingpageDetails.subHeading}")`);
     await page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL1}")`);
     await page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL2}")`);
-    await page.waitForSelector(`a[role='button']:text("Start now")`)
+    await page.waitForSelector(this.startButton + ':text("Start now")');
+
   },
 
   async continueOn(page) {
