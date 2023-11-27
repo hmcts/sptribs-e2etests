@@ -8,11 +8,11 @@ module.exports = {
     console.log('User using the URL= ' + config.FEbaseUrl);
     await page.goto(config.FEbaseUrl);
     await page.waitForSelector(`.govuk-heading-l:text("${LandingpageDetails.pageTitle}")`);
-    page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.hintMessage}")`);
-    page.waitForSelector(`.govuk-body-l:has-text("${LandingpageDetails.subHeading}")`);
-    page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL1}")`);
-    page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL2}")`);
-    page.waitForSelector(`a[role='button']:text("Start now")`)
+    await page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.hintMessage}")`);
+    await page.waitForSelector(`.govuk-body-l:has-text("${LandingpageDetails.subHeading}")`);
+    await page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL1}")`);
+    await page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL2}")`);
+    await page.waitForSelector(`a[role='button']:text("Start now")`)
   },
 
   async continueOn(page) {
