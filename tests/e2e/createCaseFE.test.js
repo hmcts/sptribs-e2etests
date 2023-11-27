@@ -6,7 +6,6 @@ const subjectDetailsPage = require('../pages/subjectDetailsPage');
 
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
-  const pa11yTests = true;
   const representationPresent = true;
   const representationQualified = true;
   const uploadOtherInfo = true;

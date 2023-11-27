@@ -1,4 +1,4 @@
-const { chromium } = require('playwright');
+const { expect } = require('@playwright/test');
 const subjectDetails = require('../fixtures/content/SubjectDetails_content');
 
 module.exports = {
@@ -11,17 +11,17 @@ module.exports = {
   continueButton: '#main-form-submit',
 
   async checkPageLoads(page) {
-    await page.waitForSelector(`.govuk-heading-l:text("${subjectDetails.pageTitle}")`);
-    await page.waitForSelector(`.govuk-hint:text("${subjectDetails.hintText1}")`);
-    await page.waitForSelector(`.govuk-hint:text("${subjectDetails.hintText1}")`);
-    await page.waitForSelector(`.govuk-label:text("${subjectDetails.subHeading1}")`);
-    await page.waitForSelector(`.govuk-label:text("${subjectDetails.subHeading1}")`);
-    await page.waitForSelector(`.govuk-fieldset__legend:text("${subjectDetails.subHeading2}")`);
-    await page.waitForSelector(`.govuk-hint:text("${subjectDetails.hintText2}")`);
-    await page.waitForSelector(`.govuk-date-input__label:text("${subjectDetails.textOnPage1}")`);
-    await page.waitForSelector(`.govuk-date-input__label:text("${subjectDetails.textOnPage2}")`);
-    await page.waitForSelector(`.govuk-date-input__label:text("${subjectDetails.textOnPage3}")`);
+    await expect(page.locator('.govuk-heading-l')).toHaveText(subjectDetails.pageTitle);
+    await expect(page.locator('.govuk-hint').nth(0)).toHaveText(subjectDetails.hintText1);
+    await expect(page.locator('.govuk-hint').nth(1)).toHaveText(subjectDetails.hintText2);
+    await expect(page.locator('.govuk-label').nth(0)).toHaveText(subjectDetails.subHeading1);
+    await expect(page.locator('.govuk-fieldset__legend')).toHaveText(subjectDetails.subHeading2);
+    await expect(page.locator('#subjectDateOfBirth-hint')).toHaveText(subjectDetails.hintText2);
+    await expect(page.locator('.govuk-label').nth(1)).toHaveText(subjectDetails.textOnPage1);
+    await expect(page.locator('.govuk-label').nth(2)).toHaveText(subjectDetails.textOnPage2);
+    await expect(page.locator('.govuk-label').nth(3)).toHaveText(subjectDetails.textOnPage3);
   },
+
 
   async triggerErrorMessages(page) {
 //    await page.waitForSelector(`text=${subjectDetails.pageTitle}`);
