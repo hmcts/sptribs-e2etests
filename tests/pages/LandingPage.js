@@ -1,4 +1,3 @@
-// LandingPage.js
 const config = require('../config');
 const LandingpageDetails = require('../fixtures/content/LandingPage_content');
 
@@ -8,13 +7,15 @@ module.exports = {
   async seeTheLandingPage(page, pa11yHelper) {
     console.log('User using the URL= ' + config.FEbaseUrl);
     await page.goto(config.FEbaseUrl);
-//    await page.waitForSelector(`your-css-selector:has-text("${LandingpageDetails.pageTitle}")`);
-//    await page.waitForSelector(`your-hintmessage-css-selector:has-text("${LandingpageDetails.hintMessage}")`);
-//    await page.waitForSelector(`your-descriptionl1-css-selector:has-text("${LandingpageDetails.descriptionL1}")`);
-//    await page.waitForSelector(`your-descriptionl2-css-selector:has-text("${LandingpageDetails.descriptionL2}")`);
+    await page.waitForSelector(`.govuk-heading-l:text("${LandingpageDetails.pageTitle}")`);
+    page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.hintMessage}")`);
+    page.waitForSelector(`.govuk-body-l:has-text("${LandingpageDetails.subHeading}")`);
+    page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL1}")`);
+    page.waitForSelector(`.govuk-body-l:text("${LandingpageDetails.descriptionL2}")`);
+    page.waitForSelector(`a[role='button']:text("Start now")`)
   },
 
-  async continueOn() {
+  async continueOn(page) {
     await page.click(this.startButton);
   },
 };
