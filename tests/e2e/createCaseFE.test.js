@@ -17,7 +17,8 @@ async function createFEApplication(
   page,
   representationPresent,
   representationQualified,
-  uploadOtherInfo
+  uploadOtherInfo,
+  completeApplication
   ) {
   await landingPage.seeTheLandingPage(page);
   await landingPage.continueOn(page);
@@ -43,16 +44,19 @@ async function createFEApplication(
   await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
   await checkYourAnswersPage.checkPageLoads(page, representationPresent);
   await checkYourAnswersPage.checkValidInfoAllFields(page, representationPresent, representationQualified, uploadOtherInfo);
-  await checkYourAnswersPage.continueOn(page);
-  await applicationSubmittedPage.checkPageLoads(page);
-  await applicationSubmittedPage.checkCICCaseNumber(page);
+  if (completeApplication) {
+    await checkYourAnswersPage.continueOn(page);
+    await applicationSubmittedPage.checkPageLoads(page);
+    await applicationSubmittedPage.checkCICCaseNumber(page);
+  }
 }
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
   await createFEApplication(page, {
     representationPresent: true,
     representationQualified: true,
-    uploadOtherInfo: true
+    uploadOtherInfo: true,
+    completeApplication: true
   });
 });
 
@@ -60,7 +64,8 @@ test('Create an application with no representative, additional information, no P
   await createFEApplication(page, {
     representationPresent: false,
     representationQualified: null,
-    uploadOtherInfo: true
+    uploadOtherInfo: true,
+    completeApplication: true
   });
 });
 
@@ -68,7 +73,8 @@ test('Create an application with all details, a qualified representative, no add
   await createFEApplication(page, {
     representationPresent: true,
     representationQualified: true,
-    uploadOtherInfo: false
+    uploadOtherInfo: false,
+    completeApplication: true
   });
 });
 
@@ -76,6 +82,7 @@ test('Create an application with all details, an unqualified representative, no 
   await createFEApplication(page, {
     representationPresent: true,
     representationQualified: false,
-    uploadOtherInfo: false
+    uploadOtherInfo: false,
+    completeApplication: true
   });
 });
