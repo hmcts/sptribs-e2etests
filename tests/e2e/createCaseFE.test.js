@@ -3,6 +3,7 @@ const { test } = require('@playwright/test');
 const landingPage = require('../pages/LandingPage');
 const loginPage = require('../pages/loginPage');
 const subjectDetailsPage = require('../pages/subjectDetailsPage');
+const subjectContactDetailsPage = require('../pages/subjectContactDetailsPage')
 
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
@@ -14,4 +15,6 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await loginPage.SignInUser(page);
   await subjectDetailsPage.checkPageLoads(page);
   await subjectDetailsPage.fillInFields(page);
+  await subjectContactDetailsPage.checkPageLoads(page);
+  await subjectContactDetailsPage.fillInFields(page);
 });

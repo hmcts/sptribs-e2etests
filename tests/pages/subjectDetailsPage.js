@@ -22,6 +22,14 @@ module.exports = {
     await expect(page.locator('.govuk-label').nth(3)).toHaveText(subjectDetails.textOnPage3);
   },
 
+  async fillInFields(page) {
+    await page.fill(this.fields.fullName, subjectDetails.name);
+    await page.fill(this.fields.dayOfBirth, subjectDetails.dayOfBirth);
+    await page.fill(this.fields.monthOfBirth, subjectDetails.monthOfBirth);
+    await page.fill(this.fields.yearOfBirth, subjectDetails.yearOfBirth);
+    await page.click(this.continueButton);
+  },
+
 
   async triggerErrorMessages(page) {
 //    await page.waitForSelector(`text=${subjectDetails.pageTitle}`);
@@ -31,13 +39,5 @@ module.exports = {
 //    await page.waitForSelector(`"//p[@id='subjectFullName-error' and contains(., "${subjectDetails.fullNameError}")]`);
 //    await page.waitForSelector(`"//a:has-text("${subjectDetails.dateOfBirthError}")`);
 //    await page.waitForSelector(`"//p[@id='subjectDateOfBirth-error' and contains(., "${subjectDetails.dateOfBirthError}")]`);
-  },
-
-  async fillInFields(page) {
-    await page.fill(this.fields.fullName, subjectDetails.name);
-    await page.fill(this.fields.dayOfBirth, subjectDetails.dayOfBirth);
-    await page.fill(this.fields.monthOfBirth, subjectDetails.monthOfBirth);
-    await page.fill(this.fields.yearOfBirth, subjectDetails.yearOfBirth);
-    await page.click(this.continueButton);
   },
 };
