@@ -86,11 +86,11 @@ module.exports = {
 
   async continueOn(page) {
       await page.click(this.continueButton);
-  }
+  },
 
   async pressBackButton(page) {
       await page.click(this.backButton);
-  }
+  },
 
 
 };
