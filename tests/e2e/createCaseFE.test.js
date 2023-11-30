@@ -9,6 +9,7 @@ const representativeDetailsPage = require('../pages/representativeDetailsPage')
 const uploadAppealFormPage = require('../pages/uploadAppealFormPage')
 const uploadSupportingDocumentsPage = require('../pages/uploadSupportingDocumentsPage')
 const uploadOtherInformationPage = require('../pages/uploadOtherInformationPage')
+const checkYourAnswersPage = require('../pages/checkYourAnswersPage')
 
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
@@ -34,4 +35,8 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
   await uploadOtherInformationPage.checkPageLoads(page);
   await uploadOtherInformationPage.uploadDocumentsSection(page, uploadOtherInfo);
+  await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
+  await checkYourAnswersPage.checkPageLoads(page, representationPresent);
+  await checkYourAnswersPage.checkValidInfoAllFields(page, representationPresent, representationQualified, uploadOtherInfo)
+  await checkYourAnswersPage.continueOn(page)
 });
