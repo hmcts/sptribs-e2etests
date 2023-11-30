@@ -13,10 +13,12 @@ const checkYourAnswersPage = require('../pages/checkYourAnswersPage')
 const applicationSubmittedPage = require('../pages/applicationSubmittedPage')
 
 
-test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
-  const representationPresent = true;
-  const representationQualified = true;
-  const uploadOtherInfo = true;
+async function createFEApplication(
+  page,
+  representationPresent,
+  representationQualified,
+  uploadOtherInfo
+  ) {
   await landingPage.seeTheLandingPage(page);
   await landingPage.continueOn(page);
   await loginPage.SignInUser(page);
@@ -26,10 +28,12 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await subjectContactDetailsPage.fillInFields(page);
   await representationPage.checkPageLoads(page);
   await representationPage.fillInFields(page, representationPresent);
-  await representationQualifiedPage.checkPageLoads(page);
-  await representationQualifiedPage.fillInFields(page, representationQualified);
-  await representativeDetailsPage.checkPageLoads(page);
-  await representativeDetailsPage.fillInFields(page);
+  if (representationPresent) {
+    await representationQualifiedPage.checkPageLoads(page);
+    await representationQualifiedPage.fillInFields(page, representationQualified);
+    await representativeDetailsPage.checkPageLoads(page);
+    await representativeDetailsPage.fillInFields(page);
+  }
   await uploadAppealFormPage.checkPageLoads(page);
   await uploadAppealFormPage.uploadDocumentsSection(page);
   await uploadSupportingDocumentsPage.checkPageLoads(page);
@@ -42,4 +46,36 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page);
   await applicationSubmittedPage.checkCICCaseNumber(page);
+}
+
+test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
+  await createFEApplication(page, {
+    representationPresent: true,
+    representationQualified: true,
+    uploadOtherInfo: true
+  });
+});
+
+test('Create an application with no representative, additional information, no PCQ, and submit.', async ({ page }) => {
+  await createFEApplication(page, {
+    representationPresent: false,
+    representationQualified: null,
+    uploadOtherInfo: true
+  });
+});
+
+test('Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.', async ({ page }) => {
+  await createFEApplication(page, {
+    representationPresent: true,
+    representationQualified: true,
+    uploadOtherInfo: false
+  });
+});
+
+test('Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.', async ({ page }) => {
+  await createFEApplication(page, {
+    representationPresent: true,
+    representationQualified: false,
+    uploadOtherInfo: false
+  });
 });
