@@ -1,4 +1,5 @@
 const { expect } = require('@playwright/test');
+const AxeBuilder = require('@axe-core/playwright').default;
 const representation = require('../fixtures/content/Representation_content');
 
 module.exports = {
@@ -7,10 +8,16 @@ module.exports = {
   continueButton: '#main-form-submit',
   backButton: '.govuk-back-link',
 
-  async checkPageLoads(page) {
+  async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator('.govuk-fieldset__heading')).toHaveText(representation.pageTitle);
     await expect(page.locator('.govuk-label').nth(0)).toHaveText(representation.textOnPage1);
     await expect(page.locator('.govuk-label').nth(1)).toHaveText(representation.textOnPage2);
+    if (accessibilityTest) {
+        const accessibilityScanResults = await new AxeBuilder({ page })
+              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+              .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+    }
   },
 
   async fillInFields(page, representationPresent) {

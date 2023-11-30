@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test');
 const path = require('path');
+const AxeBuilder = require('@axe-core/playwright').default;
 const config = require('../config.js');
 const UploadOtherInformation = require('../fixtures/content/UploadOtherInformation_content');
 
@@ -15,7 +16,7 @@ module.exports = {
   continueButton: '#main-form-submit',
   backButton: '.govuk-back-link',
 
-  async checkPageLoads(page) {
+  async checkPageLoads(page,accessibilityTest) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(UploadOtherInformation.pageTitle);
     await expect(page.locator('.govuk-heading-m').nth(1)).toHaveText(UploadOtherInformation.subTitle1);
     await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadOtherInformation.textonpage1);
@@ -39,6 +40,12 @@ module.exports = {
     await expect(page.locator('#documentRelevance-hint')).toHaveText(UploadOtherInformation.textonpage16)
     await expect(page.locator('.govuk-label').nth(2)).toHaveText(UploadOtherInformation.subTitle3)
     await expect(page.locator('#additionalInformation-hint')).toHaveText(UploadOtherInformation.textonpage17)
+    if (accessibilityTest) {
+        const accessibilityScanResults = await new AxeBuilder({ page })
+              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+              .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+    }
   },
 
   async uploadDocumentsSection(page, uploadInformation) {

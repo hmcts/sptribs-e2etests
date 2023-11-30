@@ -13,6 +13,7 @@
     "test:report": "yarn playwright show-report"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.8.1",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

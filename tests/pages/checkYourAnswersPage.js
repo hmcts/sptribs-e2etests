@@ -1,4 +1,5 @@
 const { expect } = require('@playwright/test');
+const AxeBuilder = require('@axe-core/playwright').default;
 const path = require('path');
 const config = require('../config.js');
 const CheckYourAnswersPage = require('../fixtures/content/CheckYourAnswers_content');
@@ -25,7 +26,7 @@ module.exports = {
   continueButton: '#main-form-submit',
   backButton: '.govuk-back-link',
 
-  async checkPageLoads(page, representationPresent) {
+  async checkPageLoads(page, representationPresent, accessibilityTest) {
     await expect(page.locator('.govuk-heading-l').nth(0)).toHaveText(CheckYourAnswersPage.pagetitle);
     await expect(page.locator('.govuk-heading-m').nth(1)).toHaveText(CheckYourAnswersPage.subtitle1);
     await expect(page.locator('.govuk-summary-list__key').nth(0)).toHaveText(CheckYourAnswersPage.textonpage1);
@@ -61,6 +62,12 @@ module.exports = {
     }
     await expect(page.locator('.govuk-heading-l').nth(1)).toHaveText(CheckYourAnswersPage.subtitle7);
     await expect(page.locator('.govuk-body-l')).toHaveText(CheckYourAnswersPage.textonpage16);
+    if (accessibilityTest) {
+        const accessibilityScanResults = await new AxeBuilder({ page })
+              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+              .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+    }
   },
 
   async checkValidInfoAllFields(page, representationPresent, representationQualified, uploadOtherInfo) {

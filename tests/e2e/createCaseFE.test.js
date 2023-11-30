@@ -19,54 +19,55 @@ async function createFEApplication(
   representationQualified,
   uploadOtherInfo,
   completeApplication,
-  backButtonJourney
+  backButtonJourney,
+  accessibilityTest
   ) {
-  await landingPage.seeTheLandingPage(page);
+  await landingPage.seeTheLandingPage(page, accessibilityTest);
   await landingPage.continueOn(page);
   await loginPage.SignInUser(page);
-  await subjectDetailsPage.checkPageLoads(page);
+  await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
   await subjectDetailsPage.fillInFields(page);
-  await subjectContactDetailsPage.checkPageLoads(page);
+  await subjectContactDetailsPage.checkPageLoads(page, accessibilityTest);
   await subjectContactDetailsPage.fillInFields(page);
-  await representationPage.checkPageLoads(page);
+  await representationPage.checkPageLoads(page, accessibilityTest);
   await representationPage.fillInFields(page, representationPresent);
   if (representationPresent) {
-    await representationQualifiedPage.checkPageLoads(page);
+    await representationQualifiedPage.checkPageLoads(page, accessibilityTest);
     await representationQualifiedPage.fillInFields(page, representationQualified);
-    await representativeDetailsPage.checkPageLoads(page);
+    await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
     await representativeDetailsPage.fillInFields(page);
   }
-  await uploadAppealFormPage.checkPageLoads(page);
+  await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
   await uploadAppealFormPage.uploadDocumentsSection(page);
-  await uploadSupportingDocumentsPage.checkPageLoads(page);
+  await uploadSupportingDocumentsPage.checkPageLoads(page, accessibilityTest);
   await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
-  await uploadOtherInformationPage.checkPageLoads(page);
+  await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(page, uploadOtherInfo);
   await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
-  await checkYourAnswersPage.checkPageLoads(page, representationPresent);
+  await checkYourAnswersPage.checkPageLoads(page, representationPresent, accessibilityTest);
   await checkYourAnswersPage.checkValidInfoAllFields(page, representationPresent, representationQualified, uploadOtherInfo);
   if (completeApplication) {
     await checkYourAnswersPage.continueOn(page);
-    await applicationSubmittedPage.checkPageLoads(page);
+    await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
     await applicationSubmittedPage.checkCICCaseNumber(page);
   }
   if (backButtonJourney) {
     await checkYourAnswersPage.pressBackButton(page);
-    await uploadOtherInformationPage.checkPageLoads(page);
+    await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
     await uploadOtherInformationPage.pressBackButton(page);
-    await uploadSupportingDocumentsPage.checkPageLoads(page);
+    await uploadSupportingDocumentsPage.checkPageLoads(page, accessibilityTest);
     await uploadSupportingDocumentsPage.pressBackButton(page);
-    await uploadAppealFormPage.checkPageLoads(page);
+    await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
     await uploadAppealFormPage.pressBackButton(page);
-    await representativeDetailsPage.checkPageLoads(page);
+    await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
     await representativeDetailsPage.pressBackButton(page);
-    await representationQualifiedPage.checkPageLoads(page);
+    await representationQualifiedPage.checkPageLoads(page, accessibilityTest);
     await representationQualifiedPage.pressBackButton(page);
-    await representationPage.checkPageLoads(page);
+    await representationPage.checkPageLoads(page, accessibilityTest);
     await representationPage.pressBackButton(page);
-    await subjectContactDetailsPage.checkPageLoads(page);
+    await subjectContactDetailsPage.checkPageLoads(page, accessibilityTest);
     await subjectContactDetailsPage.pressBackButton(page);
-    await subjectDetailsPage.checkPageLoads(page);
+    await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
   }
 }
 
@@ -86,18 +87,20 @@ module.exports = {
   applicationSubmittedPage,
 };
 
-test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
+test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds.', async ({ page }) => {
   const representationPresent = true,
   representationQualified = true,
   uploadOtherInfo = true,
   completeApplication = true,
-  backButtonJourney = false
+  backButtonJourney = false,
+  accessibilityTest = true
   await createFEApplication(page,
     representationPresent,
     representationQualified,
     uploadOtherInfo,
     completeApplication,
-    backButtonJourney);
+    backButtonJourney,
+    accessibilityTest);
 });
 
 test('Create an application with no representative, additional information, no PCQ, and submit.', async ({ page }) => {
@@ -105,13 +108,15 @@ test('Create an application with no representative, additional information, no P
   representationQualified = null,
   uploadOtherInfo = true,
   completeApplication = true,
-  backButtonJourney = false
+  backButtonJourney = false,
+  accessibilityTest = false
   await createFEApplication(page,
     representationPresent,
     representationQualified,
     uploadOtherInfo,
     completeApplication,
-    backButtonJourney);
+    backButtonJourney,
+    accessibilityTest);
 });
 
 test('Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.', async ({ page }) => {
@@ -119,13 +124,15 @@ test('Create an application with all details, a qualified representative, no add
   representationQualified = true,
   uploadOtherInfo = false,
   completeApplication = true,
-  backButtonJourney = false
+  backButtonJourney = false,
+  accessibilityTest = false
   await createFEApplication(page,
     representationPresent,
     representationQualified,
     uploadOtherInfo,
     completeApplication,
-    backButtonJourney);
+    backButtonJourney,
+    accessibilityTest);
 });
 
 test('Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.', async ({ page }) => {
@@ -133,13 +140,15 @@ test('Create an application with all details, an unqualified representative, no 
   representationQualified = false,
   uploadOtherInfo = false,
   completeApplication = true,
-  backButtonJourney = false
+  backButtonJourney = false,
+  accessibilityTest = false
   await createFEApplication(page,
     representationPresent,
     representationQualified,
     uploadOtherInfo,
     completeApplication,
-    backButtonJourney);
+    backButtonJourney,
+    accessibilityTest);
 });
 
 test('Test all back buttons on the Frontend application', async ({ page }) => {
@@ -147,11 +156,13 @@ test('Test all back buttons on the Frontend application', async ({ page }) => {
   representationQualified = true,
   uploadOtherInfo = true,
   completeApplication = false,
-  backButtonJourney = true
+  backButtonJourney = true,
+  accessibilityTest = false
   await createFEApplication(page,
     representationPresent,
     representationQualified,
     uploadOtherInfo,
     completeApplication,
-    backButtonJourney);
+    backButtonJourney,
+    accessibilityTest);
 });

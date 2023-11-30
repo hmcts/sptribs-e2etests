@@ -1,4 +1,5 @@
 const { expect } = require('@playwright/test');
+const AxeBuilder = require('@axe-core/playwright').default;
 const subjectContactDetails = require('../fixtures/content/SubjectContactDetails_content');
 
 module.exports = {
@@ -19,12 +20,18 @@ module.exports = {
     await expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(subjectContactDetails.textOnPage2);
   },
 
-    async fillInFields(page) {
-      await page.fill(this.fields.email, subjectContactDetails.emailAddress);
-      await page.fill(this.fields.mobileNumber, subjectContactDetails.contactNumber);
-      await page.click(this.contactAgreeBox);
-      await page.click(this.continueButton);
-    },
+  async fillInFields(page, accessibilityTest) {
+    await page.fill(this.fields.email, subjectContactDetails.emailAddress);
+    await page.fill(this.fields.mobileNumber, subjectContactDetails.contactNumber);
+    await page.click(this.contactAgreeBox);
+    await page.click(this.continueButton);
+    if (accessibilityTest) {
+        const accessibilityScanResults = await new AxeBuilder({ page })
+              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+              .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+    }
+  },
 
   async triggerErrorMessages() {
 //    await I.see(subjectDetails.pageTitle);

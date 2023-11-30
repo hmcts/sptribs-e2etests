@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test');
 const path = require('path');
+const AxeBuilder = require('@axe-core/playwright').default;
 const config = require('../config.js');
 const UploadAppealForm = require('../fixtures/content/UploadAppealForm_content');
 
@@ -13,7 +14,7 @@ module.exports = {
   continueButton: '#main-form-submit',
   backButton: '.govuk-back-link',
 
-  async checkPageLoads(page) {
+  async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(UploadAppealForm.pageTitle);
     await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadAppealForm.textonpage1);
     await expect(page.locator('.govuk-body').nth(5)).toHaveText(UploadAppealForm.textonpage2);
@@ -26,6 +27,12 @@ module.exports = {
     await expect(page.locator('.govuk-details__text')).toContainText(UploadAppealForm.textonpage6);
     await expect(page.locator('.govuk-label').nth(0)).toHaveText(UploadAppealForm.textonpage7)
     await expect(page.locator('form[class=\'formRow\'] p[class=\'govuk-body\']')).toHaveText(UploadAppealForm.textonpage8);
+    if (accessibilityTest) {
+        const accessibilityScanResults = await new AxeBuilder({ page })
+              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+              .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+    }
   },
 
   async uploadDocumentsSection(page) {

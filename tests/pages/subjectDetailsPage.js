@@ -1,4 +1,5 @@
 const { expect } = require('@playwright/test');
+const AxeBuilder = require('@axe-core/playwright').default;
 const subjectDetails = require('../fixtures/content/SubjectDetails_content');
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
   continueButton: '#main-form-submit',
   rejectCookiesButton: '.cookie-banner-reject-button',
 
-  async checkPageLoads(page) {
+  async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(subjectDetails.pageTitle);
     await expect(page.locator('.govuk-hint').nth(0)).toHaveText(subjectDetails.hintText1);
     await expect(page.locator('.govuk-hint').nth(1)).toHaveText(subjectDetails.hintText2);
@@ -21,6 +22,12 @@ module.exports = {
     await expect(page.locator('.govuk-label').nth(1)).toHaveText(subjectDetails.textOnPage1);
     await expect(page.locator('.govuk-label').nth(2)).toHaveText(subjectDetails.textOnPage2);
     await expect(page.locator('.govuk-label').nth(3)).toHaveText(subjectDetails.textOnPage3);
+    if (accessibilityTest) {
+        const accessibilityScanResults = await new AxeBuilder({ page })
+              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+              .analyze();
+        expect(accessibilityScanResults.violations).toEqual([]);
+    }
   },
 
   async fillInFields(page) {
