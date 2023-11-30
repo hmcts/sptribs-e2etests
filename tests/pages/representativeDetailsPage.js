@@ -49,7 +49,7 @@ module.exports = {
 //    I.clearField(this.fields.representativeEmailAddress)
 //  },
 
-  async pressBackButton() {
+  async pressBackButton(page) {
     await page.click(this.backButton);
   },
 };

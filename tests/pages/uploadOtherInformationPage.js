@@ -61,7 +61,7 @@ module.exports = {
     I.see(UploadOtherInfo.fileTypeError, { xpath: "//a[contains(text(), '" + UploadOtherInfo.fileTypeError + "')]" });
   },
 
-  async pressBackButton() {
+  async pressBackButton(page) {
     await page.click(this.backButton);
   },
 };

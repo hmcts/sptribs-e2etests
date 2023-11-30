@@ -30,7 +30,7 @@ module.exports = {
 //    I.see(representation.selectionError, { xpath: "//p[@id='representation-error' and contains(., '" + representation.selectionError + "')]" });
 //  },
 
-  async pressBackButton() {
+  async pressBackButton(page) {
     await page.click(this.backButton);
   },
 };

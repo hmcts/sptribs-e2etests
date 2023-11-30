@@ -42,7 +42,7 @@ module.exports = {
 //    I.clearField(this.fields.email)
   },
 
-  async pressBackButton() {
+  async pressBackButton(page) {
     await page.click(this.backButton);
   },
 };

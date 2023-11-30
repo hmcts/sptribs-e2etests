@@ -142,16 +142,16 @@ test('Create an application with all details, an unqualified representative, no 
     backButtonJourney);
 });
 
-//test('Test all back buttons on the Frontend application', async ({ page }) => {
-//  const representationPresent = true,
-//  representationQualified = true,
-//  uploadOtherInfo = true,
-//  completeApplication = true,
-//  backButtonJourney = true
-//  await createFEApplication(page,
-//    representationPresent,
-//    representationQualified,
-//    uploadOtherInfo,
-//    completeApplication,
-//    backButtonJourney);
-//});
+test('Test all back buttons on the Frontend application', async ({ page }) => {
+  const representationPresent = true,
+  representationQualified = true,
+  uploadOtherInfo = true,
+  completeApplication = false,
+  backButtonJourney = true
+  await createFEApplication(page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney);
+});

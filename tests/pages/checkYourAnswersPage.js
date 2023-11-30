@@ -108,5 +108,4 @@ module.exports = {
       await page.click(this.backButton);
   },
 
-
 };
