@@ -43,7 +43,6 @@ module.exports = {
   },
 
   async pressBackButton() {
-//    await I.see(subjectDetails.pageTitle);
-//    I.click(this.backButton);
+    await page.click(this.backButton);
   },
 };

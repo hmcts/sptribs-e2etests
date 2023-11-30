@@ -48,8 +48,7 @@ module.exports = {
 //    I.see(UploadAppealForm.fileTypeError, { xpath: "//a[contains(text(), '" + UploadAppealForm.fileTypeError + "')]" });
 //  },
 //
-//  async pressBackButton() {
-//    await I.see(UploadAppealForm.pageTitle);
-//    I.click(this.backButton);
-//  },
+  async pressBackButton() {
+    await page.click(this.backButton);
+  },
 };

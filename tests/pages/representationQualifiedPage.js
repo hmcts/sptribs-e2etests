@@ -32,8 +32,7 @@ module.exports = {
 //    I.see(representationQualified.selectionError, { xpath: "//p[@id='representationQualified-error' and contains(., '" + representationQualified.selectionError + "')]" });
 //  },
 //
-//  async pressBackButton() {
-//    await I.see(representationQualified.pageTitle);
-//    I.click(this.backButton);
-//  },
+  async pressBackButton() {
+    await page.click(this.backButton);
+  },
 };

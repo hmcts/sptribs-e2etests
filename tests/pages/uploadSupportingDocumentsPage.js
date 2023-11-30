@@ -47,7 +47,6 @@ module.exports = {
   },
 
   async pressBackButton() {
-    await I.see(UploadSupportingDocuments.pageTitle);
-    I.click(this.backButton);
+    await page.click(this.backButton);
   },
 };

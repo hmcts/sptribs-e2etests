@@ -18,7 +18,8 @@ async function createFEApplication(
   representationPresent,
   representationQualified,
   uploadOtherInfo,
-  completeApplication
+  completeApplication,
+  backButtonJourney
   ) {
   await landingPage.seeTheLandingPage(page);
   await landingPage.continueOn(page);
@@ -49,6 +50,24 @@ async function createFEApplication(
     await applicationSubmittedPage.checkPageLoads(page);
     await applicationSubmittedPage.checkCICCaseNumber(page);
   }
+  if (backButtonJourney) {
+    await checkYourAnswersPage.pressBackButton(page);
+    await uploadOtherInformation.checkPageLoads(page);
+    await uploadOtherInformation.pressBackButton(page);
+    await uploadSupportingDocuments.checkPageLoads(page);
+    await uploadSupportingDocuments.pressBackButton(page);
+    await uploadAppealForm.checkPageLoads(page);
+    await uploadAppealForm.pressBackButton(page);
+    await representativeDetailsPage.checkPageLoads(page);
+    await representativeDetailsPage.pressBackButton(page);
+    await representationQualifiedPage.checkPageLoads(page);
+    await representationQualifiedPage.pressBackButton(page);
+    await representationPage.checkPageLoads(page);
+    await representationPage.pressBackButton(page);
+    await subjectContactDetailsPage.checkPageLoads(page);
+    await subjectContactDetailsPage.pressBackButton(page);
+    await subjectDetailsPage.checkPageLoads(page);
+  }
 }
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
@@ -56,7 +75,8 @@ test('As a Citizen, Create an application with all details, a qualified represen
     representationPresent: true,
     representationQualified: true,
     uploadOtherInfo: true,
-    completeApplication: true
+    completeApplication: true,
+    backButtonJourney: false
   });
 });
 
@@ -65,7 +85,8 @@ test('Create an application with no representative, additional information, no P
     representationPresent: false,
     representationQualified: null,
     uploadOtherInfo: true,
-    completeApplication: true
+    completeApplication: true,
+    backButtonJourney: false
   });
 });
 
@@ -74,7 +95,8 @@ test('Create an application with all details, a qualified representative, no add
     representationPresent: true,
     representationQualified: true,
     uploadOtherInfo: false,
-    completeApplication: true
+    completeApplication: true,
+    backButtonJourney: false
   });
 });
 
@@ -83,6 +105,17 @@ test('Create an application with all details, an unqualified representative, no 
     representationPresent: true,
     representationQualified: false,
     uploadOtherInfo: false,
-    completeApplication: true
+    completeApplication: true,
+    backButtonJourney: false
+  });
+});
+
+test('Test all back buttons on the Frontend application', async ({ page }) => {
+  await createFEApplication(page, {
+    representationPresent: true,
+    representationQualified: true,
+    uploadOtherInfo: true,
+    completeApplication: true,
+    backButtonJourney: true
   });
 });
