@@ -9,6 +9,7 @@ module.exports = {
     yearOfBirth: '#subjectDateOfBirth-year',
   },
   continueButton: '#main-form-submit',
+  rejectCookiesButton: '.cookie-banner-reject-button',
 
   async checkPageLoads(page) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(subjectDetails.pageTitle);
@@ -23,6 +24,7 @@ module.exports = {
   },
 
   async fillInFields(page) {
+    await page.click(this.rejectCookiesButton);
     await page.fill(this.fields.fullName, subjectDetails.name);
     await page.fill(this.fields.dayOfBirth, subjectDetails.dayOfBirth);
     await page.fill(this.fields.monthOfBirth, subjectDetails.monthOfBirth);

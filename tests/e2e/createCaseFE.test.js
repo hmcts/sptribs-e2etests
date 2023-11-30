@@ -5,6 +5,7 @@ const subjectDetailsPage = require('../pages/subjectDetailsPage');
 const subjectContactDetailsPage = require('../pages/subjectContactDetailsPage')
 const representationPage = require('../pages/representationPage')
 const representationQualifiedPage = require('../pages/representationQualifiedPage')
+const representativeDetailsPage = require('../pages/representativeDetailsPage')
 
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
@@ -22,4 +23,6 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await representationPage.fillInFields(page, representationPresent);
   await representationQualifiedPage.checkPageLoads(page);
   await representationQualifiedPage.fillInFields(page, representationQualified);
+  await representativeDetailsPage.checkPageLoads(page);
+  await representativeDetailsPage.fillInFields(page);
 });

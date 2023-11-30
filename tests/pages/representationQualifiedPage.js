@@ -24,16 +24,16 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages() {
-    await I.see(representationQualified.pageTitle);
-    await I.click(this.continueButton);
-    await I.see(representationQualified.errorBanner, '.govuk-error-summary__title');
-    I.see(representationQualified.selectionError, { xpath: "//a[contains(text(), '" + representationQualified.selectionError + "')]" });
-    I.see(representationQualified.selectionError, { xpath: "//p[@id='representationQualified-error' and contains(., '" + representationQualified.selectionError + "')]" });
-  },
-
-  async pressBackButton() {
-    await I.see(representationQualified.pageTitle);
-    I.click(this.backButton);
-  },
+//  async triggerErrorMessages() {
+//    await I.see(representationQualified.pageTitle);
+//    await I.click(this.continueButton);
+//    await I.see(representationQualified.errorBanner, '.govuk-error-summary__title');
+//    I.see(representationQualified.selectionError, { xpath: "//a[contains(text(), '" + representationQualified.selectionError + "')]" });
+//    I.see(representationQualified.selectionError, { xpath: "//p[@id='representationQualified-error' and contains(., '" + representationQualified.selectionError + "')]" });
+//  },
+//
+//  async pressBackButton() {
+//    await I.see(representationQualified.pageTitle);
+//    I.click(this.backButton);
+//  },
 };
