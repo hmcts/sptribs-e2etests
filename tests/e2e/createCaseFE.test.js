@@ -70,6 +70,22 @@ async function createFEApplication(
   }
 }
 
+module.exports = {
+  createFEApplication,
+  landingPage,
+  loginPage,
+  subjectDetailsPage,
+  subjectContactDetailsPage,
+  representationPage,
+  representationQualifiedPage,
+  representativeDetailsPage,
+  uploadAppealFormPage,
+  uploadSupportingDocumentsPage,
+  uploadOtherInformationPage,
+  checkYourAnswersPage,
+  applicationSubmittedPage,
+};
+
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
   await createFEApplication(page, {
     representationPresent: true,
