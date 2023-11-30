@@ -8,6 +8,7 @@ const representationQualifiedPage = require('../pages/representationQualifiedPag
 const representativeDetailsPage = require('../pages/representativeDetailsPage')
 const uploadAppealFormPage = require('../pages/uploadAppealFormPage')
 const uploadSupportingDocumentsPage = require('../pages/uploadSupportingDocumentsPage')
+const uploadOtherInformationPage = require('../pages/uploadOtherInformationPage')
 
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
@@ -31,4 +32,6 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await uploadAppealFormPage.uploadDocumentsSection(page);
   await uploadSupportingDocumentsPage.checkPageLoads(page);
   await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+  await uploadOtherInformationPage.checkPageLoads(page);
+  await uploadOtherInformationPage.uploadDocumentsSection(page, uploadOtherInfo);
 });

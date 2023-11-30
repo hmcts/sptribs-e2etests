@@ -16,8 +16,8 @@ module.exports = {
   async checkPageLoads(page) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(UploadSupportingDocuments.pageTitle);
     await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadSupportingDocuments.textonpage1);
-    await page.click(this.fields.dropDown);
     await expect(page.locator('.govuk-details__summary-text')).toHaveText(UploadSupportingDocuments.dropdownlink);
+    await page.click(this.fields.dropDown);
     await expect(page.locator('main[id=\'main-content\'] li:nth-child(1)')).toHaveText(UploadSupportingDocuments.textonpage2);
     await expect(page.locator('main[id=\'main-content\'] li:nth-child(2)')).toContainText(UploadSupportingDocuments.textonpage3);
     await expect(page.locator('main[id=\'main-content\'] li:nth-child(3)')).toContainText(UploadSupportingDocuments.textonpage4);

@@ -15,9 +15,10 @@ module.exports = {
 
   async checkPageLoads(page) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(UploadAppealForm.pageTitle);
-    await page.click(this.fields.dropDown);
     await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadAppealForm.textonpage1);
     await expect(page.locator('.govuk-body').nth(5)).toHaveText(UploadAppealForm.textonpage2);
+    await expect(page.locator('.govuk-details__summary-text')).toHaveText(UploadAppealForm.dropdownlink);
+    await page.click(this.fields.dropDown);
     await expect(page.locator('.govuk-details__summary-text')).toHaveText(UploadAppealForm.dropdownlink);
     await expect(page.locator('main[id=\'main-content\'] li:nth-child(1)')).toHaveText(UploadAppealForm.textonpage3);
     await expect(page.locator('main[id=\'main-content\'] li:nth-child(2)')).toContainText(UploadAppealForm.textonpage4);

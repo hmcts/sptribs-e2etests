@@ -9,6 +9,7 @@ module.exports = {
     textonpage6:'You can’t upload executable (.exe), .zip or other archive files due to virus risks.',
     textonpage7:'Upload a file',
     textonpage8:'Once you have selected the file click "Upload file" to upload it.',
+    dropdownlink:'File uploads requirements',
     button:'Upload file',
     button2:'Continue',
     fileUploadedSuccess:'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
