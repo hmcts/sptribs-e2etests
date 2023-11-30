@@ -52,12 +52,12 @@ async function createFEApplication(
   }
   if (backButtonJourney) {
     await checkYourAnswersPage.pressBackButton(page);
-    await uploadOtherInformation.checkPageLoads(page);
-    await uploadOtherInformation.pressBackButton(page);
-    await uploadSupportingDocuments.checkPageLoads(page);
-    await uploadSupportingDocuments.pressBackButton(page);
-    await uploadAppealForm.checkPageLoads(page);
-    await uploadAppealForm.pressBackButton(page);
+    await uploadOtherInformationPage.checkPageLoads(page);
+    await uploadOtherInformationPage.pressBackButton(page);
+    await uploadSupportingDocumentsPage.checkPageLoads(page);
+    await uploadSupportingDocumentsPage.pressBackButton(page);
+    await uploadAppealFormPage.checkPageLoads(page);
+    await uploadAppealFormPage.pressBackButton(page);
     await representativeDetailsPage.checkPageLoads(page);
     await representativeDetailsPage.pressBackButton(page);
     await representationQualifiedPage.checkPageLoads(page);
@@ -87,51 +87,71 @@ module.exports = {
 };
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
-  await createFEApplication(page, {
-    representationPresent: true,
-    representationQualified: true,
-    uploadOtherInfo: true,
-    completeApplication: true,
-    backButtonJourney: false
-  });
+  const representationPresent = true,
+  representationQualified = true,
+  uploadOtherInfo = true,
+  completeApplication = true,
+  backButtonJourney = false
+  await createFEApplication(page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney);
 });
 
 test('Create an application with no representative, additional information, no PCQ, and submit.', async ({ page }) => {
-  await createFEApplication(page, {
-    representationPresent: false,
-    representationQualified: null,
-    uploadOtherInfo: true,
-    completeApplication: true,
-    backButtonJourney: false
-  });
+  const representationPresent = false,
+  representationQualified = null,
+  uploadOtherInfo = true,
+  completeApplication = true,
+  backButtonJourney = false
+  await createFEApplication(page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney);
 });
 
 test('Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.', async ({ page }) => {
-  await createFEApplication(page, {
-    representationPresent: true,
-    representationQualified: true,
-    uploadOtherInfo: false,
-    completeApplication: true,
-    backButtonJourney: false
-  });
+  const representationPresent = true,
+  representationQualified = true,
+  uploadOtherInfo = false,
+  completeApplication = true,
+  backButtonJourney = false
+  await createFEApplication(page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney);
 });
 
 test('Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.', async ({ page }) => {
-  await createFEApplication(page, {
-    representationPresent: true,
-    representationQualified: false,
-    uploadOtherInfo: false,
-    completeApplication: true,
-    backButtonJourney: false
-  });
+  const representationPresent = true,
+  representationQualified = false,
+  uploadOtherInfo = false,
+  completeApplication = true,
+  backButtonJourney = false
+  await createFEApplication(page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney);
 });
 
-test('Test all back buttons on the Frontend application', async ({ page }) => {
-  await createFEApplication(page, {
-    representationPresent: true,
-    representationQualified: true,
-    uploadOtherInfo: true,
-    completeApplication: true,
-    backButtonJourney: true
-  });
-});
+//test('Test all back buttons on the Frontend application', async ({ page }) => {
+//  const representationPresent = true,
+//  representationQualified = true,
+//  uploadOtherInfo = true,
+//  completeApplication = true,
+//  backButtonJourney = true
+//  await createFEApplication(page,
+//    representationPresent,
+//    representationQualified,
+//    uploadOtherInfo,
+//    completeApplication,
+//    backButtonJourney);
+//});

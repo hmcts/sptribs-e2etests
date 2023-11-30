@@ -19,7 +19,7 @@ module.exports = {
     if (representationQualified) {
       await page.click(this.qualifiedYes);
     } else {
-      await page.click(this.qualifiedYes);
+      await page.click(this.qualifiedNo);
     }
     await page.click(this.continueButton);
   },
