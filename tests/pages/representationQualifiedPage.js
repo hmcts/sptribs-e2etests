@@ -1,6 +1,5 @@
-const { I } = inject();
+const { expect } = require('@playwright/test');
 const representationQualified = require('../fixtures/content/RepresentationQualified_content');
-const pa11yHelper = require('../helpers/pa11y_helper.js');
 
 module.exports = {
 
@@ -9,14 +8,20 @@ module.exports = {
   continueButton: '#main-form-submit',
   backButton: '.govuk-back-link',
 
-  async checkPageLoads(pa11y_helper) {
-    await I.see(representationQualified.pageTitle);
-    I.see(representationQualified.hintMessage);
-    I.see(representationQualified.textOnPage1);
-    I.see(representationQualified.textOnPage2);
-    if (pa11y_helper) {
-      pa11yHelper.runPa11yCheck();
+  async checkPageLoads(page) {
+    await expect(page.locator('.govuk-fieldset__heading')).toHaveText(representationQualified.pageTitle);
+    await expect(page.locator('.govuk-hint')).toHaveText(representationQualified.hintMessage);
+    await expect(page.locator('.govuk-radios__label').nth(0)).toHaveText(representationQualified.textOnPage1);
+    await expect(page.locator('.govuk-radios__label').nth(1)).toHaveText(representationQualified.textOnPage2);
+  },
+
+  async fillInFields(page, representationQualified) {
+    if (representationQualified) {
+      await page.click(this.qualifiedYes);
+    } else {
+      await page.click(this.qualifiedYes);
     }
+    await page.click(this.continueButton);
   },
 
   async triggerErrorMessages() {
@@ -25,15 +30,6 @@ module.exports = {
     await I.see(representationQualified.errorBanner, '.govuk-error-summary__title');
     I.see(representationQualified.selectionError, { xpath: "//a[contains(text(), '" + representationQualified.selectionError + "')]" });
     I.see(representationQualified.selectionError, { xpath: "//p[@id='representationQualified-error' and contains(., '" + representationQualified.selectionError + "')]" });
-  },
-
-  async fillInFields(representationQualified) {
-    if (representationQualified) {
-      await I.click(this.qualifiedYes);
-    } else {
-      await I.click(this.qualifiedNo);
-    }
-    await I.click(this.continueButton);
   },
 
   async pressBackButton() {

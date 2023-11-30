@@ -1,10 +1,10 @@
-// createCaseFE.test.js
 const { test } = require('@playwright/test');
 const landingPage = require('../pages/LandingPage');
 const loginPage = require('../pages/loginPage');
 const subjectDetailsPage = require('../pages/subjectDetailsPage');
 const subjectContactDetailsPage = require('../pages/subjectContactDetailsPage')
 const representationPage = require('../pages/representationPage')
+const representationQualifiedPage = require('../pages/representationQualifiedPage')
 
 
 test('As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit', async ({ page }) => {
@@ -20,4 +20,6 @@ test('As a Citizen, Create an application with all details, a qualified represen
   await subjectContactDetailsPage.fillInFields(page);
   await representationPage.checkPageLoads(page);
   await representationPage.fillInFields(page, representationPresent);
+  await representationQualifiedPage.checkPageLoads(page);
+  await representationQualifiedPage.fillInFields(page, representationQualified);
 });
