@@ -6,10 +6,10 @@
     "node": ">=18.16.0"
   },
   "scripts": {
-    "configure": "yarn playwright install",
-    "test:ui": "npx playwright test --project chromium --headed",
+    "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
+    "test:ui": "npx playwright test --project chromium --headed --reporter=dot",
     "test": "npx playwright test --project chromium --reporter=dot",
-    "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari",
+    "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MicrosoftEdge --reporter=dot",
     "test:report": "yarn playwright show-report"
   },
   "dependencies": {

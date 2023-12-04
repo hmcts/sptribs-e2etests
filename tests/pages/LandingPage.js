@@ -7,7 +7,6 @@ module.exports = {
     startButton: 'a[role="button"]',
 
     async seeTheLandingPage(page, accessibilityTest) {
-        console.log('User using the URL= ' + config.FEbaseUrl);
         await page.goto(config.FEbaseUrl);
         await expect(page.locator('.govuk-heading-l')).toHaveText(LandingpageDetails.pageTitle);
         await expect(page.locator('.govuk-body-l').nth(1)).toContainText(LandingpageDetails.hintMessage);
