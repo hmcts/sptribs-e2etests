@@ -8,7 +8,7 @@
   "scripts": {
     "configure": "yarn playwright install",
     "test:ui": "npx playwright test --project chromium --headed",
-    "test": "npx playwright test --project chromium",
+    "test": "npx playwright test --project chromium --reporter=dot",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari",
     "test:report": "yarn playwright show-report"
   },

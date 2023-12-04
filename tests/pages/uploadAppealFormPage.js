@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test');
 const path = require('path');
-const AxeBuilder = require('@axe-core/playwright').default;
+const axeTest = require('../helpers/accessibilityTestHelper.js');
 const config = require('../config.js');
 const UploadAppealForm = require('../fixtures/content/UploadAppealForm_content');
 
@@ -28,10 +28,7 @@ module.exports = {
     await expect(page.locator('.govuk-label').nth(0)).toHaveText(UploadAppealForm.textonpage7)
     await expect(page.locator('form[class=\'formRow\'] p[class=\'govuk-body\']')).toHaveText(UploadAppealForm.textonpage8);
     if (accessibilityTest) {
-        const accessibilityScanResults = await new AxeBuilder({ page })
-              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-              .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        await axeTest.axeTest(page);
     }
   },
 

@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const AxeBuilder = require('@axe-core/playwright').default;
+const axeTest = require('../helpers/accessibilityTestHelper.js');
 const subjectContactDetails = require('../fixtures/content/SubjectContactDetails_content');
 
 module.exports = {
@@ -26,10 +26,7 @@ module.exports = {
     await page.click(this.contactAgreeBox);
     await page.click(this.continueButton);
     if (accessibilityTest) {
-        const accessibilityScanResults = await new AxeBuilder({ page })
-              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-              .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        await axeTest.axeTest(page);
     }
   },
 

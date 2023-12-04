@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test');
 const path = require('path');
-const AxeBuilder = require('@axe-core/playwright').default;
+const axeTest = require('../helpers/accessibilityTestHelper.js');
 const config = require('../config.js');
 const UploadOtherInformation = require('../fixtures/content/UploadOtherInformation_content');
 
@@ -41,10 +41,7 @@ module.exports = {
     await expect(page.locator('.govuk-label').nth(2)).toHaveText(UploadOtherInformation.subTitle3)
     await expect(page.locator('#additionalInformation-hint')).toHaveText(UploadOtherInformation.textonpage17)
     if (accessibilityTest) {
-        const accessibilityScanResults = await new AxeBuilder({ page })
-              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-              .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        await axeTest.axeTest(page);
     }
   },
 

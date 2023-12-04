@@ -1,6 +1,6 @@
 const config = require('../config');
 const { expect } = require('@playwright/test');
-const AxeBuilder = require('@axe-core/playwright').default;
+const axeTest = require('../helpers/accessibilityTestHelper.js');
 const LandingpageDetails = require('../fixtures/content/LandingPage_content');
 
 module.exports = {
@@ -16,10 +16,7 @@ module.exports = {
         await expect(page.locator('.govuk-body-l').nth(3)).toHaveText(LandingpageDetails.descriptionL2);
         await expect(page.locator(this.startButton)).toHaveText('Start now');
         if (accessibilityTest) {
-            const accessibilityScanResults = await new AxeBuilder({ page })
-                  .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-                  .analyze();
-            expect(accessibilityScanResults.violations).toEqual([]);
+            await axeTest.axeTest(page);
         }
     },
 

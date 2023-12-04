@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test');
 const path = require('path');
-const AxeBuilder = require('@axe-core/playwright').default
+const axeTest = require('../helpers/accessibilityTestHelper.js');
 const config = require('../config.js');
 const applicationSubmittedDetailsPage = require('../fixtures/content/applicationSubmitted_content.js')
 
@@ -18,10 +18,7 @@ module.exports = {
     await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textonpage4);
     await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textonpage5);
     if (accessibilityTest) {
-        const accessibilityScanResults = await new AxeBuilder({ page })
-              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-              .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        await axeTest.axeTest(page);
     }
   },
 

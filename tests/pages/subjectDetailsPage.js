@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const AxeBuilder = require('@axe-core/playwright').default;
+const axeTest = require('../helpers/accessibilityTestHelper.js');
 const subjectDetails = require('../fixtures/content/SubjectDetails_content');
 
 module.exports = {
@@ -23,10 +23,7 @@ module.exports = {
     await expect(page.locator('.govuk-label').nth(2)).toHaveText(subjectDetails.textOnPage2);
     await expect(page.locator('.govuk-label').nth(3)).toHaveText(subjectDetails.textOnPage3);
     if (accessibilityTest) {
-        const accessibilityScanResults = await new AxeBuilder({ page })
-              .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-              .analyze();
-        expect(accessibilityScanResults.violations).toEqual([]);
+        await axeTest.axeTest(page);
     }
   },
 
