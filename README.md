@@ -21,6 +21,7 @@ Please install the dependencies with the following cmd:
 ``yarn test:ui``  
 
 ### To run the e2e test in cross browser mode, use the following command:
+These tests are run using Playwright's in-built cross browser functionality, so no saucelabs tunnel is required.
 
 ``test:crossbrowser``  
 
