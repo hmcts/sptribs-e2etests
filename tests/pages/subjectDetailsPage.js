@@ -1,29 +1,47 @@
-const { expect } = require('@playwright/test');
-const axeTest = require('../helpers/accessibilityTestHelper.js');
-const subjectDetails = require('../fixtures/content/SubjectDetails_content');
+const { expect } = require("@playwright/test");
+const axeTest = require("../helpers/accessibilityTestHelper.js");
+const subjectDetails = require("../fixtures/content/SubjectDetails_content");
 
 module.exports = {
   fields: {
-    fullName: '#subjectFullName',
-    dayOfBirth: '#subjectDateOfBirth-day',
-    monthOfBirth: '#subjectDateOfBirth-month',
-    yearOfBirth: '#subjectDateOfBirth-year',
+    fullName: "#subjectFullName",
+    dayOfBirth: "#subjectDateOfBirth-day",
+    monthOfBirth: "#subjectDateOfBirth-month",
+    yearOfBirth: "#subjectDateOfBirth-year",
   },
-  continueButton: '#main-form-submit',
-  rejectCookiesButton: '.cookie-banner-reject-button',
+  continueButton: "#main-form-submit",
+  rejectCookiesButton: ".cookie-banner-reject-button",
 
   async checkPageLoads(page, accessibilityTest) {
-    await expect(page.locator('.govuk-heading-l')).toHaveText(subjectDetails.pageTitle);
-    await expect(page.locator('.govuk-hint').nth(0)).toHaveText(subjectDetails.hintText1);
-    await expect(page.locator('.govuk-hint').nth(1)).toHaveText(subjectDetails.hintText2);
-    await expect(page.locator('.govuk-label').nth(0)).toHaveText(subjectDetails.subHeading1);
-    await expect(page.locator('.govuk-fieldset__legend')).toHaveText(subjectDetails.subHeading2);
-    await expect(page.locator('#subjectDateOfBirth-hint')).toHaveText(subjectDetails.hintText2);
-    await expect(page.locator('.govuk-label').nth(1)).toHaveText(subjectDetails.textOnPage1);
-    await expect(page.locator('.govuk-label').nth(2)).toHaveText(subjectDetails.textOnPage2);
-    await expect(page.locator('.govuk-label').nth(3)).toHaveText(subjectDetails.textOnPage3);
+    await expect(page.locator(".govuk-heading-l")).toHaveText(
+      subjectDetails.pageTitle,
+    );
+    await expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+      subjectDetails.hintText1,
+    );
+    await expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+      subjectDetails.hintText2,
+    );
+    await expect(page.locator(".govuk-label").nth(0)).toHaveText(
+      subjectDetails.subHeading1,
+    );
+    await expect(page.locator(".govuk-fieldset__legend")).toHaveText(
+      subjectDetails.subHeading2,
+    );
+    await expect(page.locator("#subjectDateOfBirth-hint")).toHaveText(
+      subjectDetails.hintText2,
+    );
+    await expect(page.locator(".govuk-label").nth(1)).toHaveText(
+      subjectDetails.textOnPage1,
+    );
+    await expect(page.locator(".govuk-label").nth(2)).toHaveText(
+      subjectDetails.textOnPage2,
+    );
+    await expect(page.locator(".govuk-label").nth(3)).toHaveText(
+      subjectDetails.textOnPage3,
+    );
     if (accessibilityTest) {
-        await axeTest.axeTest(page);
+      await axeTest.axeTest(page);
     }
   },
 
@@ -36,14 +54,13 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-
   async triggerErrorMessages(page) {
-//    await page.waitForSelector(`text=${subjectDetails.pageTitle}`);
-//    await page.click(this.continueButton);
-//    await page.waitForSelector(`.govuk-error-summary__title:has-text("${subjectDetails.errorBanner}")`);
-//    await page.waitForSelector(`"//a:has-text("${subjectDetails.fullNameError}")`);
-//    await page.waitForSelector(`"//p[@id='subjectFullName-error' and contains(., "${subjectDetails.fullNameError}")]`);
-//    await page.waitForSelector(`"//a:has-text("${subjectDetails.dateOfBirthError}")`);
-//    await page.waitForSelector(`"//p[@id='subjectDateOfBirth-error' and contains(., "${subjectDetails.dateOfBirthError}")]`);
+    //    await page.waitForSelector(`text=${subjectDetails.pageTitle}`);
+    //    await page.click(this.continueButton);
+    //    await page.waitForSelector(`.govuk-error-summary__title:has-text("${subjectDetails.errorBanner}")`);
+    //    await page.waitForSelector(`"//a:has-text("${subjectDetails.fullNameError}")`);
+    //    await page.waitForSelector(`"//p[@id='subjectFullName-error' and contains(., "${subjectDetails.fullNameError}")]`);
+    //    await page.waitForSelector(`"//a:has-text("${subjectDetails.dateOfBirthError}")`);
+    //    await page.waitForSelector(`"//p[@id='subjectDateOfBirth-error' and contains(., "${subjectDetails.dateOfBirthError}")]`);
   },
 };
