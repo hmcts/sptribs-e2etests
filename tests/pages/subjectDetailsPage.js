@@ -55,12 +55,18 @@ module.exports = {
   },
 
   async triggerErrorMessages(page) {
-    //    await page.waitForSelector(`text=${subjectDetails.pageTitle}`);
-    //    await page.click(this.continueButton);
-    //    await page.waitForSelector(`.govuk-error-summary__title:has-text("${subjectDetails.errorBanner}")`);
-    //    await page.waitForSelector(`"//a:has-text("${subjectDetails.fullNameError}")`);
-    //    await page.waitForSelector(`"//p[@id='subjectFullName-error' and contains(., "${subjectDetails.fullNameError}")]`);
-    //    await page.waitForSelector(`"//a:has-text("${subjectDetails.dateOfBirthError}")`);
-    //    await page.waitForSelector(`"//p[@id='subjectDateOfBirth-error' and contains(., "${subjectDetails.dateOfBirthError}")]`);
+    await page.click(this.continueButton);
+    await expect(page.locator("[href='#subjectFullName']")).toHaveText(
+      subjectDetails.fullNameError,
+    );
+    await expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+      subjectDetails.dateOfBirthError,
+    );
+    await expect(page.locator("#subjectFullName-error")).toContainText(
+      subjectDetails.fullNameError,
+    );
+    await expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+      subjectDetails.dateOfBirthError,
+    );
   },
 };
