@@ -56,6 +56,9 @@ module.exports = {
 
   async triggerErrorMessages(page) {
     await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      subjectDetails.errorBanner,
+    );
     await expect(page.locator("[href='#subjectFullName']")).toHaveText(
       subjectDetails.fullNameError,
     );

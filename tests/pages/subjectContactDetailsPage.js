@@ -43,20 +43,38 @@ module.exports = {
     }
   },
 
-  async triggerErrorMessages() {
-    //    await I.see(subjectDetails.pageTitle);
-    //    await I.click(this.continueButton);
-    //    await I.see(subjectDetails.errorBanner, '.govuk-error-summary__title');
-    //    I.see(subjectDetails.validEmailError, { xpath: "//a[contains(text(), '" + subjectDetails.validEmailError + "')]" });
-    //    I.see(subjectDetails.validEmailError, { xpath: "//p[@id='subjectEmailAddress-error' and contains(., '" + subjectDetails.validEmailError + "')]" });
-    //    I.see(subjectDetails.validContactNumberError, { xpath: "//a[contains(text(), '" + subjectDetails.validContactNumberError + "')]" });
-    //    I.see(subjectDetails.validContactNumberError, { xpath: "//p[@id='subjectContactNumber-error' and contains(., '" + subjectDetails.validContactNumberError + "')]" });
-    //    I.see(subjectDetails.agreeError, { xpath: "//a[contains(text(), '" + subjectDetails.agreeError + "')]" });
-    //    I.fillField(this.fields.email, subjectDetails.partEmailEntry);
-    //    await I.click(this.continueButton);
-    //    await I.see(subjectDetails.partEmailError, { xpath: "//a[contains(text(), '" + subjectDetails.partEmailError + "')]" });
-    //    I.see(subjectDetails.partEmailError, { xpath: "//p[@id='subjectEmailAddress-error' and contains(., '" + subjectDetails.partEmailError + "')]" });
-    //    I.clearField(this.fields.email)
+  async triggerErrorMessages(page) {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      subjectContactDetails.errorBanner,
+    );
+    await expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
+      subjectContactDetails.validEmailError,
+    );
+    await expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
+      subjectContactDetails.validContactNumberError,
+    );
+    await expect(page.locator("[href='#subjectAgreeContact']")).toHaveText(
+      subjectContactDetails.agreeError,
+    );
+    await expect(page.locator("#subjectEmailAddress-error")).toContainText(
+      subjectContactDetails.validEmailError,
+    );
+    await expect(page.locator("#subjectContactNumber-error")).toContainText(
+      subjectContactDetails.validContactNumberError,
+    );
+    await expect(page.locator("#subjectAgreeContact-error")).toContainText(
+      subjectContactDetails.agreeError,
+    );
+    await page.fill(this.fields.email, subjectContactDetails.partEmailEntry);
+    await page.click(this.continueButton);
+    await expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
+      subjectContactDetails.partEmailError,
+    );
+    await expect(page.locator("#subjectEmailAddress-error")).toContainText(
+      subjectContactDetails.partEmailError,
+    );
+    await page.fill(this.fields.email, "");
   },
 
   async pressBackButton(page) {

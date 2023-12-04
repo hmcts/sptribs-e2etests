@@ -102,7 +102,7 @@ async function createFEApplication(
         await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
       }
       break;
-  case true:
+    case true:
       await landingPage.seeTheLandingPage(page, accessibilityTest);
       await landingPage.continueOn(page);
       await loginPage.SignInUser(page);
@@ -110,45 +110,49 @@ async function createFEApplication(
       await subjectDetailsPage.triggerErrorMessages(page);
       await subjectDetailsPage.fillInFields(page);
       await subjectContactDetailsPage.checkPageLoads(page, accessibilityTest);
-//      await subjectContactDetailsPage.fillInFields(page);
-//      await representationPage.checkPageLoads(page, accessibilityTest);
-//      await representationPage.fillInFields(page, representationPresent);
-//      if (representationPresent) {
-//        await representationQualifiedPage.checkPageLoads(
-//          page,
-//          accessibilityTest,
-//        );
-//        await representationQualifiedPage.fillInFields(
-//          page,
-//          representationQualified,
-//        );
-//        await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
-//        await representativeDetailsPage.fillInFields(page);
-//      }
-//      await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
-//      await uploadAppealFormPage.uploadDocumentsSection(page);
-//      await uploadSupportingDocumentsPage.checkPageLoads(
-//        page,
-//        accessibilityTest,
-//      );
-//      await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
-//      await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
-//      await uploadOtherInformationPage.uploadDocumentsSection(
-//        page,
-//        uploadOtherInfo,
-//      );
-//      await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
-//      await checkYourAnswersPage.checkPageLoads(
-//        page,
-//        representationPresent,
-//        accessibilityTest,
-//      );
-//      await checkYourAnswersPage.checkValidInfoAllFields(
-//        page,
-//        representationPresent,
-//        representationQualified,
-//        uploadOtherInfo,
-//      );
+      await subjectContactDetailsPage.triggerErrorMessages(page);
+      await subjectContactDetailsPage.fillInFields(page);
+      await representationPage.checkPageLoads(page, accessibilityTest);
+      await representationPage.triggerErrorMessages(page);
+      await representationPage.fillInFields(page, representationPresent);
+      if (representationPresent) {
+        await representationQualifiedPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await representationQualifiedPage.triggerErrorMessages(page);
+        await representationQualifiedPage.fillInFields(
+          page,
+          representationQualified,
+        );
+        await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
+        await representativeDetailsPage.triggerErrorMessages(page);
+        await representativeDetailsPage.fillInFields(page);
+      }
+      await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
+    //      await uploadAppealFormPage.uploadDocumentsSection(page);
+    //      await uploadSupportingDocumentsPage.checkPageLoads(
+    //        page,
+    //        accessibilityTest,
+    //      );
+    //      await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+    //      await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
+    //      await uploadOtherInformationPage.uploadDocumentsSection(
+    //        page,
+    //        uploadOtherInfo,
+    //      );
+    //      await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
+    //      await checkYourAnswersPage.checkPageLoads(
+    //        page,
+    //        representationPresent,
+    //        accessibilityTest,
+    //      );
+    //      await checkYourAnswersPage.checkValidInfoAllFields(
+    //        page,
+    //        representationPresent,
+    //        representationQualified,
+    //        uploadOtherInfo,
+    //      );
   }
 }
 
@@ -275,9 +279,7 @@ module.exports = {
 //    errorMessaging,
 //  );
 //});
-test("Error messaging", async ({
-  page,
-}) => {
+test("Error messaging", async ({ page }) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,

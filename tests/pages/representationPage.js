@@ -32,13 +32,18 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  //  async triggerErrorMessages() {
-  //    await I.see(representation.pageTitle);
-  //    await I.click(this.continueButton);
-  //    await I.see(representation.errorBanner, '.govuk-error-summary__title');
-  //    I.see(representation.selectionError, { xpath: "//a[contains(text(), '" + representation.selectionError + "')]" });
-  //    I.see(representation.selectionError, { xpath: "//p[@id='representation-error' and contains(., '" + representation.selectionError + "')]" });
-  //  },
+  async triggerErrorMessages(page) {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      representation.errorBanner,
+    );
+    await expect(page.locator("[href='#representation']")).toHaveText(
+      representation.selectionError,
+    );
+    await expect(page.locator("#representation-error")).toContainText(
+      representation.selectionError,
+    );
+  },
 
   async pressBackButton(page) {
     await page.click(this.backButton);

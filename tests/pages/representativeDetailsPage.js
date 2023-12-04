@@ -57,24 +57,48 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  //  async triggerErrorMessages() {
-  //    await I.see(representativeDetails.pageTitle);
-  //    await I.click(this.continueButton);
-  //    await I.see(representativeDetails.errorBanner, '.govuk-error-summary__title');
-  //    I.see(representativeDetails.fullNameError, { xpath: "//a[contains(text(), '" + representativeDetails.fullNameError + "')]" });
-  //    I.see(representativeDetails.fullNameError, { xpath: "//p[@id='representativeFullName-error' and contains(., '" + representativeDetails.fullNameError + "')]" });
-  //    I.see(representativeDetails.organisationNameError, { xpath: "//a[contains(text(), '" + representativeDetails.organisationNameError + "')]" });
-  //    I.see(representativeDetails.organisationNameError, { xpath: "//p[@id='representativeOrganisationName-error' and contains(., '" + representativeDetails.organisationNameError + "')]" });
-  //    I.see(representativeDetails.validContactNumberError, { xpath: "//a[contains(text(), '" + representativeDetails.validContactNumberError + "')]" });
-  //    I.see(representativeDetails.validContactNumberError, { xpath: "//p[@id='representativeContactNumber-error' and contains(., '" + representativeDetails.validContactNumberError + "')]" });
-  //    I.see(representativeDetails.validEmailError, { xpath: "//a[contains(text(), '" + representativeDetails.validEmailError + "')]" });
-  //    I.see(representativeDetails.validEmailError, { xpath: "//p[@id='representativeEmailAddress-error' and contains(., '" + representativeDetails.validEmailError + "')]" });
-  //    I.fillField(this.fields.representativeEmailAddress, representativeDetails.partEmailEntry);
-  //    await I.click(this.continueButton);
-  //    await I.see(representativeDetails.partEmailError, { xpath: "//a[contains(text(), '" + representativeDetails.partEmailError + "')]" });
-  //    I.see(representativeDetails.partEmailError, { xpath: "//p[@id='representativeEmailAddress-error' and contains(., '" + representativeDetails.partEmailError + "')]" });
-  //    I.clearField(this.fields.representativeEmailAddress)
-  //  },
+  async triggerErrorMessages(page) {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      representativeDetails.errorBanner,
+    );
+    await expect(page.locator("[href='#representativeFullName']")).toHaveText(
+      representativeDetails.fullNameError,
+    );
+    await expect(
+      page.locator("[href='#representativeOrganisationName']"),
+    ).toHaveText(representativeDetails.organisationNameError);
+    await expect(
+      page.locator("[href='#representativeContactNumber']"),
+    ).toHaveText(representativeDetails.validContactNumberError);
+    await expect(
+      page.locator("[href='#representativeEmailAddress']"),
+    ).toHaveText(representativeDetails.validEmailError);
+    await expect(page.locator("#representativeFullName-error")).toContainText(
+      representativeDetails.fullNameError,
+    );
+    await expect(
+      page.locator("#representativeOrganisationName-error"),
+    ).toContainText(representativeDetails.organisationNameError);
+    await expect(
+      page.locator("#representativeContactNumber-error"),
+    ).toContainText(representativeDetails.validContactNumberError);
+    await expect(
+      page.locator("#representativeEmailAddress-error"),
+    ).toContainText(representativeDetails.validEmailError);
+    await page.fill(
+      this.fields.representativeEmailAddress,
+      representativeDetails.partEmailEntry,
+    );
+    await page.click(this.continueButton);
+    await expect(
+      page.locator("[href='#representativeEmailAddress']"),
+    ).toHaveText(representativeDetails.partEmailError);
+    await expect(
+      page.locator("#representativeEmailAddress-error"),
+    ).toContainText(representativeDetails.partEmailError);
+    await page.fill(this.fields.representativeEmailAddress, "");
+  },
 
   async pressBackButton(page) {
     await page.click(this.backButton);

@@ -35,14 +35,19 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  //  async triggerErrorMessages() {
-  //    await I.see(representationQualified.pageTitle);
-  //    await I.click(this.continueButton);
-  //    await I.see(representationQualified.errorBanner, '.govuk-error-summary__title');
-  //    I.see(representationQualified.selectionError, { xpath: "//a[contains(text(), '" + representationQualified.selectionError + "')]" });
-  //    I.see(representationQualified.selectionError, { xpath: "//p[@id='representationQualified-error' and contains(., '" + representationQualified.selectionError + "')]" });
-  //  },
-  //
+  async triggerErrorMessages(page) {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      representationQualified.errorBanner,
+    );
+    await expect(page.locator("[href='#representationQualified']")).toHaveText(
+      representationQualified.selectionError,
+    );
+    await expect(page.locator("#representationQualified-error")).toContainText(
+      representationQualified.selectionError,
+    );
+  },
+
   async pressBackButton(page) {
     await page.click(this.backButton);
   },
