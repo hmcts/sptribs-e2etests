@@ -9,14 +9,14 @@ module.exports = {
   closeAndExitButton: 'a[role=\'button\']',
 
   async checkPageLoads(page, accessibilityTest) {
-    await expect(page.locator('.govuk-panel__title')).toHaveText(applicationSubmittedDetailsPage.pagetitle);
-    await expect(page.locator('div[class=\'govuk-panel__body\'] strong')).toContainText(applicationSubmittedDetailsPage.subtitle1);
-    await expect(page.locator('.govuk-body').nth(4)).toHaveText(applicationSubmittedDetailsPage.textonpage1);
-    await expect(page.locator('.govuk-body').nth(5)).toHaveText(applicationSubmittedDetailsPage.textonpage2);
-    await expect(page.locator('.govuk-notification-banner__title')).toHaveText(applicationSubmittedDetailsPage.subtitle2);
-    await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textonpage3);
-    await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textonpage4);
-    await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textonpage5);
+    await expect(page.locator('.govuk-panel__title')).toHaveText(applicationSubmittedDetailsPage.pageTitle);
+    await expect(page.locator('div[class=\'govuk-panel__body\'] strong')).toContainText(applicationSubmittedDetailsPage.subTitle1);
+    await expect(page.locator('.govuk-body').nth(4)).toHaveText(applicationSubmittedDetailsPage.textOnPage1);
+    await expect(page.locator('.govuk-body').nth(5)).toHaveText(applicationSubmittedDetailsPage.textOnPage2);
+    await expect(page.locator('.govuk-notification-banner__title')).toHaveText(applicationSubmittedDetailsPage.subTitle2);
+    await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textOnPage3);
+    await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textOnPage4);
+    await expect(page.locator('.govuk-notification-banner__content')).toContainText(applicationSubmittedDetailsPage.textOnPage5);
     if (accessibilityTest) {
         await axeTest.axeTest(page);
     }

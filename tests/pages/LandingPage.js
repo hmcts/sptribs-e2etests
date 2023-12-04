@@ -11,8 +11,8 @@ module.exports = {
         await expect(page.locator('.govuk-heading-l')).toHaveText(LandingpageDetails.pageTitle);
         await expect(page.locator('.govuk-body-l').nth(1)).toContainText(LandingpageDetails.hintMessage);
         await expect(page.locator('.govuk-body-l').nth(1)).toContainText(LandingpageDetails.subHeading);
-        await expect(page.locator('.govuk-body-l').nth(2)).toHaveText(LandingpageDetails.descriptionL1);
-        await expect(page.locator('.govuk-body-l').nth(3)).toHaveText(LandingpageDetails.descriptionL2);
+        await expect(page.locator('.govuk-body-l').nth(2)).toHaveText(LandingpageDetails.textOnPage1);
+        await expect(page.locator('.govuk-body-l').nth(3)).toHaveText(LandingpageDetails.textOnPage2);
         await expect(page.locator(this.startButton)).toHaveText('Start now');
         if (accessibilityTest) {
             await axeTest.axeTest(page);

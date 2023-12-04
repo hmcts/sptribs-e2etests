@@ -16,17 +16,17 @@ module.exports = {
 
   async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(UploadAppealForm.pageTitle);
-    await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadAppealForm.textonpage1);
-    await expect(page.locator('.govuk-body').nth(5)).toHaveText(UploadAppealForm.textonpage2);
+    await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadAppealForm.textOnPage1);
+    await expect(page.locator('.govuk-body').nth(5)).toHaveText(UploadAppealForm.textOnPage2);
     await expect(page.locator('.govuk-details__summary-text')).toHaveText(UploadAppealForm.dropdownlink);
     await page.click(this.fields.dropDown);
     await expect(page.locator('.govuk-details__summary-text')).toHaveText(UploadAppealForm.dropdownlink);
-    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(1)')).toHaveText(UploadAppealForm.textonpage3);
-    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(2)')).toContainText(UploadAppealForm.textonpage4);
-    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(3)')).toContainText(UploadAppealForm.textonpage5);
-    await expect(page.locator('.govuk-details__text')).toContainText(UploadAppealForm.textonpage6);
-    await expect(page.locator('.govuk-label').nth(0)).toHaveText(UploadAppealForm.textonpage7)
-    await expect(page.locator('form[class=\'formRow\'] p[class=\'govuk-body\']')).toHaveText(UploadAppealForm.textonpage8);
+    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(1)')).toHaveText(UploadAppealForm.textOnPage3);
+    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(2)')).toContainText(UploadAppealForm.textOnPage4);
+    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(3)')).toContainText(UploadAppealForm.textOnPage5);
+    await expect(page.locator('.govuk-details__text')).toContainText(UploadAppealForm.textOnPage6);
+    await expect(page.locator('.govuk-label').nth(0)).toHaveText(UploadAppealForm.textOnPage7)
+    await expect(page.locator('form[class=\'formRow\'] p[class=\'govuk-body\']')).toHaveText(UploadAppealForm.textOnPage8);
     if (accessibilityTest) {
         await axeTest.axeTest(page);
     }

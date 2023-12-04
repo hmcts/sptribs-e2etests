@@ -27,41 +27,41 @@ module.exports = {
   backButton: '.govuk-back-link',
 
   async checkPageLoads(page, representationPresent, accessibilityTest) {
-    await expect(page.locator('.govuk-heading-l').nth(0)).toHaveText(CheckYourAnswersPage.pagetitle);
-    await expect(page.locator('.govuk-heading-m').nth(1)).toHaveText(CheckYourAnswersPage.subtitle1);
-    await expect(page.locator('.govuk-summary-list__key').nth(0)).toHaveText(CheckYourAnswersPage.textonpage1);
-    await expect(page.locator('.govuk-summary-list__key').nth(1)).toHaveText(CheckYourAnswersPage.textonpage2);
-    await expect(page.locator('.govuk-summary-list__key').nth(2)).toHaveText(CheckYourAnswersPage.textonpage3);
-    await expect(page.locator('.govuk-summary-list__key').nth(3)).toHaveText(CheckYourAnswersPage.textonpage4);
-    await expect(page.locator('.govuk-heading-m').nth(2)).toHaveText(CheckYourAnswersPage.subtitle2);
-    await expect(page.locator('.govuk-summary-list__key').nth(4)).toHaveText(CheckYourAnswersPage.textonpage5);
+    await expect(page.locator('.govuk-heading-l').nth(0)).toHaveText(CheckYourAnswersPage.pageTitle);
+    await expect(page.locator('.govuk-heading-m').nth(1)).toHaveText(CheckYourAnswersPage.subTitle1);
+    await expect(page.locator('.govuk-summary-list__key').nth(0)).toHaveText(CheckYourAnswersPage.textOnPage1);
+    await expect(page.locator('.govuk-summary-list__key').nth(1)).toHaveText(CheckYourAnswersPage.textOnPage2);
+    await expect(page.locator('.govuk-summary-list__key').nth(2)).toHaveText(CheckYourAnswersPage.textOnPage3);
+    await expect(page.locator('.govuk-summary-list__key').nth(3)).toHaveText(CheckYourAnswersPage.textOnPage4);
+    await expect(page.locator('.govuk-heading-m').nth(2)).toHaveText(CheckYourAnswersPage.subTitle2);
+    await expect(page.locator('.govuk-summary-list__key').nth(4)).toHaveText(CheckYourAnswersPage.textOnPage5);
     if (representationPresent) {
-        await expect(page.locator('.govuk-summary-list__key').nth(5)).toHaveText(CheckYourAnswersPage.textonpage6);
-        await expect(page.locator('.govuk-summary-list__key').nth(6)).toHaveText(CheckYourAnswersPage.textonpage7);
-        await expect(page.locator('.govuk-heading-m').nth(3)).toHaveText(CheckYourAnswersPage.subtitle3);
-        await expect(page.locator('.govuk-summary-list__key').nth(7)).toHaveText(CheckYourAnswersPage.textonpage8);
-        await expect(page.locator('.govuk-summary-list__key').nth(8)).toHaveText(CheckYourAnswersPage.textonpage9);
-        await expect(page.locator('.govuk-summary-list__key').nth(9)).toHaveText(CheckYourAnswersPage.textonpage10);
-        await expect(page.locator('.govuk-heading-m').nth(4)).toHaveText(CheckYourAnswersPage.subtitle4);
-        await expect(page.locator('.govuk-summary-list__key').nth(10)).toHaveText(CheckYourAnswersPage.textonpage11);
-        await expect(page.locator('.govuk-heading-m').nth(5)).toHaveText(CheckYourAnswersPage.subtitle5);
-        await expect(page.locator('.govuk-summary-list__key').nth(11)).toHaveText(CheckYourAnswersPage.textonpage12);
-        await expect(page.locator('.govuk-heading-m').nth(6)).toHaveText(CheckYourAnswersPage.subtitle6);
-        await expect(page.locator('.govuk-summary-list__key').nth(12)).toHaveText(CheckYourAnswersPage.textonpage13);
-        await expect(page.locator('.govuk-summary-list__key').nth(13)).toHaveText(CheckYourAnswersPage.textonpage14);
-        await expect(page.locator('.govuk-summary-list__key').nth(14)).toHaveText(CheckYourAnswersPage.textonpage15);
+        await expect(page.locator('.govuk-summary-list__key').nth(5)).toHaveText(CheckYourAnswersPage.textOnPage6);
+        await expect(page.locator('.govuk-summary-list__key').nth(6)).toHaveText(CheckYourAnswersPage.textOnPage7);
+        await expect(page.locator('.govuk-heading-m').nth(3)).toHaveText(CheckYourAnswersPage.subTitle3);
+        await expect(page.locator('.govuk-summary-list__key').nth(7)).toHaveText(CheckYourAnswersPage.textOnPage8);
+        await expect(page.locator('.govuk-summary-list__key').nth(8)).toHaveText(CheckYourAnswersPage.textOnPage9);
+        await expect(page.locator('.govuk-summary-list__key').nth(9)).toHaveText(CheckYourAnswersPage.textOnPage10);
+        await expect(page.locator('.govuk-heading-m').nth(4)).toHaveText(CheckYourAnswersPage.subTitle4);
+        await expect(page.locator('.govuk-summary-list__key').nth(10)).toHaveText(CheckYourAnswersPage.textOnPage11);
+        await expect(page.locator('.govuk-heading-m').nth(5)).toHaveText(CheckYourAnswersPage.subTitle5);
+        await expect(page.locator('.govuk-summary-list__key').nth(11)).toHaveText(CheckYourAnswersPage.textOnPage12);
+        await expect(page.locator('.govuk-heading-m').nth(6)).toHaveText(CheckYourAnswersPage.subTitle6);
+        await expect(page.locator('.govuk-summary-list__key').nth(12)).toHaveText(CheckYourAnswersPage.textOnPage13);
+        await expect(page.locator('.govuk-summary-list__key').nth(13)).toHaveText(CheckYourAnswersPage.textOnPage14);
+        await expect(page.locator('.govuk-summary-list__key').nth(14)).toHaveText(CheckYourAnswersPage.textOnPage15);
     } else {
-        await expect(page.locator('.govuk-heading-m').nth(3)).toHaveText(CheckYourAnswersPage.subtitle4);
-        await expect(page.locator('.govuk-summary-list__key').nth(5)).toHaveText(CheckYourAnswersPage.textonpage11);
-        await expect(page.locator('.govuk-heading-m').nth(4)).toHaveText(CheckYourAnswersPage.subtitle5);
-        await expect(page.locator('.govuk-summary-list__key').nth(6)).toHaveText(CheckYourAnswersPage.textonpage12);
-        await expect(page.locator('.govuk-heading-m').nth(5)).toHaveText(CheckYourAnswersPage.subtitle6);
-        await expect(page.locator('.govuk-summary-list__key').nth(7)).toHaveText(CheckYourAnswersPage.textonpage13);
-        await expect(page.locator('.govuk-summary-list__key').nth(8)).toHaveText(CheckYourAnswersPage.textonpage14);
-        await expect(page.locator('.govuk-summary-list__key').nth(9)).toHaveText(CheckYourAnswersPage.textonpage15);
+        await expect(page.locator('.govuk-heading-m').nth(3)).toHaveText(CheckYourAnswersPage.subTitle4);
+        await expect(page.locator('.govuk-summary-list__key').nth(5)).toHaveText(CheckYourAnswersPage.textOnPage11);
+        await expect(page.locator('.govuk-heading-m').nth(4)).toHaveText(CheckYourAnswersPage.subTitle5);
+        await expect(page.locator('.govuk-summary-list__key').nth(6)).toHaveText(CheckYourAnswersPage.textOnPage12);
+        await expect(page.locator('.govuk-heading-m').nth(5)).toHaveText(CheckYourAnswersPage.subTitle6);
+        await expect(page.locator('.govuk-summary-list__key').nth(7)).toHaveText(CheckYourAnswersPage.textOnPage13);
+        await expect(page.locator('.govuk-summary-list__key').nth(8)).toHaveText(CheckYourAnswersPage.textOnPage14);
+        await expect(page.locator('.govuk-summary-list__key').nth(9)).toHaveText(CheckYourAnswersPage.textOnPage15);
     }
-    await expect(page.locator('.govuk-heading-l').nth(1)).toHaveText(CheckYourAnswersPage.subtitle7);
-    await expect(page.locator('.govuk-body-l')).toHaveText(CheckYourAnswersPage.textonpage16);
+    await expect(page.locator('.govuk-heading-l').nth(1)).toHaveText(CheckYourAnswersPage.subTitle7);
+    await expect(page.locator('.govuk-body-l')).toHaveText(CheckYourAnswersPage.textOnPage16);
     if (accessibilityTest) {
         await axeTest.axeTest(page);
     }

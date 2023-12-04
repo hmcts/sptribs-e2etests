@@ -16,15 +16,15 @@ module.exports = {
 
   async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator('.govuk-heading-l')).toHaveText(UploadSupportingDocuments.pageTitle);
-    await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadSupportingDocuments.textonpage1);
+    await expect(page.locator('.govuk-body').nth(4)).toHaveText(UploadSupportingDocuments.textOnPage1);
     await expect(page.locator('.govuk-details__summary-text')).toHaveText(UploadSupportingDocuments.dropdownlink);
     await page.click(this.fields.dropDown);
-    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(1)')).toHaveText(UploadSupportingDocuments.textonpage2);
-    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(2)')).toContainText(UploadSupportingDocuments.textonpage3);
-    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(3)')).toContainText(UploadSupportingDocuments.textonpage4);
-    await expect(page.locator('.govuk-details__text')).toContainText(UploadSupportingDocuments.textonpage5);
-    await expect(page.locator('.govuk-label').nth(0)).toHaveText(UploadSupportingDocuments.textonpage6)
-    await expect(page.locator('form[class=\'formRow\'] p[class=\'govuk-body\']')).toHaveText(UploadSupportingDocuments.textonpage7);
+    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(1)')).toHaveText(UploadSupportingDocuments.textOnPage2);
+    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(2)')).toContainText(UploadSupportingDocuments.textOnPage3);
+    await expect(page.locator('details[class=\'govuk-details\'] li:nth-child(3)')).toContainText(UploadSupportingDocuments.textOnPage4);
+    await expect(page.locator('.govuk-details__text')).toContainText(UploadSupportingDocuments.textOnPage5);
+    await expect(page.locator('.govuk-label').nth(0)).toHaveText(UploadSupportingDocuments.textOnPage6)
+    await expect(page.locator('form[class=\'formRow\'] p[class=\'govuk-body\']')).toHaveText(UploadSupportingDocuments.textOnPage7);
     if (accessibilityTest) {
         await axeTest.axeTest(page);
     }
