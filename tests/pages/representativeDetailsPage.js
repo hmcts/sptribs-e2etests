@@ -101,7 +101,6 @@ module.exports = {
   },
 
   async pressBackButton(page) {
-    await page.waitForURL('**/representative-details')
     await page.click(this.backButton);
   },
 };

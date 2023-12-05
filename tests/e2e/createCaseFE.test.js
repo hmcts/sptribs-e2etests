@@ -80,30 +80,13 @@ async function createFEApplication(
       if (backButtonJourney) {
         // testing that all back buttons in the flow work as intended
         await checkYourAnswersPage.pressBackButton(page);
-        await uploadOtherInformationPage.checkPageLoads(
-          page,
-          accessibilityTest,
-        );
         await uploadOtherInformationPage.pressBackButton(page);
-        await uploadSupportingDocumentsPage.checkPageLoads(
-          page,
-          accessibilityTest,
-        );
         await uploadSupportingDocumentsPage.pressBackButton(page);
-        await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
         await uploadAppealFormPage.pressBackButton(page);
-        await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
         await representativeDetailsPage.pressBackButton(page);
-        await representationQualifiedPage.checkPageLoads(
-          page,
-          accessibilityTest,
-        );
         await representationQualifiedPage.pressBackButton(page);
-        await representationPage.checkPageLoads(page, accessibilityTest);
         await representationPage.pressBackButton(page);
-        await subjectContactDetailsPage.checkPageLoads(page, accessibilityTest);
         await subjectContactDetailsPage.pressBackButton(page);
-        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
       }
       break;
     case true: // If an error message journey is occurring

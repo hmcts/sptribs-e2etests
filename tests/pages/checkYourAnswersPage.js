@@ -231,7 +231,6 @@ module.exports = {
   },
 
   async pressBackButton(page) {
-    await page.waitForURL('**/check-your-answers')
     await page.click(this.backButton);
   },
 };

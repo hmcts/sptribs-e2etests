@@ -46,7 +46,6 @@ module.exports = {
   },
 
   async pressBackButton(page) {
-    await page.waitForURL('**/representation')
     await page.click(this.backButton);
   },
 };

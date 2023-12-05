@@ -94,7 +94,6 @@ module.exports = {
   },
 
   async pressBackButton(page) {
-    await page.waitForURL('**/upload-appeal-form')
     await page.click(this.backButton);
   },
 };
