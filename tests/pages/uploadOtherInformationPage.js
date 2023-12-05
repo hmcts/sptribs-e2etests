@@ -131,6 +131,7 @@ module.exports = {
   },
 
   async pressBackButton(page) {
+    await page.waitForURL('**/upload-other-information')
     await page.click(this.backButton);
   },
 };

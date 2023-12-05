@@ -49,6 +49,7 @@ module.exports = {
   },
 
   async pressBackButton(page) {
+    await page.waitForURL('**/representation-qualified')
     await page.click(this.backButton);
   },
 };

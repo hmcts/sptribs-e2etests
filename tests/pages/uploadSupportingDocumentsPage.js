@@ -88,6 +88,7 @@ module.exports = {
   },
 
   async pressBackButton(page) {
+    await page.waitForURL('**/upload-supporting-documents')
     await page.click(this.backButton);
   },
 };

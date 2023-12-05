@@ -78,6 +78,7 @@ module.exports = {
   },
 
   async pressBackButton(page) {
+    await page.waitForURL('**/subject-contact-details')
     await page.click(this.backButton);
   },
 };
