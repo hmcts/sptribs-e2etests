@@ -13,8 +13,8 @@ yarn
 
 Please install the dependencies with the following cmd:
 
-`yarn install`  
 `yarn configure`
+`yarn install`
 
 ### To run the e2e test, use the following command:
 
@@ -28,7 +28,7 @@ Please install the dependencies with the following cmd:
 
 These tests are run using Playwright's in-built cross browser functionality, so no saucelabs tunnel is required.
 
-`test:crossbrowser`
+`yarn test:crossbrowser`
 
 ### Axe Accessibility testing
 
@@ -36,4 +36,4 @@ Accessibility testing is done as a part of the test "As a Citizen, Create an app
 
 ### To obtain an E2E report, use the following command:
 
-`test:report`
+`yarn test:report`
