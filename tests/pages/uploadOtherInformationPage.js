@@ -117,14 +117,17 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages() {
-    await I.see(UploadOtherInfo.pageTitle);
-    await I.attachFile(this.fields.uploadFileButton, config.testOdtFile);
-    await I.click(this.fields.fileUploadedOption);
-    await I.see(UploadOtherInfo.errorBanner, ".govuk-error-summary__title");
-    I.see(UploadOtherInfo.fileTypeError, {
-      xpath: "//a[contains(text(), '" + UploadOtherInfo.fileTypeError + "')]",
-    });
+  async triggerErrorMessages(page) {
+    await page
+      .locator(this.fields.uploadFileButton)
+      .setInputFiles(config.testOdtFile);
+    await page.click(this.fields.fileUploadedOption);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      UploadOtherInformation.errorBanner,
+    );
+    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
+      UploadOtherInformation.fileTypeError,
+    );
   },
 
   async pressBackButton(page) {

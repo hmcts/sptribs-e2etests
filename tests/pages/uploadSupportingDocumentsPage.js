@@ -3,6 +3,7 @@ const path = require("path");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
 const config = require("../config.js");
 const UploadSupportingDocuments = require("../fixtures/content/UploadSupportingDocuments_content");
+const UploadAppealForm = require("../fixtures/content/UploadAppealForm_content");
 
 module.exports = {
   fields: {
@@ -66,32 +67,24 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages() {
-    await I.see(UploadSupportingDocuments.pageTitle);
-    await I.click(this.continueButton);
-    await I.see(
+  async triggerErrorMessages(page) {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
       UploadSupportingDocuments.errorBanner,
-      ".govuk-error-summary__title",
     );
-    I.see(UploadSupportingDocuments.noUploadError, {
-      xpath:
-        "//a[contains(text(), '" +
-        UploadSupportingDocuments.noUploadError +
-        "')]",
-    });
-    await I.refreshPage();
-    await I.attachFile(this.fields.uploadFileButton, config.testOdtFile);
-    await I.click(this.fields.fileUploadedOption);
-    await I.see(
+    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
+      UploadSupportingDocuments.noUploadError,
+    );
+    await page
+      .locator(this.fields.uploadFileButton)
+      .setInputFiles(config.testOdtFile);
+    await page.click(this.fields.fileUploadedOption);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
       UploadSupportingDocuments.errorBanner,
-      ".govuk-error-summary__title",
     );
-    I.see(UploadSupportingDocuments.fileTypeError, {
-      xpath:
-        "//a[contains(text(), '" +
-        UploadSupportingDocuments.fileTypeError +
-        "')]",
-    });
+    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
+      UploadSupportingDocuments.fileTypeError,
+    );
   },
 
   async pressBackButton(page) {

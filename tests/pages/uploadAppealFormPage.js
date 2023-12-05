@@ -3,6 +3,7 @@ const path = require("path");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
 const config = require("../config.js");
 const UploadAppealForm = require("../fixtures/content/UploadAppealForm_content");
+const representation = require("../fixtures/content/Representation_content");
 
 module.exports = {
   fields: {
@@ -72,18 +73,26 @@ module.exports = {
     await page.click(this.continueButton);
   },
 
-  //  async triggerErrorMessages() {
-  //    await I.see(UploadAppealForm.pageTitle);
-  //    await I.click(this.continueButton);
-  //    await I.see(UploadAppealForm.errorBanner, '.govuk-error-summary__title');
-  //    I.see(UploadAppealForm.noUploadError, { xpath: "//a[contains(text(), '" + UploadAppealForm.noUploadError + "')]" });
-  //    await I.refreshPage();
-  //    await I.attachFile(this.fields.uploadFileButton, config.testFile)
-  //    await I.click(this.fields.fileUploadedOption);
-  //    await I.see(UploadAppealForm.errorBanner, '.govuk-error-summary__title');
-  //    I.see(UploadAppealForm.fileTypeError, { xpath: "//a[contains(text(), '" + UploadAppealForm.fileTypeError + "')]" });
-  //  },
-  //
+  async triggerErrorMessages(page) {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      UploadAppealForm.errorBanner,
+    );
+    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
+      UploadAppealForm.noUploadError,
+    );
+    await page
+      .locator(this.fields.uploadFileButton)
+      .setInputFiles(config.testOdtFile);
+    await page.click(this.fields.fileUploadedOption);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      UploadAppealForm.errorBanner,
+    );
+    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
+      UploadAppealForm.fileTypeError,
+    );
+  },
+
   async pressBackButton(page) {
     await page.click(this.backButton);
   },
