@@ -11,6 +11,7 @@
     "test": "npx playwright test --project chromium --reporter=list",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MicrosoftEdge --reporter=dot",
     "test:report": "yarn playwright show-report",
+    "test:accessibility": "npx playwright test --grep @accessibility --project chromium --reporter=list",
     "audit": "yarn audit"
   },
   "dependencies": {

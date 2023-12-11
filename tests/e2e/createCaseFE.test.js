@@ -150,7 +150,7 @@ module.exports = {
   applicationSubmittedPage,
 };
 
-test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds.", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
   page,
 }) => {
   const representationPresent = true,
