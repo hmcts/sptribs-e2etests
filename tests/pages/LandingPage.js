@@ -1,7 +1,7 @@
 const config = require("../config");
 const { expect } = require("@playwright/test");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
-const LandingpageDetails = require("../fixtures/content/LandingPage_content");
+const LandingPageDetails = require("../fixtures/content/LandingPage_content");
 
 module.exports = {
   startButton: 'a[role="button"]',
@@ -9,19 +9,19 @@ module.exports = {
   async seeTheLandingPage(page, accessibilityTest) {
     await page.goto(config.FEBaseURL);
     await expect(page.locator(".govuk-heading-l")).toHaveText(
-      LandingpageDetails.pageTitle,
+      LandingPageDetails.pageTitle,
     );
     await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-      LandingpageDetails.hintMessage,
+      LandingPageDetails.hintMessage,
     );
     await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-      LandingpageDetails.subHeading,
+      LandingPageDetails.subHeading,
     );
     await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-      LandingpageDetails.textOnPage1,
+      LandingPageDetails.textOnPage1,
     );
     await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-      LandingpageDetails.textOnPage2,
+      LandingPageDetails.textOnPage2,
     );
     await expect(page.locator(this.startButton)).toHaveText("Start now");
     if (accessibilityTest) {

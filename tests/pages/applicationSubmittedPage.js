@@ -1,7 +1,5 @@
 const { expect } = require("@playwright/test");
-const path = require("path");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
-const config = require("../config.js");
 const applicationSubmittedDetailsPage = require("../fixtures/content/applicationSubmitted_content.js");
 
 module.exports = {

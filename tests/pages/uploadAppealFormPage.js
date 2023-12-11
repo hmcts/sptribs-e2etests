@@ -3,7 +3,6 @@ const path = require("path");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
 const config = require("../config.js");
 const UploadAppealForm = require("../fixtures/content/UploadAppealForm_content");
-const representation = require("../fixtures/content/Representation_content");
 
 module.exports = {
   fields: {

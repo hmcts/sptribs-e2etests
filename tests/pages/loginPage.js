@@ -1,4 +1,3 @@
-const { chromium } = require("playwright");
 const config = require("../config");
 
 module.exports = {
