@@ -7,8 +7,8 @@
   },
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
-    "test:ui": "npx playwright test --project chromium --headed --reporter=dot",
-    "test": "npx playwright test --project chromium --reporter=dot",
+    "test:ui": "npx playwright test --project chromium --headed --reporter=list",
+    "test": "npx playwright test --project chromium --reporter=list",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MicrosoftEdge --reporter=dot",
     "test:report": "yarn playwright show-report",
     "audit": "yarn audit"
