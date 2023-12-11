@@ -10,10 +10,12 @@
     "test:ui": "npx playwright test --project chromium --headed --reporter=dot",
     "test": "npx playwright test --project chromium --reporter=dot",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MicrosoftEdge --reporter=dot",
-    "test:report": "yarn playwright show-report"
+    "test:report": "yarn playwright show-report",
+    "audit": "yarn audit"
   },
   "dependencies": {
     "@axe-core/playwright": "^4.8.1",
+    "dependency-check": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
