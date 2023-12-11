@@ -9,6 +9,8 @@ node_modules/
 .sass-cache
 *.css
 tests/config.js
+node_modules/
+
 
 # Yarn 3 files
 .yarn/*
