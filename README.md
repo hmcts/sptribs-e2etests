@@ -15,7 +15,9 @@ Please install the dependencies with the following cmd:
 
 `yarn configure`   
 
-`yarn install`
+`yarn install`  
+
+You will also need the config.js file from a current developer, which should be located in tests/config.js.  
 
 ### To run the e2e test, use the following command:
 
