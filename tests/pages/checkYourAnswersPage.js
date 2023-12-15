@@ -27,8 +27,7 @@ function convertDate() {
     "December",
   ];
   const monthName = months[Number(monthOfBirth) - 1];
-  const formattedDate = `${dayOfBirth} ${monthName} ${yearOfBirth}`;
-  return formattedDate;
+  return `${dayOfBirth} ${monthName} ${yearOfBirth}`;
 }
 
 module.exports = {
