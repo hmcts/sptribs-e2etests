@@ -79,14 +79,7 @@ async function createFEApplication(
       }
       if (backButtonJourney) {
         // testing that all back buttons in the flow work as intended
-        await checkYourAnswersPage.pressBackButton(page);
-        await uploadOtherInformationPage.pressBackButton(page);
-        await uploadSupportingDocumentsPage.pressBackButton(page);
-        await uploadAppealFormPage.pressBackButton(page);
-        await representativeDetailsPage.pressBackButton(page);
-        await representationQualifiedPage.pressBackButton(page);
-        await representationPage.pressBackButton(page);
-        await subjectContactDetailsPage.pressBackButton(page);
+        await handleBackButtonJourney(page, accessibilityTest);
       }
       break;
     case true: // If an error message journey is occurring
@@ -132,6 +125,18 @@ async function createFEApplication(
       await uploadOtherInformationPage.uploadDocumentsSection(page);
       await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
   }
+}
+
+async function handleBackButtonJourney(page) {
+  // testing that all back buttons in the flow work as intended
+  await checkYourAnswersPage.pressBackButton(page);
+  await uploadOtherInformationPage.pressBackButton(page);
+  await uploadSupportingDocumentsPage.pressBackButton(page);
+  await uploadAppealFormPage.pressBackButton(page);
+  await representativeDetailsPage.pressBackButton(page);
+  await representationQualifiedPage.pressBackButton(page);
+  await representationPage.pressBackButton(page);
+  await subjectContactDetailsPage.pressBackButton(page);
 }
 
 module.exports = {
@@ -238,7 +243,9 @@ test("Create an application with all details, an unqualified representative, no 
   );
 });
 
-test("Test all back buttons on the Frontend application", async ({ page }) => {
+test("Test all back buttons on the Frontend application", async ({
+  page,
+}) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,
