@@ -24,63 +24,16 @@ async function createFEApplication(
 ) {
   switch (errorMessaging) {
     case false: // For all non-error message tests
-      await landingPage.seeTheLandingPage(page, accessibilityTest);
-      await landingPage.continueOn(page);
-      await loginPage.SignInUser(page);
-      await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
-      await subjectDetailsPage.fillInFields(page);
-      await subjectContactDetailsPage.checkPageLoads(page, accessibilityTest);
-      await subjectContactDetailsPage.fillInFields(page);
-      await representationPage.checkPageLoads(page, accessibilityTest);
-      await representationPage.fillInFields(page, representationPresent);
-      if (representationPresent) {
-        // Extra pages added into the flow for representation information
-        await representationQualifiedPage.checkPageLoads(
-          page,
-          accessibilityTest,
-        );
-        await representationQualifiedPage.fillInFields(
-          page,
-          representationQualified,
-        );
-        await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
-        await representativeDetailsPage.fillInFields(page);
-      }
-      await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
-      await uploadAppealFormPage.uploadDocumentsSection(page);
-      await uploadSupportingDocumentsPage.checkPageLoads(
-        page,
-        accessibilityTest,
-      );
-      await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
-      await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
-      await uploadOtherInformationPage.uploadDocumentsSection(
-        page,
-        uploadOtherInfo,
-      );
-      await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
-      await checkYourAnswersPage.checkPageLoads(
-        page,
-        representationPresent,
-        accessibilityTest,
-      );
-      await checkYourAnswersPage.checkValidInfoAllFields(
+      await normalFEFlow(
         page,
         representationPresent,
         representationQualified,
         uploadOtherInfo,
+        completeApplication,
+        backButtonJourney,
+        accessibilityTest,
+        errorMessaging,
       );
-      if (completeApplication) {
-        // Decides whether to submit the application,
-        // not applicable to back button journeys and error messaging journeys
-        await checkYourAnswersPage.continueOn(page);
-        await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
-        await applicationSubmittedPage.checkCICCaseNumber(page);
-      }
-      if (backButtonJourney) {
-        // testing that all back buttons in the flow work as intended
-        await handleBackButtonJourney(page, accessibilityTest);
-      }
       break;
     case true: // If an error message journey is occurring
       await landingPage.seeTheLandingPage(page, accessibilityTest);
@@ -125,6 +78,80 @@ async function createFEApplication(
       await uploadOtherInformationPage.uploadDocumentsSection(page);
       await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
   }
+}
+
+async function normalFEFlow(
+  page,
+  representationPresent,
+  representationQualified,
+  uploadOtherInfo,
+  completeApplication,
+  backButtonJourney,
+  accessibilityTest,
+) {
+  await landingPage.seeTheLandingPage(page, accessibilityTest);
+  await landingPage.continueOn(page);
+  await loginPage.SignInUser(page);
+  await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+  await subjectDetailsPage.fillInFields(page);
+  await subjectContactDetailsPage.checkPageLoads(page, accessibilityTest);
+  await subjectContactDetailsPage.fillInFields(page);
+  await representationPage.checkPageLoads(page, accessibilityTest);
+  await representationPage.fillInFields(page, representationPresent);
+  if (representationPresent) {
+    // Extra pages added into the flow for representation information
+    await handleRepresentationLogic(
+      page,
+      representationQualified,
+      accessibilityTest,
+    );
+  }
+  await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
+  await uploadAppealFormPage.uploadDocumentsSection(page);
+  await uploadSupportingDocumentsPage.checkPageLoads(page, accessibilityTest);
+  await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+  await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
+  await uploadOtherInformationPage.uploadDocumentsSection(
+    page,
+    uploadOtherInfo,
+  );
+  await page.click('button[name="opt-out-button"]'); // Opt out of PCQ
+  await checkYourAnswersPage.checkPageLoads(
+    page,
+    representationPresent,
+    accessibilityTest,
+  );
+  await checkYourAnswersPage.checkValidInfoAllFields(
+    page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+  );
+  if (completeApplication) {
+    // Decides whether to submit the application,
+    // not applicable to back button journeys and error messaging journeys
+    await handleCompleteApplication(page, accessibilityTest);
+  }
+  if (backButtonJourney) {
+    await handleBackButtonJourney(page);
+  }
+}
+
+async function handleRepresentationLogic(
+  page,
+  representationQualified,
+  accessibilityTest,
+) {
+  await representationQualifiedPage.checkPageLoads(page, accessibilityTest);
+  await representationQualifiedPage.fillInFields(page, representationQualified);
+  await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
+  await representativeDetailsPage.fillInFields(page);
+}
+
+async function handleCompleteApplication(page, accessibilityTest) {
+  await checkYourAnswersPage.continueOn(page);
+  await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
+  await applicationSubmittedPage.checkCICCaseNumber(page);
 }
 
 async function handleBackButtonJourney(page) {
@@ -243,9 +270,7 @@ test("Create an application with all details, an unqualified representative, no 
   );
 });
 
-test("Test all back buttons on the Frontend application", async ({
-  page,
-}) => {
+test("Test all back buttons on the Frontend application", async ({ page }) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,

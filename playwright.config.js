@@ -34,8 +34,8 @@ module.exports = defineConfig({
       use: { ...devices["Desktop Safari"] },
     },
     {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
+      name: "MobileChrome",
+      use: { ...devices["Pixel 5"] },
     },
     {
       name: "MobileSafari",
