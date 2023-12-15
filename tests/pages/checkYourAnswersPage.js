@@ -167,7 +167,7 @@ module.exports = {
         await expect(
           page.locator(".govuk-summary-list__value").nth(5),
         ).toHaveText(yes);
-      } else if (representationQualified === false) {
+      } else if (!representationQualified) {
         await expect(
           page.locator(".govuk-summary-list__value").nth(5),
         ).toHaveText(no);
