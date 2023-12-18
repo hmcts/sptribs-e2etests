@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@axe-core/playwright": "^4.8.1",
-    "dependency-check": "^4.1.0"
+    "dependency-check": "^4.1.0",
+    "playwright-core": "^1.40.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
