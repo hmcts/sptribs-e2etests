@@ -1,7 +1,7 @@
 const { expect } = require("@playwright/test");
 const AxeBuilder = require("@axe-core/playwright").default;
 
-async function axeTest(page) {
+async function axeTest(page) { // accessibility testing function
   const accessibilityScanResults = await new AxeBuilder({ page })
     .withTags([
       "wcag2a",
