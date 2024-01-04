@@ -14,6 +14,7 @@ const applicationSubmittedPage = require("../pages/applicationSubmittedPage");
 const caseAPILoginPage = require("../pages/caseAPILoginPage");
 const casesPage = require("../pages/casesPage");
 const caseDetailsPage = require("../pages/caseDetailsPage");
+const stateTabPage = require("../pages/caseTabs/stateTabPage.js")
 
 async function createFEApplication(
   page,
@@ -161,7 +162,7 @@ async function handleCompleteApplication(page, accessibilityTest) {
   await casesPage.changeCaseType(page);
   await casesPage.searchForCaseNumber(page, caseNumber);
   await caseDetailsPage.checkPageLoads(page, accessibilityTest);
-  await caseDetailsPage.checkStateTab(page);
+  await stateTabPage.checkStateTab(page);
 }
 
 async function handleBackButtonJourney(page) {

@@ -14,5 +14,4 @@ module.exports = {
   textOnPage12: "Case Flags",
   textOnPage13: "Case Referrals",
   textOnPage14: "Linked cases",
-  caseState: "Case Status: DSS-Submitted"
 };

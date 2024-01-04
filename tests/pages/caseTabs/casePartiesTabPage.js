@@ -1,8 +1,13 @@
 const { expect } = require("@playwright/test");
-const axeTest = require("../helpers/accessibilityTestHelper.js");
-const caseDetails = require("../fixtures/content/caseDetails_content");
+const axeTest = require("../../helpers/accessibilityTestHelper.js");
+const caseDetails = require("../../fixtures/content/caseDetails_content");
 
 module.exports = {
+  caseStateTab: "#mat-tab-label-0-2",
+  caseDetailsTab: "#mat-tab-label-0-3",
+  casePartiesTab: "#mat-tab-label-0-4",
+  caseDocumentsTab: "#mat-tab-label-0-6",
+
   async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator(".case-field").first()).toContainText(caseDetails.pageTitle);
     await expect(
@@ -12,19 +17,19 @@ module.exports = {
       page.locator("#mat-tab-label-0-1"),
     ).toHaveText(caseDetails.textOnPage2);
     await expect(
-      page.locator("#mat-tab-label-0-2"),
+      page.locator(this.caseStateTab),
     ).toHaveText(caseDetails.textOnPage3);
     await expect(
-      page.locator("#mat-tab-label-0-3"),
+      page.locator(this.caseDetailsTab),
     ).toHaveText(caseDetails.textOnPage4);
     await expect(
-      page.locator("#mat-tab-label-0-4"),
+      page.locator(this.casePartiesTab),
     ).toHaveText(caseDetails.textOnPage5);
     await expect(
       page.locator("#mat-tab-label-0-5"),
     ).toHaveText(caseDetails.textOnPage6);
     await expect(
-      page.locator("#mat-tab-label-0-6"),
+      page.locator(this.caseDocumentsTab),
     ).toHaveText(caseDetails.textOnPage7);
     await expect(
       page.locator("#mat-tab-label-0-7"),
