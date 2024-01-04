@@ -155,12 +155,11 @@ async function handleCompleteApplication(page, accessibilityTest) {
   await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
-  // const caseNumber = applicationSubmittedPage.returnCICCaseNumber(page);
-  // console.log(caseNumber);
+  const caseNumber = await applicationSubmittedPage.returnCICCaseNumber(page);
   await caseAPILoginPage.SignInUser(page);
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.changeCaseType(page);
-  await casesPage.searchForCaseNumber(page, '1704-3778-3996-5653');
+  await casesPage.searchForCaseNumber(page, caseNumber);
   await caseDetailsPage.checkPageLoads(page, accessibilityTest);
   await caseDetailsPage.checkStateTab(page);
 }
@@ -193,7 +192,7 @@ module.exports = {
   applicationSubmittedPage,
 };
 
-test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
   page,
 }) => {
   const representationPresent = true,
