@@ -5,9 +5,6 @@ const stateTab = require("../../fixtures/content/caseTabs/stateTab_content.js")
 
 module.exports = {
   caseStateTab: "#mat-tab-label-0-2",
-  caseDetailsTab: "#mat-tab-label-0-3",
-  casePartiesTab: "#mat-tab-label-0-4",
-  caseDocumentsTab: "#mat-tab-label-0-6",
 
   async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator(".case-field").first()).toContainText(caseDetails.pageTitle);
@@ -21,16 +18,16 @@ module.exports = {
       page.locator(this.caseStateTab),
     ).toHaveText(caseDetails.textOnPage3);
     await expect(
-      page.locator(this.caseDetailsTab),
+      page.locator("#mat-tab-label-0-3"),
     ).toHaveText(caseDetails.textOnPage4);
     await expect(
-      page.locator(this.casePartiesTab),
+      page.locator("#mat-tab-label-0-4"),
     ).toHaveText(caseDetails.textOnPage5);
     await expect(
       page.locator("#mat-tab-label-0-5"),
     ).toHaveText(caseDetails.textOnPage6);
     await expect(
-      page.locator(this.caseDocumentsTab),
+      page.locator("#mat-tab-label-0-6"),
     ).toHaveText(caseDetails.textOnPage7);
     await expect(
       page.locator("#mat-tab-label-0-7"),
