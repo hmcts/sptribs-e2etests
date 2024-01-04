@@ -46,8 +46,10 @@ module.exports = {
   },
 
   async returnCICCaseNumber(page) {
-    const caseNumber = await page.textContent(".govuk-panel__body");
-    console.log(caseNumber);
-    return caseNumber;
+    let cicCaseData = await page.textContent(".govuk-panel__body");
+    cicCaseData = cicCaseData.replace(/\D/g, "");
+    cicCaseData = cicCaseData.replace(/(\d{4})/g, '$1-');
+    cicCaseData = cicCaseData.slice(0, -1);
+    return cicCaseData
     },
 };
