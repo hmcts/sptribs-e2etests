@@ -11,6 +11,9 @@ const uploadSupportingDocumentsPage = require("../pages/uploadSupportingDocument
 const uploadOtherInformationPage = require("../pages/uploadOtherInformationPage");
 const checkYourAnswersPage = require("../pages/checkYourAnswersPage");
 const applicationSubmittedPage = require("../pages/applicationSubmittedPage");
+const caseAPILoginPage = require("../pages/caseAPILoginPage");
+const casesPage = require("../pages/casesPage");
+const caseDetailsPage = require("../pages/caseDetailsPage");
 
 async function createFEApplication(
   page,
@@ -152,6 +155,14 @@ async function handleCompleteApplication(page, accessibilityTest) {
   await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
+  // const caseNumber = applicationSubmittedPage.returnCICCaseNumber(page);
+  // console.log(caseNumber);
+  await caseAPILoginPage.SignInUser(page);
+  await casesPage.checkPageLoads(page, accessibilityTest);
+  await casesPage.changeCaseType(page);
+  await casesPage.searchForCaseNumber(page, '1704-3778-3996-5653');
+  await caseDetailsPage.checkPageLoads(page, accessibilityTest);
+  await caseDetailsPage.checkStateTab(page);
 }
 
 async function handleBackButtonJourney(page) {
