@@ -168,6 +168,10 @@ async function handleCompleteApplication(page, accessibilityTest, representation
   await casesPage.changeCaseType(page);
   await casesPage.searchForCaseNumber(page, caseNumber);
   await historyTabPage.checkPageLoads(page, accessibilityTest);
+  await historyTabPage.checkPageInfo(page);
+  await summaryTabPage.changeToSummaryTab(page);
+  await summaryTabPage.checkPageLoads(page, accessibilityTest, representationPresent);
+  // await summaryTabPage.checkPageInfo(page, caseNumber, representationPresent, representationQualified);
   await stateTabPage.checkStateTab(page);
 }
 
@@ -243,7 +247,7 @@ test("Create an application with no representative, additional information, no P
   );
 });
 
-test.only("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
   page,
 }) => {
   const representationPresent = true,

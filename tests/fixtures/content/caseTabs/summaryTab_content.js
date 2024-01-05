@@ -1,6 +1,5 @@
 module.exports = {
   caseState: "Case Status: DSS-Submitted",
-  pageTitle: "Case number:",
   subHeading1: "Case details",
   textOnPage1: "Subject's full name",
   textOnPage2: "Subject's date of birth",
