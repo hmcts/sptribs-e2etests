@@ -12,7 +12,7 @@ module.exports = {
   textOnPage7: "related reports",
   textOnPage8:
     "For each piece of additional information or evidence you are submitting, please state why it is relevant to your case.",
-  dropdownlink: "File uploads requirements",
+  dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
   textOnPage10: "File size per document: up to 20 megabytes (MB)",

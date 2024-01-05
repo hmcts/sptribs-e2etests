@@ -25,11 +25,11 @@ module.exports = {
       UploadAppealForm.textOnPage2,
     );
     await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-      UploadAppealForm.dropdownlink,
+      UploadAppealForm.dropdownLink,
     );
     await page.click(this.fields.dropDown);
     await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-      UploadAppealForm.dropdownlink,
+      UploadAppealForm.dropdownLink,
     );
     await expect(
       page.locator("details[class='govuk-details'] li:nth-child(1)"),

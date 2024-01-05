@@ -4,7 +4,7 @@ module.exports = {
     "Please upload the First-tier tribunal form that you have already completed.",
   textOnPage2:
     "If you have other evidence or supporting documents, you can upload these files on the next screen.",
-  dropdownlink: "File uploads requirements",
+  dropdownLink: "File uploads requirements",
   textOnPage3: "File formats: MS Word, PDF",
   textOnPage4: "File size per document: up to 20 megabytes (MB)",
   textOnPage5: "Files cannot be password protected",

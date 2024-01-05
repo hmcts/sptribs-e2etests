@@ -2,7 +2,7 @@ module.exports = {
   pageTitle: "Upload supporting documents",
   textOnPage1:
     "You must send a copy of the Authority's Review decision letter with the completed tribunal form.",
-  dropdownlink: "File uploads requirements",
+  dropdownLink: "File uploads requirements",
   textOnPage2: "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
   textOnPage3: "File size per document: up to 20 megabytes (MB)",
   textOnPage4: "Files cannot be password protected",

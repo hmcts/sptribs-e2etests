@@ -48,7 +48,7 @@ module.exports = {
       UploadOtherInformation.textOnPage8,
     );
     await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-      UploadOtherInformation.dropdownlink,
+      UploadOtherInformation.dropdownLink,
     );
     await page.click(this.fields.dropDown);
     await expect(

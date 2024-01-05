@@ -22,7 +22,7 @@ module.exports = {
       UploadSupportingDocuments.textOnPage1,
     );
     await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-      UploadSupportingDocuments.dropdownlink,
+      UploadSupportingDocuments.dropdownLink,
     );
     await page.click(this.fields.dropDown);
     await expect(
