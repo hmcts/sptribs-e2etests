@@ -18,16 +18,16 @@ module.exports = {
       page.locator(this.caseStateTab),
     ).toHaveText(allTabs.tab3);
     await expect(
-      page.locator(this.caseDetailsTab),
+      page.locator("#mat-tab-label-0-3"),
     ).toHaveText(allTabs.tab4);
     await expect(
-      page.locator(this.casePartiesTab),
+      page.locator("#mat-tab-label-0-4"),
     ).toHaveText(allTabs.tab5);
     await expect(
       page.locator("#mat-tab-label-0-5"),
     ).toHaveText(allTabs.tab6);
     await expect(
-      page.locator(this.caseDocumentsTab),
+      page.locator("#mat-tab-label-0-6"),
     ).toHaveText(allTabs.tab7);
     await expect(
       page.locator("#mat-tab-label-0-7"),
@@ -55,8 +55,11 @@ module.exports = {
     }
   },
 
-  async checkStateTab(page) {
+  async changeToStateTab(page){
     await page.locator(this.caseStateTab).click();
+  },
+
+  async checkStateTab(page) {
     await expect(
       page.locator("markdown[class=\'markdown\'] h4"),
     ).toHaveText(stateTab.caseState);

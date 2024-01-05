@@ -171,8 +171,16 @@ async function handleCompleteApplication(page, accessibilityTest, representation
   await historyTabPage.checkPageInfo(page);
   await summaryTabPage.changeToSummaryTab(page);
   await summaryTabPage.checkPageLoads(page, accessibilityTest, representationPresent);
-  // await summaryTabPage.checkPageInfo(page, caseNumber, representationPresent, representationQualified);
+  await summaryTabPage.checkPageInfo(page, caseNumber, representationPresent, representationQualified);
+  await stateTabPage.changeToStateTab(page);
+  await stateTabPage.checkPageLoads(page, accessibilityTest);
   await stateTabPage.checkStateTab(page);
+  await caseDetailsTabPage.changeToCaseDetailsTab(page);
+  await caseDetailsTabPage.checkPageLoads(page, accessibilityTest, representationPresent);
+  await caseDetailsTabPage.checkPageInfo(page, representationPresent, representationQualified);
+  await casePartiesTabPage.changeToCasePartiesTab(page);
+  await casePartiesTabPage.checkPageLoads(page, accessibilityTest, representationPresent);
+  await casePartiesTabPage.checkPageInfo(page, representationPresent, representationQualified);
 }
 
 async function handleBackButtonJourney(page) {
@@ -203,7 +211,7 @@ module.exports = {
   applicationSubmittedPage,
 };
 
-test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
   page,
 }) => {
   const representationPresent = true,

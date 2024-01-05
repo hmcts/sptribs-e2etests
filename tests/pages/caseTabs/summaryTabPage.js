@@ -133,11 +133,11 @@ module.exports = {
 
       if (representationQualified) {
         await expect(
-          page.locator("ccd-read-yes-no-field[class='ng-star-inserted']"),
+          page.getByRole('cell', { name: 'Yes' }).locator('ccd-read-yes-no-field'),
         ).toHaveText("Yes");
       } else {
         await expect(
-          page.locator("ccd-read-yes-no-field[class='ng-star-inserted']"),
+          page.getByRole('cell', { name: 'No' }).locator('ccd-read-yes-no-field'),
         ).toHaveText("No");
       }
     }
