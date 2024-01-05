@@ -13,7 +13,6 @@ module.exports = {
   textOnPage7: "Upload a file",
   textOnPage8:
     'Once you have selected the file click "Upload file" to upload it.',
-  dropdownlink: "File uploads requirements",
   button: "Upload file",
   button2: "Continue",
   fileUploadedSuccess:
