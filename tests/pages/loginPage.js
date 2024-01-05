@@ -11,8 +11,8 @@ module.exports = {
     await page.waitForSelector(
       `#skiplinktarget:text("Sign in or create an account")`,
     );
-    await page.fill(this.fields.username, config.citizenUserOne.email);
-    await page.fill(this.fields.password, config.citizenUserOne.password);
+    await page.fill(this.fields.username, config.citizen.email);
+    await page.fill(this.fields.password, config.citizen.password);
     await page.click(this.submitButton);
   },
 };
