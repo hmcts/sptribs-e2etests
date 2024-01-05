@@ -1,8 +1,6 @@
 const { expect } = require("@playwright/test");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
 const cases = require("../fixtures/content/cases_content");
-const subjectContactDetails = require("../fixtures/content/SubjectContactDetails_content");
-const { name } = require("../fixtures/content/SubjectDetails_content.js");
 
 module.exports = {
   searchCaseNumber: "#\\[CASE_REFERENCE\\]",
@@ -22,24 +20,27 @@ module.exports = {
     await expect(page.locator("label[for='wb-case-state']")).toHaveText(
       cases.textOnPage3,
     );
+    await expect(page.locator("label[for='[CASE_REFERENCE]']")).toHaveText(
+      cases.textOnPage4,
+    );
     await expect(page.locator("label[for='hearingVenueName']")).toHaveText(
-      cases.textOnPage9,
+      cases.textOnPage5,
     );
     await expect(page.locator("label[for='cicCaseFullName']")).toHaveText(
-      cases.textOnPage10,
+      cases.textOnPage6,
     );
     await expect(page.locator("label[for='cicCaseAddress.PostCode']"),).toHaveText(
-        cases.textOnPage11
+        cases.textOnPage7,
     );
     await expect(page.locator("#cicCaseDateOfBirth")).toHaveText(
-      cases.textOnPage12,
+      cases.textOnPage8,
     );
     await expect(
       page.locator("label[for='cicCaseApplicantFullName']"),
-    ).toHaveText(cases.textOnPage13);
+    ).toHaveText(cases.textOnPage9);
     await expect(
       page.locator("label[for='cicCaseRepresentativeReference']"),
-    ).toHaveText(cases.textOnPage14);
+    ).toHaveText(cases.textOnPage10);
     if (accessibilityTest) {
       await axeTest.axeTest(page);
     }
