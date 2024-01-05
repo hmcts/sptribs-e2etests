@@ -13,8 +13,13 @@ const checkYourAnswersPage = require("../pages/checkYourAnswersPage");
 const applicationSubmittedPage = require("../pages/applicationSubmittedPage");
 const caseAPILoginPage = require("../pages/caseAPILoginPage");
 const casesPage = require("../pages/casesPage");
-const caseDetailsPage = require("../pages/caseDetailsPage");
-const stateTabPage = require("../pages/caseTabs/stateTabPage.js")
+const historyTabPage = require("../pages/caseTabs/historyTabPage");
+const summaryTabPage = require("../pages/caseTabs/summaryTabPage");
+const stateTabPage = require("../pages/caseTabs/stateTabPage");
+const caseDetailsTabPage = require("../pages/caseTabs/caseDetailsTabPage");
+const casePartiesTabPage = require("../pages/caseTabs/casePartiesTabPage");
+const caseDocumentsTabPage = require("../pages/caseTabs/caseDocumentsTabPage");
+const caseFileViewTabPage = require("../pages/caseTabs/caseFileViewTabPage");
 
 async function createFEApplication(
   page,
@@ -134,7 +139,8 @@ async function normalFEFlow(
   if (completeApplication) {
     // Decides whether to submit the application,
     // not applicable to back button journeys and error messaging journeys
-    await handleCompleteApplication(page, accessibilityTest);
+    await handleCompleteApplication(page, accessibilityTest, representationPresent,
+      representationQualified, uploadOtherInfo);
   }
   if (backButtonJourney) {
     await handleBackButtonJourney(page);
@@ -152,7 +158,7 @@ async function handleRepresentationLogic(
   await representativeDetailsPage.fillInFields(page);
 }
 
-async function handleCompleteApplication(page, accessibilityTest) {
+async function handleCompleteApplication(page, accessibilityTest, representationPresent, representationQualified, uploadOtherInfo) {
   await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
@@ -161,7 +167,7 @@ async function handleCompleteApplication(page, accessibilityTest) {
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.changeCaseType(page);
   await casesPage.searchForCaseNumber(page, caseNumber);
-  await caseDetailsPage.checkPageLoads(page, accessibilityTest);
+  await historyTabPage.checkPageLoads(page, accessibilityTest);
   await stateTabPage.checkStateTab(page);
 }
 
@@ -193,7 +199,7 @@ module.exports = {
   applicationSubmittedPage,
 };
 
-test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
   page,
 }) => {
   const representationPresent = true,
@@ -237,7 +243,7 @@ test("Create an application with no representative, additional information, no P
   );
 });
 
-test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
+test.only("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
   page,
 }) => {
   const representationPresent = true,
