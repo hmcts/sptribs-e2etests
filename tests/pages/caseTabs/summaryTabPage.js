@@ -10,8 +10,8 @@ const commonHelpers = require("../../helpers/commonHelpers.js")
 module.exports = {
   summaryTab: ".mat-tab-label",
 
-  async checkPageLoads(page, accessibilityTest, representationPresent) {
-    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle);
+  async checkPageLoads(page, accessibilityTest, representationPresent, caseNumber) {
+    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
     await expect(
       page.locator(this.summaryTab).nth(0),
     ).toHaveText(allTabs.tab1);

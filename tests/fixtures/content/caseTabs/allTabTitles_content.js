@@ -1,5 +1,5 @@
 module.exports = {
-  pageTitle: "Case number:",
+  pageTitle: "Case number: ",
   tab1: "History",
   tab2: "Summary",
   tab3: "State",

@@ -206,6 +206,7 @@ module.exports = {
 
   async continueOn(page) {
     await page.click(this.continueButton);
+    return commonHelpers.getTimestamp();
   },
 
   async pressBackButton(page) {

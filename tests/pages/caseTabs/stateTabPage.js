@@ -6,8 +6,8 @@ const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content");
 module.exports = {
   caseStateTab: ".mat-tab-label",
 
-  async checkPageLoads(page, accessibilityTest) {
-    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle);
+  async checkPageLoads(page, accessibilityTest, caseNumber) {
+    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
     await expect(
       page.locator(".mat-tab-label").nth(0),
     ).toHaveText(allTabs.tab1);

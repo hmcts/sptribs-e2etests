@@ -8,8 +8,8 @@ module.exports = {
   event: "Submit case (cic)",
   state: "DSS-Submitted",
 
-  async checkPageLoads(page, accessibilityTest) {
-    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle);
+  async checkPageLoads(page, accessibilityTest, caseNumber) {
+    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
     await expect(
       page.locator(".mat-tab-label").nth(0),
     ).toHaveText(allTabs.tab1);
@@ -91,15 +91,15 @@ module.exports = {
     }
   },
 
-  async checkPageInfo(page){
+  async checkPageInfo(page, time){
     await expect(page.locator(".text-16").nth(4),
       ).toHaveText(this.event);
-    // await expect(page.locator(".text-16").nth(5),
-    // ).toHaveText(""); DATE
+    await expect(page.locator(".text-16").nth(5),
+    ).toContainText(time);
     await expect(page.locator(".text-16").nth(6),
     ).toHaveText(this.author);
-    // await expect(page.locator(".text-16").nth(8),
-    // ).toHaveText(""); DATE
+    await expect(page.locator(".text-16").nth(8),
+    ).toContainText(time);
     await expect(page.locator(".text-16").nth(10),
     ).toHaveText(this.author);
     await expect(page.locator(".text-16").nth(12),

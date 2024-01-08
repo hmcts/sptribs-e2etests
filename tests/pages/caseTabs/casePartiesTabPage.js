@@ -12,8 +12,8 @@ module.exports = {
   casePartiesTab: ".mat-tab-label",
   contactPreference: "Email",
 
-  async checkPageLoads(page, accessibilityTest, representationPresent) {
-    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle);
+  async checkPageLoads(page, accessibilityTest, representationPresent, caseNumber) {
+    await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
     await expect(
       page.locator(".mat-tab-label").nth(0),
     ).toHaveText(allTabs.tab1);
