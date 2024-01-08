@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { axeTest } from "../../helpers/accessibilityTestHelper";
+import axeTest from "../../helpers/accessibilityTestHelper";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content";
 
 type SubjectDetailsPage = {

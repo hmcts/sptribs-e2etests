@@ -1,6 +1,6 @@
 import config from "../../config";
 import { expect, Page } from "@playwright/test";
-import { axeTest } from "../../helpers/accessibilityTestHelper";
+import axeTest from "../../helpers/accessibilityTestHelper";
 import LandingPageDetails from "../../fixtures/content/DSSCreateCase/LandingPage_content";
 
 type LandingPage = {

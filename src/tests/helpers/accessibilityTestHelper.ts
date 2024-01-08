@@ -16,4 +16,4 @@ async function axeTest(page: Page): Promise<void> {
   expect(accessibilityScanResults.violations).toEqual([]);
 }
 
-export { axeTest };
+export default axeTest;
