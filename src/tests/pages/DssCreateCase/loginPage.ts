@@ -19,7 +19,7 @@ const signInPage: SignInPage = {
 
   async SignInUser(page: Page): Promise<void> {
     await page.waitForSelector(
-      `#skiplinktarget:text("Sign in or create an account")`
+      `#skiplinktarget:text("Sign in or create an account")`,
     );
     await page.fill(this.fields.username, config.citizen.email);
     await page.fill(this.fields.password, config.citizen.password);

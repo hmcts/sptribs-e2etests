@@ -1,4 +1,4 @@
-module.exports = {
+const subjectDetailsContent = {
   pageTitle: "Who is the subject of this case?",
   hintText1:
     "The subject of a case may be you, or the person who you are submitting this tribunal form on behalf of.",
@@ -17,3 +17,5 @@ module.exports = {
   fullNameError: "Please enter full name",
   dateOfBirthError: "Please enter date of birth",
 };
+
+export default subjectDetailsContent;

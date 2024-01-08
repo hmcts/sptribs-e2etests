@@ -34,15 +34,23 @@ const config: {
   },
   seniorCaseworker: {
     email: process.env.SENIOR_CASEWORKER_USERNAME || "seniorCaseworker-user",
-    password: process.env.SENIOR_CASEWORKER_PASSWORD || "seniorCaseworker-password",
+    password:
+      process.env.SENIOR_CASEWORKER_PASSWORD || "seniorCaseworker-password",
   },
   hearingCentreAdmin: {
-    email: process.env.HEARING_CENTRE_ADMIN_USERNAME || "hearingCentreAdmin-user",
-    password: process.env.HEARING_CENTRE_ADMIN_PASSWORD || "hearingCentreAdmin-password",
+    email:
+      process.env.HEARING_CENTRE_ADMIN_USERNAME || "hearingCentreAdmin-user",
+    password:
+      process.env.HEARING_CENTRE_ADMIN_PASSWORD ||
+      "hearingCentreAdmin-password",
   },
   hearingCentreTeamLead: {
-    email: process.env.HEARING_CENTRE_TEAM_LEAD_USERNAME || "hearingCentreTeamLead-user",
-    password: process.env.HEARING_CENTRE_TEAM_LEAD_PASSWORD || "hearingCentreTeamLead-password",
+    email:
+      process.env.HEARING_CENTRE_TEAM_LEAD_USERNAME ||
+      "hearingCentreTeamLead-user",
+    password:
+      process.env.HEARING_CENTRE_TEAM_LEAD_PASSWORD ||
+      "hearingCentreTeamLead-password",
   },
   judge: {
     email: process.env.JUDGE_USERNAME || "judge-user",

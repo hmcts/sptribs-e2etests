@@ -9,4 +9,4 @@ const landingPageContent = {
     "Uploading and submitting a tribunal form should not take longer than 20 minutes.",
 };
 
-export default landingPageContent
+export default landingPageContent;
