@@ -26,7 +26,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   continueButton: "#main-form-submit",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page, accessibilityTest) {
+  async checkPageLoads(page: Page, accessibilityTest: boolean) {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       subjectContactDetailsContent.pageTitle,
     );
@@ -47,8 +47,11 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
     }
   },
 
-  async fillInFields(page) {
-    await page.fill(this.fields.email, subjectContactDetailsContent.emailAddress);
+  async fillInFields(page: Page) {
+    await page.fill(
+      this.fields.email,
+      subjectContactDetailsContent.emailAddress,
+    );
     await page.fill(
       this.fields.mobileNumber,
       subjectContactDetailsContent.contactNumber,
@@ -57,7 +60,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page) {
+  async triggerErrorMessages(page: Page) {
     await page.click(this.continueButton);
     await expect(page.locator(".govuk-error-summary__title")).toHaveText(
       subjectContactDetailsContent.errorBanner,
@@ -80,7 +83,10 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
     await expect(page.locator("#subjectAgreeContact-error")).toContainText(
       subjectContactDetailsContent.agreeError,
     );
-    await page.fill(this.fields.email, subjectContactDetailsContent.partEmailEntry);
+    await page.fill(
+      this.fields.email,
+      subjectContactDetailsContent.partEmailEntry,
+    );
     await page.click(this.continueButton);
     await expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
       subjectContactDetailsContent.partEmailError,

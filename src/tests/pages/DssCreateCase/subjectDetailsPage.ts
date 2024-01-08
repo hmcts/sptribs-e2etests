@@ -26,7 +26,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
   continueButton: "#main-form-submit",
   rejectCookiesButton: ".cookie-banner-reject-button",
 
-  async checkPageLoads(page, accessibilityTest) {
+  async checkPageLoads(page: Page, accessibilityTest: boolean) {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       subjectDetailsContent.pageTitle,
     );
@@ -59,7 +59,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
     }
   },
 
-  async fillInFields(page) {
+  async fillInFields(page: Page) {
     await page.click(this.rejectCookiesButton);
     await page.fill(this.fields.fullName, subjectDetailsContent.name);
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
@@ -71,7 +71,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page) {
+  async triggerErrorMessages(page: Page) {
     await page.click(this.continueButton);
     await expect(page.locator(".govuk-error-summary__title")).toHaveText(
       subjectDetailsContent.errorBanner,
