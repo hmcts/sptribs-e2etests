@@ -5,7 +5,8 @@ const casePartiesTab = require("../../fixtures/content/caseTabs/casePartiesTab_c
 const subjectDetails = require("../../fixtures/content/SubjectDetails_content");
 const subjectContactDetails = require("../../fixtures/content/SubjectContactDetails_content");
 const representativeDetails = require("../../fixtures/content/RepresentativeDetails_content");
-const respondentDetails = require("../../fixtures/content/RespondentDetails_content.js")
+const respondentDetails = require("../../fixtures/content/RespondentDetails_content.js");
+const commonHelpers = require("../../helpers/commonHelpers.js")
 
 module.exports = {
   casePartiesTab: "#mat-tab-label-0-4",
@@ -140,7 +141,7 @@ module.exports = {
     ).toHaveText(subjectContactDetails.contactNumber);
     await expect(
       page.locator("td[id='case-viewer-field-read--cicCaseDateOfBirth']"),
-    ).toHaveText(subjectDetails.dateOfBirth);
+    ).toHaveText(commonHelpers.convertDate(true));
     await expect(
       page.locator("ccd-read-fixed-radio-list-field[class='ng-star-inserted']").first(),
     ).toHaveText(this.contactPreference);

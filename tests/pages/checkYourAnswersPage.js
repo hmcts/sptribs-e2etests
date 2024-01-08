@@ -7,28 +7,7 @@ const subjectDetailsPage = require("../fixtures/content/SubjectDetails_content")
 const subjectContactDetailsPage = require("../fixtures/content/SubjectContactDetails_content");
 const representativeDetailsPage = require("../fixtures/content/RepresentativeDetails_content");
 const UploadOtherInfoPage = require("../fixtures/content/UploadOtherInformation_content");
-
-function convertDate() {
-  const dayOfBirth = subjectDetailsPage.dayOfBirth;
-  const monthOfBirth = subjectDetailsPage.monthOfBirth;
-  const yearOfBirth = subjectDetailsPage.yearOfBirth;
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const monthName = months[Number(monthOfBirth) - 1];
-  return `${dayOfBirth} ${monthName} ${yearOfBirth}`;
-}
+const commonHelpers = require("../helpers/commonHelpers.js")
 
 module.exports = {
   continueButton: "#main-form-submit",
@@ -151,7 +130,7 @@ module.exports = {
       subjectDetailsPage.name,
     );
     await expect(page.locator(".govuk-summary-list__value").nth(1)).toHaveText(
-      convertDate(),
+      commonHelpers.convertDate(),
     );
     await expect(page.locator(".govuk-summary-list__value").nth(2)).toHaveText(
       subjectContactDetailsPage.emailAddress,

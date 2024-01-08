@@ -5,6 +5,7 @@ const caseDetailsTab = require("../../fixtures/content/caseTabs/caseDetailsTab_c
 const subjectDetails = require("../../fixtures/content/SubjectDetails_content");
 const subjectContactDetails = require("../../fixtures/content/SubjectContactDetails_content");
 const representativeDetails = require("../../fixtures/content/RepresentativeDetails_content");
+const commonHelpers = require("../../helpers/commonHelpers.js")
 
 module.exports = {
   caseDetailsTab: "#mat-tab-label-0-3",
@@ -119,7 +120,7 @@ module.exports = {
     ).toHaveText(subjectDetails.name);
     await expect(
       page.locator("td[id='case-viewer-field-read--cicCaseDateOfBirth']"),
-    ).toHaveText(subjectDetails.dateOfBirth);
+    ).toHaveText(commonHelpers.convertDate(true));
     await expect(
       page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
     ).toHaveText(subjectContactDetails.emailAddress);

@@ -12,7 +12,6 @@ module.exports = {
   dayOfBirth: "1",
   monthOfBirth: "1",
   yearOfBirth: "2000",
-  dateOfBirth: "1 Jan 2000",
   button: "Continue",
   errorBanner: "There is a problem",
   fullNameError: "Please enter full name",

@@ -5,7 +5,7 @@ const summaryTab = require("../../fixtures/content/caseTabs/summaryTab_content")
 const subjectDetails = require("../../fixtures/content/SubjectDetails_content");
 const subjectContactDetails = require("../../fixtures/content/SubjectContactDetails_content");
 const representativeDetails = require("../../fixtures/content/RepresentativeDetails_content");
-
+const commonHelpers = require("../../helpers/commonHelpers.js")
 
 module.exports = {
   summaryTab: "#mat-tab-label-0-1",
@@ -109,7 +109,7 @@ module.exports = {
     ).toHaveText(subjectDetails.name);
     await expect(
       page.locator("ccd-read-date-field[class='ng-star-inserted']"),
-    ).toHaveText(subjectDetails.dateOfBirth);
+    ).toHaveText(commonHelpers.convertDate(true));
     await expect(
       page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
     ).toHaveText(subjectContactDetails.emailAddress);
