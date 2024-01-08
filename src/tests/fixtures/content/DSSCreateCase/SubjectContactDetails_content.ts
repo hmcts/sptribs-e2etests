@@ -1,4 +1,4 @@
-module.exports = {
+const subjectContactDetailsContent = {
   pageTitle: "Enter contact information",
   textOnPage1: "Please enter your contact details to use for this case.",
   subHeading1: "Email address",
@@ -17,3 +17,5 @@ module.exports = {
   agreeError:
     "Please agree to be contacted using the details provided to continue",
 };
+
+export default subjectContactDetailsContent;
