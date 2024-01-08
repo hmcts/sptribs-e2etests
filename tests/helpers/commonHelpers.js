@@ -33,11 +33,9 @@ function getTimestamp() {
   }
   const currentDate = new Date();
   let hours = currentDate.getHours();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-
   hours = hours % 12;
   hours = hours ? hours : 12;
-  return `${currentDate.getDate()} ${months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}, ${hours}:${padZero(currentDate.getMinutes())}:${padZero(currentDate.getSeconds())} ${ampm}`;
+  return `${currentDate.getDate()} ${months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}, ${hours}:${padZero(currentDate.getMinutes())}`;
 
 }
 
