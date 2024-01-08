@@ -184,6 +184,9 @@ async function handleCompleteApplication(page, accessibilityTest, representation
   await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
   await caseDocumentsTabPage.checkPageLoads(page, accessibilityTest);
   await caseDocumentsTabPage.checkPageInfo(page);
+  await caseFileViewTabPage.changeToCaseFileViewTab(page);
+  await caseFileViewTabPage.checkPageLoads(page, accessibilityTest);
+  await caseFileViewTabPage.checkPageInfo(page);
 }
 
 async function handleBackButtonJourney(page) {
