@@ -1,4 +1,4 @@
-module.exports = {
+const landingPageContent = {
   pageTitle: "Submit a First-tier Tribunal form",
   hintMessage:
     "Use this service to upload and submit a completed First-tier Tribunal form. You'll also be asked to upload any supporting documents separately, so make sure you have everything you need to hand before getting started. There will be no option to save your progress and return later once you begin.",
@@ -8,3 +8,5 @@ module.exports = {
   textOnPage2:
     "Uploading and submitting a tribunal form should not take longer than 20 minutes.",
 };
+
+export default landingPageContent

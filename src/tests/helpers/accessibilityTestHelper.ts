@@ -1,20 +1,19 @@
-import { test as base } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-type AxeFixture = {
-  makeAxeBuilder: () => AxeBuilder;
-};
-export const test = base.extend<AxeFixture>({
-  makeAxeBuilder: async ({ page }, use, testInfo) => {
-    const makeAxeBuilder = () =>
-      new AxeBuilder({ page }).withTags([
-        "wcag2a",
-        "wcag2aa",
-        "wcag21a",
-        "wcag21aa",
-        "wcag22a",
-        "wcag22aa",
-      ]);
-    await use(makeAxeBuilder);
-  },
-});
+async function axeTest(page: Page): Promise<void> {
+  // accessibility testing function
+  const accessibilityScanResults = await new AxeBuilder({ page })
+    .withTags([
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "wcag22a",
+      "wcag22aa",
+    ])
+    .analyze();
+  await expect(accessibilityScanResults.violations).toEqual([]);
+}
+
+export { axeTest };
