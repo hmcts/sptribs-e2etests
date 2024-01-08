@@ -1,4 +1,4 @@
-module.exports = {
+const representationQualifiedContent = {
   pageTitle: "Is the named representative legally qualified?",
   hintMessage:
     "A solicitor or a barrister are legally qualified representatives.",
@@ -8,3 +8,5 @@ module.exports = {
   errorBanner: "There is a problem",
   selectionError: "Please select an answer before you can proceed further",
 };
+
+export default representationQualifiedContent;
