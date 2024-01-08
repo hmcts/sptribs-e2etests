@@ -63,7 +63,10 @@ const subjectDetailsPage: SubjectDetailsPage = {
     await page.click(this.rejectCookiesButton);
     await page.fill(this.fields.fullName, subjectDetailsContent.name);
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
-    await page.fill(this.fields.monthOfBirth, subjectDetailsContent.monthOfBirth);
+    await page.fill(
+      this.fields.monthOfBirth,
+      subjectDetailsContent.monthOfBirth,
+    );
     await page.fill(this.fields.yearOfBirth, subjectDetailsContent.yearOfBirth);
     await page.click(this.continueButton);
   },
