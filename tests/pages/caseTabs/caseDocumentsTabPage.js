@@ -4,7 +4,7 @@ const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content");
 const caseDocumentsTab = require("../../fixtures/content/caseTabs/caseDocumentsTab_content.js")
 
 module.exports = {
-  caseDocumentsTab: "#mat-tab-label-0-6",
+  caseDocumentsTab: ".mat-tab-label",
   textClass: ".text-16",
   firstDocCategory: "DSS Supporting uploaded documents",
   firstDocName: "mockFile.txt",
@@ -14,46 +14,46 @@ module.exports = {
   async checkPageLoads(page, accessibilityTest) {
     await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle);
     await expect(
-      page.locator("#mat-tab-label-0-0"),
+      page.locator(".mat-tab-label").nth(0),
     ).toHaveText(allTabs.tab1);
     await expect(
-      page.locator("#mat-tab-label-0-1"),
+      page.locator(".mat-tab-label").nth(1),
     ).toHaveText(allTabs.tab2);
     await expect(
-      page.locator("#mat-tab-label-0-2"),
+      page.locator(".mat-tab-label").nth(2),
     ).toHaveText(allTabs.tab3);
     await expect(
-      page.locator("#mat-tab-label-0-3"),
+      page.locator(".mat-tab-label").nth(3),
     ).toHaveText(allTabs.tab4);
     await expect(
-      page.locator("#mat-tab-label-0-4"),
+      page.locator(".mat-tab-label").nth(4),
     ).toHaveText(allTabs.tab5);
     await expect(
-      page.locator("#mat-tab-label-0-5"),
+      page.locator(".mat-tab-label").nth(5),
     ).toHaveText(allTabs.tab6);
     await expect(
-      page.locator(this.caseDocumentsTab),
+      page.locator(this.caseDocumentsTab).nth(6),
     ).toHaveText(allTabs.tab7);
     await expect(
-      page.locator("#mat-tab-label-0-7"),
+      page.locator(".mat-tab-label").nth(7),
     ).toHaveText(allTabs.tab8);
     await expect(
-      page.locator("#mat-tab-label-0-8"),
+      page.locator(".mat-tab-label").nth(8),
     ).toHaveText(allTabs.tab9);
     await expect(
-      page.locator("#mat-tab-label-0-9"),
+      page.locator(".mat-tab-label").nth(9),
     ).toHaveText(allTabs.tab10);
     await expect(
-      page.locator("#mat-tab-label-0-10"),
+      page.locator(".mat-tab-label").nth(10),
     ).toHaveText(allTabs.tab11);
     await expect(
-      page.locator("#mat-tab-label-0-11"),
+      page.locator(".mat-tab-label").nth(11),
     ).toHaveText(allTabs.tab12);
     await expect(
-      page.locator("#mat-tab-label-0-12"),
+      page.locator(".mat-tab-label").nth(12),
     ).toHaveText(allTabs.tab13);
     await expect(
-      page.locator("#mat-tab-label-0-13"),
+      page.locator(".mat-tab-label").nth(13),
     ).toHaveText(allTabs.tab14);
     await expect(
       page.locator("markdown[class='markdown'] h4"),
@@ -86,7 +86,7 @@ module.exports = {
   },
 
   async changeToCaseDocumentsTab(page){
-    await page.locator(this.caseDocumentsTab).click();
+    await page.locator(this.caseDocumentsTab).nth(6).click();
   },
 
   async checkPageInfo(page) {
