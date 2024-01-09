@@ -11,6 +11,15 @@ const uploadSupportingDocumentsPage = require("../pages/uploadSupportingDocument
 const uploadOtherInformationPage = require("../pages/uploadOtherInformationPage");
 const checkYourAnswersPage = require("../pages/checkYourAnswersPage");
 const applicationSubmittedPage = require("../pages/applicationSubmittedPage");
+const caseAPILoginPage = require("../pages/caseAPILoginPage");
+const casesPage = require("../pages/casesPage");
+const historyTabPage = require("../pages/caseTabs/historyTabPage");
+const summaryTabPage = require("../pages/caseTabs/summaryTabPage");
+const stateTabPage = require("../pages/caseTabs/stateTabPage");
+const caseDetailsTabPage = require("../pages/caseTabs/caseDetailsTabPage");
+const casePartiesTabPage = require("../pages/caseTabs/casePartiesTabPage");
+const caseDocumentsTabPage = require("../pages/caseTabs/caseDocumentsTabPage");
+const caseFileViewTabPage = require("../pages/caseTabs/caseFileViewTabPage");
 
 async function createFEApplication(
   page,
@@ -130,7 +139,8 @@ async function normalFEFlow(
   if (completeApplication) {
     // Decides whether to submit the application,
     // not applicable to back button journeys and error messaging journeys
-    await handleCompleteApplication(page, accessibilityTest);
+    await handleCompleteApplication(page, accessibilityTest, representationPresent,
+      representationQualified, uploadOtherInfo);
   }
   if (backButtonJourney) {
     await handleBackButtonJourney(page);
@@ -148,10 +158,35 @@ async function handleRepresentationLogic(
   await representativeDetailsPage.fillInFields(page);
 }
 
-async function handleCompleteApplication(page, accessibilityTest) {
-  await checkYourAnswersPage.continueOn(page);
+async function handleCompleteApplication(page, accessibilityTest, representationPresent, representationQualified) {
+  const time = await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
+  const caseNumber = await applicationSubmittedPage.returnCICCaseNumber(page);
+  await caseAPILoginPage.SignInUser(page);
+  await casesPage.checkPageLoads(page, accessibilityTest);
+  await casesPage.changeCaseType(page);
+  await casesPage.searchForCaseNumber(page, caseNumber);
+  await historyTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await historyTabPage.checkPageInfo(page, time);
+  await summaryTabPage.changeToSummaryTab(page);
+  await summaryTabPage.checkPageLoads(page, accessibilityTest, representationPresent, caseNumber);
+  await summaryTabPage.checkPageInfo(page, caseNumber, representationPresent, representationQualified);
+  await stateTabPage.changeToStateTab(page);
+  await stateTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await stateTabPage.checkStateTab(page);
+  await caseDetailsTabPage.changeToCaseDetailsTab(page);
+  await caseDetailsTabPage.checkPageLoads(page, accessibilityTest, representationPresent, caseNumber);
+  await caseDetailsTabPage.checkPageInfo(page, representationPresent, representationQualified);
+  await casePartiesTabPage.changeToCasePartiesTab(page);
+  await casePartiesTabPage.checkPageLoads(page, accessibilityTest, representationPresent, caseNumber);
+  await casePartiesTabPage.checkPageInfo(page, representationPresent, representationQualified);
+  await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
+  await caseDocumentsTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await caseDocumentsTabPage.checkPageInfo(page);
+  await caseFileViewTabPage.changeToCaseFileViewTab(page);
+  await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await caseFileViewTabPage.checkPageInfo(page);
 }
 
 async function handleBackButtonJourney(page) {
