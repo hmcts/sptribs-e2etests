@@ -1,4 +1,4 @@
-module.exports = {
+const uploadAppealForm_content = {
   pageTitle: "Upload tribunal form",
   textOnPage1:
     "Please upload the First-tier tribunal form that you have already completed.",
@@ -22,4 +22,6 @@ module.exports = {
   noUploadError: "You cannot continue without uploading the application",
   fileTypeError:
     "This service only accepts files in the formats - Ms Word, PDF",
-};
+} as const;
+
+export default uploadAppealForm_content;
