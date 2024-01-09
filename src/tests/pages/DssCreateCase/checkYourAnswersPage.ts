@@ -236,7 +236,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
 
   async continueOn(page: Page): Promise<string> {
     await page.click(this.continueButton);
-    return commonHelpers.getTimestamp();
+    return await commonHelpers.getTimestamp();
   },
 
   async pressBackButton(page: Page): Promise<void> {
