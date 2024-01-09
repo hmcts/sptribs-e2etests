@@ -3,7 +3,7 @@ import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails
 type CommonHelpers = {
   readonly months: string[];
   padZero(value: number): string;
-  convertDate(tab: string): Promise<string>;
+  convertDate(tab: boolean): Promise<string>;
   getTimestamp(): Promise<string>;
 };
 
@@ -27,7 +27,7 @@ const commonHelpers: CommonHelpers = {
     return value < 10 ? "0" + value : value.toString();
   },
 
-  async convertDate(tab: string): Promise<string> {
+  async convertDate(tab: boolean): Promise<string> {
     const dayOfBirth = subjectDetailsPage.dayOfBirth;
     const monthOfBirth = subjectDetailsPage.monthOfBirth;
     const yearOfBirth = subjectDetailsPage.yearOfBirth;
