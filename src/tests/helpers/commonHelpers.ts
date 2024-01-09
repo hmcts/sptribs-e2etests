@@ -44,7 +44,11 @@ const commonHelpers: CommonHelpers = {
     let hours = currentDate.getHours();
     hours = hours % 12;
     hours = hours ? hours : 12;
-    return `${currentDate.getDate()} ${this.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}, ${hours}:${this.padZero(currentDate.getMinutes())}`;
+    return `${currentDate.getDate()} ${this.months[
+      currentDate.getMonth()
+    ].slice(0, 3)} ${currentDate.getFullYear()}, ${hours}:${this.padZero(
+      currentDate.getMinutes(),
+    )}`;
   },
 };
 

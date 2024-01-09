@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
-import uploadSupportingDocumentsContent from "../../fixtures/content/DSSCreateCase/UploadSupportingDocuments_content.ts"
+import uploadSupportingDocumentsContent from "../../fixtures/content/DSSCreateCase/UploadSupportingDocuments_content.ts";
 
 type UploadSupportingDocumentsPage = {
   fields: {

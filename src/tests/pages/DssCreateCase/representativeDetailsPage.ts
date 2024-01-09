@@ -8,14 +8,14 @@ type RepresentativeDetailsPage = {
     representativeOrgName: string;
     representativeContactNumber: string;
     representativeEmailAddress: string;
-  }
+  };
   continueButton: string;
   backButton: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
-}
+};
 
 const representativeDetailsPage: RepresentativeDetailsPage = {
   fields: {
@@ -56,7 +56,10 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await page.fill(this.fields.fullName, representativeDetailsContent.fullName);
+    await page.fill(
+      this.fields.fullName,
+      representativeDetailsContent.fullName,
+    );
     await page.fill(
       this.fields.representativeOrgName,
       representativeDetailsContent.Organisation,
