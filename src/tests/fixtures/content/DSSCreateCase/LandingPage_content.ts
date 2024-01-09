@@ -7,6 +7,6 @@ const landingPageContent = {
     "As well as uploading a tribunal form, you will also be asked a handful of simple questions. You'll be able to review and change the answers you give to these questions before you submit them.",
   textOnPage2:
     "Uploading and submitting a tribunal form should not take longer than 20 minutes.",
-};
+} as const;
 
 export default landingPageContent;

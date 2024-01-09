@@ -5,6 +5,6 @@ const representationContent = {
   button: "Continue",
   errorBanner: "There is a problem",
   selectionError: "Please select an answer before you can proceed further",
-};
+} as const;
 
 export default representationContent;

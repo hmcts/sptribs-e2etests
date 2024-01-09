@@ -16,6 +16,6 @@ const subjectDetailsContent = {
   errorBanner: "There is a problem",
   fullNameError: "Please enter full name",
   dateOfBirthError: "Please enter date of birth",
-};
+} as const;
 
 export default subjectDetailsContent;

@@ -16,6 +16,6 @@ const subjectContactDetailsContent = {
   validContactNumberError: "Please enter a valid contact number",
   agreeError:
     "Please agree to be contacted using the details provided to continue",
-};
+} as const;
 
 export default subjectContactDetailsContent;
