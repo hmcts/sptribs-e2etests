@@ -9,7 +9,6 @@ import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/S
 import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 
-
 type CheckYourAnswersPage = {
   continueButton: string;
   backButton: string;
