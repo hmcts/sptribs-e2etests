@@ -27,7 +27,7 @@ function padZero(value: number): string | number {
   return value < 10 ? "0" + value : value;
 }
 
-function convertDate(tab: string): string {
+async function convertDate(tab: string): Promise<string> {
   const dayOfBirth = subjectDetailsPage.dayOfBirth;
   const monthOfBirth = subjectDetailsPage.monthOfBirth;
   const yearOfBirth = subjectDetailsPage.yearOfBirth;
@@ -39,7 +39,7 @@ function convertDate(tab: string): string {
   }
 }
 
-function getTimestamp(): string {
+async function getTimestamp(): Promise<string> {
   const currentDate = new Date();
   let hours = currentDate.getHours();
   hours = hours % 12;
