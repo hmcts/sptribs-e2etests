@@ -19,8 +19,8 @@ const config: {
   superUser: UserCredentials;
 
   // base urls
-  FEBaseURL: string;
-  CaseAPIBaseURL: string;
+  readonly FEBaseURL: string;
+  readonly CaseAPIBaseURL: string;
 
   // files
   testFile: string;
