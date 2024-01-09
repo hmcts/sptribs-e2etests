@@ -29,9 +29,9 @@ module.exports = {
     await expect(page.locator("label[for='cicCaseFullName']")).toHaveText(
       cases.textOnPage6,
     );
-    await expect(page.locator("label[for='cicCaseAddress.PostCode']"),).toHaveText(
-        cases.textOnPage7,
-    );
+    await expect(
+      page.locator("label[for='cicCaseAddress.PostCode']"),
+    ).toHaveText(cases.textOnPage7);
     await expect(page.locator("#cicCaseDateOfBirth")).toHaveText(
       cases.textOnPage8,
     );
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   async changeCaseType(page) {
-    await page.selectOption(this.caseType, 'CIC');
+    await page.selectOption(this.caseType, "CIC");
     await page.locator("button[title='Apply filter']").click();
   },
 

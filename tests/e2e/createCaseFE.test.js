@@ -139,8 +139,13 @@ async function normalFEFlow(
   if (completeApplication) {
     // Decides whether to submit the application,
     // not applicable to back button journeys and error messaging journeys
-    await handleCompleteApplication(page, accessibilityTest, representationPresent,
-      representationQualified, uploadOtherInfo);
+    await handleCompleteApplication(
+      page,
+      accessibilityTest,
+      representationPresent,
+      representationQualified,
+      uploadOtherInfo,
+    );
   }
   if (backButtonJourney) {
     await handleBackButtonJourney(page);
@@ -158,7 +163,12 @@ async function handleRepresentationLogic(
   await representativeDetailsPage.fillInFields(page);
 }
 
-async function handleCompleteApplication(page, accessibilityTest, representationPresent, representationQualified) {
+async function handleCompleteApplication(
+  page,
+  accessibilityTest,
+  representationPresent,
+  representationQualified,
+) {
   const time = await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
@@ -170,19 +180,51 @@ async function handleCompleteApplication(page, accessibilityTest, representation
   await historyTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
   await historyTabPage.checkPageInfo(page, time);
   await summaryTabPage.changeToSummaryTab(page);
-  await summaryTabPage.checkPageLoads(page, accessibilityTest, representationPresent, caseNumber);
-  await summaryTabPage.checkPageInfo(page, caseNumber, representationPresent, representationQualified);
+  await summaryTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    representationPresent,
+    caseNumber,
+  );
+  await summaryTabPage.checkPageInfo(
+    page,
+    caseNumber,
+    representationPresent,
+    representationQualified,
+  );
   await stateTabPage.changeToStateTab(page);
   await stateTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
   await stateTabPage.checkStateTab(page);
   await caseDetailsTabPage.changeToCaseDetailsTab(page);
-  await caseDetailsTabPage.checkPageLoads(page, accessibilityTest, representationPresent, caseNumber);
-  await caseDetailsTabPage.checkPageInfo(page, representationPresent, representationQualified);
+  await caseDetailsTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    representationPresent,
+    caseNumber,
+  );
+  await caseDetailsTabPage.checkPageInfo(
+    page,
+    representationPresent,
+    representationQualified,
+  );
   await casePartiesTabPage.changeToCasePartiesTab(page);
-  await casePartiesTabPage.checkPageLoads(page, accessibilityTest, representationPresent, caseNumber);
-  await casePartiesTabPage.checkPageInfo(page, representationPresent, representationQualified);
+  await casePartiesTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    representationPresent,
+    caseNumber,
+  );
+  await casePartiesTabPage.checkPageInfo(
+    page,
+    representationPresent,
+    representationQualified,
+  );
   await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
-  await caseDocumentsTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await caseDocumentsTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    caseNumber,
+  );
   await caseDocumentsTabPage.checkPageInfo(page);
   await caseFileViewTabPage.changeToCaseFileViewTab(page);
   await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);

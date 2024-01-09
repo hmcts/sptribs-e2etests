@@ -6,5 +6,5 @@ module.exports = {
   textOnPage3: "End state",
   textOnPage4: "Event",
   textOnPage5: "Summary",
-  textOnPage6: "Comment"
+  textOnPage6: "Comment",
 };

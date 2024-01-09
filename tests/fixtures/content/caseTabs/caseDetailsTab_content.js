@@ -13,5 +13,5 @@ module.exports = {
   textOnPage9: "Representative's contact number",
   textOnPage10: "Representative's email address",
   textOnPage11: "Is the representative legally qualified?",
-  textOnPage12: "What is representative's contact preference?"
+  textOnPage12: "What is representative's contact preference?",
 };

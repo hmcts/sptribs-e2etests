@@ -15,4 +15,4 @@ module.exports = {
   tab13: "Case Referrals",
   tab14: "Linked cases",
   contactPreference: "Email",
-}
+};

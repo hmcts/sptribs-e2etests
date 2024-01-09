@@ -1,5 +1,5 @@
 const { expect } = require("@playwright/test");
-const commonHelpers = require("../helpers/commonHelpers.js")
+const commonHelpers = require("../helpers/commonHelpers.js");
 const axeTest = require("../helpers/accessibilityTestHelper.js");
 const path = require("path");
 const config = require("../config.js");

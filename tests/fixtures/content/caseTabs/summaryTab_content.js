@@ -10,5 +10,5 @@ module.exports = {
   textOnPage6: "Organisation or business name",
   textOnPage7: "Representative's full name",
   textOnPage8: "Representative's contact number",
-  textOnPage9: "Representative's email address"
+  textOnPage9: "Representative's email address",
 };
