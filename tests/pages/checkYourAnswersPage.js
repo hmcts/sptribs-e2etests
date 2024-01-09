@@ -1,4 +1,5 @@
 const { expect } = require("@playwright/test");
+const commonHelpers = require("../helpers/commonHelpers.js")
 const axeTest = require("../helpers/accessibilityTestHelper.js");
 const path = require("path");
 const config = require("../config.js");
@@ -7,7 +8,6 @@ const subjectDetailsPage = require("../fixtures/content/SubjectDetails_content")
 const subjectContactDetailsPage = require("../fixtures/content/SubjectContactDetails_content");
 const representativeDetailsPage = require("../fixtures/content/RepresentativeDetails_content");
 const UploadOtherInfoPage = require("../fixtures/content/UploadOtherInformation_content");
-const commonHelpers = require("../helpers/commonHelpers.js")
 
 module.exports = {
   continueButton: "#main-form-submit",

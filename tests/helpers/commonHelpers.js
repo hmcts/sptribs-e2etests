@@ -15,6 +15,11 @@ const months = [
   "December",
 ];
 
+// Add a zero before a value if it is under 10 - used for timestamp
+function padZero(value) {
+  return value < 10 ? '0' + value : value;
+}
+
 function convertDate(tab) {
   const dayOfBirth = subjectDetailsPage.dayOfBirth;
   const monthOfBirth = subjectDetailsPage.monthOfBirth;
@@ -28,9 +33,6 @@ function convertDate(tab) {
 }
 
 function getTimestamp() {
-  function padZero(value) {
-    return value < 10 ? '0' + value : value;
-  }
   const currentDate = new Date();
   let hours = currentDate.getHours();
   hours = hours % 12;

@@ -48,12 +48,12 @@ module.exports = {
 
   async changeCaseType(page) {
     await page.selectOption(this.caseType, 'CIC');
-    await page.getByRole("button", { name: "Apply"}).click();
+    await page.locator("button[title='Apply filter']").click();
   },
 
   async searchForCaseNumber(page, caseNumber) {
     await page.fill(this.searchCaseNumber, caseNumber);
-    await page.getByRole("button", { name: "Apply"}).click();
-    await page.getByRole("link", { name: caseNumber}).click();
+    await page.locator("button[title='Apply filter']").click();
+    await page.locator("ccd-read-text-field").nth(0).click();
   },
 };

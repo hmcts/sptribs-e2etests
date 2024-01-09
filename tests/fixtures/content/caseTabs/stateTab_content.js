@@ -1,3 +1,4 @@
 module.exports = {
-  caseState: "Case Status: DSS-Submitted"
+  caseState: "Case Status: ",
+  DSSSubmittedState: "DSS-Submitted"
 }

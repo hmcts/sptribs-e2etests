@@ -62,6 +62,6 @@ module.exports = {
   async checkStateTab(page) {
     await expect(
       page.locator("markdown[class=\'markdown\'] h4"),
-    ).toHaveText(stateTab.caseState);
+    ).toHaveText(stateTab.caseState + stateTab.DSSSubmittedState);
   },
 };

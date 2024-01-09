@@ -1,4 +1,6 @@
 const { expect } = require("@playwright/test");
+const path = require("path");
+const config = require("../../config");
 const axeTest = require("../../helpers/accessibilityTestHelper.js");
 const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content");
 const caseFileViewTab = require("../../fixtures/content/caseTabs/caseFileViewTab_content");
@@ -101,10 +103,10 @@ module.exports = {
     ).toHaveText(uploadedDocuments.totalDocuments);
     await expect(
       page.locator(".node__name").nth(5),
-    ).toHaveText(uploadedDocuments.mockText);
+    ).toHaveText(path.basename(config.testFile));
     await expect(
       page.locator(".node__name").nth(6),
-    ).toHaveText(uploadedDocuments.mockPDF);
+    ).toHaveText(path.basename(config.testPdfFile));
   }
 };
 

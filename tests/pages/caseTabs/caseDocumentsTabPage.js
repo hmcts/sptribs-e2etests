@@ -1,14 +1,13 @@
 const { expect } = require("@playwright/test");
+const path = require("path");
+const config = require("../../config.js");
 const axeTest = require("../../helpers/accessibilityTestHelper.js");
 const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content");
 const caseDocumentsTab = require("../../fixtures/content/caseTabs/caseDocumentsTab_content.js");
-const uploadedDocuments = require("../../fixtures/content/uploadedDocuments_content.js");
 
 module.exports = {
   caseDocumentsTab: ".mat-tab-label",
   textClass: ".text-16",
-  firstDocCategory: "DSS Supporting uploaded documents",
-  secondDocCategory: "DSS Tribunal form uploaded documents",
 
   async checkPageLoads(page, accessibilityTest, caseNumber) {
     await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
@@ -91,15 +90,15 @@ module.exports = {
   async checkPageInfo(page) {
     await expect(
       page.locator(this.textClass).nth(6),
-    ).toHaveText(this.firstDocCategory);
+    ).toHaveText(caseDocumentsTab.firstDocCategory);
     await expect(
       page.locator(this.textClass).nth(8),
-    ).toHaveText(uploadedDocuments.mockText);
+    ).toHaveText(path.basename(config.testFile));
     await expect(
       page.locator(this.textClass).nth(12),
-    ).toHaveText(this.secondDocCategory);
+    ).toHaveText(caseDocumentsTab.secondDocCategory);
     await expect(
       page.locator(this.textClass).nth(14),
-    ).toHaveText(uploadedDocuments.mockPDF);
+    ).toHaveText(path.basename(config.testPdfFile));
   }
 };

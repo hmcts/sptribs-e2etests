@@ -1,11 +1,11 @@
 const { expect } = require("@playwright/test");
+const commonHelpers = require("../../helpers/commonHelpers.js");
 const axeTest = require("../../helpers/accessibilityTestHelper.js");
 const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content");
 const summaryTab = require("../../fixtures/content/caseTabs/summaryTab_content");
 const subjectDetails = require("../../fixtures/content/SubjectDetails_content");
 const subjectContactDetails = require("../../fixtures/content/SubjectContactDetails_content");
 const representativeDetails = require("../../fixtures/content/RepresentativeDetails_content");
-const commonHelpers = require("../../helpers/commonHelpers.js")
 
 module.exports = {
   summaryTab: ".mat-tab-label",
@@ -133,11 +133,11 @@ module.exports = {
 
       if (representationQualified) {
         await expect(
-          page.getByRole('cell', { name: 'Yes' }).locator('ccd-read-yes-no-field'),
+          page.locator("ccd-read-yes-no-field").nth(0),
         ).toHaveText("Yes");
       } else {
         await expect(
-          page.getByRole('cell', { name: 'No' }).locator('ccd-read-yes-no-field'),
+          page.locator("ccd-read-yes-no-field").nth(0),
         ).toHaveText("No");
       }
     }

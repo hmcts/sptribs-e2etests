@@ -2,11 +2,11 @@ const { expect } = require("@playwright/test");
 const axeTest = require("../../helpers/accessibilityTestHelper.js");
 const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content.js")
 const historyTab = require("../../fixtures/content/caseTabs/historyTab_content");
+const stateTab = require("../../fixtures/content/caseTabs/stateTab_content.js");
+const events = require("../../fixtures/content/events_content.js");
+const authors = require("../../fixtures/content/authors_content.js")
 
 module.exports = {
-  author: "Automated CITIZEN",
-  event: "Submit case (cic)",
-  state: "DSS-Submitted",
 
   async checkPageLoads(page, accessibilityTest, caseNumber) {
     await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
@@ -93,18 +93,18 @@ module.exports = {
 
   async checkPageInfo(page, time){
     await expect(page.locator(".text-16").nth(4),
-      ).toHaveText(this.event);
+      ).toHaveText(events.submitCaseCIC);
     await expect(page.locator(".text-16").nth(5),
     ).toContainText(time);
     await expect(page.locator(".text-16").nth(6),
-    ).toHaveText(this.author);
+    ).toHaveText(authors.automatedCitizen);
     await expect(page.locator(".text-16").nth(8),
     ).toContainText(time);
     await expect(page.locator(".text-16").nth(10),
-    ).toHaveText(this.author);
+    ).toHaveText(authors.automatedCitizen);
     await expect(page.locator(".text-16").nth(12),
-    ).toHaveText(this.state);
+    ).toHaveText(stateTab.DSSSubmittedState);
     await expect(page.locator(".text-16").nth(14),
-    ).toHaveText(this.event);
+    ).toHaveText(events.submitCaseCIC);
   }
 };

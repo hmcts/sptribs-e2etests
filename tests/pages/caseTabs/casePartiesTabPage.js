@@ -1,4 +1,5 @@
 const { expect } = require("@playwright/test");
+const commonHelpers = require("../../helpers/commonHelpers.js");
 const axeTest = require("../../helpers/accessibilityTestHelper.js");
 const allTabs = require("../../fixtures/content/caseTabs/allTabTitles_content");
 const casePartiesTab = require("../../fixtures/content/caseTabs/casePartiesTab_content")
@@ -6,11 +7,9 @@ const subjectDetails = require("../../fixtures/content/SubjectDetails_content");
 const subjectContactDetails = require("../../fixtures/content/SubjectContactDetails_content");
 const representativeDetails = require("../../fixtures/content/RepresentativeDetails_content");
 const respondentDetails = require("../../fixtures/content/RespondentDetails_content.js");
-const commonHelpers = require("../../helpers/commonHelpers.js")
 
 module.exports = {
   casePartiesTab: ".mat-tab-label",
-  contactPreference: "Email",
 
   async checkPageLoads(page, accessibilityTest, representationPresent, caseNumber) {
     await expect(page.locator(".case-field").first()).toContainText(allTabs.pageTitle + caseNumber);
@@ -144,7 +143,7 @@ module.exports = {
     ).toHaveText(commonHelpers.convertDate(true));
     await expect(
       page.locator("ccd-read-fixed-radio-list-field[class='ng-star-inserted']").first(),
-    ).toHaveText(this.contactPreference);
+    ).toHaveText(allTabs.contactPreference);
     await expect(
       page.locator("td[id='case-viewer-field-read--cicCaseRespondentName']"),
     ).toHaveText(respondentDetails.fullName);
@@ -170,15 +169,15 @@ module.exports = {
       ).toHaveText(representativeDetails.emailAddress);
       await expect(
         page.locator("td[id='case-viewer-field-read--cicCaseRepresentativeContactDetailsPreference']"),
-      ).toHaveText(this.contactPreference);
+      ).toHaveText(allTabs.contactPreference);
 
       if (representationQualified) {
         await expect(
-          page.getByRole('cell', { name: 'Yes' }).locator('ccd-read-yes-no-field'),
+          page.locator("ccd-read-yes-no-field"),
         ).toHaveText("Yes");
       } else {
         await expect(
-          page.getByRole('cell', { name: 'No' }).locator('ccd-read-yes-no-field'),
+          page.locator("ccd-read-yes-no-field"),
         ).toHaveText("No");
       }
     }
