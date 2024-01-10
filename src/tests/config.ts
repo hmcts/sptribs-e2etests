@@ -1,3 +1,5 @@
+import path from "path";
+
 interface UserCredentials {
   readonly email: string;
   readonly password: string;
@@ -76,10 +78,10 @@ const config: {
   FEBaseURL: process.env.FEBASEURL || "FEBaseURL",
   CaseAPIBaseURL: process.env.CASEAPIBASEURL || "CaseAPIBaseURL",
 
-  testFile: "./fixtures/testFiles/mockFile.txt",
-  testPdfFile: "./fixtures/testFiles/mockFile.pdf",
-  testWordFile: "./fixtures/testFiles/mockFile.docx",
-  testOdtFile: "./fixtures/testFiles/mockFile.odt",
+  testFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.txt'),
+  testPdfFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.pdf'),
+  testWordFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.docx'),
+  testOdtFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.odt'),
 };
 
 export default config;
