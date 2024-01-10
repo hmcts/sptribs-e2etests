@@ -5,13 +5,16 @@ import LandingPageDetails from "../../fixtures/content/DSSCreateCase/LandingPage
 
 type LandingPage = {
   startButton: string;
+  seeTheLandingPage(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void>;
+  continueOn(page: Page): Promise<void>;
 };
 
 const landingPage: LandingPage = {
   startButton: 'a[role="button"]',
-};
 
-export const landingPageActions = {
   async seeTheLandingPage(
     page: Page,
     accessibilityTest: boolean,
@@ -42,3 +45,5 @@ export const landingPageActions = {
     await page.click(landingPage.startButton);
   },
 };
+
+export default landingPage;
