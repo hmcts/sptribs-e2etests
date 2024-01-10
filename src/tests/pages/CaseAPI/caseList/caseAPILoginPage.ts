@@ -1,14 +1,14 @@
-import { Page } from "@playwright/test"
+import { Page } from "@playwright/test";
 import config from "../../../config.ts";
 
 type CaseAPILoginPage = {
   fields: {
     username: string;
     password: string;
-  }
+  };
   submitButton: string;
   SignInUser(page: Page): Promise<void>;
-}
+};
 
 const caseAPILoginPage: CaseAPILoginPage = {
   fields: {
