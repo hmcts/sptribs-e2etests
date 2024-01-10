@@ -4,4 +4,4 @@ const respondentDetails_content = {
   emailAddress: "appeals.team@cica.gov.uk",
 } as const;
 
-export default respondentDetails_content
+export default respondentDetails_content;
