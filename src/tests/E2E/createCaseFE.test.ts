@@ -282,7 +282,7 @@ test("Create an application with no representative, additional information, no P
   page,
 }) => {
   const representationPresent = false,
-    representationQualified = null,
+    representationQualified = false,
     uploadOtherInfo = true,
     completeApplication = true,
     backButtonJourney = false,

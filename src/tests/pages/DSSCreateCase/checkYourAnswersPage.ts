@@ -152,7 +152,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
       subjectDetailsContent.name,
     );
     await expect(page.locator(".govuk-summary-list__value").nth(1)).toHaveText(
-      await commonHelpers.convertDate(null),
+      await commonHelpers.convertDate(false),
     );
     await expect(page.locator(".govuk-summary-list__value").nth(2)).toHaveText(
       subjectContactDetailsContent.emailAddress,

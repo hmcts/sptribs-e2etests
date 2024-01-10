@@ -43,7 +43,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
   },
 
   async checkCICCaseNumber(page: Page): Promise<void> {
-    const cicCaseData: string = await page.textContent(".govuk-panel__body");
+    const cicCaseData: string = await page.textContent(".govuk-panel__body") ?? "Empty";
     const caseNumber: string = cicCaseData.replace(/\D/g, "");
     if (caseNumber.length !== 16) {
       throw new Error(
@@ -53,7 +53,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
   },
 
   async returnCICCaseNumber(page: Page): Promise<string> {
-    let cicCaseData: string = await page.textContent(".govuk-panel__body");
+    let cicCaseData: string = (await page.textContent(".govuk-panel__body")) ?? "Empty";
     cicCaseData = cicCaseData.replace(/\D/g, "");
     cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
     cicCaseData = cicCaseData.slice(0, -1);
