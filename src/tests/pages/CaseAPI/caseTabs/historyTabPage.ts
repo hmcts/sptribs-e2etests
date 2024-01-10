@@ -6,13 +6,21 @@ import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab
 import authorsContent from "../../../fixtures/content/authors_content.ts";
 import eventsContent from "../../../fixtures/content/CaseAPI/events_content.ts";
 
-type HistoryTabPage= {
-  checkPageLoads(page: Page, accessibilityTest: boolean, caseNumber: string): Promise<void>;
+type HistoryTabPage = {
+  checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    caseNumber: string,
+  ): Promise<void>;
   checkPageInfo(page: Page, time: string): Promise<void>;
-}
+};
 
 const historyTabPage: HistoryTabPage = {
-  async checkPageLoads(page: Page, accessibilityTest: boolean, caseNumber: string): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    caseNumber: string,
+  ): Promise<void> {
     await expect(page.locator(".case-field").first()).toContainText(
       allTabsTitlesContent.pageTitle + caseNumber,
     );
@@ -118,4 +126,4 @@ const historyTabPage: HistoryTabPage = {
   },
 };
 
-export default historyTabPage
+export default historyTabPage;

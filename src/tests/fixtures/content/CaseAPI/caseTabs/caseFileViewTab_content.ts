@@ -12,4 +12,4 @@ const caseFileViewTab_content = {
   textOnPage10: "General evidence (TG)",
 } as const;
 
-export default caseFileViewTab_content
+export default caseFileViewTab_content;
