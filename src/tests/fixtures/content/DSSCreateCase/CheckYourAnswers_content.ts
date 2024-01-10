@@ -1,0 +1,30 @@
+const checkYourAnswers_content = {
+  pageTitle: "Check your answers before submitting your tribunal form",
+  subTitle1: "Subject Details",
+  textOnPage1: "Full name",
+  textOnPage2: "Date of birth",
+  textOnPage3: "Email address",
+  textOnPage4: "Contact number",
+  subTitle2: "Representation",
+  textOnPage5: "Is there a representative named on completed tribunal form?",
+  textOnPage6: "Is the named representative legally qualified?",
+  subTitle3: "Representative's Details",
+  textOnPage7: "Full name",
+  textOnPage8: "Organisation or business name",
+  textOnPage9: "Contact number",
+  textOnPage10: "Email address",
+  subTitle4: "Appeal forms",
+  textOnPage11: "List of forms uploaded (Appeal form)",
+  subTitle5: "Supporting documents",
+  textOnPage12: "List of supporting documents uploaded",
+  subTitle6: "Additional information",
+  textOnPage13: "List of other documents uploaded",
+  textOnPage14: "Document relevance",
+  textOnPage15: "Additional information",
+  subTitle7: "Now submit your tribunal form",
+  textOnPage16:
+    "By submitting this tribunal form you are confirming that, to the best of your knowledge, the details you are providing are correct.",
+  button: "Accept and send",
+} as const;
+
+export default checkYourAnswers_content;
