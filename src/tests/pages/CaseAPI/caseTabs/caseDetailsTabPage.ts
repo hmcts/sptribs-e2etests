@@ -10,20 +10,24 @@ import representativeDetailsContent from "../../../fixtures/content/DSSCreateCas
 type CaseDetailsTabPage = {
   caseDetailsTab: string;
   checkPageLoads(
-    page : Page,
+    page: Page,
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
   ): Promise<void>;
   changeToCaseDetailsTab(page: Page): Promise<void>;
-  checkPageInfo(page: Page, representationPresent: boolean, representationQualified: boolean): Promise<void>;
-}
+  checkPageInfo(
+    page: Page,
+    representationPresent: boolean,
+    representationQualified: boolean,
+  ): Promise<void>;
+};
 
 const caseDetailsTabPage: CaseDetailsTabPage = {
   caseDetailsTab: ".mat-tab-label",
 
   async checkPageLoads(
-    page : Page,
+    page: Page,
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
@@ -133,13 +137,17 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
     await page.locator(this.caseDetailsTab).nth(3).click();
   },
 
-  async checkPageInfo(page: Page, representationPresent: boolean, representationQualified: boolean): Promise<void> {
+  async checkPageInfo(
+    page: Page,
+    representationPresent: boolean,
+    representationQualified: boolean,
+  ): Promise<void> {
     await expect(
       page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
     ).toHaveText(subjectDetailsContent.name);
     await expect(
       page.locator("td[id='case-viewer-field-read--cicCaseDateOfBirth']"),
-    ).toHaveText( await commonHelpers.convertDate(true));
+    ).toHaveText(await commonHelpers.convertDate(true));
     await expect(
       page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
     ).toHaveText(subjectContactDetailsContent.emailAddress);
