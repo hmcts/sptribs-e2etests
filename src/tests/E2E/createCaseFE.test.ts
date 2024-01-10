@@ -66,10 +66,7 @@ async function createFEApplication(
           page,
           representationQualified,
         );
-        await representativeDetailsPage.checkPageLoads(
-          page,
-          accessibilityTest,
-        );
+        await representativeDetailsPage.checkPageLoads(page, accessibilityTest);
         await representativeDetailsPage.triggerErrorMessages(page);
         await representativeDetailsPage.fillInFields(page);
       }
@@ -82,10 +79,7 @@ async function createFEApplication(
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page);
       await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
-      await uploadOtherInformationPage.checkPageLoads(
-        page,
-        accessibilityTest,
-      );
+      await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
       await uploadOtherInformationPage.triggerErrorMessages(page);
       await uploadOtherInformationPage.uploadDocumentsSection(
         page,
@@ -262,7 +256,9 @@ export {
   applicationSubmittedPage,
 };
 
-test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({ page }) => {
+test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+  page,
+}) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,
@@ -282,7 +278,9 @@ test.only("As a Citizen, Create an application with all details, a qualified rep
   );
 });
 
-test("Create an application with no representative, additional information, no PCQ, and submit.", async ({ page }) => {
+test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
+  page,
+}) => {
   const representationPresent = false,
     representationQualified = null,
     uploadOtherInfo = true,
@@ -302,7 +300,9 @@ test("Create an application with no representative, additional information, no P
   );
 });
 
-test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({ page }) => {
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
+  page,
+}) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = false,
@@ -322,7 +322,9 @@ test("Create an application with all details, a qualified representative, no add
   );
 });
 
-test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({ page }) => {
+test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
+  page,
+}) => {
   const representationPresent = true,
     representationQualified = false,
     uploadOtherInfo = false,
