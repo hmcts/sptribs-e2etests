@@ -43,8 +43,8 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
   },
 
   async checkCICCaseNumber(page: Page): Promise<void> {
-    const cicCaseData = await page.textContent(".govuk-panel__body");
-    const caseNumber = cicCaseData.replace(/\D/g, "");
+    const cicCaseData: string = await page.textContent(".govuk-panel__body");
+    const caseNumber: string = cicCaseData.replace(/\D/g, "");
     if (caseNumber.length !== 16) {
       throw new Error(
         `String length should be 16, but it is ${caseNumber.length}`,
@@ -53,7 +53,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
   },
 
   async returnCICCaseNumber(page: Page): Promise<string> {
-    let cicCaseData = await page.textContent(".govuk-panel__body");
+    let cicCaseData: string = await page.textContent(".govuk-panel__body");
     cicCaseData = cicCaseData.replace(/\D/g, "");
     cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
     cicCaseData = cicCaseData.slice(0, -1);
