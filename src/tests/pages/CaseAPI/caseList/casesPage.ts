@@ -67,3 +67,5 @@ const casesPage: CasesPage = {
     await page.locator("ccd-read-text-field").nth(0).click();
   },
 };
+
+export default casesPage;
