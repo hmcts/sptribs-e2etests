@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test"
-import config from "../../config.ts";
+import config from "../../../config.ts";
 
 type CaseAPILoginPage = {
   fields: {
