@@ -76,10 +76,10 @@ const config: {
   FEBaseURL: process.env.FEBASEURL || "FEBaseURL",
   CaseAPIBaseURL: process.env.CASEAPIBASEURL || "CaseAPIBaseURL",
 
-  testFile: "./tests/fixtures/testFiles/mockFile.txt",
-  testPdfFile: "./tests/fixtures/testFiles/mockFile.pdf",
-  testWordFile: "./tests/fixtures/testFiles/mockFile.docx",
-  testOdtFile: "./tests/fixtures/testFiles/mockFile.odt",
+  testFile: "./fixtures/testFiles/mockFile.txt",
+  testPdfFile: "./fixtures/testFiles/mockFile.pdf",
+  testWordFile: "./fixtures/testFiles/mockFile.docx",
+  testOdtFile: "./fixtures/testFiles/mockFile.odt",
 };
 
 export default config;
