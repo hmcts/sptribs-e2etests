@@ -148,6 +148,7 @@ async function normalFEFlow(
       representationPresent,
       representationQualified,
       uploadOtherInfo,
+      multipleDocuments
     );
   }
   if (backButtonJourney) {
@@ -172,6 +173,7 @@ async function handleCompleteApplication(
   representationPresent: boolean,
   representationQualified: boolean,
   uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
 ) {
   const time = await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
@@ -228,8 +230,9 @@ async function handleCompleteApplication(
     page,
     accessibilityTest,
     caseNumber,
+    multipleDocuments,
   );
-  await caseDocumentsTabPage.checkPageInfo(page);
+  await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
   await caseFileViewTabPage.changeToCaseFileViewTab(page);
   await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
   await caseFileViewTabPage.checkPageInfo(page);

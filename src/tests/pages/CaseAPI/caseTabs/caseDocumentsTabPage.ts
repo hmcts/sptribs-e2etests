@@ -12,9 +12,10 @@ type CaseDocumentsTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    multipleDocuments: boolean,
   ): Promise<void>;
   changeToCaseDocumentsTab(page: Page): Promise<void>;
-  checkPageInfo(page: Page): Promise<void>;
+  checkPageInfo(page: Page, multipleDocuments: boolean): Promise<void>;
 };
 
 const caseDocumentsTabPage: CaseDocumentsTabPage = {
@@ -25,6 +26,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    multipleDocuments: boolean,
   ): Promise<void> {
     await expect(page.locator(".case-field").first()).toContainText(
       allTabTitlesContent.pageTitle + caseNumber,
@@ -95,6 +97,62 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     await expect(page.locator(this.textClass).nth(13)).toHaveText(
       caseDocumentsTabContent.textOnPage2,
     );
+    if (multipleDocuments) {
+      await expect(page.locator(this.textClass).nth(15)).toHaveText(
+        caseDocumentsTabContent.title3,
+      );
+      await expect(page.locator(this.textClass).nth(16)).toHaveText(
+        caseDocumentsTabContent.textOnPage1,
+      );
+      await expect(page.locator(this.textClass).nth(19)).toHaveText(
+        caseDocumentsTabContent.textOnPage2,
+      );
+      await expect(page.locator(this.textClass).nth(21)).toHaveText(
+        caseDocumentsTabContent.title4,
+      );
+      await expect(page.locator(this.textClass).nth(22)).toHaveText(
+        caseDocumentsTabContent.textOnPage1,
+      );
+      await expect(page.locator(this.textClass).nth(25)).toHaveText(
+        caseDocumentsTabContent.textOnPage2,
+      );
+      await expect(page.locator(this.textClass).nth(27)).toHaveText(
+        caseDocumentsTabContent.title5,
+      );
+      await expect(page.locator(this.textClass).nth(28)).toHaveText(
+        caseDocumentsTabContent.textOnPage1,
+      );
+      await expect(page.locator(this.textClass).nth(31)).toHaveText(
+        caseDocumentsTabContent.textOnPage2,
+      );
+      await expect(page.locator(this.textClass).nth(33)).toHaveText(
+        caseDocumentsTabContent.title6,
+      );
+      await expect(page.locator(this.textClass).nth(34)).toHaveText(
+        caseDocumentsTabContent.textOnPage1,
+      );
+      await expect(page.locator(this.textClass).nth(37)).toHaveText(
+        caseDocumentsTabContent.textOnPage2,
+      );
+      await expect(page.locator(this.textClass).nth(39)).toHaveText(
+        caseDocumentsTabContent.title7,
+      );
+      await expect(page.locator(this.textClass).nth(40)).toHaveText(
+        caseDocumentsTabContent.textOnPage1,
+      );
+      await expect(page.locator(this.textClass).nth(43)).toHaveText(
+        caseDocumentsTabContent.textOnPage2,
+      );
+      await expect(page.locator(this.textClass).nth(45)).toHaveText(
+        caseDocumentsTabContent.title8,
+      );
+      await expect(page.locator(this.textClass).nth(46)).toHaveText(
+        caseDocumentsTabContent.textOnPage1,
+      );
+      await expect(page.locator(this.textClass).nth(49)).toHaveText(
+        caseDocumentsTabContent.textOnPage2,
+      );
+    }
 
     if (accessibilityTest) {
       await axeTest(page);
@@ -105,19 +163,70 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     await page.locator(this.caseDocumentsTab).nth(6).click();
   },
 
-  async checkPageInfo(page: Page): Promise<void> {
-    await expect(page.locator(this.textClass).nth(6)).toHaveText(
-      caseDocumentsTabContent.firstDocCategory,
-    );
-    await expect(page.locator(this.textClass).nth(8)).toHaveText(
-      path.basename(config.testFile),
-    );
-    await expect(page.locator(this.textClass).nth(12)).toHaveText(
-      caseDocumentsTabContent.secondDocCategory,
-    );
-    await expect(page.locator(this.textClass).nth(14)).toHaveText(
-      path.basename(config.testPdfFile),
-    );
+  async checkPageInfo(page: Page, multipleDocuments: boolean,): Promise<void> {
+    if (multipleDocuments) {
+      await expect(page.locator(this.textClass).nth(6)).toHaveText(
+        caseDocumentsTabContent.firstDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(8)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(this.textClass).nth(12)).toHaveText(
+        caseDocumentsTabContent.firstDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(14)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(this.textClass).nth(18)).toHaveText(
+        caseDocumentsTabContent.firstDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(20)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(this.textClass).nth(24)).toHaveText(
+        caseDocumentsTabContent.firstDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(26)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(this.textClass).nth(30)).toHaveText(
+        caseDocumentsTabContent.secondDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(32)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(this.textClass).nth(36)).toHaveText(
+        caseDocumentsTabContent.secondDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(38)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(this.textClass).nth(42)).toHaveText(
+        caseDocumentsTabContent.secondDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(44)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(this.textClass).nth(48)).toHaveText(
+        caseDocumentsTabContent.secondDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(50)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+    } else {
+      await expect(page.locator(this.textClass).nth(6)).toHaveText(
+        caseDocumentsTabContent.firstDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(8)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(this.textClass).nth(12)).toHaveText(
+        caseDocumentsTabContent.secondDocCategory,
+      );
+      await expect(page.locator(this.textClass).nth(14)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+    }
   },
 };
 
