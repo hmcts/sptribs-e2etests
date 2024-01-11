@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import config, { UserCredentials, UserRole } from "../../../config.ts";
+import config, { UserRole } from "../../../config.ts";
 import idamLoginHelper from "../../../helpers/idamLoginHelper.ts";
 
 type CaseAPILoginPage = {
