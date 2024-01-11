@@ -5,7 +5,7 @@ export interface UserCredentials {
   readonly password: string;
 }
 
-type UserRole =
+export type UserRole =
   | "caseWorker"
   | "seniorCaseworker"
   | "hearingCentreAdmin"

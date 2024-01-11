@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
-import config from "../../../config.ts";
+import config, { UserCredentials, UserRole } from "../../../config.ts";
+import idamLoginHelper from "../../../helpers/idamLoginHelper.ts";
 
 type CaseAPILoginPage = {
   fields: {
@@ -7,7 +8,7 @@ type CaseAPILoginPage = {
     password: string;
   };
   submitButton: string;
-  SignInUser(page: Page): Promise<void>;
+  SignInUser(page: Page, user: UserRole): Promise<void>;
 };
 
 const caseAPILoginPage: CaseAPILoginPage = {
@@ -17,11 +18,9 @@ const caseAPILoginPage: CaseAPILoginPage = {
   },
   submitButton: 'input[value="Sign in"]',
 
-  async SignInUser(page: Page): Promise<void> {
+  async SignInUser(page: Page, user: UserRole): Promise<void> {
     await page.goto(config.CaseAPIBaseURL);
-    await page.fill(this.fields.username, config.caseWorker.email);
-    await page.fill(this.fields.password, config.caseWorker.password);
-    await page.click(this.submitButton);
+    await idamLoginHelper.signInUser(page, user);
   },
 };
 
