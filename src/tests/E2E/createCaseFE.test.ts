@@ -139,6 +139,7 @@ async function normalFEFlow(
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
   );
   if (completeApplication) {
     await handleCompleteApplication(
