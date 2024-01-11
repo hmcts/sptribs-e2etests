@@ -15,7 +15,7 @@ type UploadOtherInformationPage = {
   continueButton: string;
   backButton: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  uploadDocumentsSection(page: Page, uploadInformation: boolean): Promise<void>;
+  uploadDocumentsSection(page: Page, uploadInformation: boolean, multipleDocuments: boolean): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
@@ -108,6 +108,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   async uploadDocumentsSection(
     page: Page,
     uploadInformation: boolean,
+    multipleDocuments: boolean
   ): Promise<void> {
     if (uploadInformation) {
       await page
@@ -124,6 +125,50 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
         ),
       ).toContainText(uploadOtherInformationContent.deleteButton);
+      if (multipleDocuments) {
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(config.testWordFile);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(
+          page.locator(
+            "main[id='main-content'] li:nth-child(2).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
+          ),
+        ).toContainText(path.basename(config.testWordFile));
+        await expect(
+          page.locator(
+            "main[id='main-content'] li:nth-child(2).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
+          ),
+        ).toContainText(uploadOtherInformationContent.deleteButton);
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(config.testWordFile);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(
+          page.locator(
+            "main[id='main-content'] li:nth-child(3).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
+          ),
+        ).toContainText(path.basename(config.testWordFile));
+        await expect(
+          page.locator(
+            "main[id='main-content'] li:nth-child(3).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
+          ),
+        ).toContainText(uploadOtherInformationContent.deleteButton);
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(config.testWordFile);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(
+          page.locator(
+            "main[id='main-content'] li:nth-child(4).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
+          ),
+        ).toContainText(path.basename(config.testWordFile));
+        await expect(
+          page.locator(
+            "main[id='main-content'] li:nth-child(4).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
+          ),
+        ).toContainText(uploadOtherInformationContent.deleteButton);
+      }
       await page.fill(
         this.fields.documentRelevance,
         uploadOtherInformationContent.documentRelevance,

@@ -26,6 +26,7 @@ async function createFEApplication(
   representationPresent: boolean,
   representationQualified: boolean,
   uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
   completeApplication: boolean,
   backButtonJourney: boolean,
   accessibilityTest: boolean,
@@ -38,6 +39,7 @@ async function createFEApplication(
         representationPresent,
         representationQualified,
         uploadOtherInfo,
+        multipleDocuments,
         completeApplication,
         backButtonJourney,
         accessibilityTest,
@@ -72,18 +74,19 @@ async function createFEApplication(
       }
       await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
       await uploadAppealFormPage.triggerErrorMessages(page);
-      await uploadAppealFormPage.uploadDocumentsSection(page);
+      await uploadAppealFormPage.uploadDocumentsSection(page, multipleDocuments);
       await uploadSupportingDocumentsPage.checkPageLoads(
         page,
         accessibilityTest,
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page);
-      await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+      await uploadSupportingDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
       await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
       await uploadOtherInformationPage.triggerErrorMessages(page);
       await uploadOtherInformationPage.uploadDocumentsSection(
         page,
         uploadOtherInfo,
+        multipleDocuments,
       );
       await page.click('button[name="opt-out-button"]');
   }
@@ -94,6 +97,7 @@ async function normalFEFlow(
   representationPresent: boolean,
   representationQualified: boolean,
   uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
   completeApplication: boolean,
   backButtonJourney: boolean,
   accessibilityTest: boolean,
@@ -115,13 +119,14 @@ async function normalFEFlow(
     );
   }
   await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
-  await uploadAppealFormPage.uploadDocumentsSection(page);
+  await uploadAppealFormPage.uploadDocumentsSection(page, multipleDocuments);
   await uploadSupportingDocumentsPage.checkPageLoads(page, accessibilityTest);
-  await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+  await uploadSupportingDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
   await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
     uploadOtherInfo,
+    multipleDocuments,
   );
   await page.click('button[name="opt-out-button"]');
   await checkYourAnswersPage.checkPageLoads(
@@ -262,6 +267,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,
+    multipleDocuments = false,
     completeApplication = true,
     backButtonJourney = false,
     accessibilityTest = true,
@@ -271,6 +277,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
     completeApplication,
     backButtonJourney,
     accessibilityTest,
@@ -284,6 +291,7 @@ test("Create an application with no representative, additional information, no P
   const representationPresent = false,
     representationQualified = false,
     uploadOtherInfo = true,
+    multipleDocuments = false,
     completeApplication = true,
     backButtonJourney = false,
     accessibilityTest = false,
@@ -293,6 +301,7 @@ test("Create an application with no representative, additional information, no P
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
     completeApplication,
     backButtonJourney,
     accessibilityTest,
@@ -306,6 +315,7 @@ test("Create an application with all details, a qualified representative, no add
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = false,
+    multipleDocuments = false,
     completeApplication = true,
     backButtonJourney = false,
     accessibilityTest = false,
@@ -315,6 +325,7 @@ test("Create an application with all details, a qualified representative, no add
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
     completeApplication,
     backButtonJourney,
     accessibilityTest,
@@ -328,6 +339,7 @@ test("Create an application with all details, an unqualified representative, no 
   const representationPresent = true,
     representationQualified = false,
     uploadOtherInfo = false,
+    multipleDocuments = false,
     completeApplication = true,
     backButtonJourney = false,
     accessibilityTest = false,
@@ -337,6 +349,31 @@ test("Create an application with all details, an unqualified representative, no 
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
+test.only("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
+  page,
+}) => {
+  const representationPresent = false,
+    representationQualified = false,
+    uploadOtherInfo = true,
+    multipleDocuments = true,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
     completeApplication,
     backButtonJourney,
     accessibilityTest,
@@ -348,6 +385,7 @@ test("Test all back buttons on the Frontend application", async ({ page }) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,
+    multipleDocuments = false,
     completeApplication = false,
     backButtonJourney = true,
     accessibilityTest = false,
@@ -357,6 +395,7 @@ test("Test all back buttons on the Frontend application", async ({ page }) => {
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
     completeApplication,
     backButtonJourney,
     accessibilityTest,
@@ -368,6 +407,7 @@ test("Error messaging", async ({ page }) => {
   const representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,
+    multipleDocuments = false,
     completeApplication = false,
     backButtonJourney = false,
     accessibilityTest = false,
@@ -377,6 +417,7 @@ test("Error messaging", async ({ page }) => {
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
     completeApplication,
     backButtonJourney,
     accessibilityTest,
