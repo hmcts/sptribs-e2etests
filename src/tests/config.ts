@@ -1,35 +1,26 @@
 import path from "path";
 
-interface UserCredentials {
+export interface UserCredentials {
   readonly email: string;
   readonly password: string;
 }
 
-// To get the secrets values to run locally, look in the azure secrets vault, and replace the strings below with
-// their key value, do not commit raw values as this will show on the Git history.
+type UserRole =
+  | "caseWorker"
+  | "seniorCaseworker"
+  | "hearingCentreAdmin"
+  | "hearingCentreTeamLead"
+  | "judge"
+  | "seniorJudge"
+  | "respondent"
+  | "citizen"
+  | "superUser";
 
-// users
-const config: {
-  caseWorker: UserCredentials;
-  seniorCaseworker: UserCredentials;
-  hearingCentreAdmin: UserCredentials;
-  hearingCentreTeamLead: UserCredentials;
-  judge: UserCredentials;
-  seniorJudge: UserCredentials;
-  respondent: UserCredentials;
-  citizen: UserCredentials;
-  superUser: UserCredentials;
+interface Config {
+  [key: string]: UserCredentials | string;
+}
 
-  // base urls
-  readonly FEBaseURL: string;
-  readonly CaseAPIBaseURL: string;
-
-  // files
-  testFile: string;
-  testPdfFile: string;
-  testWordFile: string;
-  testOdtFile: string;
-} = {
+const config: Config = {
   caseWorker: {
     email: process.env.CASEWORKER_USERNAME || "caseworker-user",
     password: process.env.CASEWORKER_PASSWORD || "caseworker-password",
@@ -78,10 +69,31 @@ const config: {
   FEBaseURL: process.env.FEBASEURL || "FEBaseURL",
   CaseAPIBaseURL: process.env.CASEAPIBASEURL || "CaseAPIBaseURL",
 
-  testFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.txt'),
-  testPdfFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.pdf'),
-  testWordFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.docx'),
-  testOdtFile: path.resolve(__dirname, '../tests/fixtures/testFiles/mockFile.odt'),
+  testFile: path.resolve(
+    __dirname,
+    "../tests/fixtures/testFiles/mockFile.txt"
+  ),
+  testPdfFile: path.resolve(
+    __dirname,
+    "../tests/fixtures/testFiles/mockFile.pdf"
+  ),
+  testWordFile: path.resolve(
+    __dirname,
+    "../tests/fixtures/testFiles/mockFile.docx"
+  ),
+  testOdtFile: path.resolve(
+    __dirname,
+    "../tests/fixtures/testFiles/mockFile.odt"
+  ),
 };
 
-export default config;
+export default config as {
+  [key in UserRole]: UserCredentials;
+} & {
+  FEBaseURL: string;
+  CaseAPIBaseURL: string;
+  testFile: string;
+  testPdfFile: string;
+  testWordFile: string;
+  testOdtFile: string;
+};
