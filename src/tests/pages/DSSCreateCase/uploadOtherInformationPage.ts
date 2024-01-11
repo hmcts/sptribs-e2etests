@@ -15,7 +15,11 @@ type UploadOtherInformationPage = {
   continueButton: string;
   backButton: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  uploadDocumentsSection(page: Page, uploadInformation: boolean, multipleDocuments: boolean): Promise<void>;
+  uploadDocumentsSection(
+    page: Page,
+    uploadInformation: boolean,
+    multipleDocuments: boolean,
+  ): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
@@ -108,7 +112,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   async uploadDocumentsSection(
     page: Page,
     uploadInformation: boolean,
-    multipleDocuments: boolean
+    multipleDocuments: boolean,
   ): Promise<void> {
     if (uploadInformation) {
       await page

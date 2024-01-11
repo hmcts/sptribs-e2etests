@@ -13,7 +13,7 @@ type UploadAppealFormPage = {
   continueButton: string;
   backButton: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  uploadDocumentsSection(page: Page, multipleDocuments: boolean,): Promise<void>;
+  uploadDocumentsSection(page: Page, multipleDocuments: boolean): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
@@ -68,7 +68,10 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     }
   },
 
-  async uploadDocumentsSection(page: Page, multipleDocuments: boolean): Promise<void> {
+  async uploadDocumentsSection(
+    page: Page,
+    multipleDocuments: boolean,
+  ): Promise<void> {
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testPdfFile);
@@ -81,7 +84,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     await expect(
       page.locator(
         "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-      )
+      ),
     ).toContainText(uploadAppealFormContent.deleteButton);
     switch (multipleDocuments) {
       case false:
@@ -95,7 +98,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await expect(
           page.locator(
             "main[id='main-content'] li:nth-child(2).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          )
+          ),
         ).toContainText(path.basename(config.testPdfFile));
         await expect(
           page.locator(
@@ -109,7 +112,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await expect(
           page.locator(
             "main[id='main-content'] li:nth-child(3).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          )
+          ),
         ).toContainText(path.basename(config.testPdfFile));
         await expect(
           page.locator(
@@ -123,7 +126,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await expect(
           page.locator(
             "main[id='main-content'] li:nth-child(4).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          )
+          ),
         ).toContainText(path.basename(config.testPdfFile));
         await expect(
           page.locator(

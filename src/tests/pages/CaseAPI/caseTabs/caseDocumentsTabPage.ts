@@ -163,7 +163,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     await page.locator(this.caseDocumentsTab).nth(6).click();
   },
 
-  async checkPageInfo(page: Page, multipleDocuments: boolean,): Promise<void> {
+  async checkPageInfo(page: Page, multipleDocuments: boolean): Promise<void> {
     if (multipleDocuments) {
       await expect(page.locator(this.textClass).nth(6)).toHaveText(
         caseDocumentsTabContent.firstDocCategory,

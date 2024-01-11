@@ -62,7 +62,10 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     }
   },
 
-  async uploadDocumentsSection(page: Page, multipleDocuments: boolean): Promise<void> {
+  async uploadDocumentsSection(
+    page: Page,
+    multipleDocuments: boolean,
+  ): Promise<void> {
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testFile);

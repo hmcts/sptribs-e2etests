@@ -74,13 +74,19 @@ async function createFEApplication(
       }
       await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
       await uploadAppealFormPage.triggerErrorMessages(page);
-      await uploadAppealFormPage.uploadDocumentsSection(page, multipleDocuments);
+      await uploadAppealFormPage.uploadDocumentsSection(
+        page,
+        multipleDocuments,
+      );
       await uploadSupportingDocumentsPage.checkPageLoads(
         page,
         accessibilityTest,
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page);
-      await uploadSupportingDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
+      await uploadSupportingDocumentsPage.uploadDocumentsSection(
+        page,
+        multipleDocuments,
+      );
       await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
       await uploadOtherInformationPage.triggerErrorMessages(page);
       await uploadOtherInformationPage.uploadDocumentsSection(
@@ -121,7 +127,10 @@ async function normalFEFlow(
   await uploadAppealFormPage.checkPageLoads(page, accessibilityTest);
   await uploadAppealFormPage.uploadDocumentsSection(page, multipleDocuments);
   await uploadSupportingDocumentsPage.checkPageLoads(page, accessibilityTest);
-  await uploadSupportingDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
+  await uploadSupportingDocumentsPage.uploadDocumentsSection(
+    page,
+    multipleDocuments,
+  );
   await uploadOtherInformationPage.checkPageLoads(page, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
@@ -148,7 +157,7 @@ async function normalFEFlow(
       representationPresent,
       representationQualified,
       uploadOtherInfo,
-      multipleDocuments
+      multipleDocuments,
     );
   }
   if (backButtonJourney) {
@@ -234,8 +243,13 @@ async function handleCompleteApplication(
   );
   await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
   await caseFileViewTabPage.changeToCaseFileViewTab(page);
-  await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await caseFileViewTabPage.checkPageInfo(page);
+  await caseFileViewTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    caseNumber,
+    multipleDocuments,
+  );
+  await caseFileViewTabPage.checkPageInfo(page, multipleDocuments);
 }
 
 async function handleBackButtonJourney(page: Page) {
@@ -361,7 +375,7 @@ test("Create an application with all details, an unqualified representative, no 
   );
 });
 
-test.only("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
+test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
   page,
 }) => {
   const representationPresent = false,
