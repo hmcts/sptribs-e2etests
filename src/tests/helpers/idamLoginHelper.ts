@@ -24,17 +24,23 @@ const idamLoginHelper: IdamLoginHelper = {
       `#skiplinktarget:text("Sign in or create an account")`,
     );
 
-    // Access the email and password properties based on the user role
-    if (typeof config[user] !== 'string') {
-      const userCredentials: UserCredentials = config[user];
+    const isUserCredentials = (
+      value: UserCredentials | string,
+    ): value is UserCredentials => {
+      return (
+        typeof value !== "string"
+      );
+    };
+
+    const userCredentials: UserCredentials | string = config[user];
+    if (isUserCredentials(userCredentials)) {
       await page.fill(this.fields.username, userCredentials.email);
       await page.fill(this.fields.password, userCredentials.password);
       await page.click(this.submitButton);
     } else {
-      // Handle the case when config[user] is a string (not UserCredentials)
-      console.error(`Invalid user configuration for ${user}`);
+      console.error("Invalid credential type");
     }
   },
 };
 
-export default idamLoginHelper
+export default idamLoginHelper;

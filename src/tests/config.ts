@@ -69,21 +69,18 @@ const config: Config = {
   FEBaseURL: process.env.FEBASEURL || "FEBaseURL",
   CaseAPIBaseURL: process.env.CASEAPIBASEURL || "CaseAPIBaseURL",
 
-  testFile: path.resolve(
-    __dirname,
-    "../tests/fixtures/testFiles/mockFile.txt"
-  ),
+  testFile: path.resolve(__dirname, "../tests/fixtures/testFiles/mockFile.txt"),
   testPdfFile: path.resolve(
     __dirname,
-    "../tests/fixtures/testFiles/mockFile.pdf"
+    "../tests/fixtures/testFiles/mockFile.pdf",
   ),
   testWordFile: path.resolve(
     __dirname,
-    "../tests/fixtures/testFiles/mockFile.docx"
+    "../tests/fixtures/testFiles/mockFile.docx",
   ),
   testOdtFile: path.resolve(
     __dirname,
-    "../tests/fixtures/testFiles/mockFile.odt"
+    "../tests/fixtures/testFiles/mockFile.odt",
   ),
 };
 
