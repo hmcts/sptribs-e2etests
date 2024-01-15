@@ -27,9 +27,7 @@ const idamLoginHelper: IdamLoginHelper = {
     const isUserCredentials = (
       value: UserCredentials | string,
     ): value is UserCredentials => {
-      return (
-        typeof value !== "string"
-      );
+      return typeof value !== "string";
     };
 
     const userCredentials: UserCredentials | string = config[user];
