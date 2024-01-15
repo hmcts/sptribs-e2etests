@@ -77,14 +77,10 @@ const uploadAppealFormPage: UploadAppealFormPage = {
       .setInputFiles(config.testPdfFile);
     await page.click(this.fields.fileUploadedOption);
     await expect(
-      page.locator(
-        "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-      ),
+      page.locator(".uploadedFile").first(),
     ).toContainText(path.basename(config.testPdfFile));
     await expect(
-      page.locator(
-        "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-      ),
+      page.locator(".uploadedFile").first(),
     ).toContainText(uploadAppealFormContent.deleteButton);
     switch (multipleDocuments) {
       case false:
@@ -96,42 +92,30 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           .setInputFiles(config.testPdfFile);
         await page.click(this.fields.fileUploadedOption);
         await expect(
-          page.locator(
-            "main[id='main-content'] li:nth-child(2).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          ),
+          page.locator(".uploadedFile").nth(1),
         ).toContainText(path.basename(config.testPdfFile));
         await expect(
-          page.locator(
-            "main[id='main-content'] li:nth-child(2).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          ),
+          page.locator(".uploadedFile").nth(1),
         ).toContainText(uploadAppealFormContent.deleteButton);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testPdfFile);
         await page.click(this.fields.fileUploadedOption);
         await expect(
-          page.locator(
-            "main[id='main-content'] li:nth-child(3).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          ),
+          page.locator(".uploadedFile").nth(2),
         ).toContainText(path.basename(config.testPdfFile));
         await expect(
-          page.locator(
-            "main[id='main-content'] li:nth-child(3).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          ),
+          page.locator(".uploadedFile").nth(2),
         ).toContainText(uploadAppealFormContent.deleteButton);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testPdfFile);
         await page.click(this.fields.fileUploadedOption);
         await expect(
-          page.locator(
-            "main[id='main-content'] li:nth-child(4).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          ),
+          page.locator(".uploadedFile").nth(3),
         ).toContainText(path.basename(config.testPdfFile));
         await expect(
-          page.locator(
-            "main[id='main-content'] li:nth-child(4).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-          ),
+          page.locator(".uploadedFile").nth(3),
         ).toContainText(uploadAppealFormContent.deleteButton);
         await page.click(this.continueButton);
         break;
