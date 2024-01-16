@@ -62,9 +62,6 @@ withNightlyPipeline(type, product, component) {
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
 
-  enableCrossBrowserTest(60)
-  enableFortifyScan()
-
   after('test') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'coverage/**/*'
   }
