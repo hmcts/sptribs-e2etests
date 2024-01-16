@@ -77,6 +77,9 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
     await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
       allTabTitlesContent.tab14,
     );
+    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
+      allTabTitlesContent.tab15,
+    );
     await expect(page.locator("dl[id='case-details'] h3")).toHaveText(
       caseDetailsTabContent.pageTitle,
     );
