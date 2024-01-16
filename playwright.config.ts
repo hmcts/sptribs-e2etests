@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 module.exports = defineConfig({
-  testDir: "./src/tests/e2e",
+  testDir: "./src/tests/E2E",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
