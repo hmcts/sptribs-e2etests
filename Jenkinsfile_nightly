@@ -57,8 +57,6 @@ def secrets = [
 
 
 withNightlyPipeline(type, product, component) {
-  enableCrossBrowserTest()
-  enableFortifyScan()
   enableFullFunctionalTest()
   loadVaultSecrets(secrets)
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
