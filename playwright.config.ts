@@ -15,7 +15,7 @@ module.exports = defineConfig({
   },
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 5 : undefined,
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : undefined,
   reporter: "html",
   use: {
     trace: "on-first-retry",
