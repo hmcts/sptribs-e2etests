@@ -5,6 +5,7 @@ import historyTabContent from "../../../fixtures/content/CaseAPI/caseTabs/histor
 import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import authorsContent from "../../../fixtures/content/authors_content.ts";
 import eventsContent from "../../../fixtures/content/CaseAPI/events_content.ts";
+import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 
 type HistoryTabPage = {
   checkPageLoads(
@@ -65,6 +66,9 @@ const historyTabPage: HistoryTabPage = {
     );
     await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
       allTabsTitlesContent.tab14,
+    );
+    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
+      allTabTitlesContent.tab15,
     );
     await expect(page.locator(".heading-h2").nth(0)).toHaveText(
       historyTabContent.heading1,
