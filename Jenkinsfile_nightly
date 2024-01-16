@@ -13,13 +13,11 @@ parameters([
 ])
 
 @Library("Infrastructure")
-import uk.gov.hmcts.contino.AppPipelineConfig
 
 def type = "nodejs"
 def product = "sptribs"
-def component = "e2e-test"
+def component = "e2etests"
 
-def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 static Map<String, Object> secret(String secretName, String envVariable) {
   [$class     : 'AzureKeyVaultSecret',
@@ -56,14 +54,15 @@ def secrets = [
   ]
 ]
 
-def pipelineConf = new AppPipelineConfig()
-pipelineConf.vaultSecrets = secrets
 
 
 withNightlyPipeline(type, product, component) {
+  enableCrossBrowserTest()
+  enableFortifyScan()
+  enableFullFunctionalTest()
   loadVaultSecrets(secrets)
-  env.SPTRIBS_CASE_API_URL = secrets.CASEAPI_BASE_URL
-  env.SPTRIBS_FRONTEND_URL = secrets.DSS_BASE_URL
+  env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
+  env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
 
   enableCrossBrowserTest(60)
   enableFortifyScan()
@@ -72,9 +71,7 @@ withNightlyPipeline(type, product, component) {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'coverage/**/*'
   }
 
-  before('crossBrowserTest') {
 
-  }
   afterAlways('crossBrowserTest') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'output/**/*'
   }
