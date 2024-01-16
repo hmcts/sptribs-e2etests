@@ -61,6 +61,9 @@ pipelineConf.vaultSecrets = secrets
 
 
 withNightlyPipeline(type, product, component) {
+  enableCrossBrowserTest()
+  enableFortifyScan()
+  enableFullFunctionalTest()
   loadVaultSecrets(secrets)
   env.SPTRIBS_CASE_API_URL = secrets.CASEAPI_BASE_URL
   env.SPTRIBS_FRONTEND_URL = secrets.DSS_BASE_URL
