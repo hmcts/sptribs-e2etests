@@ -66,8 +66,8 @@ const config: Config = {
     password: process.env.SUPER_USER_PASSWORD || "superUser-password",
   },
 
-  FEBaseURL: process.env.FEBASEURL || "FEBaseURL",
-  CaseAPIBaseURL: process.env.CASEAPIBASEURL || "CaseAPIBaseURL",
+  FEBaseURL: process.env.DSS_BASE_URL || "FEBaseURL",
+  CaseAPIBaseURL: process.env.CASEAPI_BASE_URL || "CaseAPIBaseURL",
 
   testFile: path.resolve(__dirname, "../tests/fixtures/testFiles/mockFile.txt"),
   testPdfFile: path.resolve(
