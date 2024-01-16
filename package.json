@@ -8,12 +8,11 @@
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
     "test:ui": "npx playwright test --project chromium --headed --reporter=list",
-    "test": "npx playwright test --project chromium --reporter=list",
+    "test:fullfunctional": "npx playwright test --project chromium --reporter=list",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MobileChrome --project MicrosoftEdge --reporter=dot",
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --grep @accessibility --project chromium --reporter=list",
-    "lint": "echo 'lint not installed' && exit 0",
-    "audit": "yarn audit"
+    "lint": "echo 'lint not installed' && exit 0"
   },
   "dependencies": {
     "@axe-core/playwright": "^4.8.1",
