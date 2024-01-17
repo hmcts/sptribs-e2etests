@@ -64,13 +64,28 @@ withNightlyPipeline(type, product, component) {
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
 
 
-  afterAlways('FullFunctionalTest') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'coverage/**/*'
+  afterAlways('fullFunctionalTest') {
+    publishHTML([
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : "reports/tests-results/functional/",
+            reportFiles          : 'index.html',
+            reportName           : 'UI Functional Test Report'
+    ])
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/functional/*'
   }
 
-
   afterAlways('crossBrowserTest') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'output/**/*'
+    publishHTML([
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : "reports/tests-results/crossbrowser/",
+            reportFiles          : 'index.html',
+            reportName           : 'ExUi Cross Browser Report'
+    ])
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/crossbrowser/*'
   }
 
 }
