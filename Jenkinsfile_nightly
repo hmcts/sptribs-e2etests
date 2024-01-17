@@ -69,7 +69,7 @@ withNightlyPipeline(type, product, component) {
             allowMissing         : true,
             alwaysLinkToLastBuild: true,
             keepAll              : true,
-            reportDir            : "reports/tests-results/functional/",
+            reportDir            : "playwright-report",
             reportFiles          : 'index.html',
             reportName           : 'UI Functional Test Report'
     ])
@@ -81,9 +81,9 @@ withNightlyPipeline(type, product, component) {
             allowMissing         : true,
             alwaysLinkToLastBuild: true,
             keepAll              : true,
-            reportDir            : "reports/tests-results/crossbrowser/",
+            reportDir            : "playwright-report",
             reportFiles          : 'index.html',
-            reportName           : 'ExUi Cross Browser Report'
+            reportName           : 'UI Cross Browser Report'
     ])
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/crossbrowser/*'
   }
