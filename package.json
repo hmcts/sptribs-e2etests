@@ -9,7 +9,7 @@
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
     "test:ui": "npx playwright test --project chromium --headed --reporter=list",
     "test:fullfunctional": "yarn playwright install && npx playwright test --project chromium --reporter=list",
-    "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MobileChrome --reporter=dot",
+    "test:crossbrowser": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge && npx playwright test --project webkit --project firefox --project MobileSafari --project MobileChrome --reporter=dot",
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --grep @accessibility --project chromium --reporter=list",
     "lint": "echo 'lint not installed' && exit 0"
