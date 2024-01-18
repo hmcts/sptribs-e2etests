@@ -6,6 +6,7 @@ import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summar
 import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
+import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 
 type SummaryTabPage = {
   summaryTab: string;
@@ -77,6 +78,9 @@ const summaryTabPage: SummaryTabPage = {
     );
     await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
       allTabsTitlesContent.tab14,
+    );
+    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
+      allTabTitlesContent.tab15,
     );
     await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
       summaryTabContent.caseState,
