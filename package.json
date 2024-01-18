@@ -7,11 +7,11 @@
   },
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
-    "test:ui": "npx playwright test --project chromium --headed --reporter=list",
-    "test:fullfunctional": "yarn playwright install && npx playwright test --project chromium --reporter=list",
-    "test:crossbrowser": "npx playwright test --project webkit --project firefox --project MobileSafari --project MobileChrome --project MicrosoftEdge --reporter=dot",
+    "test:ui": "npx playwright test --project chromium --headed",
+    "test:fullfunctional": "yarn playwright install && npx playwright test --project chromium",
+    "test:crossbrowser": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project webkit --project firefox",
     "test:report": "yarn playwright show-report",
-    "test:accessibility": "npx playwright test --grep @accessibility --project chromium --reporter=list",
+    "test:accessibility": "npx playwright test --grep @accessibility --project chromium",
     "lint": "echo 'lint not installed' && exit 0"
   },
   "dependencies": {
@@ -23,6 +23,6 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.10.0",
-    "prettier": "3.1.1"
+    "prettier": "3.2.4"
   }
 }

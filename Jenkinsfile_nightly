@@ -58,22 +58,34 @@ def secrets = [
 
 withNightlyPipeline(type, product, component) {
   enableFullFunctionalTest()
+  enableCrossBrowserTest()
   loadVaultSecrets(secrets)
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
 
 
-  after('test') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'coverage/**/*'
+  afterAlways('fullFunctionalTest') {
+    publishHTML([
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : "playwright-report",
+            reportFiles          : 'index.html',
+            reportName           : 'UI Functional Test Report'
+    ])
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/functional/*'
   }
-
 
   afterAlways('crossBrowserTest') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'output/**/*'
-  }
-
-  afterAlways('fortify-scan') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+    publishHTML([
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : "playwright-report",
+            reportFiles          : 'index.html',
+            reportName           : 'UI Cross Browser Test Report'
+    ])
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/crossbrowser/*'
   }
 
 }
