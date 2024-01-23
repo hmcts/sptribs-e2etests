@@ -78,6 +78,9 @@ const casePartiesTabPage: CasePartiesTabPage = {
     await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
       allTabTitlesContent.tab14,
     );
+    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
+      allTabTitlesContent.tab15,
+    );
     await expect(page.locator(".case-field").nth(1)).toHaveText(
       casePartiesTabContent.subHeading1,
     );

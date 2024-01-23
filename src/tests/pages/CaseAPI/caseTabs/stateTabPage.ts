@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import allTabContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
+import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 
 type StateTabPage = {
   caseStateTab: string;
@@ -66,6 +67,9 @@ const stateTabPage: StateTabPage = {
     );
     await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
       allTabContent.tab14,
+    );
+    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
+      allTabTitlesContent.tab15,
     );
     if (accessibilityTest) {
       await axeTest(page);

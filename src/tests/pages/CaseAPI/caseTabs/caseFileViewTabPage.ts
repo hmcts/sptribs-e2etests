@@ -72,6 +72,9 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
       allTabTitlesContent.tab14,
     );
+    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
+      allTabTitlesContent.tab15,
+    );
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       caseFileViewTabContent.pageTitle,
     );
@@ -130,8 +133,8 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
   },
 
   async changeToCaseFileViewTab(page: Page): Promise<void> {
-    await page.locator(this.caseFileViewTab).nth(9).click();
-    await page.locator(this.caseFileViewTab).nth(9).click();
+    await page.locator(this.caseFileViewTab).nth(10).click();
+    await page.locator(this.caseFileViewTab).nth(10).click();
   },
 
   async checkPageInfo(page: Page, multipleDocuments: boolean): Promise<void> {

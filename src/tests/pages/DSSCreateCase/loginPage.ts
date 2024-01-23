@@ -1,5 +1,5 @@
-import config from "../../config";
 import { Page } from "@playwright/test";
+import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
 
 type SignInPage = {
   fields: {
@@ -21,9 +21,7 @@ const signInPage: SignInPage = {
     await page.waitForSelector(
       `#skiplinktarget:text("Sign in or create an account")`,
     );
-    await page.fill(this.fields.username, config.citizen.email);
-    await page.fill(this.fields.password, config.citizen.password);
-    await page.click(this.submitButton);
+    await idamLoginHelper.signInUser(page, "citizen");
   },
 };
 

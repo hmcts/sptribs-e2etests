@@ -188,7 +188,7 @@ async function handleCompleteApplication(
   await applicationSubmittedPage.checkPageLoads(page, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
   const caseNumber = await applicationSubmittedPage.returnCICCaseNumber(page);
-  await caseAPILoginPage.SignInUser(page);
+  await caseAPILoginPage.SignInUser(page, "caseWorker");
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.changeCaseType(page);
   await casesPage.searchForCaseNumber(page, caseNumber);
