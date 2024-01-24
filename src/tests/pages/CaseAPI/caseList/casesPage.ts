@@ -70,8 +70,10 @@ const casesPage: CasesPage = {
 
   async createCase(page: Page): Promise<void> {
     const buttonText = casesContent.createCaseButton;
-    await page.click(`//a[contains(@class, 'hmcts-primary-navigation__link') and contains(text(), '${buttonText}')]`);
-  }
+    await page.click(
+      `//a[contains(@class, 'hmcts-primary-navigation__link') and contains(text(), '${buttonText}')]`,
+    );
+  },
 };
 
 export default casesPage;
