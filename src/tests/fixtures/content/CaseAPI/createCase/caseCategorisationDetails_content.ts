@@ -1,5 +1,6 @@
 const caseCategorisationDetails_content = {
-  pageTitle: "Create Case",
+  pageHint: "Create Case",
+  pageTitle: "Case categorisation",
   textOnPage1: "Jurisdiction",
   textOnPage2: "Case type",
   textOnPage3: "Event",

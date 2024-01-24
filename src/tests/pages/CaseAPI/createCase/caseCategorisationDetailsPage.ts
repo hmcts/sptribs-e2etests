@@ -17,6 +17,9 @@ const caseFilterPage: CaseFilterPage = {
   continue: '[type="submit"]',
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await expect(page.locator(".govuk-caption-l")).toHaveText(
+      caseCategorisationDetails_content.pageHint,
+    );
     await expect(page.locator(".govuk-heading-xl")).toHaveText(
       caseCategorisationDetails_content.pageTitle,
     );
