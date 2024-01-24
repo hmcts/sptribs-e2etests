@@ -34,7 +34,10 @@ const representationPage: RepresentationPage = {
     }
   },
 
-  async fillInFields(page: Page, representationPresent: boolean): Promise<void> {
+  async fillInFields(
+    page: Page,
+    representationPresent: boolean,
+  ): Promise<void> {
     if (representationPresent) {
       await page.click(this.representationYes);
     } else {

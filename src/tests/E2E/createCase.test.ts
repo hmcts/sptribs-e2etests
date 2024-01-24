@@ -12,7 +12,7 @@ async function createCase(
   await caseAPILoginPage.SignInUser(page, user);
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.createCase(page);
-  await caseFilterPage.checkPageLoads(page, accessibilityTest)
+  await caseFilterPage.checkPageLoads(page, accessibilityTest);
   await caseFilterPage.fillInFields(page);
 }
 
