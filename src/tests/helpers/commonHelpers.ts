@@ -1,5 +1,16 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 
+export type Category = "Assessment" | "Eligibility";
+
+export type SubCategory =
+  | "Fatal"
+  | "Medical Re-opening"
+  | "Minor"
+  | "Paragraph 26"
+  | "Sexual Abuse"
+  | "Special Jurisdiction"
+  | "Other";
+
 type CommonHelpers = {
   readonly months: string[];
   padZero(value: number): string;
