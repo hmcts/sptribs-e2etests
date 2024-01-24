@@ -226,7 +226,7 @@ async function handleCompleteApplication(
   await caseDocumentsTabPage.checkPageInfo(page);
   await caseFileViewTabPage.changeToCaseFileViewTab(page);
   await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await caseFileViewTabPage.checkPageInfo(page);
+  await caseFileViewTabPage.checkPageInfo(page, uploadOtherInfo);
 }
 
 async function handleBackButtonJourney(page: Page) {
