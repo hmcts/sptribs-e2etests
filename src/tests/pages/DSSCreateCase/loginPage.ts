@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
+import config from "../../config.ts";
 
 type SignInPage = {
   fields: {
@@ -21,7 +22,7 @@ const signInPage: SignInPage = {
     await page.waitForSelector(
       `#skiplinktarget:text("Sign in or create an account")`,
     );
-    await idamLoginHelper.signInUser(page, "citizen");
+    await idamLoginHelper.signInUser(page, "citizen", config.FEBaseURL);
   },
 };
 

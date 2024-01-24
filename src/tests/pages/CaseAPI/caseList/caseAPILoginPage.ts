@@ -19,8 +19,7 @@ const caseAPILoginPage: CaseAPILoginPage = {
   submitButton: 'input[value="Sign in"]',
 
   async SignInUser(page: Page, user: UserRole): Promise<void> {
-    await page.goto(config.CaseAPIBaseURL);
-    await idamLoginHelper.signInUser(page, user);
+    await idamLoginHelper.signInUser(page, user, config.CaseAPIBaseURL);
   },
 };
 
