@@ -13,9 +13,9 @@ type CaseFilterPage = {
 
 const caseFilterPage: CaseFilterPage = {
   submit: ".button",
-  jurisdiction: '#cc-jurisdiction',
-  caseType: '#cc-case-type',
-  event: '#cc-event',
+  jurisdiction: "#cc-jurisdiction",
+  caseType: "#cc-case-type",
+  event: "#cc-event",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await expect(page.locator(".govuk-heading-xl")).toHaveText(

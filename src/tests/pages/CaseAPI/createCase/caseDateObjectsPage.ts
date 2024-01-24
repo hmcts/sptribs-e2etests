@@ -1,23 +1,21 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts"
+import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
 
-type CaseFilterPage = {
+type CaseDateObjectsPage = {
   continue: string;
   day: string;
   month: string;
   year: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(
-    page: Page,
-  ): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
 };
 
-const caseFilterPage: CaseFilterPage = {
+const caseDateObjectsPage: CaseDateObjectsPage = {
   continue: '[type="submit"]',
-  day: '#cicCaseCaseReceivedDate-day',
-  month: '#cicCaseCaseReceivedDate-month',
-  year: '#cicCaseCaseReceivedDate-year',
+  day: "#cicCaseCaseReceivedDate-day",
+  month: "#cicCaseCaseReceivedDate-month",
+  year: "#cicCaseCaseReceivedDate-year",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -43,9 +41,7 @@ const caseFilterPage: CaseFilterPage = {
     }
   },
 
-  async fillInFields(
-    page: Page
-  ): Promise<void> {
+  async fillInFields(page: Page): Promise<void> {
     await page.fill(this.day, caseDateObjects_content.day);
     await page.fill(this.month, caseDateObjects_content.month);
     await page.fill(this.year, caseDateObjects_content.year);
@@ -53,4 +49,4 @@ const caseFilterPage: CaseFilterPage = {
   },
 };
 
-export default caseFilterPage;
+export default caseDateObjectsPage;

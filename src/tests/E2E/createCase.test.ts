@@ -5,6 +5,7 @@ import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../pages/CaseAPI/caseList/casesPage.ts";
 import caseFilterPage from "../pages/CaseAPI/createCase/caseFilterPage.ts";
 import caseCategorisationDetailsPage from "../pages/CaseAPI/createCase/caseCategorisationDetailsPage.ts";
+import caseDateObjectsPage from "../pages/CaseAPI/createCase/caseDateObjectsPage.ts";
 
 async function createCase(
   page: Page,
@@ -20,6 +21,8 @@ async function createCase(
   await caseFilterPage.fillInFields(page);
   await caseCategorisationDetailsPage.checkPageLoads(page, accessibilityTest);
   await caseCategorisationDetailsPage.fillInFields(page, category, subCategory);
+  await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
+  await caseDateObjectsPage.fillInFields(page);
 }
 
 test.only("some test", async ({ page }) => {

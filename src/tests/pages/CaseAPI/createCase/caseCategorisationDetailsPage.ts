@@ -3,7 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseCategorisationDetails_content from "../../../fixtures/content/CaseAPI/createCase/caseCategorisationDetails_content.ts";
 import { Category, SubCategory } from "../../../helpers/commonHelpers.ts";
 
-type CaseFilterPage = {
+type CaseCategorisationDetailsPage = {
   continue: string;
   category: string;
   subCategory: string;
@@ -15,16 +15,16 @@ type CaseFilterPage = {
   ): Promise<void>;
 };
 
-const caseFilterPage: CaseFilterPage = {
+const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
   continue: '[type="submit"]',
-  category: '#cicCaseCaseCategory',
-  subCategory: '#cicCaseCaseSubcategory',
+  category: "#cicCaseCaseCategory",
+  subCategory: "#cicCaseCaseSubcategory",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await expect(page.locator(".govuk-caption-l")).toHaveText(
       caseCategorisationDetails_content.pageHint,
     );
-    await expect(page.locator(".govuk-heading-xl")).toHaveText(
+    await expect(page.locator(".govuk-heading-l")).toHaveText(
       caseCategorisationDetails_content.pageTitle,
     );
     await expect(page.locator(".form-label").nth(0)).toHaveText(
@@ -49,4 +49,4 @@ const caseFilterPage: CaseFilterPage = {
   },
 };
 
-export default caseFilterPage;
+export default caseCategorisationDetailsPage;
