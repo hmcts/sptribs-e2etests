@@ -1,10 +1,10 @@
 import { Page, test } from "@playwright/test";
 import { UserRole } from "../config.ts";
+import { Category, SubCategory } from "../helpers/commonHelpers.ts";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../pages/CaseAPI/caseList/casesPage.ts";
 import caseFilterPage from "../pages/CaseAPI/createCase/caseFilterPage.ts";
 import caseCategorisationDetailsPage from "../pages/CaseAPI/createCase/caseCategorisationDetailsPage.ts";
-import { Category, SubCategory } from "../helpers/commonHelpers.ts";
 
 async function createCase(
   page: Page,
@@ -23,5 +23,9 @@ async function createCase(
 }
 
 test.only("some test", async ({ page }) => {
-  await createCase(page, "caseWorker", true, "Assessment", "Other");
+  const user = "caseWorker",
+    accessibilityTest = true,
+    category = "Assessment",
+    subCategory = "Other";
+  await createCase(page, user, accessibilityTest, category, subCategory);
 });
