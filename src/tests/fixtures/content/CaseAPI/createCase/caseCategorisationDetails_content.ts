@@ -5,6 +5,4 @@ const caseCategorisationDetails_content = {
   textOnPage2: "Case sub-category",
 } as const;
 
-// TODO: FIX THIS PAGE TOMORROW
-
 export default caseCategorisationDetails_content;
