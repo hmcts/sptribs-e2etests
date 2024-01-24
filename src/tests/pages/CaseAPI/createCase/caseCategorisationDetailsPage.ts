@@ -4,7 +4,7 @@ import caseCategorisationDetails_content from "../../../fixtures/content/CaseAPI
 import { Category, SubCategory } from "../../../helpers/commonHelpers.ts";
 
 type CaseFilterPage = {
-  submit: string;
+  continue: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(
     page: Page,
@@ -14,7 +14,7 @@ type CaseFilterPage = {
 };
 
 const caseFilterPage: CaseFilterPage = {
-  submit: ".button",
+  continue: '[type="submit"]',
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await expect(page.locator(".govuk-heading-xl")).toHaveText(
@@ -38,7 +38,7 @@ const caseFilterPage: CaseFilterPage = {
   ): Promise<void> {
     await page.selectOption("#cicCaseCaseCategory", category);
     await page.selectOption("#cicCaseCaseSubcategory", subCategory);
-    await page.click(this.submit);
+    await page.click(this.continue);
   },
 };
 
