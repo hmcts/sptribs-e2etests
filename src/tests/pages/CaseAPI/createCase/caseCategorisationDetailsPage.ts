@@ -5,6 +5,8 @@ import { Category, SubCategory } from "../../../helpers/commonHelpers.ts";
 
 type CaseFilterPage = {
   continue: string;
+  category: string;
+  subCategory: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(
     page: Page,
@@ -15,6 +17,8 @@ type CaseFilterPage = {
 
 const caseFilterPage: CaseFilterPage = {
   continue: '[type="submit"]',
+  category: '#cicCaseCaseCategory',
+  subCategory: '#cicCaseCaseSubcategory',
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -39,8 +43,8 @@ const caseFilterPage: CaseFilterPage = {
     category: string,
     subCategory: string,
   ): Promise<void> {
-    await page.selectOption("#cicCaseCaseCategory", category);
-    await page.selectOption("#cicCaseCaseSubcategory", subCategory);
+    await page.selectOption(this.category, category);
+    await page.selectOption(this.subCategory, subCategory);
     await page.click(this.continue);
   },
 };
