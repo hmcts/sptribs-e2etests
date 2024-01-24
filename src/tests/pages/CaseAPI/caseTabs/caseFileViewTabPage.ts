@@ -129,6 +129,9 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
       await expect(page.locator(".node__count").nth(4)).toHaveText(
         uploadedDocumentsContent.totalDocumentsAdditional,
       );
+      await expect(page.locator(".node-name-document").nth(2)).toHaveText(
+        path.basename(config.testWordFile),
+      );
     }
     await expect(page.locator(".node-name-document").nth(0)).toHaveText(
       path.basename(config.testFile),
@@ -136,11 +139,6 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     await expect(page.locator(".node-name-document").nth(1)).toHaveText(
       path.basename(config.testPdfFile),
     );
-    if (uploadAdditionalInfo) {
-      await expect(page.locator(".node-name-document").nth(2)).toHaveText(
-        path.basename(config.testWordFile),
-      );
-    }
   },
 };
 
