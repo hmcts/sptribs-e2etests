@@ -8,6 +8,7 @@ type CasesPage = {
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   changeCaseType(page: Page): Promise<void>;
   searchForCaseNumber(page: Page, caseNumber: string): Promise<void>;
+  createCase(page: Page): Promise<void>;
 };
 
 const casesPage: CasesPage = {
@@ -66,6 +67,11 @@ const casesPage: CasesPage = {
     await page.locator("button[title='Apply filter']").click();
     await page.locator("ccd-read-text-field").nth(0).click();
   },
+
+  async createCase(page: Page): Promise<void> {
+    const buttonText = casesContent.createCaseButton;
+    await page.click(`//a[contains(@class, 'hmcts-primary-navigation__link') and contains(text(), '${buttonText}')]`);
+  }
 };
 
 export default casesPage;
