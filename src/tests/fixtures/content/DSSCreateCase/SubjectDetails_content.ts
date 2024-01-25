@@ -16,6 +16,19 @@ const subjectDetailsContent = {
   errorBanner: "There is a problem",
   fullNameError: "Please enter full name",
   dateOfBirthError: "Please enter date of birth",
+  welshPageTitle: "Pwy yw testun yr achos hwn?",
+  welshHintText1:
+    "Gall testun yr achos fod yn chi, neu’r unigolyn rydych yn cyflwyno’r ffurflen tribiwnlys hon ar ei ran.",
+  welshSubHeading1: "Enw llawn",
+  welshSubHeading2: "Dyddiad geni",
+  welshHintText2: "Er enghraifft, 31 3 1980",
+  welshTextOnPage1: "Diwrnod",
+  welshTextOnPage2: "Mis",
+  welshTextOnPage3: "Blwyddyn",
+  welshButton: "Parhau",
+  welshErrorBanner: "Mae yna broblem",
+  welshFullNameError: "Nodwch enw llawn",
+  welshDateOfBirthError: "Nodwch ddyddiad geni",
 } as const;
 
 export default subjectDetailsContent;

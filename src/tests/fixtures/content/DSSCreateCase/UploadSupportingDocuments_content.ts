@@ -21,6 +21,29 @@ const uploadSupportingDocuments_content = {
     "You cannot continue without uploading supporting documentation",
   fileTypeError:
     "This service only accepts files in the formats - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
+
+  welshPageTitle: "Llwytho dogfennau ategol",
+  welshTextOnPage1:
+    "Mae’n rhaid i chi anfon copi o lythyr penderfyniad adolygiad yr Awdurdod gyda ffurflen y tribiwnlys wedi’i llenwi.",
+  welshDropdownLink: "Gofynion uwchlwytho ffeiliau",
+  welshTextOnPage2: "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF",
+  welshTextOnPage3: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
+  welshTextOnPage4: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  welshTextOnPage5:
+    "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau .zip neu ffeiliau eraill oherwydd y risg o firws.",
+  welshTextOnPage6: "Llwythwch ffeil i fyny",
+  welshTextOnPage7:
+    'Unwaith y byddwch wedi dewis y ffeil, cliciwch ar "Llwytho ffeil" i’w llwytho.',
+  welshButton: "Llwytho ffeil",
+  welshButton2: "Parhau",
+  welshFileUploadedSuccess:
+    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
+  welshDeleteButton: "Dileu",
+  welshErrorBanner: "Mae yna broblem",
+  welshNoUploadError:
+    "Ni allwch barhau heb lwytho’r dogfennau ategol",
+  welshFileTypeError:
+    "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
 } as const;
 
 export default uploadSupportingDocuments_content;

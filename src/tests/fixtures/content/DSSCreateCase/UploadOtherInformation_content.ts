@@ -39,6 +39,45 @@ const uploadOtherInformation_content = {
   errorBanner: "There is a problem",
   fileTypeError:
     "This service only accepts files in the formats - Ms Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
+
+  welshPageTitle: "Ychwanegu gwybodaeth at achos",
+  welshSubTitle1: "Dogfennau ychwanegol",
+  welshTextOnPage1:
+    "Efallai y byddwch eisiau cyflwyno dogfennau, ffeiliau neu dystiolaeth arall sy’n rhoi mwy o wybodaeth i’r Tribiwnlys am eich achos.",
+  welshTextOnPage2:
+    "Bydd hyn yn dibynnu ar natur eich apêl, cais neu hawliad. Gellir dod o hyd i enghreifftiau penodol yn y ffurflen tribiwnlys rydych wedi’i llenwi.",
+  welshTextOnPage3: "Gallai'r rhain gynnwys:",
+  welshTextOnPage4: "copïau o unrhyw ohebiaeth neu ddogfennau perthnasol",
+  welshTextOnPage5: "recordiadau sain neu fideo",
+  welshTextOnPage6: "datganiadau ysgrifenedig",
+  welshTextOnPage7: "adroddiadau perthnasol",
+  welshTextOnPage8:
+    "Ar gyfer pob darn o dystiolaeth ychwanegol rydych yn ei chyflwyno, nodwch pam ei bod yn berthnasol i’ch achos.",
+  welshDropdownLink: "Gofynion uwchlwytho ffeiliau",
+  welshTextOnPage9:
+    "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF, MP4, MP3",
+  welshTextOnPage10: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
+  welshTextOnPage11: "Maint pob ffeil amlgyfrwng: 30 megabeit (MB)",
+  welshTextOnPage12: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  welshTextOnPage13:
+    "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau eraill oherwydd y risg o firws.",
+  welshTextOnPage14: "Llwythwch ffeil i fyny",
+  welshTextOnPage15:
+    'Unwaith y byddwch wedi dewis y ffeil, cliciwch ar "Llwytho ffeil" i’w llwytho.',
+  welshButton: "Llwytho ffeil",
+  welshSubTitle2: "Perthnasedd dogfennau",
+  welshTextOnPage16:
+    "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch achos",
+  welshSubTitle3: "Gwybodaeth ychwanegol",
+  welshTextOnPage17:
+    "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr achos hwn. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
+  welshButton2: "Parhau",
+  welshFileUploadedSuccess:
+    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
+  welshDeleteButton: "Dileu",
+  welshErrorBanner: "Mae yna broblem",
+  welshFileTypeError:
+    "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
 } as const;
 
 export default uploadOtherInformation_content;
