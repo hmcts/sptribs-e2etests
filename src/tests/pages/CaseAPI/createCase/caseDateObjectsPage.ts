@@ -46,6 +46,9 @@ const caseDateObjectsPage: CaseDateObjectsPage = {
     await page.fill(this.month, caseDateObjects_content.month);
     await page.fill(this.year, caseDateObjects_content.year);
     await page.click(this.continue);
+    if (page.url().includes("casedateObjects")) {
+      await page.click(this.continue); // This is here in the chance that the "continue" button does not continue
+    }
   },
 };
 

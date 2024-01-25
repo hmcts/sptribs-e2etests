@@ -6,6 +6,7 @@ import casesPage from "../pages/CaseAPI/caseList/casesPage.ts";
 import caseFilterPage from "../pages/CaseAPI/createCase/caseFilterPage.ts";
 import caseCategorisationDetailsPage from "../pages/CaseAPI/createCase/caseCategorisationDetailsPage.ts";
 import caseDateObjectsPage from "../pages/CaseAPI/createCase/caseDateObjectsPage.ts";
+import caseObjectsSubjectsPage from "../pages/CaseAPI/createCase/caseObjectsSubjectsPage.ts";
 
 async function createCase(
   page: Page,
@@ -23,12 +24,14 @@ async function createCase(
   await caseCategorisationDetailsPage.fillInFields(page, category, subCategory);
   await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
   await caseDateObjectsPage.fillInFields(page);
+  await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
+  await caseObjectsSubjectsPage.fillInFields(page, subCategory);
 }
 
 test.only("some test", async ({ page }) => {
   const user = "caseWorker",
     accessibilityTest = true,
     category = "Assessment",
-    subCategory = "Other";
+    subCategory = "Minor";
   await createCase(page, user, accessibilityTest, category, subCategory);
 });
