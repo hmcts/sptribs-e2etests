@@ -32,6 +32,6 @@ test.only("some test", async ({ page }) => {
   const user = "caseWorker",
     accessibilityTest = true,
     category = "Assessment",
-    subCategory = "Minor";
+    subCategory = "Other";
   await createCase(page, user, accessibilityTest, category, subCategory);
 });
