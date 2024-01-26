@@ -9,7 +9,8 @@ interface UserLoginInfo {
 type IdamLoginHelper = {
   fields: UserLoginInfo;
   submitButton: string;
-  signInUser(page: Page, user: keyof typeof config): Promise<void>;
+  welshSubmitButton: string;
+  signInUser(page: Page, welsh: boolean, user: keyof typeof config): Promise<void>;
 };
 
 const idamLoginHelper: IdamLoginHelper = {
@@ -18,12 +19,18 @@ const idamLoginHelper: IdamLoginHelper = {
     password: "#password",
   },
   submitButton: 'input[value="Sign in"]',
+  welshSubmitButton: 'input[value="Mewngofnodi"]',
 
-  async signInUser(page: Page, user: keyof typeof config): Promise<void> {
-    await page.waitForSelector(
-      `#skiplinktarget:text("Sign in or create an account")`,
-    );
-
+  async signInUser(page: Page, welsh: boolean, user: keyof typeof config): Promise<void> {
+    if (welsh) {
+      await page.waitForSelector(
+        `#skiplinktarget:text("Mewngofnodi neu greu cyfrif")`,
+      );
+    } else {
+      await page.waitForSelector(
+        `#skiplinktarget:text("Sign in or create an account")`,
+      );
+    }
     const isUserCredentials = (
       value: UserCredentials | string,
     ): value is UserCredentials => {
@@ -34,7 +41,11 @@ const idamLoginHelper: IdamLoginHelper = {
     if (isUserCredentials(userCredentials)) {
       await page.fill(this.fields.username, userCredentials.email);
       await page.fill(this.fields.password, userCredentials.password);
-      await page.click(this.submitButton);
+      if (welsh) {
+        await page.click(this.welshSubmitButton);
+      } else {
+        await page.click(this.submitButton);
+      }
     } else {
       console.error("Invalid credential type");
     }

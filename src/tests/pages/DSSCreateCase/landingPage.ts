@@ -5,7 +5,7 @@ import LandingPageDetails from "../../fixtures/content/DSSCreateCase/LandingPage
 
 type LandingPage = {
   startButton: string;
-  seeTheLandingPage(page: Page, accessibilityTest: boolean): Promise<void>;
+  seeTheLandingPage(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -14,27 +14,56 @@ const landingPage: LandingPage = {
 
   async seeTheLandingPage(
     page: Page,
+    welsh: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.goto(config.FEBaseURL);
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      LandingPageDetails.pageTitle,
-    );
-    await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-      LandingPageDetails.hintMessage,
-    );
-    await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-      LandingPageDetails.subHeading,
-    );
-    await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-      LandingPageDetails.textOnPage1,
-    );
-    await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-      LandingPageDetails.textOnPage2,
-    );
-    await expect(page.locator(landingPage.startButton)).toHaveText("Start now");
-    if (accessibilityTest) {
-      await axeTest(page);
+    switch (welsh) {
+      case false:
+        await page.goto(config.FEBaseURL);
+        await expect(page.locator(".govuk-heading-l")).toHaveText(
+          LandingPageDetails.pageTitle,
+        );
+        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          LandingPageDetails.hintMessage,
+        );
+        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          LandingPageDetails.subHeading,
+        );
+        await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
+          LandingPageDetails.textOnPage1,
+        );
+        await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
+          LandingPageDetails.textOnPage2,
+        );
+        await expect(page.locator(landingPage.startButton)).toHaveText("Start now");
+        if (accessibilityTest) {
+          await axeTest(page);
+        }
+        break;
+      case true:
+        await page.goto(config.FEBaseURL);
+        await page.locator(".govuk-link").nth(1).click();
+        await expect(page.locator(".govuk-link").nth(1)).toHaveText("English");
+        await expect(page.locator(".govuk-heading-l")).toHaveText(
+          LandingPageDetails.welshPageTitle,
+        );
+        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          LandingPageDetails.welshHintMessage,
+        );
+        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          LandingPageDetails.welshSubHeading,
+        );
+        await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
+          LandingPageDetails.welshTextOnPage1,
+        );
+        await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
+          LandingPageDetails.welshTextOnPage2,
+        );
+        await expect(page.locator(landingPage.startButton)).toHaveText("Dechrau nawr");
+        if (accessibilityTest) {
+          await axeTest(page);
+        }
+        break;
     }
   },
 
