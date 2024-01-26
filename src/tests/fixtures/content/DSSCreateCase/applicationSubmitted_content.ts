@@ -22,7 +22,7 @@ const applicationSubmittedContent = {
     "Fe anfonir neges e-bost i " +
     subjectDetailsContent.emailAddress +
     ", i esbonio beth fydd yn digwydd nesaf.",
-  welshSubTitle2: "Feedback",
+  welshSubTitle2: "Adborth",
   welshTextOnPage3: "Hoffwn glywed eich barn",
   welshTextOnPage4:
     "Llenwch yr arolwg byr hwn, sy’n cymryd 5 munud i’w lenwi, i’n helpu i wella ein gwasanaethau i chi a phobl eraill ",
