@@ -1,6 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { ContactPreference } from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  ContactPreference,
+} from "../../../helpers/commonHelpers.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CaseSubjectDetailsObjectPage = {
@@ -111,27 +113,7 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
     await page.fill(this.day, caseSubjectDetailsObject_content.dayOfBirth);
     await page.fill(this.month, caseSubjectDetailsObject_content.monthOfBirth);
     await page.fill(this.year, caseSubjectDetailsObject_content.yearOfBirth);
-    await page.fill(this.postCode, caseSubjectDetailsObject_content.postCode);
-    await page.click(this.findAddress);
-    await page.selectOption(
-      this.selectAddress,
-      caseSubjectDetailsObject_content.selectOption,
-    );
-    expect(await page.inputValue(this.buildingAndStreet)).toEqual(
-      caseSubjectDetailsObject_content.buildingAndStreet,
-    );
-    expect(await page.inputValue(this.addressLine2)).toEqual("");
-    expect(await page.inputValue(this.addressLine3)).toEqual("");
-    expect(await page.inputValue(this.townOrCity)).toEqual(
-      caseSubjectDetailsObject_content.townOrCity,
-    );
-    expect(await page.inputValue(this.countyState)).toEqual("");
-    expect(await page.inputValue(this.country)).toEqual(
-      caseSubjectDetailsObject_content.country,
-    );
-    expect(await page.inputValue(this.postcodeZipcode)).toEqual(
-      caseSubjectDetailsObject_content.postCode,
-    );
+    await commonHelpers.postcodeHandler(page, "Subject");
     if (contactPreference === "Email") {
       await page.click(this.selectEmail);
       await page.fill(
