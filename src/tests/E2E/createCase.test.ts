@@ -1,12 +1,17 @@
 import { Page, test } from "@playwright/test";
 import { UserRole } from "../config.ts";
-import { Category, SubCategory } from "../helpers/commonHelpers.ts";
+import {
+  Category,
+  ContactPreference,
+  SubCategory,
+} from "../helpers/commonHelpers.ts";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../pages/CaseAPI/caseList/casesPage.ts";
 import caseFilterPage from "../pages/CaseAPI/createCase/caseFilterPage.ts";
 import caseCategorisationDetailsPage from "../pages/CaseAPI/createCase/caseCategorisationDetailsPage.ts";
 import caseDateObjectsPage from "../pages/CaseAPI/createCase/caseDateObjectsPage.ts";
 import caseObjectsSubjectsPage from "../pages/CaseAPI/createCase/caseObjectsSubjectsPage.ts";
+import caseSubjectDetailsObjectPage from "../pages/CaseAPI/createCase/caseSubjectDetailsObjectPage.ts";
 
 async function createCase(
   page: Page,
@@ -14,6 +19,7 @@ async function createCase(
   accessibilityTest: boolean,
   category: Category,
   subCategory: SubCategory,
+  contactPreference: ContactPreference,
 ): Promise<void> {
   await caseAPILoginPage.SignInUser(page, user);
   await casesPage.checkPageLoads(page, accessibilityTest);
@@ -26,12 +32,24 @@ async function createCase(
   await caseDateObjectsPage.fillInFields(page);
   await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
   await caseObjectsSubjectsPage.fillInFields(page, subCategory);
+  if (!(subCategory === "Fatal" || subCategory === "Minor")) {
+    await caseSubjectDetailsObjectPage.checkPageLoads(page, accessibilityTest);
+    await caseSubjectDetailsObjectPage.fillInFields(page, contactPreference);
+  }
 }
 
 test.only("some test", async ({ page }) => {
   const user = "caseWorker",
     accessibilityTest = true,
     category = "Assessment",
-    subCategory = "Other";
-  await createCase(page, user, accessibilityTest, category, subCategory);
+    subCategory = "Other",
+    contactPreference = "Email";
+  await createCase(
+    page,
+    user,
+    accessibilityTest,
+    category,
+    subCategory,
+    contactPreference,
+  );
 });
