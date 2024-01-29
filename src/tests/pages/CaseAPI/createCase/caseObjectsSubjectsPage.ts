@@ -42,8 +42,8 @@ const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
     }
   },
 
-  async fillInFields(page: Page, caseType: SubCategory): Promise<void> {
-    if (!(caseType === "Fatal" || caseType === "Minor")) {
+  async fillInFields(page: Page, subCategory: SubCategory): Promise<void> {
+    if (!(subCategory === "Fatal" || subCategory === "Minor")) {
       await page.click(this.subjectSelectBox);
     }
     await page.click(this.representativeSelectBox);

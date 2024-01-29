@@ -64,3 +64,5 @@ export type SubCategory =
   | "Sexual Abuse"
   | "Special Jurisdiction"
   | "Other";
+
+export type ContactPreference = "Email" | "Post";
