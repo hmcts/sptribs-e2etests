@@ -1,6 +1,6 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -68,26 +68,21 @@ const commonHelpers: CommonHelpers = {
         postcodeZipcode = `#cicCase${party}Address__detailPostCode`;
         break;
     }
-    await page.fill(postCode, caseSubjectDetailsObject_content.postCode);
+    await page.fill(postCode, authors_content.postCode);
     await page.click(findAddress);
-    await page.selectOption(
-      selectAddress,
-      caseSubjectDetailsObject_content.selectOption,
-    );
+    await page.selectOption(selectAddress, authors_content.selectOption);
     expect(await page.inputValue(buildingAndStreet)).toEqual(
-      caseSubjectDetailsObject_content.buildingAndStreet,
+      authors_content.buildingAndStreet,
     );
     expect(await page.inputValue(addressLine2)).toEqual("");
     expect(await page.inputValue(addressLine3)).toEqual("");
     expect(await page.inputValue(townOrCity)).toEqual(
-      caseSubjectDetailsObject_content.townOrCity,
+      authors_content.townOrCity,
     );
     expect(await page.inputValue(countyState)).toEqual("");
-    expect(await page.inputValue(country)).toEqual(
-      caseSubjectDetailsObject_content.country,
-    );
+    expect(await page.inputValue(country)).toEqual(authors_content.country);
     expect(await page.inputValue(postcodeZipcode)).toEqual(
-      caseSubjectDetailsObject_content.postCode,
+      authors_content.postCode,
     );
   },
 
