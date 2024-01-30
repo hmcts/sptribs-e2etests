@@ -75,18 +75,19 @@ async function createFEApplication(
       }
       await uploadAppealFormPage.checkPageLoads(page, welsh, accessibilityTest);
       await uploadAppealFormPage.triggerErrorMessages(page, welsh);
-      await uploadAppealFormPage.uploadDocumentsSection(page);
+      await uploadAppealFormPage.uploadDocumentsSection(page, welsh);
       await uploadSupportingDocumentsPage.checkPageLoads(
         page,
         welsh,
         accessibilityTest,
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page, welsh);
-      await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+      await uploadSupportingDocumentsPage.uploadDocumentsSection(page, welsh);
       await uploadOtherInformationPage.checkPageLoads(page, welsh, accessibilityTest);
       await uploadOtherInformationPage.triggerErrorMessages(page, welsh);
       await uploadOtherInformationPage.uploadDocumentsSection(
         page,
+        welsh,
         uploadOtherInfo,
       );
       await page.click('button[name="opt-out-button"]');
@@ -104,7 +105,7 @@ async function normalFEFlow(
   accessibilityTest: boolean,
 ) {
   await landingPage.seeTheLandingPage(page, welsh, accessibilityTest);
-  await landingPage.continueOn(page, welsh);
+  await landingPage.continueOn(page);
   await loginPage.SignInUser(page, welsh);
   await subjectDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
   await subjectDetailsPage.fillInFields(page);
@@ -121,12 +122,13 @@ async function normalFEFlow(
     );
   }
   await uploadAppealFormPage.checkPageLoads(page, welsh, accessibilityTest);
-  await uploadAppealFormPage.uploadDocumentsSection(page);
+  await uploadAppealFormPage.uploadDocumentsSection(page, welsh);
   await uploadSupportingDocumentsPage.checkPageLoads(page, welsh, accessibilityTest);
-  await uploadSupportingDocumentsPage.uploadDocumentsSection(page);
+  await uploadSupportingDocumentsPage.uploadDocumentsSection(page, welsh);
   await uploadOtherInformationPage.checkPageLoads(page, welsh, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
+    welsh,
     uploadOtherInfo,
   );
   await page.click('button[name="opt-out-button"]');
@@ -153,7 +155,7 @@ async function normalFEFlow(
     );
   }
   if (backButtonJourney) {
-    await handleBackButtonJourney(page, welsh);
+    await handleBackButtonJourney(page);
   }
 }
 
@@ -177,9 +179,9 @@ async function handleCompleteApplication(
   representationQualified: boolean,
   uploadOtherInfo: boolean,
 ) {
-  const time = await checkYourAnswersPage.continueOn(page, welsh);
+  const time = await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, welsh, accessibilityTest);
-  await applicationSubmittedPage.checkCICCaseNumber(page, welsh);
+  await applicationSubmittedPage.checkCICCaseNumber(page);
   const caseNumber = await applicationSubmittedPage.returnCICCaseNumber(page);
   await caseAPILoginPage.SignInUser(page, "caseWorker");
   await casesPage.checkPageLoads(page, accessibilityTest);
@@ -290,6 +292,30 @@ test("As a Citizen, Create an application with all details, a qualified represen
   );
 });
 
+test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - in Welsh - aXe test as it proceeds. @accessibility", async ({
+    page,
+}) => {
+  const welsh = true,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = true,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    welsh,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
 test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
   page,
 }) => {
@@ -314,7 +340,7 @@ test("Create an application with no representative, additional information, no P
   );
 });
 
-test.only("Create an application with no representative, additional information, no PCQ, and submit - in Welsh", async ({
+test("Create an application with no representative, additional information, no PCQ, and submit - in Welsh", async ({
     page,
 }) => {
   const welsh = true,
@@ -362,10 +388,58 @@ test("Create an application with all details, a qualified representative, no add
   );
 });
 
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - in Welsh.", async ({
+  page,
+}) => {
+  const welsh = true,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    welsh,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
 test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
   page,
 }) => {
   const welsh = false,
+    representationPresent = true,
+    representationQualified = false,
+    uploadOtherInfo = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    welsh,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
+test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - in Welsh.", async ({
+  page,
+}) => {
+  const welsh = true,
     representationPresent = true,
     representationQualified = false,
     uploadOtherInfo = false,
@@ -408,8 +482,52 @@ test("Test all back buttons on the Frontend application", async ({ page }) => {
   );
 });
 
+test("Test all back buttons on the Frontend application - in Welsh", async ({ page }) => {
+  const welsh = true,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    completeApplication = false,
+    backButtonJourney = true,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    welsh,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
 test("Error messaging", async ({ page }) => {
   const welsh = false,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    completeApplication = false,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = true;
+  await createFEApplication(
+    page,
+    welsh,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
+test("Error messaging - in Welsh", async ({ page }) => {
+  const welsh = true,
     representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,

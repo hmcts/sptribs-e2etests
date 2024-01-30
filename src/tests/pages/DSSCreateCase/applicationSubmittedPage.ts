@@ -4,7 +4,7 @@ import applicationSubmittedContent from "../../fixtures/content/DSSCreateCase/ap
 
 type ApplicationSubmittedPage = {
   closeAndExitButton: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
   checkCICCaseNumber(page: Page): Promise<void>;
   returnCICCaseNumber(page: Page): Promise<string>;
 };
@@ -12,31 +12,61 @@ type ApplicationSubmittedPage = {
 const applicationSubmittedPage: ApplicationSubmittedPage = {
   closeAndExitButton: "a[role='button']",
 
-  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-panel__title")).toHaveText(
-      applicationSubmittedContent.pageTitle,
-    );
-    await expect(
-      page.locator("div[class='govuk-panel__body'] strong"),
-    ).toContainText(applicationSubmittedContent.subTitle1);
-    await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-      applicationSubmittedContent.textOnPage1,
-    );
-    await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-      applicationSubmittedContent.textOnPage2,
-    );
-    await expect(page.locator(".govuk-notification-banner__title")).toHaveText(
-      applicationSubmittedContent.subTitle2,
-    );
-    await expect(
-      page.locator(".govuk-notification-banner__content"),
-    ).toContainText(applicationSubmittedContent.textOnPage3);
-    await expect(
-      page.locator(".govuk-notification-banner__content"),
-    ).toContainText(applicationSubmittedContent.textOnPage4);
-    await expect(
-      page.locator(".govuk-notification-banner__content"),
-    ).toContainText(applicationSubmittedContent.textOnPage5);
+  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void> {
+    switch (welsh) {
+      case true:
+        await expect(page.locator(".govuk-panel__title")).toHaveText(
+          applicationSubmittedContent.welshPageTitle,
+        );
+        await expect(
+          page.locator("div[class='govuk-panel__body'] strong"),
+        ).toContainText(applicationSubmittedContent.welshSubTitle1);
+        await expect(page.locator(".govuk-body").nth(4)).toHaveText(
+          applicationSubmittedContent.welshTextOnPage1,
+        );
+        await expect(page.locator(".govuk-body").nth(5)).toHaveText(
+          applicationSubmittedContent.welshTextOnPage2,
+        );
+        await expect(page.locator(".govuk-notification-banner__title")).toHaveText(
+          applicationSubmittedContent.welshSubTitle2,
+        );
+        await expect(
+          page.locator(".govuk-notification-banner__content"),
+        ).toContainText(applicationSubmittedContent.welshTextOnPage3);
+        await expect(
+          page.locator(".govuk-notification-banner__content"),
+        ).toContainText(applicationSubmittedContent.welshTextOnPage4);
+        await expect(
+          page.locator(".govuk-notification-banner__content"),
+        ).toContainText(applicationSubmittedContent.welshTextOnPage5);
+        break;
+      case false:
+        await expect(page.locator(".govuk-panel__title")).toHaveText(
+          applicationSubmittedContent.pageTitle,
+        );
+        await expect(
+          page.locator("div[class='govuk-panel__body'] strong"),
+        ).toContainText(applicationSubmittedContent.subTitle1);
+        await expect(page.locator(".govuk-body").nth(4)).toHaveText(
+          applicationSubmittedContent.textOnPage1,
+        );
+        await expect(page.locator(".govuk-body").nth(5)).toHaveText(
+          applicationSubmittedContent.textOnPage2,
+        );
+        await expect(page.locator(".govuk-notification-banner__title")).toHaveText(
+          applicationSubmittedContent.subTitle2,
+        );
+        await expect(
+          page.locator(".govuk-notification-banner__content"),
+        ).toContainText(applicationSubmittedContent.textOnPage3);
+        await expect(
+          page.locator(".govuk-notification-banner__content"),
+        ).toContainText(applicationSubmittedContent.textOnPage4);
+        await expect(
+          page.locator(".govuk-notification-banner__content"),
+        ).toContainText(applicationSubmittedContent.textOnPage5);
+        break;
+    }
     if (accessibilityTest) {
       await axeTest(page);
     }
