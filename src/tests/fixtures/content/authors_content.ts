@@ -6,7 +6,6 @@ const authors_content = {
   townOrCity: "London",
   country: "United Kingdom",
   emailAddress: "AutoTestSubject@mail.com",
-  contactNumber: "01234567891",
 } as const;
 
 export default authors_content;

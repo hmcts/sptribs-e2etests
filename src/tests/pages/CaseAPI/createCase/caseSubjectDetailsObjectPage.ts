@@ -13,15 +13,6 @@ type CaseSubjectDetailsObjectPage = {
   day: string;
   month: string;
   year: string;
-  postCode: string;
-  selectAddress: string;
-  buildingAndStreet: string;
-  addressLine2: string;
-  addressLine3: string;
-  townOrCity: string;
-  countyState: string;
-  country: string;
-  postcodeZipcode: string;
   emailAddress: string;
   selectEmail: string;
   selectPost: string;
@@ -37,15 +28,6 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
   day: "#cicCaseDateOfBirth-day",
   month: "#cicCaseDateOfBirth-month",
   year: "#cicCaseDateOfBirth-year",
-  postCode: "#cicCaseAddress_cicCaseAddress_postcodeInput",
-  selectAddress: "#cicCaseAddress_cicCaseAddress_addressList",
-  buildingAndStreet: "#cicCaseAddress__detailAddressLine1",
-  addressLine2: "#cicCaseAddress__detailAddressLine2",
-  addressLine3: "#cicCaseAddress__detailAddressLine3",
-  townOrCity: "#cicCaseAddress__detailPostTown",
-  countyState: "#cicCaseAddress__detailCounty",
-  country: "#cicCaseAddress__detailCountry",
-  postcodeZipcode: "#cicCaseAddress__detailPostCode",
   emailAddress: "#cicCaseEmail",
   selectEmail: "#cicCaseContactPreferenceType-Email",
   selectPost: "#cicCaseContactPreferenceType-Post",
