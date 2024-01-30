@@ -10,7 +10,11 @@ type IdamLoginHelper = {
   fields: UserLoginInfo;
   submitButton: string;
   welshSubmitButton: string;
-  signInUser(page: Page, welsh: boolean, user: keyof typeof config): Promise<void>;
+  signInUser(
+    page: Page,
+    welsh: boolean,
+    user: keyof typeof config,
+  ): Promise<void>;
 };
 
 const idamLoginHelper: IdamLoginHelper = {
@@ -21,7 +25,11 @@ const idamLoginHelper: IdamLoginHelper = {
   submitButton: 'input[value="Sign in"]',
   welshSubmitButton: 'input[value="Mewngofnodi"]',
 
-  async signInUser(page: Page, welsh: boolean, user: keyof typeof config): Promise<void> {
+  async signInUser(
+    page: Page,
+    welsh: boolean,
+    user: keyof typeof config,
+  ): Promise<void> {
     if (welsh) {
       await page.waitForSelector(
         `#skiplinktarget:text("Mewngofnodi neu greu cyfrif")`,

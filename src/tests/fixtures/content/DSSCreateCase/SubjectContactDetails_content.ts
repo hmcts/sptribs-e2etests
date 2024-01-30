@@ -17,7 +17,8 @@ const subjectContactDetailsContent = {
   agreeError:
     "Please agree to be contacted using the details provided to continue",
   welshPageTitle: "Rhowch fanylion cyswllt",
-  welshTextOnPage1: "Rhowch y manylion cyswllt sydd fwyaf addas ar gyfer yr achos hwn.",
+  welshTextOnPage1:
+    "Rhowch y manylion cyswllt sydd fwyaf addas ar gyfer yr achos hwn.",
   welshSubHeading1: "Cyfeiriad e-bost",
   welshSubHeading2: "Rhif cyswllt",
   welshTextOnPage2:

@@ -5,7 +5,11 @@ import LandingPageDetails from "../../fixtures/content/DSSCreateCase/LandingPage
 
 type LandingPage = {
   startButton: string;
-  seeTheLandingPage(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  seeTheLandingPage(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -35,7 +39,9 @@ const landingPage: LandingPage = {
         await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
           LandingPageDetails.textOnPage2,
         );
-        await expect(page.locator(landingPage.startButton)).toHaveText("Start now");
+        await expect(page.locator(landingPage.startButton)).toHaveText(
+          "Start now",
+        );
         if (accessibilityTest) {
           await axeTest(page);
         }
@@ -59,7 +65,9 @@ const landingPage: LandingPage = {
         await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
           LandingPageDetails.welshTextOnPage2,
         );
-        await expect(page.locator(landingPage.startButton)).toHaveText("Dechrau nawr");
+        await expect(page.locator(landingPage.startButton)).toHaveText(
+          "Dechrau nawr",
+        );
         if (accessibilityTest) {
           await axeTest(page);
         }

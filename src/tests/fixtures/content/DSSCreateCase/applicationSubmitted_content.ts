@@ -17,7 +17,8 @@ const applicationSubmittedContent = {
 
   welshPageTitle: "Ffurflen y tribiwnlys wedi’i hanfon",
   welshSubTitle1: "Rhif Achos:",
-  welshTextOnPage1: "Mae ffurflenni’r tribiwnlys a’ch dogfennau perthnasol wedi’u hanfon.",
+  welshTextOnPage1:
+    "Mae ffurflenni’r tribiwnlys a’ch dogfennau perthnasol wedi’u hanfon.",
   welshTextOnPage2:
     "Fe anfonir neges e-bost i " +
     subjectDetailsContent.emailAddress +

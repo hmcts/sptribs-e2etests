@@ -58,7 +58,8 @@ const uploadOtherInformation_content = {
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF, MP4, MP3",
   welshTextOnPage10: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
   welshTextOnPage11: "Maint pob ffeil amlgyfrwng: 30 megabeit (MB)",
-  welshTextOnPage12: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  welshTextOnPage12:
+    "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
   welshTextOnPage13:
     "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau eraill oherwydd y risg o firws.",
   welshTextOnPage14: "Llwythwch ffeil i fyny",

@@ -5,7 +5,8 @@ const representationContent = {
   button: "Continue",
   errorBanner: "There is a problem",
   selectionError: "Please select an answer before you can proceed further",
-  welshPageTitle: "A oes cynrychiolydd wedi’i enwi ar y ffurflen tribiwnlys sydd wedi’i llenwi?",
+  welshPageTitle:
+    "A oes cynrychiolydd wedi’i enwi ar y ffurflen tribiwnlys sydd wedi’i llenwi?",
   welshTextOnPage1: "Oes",
   welshTextOnPage2: "Nac oes",
   welshButton: "Parhau",

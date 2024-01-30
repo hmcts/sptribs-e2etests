@@ -11,7 +11,11 @@ type RepresentativeDetailsPage = {
   };
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
@@ -28,7 +32,11 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
   continueButton: "#main-form-submit",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     switch (welsh) {
       case true:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -109,9 +117,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representativeDetailsContent.welshErrorBanner,
         );
-        await expect(page.locator("[href='#representativeFullName']")).toHaveText(
-          representativeDetailsContent.welshFullNameError,
-        );
+        await expect(
+          page.locator("[href='#representativeFullName']"),
+        ).toHaveText(representativeDetailsContent.welshFullNameError);
         await expect(
           page.locator("[href='#representativeOrganisationName']"),
         ).toHaveText(representativeDetailsContent.welshOrganisationNameError);
@@ -121,15 +129,19 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         await expect(
           page.locator("[href='#representativeEmailAddress']"),
         ).toHaveText(representativeDetailsContent.welshValidEmailError);
-        await expect(page.locator("#representativeFullName-error")).toContainText(
-          representativeDetailsContent.welshFullNameError,
-        );
+        await expect(
+          page.locator("#representativeFullName-error"),
+        ).toContainText(representativeDetailsContent.welshFullNameError);
         await expect(
           page.locator("#representativeOrganisationName-error"),
-        ).toContainText(representativeDetailsContent.welshOrganisationNameError);
+        ).toContainText(
+          representativeDetailsContent.welshOrganisationNameError,
+        );
         await expect(
           page.locator("#representativeContactNumber-error"),
-        ).toContainText(representativeDetailsContent.welshValidContactNumberError);
+        ).toContainText(
+          representativeDetailsContent.welshValidContactNumberError,
+        );
         await expect(
           page.locator("#representativeEmailAddress-error"),
         ).toContainText(representativeDetailsContent.welshValidEmailError);
@@ -151,9 +163,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representativeDetailsContent.errorBanner,
         );
-        await expect(page.locator("[href='#representativeFullName']")).toHaveText(
-          representativeDetailsContent.fullNameError,
-        );
+        await expect(
+          page.locator("[href='#representativeFullName']"),
+        ).toHaveText(representativeDetailsContent.fullNameError);
         await expect(
           page.locator("[href='#representativeOrganisationName']"),
         ).toHaveText(representativeDetailsContent.organisationNameError);
@@ -163,9 +175,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         await expect(
           page.locator("[href='#representativeEmailAddress']"),
         ).toHaveText(representativeDetailsContent.validEmailError);
-        await expect(page.locator("#representativeFullName-error")).toContainText(
-          representativeDetailsContent.fullNameError,
-        );
+        await expect(
+          page.locator("#representativeFullName-error"),
+        ).toContainText(representativeDetailsContent.fullNameError);
         await expect(
           page.locator("#representativeOrganisationName-error"),
         ).toContainText(representativeDetailsContent.organisationNameError);

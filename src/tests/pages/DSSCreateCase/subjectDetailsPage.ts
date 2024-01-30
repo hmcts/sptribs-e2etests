@@ -11,7 +11,11 @@ type SubjectDetailsPage = {
   };
   continueButton: string;
   rejectCookiesButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
 };
@@ -30,7 +34,9 @@ const subjectDetailsPage: SubjectDetailsPage = {
     switch (welsh) {
       case true:
         await page.locator(".govuk-link.language").click();
-        await expect(page.locator(".govuk-link.language")).toHaveText("English");
+        await expect(page.locator(".govuk-link.language")).toHaveText(
+          "English",
+        );
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           subjectDetailsContent.welshPageTitle,
         );
@@ -109,7 +115,9 @@ const subjectDetailsPage: SubjectDetailsPage = {
   async triggerErrorMessages(page: Page, welsh: boolean) {
     switch (welsh) {
       case true:
-        await expect(page.locator(".govuk-link.language")).toHaveText("English");
+        await expect(page.locator(".govuk-link.language")).toHaveText(
+          "English",
+        );
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectDetailsContent.welshErrorBanner,

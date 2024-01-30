@@ -52,7 +52,11 @@ async function createFEApplication(
       await subjectDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
       await subjectDetailsPage.triggerErrorMessages(page, welsh);
       await subjectDetailsPage.fillInFields(page);
-      await subjectContactDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
+      await subjectContactDetailsPage.checkPageLoads(
+        page,
+        welsh,
+        accessibilityTest,
+      );
       await subjectContactDetailsPage.triggerErrorMessages(page, welsh);
       await subjectContactDetailsPage.fillInFields(page);
       await representationPage.checkPageLoads(page, welsh, accessibilityTest);
@@ -69,7 +73,11 @@ async function createFEApplication(
           page,
           representationQualified,
         );
-        await representativeDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
+        await representativeDetailsPage.checkPageLoads(
+          page,
+          welsh,
+          accessibilityTest,
+        );
         await representativeDetailsPage.triggerErrorMessages(page, welsh);
         await representativeDetailsPage.fillInFields(page);
       }
@@ -83,7 +91,11 @@ async function createFEApplication(
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page, welsh);
       await uploadSupportingDocumentsPage.uploadDocumentsSection(page, welsh);
-      await uploadOtherInformationPage.checkPageLoads(page, welsh, accessibilityTest);
+      await uploadOtherInformationPage.checkPageLoads(
+        page,
+        welsh,
+        accessibilityTest,
+      );
       await uploadOtherInformationPage.triggerErrorMessages(page, welsh);
       await uploadOtherInformationPage.uploadDocumentsSection(
         page,
@@ -109,7 +121,11 @@ async function normalFEFlow(
   await loginPage.SignInUser(page, welsh);
   await subjectDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
   await subjectDetailsPage.fillInFields(page);
-  await subjectContactDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
+  await subjectContactDetailsPage.checkPageLoads(
+    page,
+    welsh,
+    accessibilityTest,
+  );
   await subjectContactDetailsPage.fillInFields(page);
   await representationPage.checkPageLoads(page, welsh, accessibilityTest);
   await representationPage.fillInFields(page, representationPresent);
@@ -123,9 +139,17 @@ async function normalFEFlow(
   }
   await uploadAppealFormPage.checkPageLoads(page, welsh, accessibilityTest);
   await uploadAppealFormPage.uploadDocumentsSection(page, welsh);
-  await uploadSupportingDocumentsPage.checkPageLoads(page, welsh, accessibilityTest);
+  await uploadSupportingDocumentsPage.checkPageLoads(
+    page,
+    welsh,
+    accessibilityTest,
+  );
   await uploadSupportingDocumentsPage.uploadDocumentsSection(page, welsh);
-  await uploadOtherInformationPage.checkPageLoads(page, welsh, accessibilityTest);
+  await uploadOtherInformationPage.checkPageLoads(
+    page,
+    welsh,
+    accessibilityTest,
+  );
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
     welsh,
@@ -165,9 +189,17 @@ async function handleRepresentationLogic(
   representationQualified: boolean,
   accessibilityTest: boolean,
 ) {
-  await representationQualifiedPage.checkPageLoads(page, welsh, accessibilityTest);
+  await representationQualifiedPage.checkPageLoads(
+    page,
+    welsh,
+    accessibilityTest,
+  );
   await representationQualifiedPage.fillInFields(page, representationQualified);
-  await representativeDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
+  await representativeDetailsPage.checkPageLoads(
+    page,
+    welsh,
+    accessibilityTest,
+  );
   await representativeDetailsPage.fillInFields(page);
 }
 
@@ -293,7 +325,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
 });
 
 test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - in Welsh - aXe test as it proceeds. @accessibility", async ({
-    page,
+  page,
 }) => {
   const welsh = true,
     representationPresent = true,
@@ -341,7 +373,7 @@ test("Create an application with no representative, additional information, no P
 });
 
 test("Create an application with no representative, additional information, no PCQ, and submit - in Welsh", async ({
-    page,
+  page,
 }) => {
   const welsh = true,
     representationPresent = false,
@@ -482,7 +514,9 @@ test("Test all back buttons on the Frontend application", async ({ page }) => {
   );
 });
 
-test("Test all back buttons on the Frontend application - in Welsh", async ({ page }) => {
+test("Test all back buttons on the Frontend application - in Welsh", async ({
+  page,
+}) => {
   const welsh = true,
     representationPresent = true,
     representationQualified = true,

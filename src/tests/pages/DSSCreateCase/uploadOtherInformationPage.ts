@@ -14,8 +14,16 @@ type UploadOtherInformationPage = {
   };
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
-  uploadDocumentsSection(page: Page, welsh: boolean, uploadInformation: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
+  uploadDocumentsSection(
+    page: Page,
+    welsh: boolean,
+    uploadInformation: boolean,
+  ): Promise<void>;
   triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
@@ -32,7 +40,11 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   continueButton: "#main-form-submit",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     switch (welsh) {
       case true:
         await expect(page.locator(".govuk-heading-l")).toHaveText(

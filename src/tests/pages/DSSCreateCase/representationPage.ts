@@ -7,7 +7,11 @@ type RepresentationPage = {
   representationNo: string;
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page, representationPresent: boolean): Promise<void>;
   triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;

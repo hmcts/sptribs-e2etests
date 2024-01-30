@@ -10,7 +10,11 @@ type SubjectContactDetailsPage = {
   contactAgreeBox: string;
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
@@ -29,7 +33,9 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean) {
     switch (welsh) {
       case true:
-        await expect(page.locator(".govuk-link.language")).toHaveText("English");
+        await expect(page.locator(".govuk-link.language")).toHaveText(
+          "English",
+        );
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           subjectContactDetailsContent.welshPageTitle,
         );
@@ -42,9 +48,9 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
         await expect(page.locator(".govuk-label").nth(1)).toHaveText(
           subjectContactDetailsContent.welshSubHeading2,
         );
-        await expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(
-          subjectContactDetailsContent.welshTextOnPage2,
-        );
+        await expect(
+          page.locator("label[for='subjectAgreeContact']"),
+        ).toHaveText(subjectContactDetailsContent.welshTextOnPage2);
         break;
       case false:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -59,9 +65,9 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
         await expect(page.locator(".govuk-label").nth(1)).toHaveText(
           subjectContactDetailsContent.subHeading2,
         );
-        await expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(
-          subjectContactDetailsContent.textOnPage2,
-        );
+        await expect(
+          page.locator("label[for='subjectAgreeContact']"),
+        ).toHaveText(subjectContactDetailsContent.textOnPage2);
         break;
     }
     if (accessibilityTest) {

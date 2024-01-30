@@ -29,7 +29,7 @@ const signInPage: SignInPage = {
       await page.waitForSelector(
         `#skiplinktarget:text("Sign in or create an account")`,
       );
-      await idamLoginHelper.signInUser(page, welsh,"citizen");
+      await idamLoginHelper.signInUser(page, welsh, "citizen");
     }
   },
 };

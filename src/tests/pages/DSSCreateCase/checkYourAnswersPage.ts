@@ -46,92 +46,92 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         await expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
           CheckYourAnswersContent.welshSubTitle1,
         );
-        await expect(page.locator(".govuk-summary-list__key").nth(0)).toHaveText(
-          CheckYourAnswersContent.welshTextOnPage1,
-        );
-        await expect(page.locator(".govuk-summary-list__key").nth(1)).toHaveText(
-          CheckYourAnswersContent.welshTextOnPage2,
-        );
-        await expect(page.locator(".govuk-summary-list__key").nth(2)).toHaveText(
-          CheckYourAnswersContent.welshTextOnPage3,
-        );
-        await expect(page.locator(".govuk-summary-list__key").nth(3)).toHaveText(
-          CheckYourAnswersContent.welshTextOnPage4,
-        );
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(0),
+        ).toHaveText(CheckYourAnswersContent.welshTextOnPage1);
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(1),
+        ).toHaveText(CheckYourAnswersContent.welshTextOnPage2);
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(2),
+        ).toHaveText(CheckYourAnswersContent.welshTextOnPage3);
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(3),
+        ).toHaveText(CheckYourAnswersContent.welshTextOnPage4);
         await expect(page.locator(".govuk-heading-m").nth(2)).toHaveText(
           CheckYourAnswersContent.welshSubTitle2,
         );
-        await expect(page.locator(".govuk-summary-list__key").nth(4)).toHaveText(
-          CheckYourAnswersContent.welshTextOnPage5,
-        );
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(4),
+        ).toHaveText(CheckYourAnswersContent.welshTextOnPage5);
         if (representationPresent) {
-          await expect(page.locator(".govuk-summary-list__key").nth(5)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage6,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(6)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage7,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(5),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage6);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(6),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage7);
           await expect(page.locator(".govuk-heading-m").nth(3)).toHaveText(
             CheckYourAnswersContent.welshSubTitle3,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(7)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage8,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(8)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage9,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(9)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage10,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(7),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage8);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(8),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage9);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(9),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage10);
           await expect(page.locator(".govuk-heading-m").nth(4)).toHaveText(
             CheckYourAnswersContent.subTitle4,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(10)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage11,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(10),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage11);
           await expect(page.locator(".govuk-heading-m").nth(5)).toHaveText(
             CheckYourAnswersContent.welshSubTitle5,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(11)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage12,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(11),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage12);
           await expect(page.locator(".govuk-heading-m").nth(6)).toHaveText(
             CheckYourAnswersContent.welshSubTitle6,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(12)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage13,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(13)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage14,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(14)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage15,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(12),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage13);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(13),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage14);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(14),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage15);
         } else {
           await expect(page.locator(".govuk-heading-m").nth(3)).toHaveText(
             CheckYourAnswersContent.welshSubTitle4,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(5)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage11,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(5),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage11);
           await expect(page.locator(".govuk-heading-m").nth(4)).toHaveText(
             CheckYourAnswersContent.welshSubTitle5,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(6)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage12,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(6),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage12);
           await expect(page.locator(".govuk-heading-m").nth(5)).toHaveText(
             CheckYourAnswersContent.welshSubTitle6,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(7)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage13,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(8)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage14,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(9)).toHaveText(
-            CheckYourAnswersContent.welshTextOnPage15,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(7),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage13);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(8),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage14);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(9),
+          ).toHaveText(CheckYourAnswersContent.welshTextOnPage15);
         }
         await expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
           CheckYourAnswersContent.welshSubTitle7,
@@ -147,92 +147,92 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         await expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
           CheckYourAnswersContent.subTitle1,
         );
-        await expect(page.locator(".govuk-summary-list__key").nth(0)).toHaveText(
-          CheckYourAnswersContent.textOnPage1,
-        );
-        await expect(page.locator(".govuk-summary-list__key").nth(1)).toHaveText(
-          CheckYourAnswersContent.textOnPage2,
-        );
-        await expect(page.locator(".govuk-summary-list__key").nth(2)).toHaveText(
-          CheckYourAnswersContent.textOnPage3,
-        );
-        await expect(page.locator(".govuk-summary-list__key").nth(3)).toHaveText(
-          CheckYourAnswersContent.textOnPage4,
-        );
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(0),
+        ).toHaveText(CheckYourAnswersContent.textOnPage1);
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(1),
+        ).toHaveText(CheckYourAnswersContent.textOnPage2);
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(2),
+        ).toHaveText(CheckYourAnswersContent.textOnPage3);
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(3),
+        ).toHaveText(CheckYourAnswersContent.textOnPage4);
         await expect(page.locator(".govuk-heading-m").nth(2)).toHaveText(
           CheckYourAnswersContent.subTitle2,
         );
-        await expect(page.locator(".govuk-summary-list__key").nth(4)).toHaveText(
-          CheckYourAnswersContent.textOnPage5,
-        );
+        await expect(
+          page.locator(".govuk-summary-list__key").nth(4),
+        ).toHaveText(CheckYourAnswersContent.textOnPage5);
         if (representationPresent) {
-          await expect(page.locator(".govuk-summary-list__key").nth(5)).toHaveText(
-            CheckYourAnswersContent.textOnPage6,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(6)).toHaveText(
-            CheckYourAnswersContent.textOnPage7,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(5),
+          ).toHaveText(CheckYourAnswersContent.textOnPage6);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(6),
+          ).toHaveText(CheckYourAnswersContent.textOnPage7);
           await expect(page.locator(".govuk-heading-m").nth(3)).toHaveText(
             CheckYourAnswersContent.subTitle3,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(7)).toHaveText(
-            CheckYourAnswersContent.textOnPage8,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(8)).toHaveText(
-            CheckYourAnswersContent.textOnPage9,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(9)).toHaveText(
-            CheckYourAnswersContent.textOnPage10,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(7),
+          ).toHaveText(CheckYourAnswersContent.textOnPage8);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(8),
+          ).toHaveText(CheckYourAnswersContent.textOnPage9);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(9),
+          ).toHaveText(CheckYourAnswersContent.textOnPage10);
           await expect(page.locator(".govuk-heading-m").nth(4)).toHaveText(
             CheckYourAnswersContent.subTitle4,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(10)).toHaveText(
-            CheckYourAnswersContent.textOnPage11,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(10),
+          ).toHaveText(CheckYourAnswersContent.textOnPage11);
           await expect(page.locator(".govuk-heading-m").nth(5)).toHaveText(
             CheckYourAnswersContent.subTitle5,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(11)).toHaveText(
-            CheckYourAnswersContent.textOnPage12,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(11),
+          ).toHaveText(CheckYourAnswersContent.textOnPage12);
           await expect(page.locator(".govuk-heading-m").nth(6)).toHaveText(
             CheckYourAnswersContent.subTitle6,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(12)).toHaveText(
-            CheckYourAnswersContent.textOnPage13,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(13)).toHaveText(
-            CheckYourAnswersContent.textOnPage14,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(14)).toHaveText(
-            CheckYourAnswersContent.textOnPage15,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(12),
+          ).toHaveText(CheckYourAnswersContent.textOnPage13);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(13),
+          ).toHaveText(CheckYourAnswersContent.textOnPage14);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(14),
+          ).toHaveText(CheckYourAnswersContent.textOnPage15);
         } else {
           await expect(page.locator(".govuk-heading-m").nth(3)).toHaveText(
             CheckYourAnswersContent.subTitle4,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(5)).toHaveText(
-            CheckYourAnswersContent.textOnPage11,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(5),
+          ).toHaveText(CheckYourAnswersContent.textOnPage11);
           await expect(page.locator(".govuk-heading-m").nth(4)).toHaveText(
             CheckYourAnswersContent.subTitle5,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(6)).toHaveText(
-            CheckYourAnswersContent.textOnPage12,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(6),
+          ).toHaveText(CheckYourAnswersContent.textOnPage12);
           await expect(page.locator(".govuk-heading-m").nth(5)).toHaveText(
             CheckYourAnswersContent.subTitle6,
           );
-          await expect(page.locator(".govuk-summary-list__key").nth(7)).toHaveText(
-            CheckYourAnswersContent.textOnPage13,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(8)).toHaveText(
-            CheckYourAnswersContent.textOnPage14,
-          );
-          await expect(page.locator(".govuk-summary-list__key").nth(9)).toHaveText(
-            CheckYourAnswersContent.textOnPage15,
-          );
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(7),
+          ).toHaveText(CheckYourAnswersContent.textOnPage13);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(8),
+          ).toHaveText(CheckYourAnswersContent.textOnPage14);
+          await expect(
+            page.locator(".govuk-summary-list__key").nth(9),
+          ).toHaveText(CheckYourAnswersContent.textOnPage15);
         }
         await expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
           CheckYourAnswersContent.subTitle7,

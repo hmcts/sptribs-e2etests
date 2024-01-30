@@ -33,7 +33,8 @@ const checkYourAnswers_content = {
   welshTextOnPage3: "Cyfeiriad e-bost",
   welshTextOnPage4: "Rhif cyswllt",
   welshSubTitle2: "Cynrychiolaeth",
-  welshTextOnPage5: "A oes cynrychiolydd wedi’i enwi ar y ffurflen tribiwnlys sydd wedi’i llenwi?",
+  welshTextOnPage5:
+    "A oes cynrychiolydd wedi’i enwi ar y ffurflen tribiwnlys sydd wedi’i llenwi?",
   welshTextOnPage6: "A yw’r cynrychiolydd a enwyd wedi cymhwyso yn y gyfraith?",
   welshSubTitle3: "Manylion y cynrychiolydd",
   welshTextOnPage7: "Enw llawn",
@@ -41,7 +42,8 @@ const checkYourAnswers_content = {
   welshTextOnPage9: "Rhif cyswllt",
   welshTextOnPage10: "Cyfeiriad e-bost",
   welshSubTitle4: "Ffurflenni apelio",
-  welshTextOnPage11: "Rhestr o ffurflenni sydd wedi’u llwytho (Ffurflen apelio)",
+  welshTextOnPage11:
+    "Rhestr o ffurflenni sydd wedi’u llwytho (Ffurflen apelio)",
   welshSubTitle5: "Dogfennau ategol",
   welshTextOnPage12: "Rhestr o ddogfennau ategol sydd wedi’u llwytho",
   welshSubTitle6: "Gwybodaeth ychwanegol",

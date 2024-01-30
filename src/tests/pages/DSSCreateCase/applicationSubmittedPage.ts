@@ -4,7 +4,11 @@ import applicationSubmittedContent from "../../fixtures/content/DSSCreateCase/ap
 
 type ApplicationSubmittedPage = {
   closeAndExitButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   checkCICCaseNumber(page: Page): Promise<void>;
   returnCICCaseNumber(page: Page): Promise<string>;
 };
@@ -12,7 +16,11 @@ type ApplicationSubmittedPage = {
 const applicationSubmittedPage: ApplicationSubmittedPage = {
   closeAndExitButton: "a[role='button']",
 
-  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     switch (welsh) {
       case true:
         await expect(page.locator(".govuk-panel__title")).toHaveText(
@@ -27,9 +35,9 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
         await expect(page.locator(".govuk-body").nth(5)).toHaveText(
           applicationSubmittedContent.welshTextOnPage2,
         );
-        await expect(page.locator(".govuk-notification-banner__title")).toHaveText(
-          applicationSubmittedContent.welshSubTitle2,
-        );
+        await expect(
+          page.locator(".govuk-notification-banner__title"),
+        ).toHaveText(applicationSubmittedContent.welshSubTitle2);
         await expect(
           page.locator(".govuk-notification-banner__content"),
         ).toContainText(applicationSubmittedContent.welshTextOnPage3);
@@ -53,9 +61,9 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
         await expect(page.locator(".govuk-body").nth(5)).toHaveText(
           applicationSubmittedContent.textOnPage2,
         );
-        await expect(page.locator(".govuk-notification-banner__title")).toHaveText(
-          applicationSubmittedContent.subTitle2,
-        );
+        await expect(
+          page.locator(".govuk-notification-banner__title"),
+        ).toHaveText(applicationSubmittedContent.subTitle2);
         await expect(
           page.locator(".govuk-notification-banner__content"),
         ).toContainText(applicationSubmittedContent.textOnPage3);

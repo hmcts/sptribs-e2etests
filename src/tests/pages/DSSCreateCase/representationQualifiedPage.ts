@@ -7,7 +7,11 @@ type RepresentationQualifiedPage = {
   qualifiedNo: string;
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    welsh: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page, representationQualified: boolean): Promise<void>;
   triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
@@ -71,24 +75,24 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.welshErrorBanner,
         );
-        await expect(page.locator("[href='#representationQualified']")).toHaveText(
-          representationQualifiedContent.welshSelectionError,
-        );
-        await expect(page.locator("#representationQualified-error")).toContainText(
-          representationQualifiedContent.welshSelectionError,
-        );
+        await expect(
+          page.locator("[href='#representationQualified']"),
+        ).toHaveText(representationQualifiedContent.welshSelectionError);
+        await expect(
+          page.locator("#representationQualified-error"),
+        ).toContainText(representationQualifiedContent.welshSelectionError);
         break;
       case false:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.errorBanner,
         );
-        await expect(page.locator("[href='#representationQualified']")).toHaveText(
-          representationQualifiedContent.selectionError,
-        );
-        await expect(page.locator("#representationQualified-error")).toContainText(
-          representationQualifiedContent.selectionError,
-        );
+        await expect(
+          page.locator("[href='#representationQualified']"),
+        ).toHaveText(representationQualifiedContent.selectionError);
+        await expect(
+          page.locator("#representationQualified-error"),
+        ).toContainText(representationQualifiedContent.selectionError);
         break;
     }
   },
