@@ -18,7 +18,11 @@ type CaseRepresentativeDetailsObjectPage = {
   selectEmail: string;
   selectPost: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(page: Page, contactPreference: ContactPreference): Promise<void>;
+  fillInFields(
+    page: Page,
+    contactPreference: ContactPreference,
+    representativeQualified: boolean,
+  ): Promise<void>;
 };
 
 const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
@@ -83,6 +87,7 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
     async fillInFields(
       page: Page,
       contactPreference: ContactPreference,
+      representativeQualified: boolean,
     ): Promise<void> {
       await page.fill(
         this.fullName,
@@ -92,6 +97,11 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
         this.phoneNumber,
         caseRepresentativeDetailsObject_content.contactNumber,
       );
+      if (representativeQualified) {
+        await page.click(this.qualifiedYes);
+      } else {
+        await page.click(this.qualifiedNo);
+      }
       if (contactPreference === "Email") {
         await page.click(this.selectEmail);
         await page.click(this.selectEmail); // needs to double-click due to EXUI

@@ -14,6 +14,7 @@ import caseObjectsSubjectsPage from "../pages/CaseAPI/createCase/caseObjectsSubj
 import caseSubjectDetailsObjectPage from "../pages/CaseAPI/createCase/caseSubjectDetailsObjectPage.ts";
 import caseApplicantDetailsObjectPage from "../pages/CaseAPI/createCase/caseApplicantDetailsObjectPage.ts";
 import caseRepresentativeDetailsObjectPage from "../pages/CaseAPI/createCase/caseRepresentativeDetailsObjectPage.ts";
+import caseObjectsContactsPage from "../pages/CaseAPI/createCase/caseObjectsContactsPage.ts";
 
 async function createCase(
   page: Page,
@@ -22,6 +23,7 @@ async function createCase(
   category: Category,
   subCategory: SubCategory,
   contactPreference: ContactPreference,
+  representativeQualified: boolean,
 ): Promise<void> {
   await caseAPILoginPage.SignInUser(page, user);
   await casesPage.checkPageLoads(page, accessibilityTest);
@@ -33,7 +35,7 @@ async function createCase(
   await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
   await caseDateObjectsPage.fillInFields(page);
   await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
-  await caseObjectsSubjectsPage.fillInFields(page, subCategory);
+  await caseObjectsSubjectsPage.fillInFields(page);
   await caseSubjectDetailsObjectPage.checkPageLoads(page, accessibilityTest);
   await caseSubjectDetailsObjectPage.fillInFields(page, contactPreference);
   await caseApplicantDetailsObjectPage.checkPageLoads(page, accessibilityTest);
@@ -45,15 +47,19 @@ async function createCase(
   await caseRepresentativeDetailsObjectPage.fillInFields(
     page,
     contactPreference,
+    representativeQualified,
   );
+  await caseObjectsContactsPage.checkPageLoads(page, accessibilityTest);
+  await caseObjectsContactsPage.fillInFields(page, subCategory);
 }
 
 test.only("some test", async ({ page }) => {
   const user = "caseWorker",
     accessibilityTest = true,
     category = "Assessment",
-    subCategory = "Other",
-    contactPreference = "Email";
+    subCategory = "Minor",
+    contactPreference = "Post",
+    representativeQualified = true;
   await createCase(
     page,
     user,
@@ -61,5 +67,6 @@ test.only("some test", async ({ page }) => {
     category,
     subCategory,
     contactPreference,
+    representativeQualified,
   );
 });

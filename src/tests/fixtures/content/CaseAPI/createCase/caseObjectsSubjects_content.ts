@@ -1,4 +1,4 @@
-const caseObjectsSubjectsPage_content = {
+const caseObjectsSubjects_content = {
   pageHint: "Create Case",
   pageTitle: "Who are the parties in this case?",
   textOnPage1: "Named Parties",
@@ -7,4 +7,4 @@ const caseObjectsSubjectsPage_content = {
   textOnPage4: "Applicant (if different from subject)",
 } as const;
 
-export default caseObjectsSubjectsPage_content;
+export default caseObjectsSubjects_content;
