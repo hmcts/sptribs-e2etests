@@ -20,6 +20,7 @@ type CheckYourAnswersPage = {
   ): Promise<void>;
   checkValidInfoAllFields(
     page: Page,
+    welsh: boolean,
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
@@ -84,7 +85,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
             page.locator(".govuk-summary-list__key").nth(9),
           ).toHaveText(CheckYourAnswersContent.welshTextOnPage10);
           await expect(page.locator(".govuk-heading-m").nth(4)).toHaveText(
-            CheckYourAnswersContent.subTitle4,
+            CheckYourAnswersContent.welshSubTitle4,
           );
           await expect(
             page.locator(".govuk-summary-list__key").nth(10),
@@ -249,12 +250,15 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
 
   async checkValidInfoAllFields(
     page: Page,
+    welsh: boolean,
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
   ): Promise<void> {
     const yes = "Yes";
     const no = "No";
+    const welshYes = "Ydy";
+    const welshNo = "Nac ydy";
     await expect(page.locator(".govuk-summary-list__value").nth(0)).toHaveText(
       subjectDetailsContent.name,
     );
@@ -268,17 +272,32 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
       subjectContactDetailsContent.contactNumber,
     );
     if (representationPresent) {
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(4),
-      ).toHaveText(yes);
-      if (representationQualified) {
+      if (welsh) {
         await expect(
-          page.locator(".govuk-summary-list__value").nth(5),
+          page.locator(".govuk-summary-list__value").nth(4),
+        ).toHaveText(welshYes);
+        if (representationQualified) {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(5),
+          ).toHaveText(welshYes);
+        } else if (!representationQualified) {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(5),
+          ).toHaveText(welshNo);
+        }
+      } else {
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(4),
         ).toHaveText(yes);
-      } else if (!representationQualified) {
-        await expect(
-          page.locator(".govuk-summary-list__value").nth(5),
-        ).toHaveText(no);
+        if (representationQualified) {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(5),
+          ).toHaveText(yes);
+        } else if (!representationQualified) {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(5),
+          ).toHaveText(no);
+        }
       }
       await expect(
         page.locator(".govuk-summary-list__value").nth(6),
@@ -314,9 +333,15 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         );
       }
     } else {
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(4),
-      ).toHaveText(no);
+      if (welsh) {
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(4),
+        ).toHaveText(welshNo);
+      } else {
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(4),
+        ).toHaveText(no);
+      }
       await expect(
         page.locator(".govuk-summary-list__value").nth(5),
       ).toHaveText(path.basename(config.testPdfFile));

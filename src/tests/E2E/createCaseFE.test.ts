@@ -164,6 +164,7 @@ async function normalFEFlow(
   );
   await checkYourAnswersPage.checkValidInfoAllFields(
     page,
+    welsh,
     representationPresent,
     representationQualified,
     uploadOtherInfo,
@@ -324,7 +325,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
   );
 });
 
-test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - in Welsh - aXe test as it proceeds. @accessibility", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - in Welsh - aXe test as it proceeds. @accessibility", async ({
   page,
 }) => {
   const welsh = true,
@@ -494,30 +495,6 @@ test("Create an application with all details, an unqualified representative, no 
 
 test("Test all back buttons on the Frontend application", async ({ page }) => {
   const welsh = false,
-    representationPresent = true,
-    representationQualified = true,
-    uploadOtherInfo = true,
-    completeApplication = false,
-    backButtonJourney = true,
-    accessibilityTest = false,
-    errorMessaging = false;
-  await createFEApplication(
-    page,
-    welsh,
-    representationPresent,
-    representationQualified,
-    uploadOtherInfo,
-    completeApplication,
-    backButtonJourney,
-    accessibilityTest,
-    errorMessaging,
-  );
-});
-
-test("Test all back buttons on the Frontend application - in Welsh", async ({
-  page,
-}) => {
-  const welsh = true,
     representationPresent = true,
     representationQualified = true,
     uploadOtherInfo = true,

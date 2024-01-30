@@ -47,7 +47,7 @@ const checkYourAnswers_content = {
   welshSubTitle5: "Dogfennau ategol",
   welshTextOnPage12: "Rhestr o ddogfennau ategol sydd wedi’u llwytho",
   welshSubTitle6: "Gwybodaeth ychwanegol",
-  welshTextOnPage13: "Rhestr o ddogfennau eraill sydd wedi’u llwytho",
+  welshTextOnPage13: "Rhestr o ddogfennau eraill a uwchlwythwyd",
   welshTextOnPage14: "Perthnasedd dogfennau",
   welshTextOnPage15: "Gwybodaeth ychwanegol",
   welshSubTitle7: "Nawr cyflwynwch eich ffurflen tribiwnlys",
