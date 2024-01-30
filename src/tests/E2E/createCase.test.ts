@@ -13,6 +13,7 @@ import caseDateObjectsPage from "../pages/CaseAPI/createCase/caseDateObjectsPage
 import caseObjectsSubjectsPage from "../pages/CaseAPI/createCase/caseObjectsSubjectsPage.ts";
 import caseSubjectDetailsObjectPage from "../pages/CaseAPI/createCase/caseSubjectDetailsObjectPage.ts";
 import caseApplicantDetailsObjectPage from "../pages/CaseAPI/createCase/caseApplicantDetailsObjectPage.ts";
+import caseRepresentativeDetailsObjectPage from "../pages/CaseAPI/createCase/caseRepresentativeDetailsObjectPage.ts";
 
 async function createCase(
   page: Page,
@@ -37,6 +38,14 @@ async function createCase(
   await caseSubjectDetailsObjectPage.fillInFields(page, contactPreference);
   await caseApplicantDetailsObjectPage.checkPageLoads(page, accessibilityTest);
   await caseApplicantDetailsObjectPage.fillInFields(page, contactPreference);
+  await caseRepresentativeDetailsObjectPage.checkPageLoads(
+    page,
+    accessibilityTest,
+  );
+  await caseRepresentativeDetailsObjectPage.fillInFields(
+    page,
+    contactPreference,
+  );
 }
 
 test.only("some test", async ({ page }) => {
@@ -44,7 +53,7 @@ test.only("some test", async ({ page }) => {
     accessibilityTest = true,
     category = "Assessment",
     subCategory = "Other",
-    contactPreference = "Post";
+    contactPreference = "Email";
   await createCase(
     page,
     user,

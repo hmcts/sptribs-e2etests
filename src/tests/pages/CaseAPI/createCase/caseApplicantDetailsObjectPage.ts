@@ -3,9 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   ContactPreference,
 } from "../../../helpers/commonHelpers.ts";
-import caseApplicantDetailsObject_content
-  from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
-
+import caseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
 
 type CaseApplicantDetailsObjectPage = {
   continue: string;
@@ -83,7 +81,10 @@ const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
       caseApplicantDetailsObject_content.contactNumber,
     );
     await page.fill(this.day, caseApplicantDetailsObject_content.dayOfBirth);
-    await page.fill(this.month, caseApplicantDetailsObject_content.monthOfBirth);
+    await page.fill(
+      this.month,
+      caseApplicantDetailsObject_content.monthOfBirth,
+    );
     await page.fill(this.year, caseApplicantDetailsObject_content.yearOfBirth);
     if (contactPreference === "Email") {
       await page.click(this.selectEmail);
