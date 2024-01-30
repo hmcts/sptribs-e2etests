@@ -48,7 +48,7 @@ async function createFEApplication(
     case true:
       await landingPage.seeTheLandingPage(page, welsh, accessibilityTest);
       await landingPage.continueOn(page);
-      await loginPage.SignInUser(page, welsh);
+      await loginPage.SignInUser(page);
       await subjectDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
       await subjectDetailsPage.triggerErrorMessages(page, welsh);
       await subjectDetailsPage.fillInFields(page);
@@ -118,7 +118,7 @@ async function normalFEFlow(
 ) {
   await landingPage.seeTheLandingPage(page, welsh, accessibilityTest);
   await landingPage.continueOn(page);
-  await loginPage.SignInUser(page, welsh);
+  await loginPage.SignInUser(page);
   await subjectDetailsPage.checkPageLoads(page, welsh, accessibilityTest);
   await subjectDetailsPage.fillInFields(page);
   await subjectContactDetailsPage.checkPageLoads(

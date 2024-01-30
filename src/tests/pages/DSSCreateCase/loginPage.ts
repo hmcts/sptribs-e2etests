@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
 
 type SignInPage = {
@@ -7,7 +7,7 @@ type SignInPage = {
     password: string;
   };
   submitButton: string;
-  SignInUser(page: Page, welsh: boolean): Promise<void>;
+  SignInUser(page: Page): Promise<void>;
 };
 
 const signInPage: SignInPage = {
@@ -17,20 +17,11 @@ const signInPage: SignInPage = {
   },
   submitButton: 'input[value="Sign in"]',
 
-  async SignInUser(page: Page, welsh: boolean): Promise<void> {
-    if (welsh) {
-      await page.locator(".language").click();
-      await expect(page.locator(".language")).toHaveText("English");
-      await page.waitForSelector(
-        `#skiplinktarget:text("Mewngofnodi neu greu cyfrif")`,
-      );
-      await idamLoginHelper.signInUser(page, welsh, "citizen");
-    } else {
-      await page.waitForSelector(
-        `#skiplinktarget:text("Sign in or create an account")`,
-      );
-      await idamLoginHelper.signInUser(page, welsh, "citizen");
-    }
+  async SignInUser(page: Page): Promise<void> {
+    await page.waitForSelector(
+      `#skiplinktarget:text("Sign in or create an account")`,
+    );
+    await idamLoginHelper.signInUser(page, "citizen");
   },
 };
 
