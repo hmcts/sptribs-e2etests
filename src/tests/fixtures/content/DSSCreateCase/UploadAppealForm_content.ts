@@ -31,8 +31,7 @@ const uploadAppealForm_content = {
   dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
   textOnPageCy3: "Fformatau ffeiliau: MS Word, PDF",
   textOnPageCy4: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
-  textOnPageCy5:
-    "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  textOnPageCy5: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
   textOnPageCy6:
     "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau eraill oherwydd y risg o firws.",
   textOnPageCy7: "Llwythwch ffeil i fyny",

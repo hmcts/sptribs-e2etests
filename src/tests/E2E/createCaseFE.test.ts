@@ -121,11 +121,7 @@ async function normalFEFlow(
   await loginPage.SignInUser(page);
   await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
   await subjectDetailsPage.fillInFields(page);
-  await subjectContactDetailsPage.checkPageLoads(
-    page,
-    cy,
-    accessibilityTest,
-  );
+  await subjectContactDetailsPage.checkPageLoads(page, cy, accessibilityTest);
   await subjectContactDetailsPage.fillInFields(page);
   await representationPage.checkPageLoads(page, cy, accessibilityTest);
   await representationPage.fillInFields(page, representationPresent);
@@ -145,11 +141,7 @@ async function normalFEFlow(
     accessibilityTest,
   );
   await uploadSupportingDocumentsPage.uploadDocumentsSection(page, cy);
-  await uploadOtherInformationPage.checkPageLoads(
-    page,
-    cy,
-    accessibilityTest,
-  );
+  await uploadOtherInformationPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
     cy,
@@ -190,17 +182,9 @@ async function handleRepresentationLogic(
   representationQualified: boolean,
   accessibilityTest: boolean,
 ) {
-  await representationQualifiedPage.checkPageLoads(
-    page,
-    cy,
-    accessibilityTest,
-  );
+  await representationQualifiedPage.checkPageLoads(page, cy, accessibilityTest);
   await representationQualifiedPage.fillInFields(page, representationQualified);
-  await representativeDetailsPage.checkPageLoads(
-    page,
-    cy,
-    accessibilityTest,
-  );
+  await representativeDetailsPage.checkPageLoads(page, cy, accessibilityTest);
   await representativeDetailsPage.fillInFields(page);
 }
 

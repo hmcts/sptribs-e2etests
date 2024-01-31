@@ -29,8 +29,7 @@ const uploadSupportingDocuments_content = {
   textOnPageCy2:
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF",
   textOnPageCy3: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
-  textOnPageCy4:
-    "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  textOnPageCy4: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
   textOnPageCy5:
     "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau .zip neu ffeiliau eraill oherwydd y risg o firws.",
   textOnPageCy6: "Llwythwch ffeil i fyny",

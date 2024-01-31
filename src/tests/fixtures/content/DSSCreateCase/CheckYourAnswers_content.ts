@@ -42,8 +42,7 @@ const checkYourAnswers_content = {
   textOnPageCy9: "Rhif cyswllt",
   textOnPageCy10: "Cyfeiriad e-bost",
   subTitleCy4: "Ffurflenni apelio",
-  textOnPageCy11:
-    "Rhestr o ffurflenni sydd wedi’u llwytho (Ffurflen apelio)",
+  textOnPageCy11: "Rhestr o ffurflenni sydd wedi’u llwytho (Ffurflen apelio)",
   subTitleCy5: "Dogfennau ategol",
   textOnPageCy12: "Rhestr o ddogfennau ategol sydd wedi’u llwytho",
   subTitleCy6: "Gwybodaeth ychwanegol",

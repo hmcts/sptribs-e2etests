@@ -134,14 +134,10 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         ).toContainText(representativeDetailsContent.fullNameErrorCy);
         await expect(
           page.locator("#representativeOrganisationName-error"),
-        ).toContainText(
-          representativeDetailsContent.organisationNameErrorCy,
-        );
+        ).toContainText(representativeDetailsContent.organisationNameErrorCy);
         await expect(
           page.locator("#representativeContactNumber-error"),
-        ).toContainText(
-          representativeDetailsContent.validContactNumberErrorCy,
-        );
+        ).toContainText(representativeDetailsContent.validContactNumberErrorCy);
         await expect(
           page.locator("#representativeEmailAddress-error"),
         ).toContainText(representativeDetailsContent.validEmailErrorCy);
