@@ -9,11 +9,11 @@ type RepresentationPage = {
   backButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   fillInFields(page: Page, representationPresent: boolean): Promise<void>;
-  triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
+  triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -23,17 +23,17 @@ const representationPage: RepresentationPage = {
   continueButton: "#main-form-submit",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean) {
-    switch (welsh) {
+  async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-          representationContent.welshPageTitle,
+          representationContent.pageTitleCy,
         );
         await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          representationContent.welshTextOnPage1,
+          representationContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-          representationContent.welshTextOnPage2,
+          representationContent.textOnPageCy2,
         );
         break;
       case false:
@@ -62,18 +62,18 @@ const representationPage: RepresentationPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page: Page, welsh: boolean) {
-    switch (welsh) {
+  async triggerErrorMessages(page: Page, cy: boolean) {
+    switch (cy) {
       case true:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          representationContent.welshErrorBanner,
+          representationContent.errorBannerCy,
         );
         await expect(page.locator("[href='#representation']")).toHaveText(
-          representationContent.welshSelectionError,
+          representationContent.selectionErrorCy,
         );
         await expect(page.locator("#representation-error")).toContainText(
-          representationContent.welshSelectionError,
+          representationContent.selectionErrorCy,
         );
         break;
       case false:

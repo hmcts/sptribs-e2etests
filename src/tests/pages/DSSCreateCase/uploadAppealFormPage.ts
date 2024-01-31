@@ -14,11 +14,11 @@ type UploadAppealFormPage = {
   backButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  uploadDocumentsSection(page: Page, welsh: boolean): Promise<void>;
-  triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
+  uploadDocumentsSection(page: Page, cy: boolean): Promise<void>;
+  triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -34,45 +34,45 @@ const uploadAppealFormPage: UploadAppealFormPage = {
 
   async checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    switch (welsh) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
-          uploadAppealFormContent.welshPageTitle,
+          uploadAppealFormContent.pageTitleCy,
         );
         await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-          uploadAppealFormContent.welshTextOnPage1,
+          uploadAppealFormContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-          uploadAppealFormContent.welshTextOnPage2,
+          uploadAppealFormContent.textOnPageCy2,
         );
         await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadAppealFormContent.welshDropdownLink,
+          uploadAppealFormContent.dropdownLinkCy,
         );
         await page.click(this.fields.dropDown);
         await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadAppealFormContent.welshDropdownLink,
+          uploadAppealFormContent.dropdownLinkCy,
         );
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(1)"),
-        ).toHaveText(uploadAppealFormContent.welshTextOnPage3);
+        ).toHaveText(uploadAppealFormContent.textOnPageCy3);
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(2)"),
-        ).toContainText(uploadAppealFormContent.welshTextOnPage4);
+        ).toContainText(uploadAppealFormContent.textOnPageCy4);
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(3)"),
-        ).toContainText(uploadAppealFormContent.welshTextOnPage5);
+        ).toContainText(uploadAppealFormContent.textOnPageCy5);
         await expect(page.locator(".govuk-details__text")).toContainText(
-          uploadAppealFormContent.welshTextOnPage6,
+          uploadAppealFormContent.textOnPageCy6,
         );
         await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          uploadAppealFormContent.welshTextOnPage7,
+          uploadAppealFormContent.textOnPageCy7,
         );
         await expect(
           page.locator("form[class='formRow'] p[class='govuk-body']"),
-        ).toHaveText(uploadAppealFormContent.welshTextOnPage8);
+        ).toHaveText(uploadAppealFormContent.textOnPageCy8);
         break;
       case false:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -116,7 +116,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     }
   },
 
-  async uploadDocumentsSection(page: Page, welsh: boolean): Promise<void> {
+  async uploadDocumentsSection(page: Page, cy: boolean): Promise<void> {
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testPdfFile);
@@ -126,12 +126,12 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
       ),
     ).toContainText(path.basename(config.testPdfFile));
-    if (welsh) {
+    if (cy) {
       await expect(
         page.locator(
           "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
         ),
-      ).toContainText(uploadAppealFormContent.welshDeleteButton);
+      ).toContainText(uploadAppealFormContent.deleteButtonCy);
     } else {
       await expect(
         page.locator(
@@ -142,25 +142,25 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page: Page, welsh: boolean): Promise<void> {
-    switch (welsh) {
+  async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    switch (cy) {
       case true:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadAppealFormContent.welshErrorBanner,
+          uploadAppealFormContent.errorBannerCy,
         );
         await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadAppealFormContent.welshNoUploadError,
+          uploadAppealFormContent.noUploadErrorCy,
         );
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadAppealFormContent.welshErrorBanner,
+          uploadAppealFormContent.errorBannerCy,
         );
         await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadAppealFormContent.welshFileTypeError,
+          uploadAppealFormContent.fileTypeErrorCy,
         );
         break;
       case false:

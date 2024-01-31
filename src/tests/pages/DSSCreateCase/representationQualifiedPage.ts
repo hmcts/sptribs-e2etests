@@ -9,11 +9,11 @@ type RepresentationQualifiedPage = {
   backButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   fillInFields(page: Page, representationQualified: boolean): Promise<void>;
-  triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
+  triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -23,20 +23,20 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
   continueButton: "#main-form-submit",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean) {
-    switch (welsh) {
+  async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-          representationQualifiedContent.welshPageTitle,
+          representationQualifiedContent.pageTitleCy,
         );
         await expect(page.locator(".govuk-hint")).toHaveText(
-          representationQualifiedContent.welshHintMessage,
+          representationQualifiedContent.hintMessageCy,
         );
         await expect(page.locator(".govuk-radios__label").nth(0)).toHaveText(
-          representationQualifiedContent.welshTextOnPage1,
+          representationQualifiedContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-radios__label").nth(1)).toHaveText(
-          representationQualifiedContent.welshTextOnPage2,
+          representationQualifiedContent.textOnPageCy2,
         );
         break;
       case false:
@@ -68,19 +68,19 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page: Page, welsh: boolean) {
-    switch (welsh) {
+  async triggerErrorMessages(page: Page, cy: boolean) {
+    switch (cy) {
       case true:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          representationQualifiedContent.welshErrorBanner,
+          representationQualifiedContent.errorBannerCy,
         );
         await expect(
           page.locator("[href='#representationQualified']"),
-        ).toHaveText(representationQualifiedContent.welshSelectionError);
+        ).toHaveText(representationQualifiedContent.selectionErrorCy);
         await expect(
           page.locator("#representationQualified-error"),
-        ).toContainText(representationQualifiedContent.welshSelectionError);
+        ).toContainText(representationQualifiedContent.selectionErrorCy);
         break;
       case false:
         await page.click(this.continueButton);

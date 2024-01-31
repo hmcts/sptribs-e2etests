@@ -6,7 +6,7 @@ type ApplicationSubmittedPage = {
   closeAndExitButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   checkCICCaseNumber(page: Page): Promise<void>;
@@ -18,35 +18,35 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
 
   async checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    switch (welsh) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-panel__title")).toHaveText(
-          applicationSubmittedContent.welshPageTitle,
+          applicationSubmittedContent.pageTitleCy,
         );
         await expect(
           page.locator("div[class='govuk-panel__body'] strong"),
-        ).toContainText(applicationSubmittedContent.welshSubTitle1);
+        ).toContainText(applicationSubmittedContent.subTitleCy1);
         await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-          applicationSubmittedContent.welshTextOnPage1,
+          applicationSubmittedContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-          applicationSubmittedContent.welshTextOnPage2,
+          applicationSubmittedContent.textOnPageCy2,
         );
         await expect(
           page.locator(".govuk-notification-banner__title"),
-        ).toHaveText(applicationSubmittedContent.welshSubTitle2);
+        ).toHaveText(applicationSubmittedContent.subTitleCy2);
         await expect(
           page.locator(".govuk-notification-banner__content"),
-        ).toContainText(applicationSubmittedContent.welshTextOnPage3);
+        ).toContainText(applicationSubmittedContent.textOnPageCy3);
         await expect(
           page.locator(".govuk-notification-banner__content"),
-        ).toContainText(applicationSubmittedContent.welshTextOnPage4);
+        ).toContainText(applicationSubmittedContent.textOnPageCy4);
         await expect(
           page.locator(".govuk-notification-banner__content"),
-        ).toContainText(applicationSubmittedContent.welshTextOnPage5);
+        ).toContainText(applicationSubmittedContent.textOnPageCy5);
         break;
       case false:
         await expect(page.locator(".govuk-panel__title")).toHaveText(

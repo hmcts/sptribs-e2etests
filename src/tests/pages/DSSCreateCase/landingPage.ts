@@ -7,7 +7,7 @@ type LandingPage = {
   startButton: string;
   seeTheLandingPage(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -18,10 +18,10 @@ const landingPage: LandingPage = {
 
   async seeTheLandingPage(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    switch (welsh) {
+    switch (cy) {
       case false:
         await page.goto(config.FEBaseURL);
         await expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -51,19 +51,19 @@ const landingPage: LandingPage = {
         await page.locator(".govuk-link").nth(1).click();
         await expect(page.locator(".govuk-link").nth(1)).toHaveText("English");
         await expect(page.locator(".govuk-heading-l")).toHaveText(
-          LandingPageDetails.welshPageTitle,
+          LandingPageDetails.pageTitleCy,
         );
         await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.welshHintMessage,
+          LandingPageDetails.hintMessageCy,
         );
         await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.welshSubHeading,
+          LandingPageDetails.subHeadingCy,
         );
         await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-          LandingPageDetails.welshTextOnPage1,
+          LandingPageDetails.textOnPageCy1,
         );
         await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-          LandingPageDetails.welshTextOnPage2,
+          LandingPageDetails.textOnPageCy2,
         );
         await expect(page.locator(landingPage.startButton)).toHaveText(
           "Dechrau nawr",

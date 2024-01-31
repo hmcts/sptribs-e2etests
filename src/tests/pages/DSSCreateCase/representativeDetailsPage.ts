@@ -13,11 +13,11 @@ type RepresentativeDetailsPage = {
   backButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
-  triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
+  triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -34,31 +34,31 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
 
   async checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    switch (welsh) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
-          representativeDetailsContent.welshPageTitle,
+          representativeDetailsContent.pageTitleCy,
         );
         await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-          representativeDetailsContent.welshTextOnPage1,
+          representativeDetailsContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-          representativeDetailsContent.welshTextOnPage2,
+          representativeDetailsContent.textOnPageCy2,
         );
         await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          representativeDetailsContent.welshSubHeading1,
+          representativeDetailsContent.subHeadingCy1,
         );
         await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-          representativeDetailsContent.welshSubHeading2,
+          representativeDetailsContent.subHeadingCy2,
         );
         await expect(page.locator(".govuk-label").nth(2)).toHaveText(
-          representativeDetailsContent.welshSubHeading3,
+          representativeDetailsContent.subHeadingCy3,
         );
         await expect(page.locator(".govuk-label").nth(3)).toHaveText(
-          representativeDetailsContent.welshSubHeading4,
+          representativeDetailsContent.subHeadingCy4,
         );
         break;
       case false:
@@ -110,52 +110,52 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page: Page, welsh: boolean): Promise<void> {
-    switch (welsh) {
+  async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    switch (cy) {
       case true:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          representativeDetailsContent.welshErrorBanner,
+          representativeDetailsContent.errorBannerCy,
         );
         await expect(
           page.locator("[href='#representativeFullName']"),
-        ).toHaveText(representativeDetailsContent.welshFullNameError);
+        ).toHaveText(representativeDetailsContent.fullNameErrorCy);
         await expect(
           page.locator("[href='#representativeOrganisationName']"),
-        ).toHaveText(representativeDetailsContent.welshOrganisationNameError);
+        ).toHaveText(representativeDetailsContent.organisationNameErrorCy);
         await expect(
           page.locator("[href='#representativeContactNumber']"),
-        ).toHaveText(representativeDetailsContent.welshValidContactNumberError);
+        ).toHaveText(representativeDetailsContent.validContactNumberErrorCy);
         await expect(
           page.locator("[href='#representativeEmailAddress']"),
-        ).toHaveText(representativeDetailsContent.welshValidEmailError);
+        ).toHaveText(representativeDetailsContent.validEmailErrorCy);
         await expect(
           page.locator("#representativeFullName-error"),
-        ).toContainText(representativeDetailsContent.welshFullNameError);
+        ).toContainText(representativeDetailsContent.fullNameErrorCy);
         await expect(
           page.locator("#representativeOrganisationName-error"),
         ).toContainText(
-          representativeDetailsContent.welshOrganisationNameError,
+          representativeDetailsContent.organisationNameErrorCy,
         );
         await expect(
           page.locator("#representativeContactNumber-error"),
         ).toContainText(
-          representativeDetailsContent.welshValidContactNumberError,
+          representativeDetailsContent.validContactNumberErrorCy,
         );
         await expect(
           page.locator("#representativeEmailAddress-error"),
-        ).toContainText(representativeDetailsContent.welshValidEmailError);
+        ).toContainText(representativeDetailsContent.validEmailErrorCy);
         await page.fill(
           this.fields.representativeEmailAddress,
-          representativeDetailsContent.welshPartEmailError,
+          representativeDetailsContent.partEmailErrorCy,
         );
         await page.click(this.continueButton);
         await expect(
           page.locator("[href='#representativeEmailAddress']"),
-        ).toHaveText(representativeDetailsContent.welshPartEmailError);
+        ).toHaveText(representativeDetailsContent.partEmailErrorCy);
         await expect(
           page.locator("#representativeEmailAddress-error"),
-        ).toContainText(representativeDetailsContent.welshPartEmailError);
+        ).toContainText(representativeDetailsContent.partEmailErrorCy);
         await page.fill(this.fields.representativeEmailAddress, "");
         break;
       case false:

@@ -16,15 +16,15 @@ type UploadOtherInformationPage = {
   backButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   uploadDocumentsSection(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     uploadInformation: boolean,
   ): Promise<void>;
-  triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
+  triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -42,77 +42,77 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
 
   async checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    switch (welsh) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
-          uploadOtherInformationContent.welshPageTitle,
+          uploadOtherInformationContent.pageTitleCy,
         );
         await expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
-          uploadOtherInformationContent.welshSubTitle1,
+          uploadOtherInformationContent.subTitleCy1,
         );
         await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage1,
+          uploadOtherInformationContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage2,
+          uploadOtherInformationContent.textOnPageCy2,
         );
         await expect(page.locator(".govuk-body").nth(6)).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage3,
+          uploadOtherInformationContent.textOnPageCy3,
         );
         await expect(
           page.locator("div[class='govuk-body-m'] li:nth-child(1)"),
-        ).toHaveText(uploadOtherInformationContent.welshTextOnPage4);
+        ).toHaveText(uploadOtherInformationContent.textOnPageCy4);
         await expect(
           page.locator("div[class='govuk-body-m'] li:nth-child(2)"),
-        ).toHaveText(uploadOtherInformationContent.welshTextOnPage5);
+        ).toHaveText(uploadOtherInformationContent.textOnPageCy5);
         await expect(
           page.locator("div[class='govuk-body-m'] li:nth-child(3)"),
-        ).toHaveText(uploadOtherInformationContent.welshTextOnPage6);
+        ).toHaveText(uploadOtherInformationContent.textOnPageCy6);
         await expect(
           page.locator("div[class='govuk-body-m'] li:nth-child(4)"),
-        ).toHaveText(uploadOtherInformationContent.welshTextOnPage7);
+        ).toHaveText(uploadOtherInformationContent.textOnPageCy7);
         await expect(page.locator(".govuk-body").nth(7)).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage8,
+          uploadOtherInformationContent.textOnPageCy8,
         );
         await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadOtherInformationContent.welshDropdownLink,
+          uploadOtherInformationContent.dropdownLinkCy,
         );
         await page.click(this.fields.dropDown);
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(1)"),
-        ).toHaveText(uploadOtherInformationContent.welshTextOnPage9);
+        ).toHaveText(uploadOtherInformationContent.textOnPageCy9);
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(2)"),
-        ).toContainText(uploadOtherInformationContent.welshTextOnPage10);
+        ).toContainText(uploadOtherInformationContent.textOnPageCy10);
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(3)"),
-        ).toContainText(uploadOtherInformationContent.welshTextOnPage11);
+        ).toContainText(uploadOtherInformationContent.textOnPageCy11);
         await expect(
           page.locator("details[class='govuk-details'] li:nth-child(4)"),
-        ).toContainText(uploadOtherInformationContent.welshTextOnPage12);
+        ).toContainText(uploadOtherInformationContent.textOnPageCy12);
         await expect(page.locator(".govuk-details__text")).toContainText(
-          uploadOtherInformationContent.welshTextOnPage13,
+          uploadOtherInformationContent.textOnPageCy13,
         );
         await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage14,
+          uploadOtherInformationContent.textOnPageCy14,
         );
         await expect(
           page.locator("form[class='formRow'] p[class='govuk-body']"),
-        ).toHaveText(uploadOtherInformationContent.welshTextOnPage15);
+        ).toHaveText(uploadOtherInformationContent.textOnPageCy15);
         await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-          uploadOtherInformationContent.welshSubTitle2,
+          uploadOtherInformationContent.subTitleCy2,
         );
         await expect(page.locator("#documentRelevance-hint")).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage16,
+          uploadOtherInformationContent.textOnPageCy16,
         );
         await expect(page.locator(".govuk-label").nth(2)).toHaveText(
-          uploadOtherInformationContent.welshSubTitle3,
+          uploadOtherInformationContent.subTitleCy3,
         );
         await expect(page.locator("#additionalInformation-hint")).toHaveText(
-          uploadOtherInformationContent.welshTextOnPage17,
+          uploadOtherInformationContent.textOnPageCy17,
         );
         break;
       case false:
@@ -192,7 +192,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
 
   async uploadDocumentsSection(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     uploadInformation: boolean,
   ): Promise<void> {
     if (uploadInformation) {
@@ -205,12 +205,12 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
         ),
       ).toContainText(path.basename(config.testWordFile));
-      if (welsh) {
+      if (cy) {
         await expect(
           page.locator(
             "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
           ),
-        ).toContainText(uploadOtherInformationContent.welshDeleteButton);
+        ).toContainText(uploadOtherInformationContent.deleteButtonCy);
       } else {
         await expect(
           page.locator(
@@ -230,18 +230,18 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page: Page, welsh: boolean): Promise<void> {
-    switch (welsh) {
+  async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    switch (cy) {
       case true:
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadOtherInformationContent.welshErrorBanner,
+          uploadOtherInformationContent.errorBannerCy,
         );
         await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadOtherInformationContent.welshFileTypeError,
+          uploadOtherInformationContent.fileTypeErrorCy,
         );
         break;
       case false:

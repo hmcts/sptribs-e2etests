@@ -24,24 +24,24 @@ const representativeDetailsContent = {
   agreeError:
     "Please agree to be contacted using the details provided to continue",
 
-  welshPageTitle: "Manylion y cynrychiolydd",
-  welshTextOnPage1:
+  pageTitleCy: "Manylion y cynrychiolydd",
+  textOnPageCy1:
     "Rhowch fanylion y cynrychiolydd fel y’u nodir ar eich ffurflen tribiwnlys.",
-  welshTextOnPage2:
+  textOnPageCy2:
     "Byddwn ond yn defnyddio’r manylion hyn i gysylltu â’r cynrychiolydd ynghylch yr achos hwn.",
-  welshSubHeading1: "Enw llawn",
-  welshSubHeading2: "Enw’r sefydliad neu’r busnes",
-  welshSubHeading3: "Rhif cyswllt",
-  welshSubHeading4: "Cyfeiriad e-bost",
-  welshButton: "Parhau",
-  welshErrorBanner: "Mae yna broblem",
-  welshFullNameError: "Nodwch enw llawn",
-  welshOrganisationNameError: "Nodwch enw’r sefydliad neu fusnes",
-  welshValidEmailError: "Nodwch gyfeiriad e-bost dilys",
-  welshPartEmailError:
+  subHeadingCy1: "Enw llawn",
+  subHeadingCy2: "Enw’r sefydliad neu’r busnes",
+  subHeadingCy3: "Rhif cyswllt",
+  subHeadingCy4: "Cyfeiriad e-bost",
+  buttonCy: "Parhau",
+  errorBannerCy: "Mae yna broblem",
+  fullNameErrorCy: "Nodwch enw llawn",
+  organisationNameErrorCy: "Nodwch enw’r sefydliad neu fusnes",
+  validEmailErrorCy: "Nodwch gyfeiriad e-bost dilys",
+  partEmailErrorCy:
     "Mae pob cyfeiriad e-bost yn cynnwys tair elfen: rhan lleol, symbol @ (a ynganir fel “at”), ac enw parth",
-  welshValidContactNumberError: "Nodwch rif cyswllt dilys",
-  welshAgreeError:
+  validContactNumberErrorCy: "Nodwch rif cyswllt dilys",
+  agreeErrorCy:
     "Dylech gytuno i’r llys gysylltu â chi gan ddefnyddio’r manylion a ddarparwyd cyn y gallwch barhau",
 } as const;
 

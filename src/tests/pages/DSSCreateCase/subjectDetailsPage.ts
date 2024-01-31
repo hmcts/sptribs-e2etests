@@ -13,11 +13,11 @@ type SubjectDetailsPage = {
   rejectCookiesButton: string;
   checkPageLoads(
     page: Page,
-    welsh: boolean,
+    cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
-  triggerErrorMessages(page: Page, welsh: boolean): Promise<void>;
+  triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
 };
 
 const subjectDetailsPage: SubjectDetailsPage = {
@@ -30,39 +30,39 @@ const subjectDetailsPage: SubjectDetailsPage = {
   continueButton: "#main-form-submit",
   rejectCookiesButton: ".cookie-banner-reject-button",
 
-  async checkPageLoads(page: Page, welsh: boolean, accessibilityTest: boolean) {
-    switch (welsh) {
+  async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
+    switch (cy) {
       case true:
         await page.locator(".govuk-link.language").click();
         await expect(page.locator(".govuk-link.language")).toHaveText(
           "English",
         );
         await expect(page.locator(".govuk-heading-l")).toHaveText(
-          subjectDetailsContent.welshPageTitle,
+          subjectDetailsContent.pageTitleCy,
         );
         await expect(page.locator(".govuk-hint").nth(0)).toHaveText(
-          subjectDetailsContent.welshHintText1,
+          subjectDetailsContent.hintTextCy1,
         );
         await expect(page.locator(".govuk-hint").nth(1)).toHaveText(
-          subjectDetailsContent.welshHintText2,
+          subjectDetailsContent.hintTextCy2,
         );
         await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          subjectDetailsContent.welshSubHeading1,
+          subjectDetailsContent.subHeadingCy1,
         );
         await expect(page.locator(".govuk-fieldset__legend")).toHaveText(
-          subjectDetailsContent.welshSubHeading2,
+          subjectDetailsContent.subHeadingCy2,
         );
         await expect(page.locator("#subjectDateOfBirth-hint")).toHaveText(
-          subjectDetailsContent.welshHintText2,
+          subjectDetailsContent.hintTextCy2,
         );
         await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-          subjectDetailsContent.welshTextOnPage1,
+          subjectDetailsContent.textOnPageCy1,
         );
         await expect(page.locator(".govuk-label").nth(2)).toHaveText(
-          subjectDetailsContent.welshTextOnPage2,
+          subjectDetailsContent.textOnPageCy2,
         );
         await expect(page.locator(".govuk-label").nth(3)).toHaveText(
-          subjectDetailsContent.welshTextOnPage3,
+          subjectDetailsContent.textOnPageCy3,
         );
         break;
       case false:
@@ -112,27 +112,27 @@ const subjectDetailsPage: SubjectDetailsPage = {
     await page.click(this.continueButton);
   },
 
-  async triggerErrorMessages(page: Page, welsh: boolean) {
-    switch (welsh) {
+  async triggerErrorMessages(page: Page, cy: boolean) {
+    switch (cy) {
       case true:
         await expect(page.locator(".govuk-link.language")).toHaveText(
           "English",
         );
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          subjectDetailsContent.welshErrorBanner,
+          subjectDetailsContent.errorBannerCy,
         );
         await expect(page.locator("[href='#subjectFullName']")).toHaveText(
-          subjectDetailsContent.welshFullNameError,
+          subjectDetailsContent.fullNameErrorCy,
         );
         await expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-          subjectDetailsContent.welshDateOfBirthError,
+          subjectDetailsContent.dateOfBirthErrorCy,
         );
         await expect(page.locator("#subjectFullName-error")).toContainText(
-          subjectDetailsContent.welshFullNameError,
+          subjectDetailsContent.fullNameErrorCy,
         );
         await expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-          subjectDetailsContent.welshDateOfBirthError,
+          subjectDetailsContent.dateOfBirthErrorCy,
         );
         break;
       case false:
