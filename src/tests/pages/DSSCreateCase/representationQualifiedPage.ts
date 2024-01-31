@@ -39,7 +39,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
           representationQualifiedContent.textOnPageCy2,
         );
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
           representationQualifiedContent.pageTitle,
         );
@@ -82,7 +82,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
           page.locator("#representationQualified-error"),
         ).toContainText(representationQualifiedContent.selectionErrorCy);
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.errorBanner,

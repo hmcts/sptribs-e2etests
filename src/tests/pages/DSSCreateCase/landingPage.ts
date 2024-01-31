@@ -22,7 +22,30 @@ const landingPage: LandingPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     switch (cy) {
-      case false:
+      case true:
+        await page.goto(config.FEBaseURL);
+        await page.locator(".govuk-link").nth(1).click();
+        await expect(page.locator(".govuk-link").nth(1)).toHaveText("English");
+        await expect(page.locator(".govuk-heading-l")).toHaveText(
+          LandingPageDetails.pageTitleCy,
+        );
+        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          LandingPageDetails.hintMessageCy,
+        );
+        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          LandingPageDetails.subHeadingCy,
+        );
+        await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
+          LandingPageDetails.textOnPageCy1,
+        );
+        await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
+          LandingPageDetails.textOnPageCy2,
+        );
+        await expect(page.locator(landingPage.startButton)).toHaveText(
+          "Dechrau nawr",
+        );
+        break;
+      default:
         await page.goto(config.FEBaseURL);
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           LandingPageDetails.pageTitle,
@@ -46,32 +69,9 @@ const landingPage: LandingPage = {
           await axeTest(page);
         }
         break;
-      case true:
-        await page.goto(config.FEBaseURL);
-        await page.locator(".govuk-link").nth(1).click();
-        await expect(page.locator(".govuk-link").nth(1)).toHaveText("English");
-        await expect(page.locator(".govuk-heading-l")).toHaveText(
-          LandingPageDetails.pageTitleCy,
-        );
-        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.hintMessageCy,
-        );
-        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.subHeadingCy,
-        );
-        await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-          LandingPageDetails.textOnPageCy1,
-        );
-        await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-          LandingPageDetails.textOnPageCy2,
-        );
-        await expect(page.locator(landingPage.startButton)).toHaveText(
-          "Dechrau nawr",
-        );
-        if (accessibilityTest) {
-          await axeTest(page);
-        }
-        break;
+    }
+    if (accessibilityTest) {
+      await axeTest(page);
     }
   },
 

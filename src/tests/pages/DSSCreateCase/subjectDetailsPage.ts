@@ -65,7 +65,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
           subjectDetailsContent.textOnPageCy3,
         );
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           subjectDetailsContent.pageTitle,
         );
@@ -135,7 +135,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
           subjectDetailsContent.dateOfBirthErrorCy,
         );
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectDetailsContent.errorBanner,

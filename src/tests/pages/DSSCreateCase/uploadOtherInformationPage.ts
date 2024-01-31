@@ -115,7 +115,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           uploadOtherInformationContent.textOnPageCy17,
         );
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           uploadOtherInformationContent.pageTitle,
         );
@@ -244,7 +244,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           uploadOtherInformationContent.fileTypeErrorCy,
         );
         break;
-      case false:
+      default:
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);

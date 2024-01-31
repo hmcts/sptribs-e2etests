@@ -33,7 +33,7 @@ async function createFEApplication(
   errorMessaging: boolean,
 ): Promise<void> {
   switch (errorMessaging) {
-    case false:
+    default:
       await normalFEFlow(
         page,
         cy,

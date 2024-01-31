@@ -68,7 +68,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
           page.locator("form[class='formRow'] p[class='govuk-body']"),
         ).toHaveText(uploadSupportingDocumentsContent.textOnPageCy7);
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           uploadSupportingDocumentsContent.pageTitle,
         );
@@ -151,7 +151,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
           uploadSupportingDocumentsContent.fileTypeErrorCy,
         );
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadSupportingDocumentsContent.errorBanner,

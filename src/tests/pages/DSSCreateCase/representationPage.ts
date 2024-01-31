@@ -36,7 +36,7 @@ const representationPage: RepresentationPage = {
           representationContent.textOnPageCy2,
         );
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
           representationContent.pageTitle,
         );
@@ -76,7 +76,7 @@ const representationPage: RepresentationPage = {
           representationContent.selectionErrorCy,
         );
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationContent.errorBanner,

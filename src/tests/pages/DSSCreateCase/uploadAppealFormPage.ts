@@ -74,7 +74,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           page.locator("form[class='formRow'] p[class='govuk-body']"),
         ).toHaveText(uploadAppealFormContent.textOnPageCy8);
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           uploadAppealFormContent.pageTitle,
         );
@@ -163,7 +163,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           uploadAppealFormContent.fileTypeErrorCy,
         );
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadAppealFormContent.errorBanner,

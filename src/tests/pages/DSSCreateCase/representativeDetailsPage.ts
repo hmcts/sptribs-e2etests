@@ -61,7 +61,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           representativeDetailsContent.subHeadingCy4,
         );
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           representativeDetailsContent.pageTitle,
         );
@@ -158,7 +158,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         ).toContainText(representativeDetailsContent.partEmailErrorCy);
         await page.fill(this.fields.representativeEmailAddress, "");
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representativeDetailsContent.errorBanner,

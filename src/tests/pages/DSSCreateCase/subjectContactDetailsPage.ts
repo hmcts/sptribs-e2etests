@@ -52,7 +52,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           page.locator("label[for='subjectAgreeContact']"),
         ).toHaveText(subjectContactDetailsContent.textOnPageCy2);
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l")).toHaveText(
           subjectContactDetailsContent.pageTitle,
         );
@@ -126,7 +126,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
         );
         await page.fill(this.fields.email, "");
         break;
-      case false:
+      default:
         await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectContactDetailsContent.errorBanner,

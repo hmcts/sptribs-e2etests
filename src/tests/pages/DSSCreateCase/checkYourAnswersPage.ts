@@ -141,7 +141,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           CheckYourAnswersContent.textOnPageCy16,
         );
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(
           CheckYourAnswersContent.pageTitle,
         );

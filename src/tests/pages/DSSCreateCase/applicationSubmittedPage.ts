@@ -48,7 +48,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
           page.locator(".govuk-notification-banner__content"),
         ).toContainText(applicationSubmittedContent.textOnPageCy5);
         break;
-      case false:
+      default:
         await expect(page.locator(".govuk-panel__title")).toHaveText(
           applicationSubmittedContent.pageTitle,
         );
