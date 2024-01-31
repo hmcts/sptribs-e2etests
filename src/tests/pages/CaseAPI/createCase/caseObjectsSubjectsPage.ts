@@ -9,7 +9,12 @@ type CaseObjectsSubjectsPage = {
   representativeSelectBox: string;
   applicantSelectBox: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(page: Page, representative: boolean, applicant: boolean, subcategory: SubCategory): Promise<void>;
+  fillInFields(
+    page: Page,
+    representative: boolean,
+    applicant: boolean,
+    subcategory: SubCategory,
+  ): Promise<void>;
 };
 
 const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
@@ -42,8 +47,16 @@ const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
     }
   },
 
-  async fillInFields(page: Page, representative: boolean, applicant: boolean, subCategory: SubCategory): Promise<void> {
-    if ((!applicant && subCategory === "Minor") || (!applicant && subCategory === "Fatal")) {
+  async fillInFields(
+    page: Page,
+    representative: boolean,
+    applicant: boolean,
+    subCategory: SubCategory,
+  ): Promise<void> {
+    if (
+      (!applicant && subCategory === "Minor") ||
+      (!applicant && subCategory === "Fatal")
+    ) {
       throw new Error("Cannot have a Minor or Fatal case with no applicant.");
     }
     await page.click(this.subjectSelectBox);

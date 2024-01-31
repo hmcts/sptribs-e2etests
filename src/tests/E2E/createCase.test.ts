@@ -37,11 +37,19 @@ async function createCase(
   await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
   await caseDateObjectsPage.fillInFields(page);
   await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
-  await caseObjectsSubjectsPage.fillInFields(page, representative, applicant, subCategory);
+  await caseObjectsSubjectsPage.fillInFields(
+    page,
+    representative,
+    applicant,
+    subCategory,
+  );
   await caseSubjectDetailsObjectPage.checkPageLoads(page, accessibilityTest);
   await caseSubjectDetailsObjectPage.fillInFields(page, contactPreference);
   if (applicant) {
-    await caseApplicantDetailsObjectPage.checkPageLoads(page, accessibilityTest);
+    await caseApplicantDetailsObjectPage.checkPageLoads(
+      page,
+      accessibilityTest,
+    );
     await caseApplicantDetailsObjectPage.fillInFields(page, contactPreference);
   }
   if (representative) {
@@ -56,7 +64,12 @@ async function createCase(
     );
   }
   await caseObjectsContactsPage.checkPageLoads(page, accessibilityTest);
-  await caseObjectsContactsPage.fillInFields(page, subCategory, representative, applicant);
+  await caseObjectsContactsPage.fillInFields(
+    page,
+    subCategory,
+    representative,
+    applicant,
+  );
 }
 
 test.only("some test", async ({ page }) => {
