@@ -9,7 +9,7 @@ type CaseObjectsContactsPage = {
   representativeSelectBox: string;
   applicantSelectBox: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(page: Page, caseType: SubCategory): Promise<void>;
+  fillInFields(page: Page, caseType: SubCategory, representative: boolean, applicant: boolean): Promise<void>;
 };
 
 const caseObjectsContactsPage: CaseObjectsContactsPage = {
@@ -48,12 +48,16 @@ const caseObjectsContactsPage: CaseObjectsContactsPage = {
     }
   },
 
-  async fillInFields(page: Page, subCategory: SubCategory): Promise<void> {
+  async fillInFields(page: Page, subCategory: SubCategory, representative: boolean, applicant: boolean): Promise<void> {
     if (!(subCategory === "Fatal" || subCategory === "Minor")) {
       await page.click(this.subjectSelectBox);
     }
-    await page.click(this.representativeSelectBox);
-    await page.click(this.applicantSelectBox);
+    if (representative) {
+      await page.click(this.representativeSelectBox);
+    }
+    if (applicant) {
+      await page.click(this.applicantSelectBox);
+    }
     await page.click(this.continue);
   },
 };

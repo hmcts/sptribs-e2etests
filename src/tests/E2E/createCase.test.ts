@@ -22,6 +22,8 @@ async function createCase(
   accessibilityTest: boolean,
   category: Category,
   subCategory: SubCategory,
+  representative: boolean,
+  applicant: boolean,
   contactPreference: ContactPreference,
   representativeQualified: boolean,
 ): Promise<void> {
@@ -35,37 +37,45 @@ async function createCase(
   await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
   await caseDateObjectsPage.fillInFields(page);
   await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
-  await caseObjectsSubjectsPage.fillInFields(page);
+  await caseObjectsSubjectsPage.fillInFields(page, representative, applicant, subCategory);
   await caseSubjectDetailsObjectPage.checkPageLoads(page, accessibilityTest);
   await caseSubjectDetailsObjectPage.fillInFields(page, contactPreference);
-  await caseApplicantDetailsObjectPage.checkPageLoads(page, accessibilityTest);
-  await caseApplicantDetailsObjectPage.fillInFields(page, contactPreference);
-  await caseRepresentativeDetailsObjectPage.checkPageLoads(
-    page,
-    accessibilityTest,
-  );
-  await caseRepresentativeDetailsObjectPage.fillInFields(
-    page,
-    contactPreference,
-    representativeQualified,
-  );
+  if (applicant) {
+    await caseApplicantDetailsObjectPage.checkPageLoads(page, accessibilityTest);
+    await caseApplicantDetailsObjectPage.fillInFields(page, contactPreference);
+  }
+  if (representative) {
+    await caseRepresentativeDetailsObjectPage.checkPageLoads(
+      page,
+      accessibilityTest,
+    );
+    await caseRepresentativeDetailsObjectPage.fillInFields(
+      page,
+      contactPreference,
+      representativeQualified,
+    );
+  }
   await caseObjectsContactsPage.checkPageLoads(page, accessibilityTest);
-  await caseObjectsContactsPage.fillInFields(page, subCategory);
+  await caseObjectsContactsPage.fillInFields(page, subCategory, representative, applicant);
 }
 
 test.only("some test", async ({ page }) => {
   const user = "caseWorker",
     accessibilityTest = true,
     category = "Assessment",
-    subCategory = "Minor",
+    subCategory = "Other",
+    representative = true,
+    applicant = true,
     contactPreference = "Post",
-    representativeQualified = true;
+    representativeQualified = false;
   await createCase(
     page,
     user,
     accessibilityTest,
     category,
     subCategory,
+    representative,
+    applicant,
     contactPreference,
     representativeQualified,
   );

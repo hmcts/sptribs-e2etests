@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseObjectsSubjects_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectsSubjects_content.ts";
+import { SubCategory } from "../../../helpers/commonHelpers.ts";
 
 type CaseObjectsSubjectsPage = {
   continue: string;
@@ -8,7 +9,7 @@ type CaseObjectsSubjectsPage = {
   representativeSelectBox: string;
   applicantSelectBox: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, representative: boolean, applicant: boolean, subcategory: SubCategory): Promise<void>;
 };
 
 const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
@@ -41,10 +42,17 @@ const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {
+  async fillInFields(page: Page, representative: boolean, applicant: boolean, subCategory: SubCategory): Promise<void> {
+    if ((!applicant && subCategory === "Minor") || (!applicant && subCategory === "Fatal")) {
+      throw new Error("Cannot have a Minor or Fatal case with no applicant.");
+    }
     await page.click(this.subjectSelectBox);
-    await page.click(this.representativeSelectBox);
-    await page.click(this.applicantSelectBox);
+    if (representative) {
+      await page.click(this.representativeSelectBox);
+    }
+    if (applicant) {
+      await page.click(this.applicantSelectBox);
+    }
     await page.click(this.continue);
   },
 };
