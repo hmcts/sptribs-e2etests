@@ -23,6 +23,26 @@ const representativeDetailsContent = {
   validContactNumberError: "Please enter a valid contact number",
   agreeError:
     "Please agree to be contacted using the details provided to continue",
+
+  pageTitleCy: "Manylion y cynrychiolydd",
+  textOnPageCy1:
+    "Rhowch fanylion y cynrychiolydd fel y’u nodir ar eich ffurflen tribiwnlys.",
+  textOnPageCy2:
+    "Byddwn ond yn defnyddio’r manylion hyn i gysylltu â’r cynrychiolydd ynghylch yr achos hwn.",
+  subHeadingCy1: "Enw llawn",
+  subHeadingCy2: "Enw’r sefydliad neu’r busnes",
+  subHeadingCy3: "Rhif cyswllt",
+  subHeadingCy4: "Cyfeiriad e-bost",
+  buttonCy: "Parhau",
+  errorBannerCy: "Mae yna broblem",
+  fullNameErrorCy: "Nodwch enw llawn",
+  organisationNameErrorCy: "Nodwch enw’r sefydliad neu fusnes",
+  validEmailErrorCy: "Nodwch gyfeiriad e-bost dilys",
+  partEmailErrorCy:
+    "Mae pob cyfeiriad e-bost yn cynnwys tair elfen: rhan lleol, symbol @ (a ynganir fel “at”), ac enw parth",
+  validContactNumberErrorCy: "Nodwch rif cyswllt dilys",
+  agreeErrorCy:
+    "Dylech gytuno i’r llys gysylltu â chi gan ddefnyddio’r manylion a ddarparwyd cyn y gallwch barhau",
 } as const;
 
 export default representativeDetailsContent;

@@ -22,6 +22,30 @@ const uploadAppealForm_content = {
   noUploadError: "You cannot continue without uploading the application",
   fileTypeError:
     "This service only accepts files in the formats - Ms Word, PDF",
+
+  pageTitleCy: "Llwytho ffurflen y tribiwnlys",
+  textOnPageCy1:
+    "Llwythwch ffurflen y Tribiwnlys Haen Gyntaf rydych wedi’i llenwi’n barod.",
+  textOnPageCy2:
+    "Os oes gennych dystiolaeth arall neu ddogfennau ategol, gallwch lwytho’r ffeiliau hyn ar y sgrin nesaf.",
+  dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
+  textOnPageCy3: "Fformatau ffeiliau: MS Word, PDF",
+  textOnPageCy4: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
+  textOnPageCy5: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  textOnPageCy6:
+    "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau eraill oherwydd y risg o firws.",
+  textOnPageCy7: "Llwythwch ffeil i fyny",
+  textOnPageCy8:
+    'Unwaith y byddwch wedi dewis y ffeil, cliciwch ar "Llwytho ffeil" i’w llwytho.',
+  buttonCy: "Llwytho ffeil",
+  buttonCy2: "Parhau",
+  fileUploadedSuccessCy:
+    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
+  deleteButtonCy: "Dileu",
+  errorBannerCy: "Mae yna broblem",
+  noUploadErrorCy: "Ni allwch barhau heb lwytho’r cais",
+  fileTypeErrorCy:
+    "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - Ms Word, PDF",
 } as const;
 
 export default uploadAppealForm_content;
