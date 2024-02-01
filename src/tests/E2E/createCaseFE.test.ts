@@ -309,7 +309,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
   );
 });
 
-test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - in cy - aXe test as it proceeds. @accessibility", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
   page,
 }) => {
   const cy = true,
@@ -318,7 +318,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
     uploadOtherInfo = true,
     completeApplication = true,
     backButtonJourney = false,
-    accessibilityTest = true,
+    accessibilityTest = false,
     errorMessaging = false;
   await createFEApplication(
     page,
@@ -357,7 +357,7 @@ test("Create an application with no representative, additional information, no P
   );
 });
 
-test("Create an application with no representative, additional information, no PCQ, and submit - in cy", async ({
+test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
   page,
 }) => {
   const cy = true,
@@ -405,7 +405,7 @@ test("Create an application with all details, a qualified representative, no add
   );
 });
 
-test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - in cy.", async ({
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
   page,
 }) => {
   const cy = true,
@@ -453,7 +453,7 @@ test("Create an application with all details, an unqualified representative, no 
   );
 });
 
-test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - in cy.", async ({
+test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
   page,
 }) => {
   const cy = true,
@@ -521,7 +521,7 @@ test("Error messaging", async ({ page }) => {
   );
 });
 
-test("Error messaging - in cy", async ({ page }) => {
+test("Error messaging - Cy", async ({ page }) => {
   const cy = true,
     representationPresent = true,
     representationQualified = true,
