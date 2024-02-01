@@ -98,7 +98,7 @@ const representationPage: RepresentationPage = {
     }
   },
 
-  async pressBackButton(page: Page) {
+  async pressBackButton(page: Page): Promise<void> {
     await page.click(this.backButton);
   },
 };
