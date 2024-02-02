@@ -1,6 +1,8 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
+import caseDocumentsUploadObject_content
+  from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -8,6 +10,13 @@ interface CommonHelpers {
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
   getTimestamp(): Promise<string>;
+  uploadFileController(
+    page: Page,
+    selector: string,
+    docNumber: number,
+    documentCategory: documentCategory,
+    file: string,
+  ): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -107,6 +116,40 @@ const commonHelpers: CommonHelpers = {
       currentDate.getMinutes(),
     )}`;
   },
+
+  async uploadFileController(
+    page: Page,
+    selector: string,
+    docNumber: number,
+    documentCategory: documentCategory,
+    file: string,
+  ): Promise<void> {
+    if (docNumber === 0) {
+      await expect(page.locator(".heading-h3")).toHaveText(
+        caseDocumentsUploadObject_content.subSubTitle1,
+      );
+      await expect(page.locator(".form-label").nth(0)).toHaveText(
+        caseDocumentsUploadObject_content.textOnPage5,
+      );
+      await expect(page.locator(".form-label").nth(1)).toHaveText(
+        caseDocumentsUploadObject_content.textOnPage6,
+      );
+      await expect(page.locator(".form-label").nth(2)).toHaveText(
+        caseDocumentsUploadObject_content.textOnPage7,
+      );
+    }
+
+    await page.selectOption(
+      `#${selector}_${docNumber.toString()}_documentCategory`,
+      documentCategory,
+    );
+    await page.fill(
+      `#${selector}_${docNumber.toString()}_documentEmailContent`,
+      `Lorem ipsum text ${documentCategory}`,
+    );
+    let fileUploadLocator = `#${selector}_${docNumber}_documentLink`;
+    await page.locator(fileUploadLocator).setInputFiles(file);
+  },
 };
 
 export default commonHelpers;
@@ -123,3 +166,38 @@ export type SubCategory =
   | "Other";
 
 export type ContactPreference = "Email" | "Post";
+
+export type documentCategory =
+  | "A - Application Form"
+  | "A - First decision"
+  | "A - Application for review"
+  | "A - Review decision"
+  | "A - Notice of Appeal"
+  | "A - Evidence/correspondence from the Appellant"
+  | "A - Correspondence from the CICA"
+  | "TD - Direction / decision notices"
+  | "B - Police evidence"
+  | "C - GP records"
+  | "C - Hospital records"
+  | "C - Mental Health records"
+  | "C - Expert evidence"
+  | "C - Other medical records"
+  | "D - DWP records"
+  | "D - HMRC records"
+  | "D - Employment records"
+  | "D - Schedule of Loss"
+  | "D - Counter Schedule"
+  | "D - Other"
+  | "E - Care plan"
+  | "E - Local Authority/care records"
+  | "E - Other"
+  | "L - Linked docs"
+  | "S - Witness Statement"
+  | "TG - Application for an extension of time"
+  | "TG - Application for a postponement"
+  | "TG - Submission from appellant"
+  | "TG - Submission from respondent"
+  | "TG - Other"
+  | "DSS Tribunal form uploaded documents"
+  | "DSS Supporting uploaded documents"
+  | "DSS Other information documents";

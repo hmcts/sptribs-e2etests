@@ -15,6 +15,7 @@ import caseSubjectDetailsObjectPage from "../pages/CaseAPI/createCase/caseSubjec
 import caseApplicantDetailsObjectPage from "../pages/CaseAPI/createCase/caseApplicantDetailsObjectPage.ts";
 import caseRepresentativeDetailsObjectPage from "../pages/CaseAPI/createCase/caseRepresentativeDetailsObjectPage.ts";
 import caseObjectsContactsPage from "../pages/CaseAPI/createCase/caseObjectsContactsPage.ts";
+import caseDocumentsUploadObjectPage from "../pages/CaseAPI/createCase/caseDocumentsUploadObjectPage.ts";
 
 async function createCase(
   page: Page,
@@ -26,6 +27,7 @@ async function createCase(
   applicant: boolean,
   contactPreference: ContactPreference,
   representativeQualified: boolean,
+  multipleFiles: boolean,
 ): Promise<void> {
   await caseAPILoginPage.SignInUser(page, user);
   await casesPage.checkPageLoads(page, accessibilityTest);
@@ -70,26 +72,32 @@ async function createCase(
     representative,
     applicant,
   );
+  await caseDocumentsUploadObjectPage.checkPageLoads(page, accessibilityTest);
+  await caseDocumentsUploadObjectPage.fillInFields(page, multipleFiles);
 }
 
-test.only("some test", async ({ page }) => {
-  const user = "caseWorker",
-    accessibilityTest = true,
-    category = "Assessment",
-    subCategory = "Other",
-    representative = true,
-    applicant = true,
-    contactPreference = "Post",
-    representativeQualified = false;
-  await createCase(
-    page,
-    user,
-    accessibilityTest,
-    category,
-    subCategory,
-    representative,
-    applicant,
-    contactPreference,
-    representativeQualified,
-  );
+test.describe("Case-API Create case tests.", () => {
+  test.only("some test", async ({ page }) => {
+    const user = "caseWorker",
+      accessibilityTest = true,
+      category = "Assessment",
+      subCategory = "Other",
+      representative = true,
+      applicant = true,
+      contactPreference = "Post",
+      representativeQualified = false,
+      multipleFiles = true;
+    await createCase(
+      page,
+      user,
+      accessibilityTest,
+      category,
+      subCategory,
+      representative,
+      applicant,
+      contactPreference,
+      representativeQualified,
+      multipleFiles,
+    );
+  });
 });
