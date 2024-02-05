@@ -86,14 +86,22 @@ async function createFEApplication(
 
       await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
       await uploadAppealFormPage.triggerErrorMessages(page, cy);
-      await uploadAppealFormPage.uploadDocumentsSection(page, cy, multipleDocuments);
+      await uploadAppealFormPage.uploadDocumentsSection(
+        page,
+        cy,
+        multipleDocuments,
+      );
       await uploadSupportingDocumentsPage.checkPageLoads(
         page,
         cy,
         accessibilityTest,
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page, cy);
-      await uploadSupportingDocumentsPage.uploadDocumentsSection(page, cy, multipleDocuments,);
+      await uploadSupportingDocumentsPage.uploadDocumentsSection(
+        page,
+        cy,
+        multipleDocuments,
+      );
       await uploadOtherInformationPage.checkPageLoads(
         page,
         cy,
@@ -139,13 +147,21 @@ async function normalFEFlow(
     );
   }
   await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
-  await uploadAppealFormPage.uploadDocumentsSection(page, cy, multipleDocuments);
+  await uploadAppealFormPage.uploadDocumentsSection(
+    page,
+    cy,
+    multipleDocuments,
+  );
   await uploadSupportingDocumentsPage.checkPageLoads(
     page,
     cy,
     accessibilityTest,
   );
-  await uploadSupportingDocumentsPage.uploadDocumentsSection(page, cy, multipleDocuments);
+  await uploadSupportingDocumentsPage.uploadDocumentsSection(
+    page,
+    cy,
+    multipleDocuments,
+  );
   await uploadOtherInformationPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
@@ -270,7 +286,11 @@ async function handleCompleteApplication(
     caseNumber,
     multipleDocuments,
   );
-  await caseFileViewTabPage.checkPageInfo(page, multipleDocuments, uploadOtherInfo);
+  await caseFileViewTabPage.checkPageInfo(
+    page,
+    multipleDocuments,
+    uploadOtherInfo,
+  );
 }
 
 async function handleBackButtonJourney(page: Page) {
@@ -482,7 +502,7 @@ test("Create an application with all details, an unqualified representative, no 
   );
 });
 
-test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
+test.only("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
   page,
 }) => {
   const cy = false,
