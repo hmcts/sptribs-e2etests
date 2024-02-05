@@ -15,7 +15,7 @@ type CaseFileViewTabPage = {
     multipleDocuments: boolean,
   ): Promise<void>;
   changeToCaseFileViewTab(page: Page): Promise<void>;
-  checkPageInfo(page: Page, multipleDocuments: boolean): Promise<void>;
+  checkPageInfo(page: Page, uploadAdditionalInfo: boolean, multipleDocuments: boolean): Promise<void>;
 };
 
 const caseFileViewTabPage: CaseFileViewTabPage = {
@@ -78,54 +78,36 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       caseFileViewTabContent.pageTitle,
     );
-    await expect(page.locator(".node__name").nth(0)).toHaveText(
+    await expect(page.locator(".node__name--folder").nth(0)).toHaveText(
       caseFileViewTabContent.textOnPage1,
     );
-    await expect(page.locator(".node__name").nth(1)).toHaveText(
+    await expect(page.locator(".node__name--folder").nth(1)).toHaveText(
       caseFileViewTabContent.textOnPage2,
     );
-    await expect(page.locator(".node__name").nth(2)).toHaveText(
+    await expect(page.locator(".node__name--folder").nth(2)).toHaveText(
       caseFileViewTabContent.textOnPage3,
     );
-    await expect(page.locator(".node__name").nth(3)).toHaveText(
+    await expect(page.locator(".node__name--folder").nth(3)).toHaveText(
       caseFileViewTabContent.textOnPage4,
     );
-    await expect(page.locator(".node__name").nth(4)).toHaveText(
+    await expect(page.locator(".node__name--folder").nth(4)).toHaveText(
       caseFileViewTabContent.textOnPage5,
     );
-    if (multipleDocuments) {
-      await expect(page.locator(".node__name").nth(13)).toHaveText(
-        caseFileViewTabContent.textOnPage6,
-      );
-      await expect(page.locator(".node__name").nth(14)).toHaveText(
-        caseFileViewTabContent.textOnPage7,
-      );
-      await expect(page.locator(".node__name").nth(15)).toHaveText(
-        caseFileViewTabContent.textOnPage8,
-      );
-      await expect(page.locator(".node__name").nth(16)).toHaveText(
-        caseFileViewTabContent.textOnPage9,
-      );
-      await expect(page.locator(".node__name").nth(17)).toHaveText(
-        caseFileViewTabContent.textOnPage10,
-      );
-    } else {
-      await expect(page.locator(".node__name").nth(7)).toHaveText(
-        caseFileViewTabContent.textOnPage6,
-      );
-      await expect(page.locator(".node__name").nth(8)).toHaveText(
-        caseFileViewTabContent.textOnPage7,
-      );
-      await expect(page.locator(".node__name").nth(9)).toHaveText(
-        caseFileViewTabContent.textOnPage8,
-      );
-      await expect(page.locator(".node__name").nth(10)).toHaveText(
-        caseFileViewTabContent.textOnPage9,
-      );
-      await expect(page.locator(".node__name").nth(11)).toHaveText(
-        caseFileViewTabContent.textOnPage10,
-      );
-    }
+    await expect(page.locator(".node__name--folder").nth(5)).toHaveText(
+      caseFileViewTabContent.textOnPage6,
+    );
+    await expect(page.locator(".node__name--folder").nth(6)).toHaveText(
+      caseFileViewTabContent.textOnPage7,
+    );
+    await expect(page.locator(".node__name--folder").nth(7)).toHaveText(
+      caseFileViewTabContent.textOnPage8,
+    );
+    await expect(page.locator(".node__name--folder").nth(8)).toHaveText(
+      caseFileViewTabContent.textOnPage9,
+    );
+    await expect(page.locator(".node__name--folder").nth(9)).toHaveText(
+      caseFileViewTabContent.textOnPage10,
+    );
 
     if (accessibilityTest) {
       await axeTest(page);
@@ -137,46 +119,29 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     await page.locator(this.caseFileViewTab).nth(10).click();
   },
 
-  async checkPageInfo(page: Page, multipleDocuments: boolean): Promise<void> {
-    if (multipleDocuments) {
-      await expect(page.locator(".node__count").nth(4)).toHaveText(
-        uploadedDocumentsContent.multipleDocuments,
-      );
-      await expect(page.locator(".node__name").nth(5)).toHaveText(
-        path.basename(config.testFile),
-      );
-      await expect(page.locator(".node__name").nth(6)).toHaveText(
-        path.basename(config.testFile),
-      );
-      await expect(page.locator(".node__name").nth(7)).toHaveText(
-        path.basename(config.testFile),
-      );
-      await expect(page.locator(".node__name").nth(8)).toHaveText(
-        path.basename(config.testFile),
-      );
-      await expect(page.locator(".node__name").nth(9)).toHaveText(
-        path.basename(config.testPdfFile),
-      );
-      await expect(page.locator(".node__name").nth(10)).toHaveText(
-        path.basename(config.testPdfFile),
-      );
-      await expect(page.locator(".node__name").nth(11)).toHaveText(
-        path.basename(config.testPdfFile),
-      );
-      await expect(page.locator(".node__name").nth(12)).toHaveText(
-        path.basename(config.testPdfFile),
-      );
-    } else {
+  async checkPageInfo(
+    page: Page,
+    uploadAdditionalInfo: boolean,
+    multipleDocuments: boolean,
+  ): Promise<void> {
+    if (!uploadAdditionalInfo) {
       await expect(page.locator(".node__count").nth(4)).toHaveText(
         uploadedDocumentsContent.totalDocuments,
       );
-      await expect(page.locator(".node__name").nth(5)).toHaveText(
-        path.basename(config.testFile),
+    } else {
+      await expect(page.locator(".node__count").nth(4)).toHaveText(
+        uploadedDocumentsContent.totalDocumentsAdditional,
       );
-      await expect(page.locator(".node__name").nth(6)).toHaveText(
-        path.basename(config.testPdfFile),
+      await expect(page.locator(".node-name-document").nth(2)).toHaveText(
+        path.basename(config.testWordFile),
       );
     }
+    await expect(page.locator(".node-name-document").nth(0)).toHaveText(
+      path.basename(config.testFile),
+    );
+    await expect(page.locator(".node-name-document").nth(1)).toHaveText(
+      path.basename(config.testPdfFile),
+    );
   },
 };
 

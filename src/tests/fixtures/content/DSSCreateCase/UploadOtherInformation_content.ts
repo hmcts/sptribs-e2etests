@@ -39,6 +39,45 @@ const uploadOtherInformation_content = {
   errorBanner: "There is a problem",
   fileTypeError:
     "This service only accepts files in the formats - Ms Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
+
+  pageTitleCy: "Ychwanegu gwybodaeth at achos",
+  subTitleCy1: "Dogfennau ychwanegol",
+  textOnPageCy1:
+    "Efallai y byddwch eisiau cyflwyno dogfennau, ffeiliau neu dystiolaeth arall sy’n rhoi mwy o wybodaeth i’r Tribiwnlys am eich achos.",
+  textOnPageCy2:
+    "Bydd hyn yn dibynnu ar natur eich apêl, cais neu hawliad. Gellir dod o hyd i enghreifftiau penodol yn y ffurflen tribiwnlys rydych wedi’i llenwi.",
+  textOnPageCy3: "Gallai'r rhain gynnwys:",
+  textOnPageCy4: "copïau o unrhyw ohebiaeth neu ddogfennau perthnasol",
+  textOnPageCy5: "recordiadau sain neu fideo",
+  textOnPageCy6: "datganiadau ysgrifenedig",
+  textOnPageCy7: "adroddiadau perthnasol",
+  textOnPageCy8:
+    "Ar gyfer pob darn o dystiolaeth ychwanegol rydych yn ei chyflwyno, nodwch pam ei bod yn berthnasol i’ch achos.",
+  dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
+  textOnPageCy9:
+    "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF, MP4, MP3",
+  textOnPageCy10: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
+  textOnPageCy11: "Maint pob ffeil amlgyfrwng: 30 megabeit (MB)",
+  textOnPageCy12: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
+  textOnPageCy13:
+    "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau eraill oherwydd y risg o firws.",
+  textOnPageCy14: "Llwythwch ffeil i fyny",
+  textOnPageCy15:
+    'Unwaith y byddwch wedi dewis y ffeil, cliciwch ar "Llwytho ffeil" i’w llwytho.',
+  buttonCy: "Llwytho ffeil",
+  subTitleCy2: "Perthnasedd dogfennau",
+  textOnPageCy16:
+    "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch achos",
+  subTitleCy3: "Gwybodaeth ychwanegol",
+  textOnPageCy17:
+    "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr achos hwn. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
+  buttonCy2: "Parhau",
+  fileUploadedSuccessCy:
+    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
+  deleteButtonCy: "Dileu",
+  errorBannerCy: "Mae yna broblem",
+  fileTypeErrorCy:
+    "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
 } as const;
 
 export default uploadOtherInformation_content;
