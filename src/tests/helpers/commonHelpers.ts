@@ -1,8 +1,7 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
-import caseDocumentsUploadObject_content
-  from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
+import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
