@@ -148,6 +148,7 @@ const commonHelpers: CommonHelpers = {
     );
     let fileUploadLocator = `#${selector}_${docNumber}_documentLink`;
     await page.locator(fileUploadLocator).setInputFiles(file);
+    await expect(page.locator(".error-message")).toHaveCount(0);
   },
 };
 
@@ -200,3 +201,13 @@ export type documentCategory =
   | "DSS Tribunal form uploaded documents"
   | "DSS Supporting uploaded documents"
   | "DSS Other information documents";
+
+export type Scheme = "1996" | "2001" | "2008" | "2012";
+
+export type caseRegion =
+  | "Scotland"
+  | "London"
+  | "Midlands"
+  | "North East"
+  | "North West"
+  | "Wales & South west";

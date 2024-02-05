@@ -1,8 +1,10 @@
 import { Page, test } from "@playwright/test";
 import { UserRole } from "../config.ts";
 import {
+  caseRegion,
   Category,
   ContactPreference,
+  Scheme,
   SubCategory,
 } from "../helpers/commonHelpers.ts";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage.ts";
@@ -16,6 +18,7 @@ import caseApplicantDetailsObjectPage from "../pages/CaseAPI/createCase/caseAppl
 import caseRepresentativeDetailsObjectPage from "../pages/CaseAPI/createCase/caseRepresentativeDetailsObjectPage.ts";
 import caseObjectsContactsPage from "../pages/CaseAPI/createCase/caseObjectsContactsPage.ts";
 import caseDocumentsUploadObjectPage from "../pages/CaseAPI/createCase/caseDocumentsUploadObjectPage.ts";
+import caseFurtherDetailsObjectPage from "../pages/CaseAPI/createCase/caseFurtherDetailsObjectPage.ts";
 
 async function createCase(
   page: Page,
@@ -28,6 +31,12 @@ async function createCase(
   contactPreference: ContactPreference,
   representativeQualified: boolean,
   multipleFiles: boolean,
+  schemeSelection: Scheme,
+  caseRegionSelection: caseRegion,
+  claimsLinked: boolean,
+  compensationLinked: boolean,
+  tribunalFormsInTime: boolean,
+  applicantExplained: boolean,
 ): Promise<void> {
   await caseAPILoginPage.SignInUser(page, user);
   await casesPage.checkPageLoads(page, accessibilityTest);
@@ -74,6 +83,16 @@ async function createCase(
   );
   await caseDocumentsUploadObjectPage.checkPageLoads(page, accessibilityTest);
   await caseDocumentsUploadObjectPage.fillInFields(page, multipleFiles);
+  await caseFurtherDetailsObjectPage.checkPageLoads(page, accessibilityTest);
+  await caseFurtherDetailsObjectPage.fillInFields(
+    page,
+    schemeSelection,
+    caseRegionSelection,
+    claimsLinked,
+    compensationLinked,
+    tribunalFormsInTime,
+    applicantExplained,
+  );
 }
 
 test.describe("Case-API Create case tests.", () => {
@@ -84,9 +103,15 @@ test.describe("Case-API Create case tests.", () => {
       subCategory = "Other",
       representative = true,
       applicant = true,
-      contactPreference = "Post",
-      representativeQualified = false,
-      multipleFiles = true;
+      contactPreference = "Email",
+      representativeQualified = true,
+      multipleFiles = false,
+      schemeSelection = "2001",
+      caseRegionSelection = "London",
+      claimsLinked = false,
+      compensationLinked = false,
+      tribunalFormsInTime = false,
+      applicantExplained = false;
     await createCase(
       page,
       user,
@@ -98,6 +123,12 @@ test.describe("Case-API Create case tests.", () => {
       contactPreference,
       representativeQualified,
       multipleFiles,
+      schemeSelection,
+      caseRegionSelection,
+      claimsLinked,
+      compensationLinked,
+      tribunalFormsInTime,
+      applicantExplained,
     );
   });
 });
