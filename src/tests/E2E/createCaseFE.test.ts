@@ -280,12 +280,7 @@ async function handleCompleteApplication(
   );
   await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
   await caseFileViewTabPage.changeToCaseFileViewTab(page);
-  await caseFileViewTabPage.checkPageLoads(
-    page,
-    accessibilityTest,
-    caseNumber,
-    multipleDocuments,
-  );
+  await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
   await caseFileViewTabPage.checkPageInfo(
     page,
     multipleDocuments,
@@ -502,7 +497,7 @@ test("Create an application with all details, an unqualified representative, no 
   );
 });
 
-test.only("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
+test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
   page,
 }) => {
   const cy = false,

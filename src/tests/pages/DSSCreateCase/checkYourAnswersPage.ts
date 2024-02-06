@@ -317,24 +317,12 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         await expect(
           page.locator(".govuk-summary-list__value").nth(10),
         ).toHaveText(
-          path.basename(config.testPdfFile) +
-            " " +
-            path.basename(config.testPdfFile) +
-            " " +
-            path.basename(config.testPdfFile) +
-            " " +
-            path.basename(config.testPdfFile),
+          `${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}`,
         );
         await expect(
           page.locator(".govuk-summary-list__value").nth(11),
         ).toHaveText(
-          path.basename(config.testFile) +
-            " " +
-            path.basename(config.testFile) +
-            " " +
-            path.basename(config.testFile) +
-            " " +
-            path.basename(config.testFile),
+          `${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`,
         );
       } else {
         await expect(
@@ -348,7 +336,8 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         if (multipleDocuments) {
           await expect(
             page.locator(".govuk-summary-list__value").nth(12),
-          ).toHaveText(`${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`
+          ).toHaveText(
+            `${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`,
           );
         } else {
           await expect(
@@ -376,16 +365,16 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           page.locator(".govuk-summary-list__value").nth(4),
         ).toHaveText(no);
       }
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(5),
-      ).toHaveText(path.basename(config.testPdfFile));
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(6),
-      ).toHaveText(path.basename(config.testFile));
-      if (uploadOtherInfo) {
+      if (multipleDocuments) {
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(5),
+        ).toHaveText(
+          `${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}`,
+        );
         await expect(
           page.locator(".govuk-summary-list__value").nth(6),
-        ).toHaveText(`${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`
+        ).toHaveText(
+          `${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`,
         );
       } else {
         await expect(
@@ -399,7 +388,8 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         if (multipleDocuments) {
           await expect(
             page.locator(".govuk-summary-list__value").nth(7),
-          ).toHaveText(`${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`
+          ).toHaveText(
+            `${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`,
           );
         } else {
           await expect(
