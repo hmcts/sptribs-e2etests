@@ -132,7 +132,6 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
       }
     }
     await page.click(this.continue);
-    console.log("here")
   },
 };
 

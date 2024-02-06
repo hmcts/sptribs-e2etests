@@ -1,5 +1,5 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 
@@ -16,6 +16,7 @@ interface CommonHelpers {
     documentCategory: documentCategory,
     file: string,
   ): Promise<void>;
+  checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -149,6 +150,11 @@ const commonHelpers: CommonHelpers = {
     let fileUploadLocator = `#${selector}_${docNumber}_documentLink`;
     await page.locator(fileUploadLocator).setInputFiles(file);
     await expect(page.locator(".error-message")).toHaveCount(0);
+  },
+
+  async checkVisibleAndPresent(locator: Locator, count: number): Promise<void> {
+    await expect(locator).toHaveCount(count);
+    await expect(locator).toBeVisible();
   },
 };
 

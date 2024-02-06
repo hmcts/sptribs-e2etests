@@ -19,6 +19,7 @@ import caseRepresentativeDetailsObjectPage from "../pages/CaseAPI/createCase/cas
 import caseObjectsContactsPage from "../pages/CaseAPI/createCase/caseObjectsContactsPage.ts";
 import caseDocumentsUploadObjectPage from "../pages/CaseAPI/createCase/caseDocumentsUploadObjectPage.ts";
 import caseFurtherDetailsObjectPage from "../pages/CaseAPI/createCase/caseFurtherDetailsObjectPage.ts";
+import submitPage from "../pages/CaseAPI/createCase/submitPage.ts";
 
 async function createCase(
   page: Page,
@@ -93,6 +94,7 @@ async function createCase(
     tribunalFormsInTime,
     applicantExplained,
   );
+  await submitPage.checkPageLoads(page, accessibilityTest);
 }
 
 test.describe("Case-API Create case tests.", () => {
