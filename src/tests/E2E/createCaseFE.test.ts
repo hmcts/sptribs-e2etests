@@ -341,7 +341,7 @@ test("As a Citizen, Create an application with all details, a qualified represen
   );
 });
 
-test.skip("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
   page,
 }) => {
   const cy = true,
@@ -393,7 +393,7 @@ test("Create an application with no representative, additional information, no P
   );
 });
 
-test.skip("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
+test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
   page,
 }) => {
   const cy = true,
@@ -445,7 +445,7 @@ test("Create an application with all details, a qualified representative, no add
   );
 });
 
-test.skip("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
   page,
 }) => {
   const cy = true,
@@ -523,7 +523,7 @@ test("Create an application with all details, no representative, uploading multi
   );
 });
 
-test.skip("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
   page,
 }) => {
   const cy = true,
@@ -597,7 +597,7 @@ test("Error messaging", async ({ page }) => {
   );
 });
 
-test.skip("Error messaging - Cy", async ({ page }) => {
+test("Error messaging - Cy", async ({ page }) => {
   const cy = true,
     representationPresent = true,
     representationQualified = true,
