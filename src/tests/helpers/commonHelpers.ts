@@ -5,6 +5,7 @@ import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/creat
 
 interface CommonHelpers {
   readonly months: string[];
+  shortMonths(index: number): Promise<string>;
   padZero(value: number): string;
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
@@ -34,6 +35,11 @@ const commonHelpers: CommonHelpers = {
     "November",
     "December",
   ],
+
+  async shortMonths(index: number): Promise<string> {
+    const monthFullName = this.months[index];
+    return monthFullName.substring(0, 3);
+  },
 
   padZero(value: number): string {
     return value < 10 ? "0" + value : value.toString();

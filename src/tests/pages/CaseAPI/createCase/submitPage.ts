@@ -1,9 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
+  Category,
   ContactPreference,
+  SubCategory,
 } from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createCase/submit_content.ts";
+import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -25,6 +28,29 @@ type SubmitPage = {
   handleApplicantLabels(page: Page): Promise<void>;
   handleRepresentativeLabels(page: Page): Promise<void>;
   handleDocumentLabels(page: Page, multipleFiles: boolean): Promise<void>;
+  checkValidInfo(
+    page: Page,
+    contactPreference: ContactPreference,
+    applicant: boolean,
+    representative: boolean,
+    multipleFiles: boolean,
+    category: Category,
+    subCategory: SubCategory,
+  ): Promise<void>;
+  handleStandardInfo(
+    page: Page,
+    category: Category,
+    subCategory: SubCategory,
+  ): Promise<void>;
+  handleContactInfo(
+    page: Page,
+    applicant: boolean,
+    representative: boolean,
+    contactPreference: ContactPreference,
+  ): Promise<void>;
+  handleApplicantInfo(page: Page): Promise<void>;
+  handleRepresentativeInfo(page: Page): Promise<void>;
+  handleDocumentInfo(page: Page, multipleFiles: boolean): Promise<void>;
 };
 
 const submitPage: SubmitPage = {
@@ -532,6 +558,69 @@ const submitPage: SubmitPage = {
         break;
     }
   },
+
+  async checkValidInfo(
+    page: Page,
+    contactPreference: ContactPreference,
+    applicant: boolean,
+    representative: boolean,
+    multipleFiles: boolean,
+    category: Category,
+    subCategory: SubCategory,
+  ): Promise<void> {
+    await this.handleStandardInfo(page, category, subCategory);
+    await this.handleContactLabels(
+      page,
+      applicant,
+      representative,
+      contactPreference,
+    );
+    if (applicant) {
+      await this.handleApplicantInfo(page);
+    }
+    if (representative) {
+      await this.handleRepresentativeInfo(page);
+    }
+    await this.handleDocumentInfo(page, multipleFiles);
+  },
+
+  async handleStandardInfo(
+    page: Page,
+    category: Category,
+    subCategory: SubCategory,
+  ): Promise<void> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-read-fixed-list-field > span.text-16:text-is("${category}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-read-fixed-list-field > span.text-16:text-is("${subCategory}")`,
+      ),
+      1,
+    );
+    const locator = `${caseDateObjects_content.day} ${commonHelpers.shortMonths(parseInt(caseDateObjects_content.month))} ${caseDateObjects_content.year}`
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-read-date-field > span.text-16:text-is("${caseDateObjects_content.day} ${commonHelpers.shortMonths(parseInt(caseDateObjects_content.month))} ${caseDateObjects_content.year}")`,
+      ),
+      1,
+    );
+  },
+  async handleContactInfo(
+    page: Page,
+    applicant: boolean,
+    representative: boolean,
+    contactPreference: ContactPreference,
+  ): Promise<void> {},
+  async handleApplicantInfo(page: Page): Promise<void> {},
+  async handleRepresentativeInfo(page: Page): Promise<void> {},
+  async handleDocumentInfo(
+    page: Page,
+    multipleFiles: boolean,
+  ): Promise<void> {},
 };
 
 export default submitPage;

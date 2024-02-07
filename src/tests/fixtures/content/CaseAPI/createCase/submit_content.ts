@@ -44,7 +44,7 @@ const submit_content = {
   textOnPage41: "Description",
   textOnPage42: "File",
   textOnPage43: "File Attachments 2", // For multiple documents
-  textOnPage44: "File Attachments 2", // For multiple documents
+  textOnPage44: "File Attachments 3", // For multiple documents
   textOnPage45: "Scheme",
   textOnPage46: "Case Region",
   textOnPage47: "Have any claims linked to this case been lodged with CICA?",

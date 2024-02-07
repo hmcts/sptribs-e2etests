@@ -5,7 +5,7 @@ const caseDateObjects_content = {
   textOnPage2: "Day",
   textOnPage3: "Month",
   textOnPage4: "Year",
-  day: "1",
+  day: "2",
   month: "1",
   year: "2000",
 } as const;

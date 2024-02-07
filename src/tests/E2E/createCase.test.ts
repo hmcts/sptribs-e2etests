@@ -102,6 +102,7 @@ async function createCase(
     representative,
     multipleFiles,
   );
+  await submitPage.checkValidInfo(page, contactPreference, applicant, representative, multipleFiles, category, subCategory)
 }
 
 test.describe("Case-API Create case tests.", () => {
@@ -114,7 +115,7 @@ test.describe("Case-API Create case tests.", () => {
       applicant = true,
       contactPreference = "Email",
       representativeQualified = true,
-      multipleFiles = true,
+      multipleFiles = false,
       schemeSelection = "2001",
       caseRegionSelection = "London",
       claimsLinked = false,
