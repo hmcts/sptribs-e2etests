@@ -16,6 +16,7 @@ const caseRepresentativeDetailsObject_content = {
   textOnPage12: "Enter a UK postcode",
   linkOnPage1: "I can't enter a UK postcode",
   name: "Representative AutoTesting",
+  organisation: "HMCTS",
   button: "Continue",
   emailAddress: "AutoTestRepresentative@mail.com",
   contactNumber: "01234567891",

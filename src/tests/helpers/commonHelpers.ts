@@ -154,7 +154,9 @@ const commonHelpers: CommonHelpers = {
 
   async checkVisibleAndPresent(locator: Locator, count: number): Promise<void> {
     await expect(locator).toHaveCount(count);
-    await expect(locator).toBeVisible();
+    for (let i = 0; i < count; i++) {
+      await expect(locator.nth(i)).toBeVisible();
+    }
   },
 };
 

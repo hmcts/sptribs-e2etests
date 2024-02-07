@@ -94,6 +94,10 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
         caseRepresentativeDetailsObject_content.name,
       );
       await page.fill(
+        this.orgName,
+        caseRepresentativeDetailsObject_content.organisation,
+      );
+      await page.fill(
         this.phoneNumber,
         caseRepresentativeDetailsObject_content.contactNumber,
       );

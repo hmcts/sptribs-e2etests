@@ -94,7 +94,14 @@ async function createCase(
     tribunalFormsInTime,
     applicantExplained,
   );
-  await submitPage.checkPageLoads(page, accessibilityTest);
+  await submitPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    contactPreference,
+    applicant,
+    representative,
+    multipleFiles,
+  );
 }
 
 test.describe("Case-API Create case tests.", () => {
@@ -107,7 +114,7 @@ test.describe("Case-API Create case tests.", () => {
       applicant = true,
       contactPreference = "Email",
       representativeQualified = true,
-      multipleFiles = false,
+      multipleFiles = true,
       schemeSelection = "2001",
       caseRegionSelection = "London",
       claimsLinked = false,

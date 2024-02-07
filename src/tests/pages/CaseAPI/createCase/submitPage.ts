@@ -1,17 +1,63 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  ContactPreference,
+} from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createCase/submit_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    contactPreference: ContactPreference,
+    applicant: boolean,
+    representative: boolean,
+    multipleFiles: boolean,
+  ): Promise<void>;
+  handleStandardLabels(page: Page): Promise<void>;
+  handleContactLabels(
+    page: Page,
+    applicant: boolean,
+    representative: boolean,
+    contactPreference: ContactPreference,
+  ): Promise<void>;
+  handleApplicantLabels(page: Page): Promise<void>;
+  handleRepresentativeLabels(page: Page): Promise<void>;
+  handleDocumentLabels(page: Page, multipleFiles: boolean): Promise<void>;
 };
 
 const submitPage: SubmitPage = {
   saveAndContinue: '[type="submit"]',
 
-  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    contactPreference: ContactPreference,
+    applicant: boolean,
+    representative: boolean,
+    multipleFiles: boolean,
+  ): Promise<void> {
+    await this.handleStandardLabels(page);
+    await this.handleContactLabels(
+      page,
+      applicant,
+      representative,
+      contactPreference,
+    );
+    if (applicant) {
+      await this.handleApplicantLabels(page);
+    }
+    if (representative) {
+      await this.handleRepresentativeLabels(page);
+    }
+    await this.handleDocumentLabels(page, multipleFiles);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
+  },
+
+  async handleStandardLabels(page: Page): Promise<void> {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       submit_content.title,
     );
@@ -69,39 +115,385 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
-      ),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
-      ),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
-      ),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
-      ),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
-      ),
-      1,
-    );
+  },
 
-    if (accessibilityTest) {
-      await axeTest(page);
+  async handleContactLabels(
+    page: Page,
+    applicant: boolean,
+    representative: boolean,
+    contactPreference: ContactPreference,
+  ): Promise<void> {
+    switch (contactPreference) {
+      case "Post":
+        let count = 1;
+        if (applicant && representative) {
+          count = 3;
+          // === Checking for subject's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            1,
+          );
+          // === Checking for applicant's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage21}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage21}")`,
+            ),
+            1,
+          );
+          // === Checking for representative's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage32}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage32}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+            ),
+            count,
+          );
+        } else if (applicant && !representative) {
+          count = 2;
+          // === Checking for subject's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            1,
+          );
+          // === Checking for applicant's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage21}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage21}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+            ),
+            count,
+          );
+        } else if (representative && !applicant) {
+          count = 2;
+          // === Checking for subject's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            1,
+          );
+          // === Checking for representative's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage32}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage32}")`,
+            ),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+            ),
+            count,
+          );
+        } else {
+          // === Checking for subject's address field ===
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+            ),
+            count,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+            ),
+            count,
+          );
+        }
+        break;
+      case "Email":
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage15}")`,
+          ),
+          1,
+        );
+        if (applicant) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage20}")`,
+            ),
+            1,
+          );
+        }
+        if (representative) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage31}")`,
+            ),
+            1,
+          );
+        }
+        break;
+      default:
+        console.log("You have not selected a valid contact type.");
+        process.exit(1);
+    }
+  },
+
+  async handleApplicantLabels(page: Page): Promise<void> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage16}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage17}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage18}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage19}")`,
+      ),
+      1,
+    );
+  },
+
+  async handleRepresentativeLabels(page: Page): Promise<void> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage26}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage27}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage28}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage29}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage30}")`,
+      ),
+      1,
+    );
+  },
+
+  async handleDocumentLabels(
+    page: Page,
+    multipleFiles: boolean,
+  ): Promise<void> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage38}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage39}")`,
+      ),
+      1,
+    );
+    switch (multipleFiles) {
+      default:
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage40}")`,
+          ),
+          1,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage41}")`,
+          ),
+          1,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage42}")`,
+          ),
+          1,
+        );
+        break;
+      case true: // uploaded 3 documents
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage43}")`,
+          ),
+          1,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage44}")`,
+          ),
+          1,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage40}")`,
+          ),
+          3,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage41}")`,
+          ),
+          3,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage42}")`,
+          ),
+          3,
+        );
+        break;
     }
   },
 };
