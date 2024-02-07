@@ -27,6 +27,7 @@ async function createFEApplication(
   representationPresent: boolean,
   representationQualified: boolean,
   uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
   completeApplication: boolean,
   backButtonJourney: boolean,
   accessibilityTest: boolean,
@@ -40,6 +41,7 @@ async function createFEApplication(
         representationPresent,
         representationQualified,
         uploadOtherInfo,
+        multipleDocuments,
         completeApplication,
         backButtonJourney,
         accessibilityTest,
@@ -81,16 +83,25 @@ async function createFEApplication(
         await representativeDetailsPage.triggerErrorMessages(page, cy);
         await representativeDetailsPage.fillInFields(page);
       }
+
       await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
       await uploadAppealFormPage.triggerErrorMessages(page, cy);
-      await uploadAppealFormPage.uploadDocumentsSection(page, cy);
+      await uploadAppealFormPage.uploadDocumentsSection(
+        page,
+        cy,
+        multipleDocuments,
+      );
       await uploadSupportingDocumentsPage.checkPageLoads(
         page,
         cy,
         accessibilityTest,
       );
       await uploadSupportingDocumentsPage.triggerErrorMessages(page, cy);
-      await uploadSupportingDocumentsPage.uploadDocumentsSection(page, cy);
+      await uploadSupportingDocumentsPage.uploadDocumentsSection(
+        page,
+        cy,
+        multipleDocuments,
+      );
       await uploadOtherInformationPage.checkPageLoads(
         page,
         cy,
@@ -101,6 +112,7 @@ async function createFEApplication(
         page,
         cy,
         uploadOtherInfo,
+        multipleDocuments,
       );
       await page.click('button[name="opt-out-button"]');
   }
@@ -112,6 +124,7 @@ async function normalFEFlow(
   representationPresent: boolean,
   representationQualified: boolean,
   uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
   completeApplication: boolean,
   backButtonJourney: boolean,
   accessibilityTest: boolean,
@@ -134,18 +147,27 @@ async function normalFEFlow(
     );
   }
   await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
-  await uploadAppealFormPage.uploadDocumentsSection(page, cy);
+  await uploadAppealFormPage.uploadDocumentsSection(
+    page,
+    cy,
+    multipleDocuments,
+  );
   await uploadSupportingDocumentsPage.checkPageLoads(
     page,
     cy,
     accessibilityTest,
   );
-  await uploadSupportingDocumentsPage.uploadDocumentsSection(page, cy);
+  await uploadSupportingDocumentsPage.uploadDocumentsSection(
+    page,
+    cy,
+    multipleDocuments,
+  );
   await uploadOtherInformationPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadOtherInformationPage.uploadDocumentsSection(
     page,
     cy,
     uploadOtherInfo,
+    multipleDocuments,
   );
   await page.click('button[name="opt-out-button"]');
   await checkYourAnswersPage.checkPageLoads(
@@ -160,6 +182,7 @@ async function normalFEFlow(
     representationPresent,
     representationQualified,
     uploadOtherInfo,
+    multipleDocuments,
   );
   if (completeApplication) {
     await handleCompleteApplication(
@@ -169,6 +192,7 @@ async function normalFEFlow(
       representationPresent,
       representationQualified,
       uploadOtherInfo,
+      multipleDocuments,
     );
   }
   if (backButtonJourney) {
@@ -195,6 +219,7 @@ async function handleCompleteApplication(
   representationPresent: boolean,
   representationQualified: boolean,
   uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
 ) {
   const time = await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
@@ -251,11 +276,16 @@ async function handleCompleteApplication(
     page,
     accessibilityTest,
     caseNumber,
+    multipleDocuments,
   );
-  await caseDocumentsTabPage.checkPageInfo(page);
+  await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
   await caseFileViewTabPage.changeToCaseFileViewTab(page);
   await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await caseFileViewTabPage.checkPageInfo(page, uploadOtherInfo);
+  await caseFileViewTabPage.checkPageInfo(
+    page,
+    multipleDocuments,
+    uploadOtherInfo,
+  );
 }
 
 async function handleBackButtonJourney(page: Page) {
@@ -285,264 +315,308 @@ export {
   applicationSubmittedPage,
 };
 
-test.describe("DSS Citizen create case tests.", () => {
-  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+  page,
+}) => {
+  const cy = false,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = true,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = true,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
+test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
+  page,
+}) => {
+  const cy = true,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
+test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
+  page,
+}) => {
+  const cy = false,
+    representationPresent = false,
+    representationQualified = false,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = false,
-      representationPresent = false,
-      representationQualified = false,
-      uploadOtherInfo = true,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
+test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
+  page,
+}) => {
+  const cy = true,
+    representationPresent = false,
+    representationQualified = false,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = true,
-      representationPresent = false,
-      representationQualified = false,
-      uploadOtherInfo = true,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
+  page,
+}) => {
+  const cy = false,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = false,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+  page,
+}) => {
+  const cy = true,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = false,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
+test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
+  page,
+}) => {
+  const cy = false,
+    representationPresent = true,
+    representationQualified = false,
+    uploadOtherInfo = false,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = false,
-      uploadOtherInfo = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
+  page,
+}) => {
+  const cy = false,
+    representationPresent = false,
+    representationQualified = false,
+    uploadOtherInfo = true,
+    multipleDocuments = true,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = false,
-      uploadOtherInfo = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Test all back buttons on the Frontend application", async ({
+test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+  page,
+}) => {
+  const cy = true,
+    representationPresent = true,
+    representationQualified = false,
+    uploadOtherInfo = false,
+    multipleDocuments = false,
+    completeApplication = true,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
     page,
-  }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      completeApplication = false,
-      backButtonJourney = true,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Error messaging", async ({ page }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      completeApplication = false,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = true;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+test("Test all back buttons on the Frontend application", async ({ page }) => {
+  const cy = false,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = false,
+    backButtonJourney = true,
+    accessibilityTest = false,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
 
-  test("Error messaging - Cy", async ({ page }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      completeApplication = false,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = true;
-    await createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+test("Error messaging", async ({ page }) => {
+  const cy = false,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = false,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = true;
+  await createFEApplication(
+    page,
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
+});
+
+test("Error messaging - Cy", async ({ page }) => {
+  const cy = true,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = false,
+    backButtonJourney = false,
+    accessibilityTest = false,
+    errorMessaging = true;
+  await createFEApplication(
+    page,
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
 });

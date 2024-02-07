@@ -17,7 +17,11 @@ type UploadAppealFormPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  uploadDocumentsSection(page: Page, cy: boolean): Promise<void>;
+  uploadDocumentsSection(
+    page: Page,
+    cy: boolean,
+    multipleDocuments: boolean,
+  ): Promise<void>;
   triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
@@ -116,16 +120,18 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     }
   },
 
-  async uploadDocumentsSection(page: Page, cy: boolean): Promise<void> {
+  async uploadDocumentsSection(
+    page: Page,
+    cy: boolean,
+    multipleDocuments: boolean,
+  ): Promise<void> {
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testPdfFile);
     await page.click(this.fields.fileUploadedOption);
-    await expect(
-      page.locator(
-        "main[id='main-content'] li:nth-child(1).govuk-\\!-padding-top-2.govuk-\\!-padding-bottom-3.govuk-section-break.govuk-section-break--visible",
-      ),
-    ).toContainText(path.basename(config.testPdfFile));
+    await expect(page.locator(".uploadedFile").first()).toContainText(
+      path.basename(config.testPdfFile),
+    );
     if (cy) {
       await expect(
         page.locator(
@@ -139,7 +145,44 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         ),
       ).toContainText(uploadAppealFormContent.deleteButton);
     }
-    await page.click(this.continueButton);
+    switch (multipleDocuments) {
+      case false:
+        await page.click(this.continueButton);
+        break;
+      case true:
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(config.testPdfFile);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(page.locator(".uploadedFile").nth(1)).toContainText(
+          path.basename(config.testPdfFile),
+        );
+        await expect(page.locator(".uploadedFile").nth(1)).toContainText(
+          uploadAppealFormContent.deleteButton,
+        );
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(config.testPdfFile);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(page.locator(".uploadedFile").nth(2)).toContainText(
+          path.basename(config.testPdfFile),
+        );
+        await expect(page.locator(".uploadedFile").nth(2)).toContainText(
+          uploadAppealFormContent.deleteButton,
+        );
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(config.testPdfFile);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(page.locator(".uploadedFile").nth(3)).toContainText(
+          path.basename(config.testPdfFile),
+        );
+        await expect(page.locator(".uploadedFile").nth(3)).toContainText(
+          uploadAppealFormContent.deleteButton,
+        );
+        await page.click(this.continueButton);
+        break;
+    }
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
