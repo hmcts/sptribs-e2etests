@@ -115,6 +115,42 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage45}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage46}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage47}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage48}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage49}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage50}")`,
+      ),
+      1,
+    );
   },
 
   async handleContactLabels(
