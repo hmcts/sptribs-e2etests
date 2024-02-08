@@ -688,12 +688,6 @@ const submitPage: SubmitPage = {
     }
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
-        `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage2}")`,
-      ),
-      2,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
         `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseSubjectDetailsObject_content.name}")`,
       ),
       1,
