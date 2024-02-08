@@ -3,8 +3,9 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   caseRegion,
   Category,
-  ContactPreference, Scheme,
-  SubCategory
+  ContactPreference,
+  Scheme,
+  SubCategory,
 } from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createCase/submit_content.ts";
 import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
@@ -89,7 +90,7 @@ const submitPage: SubmitPage = {
     applicant: boolean,
     representative: boolean,
     multipleFiles: boolean,
-    tribunalFormsInTime: boolean
+    tribunalFormsInTime: boolean,
   ): Promise<void> {
     await this.handleStandardLabels(page, tribunalFormsInTime);
     await this.handleContactLabels(
@@ -110,7 +111,10 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async handleStandardLabels(page: Page, tribunalFormsInTime: boolean): Promise<void> {
+  async handleStandardLabels(
+    page: Page,
+    tribunalFormsInTime: boolean,
+  ): Promise<void> {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       submit_content.title,
     );
@@ -206,7 +210,6 @@ const submitPage: SubmitPage = {
         1,
       );
     }
-
   },
 
   async handleContactLabels(
@@ -606,13 +609,25 @@ const submitPage: SubmitPage = {
     applicantExplained: boolean,
   ): Promise<void> {
     let values = [0, 0];
-    if (representative) { // Must come first to add to the yes no counter before validation.
+    if (representative) {
+      // Must come first to add to the yes no counter before validation.
       values = await this.handleRepresentativeInfo(
         page,
         representativeQualified,
       );
     }
-    await this.handleStandardInfo(page, category, subCategory, scheme, caseRegion,values, claimsLinked, compensationLinked, tribunalFormsInTime, applicantExplained);
+    await this.handleStandardInfo(
+      page,
+      category,
+      subCategory,
+      scheme,
+      caseRegion,
+      values,
+      claimsLinked,
+      compensationLinked,
+      tribunalFormsInTime,
+      applicantExplained,
+    );
     await this.handleContactLabels(
       page,
       applicant,
@@ -623,6 +638,7 @@ const submitPage: SubmitPage = {
       await this.handleApplicantInfo(page);
     }
     await this.handleDocumentInfo(page, multipleFiles);
+    await page.click(this.saveAndContinue);
   },
 
   async handleStandardInfo(
@@ -695,21 +711,21 @@ const submitPage: SubmitPage = {
     if (claimsLinked) {
       values[0]++;
     } else {
-      values[1] ++;
+      values[1]++;
     }
     if (compensationLinked) {
       values[0]++;
     } else {
-      values[1] ++;
+      values[1]++;
     }
     if (tribunalFormsInTime) {
       values[0]++;
     } else {
-      values[1] ++;
+      values[1]++;
       if (applicantExplained) {
         values[0]++;
       } else {
-        values[1] ++;
+        values[1]++;
       }
     }
     await commonHelpers.checkVisibleAndPresent(
@@ -866,10 +882,7 @@ const submitPage: SubmitPage = {
     return [yes, no];
   },
 
-  async handleDocumentInfo(
-    page: Page,
-    multipleFiles: boolean,
-  ): Promise<void> {
+  async handleDocumentInfo(page: Page, multipleFiles: boolean): Promise<void> {
     let count = 1;
     if (multipleFiles) {
       count = 3;
@@ -904,7 +917,6 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
-
   },
 };
 
