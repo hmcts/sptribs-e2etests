@@ -13,6 +13,8 @@ import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/
 import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
 import caseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
 import caseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseRepresentativeDetailsObject_content.ts";
+import path from "path";
+import config from "../../../config.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -867,7 +869,43 @@ const submitPage: SubmitPage = {
   async handleDocumentInfo(
     page: Page,
     multipleFiles: boolean,
-  ): Promise<void> {},
+  ): Promise<void> {
+    let count = 1;
+    if (multipleFiles) {
+      count = 3;
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-field-read-label > div > ccd-read-document-field > a:text-is("${path.basename(config.testWordFile)}")`, // Hard coded as it will always be this
+        ),
+        1,
+      );
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-field-read-label > div > ccd-read-document-field > a:text-is("${path.basename(config.testFile)}")`, // Hard coded as it will always be this
+        ),
+        1,
+      );
+    }
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-fixed-list-field > span.text-16:text-is("A - Application Form")`, // Hard coded as it will always be this
+      ),
+      count,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-area-field > span:text-is("Lorem ipsum text A - Application Form")`, // Hard coded as it will always be this
+      ),
+      count,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`, // Hard coded as it will always be this
+      ),
+      1,
+    );
+
+  },
 };
 
 export default submitPage;
