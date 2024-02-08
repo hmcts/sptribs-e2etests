@@ -671,6 +671,21 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
+    if (!((subCategory === "Fatal") || (subCategory === "Minor"))) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage2}")`,
+        ),
+        2,
+      );
+    } else {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage2}")`,
+        ),
+        1,
+      );
+    }
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
         `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage2}")`,

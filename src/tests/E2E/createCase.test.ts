@@ -124,39 +124,348 @@ async function createCase(
 }
 
 test.describe("Case-API Create case tests.", () => {
-  test.only("some test", async ({ page }) => {
-    const user = "caseWorker",
-      accessibilityTest = true,
-      category = "Assessment",
-      subCategory = "Other",
-      representative = true,
-      applicant = true,
-      contactPreference = "Email",
-      representativeQualified = true,
-      multipleFiles = true,
-      schemeSelection = "2001",
-      caseRegionSelection = "London",
-      claimsLinked = true,
-      compensationLinked = false,
-      tribunalFormsInTime = true,
-      applicantExplained = false;
+  test("Caseworker - Assessment - Fatal Category, Email Contact", async ({
+    page,
+  }) => {
     await createCase(
       page,
-      user,
-      accessibilityTest,
-      category,
-      subCategory,
-      representative,
-      applicant,
-      contactPreference,
-      representativeQualified,
-      multipleFiles,
-      schemeSelection,
-      caseRegionSelection,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Fatal",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "1996",
+      "Scotland",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Medical Re-opening Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Medical Re-opening",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "2001",
+      "London",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Minor Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Minor",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "2008",
+      "Midlands",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Paragraph 26 Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Paragraph 26",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "2012",
+      "North East",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Sexual Abuse Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Sexual Abuse",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "1996",
+      "North West",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Special Jurisdiction Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Special Jurisdiction",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "2001",
+      "Wales & South west",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Other Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "2008",
+      "Scotland",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Fatal Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Fatal",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "1996",
+      "London",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Medical Re-opening Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Medical Re-opening",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "2012",
+      "Midlands",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Minor Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Minor",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "2001",
+      "North East",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Paragraph 26 Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Paragraph 26",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "1996",
+      "North West",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Sexual Abuse Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Sexual Abuse",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "2008",
+      "Wales & South west",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Other Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "2012",
+      "Scotland",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Eligibility - Other Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Eligibility",
+      "Other",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "2001",
+      "London",
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Caseworker - Assessment - Other Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      true,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "1996",
+      "Midlands",
+      true,
+      false,
+      true,
+      false,
     );
   });
 });
