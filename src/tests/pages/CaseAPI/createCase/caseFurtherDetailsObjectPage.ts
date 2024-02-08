@@ -100,7 +100,7 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
     await page.selectOption(this.caseRegion, caseRegionSelection);
     if (claimsLinked) {
       await page.click(this.claimLinkedYes);
-      await expect(page.locator(".form-label").nth(3)).toHaveText(
+      await expect(page.locator(".form-label").nth(5)).toHaveText(
         caseFurtherDetailsObject_content.textOnPage4,
       );
       await page.fill(this.CICAReferenceNumber, "1");

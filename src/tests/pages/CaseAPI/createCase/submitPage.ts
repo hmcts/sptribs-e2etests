@@ -1,12 +1,18 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
+  caseRegion,
   Category,
-  ContactPreference,
-  SubCategory,
+  ContactPreference, Scheme,
+  SubCategory
 } from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createCase/submit_content.ts";
 import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
+import caseObjectsContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectsContacts_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
+import caseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
+import caseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseRepresentativeDetailsObject_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -17,8 +23,9 @@ type SubmitPage = {
     applicant: boolean,
     representative: boolean,
     multipleFiles: boolean,
+    tribunalFormsInTime: boolean,
   ): Promise<void>;
-  handleStandardLabels(page: Page): Promise<void>;
+  handleStandardLabels(page: Page, tribunalFormsInTime: boolean): Promise<void>;
   handleContactLabels(
     page: Page,
     applicant: boolean,
@@ -36,11 +43,25 @@ type SubmitPage = {
     multipleFiles: boolean,
     category: Category,
     subCategory: SubCategory,
+    scheme: Scheme,
+    caseRegion: caseRegion,
+    representativeQualified: boolean,
+    claimsLinked: boolean,
+    compensationLinked: boolean,
+    tribunalFormsInTime: boolean,
+    applicantExplained: boolean,
   ): Promise<void>;
   handleStandardInfo(
     page: Page,
     category: Category,
     subCategory: SubCategory,
+    scheme: Scheme,
+    caseRegion: caseRegion,
+    values: number[],
+    claimsLinked: boolean,
+    compensationLinked: boolean,
+    tribunalFormsInTime: boolean,
+    applicantExplained: boolean,
   ): Promise<void>;
   handleContactInfo(
     page: Page,
@@ -49,7 +70,10 @@ type SubmitPage = {
     contactPreference: ContactPreference,
   ): Promise<void>;
   handleApplicantInfo(page: Page): Promise<void>;
-  handleRepresentativeInfo(page: Page): Promise<void>;
+  handleRepresentativeInfo(
+    page: Page,
+    representativeQualified: boolean,
+  ): Promise<number[]>;
   handleDocumentInfo(page: Page, multipleFiles: boolean): Promise<void>;
 };
 
@@ -63,8 +87,9 @@ const submitPage: SubmitPage = {
     applicant: boolean,
     representative: boolean,
     multipleFiles: boolean,
+    tribunalFormsInTime: boolean
   ): Promise<void> {
-    await this.handleStandardLabels(page);
+    await this.handleStandardLabels(page, tribunalFormsInTime);
     await this.handleContactLabels(
       page,
       applicant,
@@ -83,7 +108,7 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async handleStandardLabels(page: Page): Promise<void> {
+  async handleStandardLabels(page: Page, tribunalFormsInTime: boolean): Promise<void> {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       submit_content.title,
     );
@@ -171,12 +196,15 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage50}")`,
-      ),
-      1,
-    );
+    if (!tribunalFormsInTime) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage50}")`,
+        ),
+        1,
+      );
+    }
+
   },
 
   async handleContactLabels(
@@ -567,8 +595,22 @@ const submitPage: SubmitPage = {
     multipleFiles: boolean,
     category: Category,
     subCategory: SubCategory,
+    scheme: Scheme,
+    caseRegion: caseRegion,
+    representativeQualified: boolean,
+    claimsLinked: boolean,
+    compensationLinked: boolean,
+    tribunalFormsInTime: boolean,
+    applicantExplained: boolean,
   ): Promise<void> {
-    await this.handleStandardInfo(page, category, subCategory);
+    let values = [0, 0];
+    if (representative) { // Must come first to add to the yes no counter before validation.
+      values = await this.handleRepresentativeInfo(
+        page,
+        representativeQualified,
+      );
+    }
+    await this.handleStandardInfo(page, category, subCategory, scheme, caseRegion,values, claimsLinked, compensationLinked, tribunalFormsInTime, applicantExplained);
     await this.handleContactLabels(
       page,
       applicant,
@@ -578,9 +620,6 @@ const submitPage: SubmitPage = {
     if (applicant) {
       await this.handleApplicantInfo(page);
     }
-    if (representative) {
-      await this.handleRepresentativeInfo(page);
-    }
     await this.handleDocumentInfo(page, multipleFiles);
   },
 
@@ -588,6 +627,13 @@ const submitPage: SubmitPage = {
     page: Page,
     category: Category,
     subCategory: SubCategory,
+    scheme: Scheme,
+    caseRegion: caseRegion,
+    values: number[],
+    claimsLinked: boolean,
+    compensationLinked: boolean,
+    tribunalFormsInTime: boolean,
+    applicantExplained: boolean,
   ): Promise<void> {
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
@@ -601,12 +647,80 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
-    const locator = `${caseDateObjects_content.day} ${commonHelpers.shortMonths(parseInt(caseDateObjects_content.month))} ${caseDateObjects_content.year}`
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
-        `ccd-read-date-field > span.text-16:text-is("${caseDateObjects_content.day} ${commonHelpers.shortMonths(parseInt(caseDateObjects_content.month))} ${caseDateObjects_content.year}")`,
+        `ccd-read-date-field > span.text-16:text-is("${caseDateObjects_content.day} ${await commonHelpers.shortMonths(parseInt(caseDateObjects_content.month))} ${caseDateObjects_content.year}")`,
       ),
       1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage2}")`,
+      ),
+      2,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseSubjectDetailsObject_content.name}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseSubjectDetailsObject_content.contactNumber}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-read-date-field > span.text-16:text-is("${caseSubjectDetailsObject_content.dayOfBirth} ${await commonHelpers.shortMonths(parseInt(caseSubjectDetailsObject_content.monthOfBirth))} ${caseSubjectDetailsObject_content.yearOfBirth}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-fixed-list-field > span.text-16:text-is("${scheme}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-fixed-list-field > span.text-16:text-is("${caseRegion}")`,
+      ),
+      1,
+    );
+
+    if (claimsLinked) {
+      values[0]++;
+    } else {
+      values[1] ++;
+    }
+    if (compensationLinked) {
+      values[0]++;
+    } else {
+      values[1] ++;
+    }
+    if (tribunalFormsInTime) {
+      values[0]++;
+    } else {
+      values[1] ++;
+      if (applicantExplained) {
+        values[0]++;
+      } else {
+        values[1] ++;
+      }
+    }
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-yes-no-field > span.text-16:text-is("Yes")`,
+      ),
+      values[0],
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-yes-no-field > span.text-16:text-is("No")`,
+      ),
+      values[1],
     );
   },
   async handleContactInfo(
@@ -614,9 +728,142 @@ const submitPage: SubmitPage = {
     applicant: boolean,
     representative: boolean,
     contactPreference: ContactPreference,
-  ): Promise<void> {},
-  async handleApplicantInfo(page: Page): Promise<void> {},
-  async handleRepresentativeInfo(page: Page): Promise<void> {},
+  ): Promise<void> {
+    switch (contactPreference) {
+      case "Post":
+        let count = 1;
+        if (applicant && representative) {
+          count = 3;
+        } else if (
+          (applicant && !representative) ||
+          (representative && !applicant)
+        ) {
+          count = 2;
+        }
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseObjectContacts_content.buildingAndStreet}")`,
+          ),
+          count,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseObjectContacts_content.townOrCity}")`,
+          ),
+          count,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseObjectContacts_content.country}")`,
+          ),
+          count,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseObjectContacts_content.postCode}")`,
+          ),
+          count,
+        );
+        break;
+      case "Email":
+        let counter = 1;
+        if (applicant) {
+          counter++;
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-field-read-label > div > ccd-read-email-field > a:text-is("${caseApplicantDetailsObject_content.emailAddress}")`,
+            ),
+            1,
+          );
+        }
+        if (representative) {
+          counter++;
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-field-read-label > div > ccd-read-email-field > a:text-is("${caseRepresentativeDetailsObject_content.emailAddress}")`,
+            ),
+            1,
+          );
+        }
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-field-read-label > div > ccd-read-fixed-radio-list-field > span.text-16:text-is("${caseSubjectDetailsObject_content.textOnPage9}")`,
+          ),
+          counter,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-field-read-label > div > ccd-read-email-field > a:text-is("${caseSubjectDetailsObject_content.emailAddress}")`,
+          ),
+          1,
+        );
+        break;
+      default:
+        console.log("You have not selected a valid contact type.");
+        process.exit(1);
+    }
+  },
+
+  async handleApplicantInfo(page: Page): Promise<void> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage4}")`,
+      ),
+      2,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseApplicantDetailsObject_content.name}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseApplicantDetailsObject_content.contactNumber}")`,
+      ),
+      1,
+    );
+  },
+
+  async handleRepresentativeInfo(
+    page: Page,
+    representativeQualified: boolean,
+  ): Promise<number[]> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage6}")`,
+      ),
+      2,
+    );
+
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseRepresentativeDetailsObject_content.name}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseRepresentativeDetailsObject_content.organisation}")`,
+      ),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseRepresentativeDetailsObject_content.contactNumber}")`,
+      ),
+      1,
+    );
+    let yes = 0;
+    let no = 0;
+    if (representativeQualified) {
+      yes++;
+    } else {
+      no++;
+    }
+    return [yes, no];
+  },
+
   async handleDocumentInfo(
     page: Page,
     multipleFiles: boolean,

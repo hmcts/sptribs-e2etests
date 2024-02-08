@@ -19,7 +19,7 @@ const caseRepresentativeDetailsObject_content = {
   organisation: "HMCTS",
   button: "Continue",
   emailAddress: "AutoTestRepresentative@mail.com",
-  contactNumber: "01234567891",
+  contactNumber: "01234567893",
 } as const;
 
 export default caseRepresentativeDetailsObject_content;

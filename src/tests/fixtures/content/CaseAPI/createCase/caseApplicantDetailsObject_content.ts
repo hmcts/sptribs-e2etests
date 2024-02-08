@@ -20,7 +20,7 @@ const caseApplicantDetailsObject_content = {
   yearOfBirth: "2000",
   button: "Continue",
   emailAddress: "AutoTestApplicant@mail.com",
-  contactNumber: "01234567891",
+  contactNumber: "01234567892",
 } as const;
 
 export default caseApplicantDetailsObject_content;

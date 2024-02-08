@@ -37,7 +37,7 @@ const commonHelpers: CommonHelpers = {
   ],
 
   async shortMonths(index: number): Promise<string> {
-    const monthFullName = this.months[index];
+    const monthFullName = this.months[index - 1];
     return monthFullName.substring(0, 3);
   },
 
