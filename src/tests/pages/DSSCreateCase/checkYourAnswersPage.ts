@@ -24,6 +24,7 @@ type CheckYourAnswersPage = {
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
+    multipleDocuments: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<string>;
   pressBackButton(page: Page): Promise<void>;
@@ -254,6 +255,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
+    multipleDocuments: boolean,
   ): Promise<void> {
     const yes = "Yes";
     const no = "No";
@@ -311,16 +313,37 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
       await expect(
         page.locator(".govuk-summary-list__value").nth(9),
       ).toHaveText(representativeDetailsContent.emailAddress);
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(10),
-      ).toHaveText(path.basename(config.testPdfFile));
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(11),
-      ).toHaveText(path.basename(config.testFile));
-      if (uploadOtherInfo) {
+      if (multipleDocuments) {
         await expect(
-          page.locator(".govuk-summary-list__value").nth(12),
-        ).toHaveText(path.basename(config.testWordFile));
+          page.locator(".govuk-summary-list__value").nth(10),
+        ).toHaveText(
+          `${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}`,
+        );
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(11),
+        ).toHaveText(
+          `${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`,
+        );
+      } else {
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(10),
+        ).toHaveText(path.basename(config.testPdfFile));
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(11),
+        ).toHaveText(path.basename(config.testFile));
+      }
+      if (uploadOtherInfo) {
+        if (multipleDocuments) {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(12),
+          ).toHaveText(
+            `${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`,
+          );
+        } else {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(12),
+          ).toHaveText(path.basename(config.testWordFile));
+        }
         await expect(
           page.locator(".govuk-summary-list__value").nth(13),
         ).toHaveText(
@@ -342,16 +365,37 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           page.locator(".govuk-summary-list__value").nth(4),
         ).toHaveText(no);
       }
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(5),
-      ).toHaveText(path.basename(config.testPdfFile));
-      await expect(
-        page.locator(".govuk-summary-list__value").nth(6),
-      ).toHaveText(path.basename(config.testFile));
-      if (uploadOtherInfo) {
+      if (multipleDocuments) {
         await expect(
-          page.locator(".govuk-summary-list__value").nth(7),
-        ).toHaveText(path.basename(config.testWordFile));
+          page.locator(".govuk-summary-list__value").nth(5),
+        ).toHaveText(
+          `${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}`,
+        );
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(6),
+        ).toHaveText(
+          `${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`,
+        );
+      } else {
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(5),
+        ).toHaveText(path.basename(config.testPdfFile));
+        await expect(
+          page.locator(".govuk-summary-list__value").nth(6),
+        ).toHaveText(path.basename(config.testFile));
+      }
+      if (uploadOtherInfo) {
+        if (multipleDocuments) {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(7),
+          ).toHaveText(
+            `${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`,
+          );
+        } else {
+          await expect(
+            page.locator(".govuk-summary-list__value").nth(7),
+          ).toHaveText(path.basename(config.testWordFile));
+        }
         await expect(
           page.locator(".govuk-summary-list__value").nth(8),
         ).toHaveText(

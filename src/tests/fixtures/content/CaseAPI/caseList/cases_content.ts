@@ -11,6 +11,7 @@ const cases_content = {
   textOnPage8: "Subject Date of BirthDayMonthYear",
   textOnPage9: "Applicant Name",
   textOnPage10: "Representative Reference",
+  createCaseButton: "Create case",
 } as const;
 
 export default cases_content;
