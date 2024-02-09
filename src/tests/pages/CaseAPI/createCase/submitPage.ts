@@ -608,7 +608,7 @@ const submitPage: SubmitPage = {
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
   ): Promise<void> {
-    let values = [0, 0];
+    let values = [0, 0]; // Number of [Yes, No] values on a page
     if (representative) {
       // Must come first to add to the yes no counter before validation.
       values = await this.handleRepresentativeInfo(
