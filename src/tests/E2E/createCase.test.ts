@@ -124,13 +124,36 @@ async function createCase(
 }
 
 test.describe("Case-API Create case tests.", () => {
-  test("Caseworker - Assessment - Fatal Category, Email Contact", async ({
+  test("Caseworker - Assessment - Other Category, Email Contact @accessibility", async ({
     page,
   }) => {
     await createCase(
       page,
       "caseWorker",
       true,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      true,
+    );
+  });
+
+  test("Caseworker - Assessment - Fatal Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "caseWorker",
+      false,
       "Assessment",
       "Fatal",
       true,
@@ -153,7 +176,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Medical Re-opening",
       true,
@@ -176,7 +199,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Minor",
       true,
@@ -202,7 +225,7 @@ test.describe("Case-API Create case tests.", () => {
       true,
       "Assessment",
       "Paragraph 26",
-      true,
+      false,
       true,
       "Post",
       true,
@@ -222,7 +245,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Sexual Abuse",
       true,
@@ -245,7 +268,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Special Jurisdiction",
       true,
@@ -268,7 +291,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Other",
       true,
@@ -291,7 +314,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Fatal",
       true,
@@ -314,7 +337,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Medical Re-opening",
       true,
@@ -337,7 +360,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Minor",
       true,
@@ -360,7 +383,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Paragraph 26",
       true,
@@ -383,7 +406,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Sexual Abuse",
       true,
@@ -406,7 +429,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Other",
       true,
@@ -429,7 +452,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Eligibility",
       "Other",
       true,
@@ -452,7 +475,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Other",
       true,
@@ -475,7 +498,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "seniorCaseworker",
-      true,
+      false,
       "Assessment",
       "Other",
       true,
@@ -498,7 +521,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "hearingCentreAdmin",
-      true,
+      false,
       "Eligibility",
       "Other",
       true,
@@ -521,7 +544,7 @@ test.describe("Case-API Create case tests.", () => {
     await createCase(
       page,
       "hearingCentreTeamLead",
-      true,
+      false,
       "Assessment",
       "Other",
       true,
