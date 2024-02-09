@@ -23,7 +23,11 @@ const representationPage: RepresentationPage = {
   continueButton: "#main-form-submit",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
+  async checkPageLoads(
+    page: Page,
+    cy: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     switch (cy) {
       case true:
         await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
@@ -53,7 +57,10 @@ const representationPage: RepresentationPage = {
     }
   },
 
-  async fillInFields(page: Page, representationPresent: boolean) {
+  async fillInFields(
+    page: Page,
+    representationPresent: boolean,
+  ): Promise<void> {
     if (representationPresent) {
       await page.click(this.representationYes);
     } else {
@@ -91,7 +98,7 @@ const representationPage: RepresentationPage = {
     }
   },
 
-  async pressBackButton(page: Page) {
+  async pressBackButton(page: Page): Promise<void> {
     await page.click(this.backButton);
   },
 };
