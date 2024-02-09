@@ -25,6 +25,34 @@ const checkYourAnswers_content = {
   textOnPage16:
     "By submitting this tribunal form you are confirming that, to the best of your knowledge, the details you are providing are correct.",
   button: "Accept and send",
+
+  pageTitleCy: "Gwiriwch eich atebion cyn cyflwyno eich ffurflen tribiwnlys",
+  subTitleCy1: "Manylion yr Unigolyn Perthnasol",
+  textOnPageCy1: "Enw llawn",
+  textOnPageCy2: "Dyddiad geni",
+  textOnPageCy3: "Cyfeiriad e-bost",
+  textOnPageCy4: "Rhif cyswllt",
+  subTitleCy2: "Cynrychiolaeth",
+  textOnPageCy5:
+    "A oes cynrychiolydd wedi’i enwi ar y ffurflen tribiwnlys sydd wedi’i llenwi?",
+  textOnPageCy6: "A yw’r cynrychiolydd a enwyd wedi cymhwyso yn y gyfraith?",
+  subTitleCy3: "Manylion y cynrychiolydd",
+  textOnPageCy7: "Enw llawn",
+  textOnPageCy8: "Enw’r sefydliad neu’r busnes",
+  textOnPageCy9: "Rhif cyswllt",
+  textOnPageCy10: "Cyfeiriad e-bost",
+  subTitleCy4: "Ffurflenni apelio",
+  textOnPageCy11: "Rhestr o ffurflenni sydd wedi’u llwytho (Ffurflen apelio)",
+  subTitleCy5: "Dogfennau ategol",
+  textOnPageCy12: "Rhestr o ddogfennau ategol sydd wedi’u llwytho",
+  subTitleCy6: "Gwybodaeth ychwanegol",
+  textOnPageCy13: "Rhestr o ddogfennau eraill a uwchlwythwyd",
+  textOnPageCy14: "Perthnasedd dogfennau",
+  textOnPageCy15: "Gwybodaeth ychwanegol",
+  subTitleCy7: "Nawr cyflwynwch eich ffurflen tribiwnlys",
+  textOnPageCy16:
+    "Trwy gyflwyno'r ffurflen dribiwnlys hon rydych yn cadarnhau, hyd eithaf eich gwybodaeth, fod y manylion a roddwch yn gywir.",
+  buttonCy: "Derbyn ac anfon",
 } as const;
 
 export default checkYourAnswers_content;
