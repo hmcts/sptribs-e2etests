@@ -671,7 +671,7 @@ const submitPage: SubmitPage = {
       ),
       1,
     );
-    if (!((subCategory === "Fatal") || (subCategory === "Minor"))) {
+    if (!(subCategory === "Fatal" || subCategory === "Minor")) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
           `tbody > tr > td > span.text-16:text-is("${caseObjectsContacts_content.textOnPage2}")`,
