@@ -5,14 +5,14 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@axe-core/playwright@npm:^4.8.1":
-  version: 4.8.3
-  resolution: "@axe-core/playwright@npm:4.8.3"
+"@axe-core/playwright@npm:^4.8.4":
+  version: 4.8.4
+  resolution: "@axe-core/playwright@npm:4.8.4"
   dependencies:
     axe-core: ~4.8.3
   peerDependencies:
     playwright-core: ">= 1.0.0"
-  checksum: d391dfb8beae02ed8c6bfa1189e82ee7d89ae3a76da7806d08f920c225d188a2632c3c904da61c3928c694e921419e901535a7ffc580d062b82756be5fda608d
+  checksum: f61efffb64ab06b1ad45aab264d4269ab08cb94518ba4e11a09fd91955d81ceda952ea9cc20a6df0777aa5105a50da476cd3e1bdb2596a412aacb5164f3142b8
   languageName: node
   linkType: hard
 
@@ -1349,7 +1349,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
-    "@axe-core/playwright": ^4.8.1
+    "@axe-core/playwright": ^4.8.4
     "@playwright/test": ^1.40.0
     "@types/node": ^20.10.0
     dependency-check: ^4.1.0

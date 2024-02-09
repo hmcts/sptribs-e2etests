@@ -15,7 +15,7 @@
     "lint": "echo 'lint not installed' && exit 0"
   },
   "dependencies": {
-    "@axe-core/playwright": "^4.8.1",
+    "@axe-core/playwright": "^4.8.4",
     "dependency-check": "^4.1.0",
     "playwright-core": "^1.40.1",
     "typescript": "^5.3.3"
