@@ -224,4 +224,4 @@ export type caseRegion =
   | "Midlands"
   | "North East"
   | "North West"
-  | "Wales & South west";
+  | "Wales & South West";

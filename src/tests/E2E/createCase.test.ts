@@ -254,7 +254,7 @@ test.describe("Case-API Create case tests.", () => {
       true,
       true,
       "2001",
-      "Wales & South west",
+      "Wales & South West",
       true,
       false,
       true,
@@ -392,7 +392,7 @@ test.describe("Case-API Create case tests.", () => {
       true,
       true,
       "2008",
-      "Wales & South west",
+      "Wales & South West",
       true,
       false,
       true,
@@ -466,6 +466,75 @@ test.describe("Case-API Create case tests.", () => {
       false,
       true,
       false,
+    );
+  });
+
+  test("Senior Caseworker - Assessment - Other Category, Post Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "seniorCaseworker",
+      true,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "1996",
+      "Midlands",
+      true,
+      true,
+      true,
+      true,
+    );
+  });
+
+  test("Hearing centre admin - Eligibility - Other Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "hearingCentreAdmin",
+      true,
+      "Eligibility",
+      "Other",
+      true,
+      true,
+      "Post",
+      true,
+      true,
+      "1996",
+      "Midlands",
+      true,
+      true,
+      true,
+      true,
+    );
+  });
+
+  test("hearing Centre Team Lead - Assessment - Other Category, Email Contact", async ({
+    page,
+  }) => {
+    await createCase(
+      page,
+      "hearingCentreTeamLead",
+      true,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "1996",
+      "Midlands",
+      true,
+      true,
+      true,
+      true,
     );
   });
 });
