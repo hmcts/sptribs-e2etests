@@ -9,7 +9,11 @@ interface UserLoginInfo {
 type IdamLoginHelper = {
   fields: UserLoginInfo;
   submitButton: string;
-  signInUser(page: Page, user: keyof typeof config): Promise<void>;
+  signInUser(
+    page: Page,
+    user: keyof typeof config,
+    application: string,
+  ): Promise<void>;
 };
 
 const idamLoginHelper: IdamLoginHelper = {
@@ -19,7 +23,14 @@ const idamLoginHelper: IdamLoginHelper = {
   },
   submitButton: 'input[value="Sign in"]',
 
-  async signInUser(page: Page, user: keyof typeof config): Promise<void> {
+  async signInUser(
+    page: Page,
+    user: keyof typeof config,
+    application: string,
+  ): Promise<void> {
+    if (!page.url().includes("idam-web-public.")) {
+      await page.goto(application);
+    }
     await page.waitForSelector(
       `#skiplinktarget:text("Sign in or create an account")`,
     );

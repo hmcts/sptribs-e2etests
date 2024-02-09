@@ -1,4 +1,4 @@
-const authors_content = {
+const caseObjectContacts_content = {
   automatedCitizen: "Automated CITIZEN",
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",
@@ -8,4 +8,4 @@ const authors_content = {
   emailAddress: "AutoTestSubject@mail.com",
 } as const;
 
-export default authors_content;
+export default caseObjectContacts_content;
