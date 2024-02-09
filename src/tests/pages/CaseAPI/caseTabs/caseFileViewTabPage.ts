@@ -14,7 +14,11 @@ type CaseFileViewTabPage = {
     caseNumber: string,
   ): Promise<void>;
   changeToCaseFileViewTab(page: Page): Promise<void>;
-  checkPageInfo(page: Page, uploadAdditionalInfo: boolean): Promise<void>;
+  checkPageInfo(
+    page: Page,
+    uploadAdditionalInfo: boolean,
+    multipleDocuments: boolean,
+  ): Promise<void>;
 };
 
 const caseFileViewTabPage: CaseFileViewTabPage = {
@@ -119,26 +123,69 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
 
   async checkPageInfo(
     page: Page,
+    multipleDocuments: boolean,
     uploadAdditionalInfo: boolean,
   ): Promise<void> {
-    if (!uploadAdditionalInfo) {
+    if (multipleDocuments) {
       await expect(page.locator(".node__count").nth(4)).toHaveText(
-        uploadedDocumentsContent.totalDocuments,
+        uploadedDocumentsContent.multipleDocuments,
       );
-    } else {
-      await expect(page.locator(".node__count").nth(4)).toHaveText(
-        uploadedDocumentsContent.totalDocumentsAdditional,
+      await expect(page.locator(".node-name-document").nth(0)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(".node-name-document").nth(1)).toHaveText(
+        path.basename(config.testFile),
       );
       await expect(page.locator(".node-name-document").nth(2)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(".node-name-document").nth(3)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(".node-name-document").nth(4)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(".node-name-document").nth(5)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(".node-name-document").nth(6)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(".node-name-document").nth(7)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
+      await expect(page.locator(".node-name-document").nth(8)).toHaveText(
         path.basename(config.testWordFile),
       );
+      await expect(page.locator(".node-name-document").nth(9)).toHaveText(
+        path.basename(config.testWordFile),
+      );
+      await expect(page.locator(".node-name-document").nth(10)).toHaveText(
+        path.basename(config.testWordFile),
+      );
+      await expect(page.locator(".node-name-document").nth(11)).toHaveText(
+        path.basename(config.testWordFile),
+      );
+    } else {
+      if (!uploadAdditionalInfo) {
+        await expect(page.locator(".node__count").nth(4)).toHaveText(
+          uploadedDocumentsContent.totalDocuments,
+        );
+      } else {
+        await expect(page.locator(".node__count").nth(4)).toHaveText(
+          uploadedDocumentsContent.totalDocumentsAdditional,
+        );
+        await expect(page.locator(".node-name-document").nth(2)).toHaveText(
+          path.basename(config.testWordFile),
+        );
+      }
+      await expect(page.locator(".node-name-document").nth(0)).toHaveText(
+        path.basename(config.testFile),
+      );
+      await expect(page.locator(".node-name-document").nth(1)).toHaveText(
+        path.basename(config.testPdfFile),
+      );
     }
-    await expect(page.locator(".node-name-document").nth(0)).toHaveText(
-      path.basename(config.testFile),
-    );
-    await expect(page.locator(".node-name-document").nth(1)).toHaveText(
-      path.basename(config.testPdfFile),
-    );
   },
 };
 

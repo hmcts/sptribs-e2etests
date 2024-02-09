@@ -23,7 +23,7 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.10.0",
-    "prettier": "3.2.4"
+    "prettier": "3.2.5"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
