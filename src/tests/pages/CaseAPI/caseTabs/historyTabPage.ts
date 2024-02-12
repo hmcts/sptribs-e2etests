@@ -28,38 +28,38 @@ const historyTabPage: HistoryTabPage = {
       allTabsTitlesContent.pageTitle + caseNumber,
     );
     await expect(page.locator(".mat-tab-label").nth(0)).toHaveText(
-        allTabsTitlesContent.tab1,
-      );
+      allTabsTitlesContent.tab1,
+    );
     await expect(page.locator(".mat-tab-label").nth(1)).toHaveText(
-        allTabsTitlesContent.tab2,
-      );
+      allTabsTitlesContent.tab2,
+    );
     await expect(page.locator(".mat-tab-label").nth(2)).toHaveText(
-        allTabsTitlesContent.tab3,
-      );
+      allTabsTitlesContent.tab3,
+    );
     await expect(page.locator(".mat-tab-label").nth(3)).toHaveText(
-        allTabsTitlesContent.tab4,
-      );
+      allTabsTitlesContent.tab4,
+    );
     await expect(page.locator(".mat-tab-label").nth(4)).toHaveText(
-        allTabsTitlesContent.tab5,
-      );
+      allTabsTitlesContent.tab5,
+    );
     await expect(page.locator(".mat-tab-label").nth(5)).toHaveText(
-        allTabsTitlesContent.tab6,
-      );
+      allTabsTitlesContent.tab6,
+    );
     await expect(page.locator(".mat-tab-label").nth(6)).toHaveText(
-        allTabsTitlesContent.tab7,
-      );
+      allTabsTitlesContent.tab7,
+    );
     await expect(page.locator(".mat-tab-label").nth(7)).toHaveText(
-        allTabsTitlesContent.tab8,
-      );
+      allTabsTitlesContent.tab8,
+    );
     await expect(page.locator(".mat-tab-label").nth(8)).toHaveText(
-        allTabsTitlesContent.tab9,
-      );
+      allTabsTitlesContent.tab9,
+    );
     await expect(page.locator(".mat-tab-label").nth(9)).toHaveText(
-        allTabsTitlesContent.tab10,
-      );
+      allTabsTitlesContent.tab10,
+    );
     await expect(page.locator(".mat-tab-label").nth(10)).toHaveText(
-        allTabsTitlesContent.tab11,
-      );
+      allTabsTitlesContent.tab11,
+    );
     if (state == stateTabContent.DSSSubmittedState) {
       await expect(page.locator(".mat-tab-label").nth(11)).toHaveText(
         allTabsTitlesContent.tab12,
@@ -144,11 +144,7 @@ const historyTabPage: HistoryTabPage = {
     }
   },
 
-  async checkPageInfo(
-    page: Page,
-    time: string,
-    state: string,
-  ): Promise<void> {
+  async checkPageInfo(page: Page, time: string, state: string): Promise<void> {
     if (state == stateTabContent.DSSSubmittedState) {
       await expect(page.locator(".text-16").nth(4)).toHaveText(
         eventsContent.submitCaseCIC,

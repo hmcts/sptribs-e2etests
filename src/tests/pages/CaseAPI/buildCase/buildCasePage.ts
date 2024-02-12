@@ -24,7 +24,7 @@ const builtCasePage: BuildCasePage = {
       buildCase_content.pageTitle,
     );
     await expect(page.locator("markdown > h3")).toContainText(
-      buildCase_content.caseReference + caseNumber
+      buildCase_content.caseReference + caseNumber,
     );
     if (accessibilityTest) {
       await axeTest(page);

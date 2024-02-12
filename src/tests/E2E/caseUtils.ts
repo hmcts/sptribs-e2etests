@@ -131,14 +131,32 @@ export async function createCase(
 export async function buildCase(page: Page) {
   const caseNumber = await createCaseConfirmPage.returnCaseNumber(page);
   let time = await createCaseConfirmPage.closeAndReturnToCase(page);
-  await historyTabPage.checkPageLoads(page, true, caseNumber, stateTab_content.submittedState);
-  await historyTabPage.checkPageInfo(page, time, stateTab_content.submittedState);
+  await historyTabPage.checkPageLoads(
+    page,
+    true,
+    caseNumber,
+    stateTab_content.submittedState,
+  );
+  await historyTabPage.checkPageInfo(
+    page,
+    time,
+    stateTab_content.submittedState,
+  );
   await page.selectOption("#next-step", events_content.buildCase);
   await page.click(".button");
   await builtCasePage.checkPageLoads(page, true, caseNumber);
   await builtCasePage.continueOn(page);
   await buildCaseConfirmPage.checkPageLoads(page, true, caseNumber);
   time = await buildCaseConfirmPage.continueOn(page);
-  await historyTabPage.checkPageLoads(page, true, caseNumber, stateTab_content.caseManagementState);
-  await historyTabPage.checkPageInfo(page, time, stateTab_content.caseManagementState);
+  await historyTabPage.checkPageLoads(
+    page,
+    true,
+    caseNumber,
+    stateTab_content.caseManagementState,
+  );
+  await historyTabPage.checkPageInfo(
+    page,
+    time,
+    stateTab_content.caseManagementState,
+  );
 }
