@@ -229,8 +229,13 @@ async function handleCompleteApplication(
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.changeCaseType(page);
   await casesPage.searchForCaseNumber(page, caseNumber);
-  await historyTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await historyTabPage.checkPageInfo(page, time);
+  await historyTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    caseNumber,
+    "DSS-Submitted",
+  );
+  await historyTabPage.checkPageInfo(page, time, "DSS-Submitted");
   await summaryTabPage.changeToSummaryTab(page);
   await summaryTabPage.checkPageLoads(
     page,
