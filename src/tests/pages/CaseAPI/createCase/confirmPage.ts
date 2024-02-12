@@ -6,9 +6,11 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 type ConfirmPage = {
   closeAndReturn: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  returnCaseNumber(page: Page): Promise<string>;
+  closeAndReturnToCase(page: Page): Promise<string>;
 };
 
-const confirmPage: ConfirmPage = {
+const createCaseConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page, accessibilityTest): Promise<void> {
@@ -50,6 +52,21 @@ const confirmPage: ConfirmPage = {
       await axeTest(page);
     }
   },
+
+  async returnCaseNumber(page: Page): Promise<string> {
+    let cicCaseData: string =
+      (await page.textContent("markdown > h2")) ?? "Empty";
+    cicCaseData = cicCaseData.replace(/\D/g, "");
+    cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
+    cicCaseData = cicCaseData.slice(0, -1);
+    console.log(cicCaseData);
+    return cicCaseData;
+  },
+
+  async closeAndReturnToCase(page: Page): Promise<string> {
+    await page.locator(this.closeAndReturn).click();
+    return await commonHelpers.getTimestamp();
+  },
 };
 
-export default confirmPage;
+export default createCaseConfirmPage;
