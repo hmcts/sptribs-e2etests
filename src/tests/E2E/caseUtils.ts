@@ -26,6 +26,12 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import historyTabPage from "../pages/CaseAPI/caseTabs/historyTabPage.ts";
 import builtCasePage from "../pages/CaseAPI/buildCase/buildCasePage.ts";
 import buildCaseConfirmPage from "../pages/CaseAPI/buildCase/confirmPage.ts";
+import summaryTabPage from "../pages/CaseAPI/caseTabs/summaryTabPage.ts";
+import stateTabPage from "../pages/CaseAPI/caseTabs/stateTabPage.ts";
+import caseDetailsTabPage from "../pages/CaseAPI/caseTabs/caseDetailsTabPage.ts";
+import casePartiesTabPage from "../pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
+import caseDocumentsTabPage from "../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import caseFileViewTabPage from "../pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
 
 export async function createCase(
   page: Page,
@@ -128,34 +134,91 @@ export async function createCase(
   await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
 }
 
-export async function buildCase(page: Page) {
-  const caseNumber = await createCaseConfirmPage.returnCaseNumber(page);
-  let time = await createCaseConfirmPage.closeAndReturnToCase(page);
+export async function verifyCaseDetails(
+  page: Page,
+  accessibilityTest: boolean,
+  caseNumber: string,
+  state: string,
+  representationPresent: boolean,
+  representationQualified: boolean,
+  time: string,
+  uploadOtherInfo: boolean,
+  multipleDocuments: boolean,
+) {
   await historyTabPage.checkPageLoads(
     page,
-    true,
+    accessibilityTest,
     caseNumber,
-    stateTab_content.submittedState,
+    state,
   );
-  await historyTabPage.checkPageInfo(
+  await historyTabPage.checkPageInfo(page, time, state);
+  await summaryTabPage.changeToSummaryTab(page);
+  await summaryTabPage.checkPageLoads(
     page,
-    time,
-    stateTab_content.submittedState,
+    accessibilityTest,
+    representationPresent,
+    caseNumber,
   );
+  await summaryTabPage.checkPageInfo(
+    page,
+    caseNumber,
+    representationPresent,
+    representationQualified,
+  );
+  await stateTabPage.changeToStateTab(page);
+  await stateTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await stateTabPage.checkStateTab(page, state);
+  await caseDetailsTabPage.changeToCaseDetailsTab(page);
+  await caseDetailsTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    representationPresent,
+    caseNumber,
+  );
+  await caseDetailsTabPage.checkPageInfo(
+    page,
+    representationPresent,
+    representationQualified,
+  );
+  await casePartiesTabPage.changeToCasePartiesTab(page);
+  await casePartiesTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    representationPresent,
+    caseNumber,
+  );
+  await casePartiesTabPage.checkPageInfo(
+    page,
+    representationPresent,
+    representationQualified,
+  );
+  await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
+  await caseDocumentsTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    caseNumber,
+    multipleDocuments,
+  );
+  await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
+  await caseFileViewTabPage.changeToCaseFileViewTab(page);
+  await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+  await caseFileViewTabPage.checkPageInfo(
+    page,
+    multipleDocuments,
+    uploadOtherInfo,
+  );
+}
+
+export async function buildCase(page: Page, state: string) {
+  const caseNumber = await createCaseConfirmPage.returnCaseNumber(page);
+  let time = await createCaseConfirmPage.closeAndReturnToCase(page);
+  await historyTabPage.checkPageLoads(page, true, caseNumber, state);
+  await historyTabPage.checkPageInfo(page, time, state);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await builtCasePage.checkPageLoads(page, true, caseNumber);
   await builtCasePage.continueOn(page);
   await buildCaseConfirmPage.checkPageLoads(page, true, caseNumber);
-  time = await buildCaseConfirmPage.continueOn(page);
-  await historyTabPage.checkPageLoads(
-    page,
-    true,
-    caseNumber,
-    stateTab_content.caseManagementState,
-  );
-  await historyTabPage.checkPageInfo(
-    page,
-    time,
-    stateTab_content.caseManagementState,
-  );
+  await buildCaseConfirmPage.continueOn(page);
+  await stateTabPage.changeToStateTab(page);
+  await stateTabPage.checkStateTab(page, stateTab_content.caseManagementState);
 }

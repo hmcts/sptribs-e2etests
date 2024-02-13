@@ -1,4 +1,5 @@
 import { Page, test } from "@playwright/test";
+import { verifyCaseDetails } from "./caseUtils.ts";
 import landingPage from "../pages/DSSCreateCase/landingPage.ts";
 import loginPage from "../pages/DSSCreateCase/loginPage.ts";
 import subjectDetailsPage from "../pages/DSSCreateCase/subjectDetailsPage.ts";
@@ -13,13 +14,6 @@ import checkYourAnswersPage from "../pages/DSSCreateCase/checkYourAnswersPage.ts
 import applicationSubmittedPage from "../pages/DSSCreateCase/applicationSubmittedPage.ts";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../pages/CaseAPI/caseList/casesPage.ts";
-import historyTabPage from "../pages/CaseAPI/caseTabs/historyTabPage.ts";
-import summaryTabPage from "../pages/CaseAPI/caseTabs/summaryTabPage.ts";
-import stateTabPage from "../pages/CaseAPI/caseTabs/stateTabPage.ts";
-import caseDetailsTabPage from "../pages/CaseAPI/caseTabs/caseDetailsTabPage.ts";
-import casePartiesTabPage from "../pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
-import caseDocumentsTabPage from "../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
-import caseFileViewTabPage from "../pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
 
 async function createFEApplication(
   page: Page,
@@ -229,67 +223,16 @@ async function handleCompleteApplication(
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.changeCaseType(page);
   await casesPage.searchForCaseNumber(page, caseNumber);
-  await historyTabPage.checkPageLoads(
+  await verifyCaseDetails(
     page,
     accessibilityTest,
     caseNumber,
     "DSS-Submitted",
-  );
-  await historyTabPage.checkPageInfo(page, time, "DSS-Submitted");
-  await summaryTabPage.changeToSummaryTab(page);
-  await summaryTabPage.checkPageLoads(
-    page,
-    accessibilityTest,
-    representationPresent,
-    caseNumber,
-  );
-  await summaryTabPage.checkPageInfo(
-    page,
-    caseNumber,
     representationPresent,
     representationQualified,
-  );
-  await stateTabPage.changeToStateTab(page);
-  await stateTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await stateTabPage.checkStateTab(page);
-  await caseDetailsTabPage.changeToCaseDetailsTab(page);
-  await caseDetailsTabPage.checkPageLoads(
-    page,
-    accessibilityTest,
-    representationPresent,
-    caseNumber,
-  );
-  await caseDetailsTabPage.checkPageInfo(
-    page,
-    representationPresent,
-    representationQualified,
-  );
-  await casePartiesTabPage.changeToCasePartiesTab(page);
-  await casePartiesTabPage.checkPageLoads(
-    page,
-    accessibilityTest,
-    representationPresent,
-    caseNumber,
-  );
-  await casePartiesTabPage.checkPageInfo(
-    page,
-    representationPresent,
-    representationQualified,
-  );
-  await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
-  await caseDocumentsTabPage.checkPageLoads(
-    page,
-    accessibilityTest,
-    caseNumber,
-    multipleDocuments,
-  );
-  await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
-  await caseFileViewTabPage.changeToCaseFileViewTab(page);
-  await caseFileViewTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await caseFileViewTabPage.checkPageInfo(
-    page,
-    multipleDocuments,
+    time,
     uploadOtherInfo,
+    multipleDocuments,
   );
 }
 

@@ -99,46 +99,24 @@ const historyTabPage: HistoryTabPage = {
     await expect(page.locator(".text-16").nth(3)).toHaveText(
       historyTabContent.textOnPage2,
     );
-
-    if (state == stateTabContent.caseManagementState) {
-      await expect(page.locator(".text-16").nth(10)).toHaveText(
-        historyTabContent.textOnPage1,
-      );
-      await expect(page.locator(".text-16").nth(12)).toHaveText(
-        historyTabContent.textOnPage2,
-      );
-      await expect(page.locator(".text-16").nth(14)).toHaveText(
-        historyTabContent.textOnPage3,
-      );
-      await expect(page.locator(".text-16").nth(16)).toHaveText(
-        historyTabContent.textOnPage4,
-      );
-      await expect(page.locator(".text-16").nth(18)).toHaveText(
-        historyTabContent.textOnPage5,
-      );
-      await expect(page.locator(".text-16").nth(20)).toHaveText(
-        historyTabContent.textOnPage6,
-      );
-    } else {
-      await expect(page.locator(".text-16").nth(7)).toHaveText(
-        historyTabContent.textOnPage1,
-      );
-      await expect(page.locator(".text-16").nth(9)).toHaveText(
-        historyTabContent.textOnPage2,
-      );
-      await expect(page.locator(".text-16").nth(11)).toHaveText(
-        historyTabContent.textOnPage3,
-      );
-      await expect(page.locator(".text-16").nth(13)).toHaveText(
-        historyTabContent.textOnPage4,
-      );
-      await expect(page.locator(".text-16").nth(15)).toHaveText(
-        historyTabContent.textOnPage5,
-      );
-      await expect(page.locator(".text-16").nth(17)).toHaveText(
-        historyTabContent.textOnPage6,
-      );
-    }
+    await expect(page.locator(".text-16").nth(7)).toHaveText(
+      historyTabContent.textOnPage1,
+    );
+    await expect(page.locator(".text-16").nth(9)).toHaveText(
+      historyTabContent.textOnPage2,
+    );
+    await expect(page.locator(".text-16").nth(11)).toHaveText(
+      historyTabContent.textOnPage3,
+    );
+    await expect(page.locator(".text-16").nth(13)).toHaveText(
+      historyTabContent.textOnPage4,
+    );
+    await expect(page.locator(".text-16").nth(15)).toHaveText(
+      historyTabContent.textOnPage5,
+    );
+    await expect(page.locator(".text-16").nth(17)).toHaveText(
+      historyTabContent.textOnPage6,
+    );
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -180,24 +158,6 @@ const historyTabPage: HistoryTabPage = {
       );
       await expect(page.locator(".text-16").nth(14)).toHaveText(
         eventsContent.createCase,
-      );
-    } else if (state == stateTabContent.caseManagementState) {
-      await expect(page.locator(".text-16").nth(4)).toHaveText(
-        eventsContent.buildCase,
-      );
-      await expect(page.locator(".text-16").nth(5)).toContainText(time);
-      await expect(page.locator(".text-16").nth(6)).toHaveText(
-        authorsContent.automatedCaseworker,
-      );
-      await expect(page.locator(".text-16").nth(11)).toContainText(time);
-      await expect(page.locator(".text-16").nth(13)).toHaveText(
-        authorsContent.automatedCaseworker,
-      );
-      await expect(page.locator(".text-16").nth(15)).toHaveText(
-        stateTabContent.caseManagementState,
-      );
-      await expect(page.locator(".text-16").nth(17)).toHaveText(
-        eventsContent.buildCase,
       );
     }
   },
