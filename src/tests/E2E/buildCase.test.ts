@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { createCase, buildCase } from "./caseUtils.ts";
 
 test.describe("Case-API Build case test.", () => {
-  test.only("Create and build case", async ({ page }) => {
+  test("Create and build case as a caseworker", async ({ page }) => {
     await createCase(
       page,
       "caseWorker",
