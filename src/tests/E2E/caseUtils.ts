@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../config.ts";
-import {
+import commonHelpers, {
   caseRegion,
   Category,
   ContactPreference,
@@ -142,8 +142,7 @@ export async function buildCase(page: Page) {
     time,
     stateTab_content.submittedState,
   );
-  await page.selectOption("#next-step", events_content.buildCase);
-  await page.click(".button");
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await builtCasePage.checkPageLoads(page, true, caseNumber);
   await builtCasePage.continueOn(page);
   await buildCaseConfirmPage.checkPageLoads(page, true, caseNumber);

@@ -18,6 +18,7 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
+  chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -163,6 +164,14 @@ const commonHelpers: CommonHelpers = {
     for (let i = 0; i < count; i++) {
       await expect(locator.nth(i)).toBeVisible();
     }
+  },
+
+  async chooseEventFromDropdown(
+    page: Page,
+    chosenEvent: string,
+  ): Promise<void> {
+    await page.selectOption("#next-step", chosenEvent);
+    await page.getByRole("button", { name: "Go" }).click();
   },
 };
 
