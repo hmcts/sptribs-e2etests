@@ -65,6 +65,17 @@ withNightlyPipeline(type, product, component) {
     stage('DSS E2E tests.') {
       yarnBuilder.yarn('test:FunctionalDSS')
     }
+    afterAlways('DSS E2E tests.') {
+      publishHTML([
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : "playwright-report",
+              reportFiles          : 'index.html',
+              reportName           : 'UI Functional Test Report'
+      ])
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+    }
   }
 
 
