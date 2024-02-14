@@ -62,7 +62,7 @@ withNightlyPipeline(type, product, component) {
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
   afterAlways('DependencyCheckNightly') {
-    stage('DSS E2E tests.') {
+    stage('DSS Create E2E tests') {
       yarnBuilder.yarn('test:FunctionalDSS')
       publishHTML([
               allowMissing         : true,
@@ -74,21 +74,43 @@ withNightlyPipeline(type, product, component) {
       ])
       steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
     }
+    stage('DSS Create Cross browser tests') {
+      yarnBuilder.yarn('test:CrossbrowserDSS')
+      publishHTML([
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : "playwright-report",
+              reportFiles          : 'index.html',
+              reportName           : 'DSS Cross Browser Test Report'
+      ])
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+    }
+    stage('DSS Create Cross device tests') {
+      yarnBuilder.yarn('test:CrossDeviceDSS')
+      publishHTML([
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : "playwright-report",
+              reportFiles          : 'index.html',
+              reportName           : 'DSS Cross device Test Report'
+      ])
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+    }
+    stage('DSS Create accessibility tests') {
+      yarnBuilder.yarn('test:AccessibilityDSS')
+      publishHTML([
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : "playwright-report",
+              reportFiles          : 'index.html',
+              reportName           : 'DSS Accessibility Test Report'
+      ])
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+    }
   }
-
-
-  afterAlways('DSS E2E tests.') {
-    publishHTML([
-            allowMissing         : true,
-            alwaysLinkToLastBuild: true,
-            keepAll              : true,
-            reportDir            : "playwright-report",
-            reportFiles          : 'index.html',
-            reportName           : 'UI Functional Test Report'
-    ])
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
-  }
-
 }
 
 
