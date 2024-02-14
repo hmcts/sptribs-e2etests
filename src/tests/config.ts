@@ -68,7 +68,7 @@ const config: Config = {
 
   FEBaseURL: process.env.DSS_BASE_URL || "FEBaseURL",
   CaseAPIBaseURL: process.env.CASEAPI_BASE_URL || "CaseAPIBaseURL",
-  UpdateCaseBaseURL: process.env.UCBASEURL || "UpdateCaseBaseURL",
+  UpdateCaseBaseURL: process.env.UC_BASE_URL || "UpdateCaseBaseURL",
 
   testFile: path.resolve(__dirname, "../tests/fixtures/testFiles/mockFile.txt"),
   testPdfFile: path.resolve(
