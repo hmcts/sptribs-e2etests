@@ -61,7 +61,7 @@ withNightlyPipeline(type, product, component) {
   loadVaultSecrets(secrets)
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
-  afterAlways('dependency') {
+  afterAlways('DependencyCheckNightly') {
     stage('DSS E2E tests.') {
       yarnBuilder.yarn('test:FunctionalDSS')
       publishHTML([
