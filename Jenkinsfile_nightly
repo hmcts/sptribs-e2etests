@@ -62,8 +62,22 @@ withNightlyPipeline(type, product, component) {
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
   afterAlways('DependencyCheckNightly') {
-    stage('DSS Create E2E tests') {
-      yarnBuilder.yarn('test:FunctionalDSS')
+    try {
+      stage('DSS Create E2E tests') {
+        yarnBuilder.yarn('test:FunctionalDSS')
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'DSS E2E Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+      }
+    } catch (err) {
+      unstable(message: "${STAGE_NAME} is unstable")
+    } finally {
       publishHTML([
               allowMissing         : true,
               alwaysLinkToLastBuild: true,
@@ -74,6 +88,7 @@ withNightlyPipeline(type, product, component) {
       ])
       steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
     }
+
     stage('DSS Create Cross browser tests') {
       yarnBuilder.yarn('test:CrossbrowserDSS')
       publishHTML([
