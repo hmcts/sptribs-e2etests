@@ -54,17 +54,21 @@ def secrets = [
   ]
 ]
 
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 
 withNightlyPipeline(type, product, component) {
-  enableFullFunctionalTest()
-  enableCrossBrowserTest()
   loadVaultSecrets(secrets)
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
+  afterAlways('Dependency check') {
+    stage('DSS E2E tests.') {
+      yarnBuilder.yarn('test:FunctionalDSS')
+    }
+  }
 
 
-  afterAlways('fullFunctionalTest') {
+  afterAlways('DSS E2E tests.') {
     publishHTML([
             allowMissing         : true,
             alwaysLinkToLastBuild: true,
@@ -73,19 +77,7 @@ withNightlyPipeline(type, product, component) {
             reportFiles          : 'index.html',
             reportName           : 'UI Functional Test Report'
     ])
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/functional/*'
-  }
-
-  afterAlways('crossBrowserTest') {
-    publishHTML([
-            allowMissing         : true,
-            alwaysLinkToLastBuild: true,
-            keepAll              : true,
-            reportDir            : "playwright-report",
-            reportFiles          : 'index.html',
-            reportName           : 'UI Cross Browser Test Report'
-    ])
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/crossbrowser/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
   }
 
 }
