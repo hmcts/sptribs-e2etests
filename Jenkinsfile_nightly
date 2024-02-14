@@ -63,16 +63,39 @@ withNightlyPipeline(type, product, component) {
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
   afterAlways('DependencyCheckNightly') {
     stage('DSS Create E2E tests') {
-      yarnBuilder.yarn('test:FunctionalDSS')
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'DSS E2E Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+      steps {
+        script {
+          try {
+            yarnBuilder.yarn('test:FunctionalDSS')
+          } finally {
+            publishHTML([
+                    allowMissing         : true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll              : true,
+                    reportDir            : "playwright-report",
+                    reportFiles          : 'index.html',
+                    reportName           : 'DSS E2E Test Report'
+            ])
+            archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+          }
+        }
+      }
+      post {
+        always {
+          publishHTML([
+                  allowMissing         : true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll              : true,
+                  reportDir            : "playwright-report",
+                  reportFiles          : 'index.html',
+                  reportName           : 'DSS E2E Test Report'
+          ])
+          archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+        }
+        unstable {
+          echo "Marking stage as unstable because of possible test failures."
+        }
+      }
     }
     stage('DSS Create Cross browser tests') {
       yarnBuilder.yarn('test:CrossbrowserDSS')
