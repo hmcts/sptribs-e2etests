@@ -64,8 +64,6 @@ withNightlyPipeline(type, product, component) {
   afterAlways('build') {
     stage('DSS E2E tests.') {
       yarnBuilder.yarn('test:FunctionalDSS')
-    }
-    afterAlways('DSS E2E tests.') {
       publishHTML([
               allowMissing         : true,
               alwaysLinkToLastBuild: true,
