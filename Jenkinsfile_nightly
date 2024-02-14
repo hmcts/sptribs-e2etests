@@ -59,8 +59,8 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component) {
   loadVaultSecrets(secrets)
-  env.CASEAPIBASEURL = params.SPTRIBS_CASEAPI_URL
-  env.FEBASEURL = params.SPTRIBS_FRONTEND_URL
+  env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
+  env.DSS_BASE_URL = params.SPTRIBS_FRONTEND_URL
   afterAlways('DependencyCheckNightly') {
     if (!params.skipDSSCreateTests) {
       stage('DSS Create E2E tests') {
