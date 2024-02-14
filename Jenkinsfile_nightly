@@ -62,9 +62,12 @@ withNightlyPipeline(type, product, component) {
   env.SPTRIBS_CASE_API_URL = params.SPTRIBS_CASEAPI_URL
   env.SPTRIBS_FRONTEND_URL = params.SPTRIBS_FRONTEND_URL
   afterAlways('DependencyCheckNightly') {
-    try {
-      stage('DSS Create E2E tests') {
+    stage('DSS Create E2E tests') {
+      try {
         yarnBuilder.yarn('test:FunctionalDSS')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable")
+      } finally {
         publishHTML([
                 allowMissing         : true,
                 alwaysLinkToLastBuild: true,
@@ -75,79 +78,91 @@ withNightlyPipeline(type, product, component) {
         ])
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
       }
-    } catch (err) {
-      unstable(message: "${STAGE_NAME} is unstable")
-    } finally {
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'DSS E2E Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
     }
-
     stage('DSS Create Cross browser tests') {
-      yarnBuilder.yarn('test:CrossbrowserDSS')
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'DSS Cross Browser Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+      try {
+        yarnBuilder.yarn('test:CrossbrowserDSS')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable")
+      } finally {
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'DSS Cross Browser Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+      }
     }
     stage('DSS Create accessibility tests') {
-      yarnBuilder.yarn('test:AccessibilityDSS')
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'DSS Accessibility Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+      try {
+        yarnBuilder.yarn('test:AccessibilityDSS')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable")
+      } finally {
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'DSS Accessibility Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+      }
     }
     stage('Case-API Create E2E tests') {
-      yarnBuilder.yarn('test:FunctionalCaseAPI')
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'Case-API E2E Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+      try {
+        yarnBuilder.yarn('test:FunctionalCaseAPI')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable")
+      } finally {
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'Case-API E2E Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+      }
     }
     stage('Case-API Create Cross browser tests') {
-      yarnBuilder.yarn('test:CrossbrowserCaseAPI')
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'Case-API Cross Browser Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+      try {
+        yarnBuilder.yarn('test:CrossbrowserCaseAPI')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable")
+      } finally {
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'Case-API Cross Browser Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+      }
     }
     stage('Case-API accessibility tests') {
-      yarnBuilder.yarn('test:AccessibilityCaseAPI')
-      publishHTML([
-              allowMissing         : true,
-              alwaysLinkToLastBuild: true,
-              keepAll              : true,
-              reportDir            : "playwright-report",
-              reportFiles          : 'index.html',
-              reportName           : 'Case-API Accessibility Test Report'
-      ])
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+      try {
+        yarnBuilder.yarn('test:AccessibilityCaseAPI')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable")
+      } finally {
+        publishHTML([
+                allowMissing         : true,
+                alwaysLinkToLastBuild: true,
+                keepAll              : true,
+                reportDir            : "playwright-report",
+                reportFiles          : 'index.html',
+                reportName           : 'Case-API Accessibility Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+      }
     }
   }
 }
