@@ -4,7 +4,7 @@ properties([
 // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
 pipelineTriggers([cron('H 8 * * 1-5')]),
 parameters([
-  string(name: 'SPTRIBS_FRONTEND_URL', defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net/', description: 'The DSS URL to test against'),
+  string(name: 'SPTRIBS_FRONTEND_URL', defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net', description: 'The DSS URL to test against'),
   string(name: 'SPTRIBS_CASEAPI_URL', defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases', description: 'The Case-API URL to test against'),
   string(name: 'FUNCTIONAL_TESTS_WORKERS',
     defaultValue: '5',
