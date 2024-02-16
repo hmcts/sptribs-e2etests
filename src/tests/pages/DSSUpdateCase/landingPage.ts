@@ -17,6 +17,9 @@ const landingPage: LandingPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.goto(config.UpdateCaseBaseURL);
+    await expect(page.locator(".govuk-header")).toHaveText(
+      LandingPageDetails.pageTitle,
+    );
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       LandingPageDetails.pageTitle,
     );
