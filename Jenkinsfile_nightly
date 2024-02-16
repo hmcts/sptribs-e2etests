@@ -67,7 +67,7 @@ withNightlyPipeline(type, product, component) {
         try {
           yarnBuilder.yarn('test:FunctionalDSS')
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable")
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
                   allowMissing         : true,
@@ -84,7 +84,7 @@ withNightlyPipeline(type, product, component) {
         try {
           yarnBuilder.yarn('test:CrossbrowserDSS')
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable")
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
                   allowMissing         : true,
@@ -101,7 +101,7 @@ withNightlyPipeline(type, product, component) {
         try {
           yarnBuilder.yarn('test:AccessibilityDSS')
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable")
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
                   allowMissing         : true,
@@ -120,7 +120,7 @@ withNightlyPipeline(type, product, component) {
         try {
           yarnBuilder.yarn('test:FunctionalCaseAPI')
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable")
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
                   allowMissing         : true,
@@ -138,7 +138,7 @@ withNightlyPipeline(type, product, component) {
         try {
           yarnBuilder.yarn('test:CrossbrowserCaseAPI')
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable")
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
                   allowMissing         : true,
@@ -155,7 +155,7 @@ withNightlyPipeline(type, product, component) {
         try {
           yarnBuilder.yarn('test:AccessibilityCaseAPI')
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable")
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
                   allowMissing         : true,
