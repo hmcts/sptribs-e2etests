@@ -9,7 +9,6 @@ type UploadSupportingDocumentsPage = {
   fields: {
     dropDown: string;
     uploadFileButton: string;
-    
   };
 
   checkPageLoads(
@@ -30,7 +29,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
   fields: {
     dropDown: ".govuk-details__summary-text",
     uploadFileButton: "#file-upload-1",
-    
   },
 
   async checkPageLoads(

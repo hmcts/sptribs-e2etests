@@ -1,10 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { caseFurtherDetailsObject_content } from "../../../fixtures/content/CaseAPI/createCase/caseFurtherDetailsObject_content.ts";
-import { caseRegion, Scheme } from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  caseRegion,
+  Scheme,
+} from "../../../helpers/commonHelpers.ts";
 
 type CaseFurtherDetailsObjectPage = {
-  continue: string;
   scheme: string;
   caseRegion: string;
   CICAReferenceNumber: string;
@@ -29,7 +31,6 @@ type CaseFurtherDetailsObjectPage = {
 };
 
 const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
-  continue: '[type="submit"]',
   scheme: "#cicCaseSchemeCic",
   caseRegion: "#cicCaseRegionCIC",
   CICAReferenceNumber: "#cicCaseCicaReferenceNumber",
@@ -131,7 +132,7 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
         await page.click(this.explainedNo);
       }
     }
-    await page.click(this.continue);
+    await commonHelpers.clickContinueButton(page);
   },
 };
 

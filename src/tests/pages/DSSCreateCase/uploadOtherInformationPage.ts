@@ -9,7 +9,7 @@ type UploadOtherInformationPage = {
   fields: {
     dropDown: string;
     uploadFileButton: string;
-    
+
     documentRelevance: string;
     additionalInfo: string;
   };
@@ -32,7 +32,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   fields: {
     dropDown: ".govuk-details__summary-text",
     uploadFileButton: "#file-upload-1",
-    
+
     documentRelevance: "#documentRelevance",
     additionalInfo: "#additionalInformation",
   },

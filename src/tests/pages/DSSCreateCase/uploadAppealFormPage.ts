@@ -9,7 +9,6 @@ type UploadAppealFormPage = {
   fields: {
     dropDown: string;
     uploadFileButton: string;
-    
   };
   checkPageLoads(
     page: Page,
@@ -29,7 +28,6 @@ const uploadAppealFormPage: UploadAppealFormPage = {
   fields: {
     dropDown: ".govuk-details__summary-text",
     uploadFileButton: "#file-upload-1",
-    
   },
 
   async checkPageLoads(
