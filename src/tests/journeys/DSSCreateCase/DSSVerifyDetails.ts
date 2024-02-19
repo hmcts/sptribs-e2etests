@@ -6,6 +6,7 @@ import caseDetailsTabPage from "../../pages/CaseAPI/caseTabs/caseDetailsTabPage.
 import casePartiesTabPage from "../../pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
 import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
 import caseFileViewTabPage from "../../pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
+import { UserRole } from "../../config.ts";
 
 export async function verifyCaseDetails(
   page: Page,
@@ -17,6 +18,7 @@ export async function verifyCaseDetails(
   time: string,
   uploadOtherInfo: boolean,
   multipleDocuments: boolean,
+  user: UserRole,
 ) {
   await historyTabPage.checkPageLoads(
     page,
@@ -24,7 +26,13 @@ export async function verifyCaseDetails(
     caseNumber,
     state,
   );
-  await historyTabPage.checkPageInfo(page, time, state);
+  await historyTabPage.checkPageInfo(
+    page,
+    ["Submit case (cic)"],
+    [time],
+    user,
+    state,
+  );
   await summaryTabPage.changeToSummaryTab(page);
   await summaryTabPage.checkPageLoads(
     page,

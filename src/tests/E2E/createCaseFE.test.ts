@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
-import { createFEApplication} from "../journeys/DSSCreateCase/createCase.ts";
-
+import { createFEApplication } from "../journeys/DSSCreateCase/createCase.ts";
 
 test.describe("DSS Create case tests.", () => {
   test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({

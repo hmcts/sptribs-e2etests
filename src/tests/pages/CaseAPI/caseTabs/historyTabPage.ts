@@ -4,8 +4,9 @@ import allTabsTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/all
 import historyTabContent from "../../../fixtures/content/CaseAPI/caseTabs/historyTab_content.ts";
 import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import authorsContent from "../../../fixtures/content/authors_content.ts";
-import eventsContent from "../../../fixtures/content/CaseAPI/events_content.ts";
 import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
+import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
+import { UserRole } from "../../../config.ts";
 
 type HistoryTabPage = {
   checkPageLoads(
@@ -14,7 +15,13 @@ type HistoryTabPage = {
     caseNumber: string,
     state: string,
   ): Promise<void>;
-  checkPageInfo(page: Page, time: string, state: string): Promise<void>;
+  checkPageInfo(
+    page: Page,
+    allEvents: allEvents[],
+    eventTimes: string[],
+    user: UserRole,
+    state: string,
+  ): Promise<void>;
 };
 
 const historyTabPage: HistoryTabPage = {
@@ -90,74 +97,98 @@ const historyTabPage: HistoryTabPage = {
     await expect(page.locator(".heading-h2").nth(1)).toHaveText(
       historyTabContent.heading2,
     );
-    await expect(page.locator(".text-16").nth(1)).toHaveText(
-      historyTabContent.textOnPage4,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage1}")`),
+      2,
     );
-    await expect(page.locator(".text-16").nth(2)).toHaveText(
-      historyTabContent.textOnPage1,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage2}")`),
+      2,
     );
-    await expect(page.locator(".text-16").nth(3)).toHaveText(
-      historyTabContent.textOnPage2,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage3}")`),
+      1,
     );
-    await expect(page.locator(".text-16").nth(7)).toHaveText(
-      historyTabContent.textOnPage1,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage4}")`),
+      2,
     );
-    await expect(page.locator(".text-16").nth(9)).toHaveText(
-      historyTabContent.textOnPage2,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage5}")`),
+      1,
     );
-    await expect(page.locator(".text-16").nth(11)).toHaveText(
-      historyTabContent.textOnPage3,
-    );
-    await expect(page.locator(".text-16").nth(13)).toHaveText(
-      historyTabContent.textOnPage4,
-    );
-    await expect(page.locator(".text-16").nth(15)).toHaveText(
-      historyTabContent.textOnPage5,
-    );
-    await expect(page.locator(".text-16").nth(17)).toHaveText(
-      historyTabContent.textOnPage6,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage6}")`),
+      1,
     );
     if (accessibilityTest) {
       await axeTest(page);
     }
   },
 
-  async checkPageInfo(page: Page, time: string, state: string): Promise<void> {
-    if (state == stateTabContent.DSSSubmittedState) {
-      await expect(page.locator(".text-16").nth(4)).toHaveText(
-        eventsContent.submitCaseCIC,
-      );
-      await expect(page.locator(".text-16").nth(5)).toContainText(time);
-      await expect(page.locator(".text-16").nth(6)).toHaveText(
-        authorsContent.automatedCitizen,
-      );
-      await expect(page.locator(".text-16").nth(8)).toContainText(time);
-      await expect(page.locator(".text-16").nth(10)).toHaveText(
-        authorsContent.automatedCitizen,
-      );
-      await expect(page.locator(".text-16").nth(12)).toHaveText(
-        stateTabContent.DSSSubmittedState,
-      );
-      await expect(page.locator(".text-16").nth(14)).toHaveText(
-        eventsContent.submitCaseCIC,
-      );
-    } else if (state == stateTabContent.submittedState) {
-      await expect(page.locator(".text-16").nth(4)).toHaveText(
-        eventsContent.createCase,
-      );
-      await expect(page.locator(".text-16").nth(5)).toContainText(time);
-      await expect(page.locator(".text-16").nth(6)).toHaveText(
-        authorsContent.automatedCaseworker,
-      );
-      await expect(page.locator(".text-16").nth(8)).toContainText(time);
-      await expect(page.locator(".text-16").nth(10)).toHaveText(
-        authorsContent.automatedCaseworker,
-      );
-      await expect(page.locator(".text-16").nth(12)).toHaveText(
-        stateTabContent.submittedState,
-      );
-      await expect(page.locator(".text-16").nth(14)).toHaveText(
-        eventsContent.createCase,
+  async checkPageInfo(
+    page: Page,
+    allEvents: allEvents[],
+    eventTimes: string[],
+    user: UserRole,
+    state: string,
+  ): Promise<void> {
+    for (let i = 0; i < allEvents.length; i++) {
+      if (allEvents.length > 1 && i == 0) {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`a.text-16:text-is("${allEvents[i]}")`),
+          1,
+        );
+        if (eventTimes[i] === eventTimes[i + 1]) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
+            3,
+          );
+        } else {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
+            1,
+          );
+        }
+      } else {
+        if (allEvents.length > 1 && eventTimes[i] === eventTimes[i - 1]) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
+            3,
+          );
+        } else {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
+            2,
+          );
+        }
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`a.text-16:text-is("${allEvents[i]}")`),
+          1,
+        );
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`span.text-16:text-is("${allEvents[i]}")`),
+          1,
+        );
+      }
+      if (user == "caseWorker") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `span.text-16:text-is("${authorsContent.automatedCaseworker}")`,
+          ),
+          allEvents.length + 1,
+        );
+      } else if (user == "citizen") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `span.text-16:text-is("${authorsContent.automatedCitizen}")`,
+          ),
+          allEvents.length + 1,
+        );
+      }
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`span.text-16:text-is("${state}")`),
+        1,
       );
     }
   },

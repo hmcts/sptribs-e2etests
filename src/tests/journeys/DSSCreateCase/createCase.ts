@@ -14,6 +14,7 @@ import uploadSupportingDocumentsPage from "../../pages/DSSCreateCase/uploadSuppo
 import uploadOtherInformationPage from "../../pages/DSSCreateCase/uploadOtherInformationPage.ts";
 import checkYourAnswersPage from "../../pages/DSSCreateCase/checkYourAnswersPage.ts";
 import applicationSubmittedPage from "../../pages/DSSCreateCase/applicationSubmittedPage.ts";
+import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
 async function createFEApplication(
   page: Page,
@@ -227,12 +228,13 @@ async function handleCompleteApplication(
     page,
     accessibilityTest,
     caseNumber,
-    "DSS-Submitted",
+    stateTab_content.DSSSubmittedState,
     representationPresent,
     representationQualified,
     time,
     uploadOtherInfo,
     multipleDocuments,
+    "citizen",
   );
 }
 

@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/buildCase/confirm_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ConfirmPage = {
   checkPageLoads(
@@ -8,7 +9,7 @@ type ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void>;
-  continueOn(page: Page): Promise<void>;
+  continueOn(page: Page): Promise<string>;
 };
 
 const buildCaseConfirmPage: ConfirmPage = {
@@ -31,10 +32,11 @@ const buildCaseConfirmPage: ConfirmPage = {
     }
   },
 
-  async continueOn(page: Page): Promise<void> {
+  async continueOn(page: Page): Promise<string> {
     await page
       .getByRole("button", { name: "Close and Return to case details" })
       .click();
+    return await commonHelpers.getTimestamp();
   },
 };
 

@@ -1,6 +1,12 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
-import { caseRegion, Category, ContactPreference, Scheme, SubCategory } from "../../helpers/commonHelpers.ts";
+import {
+  caseRegion,
+  Category,
+  ContactPreference,
+  Scheme,
+  SubCategory,
+} from "../../helpers/commonHelpers.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
 import caseFilterPage from "../../pages/CaseAPI/createCase/caseFilterPage.ts";

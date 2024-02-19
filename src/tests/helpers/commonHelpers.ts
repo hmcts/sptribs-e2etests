@@ -234,3 +234,8 @@ export type caseRegion =
   | "North East"
   | "North West"
   | "Wales & South West";
+
+export type allEvents =
+  | "Submit case (cic)"
+  | "Create Case"
+  | "Case: Build case";
