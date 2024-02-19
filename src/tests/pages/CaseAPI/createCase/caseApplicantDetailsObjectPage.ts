@@ -6,7 +6,6 @@ import commonHelpers, {
 import caseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
 
 type CaseApplicantDetailsObjectPage = {
-  continue: string;
   findAddress: string;
   fullName: string;
   phoneNumber: string;
@@ -21,7 +20,6 @@ type CaseApplicantDetailsObjectPage = {
 };
 
 const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
-  continue: '[type="submit"]',
   findAddress: ".button-30",
   fullName: "#cicCaseApplicantFullName",
   phoneNumber: "#cicCaseApplicantPhoneNumber",
@@ -110,7 +108,7 @@ const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
       );
       await commonHelpers.postcodeHandler(page, "Applicant");
     }
-    await page.click(this.continue);
+    await commonHelpers.clickContinueButton(page);
   },
 };
 

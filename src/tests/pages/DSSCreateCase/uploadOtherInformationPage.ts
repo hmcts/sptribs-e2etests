@@ -3,17 +3,16 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadOtherInformationPage = {
   fields: {
     dropDown: string;
     uploadFileButton: string;
-    fileUploadedOption: string;
+
     documentRelevance: string;
     additionalInfo: string;
   };
-  continueButton: string;
-  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -33,13 +32,10 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   fields: {
     dropDown: ".govuk-details__summary-text",
     uploadFileButton: "#file-upload-1",
-    fileUploadedOption: 'button[type="upload document"]',
+
     documentRelevance: "#documentRelevance",
     additionalInfo: "#additionalInformation",
   },
-
-  continueButton: "#main-form-submit",
-  backButton: ".govuk-back-link",
 
   async checkPageLoads(
     page: Page,
@@ -201,7 +197,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
       await page
         .locator(this.fields.uploadFileButton)
         .setInputFiles(config.testWordFile);
-      await page.click(this.fields.fileUploadedOption);
+      await commonHelpers.clickUploadButton(page);
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
       );
@@ -222,7 +218,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testWordFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(1)).toContainText(
           path.basename(config.testWordFile),
         );
@@ -232,7 +228,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testWordFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(2)).toContainText(
           path.basename(config.testWordFile),
         );
@@ -242,7 +238,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testWordFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(3)).toContainText(
           path.basename(config.testWordFile),
         );
@@ -259,7 +255,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         uploadOtherInformationContent.additionalInfo,
       );
     }
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
@@ -268,7 +264,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadOtherInformationContent.errorBannerCy,
         );
@@ -280,7 +276,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadOtherInformationContent.errorBanner,
         );
@@ -292,7 +288,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await page.click(this.backButton);
+    await commonHelpers.clickBackButton(page);
   },
 };
 

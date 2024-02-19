@@ -5,7 +5,6 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import config from "../../../config.ts";
 
 type caseDocumentsUploadObjectPage = {
-  continue: string;
   addNew: string;
   addNewBottom: string;
   remove: string;
@@ -16,7 +15,6 @@ type caseDocumentsUploadObjectPage = {
 };
 
 const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
-  continue: '[type="submit"]',
   addNew: ".write-collection-add-item__top",
   addNewBottom: ".write-collection-add-item__bottom",
   remove: ".button-secondary",
@@ -77,7 +75,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
         config.testFile,
       );
     }
-    await page.click(this.continue);
+    await commonHelpers.clickContinueButton(page);
   },
 };
 

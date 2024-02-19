@@ -18,6 +18,9 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
+  clickContinueButton(page: Page): Promise<void>;
+  clickBackButton(page: Page): Promise<void>;
+  clickUploadButton(page: Page): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -163,6 +166,19 @@ const commonHelpers: CommonHelpers = {
     for (let i = 0; i < count; i++) {
       await expect(locator.nth(i)).toBeVisible();
     }
+  },
+
+  async clickContinueButton(page: Page): Promise<void> {
+    await page.getByRole("button", { name: "Continue" }).click();
+  },
+
+  async clickBackButton(page: Page): Promise<void> {
+    await page.locator(".govuk-back-link").click();
+    await page.reload();
+  },
+
+  async clickUploadButton(page: Page): Promise<void> {
+    await page.getByRole("button", { name: "Upload file" }).click();
   },
 };
 
