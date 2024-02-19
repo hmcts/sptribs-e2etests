@@ -565,7 +565,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
     );
   });
 
-  test.only("Test all back buttons on the Frontend application", async ({
+  test("Test all back buttons on the Frontend application", async ({
     page,
   }) => {
     const cy = false,

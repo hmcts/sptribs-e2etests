@@ -9,7 +9,7 @@ type UploadSupportingDocumentsPage = {
   fields: {
     dropDown: string;
     uploadFileButton: string;
-    fileUploadedOption: string;
+    
   };
 
   checkPageLoads(
@@ -30,7 +30,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
   fields: {
     dropDown: ".govuk-details__summary-text",
     uploadFileButton: "#file-upload-1",
-    fileUploadedOption: 'button[type="upload document"]',
+    
   },
 
   async checkPageLoads(
@@ -113,7 +113,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testFile);
-    await page.click(this.fields.fileUploadedOption);
+    await commonHelpers.clickUploadButton(page);
     await expect(page.locator(".uploadedFile").first()).toContainText(
       path.basename(config.testFile),
     );
@@ -138,7 +138,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(1)).toContainText(
           path.basename(config.testFile),
         );
@@ -148,7 +148,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(2)).toContainText(
           path.basename(config.testFile),
         );
@@ -158,7 +158,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(3)).toContainText(
           path.basename(config.testFile),
         );
@@ -183,7 +183,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadSupportingDocumentsContent.errorBannerCy,
         );
@@ -202,7 +202,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadSupportingDocumentsContent.errorBanner,
         );

@@ -9,7 +9,7 @@ type UploadAppealFormPage = {
   fields: {
     dropDown: string;
     uploadFileButton: string;
-    fileUploadedOption: string;
+    
   };
   checkPageLoads(
     page: Page,
@@ -29,7 +29,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
   fields: {
     dropDown: ".govuk-details__summary-text",
     uploadFileButton: "#file-upload-1",
-    fileUploadedOption: 'button[type="upload document"]',
+    
   },
 
   async checkPageLoads(
@@ -124,7 +124,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testPdfFile);
-    await page.click(this.fields.fileUploadedOption);
+    await commonHelpers.clickUploadButton(page);
     await expect(page.locator(".uploadedFile").first()).toContainText(
       path.basename(config.testPdfFile),
     );
@@ -149,7 +149,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testPdfFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(1)).toContainText(
           path.basename(config.testPdfFile),
         );
@@ -159,7 +159,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testPdfFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(2)).toContainText(
           path.basename(config.testPdfFile),
         );
@@ -169,7 +169,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testPdfFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".uploadedFile").nth(3)).toContainText(
           path.basename(config.testPdfFile),
         );
@@ -194,7 +194,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadAppealFormContent.errorBannerCy,
         );
@@ -213,7 +213,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
-        await page.click(this.fields.fileUploadedOption);
+        await commonHelpers.clickUploadButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadAppealFormContent.errorBanner,
         );

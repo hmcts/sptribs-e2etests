@@ -406,7 +406,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
   },
 
   async continueOn(page: Page): Promise<string> {
-    await commonHelpers.clickContinueButton(page);
+    await page.getByRole("button", { name: "Accept and send" }).click();
     return await commonHelpers.getTimestamp();
   },
 
