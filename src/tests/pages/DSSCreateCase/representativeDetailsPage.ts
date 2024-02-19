@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentativeDetailsPage = {
   fields: {
@@ -10,7 +11,6 @@ type RepresentativeDetailsPage = {
     representativeEmailAddress: string;
   };
   continueButton: string;
-  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -30,7 +30,6 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
   },
 
   continueButton: "#main-form-submit",
-  backButton: ".govuk-back-link",
 
   async checkPageLoads(
     page: Page,
@@ -200,7 +199,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await page.click(this.backButton);
+    await commonHelpers.clickBackButton(page);
   },
 };
 

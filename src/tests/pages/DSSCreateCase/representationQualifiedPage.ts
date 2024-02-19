@@ -1,12 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representationQualifiedContent from "../../fixtures/content/DSSCreateCase/RepresentationQualified_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentationQualifiedPage = {
   qualifiedYes: string;
   qualifiedNo: string;
   continueButton: string;
-  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -21,7 +21,6 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
   qualifiedYes: "#representationQualified",
   qualifiedNo: "#representationQualified-2",
   continueButton: "#main-form-submit",
-  backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
@@ -98,7 +97,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
   },
 
   async pressBackButton(page: Page) {
-    await page.click(this.backButton);
+    await commonHelpers.clickBackButton(page);
   },
 };
 

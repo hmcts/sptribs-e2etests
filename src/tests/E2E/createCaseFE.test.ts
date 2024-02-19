@@ -196,7 +196,7 @@ async function normalFEFlow(
     );
   }
   if (backButtonJourney) {
-    await handleBackButtonJourney(page);
+    await handleBackButtonJourney(page, cy, accessibilityTest);
   }
 }
 
@@ -288,14 +288,21 @@ async function handleCompleteApplication(
   );
 }
 
-async function handleBackButtonJourney(page: Page) {
+async function handleBackButtonJourney(page: Page, cy: boolean, accessibilityTest: boolean) {
   await checkYourAnswersPage.pressBackButton(page);
+  await uploadOtherInformationPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadOtherInformationPage.pressBackButton(page);
+  await uploadSupportingDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadSupportingDocumentsPage.pressBackButton(page);
+  await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadAppealFormPage.pressBackButton(page);
+  await representativeDetailsPage.checkPageLoads(page, cy, accessibilityTest);
   await representativeDetailsPage.pressBackButton(page);
+  await representationQualifiedPage.checkPageLoads(page, cy, accessibilityTest);
   await representationQualifiedPage.pressBackButton(page);
+  await representationPage.checkPageLoads(page, cy, accessibilityTest);
   await representationPage.pressBackButton(page);
+  await subjectContactDetailsPage.checkPageLoads(page, cy, accessibilityTest);
   await subjectContactDetailsPage.pressBackButton(page);
 }
 
@@ -316,7 +323,7 @@ export {
 };
 
 test.describe("DSS Create case tests. @DSSCreate", () => {
-  test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
+  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
     const cy = false,
@@ -550,7 +557,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
     );
   });
 
-  test("Test all back buttons on the Frontend application", async ({
+  test.only("Test all back buttons on the Frontend application", async ({
     page,
   }) => {
     const cy = false,

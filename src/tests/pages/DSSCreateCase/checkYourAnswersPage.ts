@@ -11,7 +11,6 @@ import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/
 
 type CheckYourAnswersPage = {
   continueButton: string;
-  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -32,7 +31,6 @@ type CheckYourAnswersPage = {
 
 const checkYourAnswersPage: CheckYourAnswersPage = {
   continueButton: "#main-form-submit",
-  backButton: ".govuk-back-link",
 
   async checkPageLoads(
     page: Page,
@@ -416,7 +414,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await page.click(this.backButton);
+    await commonHelpers.clickBackButton(page);
   },
 };
 

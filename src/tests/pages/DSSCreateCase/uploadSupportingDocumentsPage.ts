@@ -3,6 +3,7 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadSupportingDocumentsContent from "../../fixtures/content/DSSCreateCase/UploadSupportingDocuments_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadSupportingDocumentsPage = {
   fields: {
@@ -11,7 +12,6 @@ type UploadSupportingDocumentsPage = {
     fileUploadedOption: string;
   };
   continueButton: string;
-  backButton: string;
 
   checkPageLoads(
     page: Page,
@@ -35,7 +35,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
   },
 
   continueButton: "#main-form-submit",
-  backButton: ".govuk-back-link",
 
   async checkPageLoads(
     page: Page,
@@ -218,7 +217,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await page.click(this.backButton);
+    await commonHelpers.clickBackButton(page);
   },
 };
 

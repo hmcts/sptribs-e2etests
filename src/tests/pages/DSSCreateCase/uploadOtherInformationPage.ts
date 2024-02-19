@@ -3,6 +3,7 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadOtherInformationPage = {
   fields: {
@@ -13,7 +14,6 @@ type UploadOtherInformationPage = {
     additionalInfo: string;
   };
   continueButton: string;
-  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -39,7 +39,6 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   },
 
   continueButton: "#main-form-submit",
-  backButton: ".govuk-back-link",
 
   async checkPageLoads(
     page: Page,
@@ -292,7 +291,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await page.click(this.backButton);
+    await commonHelpers.clickBackButton(page);
   },
 };
 

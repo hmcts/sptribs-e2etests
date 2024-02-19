@@ -19,6 +19,7 @@ interface CommonHelpers {
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   clickContinueButton(page: Page): Promise<void>;
+  clickBackButton(page: Page): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -168,6 +169,11 @@ const commonHelpers: CommonHelpers = {
 
   async clickContinueButton(page: Page): Promise<void> {
     await page.getByRole("button", {name: "Continue"}).click();
+  },
+
+  async clickBackButton(page: Page): Promise<void> {
+    await page.locator((".govuk-back-link")).click();
+    await page.reload();
   }
 };
 
