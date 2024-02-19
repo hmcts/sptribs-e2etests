@@ -6,7 +6,7 @@ pipelineTriggers([cron('H 8 * * 1-5')]),
 parameters([
   string(name: 'SPTRIBS_FRONTEND_URL', defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net', description: 'The DSS URL to test against'),
   string(name: 'SPTRIBS_CASEAPI_URL', defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases', description: 'The Case-API URL to test against'),
-  string(name: 'SPTRIBS_UPDATE_URL', defaultValue: 'null', description: 'The Update Case URL to test against'),
+  string(name: 'SPTRIBS_UPDATE_URL', defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/dss-update/start', description: 'The Update Case URL to test against'),
   string(name: 'FUNCTIONAL_TESTS_WORKERS',
     defaultValue: '5',
     description: 'Number of workers running functional tests'),
