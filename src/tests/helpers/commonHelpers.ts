@@ -18,6 +18,7 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
+  clickContinueButton(page: Page): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -164,6 +165,10 @@ const commonHelpers: CommonHelpers = {
       await expect(locator.nth(i)).toBeVisible();
     }
   },
+
+  async clickContinueButton(page: Page): Promise<void> {
+    await page.getByRole("button", {name: "Continue"}).click();
+  }
 };
 
 export default commonHelpers;

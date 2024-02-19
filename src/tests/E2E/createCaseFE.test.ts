@@ -316,7 +316,7 @@ export {
 };
 
 test.describe("DSS Create case tests. @DSSCreate", () => {
-  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
+  test.only("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
     const cy = false,

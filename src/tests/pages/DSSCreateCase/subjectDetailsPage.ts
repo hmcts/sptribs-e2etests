@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type SubjectDetailsPage = {
   fields: {
@@ -9,7 +10,6 @@ type SubjectDetailsPage = {
     monthOfBirth: string;
     yearOfBirth: string;
   };
-  continueButton: string;
   rejectCookiesButton: string;
   checkPageLoads(
     page: Page,
@@ -27,8 +27,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
     monthOfBirth: "#subjectDateOfBirth-month",
     yearOfBirth: "#subjectDateOfBirth-year",
   },
-  continueButton: "#main-form-submit",
-  rejectCookiesButton: ".cookie-banner-reject-button",
+  rejectCookiesButton: "Reject analytics cookies",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
@@ -101,7 +100,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
   },
 
   async fillInFields(page: Page) {
-    await page.click(this.rejectCookiesButton);
+    await page.getByRole("button", {name: this.rejectCookiesButton}).click();
     await page.fill(this.fields.fullName, subjectDetailsContent.name);
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
     await page.fill(
@@ -109,7 +108,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
       subjectDetailsContent.monthOfBirth,
     );
     await page.fill(this.fields.yearOfBirth, subjectDetailsContent.yearOfBirth);
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
@@ -118,7 +117,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
         await expect(page.locator(".govuk-link.language")).toHaveText(
           "English",
         );
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectDetailsContent.errorBannerCy,
         );
@@ -136,7 +135,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
         );
         break;
       default:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectDetailsContent.errorBanner,
         );
