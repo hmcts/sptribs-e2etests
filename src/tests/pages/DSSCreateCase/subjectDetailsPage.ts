@@ -100,7 +100,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
   },
 
   async fillInFields(page: Page) {
-    await page.getByRole("button", {name: this.rejectCookiesButton}).click();
+    await page.getByRole("button", { name: this.rejectCookiesButton }).click();
     await page.fill(this.fields.fullName, subjectDetailsContent.name);
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
     await page.fill(

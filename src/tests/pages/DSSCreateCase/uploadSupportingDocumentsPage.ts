@@ -11,7 +11,6 @@ type UploadSupportingDocumentsPage = {
     uploadFileButton: string;
     fileUploadedOption: string;
   };
-  continueButton: string;
 
   checkPageLoads(
     page: Page,
@@ -33,8 +32,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     uploadFileButton: "#file-upload-1",
     fileUploadedOption: 'button[type="upload document"]',
   },
-
-  continueButton: "#main-form-submit",
 
   async checkPageLoads(
     page: Page,
@@ -135,7 +132,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     }
     switch (multipleDocuments) {
       case false:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         break;
       case true:
         await page
@@ -168,7 +165,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         await expect(page.locator(".uploadedFile").nth(3)).toContainText(
           uploadSupportingDocumentsContent.deleteButton,
         );
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         break;
     }
   },
@@ -176,7 +173,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadSupportingDocumentsContent.errorBannerCy,
         );
@@ -195,7 +192,7 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         );
         break;
       default:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           uploadSupportingDocumentsContent.errorBanner,
         );

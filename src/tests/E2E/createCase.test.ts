@@ -539,7 +539,9 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test every page. @accessibilityCaseAPI", async ({ page }) => {
+test("Accessibility test every page. @accessibilityCaseAPI", async ({
+  page,
+}) => {
   await createCase(
     page,
     "caseWorker",

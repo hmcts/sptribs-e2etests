@@ -6,7 +6,6 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 type RepresentationQualifiedPage = {
   qualifiedYes: string;
   qualifiedNo: string;
-  continueButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -20,7 +19,6 @@ type RepresentationQualifiedPage = {
 const representationQualifiedPage: RepresentationQualifiedPage = {
   qualifiedYes: "#representationQualified",
   qualifiedNo: "#representationQualified-2",
-  continueButton: "#main-form-submit",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
@@ -64,13 +62,13 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     } else {
       await page.click(this.qualifiedNo);
     }
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.errorBannerCy,
         );
@@ -82,7 +80,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
         ).toContainText(representationQualifiedContent.selectionErrorCy);
         break;
       default:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.errorBanner,
         );

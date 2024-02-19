@@ -10,7 +10,6 @@ type RepresentativeDetailsPage = {
     representativeContactNumber: string;
     representativeEmailAddress: string;
   };
-  continueButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -28,8 +27,6 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
     representativeContactNumber: "#representativeContactNumber",
     representativeEmailAddress: "#representativeEmailAddress",
   },
-
-  continueButton: "#main-form-submit",
 
   async checkPageLoads(
     page: Page,
@@ -106,13 +103,13 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
       this.fields.representativeEmailAddress,
       representativeDetailsContent.emailAddress,
     );
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representativeDetailsContent.errorBannerCy,
         );
@@ -144,7 +141,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           this.fields.representativeEmailAddress,
           representativeDetailsContent.partEmailErrorCy,
         );
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(
           page.locator("[href='#representativeEmailAddress']"),
         ).toHaveText(representativeDetailsContent.partEmailErrorCy);
@@ -154,7 +151,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         await page.fill(this.fields.representativeEmailAddress, "");
         break;
       default:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representativeDetailsContent.errorBanner,
         );
@@ -186,7 +183,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           this.fields.representativeEmailAddress,
           representativeDetailsContent.partEmailEntry,
         );
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(
           page.locator("[href='#representativeEmailAddress']"),
         ).toHaveText(representativeDetailsContent.partEmailError);

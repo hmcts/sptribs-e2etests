@@ -6,7 +6,6 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 type RepresentationPage = {
   representationYes: string;
   representationNo: string;
-  continueButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -20,7 +19,6 @@ type RepresentationPage = {
 const representationPage: RepresentationPage = {
   representationYes: "#representation",
   representationNo: "#representation-2",
-  continueButton: "#main-form-submit",
 
   async checkPageLoads(
     page: Page,
@@ -65,13 +63,13 @@ const representationPage: RepresentationPage = {
     } else {
       await page.click(this.representationNo);
     }
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationContent.errorBannerCy,
         );
@@ -83,7 +81,7 @@ const representationPage: RepresentationPage = {
         );
         break;
       default:
-        await page.click(this.continueButton);
+        await commonHelpers.clickContinueButton(page);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationContent.errorBanner,
         );

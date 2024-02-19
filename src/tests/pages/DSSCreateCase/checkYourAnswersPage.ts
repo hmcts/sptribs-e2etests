@@ -10,7 +10,6 @@ import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/R
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 
 type CheckYourAnswersPage = {
-  continueButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -30,8 +29,6 @@ type CheckYourAnswersPage = {
 };
 
 const checkYourAnswersPage: CheckYourAnswersPage = {
-  continueButton: "#main-form-submit",
-
   async checkPageLoads(
     page: Page,
     cy: boolean,
@@ -409,7 +406,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
   },
 
   async continueOn(page: Page): Promise<string> {
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
     return await commonHelpers.getTimestamp();
   },
 

@@ -288,11 +288,19 @@ async function handleCompleteApplication(
   );
 }
 
-async function handleBackButtonJourney(page: Page, cy: boolean, accessibilityTest: boolean) {
+async function handleBackButtonJourney(
+  page: Page,
+  cy: boolean,
+  accessibilityTest: boolean,
+) {
   await checkYourAnswersPage.pressBackButton(page);
   await uploadOtherInformationPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadOtherInformationPage.pressBackButton(page);
-  await uploadSupportingDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
+  await uploadSupportingDocumentsPage.checkPageLoads(
+    page,
+    cy,
+    accessibilityTest,
+  );
   await uploadSupportingDocumentsPage.pressBackButton(page);
   await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
   await uploadAppealFormPage.pressBackButton(page);

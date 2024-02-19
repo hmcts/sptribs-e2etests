@@ -13,7 +13,6 @@ type UploadOtherInformationPage = {
     documentRelevance: string;
     additionalInfo: string;
   };
-  continueButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -37,8 +36,6 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
     documentRelevance: "#documentRelevance",
     additionalInfo: "#additionalInformation",
   },
-
-  continueButton: "#main-form-submit",
 
   async checkPageLoads(
     page: Page,
@@ -258,7 +255,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         uploadOtherInformationContent.additionalInfo,
       );
     }
-    await page.click(this.continueButton);
+    await commonHelpers.clickContinueButton(page);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {

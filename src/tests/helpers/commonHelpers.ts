@@ -168,13 +168,13 @@ const commonHelpers: CommonHelpers = {
   },
 
   async clickContinueButton(page: Page): Promise<void> {
-    await page.getByRole("button", {name: "Continue"}).click();
+    await page.getByRole("button", { name: "Continue" }).click();
   },
 
   async clickBackButton(page: Page): Promise<void> {
-    await page.locator((".govuk-back-link")).click();
+    await page.locator(".govuk-back-link").click();
     await page.reload();
-  }
+  },
 };
 
 export default commonHelpers;
