@@ -1,4 +1,5 @@
 const landingPageContent = {
+  header: "Update an appeal to the First-tier Tribunal",
   pageTitle: "Update an existing First-tier Tribunal case",
   hintMessage:
     "Use this service to update a case that has already been submitted to the First-tier Tribunal.",

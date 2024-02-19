@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import landingPage from "../pages/DSSUpdateCase/landingPage.ts";
 
-test.describe("DSS Update case tests. @DSSUpdate", () => {
+test.describe.only("DSS Update case tests. @DSSUpdate", () => {
   test.only("Check for the landing page.", async ({ page }) => {
     await landingPage.seeTheLandingPage(page, false);
     await landingPage.continueOn(page);
