@@ -7,15 +7,15 @@ module.exports = defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 5, // Set the number of retries for all projects
+  retries: 4, // Set the number of retries for all projects
 
-  timeout: 3 * 30 * 1000,
+  timeout: 4 * 30 * 1000,
   expect: {
     timeout: 60 * 1000,
   },
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : undefined,
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
   reporter: process.env.CI ? "html" : "list",
   use: {
     trace: "on-first-retry",

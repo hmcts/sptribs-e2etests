@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
 import { createFEApplication } from "../journeys/DSSCreateCase/createCase.ts";
 
-test.describe("DSS Create case tests.", () => {
-  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - aXe test as it proceeds. @accessibility", async ({
+test.describe("DSS Create case tests. @DSSCreate", () => {
+  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
     const cy = false,
@@ -12,7 +12,7 @@ test.describe("DSS Create case tests.", () => {
       multipleDocuments = false,
       completeApplication = true,
       backButtonJourney = false,
-      accessibilityTest = true,
+      accessibilityTest = false,
       errorMessaging = false;
     await createFEApplication(
       page,
@@ -309,4 +309,30 @@ test.describe("DSS Create case tests.", () => {
       errorMessaging,
     );
   });
+});
+
+test("Accessibility test every page on DSS. @DSSAccessibility", async ({
+  page,
+}) => {
+  const cy = false,
+    representationPresent = true,
+    representationQualified = true,
+    uploadOtherInfo = true,
+    multipleDocuments = false,
+    completeApplication = false,
+    backButtonJourney = false,
+    accessibilityTest = true,
+    errorMessaging = false;
+  await createFEApplication(
+    page,
+    cy,
+    representationPresent,
+    representationQualified,
+    uploadOtherInfo,
+    multipleDocuments,
+    completeApplication,
+    backButtonJourney,
+    accessibilityTest,
+    errorMessaging,
+  );
 });

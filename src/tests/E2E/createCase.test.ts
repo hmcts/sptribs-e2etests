@@ -1,30 +1,7 @@
 import { test } from "@playwright/test";
 import { createCase } from "../journeys/CaseAPI/createCase.ts";
 
-test.describe("Case-API Create case tests.", () => {
-  test("Caseworker - Assessment - Other Category, Email Contact @accessibility", async ({
-    page,
-  }) => {
-    await createCase(
-      page,
-      "caseWorker",
-      true,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      true,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      true,
-    );
-  });
-
+test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Fatal Category, Email Contact", async ({
     page,
   }) => {
@@ -438,4 +415,27 @@ test.describe("Case-API Create case tests.", () => {
       true,
     );
   });
+});
+
+test("Accessibility test every page. @accessibilityCaseAPI", async ({
+  page,
+}) => {
+  await createCase(
+    page,
+    "caseWorker",
+    true,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    true,
+    true,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    true,
+  );
 });
