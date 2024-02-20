@@ -18,6 +18,10 @@
     "test:CrossbrowserCaseAPI": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project webkit --project firefox --grep @CaseAPI",
     "test:CrossDeviceCaseAPI": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project MobileSafari --project MobileChrome --grep @CaseAPI",
     "test:AccessibilityCaseAPI": "yarn playwright install && npx playwright test --project chromium --grep @accessibilityCaseAPI",
+    "test:FunctionalUC": "yarn playwright install && npx playwright test --project chromium --grep @DSSUpdate",
+    "test:CrossbrowserUC": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project webkit --project firefox --grep @DSSUpdate",
+    "test:CrossDeviceUC": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project MobileSafari --project MobileChrome --grep @DSSUpdate",
+    "test:AccessibilityUC": "yarn playwright install && npx playwright test --project chromium --grep @UpdateAccessibility",
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --grep @accessibility --project chromium",
     "lint": "echo 'lint not installed' && exit 0"
