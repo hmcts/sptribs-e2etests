@@ -1,9 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseObjectsSubjects_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectsSubjects_content.ts";
-import commonHelpers, { SubCategory } from "../../../helpers/commonHelpers.ts";
+import { SubCategory } from "../../../helpers/commonHelpers.ts";
 
 type CaseObjectsSubjectsPage = {
+  continue: string;
   subjectSelectBox: string;
   representativeSelectBox: string;
   applicantSelectBox: string;
@@ -17,6 +18,7 @@ type CaseObjectsSubjectsPage = {
 };
 
 const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
+  continue: '[type="submit"]',
   subjectSelectBox: "#cicCasePartiesCIC-SubjectCIC",
   representativeSelectBox: "#cicCasePartiesCIC-RepresentativeCIC",
   applicantSelectBox: "#cicCasePartiesCIC-ApplicantCIC",
@@ -64,7 +66,7 @@ const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
     if (applicant) {
       await page.click(this.applicantSelectBox);
     }
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continue);
   },
 };
 

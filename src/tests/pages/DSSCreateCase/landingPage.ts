@@ -76,7 +76,7 @@ const landingPage: LandingPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.getByRole("button", { name: "Start now" }).click();
+    await page.click(landingPage.startButton);
   },
 };
 

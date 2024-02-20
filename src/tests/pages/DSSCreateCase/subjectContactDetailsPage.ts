@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
-import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type SubjectContactDetailsPage = {
   fields: {
@@ -9,6 +8,8 @@ type SubjectContactDetailsPage = {
     mobileNumber: string;
   };
   contactAgreeBox: string;
+  continueButton: string;
+  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -26,6 +27,8 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   },
 
   contactAgreeBox: "#subjectAgreeContact",
+  continueButton: "#main-form-submit",
+  backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
@@ -82,13 +85,13 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
       subjectContactDetailsContent.contactNumber,
     );
     await page.click(this.contactAgreeBox);
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continueButton);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
     switch (cy) {
       case true:
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectContactDetailsContent.errorBannerCy,
         );
@@ -114,7 +117,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           this.fields.email,
           subjectContactDetailsContent.partEmailEntry,
         );
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
           subjectContactDetailsContent.partEmailErrorCy,
         );
@@ -124,7 +127,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
         await page.fill(this.fields.email, "");
         break;
       default:
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           subjectContactDetailsContent.errorBanner,
         );
@@ -150,7 +153,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           this.fields.email,
           subjectContactDetailsContent.partEmailEntry,
         );
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
           subjectContactDetailsContent.partEmailError,
         );
@@ -163,7 +166,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   },
 
   async pressBackButton(page) {
-    await commonHelpers.clickBackButton(page);
+    await page.click(this.backButton);
   },
 };
 

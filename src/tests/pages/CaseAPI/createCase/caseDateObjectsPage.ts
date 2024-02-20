@@ -1,9 +1,9 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CaseDateObjectsPage = {
+  continue: string;
   day: string;
   month: string;
   year: string;
@@ -12,6 +12,7 @@ type CaseDateObjectsPage = {
 };
 
 const caseDateObjectsPage: CaseDateObjectsPage = {
+  continue: '[type="submit"]',
   day: "#cicCaseCaseReceivedDate-day",
   month: "#cicCaseCaseReceivedDate-month",
   year: "#cicCaseCaseReceivedDate-year",
@@ -44,9 +45,9 @@ const caseDateObjectsPage: CaseDateObjectsPage = {
     await page.fill(this.day, caseDateObjects_content.day);
     await page.fill(this.month, caseDateObjects_content.month);
     await page.fill(this.year, caseDateObjects_content.year);
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continue);
     if (page.url().includes("casedateObjects")) {
-      await commonHelpers.clickContinueButton(page); // This is here in the chance that the "continue" button does not continue
+      await page.click(this.continue); // This is here in the chance that the "continue" button does not continue
     }
   },
 };

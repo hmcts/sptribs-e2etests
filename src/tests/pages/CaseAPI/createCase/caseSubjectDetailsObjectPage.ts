@@ -6,6 +6,7 @@ import commonHelpers, {
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CaseSubjectDetailsObjectPage = {
+  continue: string;
   findAddress: string;
   fullName: string;
   phoneNumber: string;
@@ -20,6 +21,7 @@ type CaseSubjectDetailsObjectPage = {
 };
 
 const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
+  continue: '[type="submit"]',
   findAddress: ".button-30",
   fullName: "#cicCaseFullName",
   phoneNumber: "#cicCasePhoneNumber",
@@ -103,7 +105,7 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
     } else if (contactPreference === "Post") {
       await page.click(this.selectPost);
     }
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continue);
   },
 };
 

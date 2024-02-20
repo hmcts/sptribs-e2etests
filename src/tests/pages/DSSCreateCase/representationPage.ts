@@ -1,11 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representationContent from "../../fixtures/content/DSSCreateCase/Representation_content.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentationPage = {
   representationYes: string;
   representationNo: string;
+  continueButton: string;
+  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -19,6 +20,8 @@ type RepresentationPage = {
 const representationPage: RepresentationPage = {
   representationYes: "#representation",
   representationNo: "#representation-2",
+  continueButton: "#main-form-submit",
+  backButton: ".govuk-back-link",
 
   async checkPageLoads(
     page: Page,
@@ -63,13 +66,13 @@ const representationPage: RepresentationPage = {
     } else {
       await page.click(this.representationNo);
     }
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continueButton);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
     switch (cy) {
       case true:
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationContent.errorBannerCy,
         );
@@ -81,7 +84,7 @@ const representationPage: RepresentationPage = {
         );
         break;
       default:
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationContent.errorBanner,
         );
@@ -96,7 +99,7 @@ const representationPage: RepresentationPage = {
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await commonHelpers.clickBackButton(page);
+    await page.click(this.backButton);
   },
 };
 

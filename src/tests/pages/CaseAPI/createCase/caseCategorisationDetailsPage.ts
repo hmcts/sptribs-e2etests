@@ -1,12 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseCategorisationDetails_content from "../../../fixtures/content/CaseAPI/createCase/caseCategorisationDetails_content.ts";
-import commonHelpers, {
-  Category,
-  SubCategory,
-} from "../../../helpers/commonHelpers.ts";
+import { Category, SubCategory } from "../../../helpers/commonHelpers.ts";
 
 type CaseCategorisationDetailsPage = {
+  continue: string;
   category: string;
   subCategory: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
@@ -18,6 +16,7 @@ type CaseCategorisationDetailsPage = {
 };
 
 const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
+  continue: '[type="submit"]',
   category: "#cicCaseCaseCategory",
   subCategory: "#cicCaseCaseSubcategory",
 
@@ -46,7 +45,7 @@ const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
   ): Promise<void> {
     await page.selectOption(this.category, category);
     await page.selectOption(this.subCategory, subCategory);
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continue);
   },
 };
 
