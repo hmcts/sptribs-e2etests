@@ -10,6 +10,8 @@ import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/R
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 
 type CheckYourAnswersPage = {
+  continueButton: string;
+  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -29,6 +31,9 @@ type CheckYourAnswersPage = {
 };
 
 const checkYourAnswersPage: CheckYourAnswersPage = {
+  continueButton: "#main-form-submit",
+  backButton: ".govuk-back-link",
+
   async checkPageLoads(
     page: Page,
     cy: boolean,
@@ -406,12 +411,12 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
   },
 
   async continueOn(page: Page): Promise<string> {
-    await page.getByRole("button", { name: "Accept and send" }).click();
+    await page.click(this.continueButton);
     return await commonHelpers.getTimestamp();
   },
 
   async pressBackButton(page: Page): Promise<void> {
-    await commonHelpers.clickBackButton(page);
+    await page.click(this.backButton);
   },
 };
 

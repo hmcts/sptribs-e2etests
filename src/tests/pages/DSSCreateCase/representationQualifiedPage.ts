@@ -1,11 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representationQualifiedContent from "../../fixtures/content/DSSCreateCase/RepresentationQualified_content.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentationQualifiedPage = {
   qualifiedYes: string;
   qualifiedNo: string;
+  continueButton: string;
+  backButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
@@ -19,6 +20,8 @@ type RepresentationQualifiedPage = {
 const representationQualifiedPage: RepresentationQualifiedPage = {
   qualifiedYes: "#representationQualified",
   qualifiedNo: "#representationQualified-2",
+  continueButton: "#main-form-submit",
+  backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
@@ -62,13 +65,13 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     } else {
       await page.click(this.qualifiedNo);
     }
-    await commonHelpers.clickContinueButton(page);
+    await page.click(this.continueButton);
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
     switch (cy) {
       case true:
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.errorBannerCy,
         );
@@ -80,7 +83,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
         ).toContainText(representationQualifiedContent.selectionErrorCy);
         break;
       default:
-        await commonHelpers.clickContinueButton(page);
+        await page.click(this.continueButton);
         await expect(page.locator(".govuk-error-summary__title")).toHaveText(
           representationQualifiedContent.errorBanner,
         );
@@ -95,7 +98,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
   },
 
   async pressBackButton(page: Page) {
-    await commonHelpers.clickBackButton(page);
+    await page.click(this.backButton);
   },
 };
 

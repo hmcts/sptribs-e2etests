@@ -6,6 +6,7 @@ import commonHelpers, {
 import caseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseRepresentativeDetailsObject_content.ts";
 
 type CaseRepresentativeDetailsObjectPage = {
+  continue: string;
   findAddress: string;
   fullName: string;
   orgName: string;
@@ -26,6 +27,7 @@ type CaseRepresentativeDetailsObjectPage = {
 
 const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
   {
+    continue: '[type="submit"]',
     findAddress: ".button-30",
     fullName: "#cicCaseRepresentativeFullName",
     orgName: "#cicCaseRepresentativeOrgName",
@@ -128,7 +130,7 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
         );
         await commonHelpers.postcodeHandler(page, "Representative");
       }
-      await commonHelpers.clickContinueButton(page);
+      await page.click(this.continue);
     },
   };
 
