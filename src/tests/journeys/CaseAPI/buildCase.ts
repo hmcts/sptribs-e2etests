@@ -1,12 +1,16 @@
 import { Page } from "@playwright/test";
-import commonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import builtCasePage from "../../pages/CaseAPI/buildCase/buildCasePage.ts";
 import buildCaseConfirmPage from "../../pages/CaseAPI/buildCase/confirmPage.ts";
+import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
+import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
 export async function buildCase(
   page: Page,
   caseNumber: string,
+  previousEvents: allEvents[],
+  eventTimes: string[],
   accessibilityTest: boolean,
 ) {
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
@@ -16,5 +20,21 @@ export async function buildCase(
     page,
     accessibilityTest,
     caseNumber,
+  );
+  const buildCaseTime = await buildCaseConfirmPage.continueOn(page);
+  previousEvents.push(events_content.buildCase);
+  eventTimes.push(buildCaseTime);
+  await historyTabPage.checkPageLoads(
+    page,
+    true,
+    caseNumber,
+    stateTab_content.submittedState,
+  );
+  await historyTabPage.checkPageInfo(
+    page,
+    previousEvents,
+    eventTimes,
+    "caseWorker",
+    stateTab_content.caseManagementState,
   );
 }

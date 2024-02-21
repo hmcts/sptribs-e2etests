@@ -1,11 +1,12 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import {
+  allEvents,
   caseRegion,
   Category,
   ContactPreference,
   Scheme,
-  SubCategory,
+  SubCategory
 } from "../../helpers/commonHelpers.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
@@ -21,6 +22,9 @@ import caseDocumentsUploadObjectPage from "../../pages/CaseAPI/createCase/caseDo
 import caseFurtherDetailsObjectPage from "../../pages/CaseAPI/createCase/caseFurtherDetailsObjectPage.ts";
 import submitPage from "../../pages/CaseAPI/createCase/submitPage.ts";
 import createCaseConfirmPage from "../../pages/CaseAPI/createCase/confirmPage.ts";
+import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
+import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 
 export async function createCase(
   page: Page,
@@ -39,7 +43,7 @@ export async function createCase(
   compensationLinked: boolean,
   tribunalFormsInTime: boolean,
   applicantExplained: boolean,
-): Promise<void> {
+): Promise<string> {
   await caseAPILoginPage.SignInUser(page, user);
   await casesPage.checkPageLoads(page, accessibilityTest);
   await casesPage.createCase(page);
@@ -121,4 +125,30 @@ export async function createCase(
     applicantExplained,
   );
   await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
+  return await createCaseConfirmPage.returnCaseNumber(page);
+}
+
+export async function verifyDetails(
+  page: Page,
+  user: UserRole,
+  accessibilityTest: boolean,
+  caseNumber: string,
+  previousEvents: allEvents[],
+  eventTimes: string[],
+): Promise<void> {
+  previousEvents.push(events_content.createCase);
+  eventTimes.push(await createCaseConfirmPage.closeAndReturnToCase(page));
+  await historyTabPage.checkPageLoads(
+    page,
+    accessibilityTest,
+    caseNumber,
+    stateTab_content.submittedState,
+  );
+  await historyTabPage.checkPageInfo(
+    page,
+    previousEvents,
+    eventTimes,
+    user,
+    stateTab_content.submittedState,
+  );
 }
