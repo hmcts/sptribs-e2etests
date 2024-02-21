@@ -12,7 +12,7 @@ parameters([
     description: 'Number of workers running functional tests'),
   booleanParam(name: 'skipDSSCreateTests', defaultValue: false, description: 'Tick the checkbox for skipping DSS Create tests.'),
   booleanParam(name: 'skipCaseAPITests', defaultValue: false, description: 'Tick the checkbox for skipping Case API tests.'),
-  booleanParam(name: 'skipDSSUpdateTests', defaultValue: true, description: 'Tick the checkbox for skipping DSS Update Case tests.'),
+  booleanParam(name: 'skipDSSUpdateTests', defaultValue: false, description: 'Tick the checkbox for skipping DSS Update Case tests.'),
   ])
 ])
 
