@@ -12,7 +12,7 @@ type StateTabPage = {
     caseNumber: string,
   ): Promise<void>;
   changeToStateTab(page: Page): Promise<void>;
-  checkStateTab(page: Page): Promise<void>;
+  checkStateTab(page: Page, state: string): Promise<void>;
 };
 
 const stateTabPage: StateTabPage = {
@@ -80,10 +80,20 @@ const stateTabPage: StateTabPage = {
     await page.locator(this.caseStateTab).nth(2).click();
   },
 
-  async checkStateTab(page: Page): Promise<void> {
-    await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
-      stateTabContent.caseState + stateTabContent.DSSSubmittedState,
-    );
+  async checkStateTab(page: Page, state: string): Promise<void> {
+    if (state == stateTabContent.DSSSubmittedState) {
+      await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
+        stateTabContent.caseState + stateTabContent.DSSSubmittedState,
+      );
+    } else if (state == stateTabContent.submittedState) {
+      await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
+        stateTabContent.caseState + stateTabContent.submittedState,
+      );
+    } else if (state == stateTabContent.caseManagementState) {
+      await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
+        stateTabContent.caseState + stateTabContent.caseManagementState,
+      );
+    }
   },
 };
 

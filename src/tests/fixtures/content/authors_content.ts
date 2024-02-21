@@ -1,5 +1,6 @@
 const authors_content = {
   automatedCitizen: "Automated CITIZEN",
+  automatedCaseworker: "Automated CASEWORKER",
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",
   buildingAndStreet: "Buckingham Palace",
