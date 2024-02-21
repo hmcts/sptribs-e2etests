@@ -26,7 +26,14 @@ test.describe("Case-API Build case tests.", () => {
       true,
       true,
     );
-    await verifyDetails(page, "caseWorker", true, caseNumber, previousEvents, eventTimes)
+    await verifyDetails(
+      page,
+      "caseWorker",
+      true,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+    );
     await buildCase(page, caseNumber, previousEvents, eventTimes, true);
   });
 });
