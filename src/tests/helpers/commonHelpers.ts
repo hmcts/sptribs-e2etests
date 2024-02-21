@@ -18,6 +18,7 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
+  chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -164,6 +165,14 @@ const commonHelpers: CommonHelpers = {
       await expect(locator.nth(i)).toBeVisible();
     }
   },
+
+  async chooseEventFromDropdown(
+    page: Page,
+    chosenEvent: string,
+  ): Promise<void> {
+    await page.selectOption("#next-step", chosenEvent);
+    await page.getByRole("button", { name: "Go" }).click();
+  },
 };
 
 export default commonHelpers;
@@ -225,3 +234,8 @@ export type caseRegion =
   | "North East"
   | "North West"
   | "Wales & South West";
+
+export type allEvents =
+  | "Submit case (cic)"
+  | "Create Case"
+  | "Case: Build case";
