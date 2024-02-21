@@ -5,6 +5,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import caseFileViewTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseFileViewTab_content.ts";
 import uploadedDocumentsContent from "../../../fixtures/content/CaseAPI/caseTabs/uploadedDocuments_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CaseFileViewTabPage = {
   caseFileViewTab: string;
@@ -80,35 +81,65 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       caseFileViewTabContent.pageTitle,
     );
-    await expect(page.locator(".node__name--folder").nth(0)).toHaveText(
-      caseFileViewTabContent.textOnPage1,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage1}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(1)).toHaveText(
-      caseFileViewTabContent.textOnPage2,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage2}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(2)).toHaveText(
-      caseFileViewTabContent.textOnPage3,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage3}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(3)).toHaveText(
-      caseFileViewTabContent.textOnPage4,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage4}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(4)).toHaveText(
-      caseFileViewTabContent.textOnPage5,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage5}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(5)).toHaveText(
-      caseFileViewTabContent.textOnPage6,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage6}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(6)).toHaveText(
-      caseFileViewTabContent.textOnPage7,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage7}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(7)).toHaveText(
-      caseFileViewTabContent.textOnPage8,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage8}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(8)).toHaveText(
-      caseFileViewTabContent.textOnPage9,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage9}")`,
+      ),
+      1,
     );
-    await expect(page.locator(".node__name--folder").nth(9)).toHaveText(
-      caseFileViewTabContent.textOnPage10,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.node__name--folder:text-is("${caseFileViewTabContent.textOnPage10}")`,
+      ),
+      1,
     );
 
     if (accessibilityTest) {
@@ -127,8 +158,11 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     uploadAdditionalInfo: boolean,
   ): Promise<void> {
     if (multipleDocuments) {
-      await expect(page.locator(".node__count").nth(4)).toHaveText(
-        uploadedDocumentsContent.multipleDocuments,
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.node__count:text-is("${uploadedDocumentsContent.multipleDocuments}")`,
+        ),
+        1,
       );
       await expect(page.locator(".node-name-document").nth(0)).toHaveText(
         path.basename(config.testFile),
@@ -168,12 +202,18 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
       );
     } else {
       if (!uploadAdditionalInfo) {
-        await expect(page.locator(".node__count").nth(4)).toHaveText(
-          uploadedDocumentsContent.totalDocuments,
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.node__count:text-is("${uploadedDocumentsContent.totalDocuments}")`,
+          ),
+          1,
         );
       } else {
-        await expect(page.locator(".node__count").nth(4)).toHaveText(
-          uploadedDocumentsContent.totalDocumentsAdditional,
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.node__count:text-is("${uploadedDocumentsContent.totalDocumentsAdditional}")`,
+          ),
+          1,
         );
         await expect(page.locator(".node-name-document").nth(2)).toHaveText(
           path.basename(config.testWordFile),
