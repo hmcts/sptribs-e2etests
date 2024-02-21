@@ -1,19 +1,45 @@
 #!groovy
 
 properties([
-// H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
-pipelineTriggers([cron('H 8 * * 1-5')]),
-parameters([
-  string(name: 'SPTRIBS_FRONTEND_URL', defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net', description: 'The DSS URL to test against'),
-  string(name: 'SPTRIBS_CASEAPI_URL', defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases', description: 'The Case-API URL to test against'),
-  string(name: 'SPTRIBS_UPDATE_URL', defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/dss-update/start', description: 'The Update Case URL to test against'),
-  string(name: 'FUNCTIONAL_TESTS_WORKERS',
-    defaultValue: '5',
-    description: 'Number of workers running functional tests'),
-  booleanParam(name: 'skipDSSCreateTests', defaultValue: false, description: 'Tick the checkbox for skipping DSS Create tests.'),
-  booleanParam(name: 'skipCaseAPITests', defaultValue: false, description: 'Tick the checkbox for skipping Case API tests.'),
-  booleanParam(name: 'skipDSSUpdateTests', defaultValue: false, description: 'Tick the checkbox for skipping DSS Update Case tests.'),
-  ])
+        // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
+        pipelineTriggers([cron('H 8 * * 1-5')]),
+        parameters([
+                string(
+                        name: 'SPTRIBS_FRONTEND_URL',
+                        defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
+                        description: 'The DSS URL to test against'
+                ),
+                string(
+                        name: 'SPTRIBS_CASEAPI_URL',
+                        defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+                        description: 'The Case-API URL to test against'
+                ),
+                string(
+                        name: 'SPTRIBS_UPDATE_URL',
+                        defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/dss-update/start',
+                        description: 'The Update Case URL to test against'
+                ),
+                string(
+                        name: 'FUNCTIONAL_TESTS_WORKERS',
+                        defaultValue: '5',
+                        description: 'Number of workers running functional tests'
+                ),
+                booleanParam(
+                        name: 'skipDSSCreateTests',
+                        defaultValue: false,
+                        description: 'Tick the checkbox for skipping DSS Create tests.'
+                ),
+                booleanParam(
+                        name: 'skipCaseAPITests',
+                        defaultValue: false,
+                        description: 'Tick the checkbox for skipping Case API tests.'
+                ),
+                booleanParam(
+                        name: 'skipDSSUpdateTests',
+                        defaultValue: false,
+                        description: 'Tick the checkbox for skipping DSS Update Case tests.'
+                ),
+        ])
 ])
 
 @Library("Infrastructure")
@@ -22,42 +48,41 @@ def type = "nodejs"
 def product = "sptribs"
 def component = "e2etests"
 
-
-static Map<String, Object> secret(String secretName, String envVariable) {
-  [$class     : 'AzureKeyVaultSecret',
-   secretType : 'Secret',
-   name       : secretName,
-   envVariable: envVariable
+static Map < String, Object > secret(String secretName, String envVariable) {
+  [
+          $class: 'AzureKeyVaultSecret',
+          secretType: 'Secret',
+          name: secretName,
+          envVariable: envVariable
   ]
 }
 
 def secrets = [
-  'sptribs-${env}'    :[
-    secret('idam-ui-secret', 'IDAM_SECRET'),
-    secret('idam-systemupdate-password', 'TEST_PASSWORD'),
-    secret('caseworker-user', 'CASEWORKER_USERNAME'),
-    secret('caseworker-password', 'CASEWORKER_PASSWORD'),
-    secret('seniorCaseworker-user', 'SENIOR_CASEWORKER_USERNAME'),
-    secret('seniorCaseworker-password', 'SENIOR_CASEWORKER_PASSWORD'),
-    secret('hearingCentreAdmin-user', 'HEARING_CENTRE_ADMIN_USERNAME'),
-    secret('hearingCentreAdmin-password', 'HEARING_CENTRE_ADMIN_PASSWORD'),
-    secret('hearingCentreTeamLead-user', 'HEARING_CENTRE_TEAM_LEAD_USERNAME'),
-    secret('hearingCentreTeamLead-password', 'HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
-    secret('judge-user', 'JUDGE_USERNAME'),
-    secret('judge-password', 'JUDGE_PASSWORD'),
-    secret('seniorJudge-user', 'SENIOR_JUDGE_USERNAME'),
-    secret('seniorJudge-password', 'SENIOR_JUDGE_PASSWORD'),
-    secret('respondent-user', 'RESPONDENT_USERNAME'),
-    secret('respondent-password', 'RESPONDENT_PASSWORD'),
-    secret('citizen-user', 'CITIZEN_USERNAME'),
-    secret('citizen-password', 'CITIZEN_PASSWORD'),
-    secret('superUser-user', 'SUPER_USER_USERNAME'),
-    secret('superUser-password', 'SUPER_USER_PASSWORD'),
-  ]
+        'sptribs-${env}': [
+                secret('idam-ui-secret', 'IDAM_SECRET'),
+                secret('idam-systemupdate-password', 'TEST_PASSWORD'),
+                secret('caseworker-user', 'CASEWORKER_USERNAME'),
+                secret('caseworker-password', 'CASEWORKER_PASSWORD'),
+                secret('seniorCaseworker-user', 'SENIOR_CASEWORKER_USERNAME'),
+                secret('seniorCaseworker-password', 'SENIOR_CASEWORKER_PASSWORD'),
+                secret('hearingCentreAdmin-user', 'HEARING_CENTRE_ADMIN_USERNAME'),
+                secret('hearingCentreAdmin-password', 'HEARING_CENTRE_ADMIN_PASSWORD'),
+                secret('hearingCentreTeamLead-user', 'HEARING_CENTRE_TEAM_LEAD_USERNAME'),
+                secret('hearingCentreTeamLead-password', 'HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
+                secret('judge-user', 'JUDGE_USERNAME'),
+                secret('judge-password', 'JUDGE_PASSWORD'),
+                secret('seniorJudge-user', 'SENIOR_JUDGE_USERNAME'),
+                secret('seniorJudge-password', 'SENIOR_JUDGE_PASSWORD'),
+                secret('respondent-user', 'RESPONDENT_USERNAME'),
+                secret('respondent-password', 'RESPONDENT_PASSWORD'),
+                secret('citizen-user', 'CITIZEN_USERNAME'),
+                secret('citizen-password', 'CITIZEN_PASSWORD'),
+                secret('superUser-user', 'SUPER_USER_USERNAME'),
+                secret('superUser-password', 'SUPER_USER_PASSWORD'),
+        ]
 ]
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
-
 
 withNightlyPipeline(type, product, component) {
   loadVaultSecrets(secrets)
@@ -73,12 +98,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'DSS E2E Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
@@ -90,12 +115,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'DSS Cross Browser Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Cross Browser Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
@@ -107,12 +132,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'DSS Accessibility Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Accessibility Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
@@ -126,12 +151,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'DSS Update E2E Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Update E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
@@ -143,12 +168,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'DSS Update Cross Browser Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Update Cross Browser Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
@@ -160,12 +185,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'DSS Update Accessibility Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Update Accessibility Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
@@ -179,17 +204,16 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'Case-API E2E Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-
       stage('Case-API Create Cross browser tests') {
         try {
           yarnBuilder.yarn('test:CrossbrowserCaseAPI')
@@ -197,12 +221,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'Case-API Cross Browser Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Cross Browser Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
@@ -214,12 +238,12 @@ withNightlyPipeline(type, product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
+                  allowMissing: true,
                   alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'Case-API Accessibility Test Report'
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Accessibility Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
@@ -227,5 +251,3 @@ withNightlyPipeline(type, product, component) {
     }
   }
 }
-
-
