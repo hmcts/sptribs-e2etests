@@ -7,6 +7,7 @@ import authorsContent from "../../../fixtures/content/authors_content.ts";
 import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
 import { UserRole } from "../../../config.ts";
+import SubjectDetails_content from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 
 type HistoryTabPage = {
   checkPageLoads(
@@ -31,6 +32,11 @@ const historyTabPage: HistoryTabPage = {
     caseNumber: string,
     state: string,
   ): Promise<void> {
+    await expect(
+      page.locator(
+        "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
+      ),
+    ).toHaveText(SubjectDetails_content.name);
     await expect(page.locator(".case-field").first()).toContainText(
       allTabsTitlesContent.pageTitle + caseNumber,
     );
