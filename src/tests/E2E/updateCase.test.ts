@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { createFEApplication } from "../journeys/DSSCreateCase/createCase.ts";
-import { updateCase } from "../journeys/DSSUpdateCase/updateCase.ts";
+import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
   test("Check for an existing case to update.", async ({ page }) => {
@@ -16,7 +16,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
     );
-    await updateCase(page, false, caseNumber);
+    await updateCaseJourney.updateCase(page, false, caseNumber);
   });
 
   test("Check for an existing case to update - aXe test as it proceeds. @UpdateAccessibility", async ({
@@ -34,6 +34,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
     );
-    await updateCase(page, true, caseNumber);
+    await updateCaseJourney.updateCase(page, true, caseNumber);
   });
 });
