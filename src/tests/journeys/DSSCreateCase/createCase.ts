@@ -27,10 +27,10 @@ async function createFEApplication(
   backButtonJourney: boolean,
   accessibilityTest: boolean,
   errorMessaging: boolean,
-): Promise<void> {
+): Promise<string | void> {
   switch (errorMessaging) {
     default:
-      await normalFEFlow(
+      return await normalFEFlow(
         page,
         cy,
         representationPresent,
@@ -41,7 +41,6 @@ async function createFEApplication(
         backButtonJourney,
         accessibilityTest,
       );
-      break;
     case true:
       await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
       await landingPage.continueOn(page);
@@ -180,7 +179,7 @@ async function normalFEFlow(
     multipleDocuments,
   );
   if (completeApplication) {
-    await handleCompleteApplication(
+    return await handleCompleteApplication(
       page,
       cy,
       accessibilityTest,
@@ -215,7 +214,7 @@ async function handleCompleteApplication(
   representationQualified: boolean,
   uploadOtherInfo: boolean,
   multipleDocuments: boolean,
-) {
+): Promise<string> {
   const time = await checkYourAnswersPage.continueOn(page);
   await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
   await applicationSubmittedPage.checkCICCaseNumber(page);
@@ -236,6 +235,7 @@ async function handleCompleteApplication(
     multipleDocuments,
     "citizen",
   );
+  return caseNumber;
 }
 
 async function handleBackButtonJourney(page: Page) {

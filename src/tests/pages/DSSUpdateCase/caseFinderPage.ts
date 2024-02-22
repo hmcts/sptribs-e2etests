@@ -6,7 +6,7 @@ type CaseFinderPage = {
   caseReferenceNumber: string;
   continueButton: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(page: Page, caseNumber: string): Promise<void>;
+  fillInFields(page: Page, caseNumber: string | void): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -39,7 +39,7 @@ const caseFinderPage: CaseFinderPage = {
   },
 
   async fillInFields(page: Page, caseNumber: string) {
-    await page.fill(this.caseReferenceNumber, caseNumber);
+    await page.fill(this.caseReferenceNumber, caseNumber.replace(/\D/g, ""));
   },
 
   async continueOn(page: Page): Promise<void> {
