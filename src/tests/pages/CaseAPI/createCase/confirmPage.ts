@@ -59,7 +59,6 @@ const createCaseConfirmPage: ConfirmPage = {
     cicCaseData = cicCaseData.replace(/\D/g, "");
     cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
     cicCaseData = cicCaseData.slice(0, -1);
-    console.log(cicCaseData);
     return cicCaseData;
   },
 

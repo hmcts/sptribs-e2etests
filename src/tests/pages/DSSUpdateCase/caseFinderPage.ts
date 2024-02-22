@@ -14,10 +14,7 @@ const caseFinderPage: CaseFinderPage = {
   caseReferenceNumber: "#applicantCaseId",
   continueButton: "button[name='saveAndContinue']",
 
-  async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       CaseFinderDetails.header,
     );
@@ -33,7 +30,9 @@ const caseFinderPage: CaseFinderPage = {
     await expect(page.locator(".govuk-hint").nth(1)).toHaveText(
       CaseFinderDetails.textOnPage1,
     );
-    await expect(page.locator(caseFinderPage.continueButton)).toHaveText("Continue");
+    await expect(page.locator(caseFinderPage.continueButton)).toHaveText(
+      "Continue",
+    );
     if (accessibilityTest) {
       await axeTest(page);
     }
