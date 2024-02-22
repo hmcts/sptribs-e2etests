@@ -2,8 +2,8 @@ import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../../config.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import caseDocumentsTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseDocumentsTab_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CaseDocumentsTabPage = {
   caseDocumentsTab: string;
@@ -26,54 +26,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     caseNumber: string,
     multipleDocuments: boolean,
   ): Promise<void> {
-    await expect(page.locator(".case-field").first()).toContainText(
-      allTabTitlesContent.pageTitle + caseNumber,
-    );
-    await expect(page.locator(".mat-tab-label").nth(0)).toHaveText(
-      allTabTitlesContent.tab1,
-    );
-    await expect(page.locator(".mat-tab-label").nth(1)).toHaveText(
-      allTabTitlesContent.tab2,
-    );
-    await expect(page.locator(".mat-tab-label").nth(2)).toHaveText(
-      allTabTitlesContent.tab3,
-    );
-    await expect(page.locator(".mat-tab-label").nth(3)).toHaveText(
-      allTabTitlesContent.tab4,
-    );
-    await expect(page.locator(".mat-tab-label").nth(4)).toHaveText(
-      allTabTitlesContent.tab5,
-    );
-    await expect(page.locator(".mat-tab-label").nth(5)).toHaveText(
-      allTabTitlesContent.tab6,
-    );
-    await expect(page.locator(this.caseDocumentsTab).nth(6)).toHaveText(
-      allTabTitlesContent.tab7,
-    );
-    await expect(page.locator(".mat-tab-label").nth(7)).toHaveText(
-      allTabTitlesContent.tab8,
-    );
-    await expect(page.locator(".mat-tab-label").nth(8)).toHaveText(
-      allTabTitlesContent.tab9,
-    );
-    await expect(page.locator(".mat-tab-label").nth(9)).toHaveText(
-      allTabTitlesContent.tab10,
-    );
-    await expect(page.locator(".mat-tab-label").nth(10)).toHaveText(
-      allTabTitlesContent.tab11,
-    );
-    await expect(page.locator(".mat-tab-label").nth(11)).toHaveText(
-      allTabTitlesContent.tab12,
-    );
-    await expect(page.locator(".mat-tab-label").nth(12)).toHaveText(
-      allTabTitlesContent.tab13,
-    );
-    await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
-      allTabTitlesContent.tab14,
-    );
-    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
-      allTabTitlesContent.tab15,
-    );
+    await commonHelpers.checkAllCaseTabs(page, caseNumber);
     await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
       caseDocumentsTabContent.pageTitle,
     );
