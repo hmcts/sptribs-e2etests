@@ -6,7 +6,7 @@ import {
   Category,
   ContactPreference,
   Scheme,
-  SubCategory
+  SubCategory,
 } from "../../helpers/commonHelpers.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";

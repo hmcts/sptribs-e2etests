@@ -55,7 +55,7 @@ const createCaseConfirmPage: ConfirmPage = {
 
   async returnCaseNumber(page: Page): Promise<string> {
     let cicCaseData: string =
-      (await page.textContent("markdown > h2")) ?? "Empty";
+      (await page.textContent("h2:nth-child(3)")) ?? "Empty";
     cicCaseData = cicCaseData.replace(/\D/g, "");
     cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
     cicCaseData = cicCaseData.slice(0, -1);
