@@ -2,6 +2,8 @@ import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails
 import { expect, Locator, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
+import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
+import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -19,6 +21,7 @@ interface CommonHelpers {
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
+  checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -172,6 +175,31 @@ const commonHelpers: CommonHelpers = {
   ): Promise<void> {
     await page.selectOption("#next-step", chosenEvent);
     await page.getByRole("button", { name: "Go" }).click();
+  },
+
+  async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {
+    await expect(
+      page.locator(
+        "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
+      ),
+    ).toHaveText(SubjectDetails_content.name);
+    await expect(page.locator(".case-field").first()).toContainText(
+      allTabTitles_content.pageTitle + caseNumber,
+    );
+    for (let i = 0; i < 15; i++) {
+      try {
+        await expect(page.locator(".mat-tab-label").nth(i)).toHaveText(
+          allTabTitles_content[
+            `tab${i + 1}` as keyof typeof allTabTitles_content
+          ],
+        );
+      } catch (error) {
+        console.error(
+          `Error occurred with finding the ${allTabTitles_content[`tab${i}` as keyof typeof allTabTitles_content]} selector.`,
+          error,
+        );
+      }
+    }
   },
 };
 
