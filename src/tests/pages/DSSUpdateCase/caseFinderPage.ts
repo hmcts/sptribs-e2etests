@@ -39,7 +39,15 @@ const caseFinderPage: CaseFinderPage = {
   },
 
   async fillInFields(page: Page, caseNumber: string) {
-    await page.fill(this.caseReferenceNumber, caseNumber.replace(/\D/g, ""));
+    try {
+      await page.fill(this.caseReferenceNumber, caseNumber.replace(/\D/g, ""));
+    } catch (error) {
+      console.error(
+        "Error occurred with inputting the case reference number as it is void.",
+        error,
+      );
+      throw error;
+    }
   },
 
   async continueOn(page: Page): Promise<void> {

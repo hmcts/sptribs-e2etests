@@ -10,7 +10,6 @@ type UpdateCaseJourney = {
   ): Promise<void>;
 };
 const updateCaseJourney: UpdateCaseJourney = {
-
   async updateCase(
     page: Page,
     accessibilityTest: boolean,
@@ -24,4 +23,4 @@ const updateCaseJourney: UpdateCaseJourney = {
   },
 };
 
-export default updateCaseJourney
+export default updateCaseJourney;
