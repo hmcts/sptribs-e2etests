@@ -33,54 +33,7 @@ const casePartiesTabPage: CasePartiesTabPage = {
     representationPresent: boolean,
     caseNumber: string,
   ): Promise<void> {
-    await expect(page.locator(".case-field").first()).toContainText(
-      allTabTitlesContent.pageTitle + caseNumber,
-    );
-    await expect(page.locator(".mat-tab-label").nth(0)).toHaveText(
-      allTabTitlesContent.tab1,
-    );
-    await expect(page.locator(".mat-tab-label").nth(1)).toHaveText(
-      allTabTitlesContent.tab2,
-    );
-    await expect(page.locator(".mat-tab-label").nth(2)).toHaveText(
-      allTabTitlesContent.tab3,
-    );
-    await expect(page.locator(".mat-tab-label").nth(3)).toHaveText(
-      allTabTitlesContent.tab4,
-    );
-    await expect(page.locator(this.casePartiesTab).nth(4)).toHaveText(
-      allTabTitlesContent.tab5,
-    );
-    await expect(page.locator(".mat-tab-label").nth(5)).toHaveText(
-      allTabTitlesContent.tab6,
-    );
-    await expect(page.locator(".mat-tab-label").nth(6)).toHaveText(
-      allTabTitlesContent.tab7,
-    );
-    await expect(page.locator(".mat-tab-label").nth(7)).toHaveText(
-      allTabTitlesContent.tab8,
-    );
-    await expect(page.locator(".mat-tab-label").nth(8)).toHaveText(
-      allTabTitlesContent.tab9,
-    );
-    await expect(page.locator(".mat-tab-label").nth(9)).toHaveText(
-      allTabTitlesContent.tab10,
-    );
-    await expect(page.locator(".mat-tab-label").nth(10)).toHaveText(
-      allTabTitlesContent.tab11,
-    );
-    await expect(page.locator(".mat-tab-label").nth(11)).toHaveText(
-      allTabTitlesContent.tab12,
-    );
-    await expect(page.locator(".mat-tab-label").nth(12)).toHaveText(
-      allTabTitlesContent.tab13,
-    );
-    await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
-      allTabTitlesContent.tab14,
-    );
-    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
-      allTabTitlesContent.tab15,
-    );
+    await commonHelpers.checkAllCaseTabs(page, caseNumber);
     await expect(page.locator(".case-field").nth(1)).toHaveText(
       casePartiesTabContent.subHeading1,
     );

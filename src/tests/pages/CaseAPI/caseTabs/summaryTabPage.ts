@@ -1,12 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import allTabsTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
 import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
-import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 
 type SummaryTabPage = {
   summaryTab: string;
@@ -34,54 +32,7 @@ const summaryTabPage: SummaryTabPage = {
     representationPresent: boolean,
     caseNumber: string,
   ): Promise<void> {
-    await expect(page.locator(".case-field").first()).toContainText(
-      allTabsTitlesContent.pageTitle + caseNumber,
-    );
-    await expect(page.locator(this.summaryTab).nth(0)).toHaveText(
-      allTabsTitlesContent.tab1,
-    );
-    await expect(page.locator(".mat-tab-label").nth(1)).toHaveText(
-      allTabsTitlesContent.tab2,
-    );
-    await expect(page.locator(".mat-tab-label").nth(2)).toHaveText(
-      allTabsTitlesContent.tab3,
-    );
-    await expect(page.locator(".mat-tab-label").nth(3)).toHaveText(
-      allTabsTitlesContent.tab4,
-    );
-    await expect(page.locator(".mat-tab-label").nth(4)).toHaveText(
-      allTabsTitlesContent.tab5,
-    );
-    await expect(page.locator(".mat-tab-label").nth(5)).toHaveText(
-      allTabsTitlesContent.tab6,
-    );
-    await expect(page.locator(".mat-tab-label").nth(6)).toHaveText(
-      allTabsTitlesContent.tab7,
-    );
-    await expect(page.locator(".mat-tab-label").nth(7)).toHaveText(
-      allTabsTitlesContent.tab8,
-    );
-    await expect(page.locator(".mat-tab-label").nth(8)).toHaveText(
-      allTabsTitlesContent.tab9,
-    );
-    await expect(page.locator(".mat-tab-label").nth(9)).toHaveText(
-      allTabsTitlesContent.tab10,
-    );
-    await expect(page.locator(".mat-tab-label").nth(10)).toHaveText(
-      allTabsTitlesContent.tab11,
-    );
-    await expect(page.locator(".mat-tab-label").nth(11)).toHaveText(
-      allTabsTitlesContent.tab12,
-    );
-    await expect(page.locator(".mat-tab-label").nth(12)).toHaveText(
-      allTabsTitlesContent.tab13,
-    );
-    await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
-      allTabsTitlesContent.tab14,
-    );
-    await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
-      allTabTitlesContent.tab15,
-    );
+    await commonHelpers.checkAllCaseTabs(page, caseNumber);
     await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
       summaryTabContent.caseState,
     );
