@@ -29,7 +29,7 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
-   await commonHelpers.checkAllCaseTabs(page, caseNumber);
+    await commonHelpers.checkAllCaseTabs(page, caseNumber);
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       caseFileViewTabContent.pageTitle,
     );
