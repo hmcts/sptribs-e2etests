@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import CaseFinderDetails from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
-import caseFinderContent from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 
 type CaseFinderPage = {
   caseReferenceNumber: string;
@@ -35,9 +34,7 @@ const caseFinderPage: CaseFinderPage = {
     await expect(page.locator(".govuk-hint").nth(1)).toHaveText(
       CaseFinderDetails.textOnPage1,
     );
-    await expect(page.locator(caseFinderPage.continueButton)).toHaveText(
-      "Continue",
-    );
+    await expect(page.locator(this.continueButton)).toHaveText("Continue");
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -46,20 +43,20 @@ const caseFinderPage: CaseFinderPage = {
   async triggerErrorMessages(page: Page) {
     await page.click(caseFinderPage.continueButton);
     await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-      caseFinderContent.errorBanner,
+      CaseFinderDetails.errorBanner,
     );
     await expect(page.locator("#applicantCaseId-error")).toContainText(
-      caseFinderContent.referenceNumberError,
+      CaseFinderDetails.referenceNumberError,
     );
     await page.fill(this.caseReferenceNumber, "111111111111111");
     await page.click(caseFinderPage.continueButton);
     await expect(page.locator("#applicantCaseId-error")).toContainText(
-      caseFinderContent.validReferenceNumberError,
+      CaseFinderDetails.validReferenceNumberError,
     );
     await page.fill(this.caseReferenceNumber, "asdfghjkl;'-");
     await page.click(caseFinderPage.continueButton);
     await expect(page.locator("#applicantCaseId-error")).toContainText(
-      caseFinderContent.characterError,
+      CaseFinderDetails.characterError,
     );
   },
 
@@ -76,7 +73,7 @@ const caseFinderPage: CaseFinderPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.click(caseFinderPage.continueButton);
+    await page.click(this.continueButton);
   },
 
   async pressBackButton(page: Page): Promise<void> {

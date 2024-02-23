@@ -1,6 +1,7 @@
 import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
+import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -28,6 +29,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.checkPageLoads(page, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
+        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.continueOn(page);
+        await expect(page).toHaveURL("https://sptribs-dss-update-case-web-pr-41.preview.platform.hmcts.net/upload-documents");
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
         }
@@ -39,11 +44,16 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.triggerErrorMessages(page);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
+        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+        await subjectDetailsPage.triggerErrorMessages(page);
+        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.continueOn(page);
     }
   },
 
   async handleBackButtonJourney(page: Page) {
     await caseFinderPage.pressBackButton(page);
+    await subjectDetailsPage.pressBackButton(page);
   },
 };
 
