@@ -23,7 +23,7 @@ const buildCase: BuildCase = {
     previousEvents: allEvents[],
     eventTimes: string[],
     accessibilityTest: boolean,
-  ) {
+  ): Promise<void> {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await builtCasePage.checkPageLoads(page, accessibilityTest, caseNumber);
     await builtCasePage.continueOn(page);
