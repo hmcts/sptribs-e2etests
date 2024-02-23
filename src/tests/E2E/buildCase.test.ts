@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { createCase, verifyDetails } from "../journeys/CaseAPI/createCase.ts";
+import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import { allEvents } from "../helpers/commonHelpers.ts";
 
@@ -7,7 +7,7 @@ test.describe("Case-API Build case tests.", () => {
   test("Create and build case as a caseworker", async ({ page }) => {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
-    const caseNumber: string = await createCase(
+    const caseNumber: string = await createCase.createCase(
       page,
       "caseWorker",
       true,
@@ -25,7 +25,7 @@ test.describe("Case-API Build case tests.", () => {
       true,
       true,
     );
-    await verifyDetails(
+    await createCase.verifyDetails(
       page,
       "caseWorker",
       true,
@@ -33,6 +33,12 @@ test.describe("Case-API Build case tests.", () => {
       previousEvents,
       eventTimes,
     );
-    await buildCase.buildCase(page, caseNumber, previousEvents, eventTimes, true);
+    await buildCase.buildCase(
+      page,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+      true,
+    );
   });
 });
