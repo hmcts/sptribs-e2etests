@@ -21,7 +21,7 @@ const updateCaseJourney: UpdateCaseJourney = {
     caseNumber: string | void,
     backButtonJourney: boolean,
     errorMessaging: boolean,
-  ) {
+  ): Promise<void> {
     switch (errorMessaging) {
       default:
         await landingPage.seeTheLandingPage(page, accessibilityTest);
@@ -50,7 +50,7 @@ const updateCaseJourney: UpdateCaseJourney = {
     }
   },
 
-  async handleBackButtonJourney(page: Page) {
+  async handleBackButtonJourney(page: Page): Promise<void> {
     await caseFinderPage.pressBackButton(page);
     await subjectDetailsPage.pressBackButton(page);
   },
