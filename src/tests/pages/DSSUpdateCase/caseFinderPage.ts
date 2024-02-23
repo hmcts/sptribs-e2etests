@@ -41,7 +41,7 @@ const caseFinderPage: CaseFinderPage = {
   },
 
   async triggerErrorMessages(page: Page) {
-    await page.click(caseFinderPage.continueButton);
+    await page.click(this.continueButton);
     await expect(page.locator(".govuk-error-summary__title")).toHaveText(
       CaseFinderDetails.errorBanner,
     );
@@ -49,12 +49,12 @@ const caseFinderPage: CaseFinderPage = {
       CaseFinderDetails.referenceNumberError,
     );
     await page.fill(this.caseReferenceNumber, "111111111111111");
-    await page.click(caseFinderPage.continueButton);
+    await page.click(this.continueButton);
     await expect(page.locator("#applicantCaseId-error")).toContainText(
       CaseFinderDetails.validReferenceNumberError,
     );
     await page.fill(this.caseReferenceNumber, "asdfghjkl;'-");
-    await page.click(caseFinderPage.continueButton);
+    await page.click(this.continueButton);
     await expect(page.locator("#applicantCaseId-error")).toContainText(
       CaseFinderDetails.characterError,
     );

@@ -2,8 +2,8 @@ import { test } from "@playwright/test";
 import { createFEApplication } from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 
-test.describe("DSS Update case tests. @DSSUpdate", () => {
-  test.only("Check for an existing case to update.", async ({ page }) => {
+test.describe.only("DSS Update case tests. @DSSUpdate", () => {
+  test("Check for an existing case to update.", async ({ page }) => {
     const caseNumber: string | void = await createFEApplication(
       page,
       false,

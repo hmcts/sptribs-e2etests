@@ -66,7 +66,27 @@ const subjectDetailsPage: SubjectDetailsPage = {
     await page.fill(this.fields.yearOfBirth, SubjectDetailsContent.yearOfBirth);
   },
 
-  async triggerErrorMessages(page: Page): Promise<void> {},
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continueButton);
+    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
+      SubjectDetailsContent.errorBanner,
+    );
+    await expect(page.locator("#subjectFullName-error")).toContainText(
+      SubjectDetailsContent.fullNameError,
+    );
+    await expect(page.locator("#subjectDOB-error")).toContainText(
+      SubjectDetailsContent.dateOfBirthError,
+    );
+    await page.fill(this.fields.fullName, "!@£$%^&*()");
+    await page.fill(this.fields.dayOfBirth, "90");
+    await page.click(this.continueButton);
+    await expect(page.locator("#subjectFullName-error")).toContainText(
+      SubjectDetailsContent.validFullNameError,
+    );
+    await expect(page.locator("#subjectDOB-error")).toContainText(
+      SubjectDetailsContent.validDateOfBirthError,
+    );
+  },
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continueButton);
