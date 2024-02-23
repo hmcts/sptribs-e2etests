@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import { createCase } from "../journeys/CaseAPI/createCase.ts";
+import createCase from "../journeys/CaseAPI/createCase.ts";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Fatal Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -28,7 +28,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -51,7 +51,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Minor Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -74,7 +74,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Paragraph 26 Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       true,
@@ -97,7 +97,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Sexual Abuse Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -120,7 +120,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Special Jurisdiction Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -143,7 +143,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Other Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -166,7 +166,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Fatal Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -189,7 +189,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -212,7 +212,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Minor Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -235,7 +235,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Paragraph 26 Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -258,7 +258,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Sexual Abuse Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -281,7 +281,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Other Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -304,7 +304,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Eligibility - Other Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -327,7 +327,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Other Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "caseWorker",
       false,
@@ -350,7 +350,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Senior Caseworker - Assessment - Other Category, Post Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "seniorCaseworker",
       false,
@@ -373,7 +373,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Hearing centre admin - Eligibility - Other Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "hearingCentreAdmin",
       false,
@@ -396,7 +396,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("hearing Centre Team Lead - Assessment - Other Category, Email Contact", async ({
     page,
   }) => {
-    await createCase(
+    await createCase.createCase(
       page,
       "hearingCentreTeamLead",
       false,
@@ -420,7 +420,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 test("Accessibility test every page. @accessibilityCaseAPI", async ({
   page,
 }) => {
-  await createCase(
+  await createCase.createCase(
     page,
     "caseWorker",
     true,

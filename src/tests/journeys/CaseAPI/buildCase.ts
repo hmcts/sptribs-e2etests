@@ -6,35 +6,49 @@ import buildCaseConfirmPage from "../../pages/CaseAPI/buildCase/confirmPage.ts";
 import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
 import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
-export async function buildCase(
-  page: Page,
-  caseNumber: string,
-  previousEvents: allEvents[],
-  eventTimes: string[],
-  accessibilityTest: boolean,
-) {
-  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await builtCasePage.checkPageLoads(page, accessibilityTest, caseNumber);
-  await builtCasePage.continueOn(page);
-  await buildCaseConfirmPage.checkPageLoads(
-    page,
-    accessibilityTest,
-    caseNumber,
-  );
-  const buildCaseTime = await buildCaseConfirmPage.continueOn(page);
-  previousEvents.push(events_content.buildCase);
-  eventTimes.push(buildCaseTime);
-  await historyTabPage.checkPageLoads(
-    page,
-    true,
-    caseNumber,
-    stateTab_content.submittedState,
-  );
-  await historyTabPage.checkPageInfo(
-    page,
-    previousEvents,
-    eventTimes,
-    "caseWorker",
-    stateTab_content.caseManagementState,
-  );
-}
+type BuildCase = {
+  buildCase(
+    page: Page,
+    caseNumber: string,
+    previousEvents: allEvents[],
+    eventTimes: string[],
+    accessibilityTest: boolean,
+  ): Promise<void>;
+};
+
+const buildCase: BuildCase = {
+  async buildCase(
+    page: Page,
+    caseNumber: string,
+    previousEvents: allEvents[],
+    eventTimes: string[],
+    accessibilityTest: boolean,
+  ) {
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await builtCasePage.checkPageLoads(page, accessibilityTest, caseNumber);
+    await builtCasePage.continueOn(page);
+    await buildCaseConfirmPage.checkPageLoads(
+      page,
+      accessibilityTest,
+      caseNumber,
+    );
+    const buildCaseTime = await buildCaseConfirmPage.continueOn(page);
+    previousEvents.push(events_content.buildCase);
+    eventTimes.push(buildCaseTime);
+    await historyTabPage.checkPageLoads(
+      page,
+      true,
+      caseNumber,
+      stateTab_content.submittedState,
+    );
+    await historyTabPage.checkPageInfo(
+      page,
+      previousEvents,
+      eventTimes,
+      "caseWorker",
+      stateTab_content.caseManagementState,
+    );
+  },
+};
+
+export default buildCase;
