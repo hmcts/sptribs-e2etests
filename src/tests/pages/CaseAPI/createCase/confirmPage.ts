@@ -54,13 +54,20 @@ const createCaseConfirmPage: ConfirmPage = {
   },
 
   async returnCaseNumber(page: Page): Promise<string> {
-    let cicCaseData: string =
-      (await page.textContent("markdown > h2")) ?? "Empty";
-    cicCaseData = cicCaseData.replace(/\D/g, "");
-    cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
-    cicCaseData = cicCaseData.slice(0, -1);
-    console.log(cicCaseData);
-    return cicCaseData;
+    try {
+      let cicCaseData: string =
+        (await page.textContent("h2:nth-child(3)")) ?? "Empty";
+      cicCaseData = cicCaseData.replace(/\D/g, "");
+      cicCaseData = cicCaseData.replace(/(\d{4})/g, "$1-");
+      cicCaseData = cicCaseData.slice(0, -1);
+      return cicCaseData;
+    } catch (error) {
+      console.error(
+        "Error occurred with capturing the case number reference.",
+        error,
+      );
+      throw error;
+    }
   },
 
   async closeAndReturnToCase(page: Page): Promise<string> {

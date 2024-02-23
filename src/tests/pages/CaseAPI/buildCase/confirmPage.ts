@@ -2,6 +2,8 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/buildCase/confirm_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
+import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
+import buildCase_content from "../../../fixtures/content/CaseAPI/buildCase/buildCase_content.ts";
 
 type ConfirmPage = {
   checkPageLoads(
@@ -25,7 +27,10 @@ const buildCaseConfirmPage: ConfirmPage = {
       confirm_content.subTitle1,
     );
     await expect(page.locator("markdown > h3")).toContainText(
-      confirm_content.caseReference + caseNumber,
+      subjectDetailsContent.name,
+    );
+    await expect(page.locator("markdown > p")).toContainText(
+      buildCase_content.caseReference + caseNumber,
     );
     if (accessibilityTest) {
       await axeTest(page);

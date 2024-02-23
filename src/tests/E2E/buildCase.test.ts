@@ -5,10 +5,9 @@ import { allEvents } from "../helpers/commonHelpers.ts";
 
 test.describe("Case-API Build case tests.", () => {
   test("Create and build case as a caseworker", async ({ page }) => {
-    let caseNumber: string = "";
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
-    await createCase(
+    const caseNumber: string = await createCase(
       page,
       "caseWorker",
       true,
