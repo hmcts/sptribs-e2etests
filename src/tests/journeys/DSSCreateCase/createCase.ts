@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
-import { verifyCaseDetails } from "./DSSVerifyDetails.ts";
+import verifyCaseDetails from "./DSSVerifyDetails.ts";
 import landingPage from "../../pages/DSSCreateCase/landingPage.ts";
 import loginPage from "../../pages/DSSCreateCase/loginPage.ts";
 import subjectDetailsPage from "../../pages/DSSCreateCase/subjectDetailsPage.ts";
@@ -56,7 +56,7 @@ type CreateFeApplication = {
     multipleDocuments: boolean,
   ): Promise<string>;
   handleBackButtonJourney(page: Page): Promise<void>;
-}
+};
 
 const createFEApplication: CreateFeApplication = {
   async createFEApplication(
@@ -199,7 +199,11 @@ const createFEApplication: CreateFeApplication = {
       cy,
       multipleDocuments,
     );
-    await uploadOtherInformationPage.checkPageLoads(page, cy, accessibilityTest);
+    await uploadOtherInformationPage.checkPageLoads(
+      page,
+      cy,
+      accessibilityTest,
+    );
     await uploadOtherInformationPage.uploadDocumentsSection(
       page,
       cy,
@@ -243,8 +247,15 @@ const createFEApplication: CreateFeApplication = {
     representationQualified: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await representationQualifiedPage.checkPageLoads(page, cy, accessibilityTest);
-    await representationQualifiedPage.fillInFields(page, representationQualified);
+    await representationQualifiedPage.checkPageLoads(
+      page,
+      cy,
+      accessibilityTest,
+    );
+    await representationQualifiedPage.fillInFields(
+      page,
+      representationQualified,
+    );
     await representativeDetailsPage.checkPageLoads(page, cy, accessibilityTest);
     await representativeDetailsPage.fillInFields(page);
   },
@@ -266,7 +277,7 @@ const createFEApplication: CreateFeApplication = {
     await casesPage.checkPageLoads(page, accessibilityTest);
     await casesPage.changeCaseType(page);
     await casesPage.searchForCaseNumber(page, caseNumber);
-    await verifyCaseDetails(
+    await verifyCaseDetails.verifyCaseDetails(
       page,
       accessibilityTest,
       caseNumber,
@@ -290,7 +301,7 @@ const createFEApplication: CreateFeApplication = {
     await representationQualifiedPage.pressBackButton(page);
     await representationPage.pressBackButton(page);
     await subjectContactDetailsPage.pressBackButton(page);
-  }
+  },
 };
 
 export default createFEApplication;
