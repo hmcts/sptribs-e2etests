@@ -19,24 +19,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     await updateCaseJourney.updateCase(page, false, caseNumber, false, false);
   });
 
-  test("Check for an existing case to update - aXe test as it proceeds. @UpdateAccessibility", async ({
-    page,
-  }) => {
-    const caseNumber: string | void = await createFEApplication(
-      page,
-      false,
-      false,
-      false,
-      true,
-      false,
-      true,
-      false,
-      true,
-      false,
-    );
-    await updateCaseJourney.updateCase(page, true, caseNumber, false, false);
-  });
-
   test("Test all back buttons on the Update Case application", async ({
     page,
   }) => {
@@ -70,4 +52,22 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     );
     await updateCaseJourney.updateCase(page, true, caseNumber, false, true);
   });
+});
+
+test("Check for an existing case to update - aXe test as it proceeds. @UpdateAccessibility", async ({
+  page,
+}) => {
+  const caseNumber: string | void = await createFEApplication(
+    page,
+    false,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+  );
+  await updateCaseJourney.updateCase(page, true, caseNumber, false, false);
 });
