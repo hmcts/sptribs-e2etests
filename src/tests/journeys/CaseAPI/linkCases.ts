@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import config from "../../config.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 
 type LinkCases = {
   linkCase(
@@ -26,8 +27,7 @@ const linkCases: LinkCases = {
     const caseNumberDigits = caseNumber1.replace(/\D/g, '');
     const caseURL = `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}#History`;
     await page.goto(caseURL);
-    await commonHelpers.checkAllCaseTabs(page, caseNumber1);
-    
+    await commonHelpers.chooseEventFromDropdown(page, events_content.linkCases)
     console.log('here')
   },
 };

@@ -266,4 +266,5 @@ export type caseRegion =
 export type allEvents =
   | "Submit case (cic)"
   | "Create Case"
-  | "Case: Build case";
+  | "Case: Build case"
+  | "To link related cases";
