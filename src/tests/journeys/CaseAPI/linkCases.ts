@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
 import config from "../../config.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 
@@ -24,11 +23,10 @@ const linkCases: LinkCases = {
     eventTimes: string[],
     accessibilityTest: boolean,
   ): Promise<void> {
-    const caseNumberDigits = caseNumber1.replace(/\D/g, '');
+    const caseNumberDigits = caseNumber1.replace(/\D/g, "");
     const caseURL = `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}#History`;
     await page.goto(caseURL);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.linkCases)
-    console.log('here')
+    await commonHelpers.chooseEventFromDropdown(page, events_content.linkCases);
   },
 };
 
