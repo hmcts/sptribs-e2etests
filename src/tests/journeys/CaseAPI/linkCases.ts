@@ -41,7 +41,11 @@ const linkCases: LinkCases = {
           caseNumber1,
           accessibilityTest,
         );
-        await createCaseLinkCreateCaseLink2.fillInFields(page, caseNumber1,caseNumber2);
+        await createCaseLinkCreateCaseLink2.fillInFields(
+          page,
+          caseNumber1,
+          caseNumber2,
+        );
         break;
       case "errorMessaging":
         await this.startJourney(page, caseNumber1, accessibilityTest);
