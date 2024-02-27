@@ -122,7 +122,6 @@ const uploadDocumentsPage: UploadDocumentsPage = {
     // await expect(page.locator(".uploadedFile").first()).toContainText(
     //   path.basename(config.testWordFile),
     // );
-
     // To be completed with upload document fix
   },
 

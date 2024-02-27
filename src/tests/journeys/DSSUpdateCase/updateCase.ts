@@ -37,7 +37,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
         await uploadDocumentsPage.fillInFields(page);
-        await uploadDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
+        await uploadDocumentsPage.uploadDocumentsSection(
+          page,
+          multipleDocuments,
+        );
         await uploadDocumentsPage.continueOn(page);
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
@@ -57,7 +60,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         await uploadDocumentsPage.triggerErrorMessages(page);
         await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
         await uploadDocumentsPage.fillInFields(page);
-        await uploadDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
+        await uploadDocumentsPage.uploadDocumentsSection(
+          page,
+          multipleDocuments,
+        );
         await uploadDocumentsPage.continueOn(page);
     }
   },
