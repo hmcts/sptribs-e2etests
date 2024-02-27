@@ -1,13 +1,15 @@
+import { Page } from "@playwright/test";
 import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
-import { Page } from "@playwright/test";
 import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
+import uploadDocumentsPage from "../../pages/DSSUpdateCase/uploadDocumentsPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string | void,
+    multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
   ): Promise<void>;
@@ -19,6 +21,7 @@ const updateCaseJourney: UpdateCaseJourney = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string | void,
+    multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
@@ -32,6 +35,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
+        await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
+        await uploadDocumentsPage.fillInFields(page);
+        await uploadDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
+        await uploadDocumentsPage.continueOn(page);
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
         }
@@ -47,12 +54,18 @@ const updateCaseJourney: UpdateCaseJourney = {
         await subjectDetailsPage.triggerErrorMessages(page);
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
+        await uploadDocumentsPage.triggerErrorMessages(page);
+        await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
+        await uploadDocumentsPage.fillInFields(page);
+        await uploadDocumentsPage.uploadDocumentsSection(page, multipleDocuments);
+        await uploadDocumentsPage.continueOn(page);
     }
   },
 
   async handleBackButtonJourney(page: Page): Promise<void> {
     await caseFinderPage.pressBackButton(page);
     await subjectDetailsPage.pressBackButton(page);
+    await uploadDocumentsPage.pressBackButton(page);
   },
 };
 
