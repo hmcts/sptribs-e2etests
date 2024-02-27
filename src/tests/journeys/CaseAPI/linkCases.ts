@@ -23,10 +23,10 @@ const linkCases: LinkCases = {
     eventTimes: string[],
     accessibilityTest: boolean,
   ): Promise<void> {
-    const caseNumberDigits = caseNumber1.replace(/\D/g, "");
-    const caseURL = `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}#History`;
+    const caseURL = await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber1);
     await page.goto(caseURL);
     await commonHelpers.chooseEventFromDropdown(page, events_content.linkCases);
+
   },
 };
 

@@ -4,6 +4,7 @@ import authors_content from "../fixtures/content/authors_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import config from "../config.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -22,6 +23,7 @@ interface CommonHelpers {
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
+  generateUrl(baseURL: string, caseNumber: string): Promise<string>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -201,6 +203,11 @@ const commonHelpers: CommonHelpers = {
       }
     }
   },
+
+  async generateUrl(baseURL: string, caseNumber: string): Promise<string> {
+    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    return `${baseURL}/case-details/${caseNumberDigits}#History`;
+  }
 };
 
 export default commonHelpers;
