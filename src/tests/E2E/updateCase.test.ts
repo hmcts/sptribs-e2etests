@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
-import { createFEApplication } from "../journeys/DSSCreateCase/createCase.ts";
+import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
   test("Check for an existing case to update.", async ({ page }) => {
-    const caseNumber: string | void = await createFEApplication(
+    const caseNumber: string | void = await createFEApplication.createFEApplication(
       page,
       false,
       false,
@@ -22,7 +22,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
   test("Test all back buttons on the Update Case application", async ({
     page,
   }) => {
-    const caseNumber: string | void = await createFEApplication(
+    const caseNumber: string | void = await createFEApplication.createFEApplication(
       page,
       false,
       false,
@@ -38,7 +38,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
   });
 
   test("Error messaging", async ({ page }) => {
-    const caseNumber: string | void = await createFEApplication(
+    const caseNumber: string | void = await createFEApplication.createFEApplication(
       page,
       false,
       false,
@@ -57,7 +57,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
 test("Check for an existing case to update - aXe test as it proceeds. @UpdateAccessibility", async ({
   page,
 }) => {
-  const caseNumber: string | void = await createFEApplication(
+  const caseNumber: string | void = await createFEApplication.createFEApplication(
     page,
     false,
     false,

@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { createFEApplication } from "../journeys/DSSCreateCase/createCase.ts";
+import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 
-test.describe("DSS Create case tests. @DSSCreate", () => {
+test.describe("DSS Create case tests. @DSSCreate", (): void => {
   test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
@@ -14,7 +14,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -40,7 +40,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -66,7 +66,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -92,7 +92,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -118,7 +118,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -144,7 +144,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -170,7 +170,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -196,7 +196,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -222,7 +222,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -248,7 +248,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = true,
       accessibilityTest = false,
       errorMessaging = false;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -272,7 +272,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = true;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -296,7 +296,7 @@ test.describe("DSS Create case tests. @DSSCreate", () => {
       backButtonJourney = false,
       accessibilityTest = false,
       errorMessaging = true;
-    await createFEApplication(
+    await createFEApplication.createFEApplication(
       page,
       cy,
       representationPresent,
@@ -323,7 +323,7 @@ test("Accessibility test every page on DSS. @DSSAccessibility", async ({
     backButtonJourney = false,
     accessibilityTest = true,
     errorMessaging = false;
-  await createFEApplication(
+  await createFEApplication.createFEApplication(
     page,
     cy,
     representationPresent,

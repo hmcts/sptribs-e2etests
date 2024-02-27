@@ -1,6 +1,7 @@
 import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
 import { Page } from "@playwright/test";
+import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -20,7 +21,7 @@ const updateCaseJourney: UpdateCaseJourney = {
     caseNumber: string | void,
     backButtonJourney: boolean,
     errorMessaging: boolean,
-  ) {
+  ): Promise<void> {
     switch (errorMessaging) {
       default:
         await landingPage.seeTheLandingPage(page, accessibilityTest);
@@ -28,6 +29,9 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.checkPageLoads(page, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
+        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.continueOn(page);
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
         }
@@ -39,11 +43,16 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.triggerErrorMessages(page);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
+        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+        await subjectDetailsPage.triggerErrorMessages(page);
+        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.continueOn(page);
     }
   },
 
-  async handleBackButtonJourney(page: Page) {
+  async handleBackButtonJourney(page: Page): Promise<void> {
     await caseFinderPage.pressBackButton(page);
+    await subjectDetailsPage.pressBackButton(page);
   },
 };
 
