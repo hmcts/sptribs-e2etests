@@ -15,8 +15,6 @@ const uploadAppealForm_content = {
     'Once you have selected the file click "Upload file" to upload it.',
   button: "Upload file",
   button2: "Continue",
-  fileUploadedSuccess:
-    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
   deleteButton: "Delete",
   errorBanner: "There is a problem",
   noUploadError: "You cannot continue without uploading the application",
@@ -39,8 +37,6 @@ const uploadAppealForm_content = {
     'Unwaith y byddwch wedi dewis y ffeil, cliciwch ar "Llwytho ffeil" i’w llwytho.',
   buttonCy: "Llwytho ffeil",
   buttonCy2: "Parhau",
-  fileUploadedSuccessCy:
-    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",
   noUploadErrorCy: "Ni allwch barhau heb lwytho’r cais",

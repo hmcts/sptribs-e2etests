@@ -32,9 +32,7 @@ const uploadDocumentsContent = {
   additionalInfo: "Lorem ipsum additional information",
   documentRelevance: "Lorem ipsum relevance",
   button2: "Continue",
-  fileUploadedSuccess:
-    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
-  deleteButton: "Delete",
+    deleteButton: "Delete",
   errorBanner: "There is a problem on this page",
   continueError:
     "You cannot continue without providing additional information or a document",
