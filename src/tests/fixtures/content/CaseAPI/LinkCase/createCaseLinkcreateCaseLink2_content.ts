@@ -30,6 +30,8 @@ const createCaseLinkCreateCaseLink_content = {
   tableTitle4: "State",
   tableTitle5: "Reasons for case link",
   blankLinks: "None",
+  caseType: "CIC",
+  service: "Special Tribunals: Criminal Injuries Compensation",
   errorBanner: "There is a problem",
   errorMessageSubmit: "Please select Next to go to the next page",
   errorMessagePropose: "You need to propose at least one case",

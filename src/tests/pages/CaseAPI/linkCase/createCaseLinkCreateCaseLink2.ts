@@ -2,6 +2,9 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createCaseLinkcreateCaseLink2_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
+import caseSubjectDetailsObject_content
+  from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import stateTab_content from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
 type CreateCaseLinkCreateCaseLink = {
   next: string;
@@ -13,7 +16,7 @@ type CreateCaseLinkCreateCaseLink = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page, caseNumber2: string): Promise<void>;
+  fillInFields(page: Page, caseNumber1: string, caseNumber2: string): Promise<void>;
   triggerErrorMessage(page: Page): Promise<void>;
 };
 
@@ -62,7 +65,7 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
     }
   },
 
-  async fillInFields(page: Page, caseNumber2: string): Promise<void> {
+  async fillInFields(page: Page, caseNumber1: string, caseNumber2: string): Promise<void> {
     await page.fill(".govuk-input--width-20", caseNumber2);
     for (let i = 4; i < 21; i++) {
       const dynamicPropertyName = `textOnPage${i}`;
@@ -84,6 +87,28 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
       createCaseLinkcreateCaseLink2_content.otherInput,
     );
     await page.click(".govuk-button--secondary");
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(page.locator(`td > span:text-is("${caseSubjectDetailsObject_content.name}")`), 1),
+      commonHelpers.checkVisibleAndPresent(page.locator(`td > span:text-is("${caseNumber2}")`), 1),
+      commonHelpers.checkVisibleAndPresent(page.locator(`tbody > tr > td:text-is("${createCaseLinkcreateCaseLink2_content.caseType}")`), 1),
+      commonHelpers.checkVisibleAndPresent(page.locator(`tbody > tr > td:text-is("${createCaseLinkcreateCaseLink2_content.service}")`), 1),
+      commonHelpers.checkVisibleAndPresent(page.locator(`tbody > tr > td:text-is("${stateTab_content.submittedState}")`), 1),
+      ...Array.from({ length: 16 }, (_, i: number) => {
+        const dynamicPropertyName = `textOnPage${i + 4}`;
+        const propertyValue = (createCaseLinkcreateCaseLink2_content as any)[dynamicPropertyName];
+        const selector = `td > span:text-is("${propertyValue}")`;
+        return commonHelpers.checkVisibleAndPresent(page.locator(selector), 1);
+      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`td > span:text-is("${createCaseLinkcreateCaseLink2_content.textOnPage20} - ${createCaseLinkcreateCaseLink2_content.otherInput}")`),
+        1
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.govuk-link:text-is('Remove')`),
+        1
+      )
+    ]);
+    await page.click(this.next);
     console.log("here");
   },
 
