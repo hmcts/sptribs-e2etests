@@ -4,7 +4,6 @@ import authors_content from "../fixtures/content/authors_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
-import config from "../config.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -22,6 +21,7 @@ interface CommonHelpers {
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
+  checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
 }
@@ -179,7 +179,7 @@ const commonHelpers: CommonHelpers = {
     await page.getByRole("button", { name: "Go" }).click();
   },
 
-  async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {
+  async checkNumberAndSubject(page: Page, caseNumber: string): Promise<void> {
     await expect(
       page.locator(
         "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
@@ -188,6 +188,10 @@ const commonHelpers: CommonHelpers = {
     await expect(page.locator(".case-field").first()).toContainText(
       allTabTitles_content.pageTitle + caseNumber,
     );
+  },
+
+  async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {
+    await this.checkNumberAndSubject(page, caseNumber);
     for (let i = 0; i < 15; i++) {
       try {
         await expect(page.locator(".mat-tab-label").nth(i)).toHaveText(
@@ -207,7 +211,7 @@ const commonHelpers: CommonHelpers = {
   async generateUrl(baseURL: string, caseNumber: string): Promise<string> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     return `${baseURL}/case-details/${caseNumberDigits}#History`;
-  }
+  },
 };
 
 export default commonHelpers;
