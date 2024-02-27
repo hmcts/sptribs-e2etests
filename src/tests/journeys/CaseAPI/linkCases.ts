@@ -3,6 +3,7 @@ import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import config from "../../config.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import createCaseLinkCreateCaseLink from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink.ts";
+import createCaseLinkCreateCaseLink2 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink2.ts";
 
 type LinkCases = {
   linkCase(
@@ -35,6 +36,12 @@ const linkCases: LinkCases = {
       default:
         await this.startJourney(page, caseNumber1, accessibilityTest);
         await createCaseLinkCreateCaseLink.fillInFields(page);
+        await createCaseLinkCreateCaseLink2.checkPageLoads(
+          page,
+          caseNumber1,
+          accessibilityTest,
+        );
+
         break;
       case "errorMessaging":
         await this.startJourney(page, caseNumber1, accessibilityTest);

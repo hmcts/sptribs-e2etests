@@ -28,21 +28,22 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await commonHelpers.checkNumberAndSubject(page, caseNumber);
-    await expect(page.locator(".govuk-heading-xl")).toHaveText(
-      createCaseLinkCreateCaseLink_content.pageTitle,
-    );
-    await expect(page.locator(".govuk-body").nth(0)).toHaveText(
-      createCaseLinkCreateCaseLink_content.textOnPage1,
-    );
-    await expect(page.locator(".govuk-body").nth(1)).toHaveText(
-      createCaseLinkCreateCaseLink_content.textOnPage2,
-    );
-    await page.locator(this.next).isVisible();
-    await page.locator(this.previous).isVisible();
-    await page.locator(this.submit).isVisible();
-    await page.locator(this.cancel).isVisible();
-
+    await Promise.all([
+      commonHelpers.checkNumberAndSubject(page, caseNumber),
+      expect(page.locator(".govuk-heading-xl")).toHaveText(
+        createCaseLinkCreateCaseLink_content.pageTitle,
+      ),
+      expect(page.locator(".govuk-body").nth(0)).toHaveText(
+        createCaseLinkCreateCaseLink_content.textOnPage1,
+      ),
+      expect(page.locator(".govuk-body").nth(1)).toHaveText(
+        createCaseLinkCreateCaseLink_content.textOnPage2,
+      ),
+      page.locator(this.next).isVisible(),
+      page.locator(this.previous).isVisible(),
+      page.locator(this.submit).isVisible(),
+      page.locator(this.cancel).isVisible(),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -54,12 +55,14 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
 
   async triggerErrorMessage(page: Page): Promise<void> {
     await page.click(this.submit);
-    await expect(page.locator("#error-summary-title")).toHaveText(
-      createCaseLinkCreateCaseLink_content.errorBanner,
-    );
-    await expect(page.locator(".validation-error")).toHaveText(
-      createCaseLinkCreateCaseLink_content.errorMessage,
-    );
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        createCaseLinkCreateCaseLink_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error")).toHaveText(
+        createCaseLinkCreateCaseLink_content.errorMessage,
+      ),
+    ]);
   },
 };
 
