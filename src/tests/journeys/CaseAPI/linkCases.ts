@@ -41,12 +41,13 @@ const linkCases: LinkCases = {
           caseNumber1,
           accessibilityTest,
         );
-
+        await createCaseLinkCreateCaseLink2.fillInFields(page, caseNumber2);
         break;
       case "errorMessaging":
         await this.startJourney(page, caseNumber1, accessibilityTest);
         await createCaseLinkCreateCaseLink.triggerErrorMessage(page);
         await createCaseLinkCreateCaseLink.fillInFields(page);
+        await createCaseLinkCreateCaseLink2.triggerErrorMessage(page);
         break;
     }
   },

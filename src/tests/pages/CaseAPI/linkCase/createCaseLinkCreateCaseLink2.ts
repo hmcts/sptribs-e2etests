@@ -13,7 +13,7 @@ type CreateCaseLinkCreateCaseLink = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, caseNumber2: string): Promise<void>;
   triggerErrorMessage(page: Page): Promise<void>;
 };
 
@@ -47,7 +47,7 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
       ),
     ]);
     await Promise.all(
-      Array.from({ length: 14 }, (_, i: number) => {
+      Array.from({ length: 17 }, (_, i: number) => {
         const dynamicPropertyName = `textOnPage${i + 4}`;
         const propertyValue = (createCaseLinkcreateCaseLink2_content as any)[
           dynamicPropertyName
@@ -62,7 +62,30 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {},
+  async fillInFields(page: Page, caseNumber2: string): Promise<void> {
+    await page.fill(".govuk-input--width-20", caseNumber2);
+    for (let i = 4; i < 21; i++) {
+      const dynamicPropertyName = `textOnPage${i}`;
+      const propertyValue = (createCaseLinkcreateCaseLink2_content as any)[
+        dynamicPropertyName
+      ];
+      await page.click(`input[value='${propertyValue}']`);
+    }
+    await Promise.all([
+      expect(page.locator(".govuk-heading-s").nth(2)).toHaveText(
+        createCaseLinkcreateCaseLink2_content.comments,
+      ),
+      expect(page.locator("#other-description-char-limit-info")).toHaveText(
+        createCaseLinkcreateCaseLink2_content.otherHint,
+      ),
+    ]);
+    await page.fill(
+      "#otherDescription",
+      createCaseLinkcreateCaseLink2_content.otherInput,
+    );
+    await page.click(".govuk-button--secondary");
+    console.log("here");
+  },
 
   async triggerErrorMessage(page: Page): Promise<void> {
     await page.click(this.submit);
@@ -83,6 +106,25 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
         createCaseLinkcreateCaseLink2_content.errorMessagePropose,
       ),
     ]);
+    await page.click(".govuk-button--secondary");
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        createCaseLinkcreateCaseLink2_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error").nth(0)).toHaveText(
+        createCaseLinkcreateCaseLink2_content.errorMessageCaseNumber,
+      ),
+      expect(page.locator(".validation-error").nth(1)).toHaveText(
+        createCaseLinkcreateCaseLink2_content.errorMessageReason,
+      ),
+      expect(page.locator(".govuk-error-message").nth(0)).toHaveText(
+        `Error: ${createCaseLinkcreateCaseLink2_content.errorMessageCaseNumber}`,
+      ),
+      expect(page.locator(".govuk-error-message").nth(1)).toHaveText(
+        `Error: ${createCaseLinkcreateCaseLink2_content.errorMessageReason}`,
+      ),
+    ]);
+    console.log("here");
   },
 };
 
