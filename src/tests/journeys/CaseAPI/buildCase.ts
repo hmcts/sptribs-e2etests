@@ -13,7 +13,7 @@ type BuildCase = {
     previousEvents: allEvents[],
     eventTimes: string[],
     accessibilityTest: boolean,
-  ): Promise<void>;
+  ): Promise<string>;
 };
 
 const buildCase: BuildCase = {
@@ -23,7 +23,7 @@ const buildCase: BuildCase = {
     previousEvents: allEvents[],
     eventTimes: string[],
     accessibilityTest: boolean,
-  ): Promise<void> {
+  ): Promise<string> {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await builtCasePage.checkPageLoads(page, accessibilityTest, caseNumber);
     await builtCasePage.continueOn(page);
@@ -48,6 +48,7 @@ const buildCase: BuildCase = {
       "caseWorker",
       stateTab_content.caseManagementState,
     );
+    return caseNumber;
   },
 };
 
