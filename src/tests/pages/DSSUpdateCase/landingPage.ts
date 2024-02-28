@@ -10,7 +10,7 @@ type LandingPage = {
 };
 
 const landingPage: LandingPage = {
-  startButton: "button[name='startNow']",
+  startButton: 'a[role="button"]',
 
   async seeTheLandingPage(
     page: Page,

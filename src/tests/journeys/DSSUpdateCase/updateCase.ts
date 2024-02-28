@@ -2,6 +2,7 @@ import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
 import { Page } from "@playwright/test";
 import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
+import loginPage from "../../pages/DSSUpdateCase/loginPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -26,6 +27,7 @@ const updateCaseJourney: UpdateCaseJourney = {
       default:
         await landingPage.seeTheLandingPage(page, accessibilityTest);
         await landingPage.continueOn(page);
+        await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
@@ -39,6 +41,7 @@ const updateCaseJourney: UpdateCaseJourney = {
       case true:
         await landingPage.seeTheLandingPage(page, accessibilityTest);
         await landingPage.continueOn(page);
+        await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, accessibilityTest);
         await caseFinderPage.triggerErrorMessages(page);
         await caseFinderPage.fillInFields(page, caseNumber);
