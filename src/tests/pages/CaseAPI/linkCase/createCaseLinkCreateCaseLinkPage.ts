@@ -3,7 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createCaseLinkCreateCaseLink_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkCreateCaseLink_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
-type CreateCaseLinkCreateCaseLink = {
+type CreateCaseLinkCreateCaseLinkPage = {
   next: string;
   previous: string;
   submit: string;
@@ -17,7 +17,7 @@ type CreateCaseLinkCreateCaseLink = {
   triggerErrorMessage(page: Page): Promise<void>;
 };
 
-const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
+const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLinkPage = {
   next: "#next-button",
   previous: ".button-secondary[disabled]",
   submit: '[type="submit"]',

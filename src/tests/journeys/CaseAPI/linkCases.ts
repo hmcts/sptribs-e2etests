@@ -2,9 +2,10 @@ import { Page } from "@playwright/test";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import config from "../../config.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import createCaseLinkCreateCaseLink from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink.ts";
-import createCaseLinkCreateCaseLink2 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink2.ts";
-import createCaseLinkCreateCaseLink3 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink3.ts";
+import createCaseLinkCreateCaseLink from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLinkPage.ts";
+import createCaseLinkCreateCaseLink2 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink2Page.ts";
+import createCaseLinkCreateCaseLink3 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink3Page.ts";
+import confirmPage from "../../pages/CaseAPI/linkCase/confirmPage.ts";
 
 type LinkCases = {
   linkCase(
@@ -52,6 +53,8 @@ const linkCases: LinkCases = {
           accessibilityTest,
         );
         await createCaseLinkCreateCaseLink3.fillInFields(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.fillInFields(page);
         break;
       case "errorMessaging":
         await this.startJourney(page, caseNumber1, accessibilityTest);

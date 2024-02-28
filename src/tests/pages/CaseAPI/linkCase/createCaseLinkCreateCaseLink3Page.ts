@@ -4,7 +4,7 @@ import createCaseLinkcreateCaseLink3_content from "../../../fixtures/content/Cas
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createCaseLinkcreateCaseLink2_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
 
-type CreateCaseLinkCreateCaseLink3 = {
+type CreateCaseLinkCreateCaseLink3Page = {
   previous: string;
   submit: string;
   cancel: string;
@@ -12,7 +12,7 @@ type CreateCaseLinkCreateCaseLink3 = {
   fillInFields(page: Page): Promise<void>;
 };
 
-const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3 = {
+const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3Page = {
   previous: ".button-secondary[disabled]",
   submit: '[type="submit"]',
   cancel: ".cancel",
