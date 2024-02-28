@@ -182,7 +182,6 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
         `Error: ${createCaseLinkcreateCaseLink2_content.errorMessageReason}`,
       ),
     ]);
-    console.log("here");
   },
 };
 

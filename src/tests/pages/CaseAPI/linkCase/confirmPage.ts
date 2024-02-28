@@ -28,7 +28,6 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3Page = {
 
   async fillInFields(page: Page): Promise<void> {
     await page.click(this.closeAndReturn);
-    console.log("here");
   },
 };
 
