@@ -2,20 +2,14 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createCaseLinkcreateCaseLink3_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink3_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createCaseLinkcreateCaseLink2_content
-  from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
+import createCaseLinkcreateCaseLink2_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
 
 type CreateCaseLinkCreateCaseLink3 = {
   previous: string;
   submit: string;
   cancel: string;
-  checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void>;
-  fillInFields(
-    page: Page,
-  ): Promise<void>;
+  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
 };
 
 const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3 = {
@@ -23,10 +17,7 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3 = {
   submit: '[type="submit"]',
   cancel: ".cancel",
 
-  async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
       page.locator(this.previous).isVisible(),
       page.locator(this.submit).isVisible(),
@@ -37,7 +28,7 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3 = {
     ]);
     await Promise.all([
       ...Array.from({ length: 16 }, (_, i: number) => {
-        const dynamicPropertyName = `textOnPage${i+1}`;
+        const dynamicPropertyName = `textOnPage${i + 1}`;
         const propertyValue = (createCaseLinkcreateCaseLink3_content as any)[
           dynamicPropertyName
         ];
@@ -56,12 +47,9 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3 = {
     }
   },
 
-  async fillInFields(
-    page: Page,
-  ): Promise<void> {
+  async fillInFields(page: Page): Promise<void> {
     await page.click(this.submit);
   },
-
 };
 
 export default createCaseLinkCreateCaseLink3;

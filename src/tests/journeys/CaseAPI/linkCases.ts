@@ -47,7 +47,10 @@ const linkCases: LinkCases = {
           caseNumber1,
           caseNumber2,
         );
-        await createCaseLinkCreateCaseLink3.checkPageLoads(page, accessibilityTest);
+        await createCaseLinkCreateCaseLink3.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
         await createCaseLinkCreateCaseLink3.fillInFields(page);
         break;
       case "errorMessaging":
