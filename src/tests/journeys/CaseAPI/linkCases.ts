@@ -4,6 +4,7 @@ import config from "../../config.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import createCaseLinkCreateCaseLink from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink.ts";
 import createCaseLinkCreateCaseLink2 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink2.ts";
+import createCaseLinkCreateCaseLink3 from "../../pages/CaseAPI/linkCase/createCaseLinkCreateCaseLink3.ts";
 
 type LinkCases = {
   linkCase(
@@ -46,6 +47,8 @@ const linkCases: LinkCases = {
           caseNumber1,
           caseNumber2,
         );
+        await createCaseLinkCreateCaseLink3.checkPageLoads(page, accessibilityTest);
+        await createCaseLinkCreateCaseLink3.fillInFields(page);
         break;
       case "errorMessaging":
         await this.startJourney(page, caseNumber1, accessibilityTest);

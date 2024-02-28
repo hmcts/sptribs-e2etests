@@ -1,4 +1,4 @@
-const createCaseLinkCreateCaseLink_content = {
+const createCaseLinkCreateCaseLink2_content = {
   pageTitle: "Select a case you want to link to this case",
   textOnPage1: "Enter case reference",
   textOnPage2: "Why should these cases be linked?",
@@ -39,4 +39,4 @@ const createCaseLinkCreateCaseLink_content = {
   errorMessageReason: "Select a reason why these cases should be linked",
 } as const;
 
-export default createCaseLinkCreateCaseLink_content;
+export default createCaseLinkCreateCaseLink2_content;

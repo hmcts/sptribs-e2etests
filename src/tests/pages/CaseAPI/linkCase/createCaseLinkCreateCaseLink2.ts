@@ -5,7 +5,7 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import stateTab_content from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
-type CreateCaseLinkCreateCaseLink = {
+type CreateCaseLinkCreateCaseLink2 = {
   next: string;
   previous: string;
   submit: string;
@@ -23,7 +23,7 @@ type CreateCaseLinkCreateCaseLink = {
   triggerErrorMessage(page: Page): Promise<void>;
 };
 
-const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
+const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2 = {
   next: "#next-button",
   previous: ".button-secondary[disabled]",
   submit: '[type="submit"]',
@@ -186,4 +186,4 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLink = {
   },
 };
 
-export default createCaseLinkCreateCaseLink;
+export default createCaseLinkCreateCaseLink2;
