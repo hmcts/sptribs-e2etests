@@ -99,7 +99,13 @@ test.describe("Linking cases tests @CaseAPI", (): void => {
       previousEvents1,
       eventTimes1,
     );
-    await buildCase.buildCase(page, caseNumber1, previousEvents1, eventTimes1, false);
+    await buildCase.buildCase(
+      page,
+      caseNumber1,
+      previousEvents1,
+      eventTimes1,
+      false,
+    );
     const caseNumber2: string = await createCase.createCase(
       page,
       "caseWorker",
@@ -191,7 +197,9 @@ test.describe("Linking cases tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test @accessibilityCaseAPI", async ({ page }): Promise<void> => {
+test("Accessibility test @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
   let previousEvents1: allEvents[] = [];
   let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
   const caseNumber1: string = await createCase.createCase(
