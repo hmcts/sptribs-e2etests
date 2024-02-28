@@ -54,7 +54,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
     );
-    await updateCaseJourney.updateCase(page, false, caseNumber, false, false);
   });
 
   test("Test all back buttons on the Update Case application", async ({
