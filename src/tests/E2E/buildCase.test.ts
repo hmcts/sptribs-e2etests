@@ -24,6 +24,7 @@ test.describe("Case-API Build case tests.", () => {
       true,
       true,
       true,
+      true,
     );
     await createCase.verifyDetails(
       page,
