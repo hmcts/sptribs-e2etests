@@ -24,12 +24,16 @@
     "test:AccessibilityUC": "yarn playwright install && npx playwright test --project chromium --grep @UpdateAccessibility",
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --grep @accessibility --project chromium",
-    "lint": "echo 'lint not installed' && exit 0"
+    "lint": "yarn prettier . --write"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "@axe-core/playwright": "^4.8.4",
     "dependency-check": "^4.1.0",
     "playwright-core": "^1.40.1",
+    "pre-commit": "^1.2.2",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
