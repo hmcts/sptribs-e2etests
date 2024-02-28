@@ -44,6 +44,7 @@ type CreateCase = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    needLogin: boolean,
   ): Promise<string>;
   verifyDetails(
     page: Page,
@@ -73,9 +74,12 @@ const createCase: CreateCase = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    needLogin: boolean,
   ): Promise<string> {
-    await caseAPILoginPage.SignInUser(page, user);
-    await casesPage.checkPageLoads(page, accessibilityTest);
+    if (needLogin) {
+      await caseAPILoginPage.SignInUser(page, user);
+      await casesPage.checkPageLoads(page, accessibilityTest);
+    }
     await casesPage.createCase(page);
     await caseFilterPage.checkPageLoads(page, accessibilityTest);
     await caseFilterPage.fillInFields(page);
