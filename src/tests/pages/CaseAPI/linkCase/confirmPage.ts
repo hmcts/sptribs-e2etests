@@ -15,10 +15,11 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3Page = {
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
       page.locator(this.closeAndReturn).isVisible(),
-      expect(page.locator(".heading-h1")).toHaveText(
-        confirm_content.pageTitle,
+      expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`h1:text-is("${confirm_content.textOnPage1}")`),
+        1,
       ),
-      commonHelpers.checkVisibleAndPresent(page.locator(`h1:text-is("${confirm_content.textOnPage1}")`), 1)
     ]);
     if (accessibilityTest) {
       await axeTest(page);
@@ -27,7 +28,7 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3Page = {
 
   async fillInFields(page: Page): Promise<void> {
     await page.click(this.closeAndReturn);
-    console.log('here')
+    console.log("here");
   },
 };
 
