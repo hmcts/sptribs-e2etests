@@ -197,7 +197,7 @@ withNightlyPipeline(type, product, component) {
       }
     }
     if (!params.skipCaseAPITests) {
-      stage('Case-API Create E2E tests') {
+      stage('Case-API E2E tests') {
         try {
           yarnBuilder.yarn('test:FunctionalCaseAPI')
         } catch (Error) {
@@ -214,7 +214,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-      stage('Case-API Create Cross browser tests') {
+      stage('Case-API Cross browser tests') {
         try {
           yarnBuilder.yarn('test:CrossbrowserCaseAPI')
         } catch (Error) {
