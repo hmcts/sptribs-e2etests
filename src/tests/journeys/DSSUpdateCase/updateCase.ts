@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
+import loginPage from "../../pages/DSSUpdateCase/loginPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
 import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
 import uploadDocumentsPage from "../../pages/DSSUpdateCase/uploadDocumentsPage.ts";
-import loginPage from "../../pages/DSSUpdateCase/loginPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
