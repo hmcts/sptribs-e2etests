@@ -1,4 +1,4 @@
-# Special Tribunals Raw Playwright proof of concept - a recreation of the Special Tribunals E2E tests.
+# Special Tribunals E2E tests in raw Playwright.
 
 ## Getting Started
 ### Brief introduction
