@@ -7,9 +7,6 @@ import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/Subje
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import respondentDetailsContent from "../../../fixtures/content/RespondentDetails_content.ts";
-import path from "path";
-import config from "../../../config.ts";
-import caseDetailsTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseDetailsTab_content.ts";
 
 type CasePartiesTabPage = {
   casePartiesTab: string;
@@ -62,9 +59,9 @@ const casePartiesTabPage: CasePartiesTabPage = {
           const textOnPage = (casePartiesTabContent as any)[
             `textOnPage${index + 6}`
           ];
-          return expect(page.locator(".ase-viewer-label").nth(index + 5))
-            .oHaveText;
-          textOnPage;
+          return expect(
+            page.locator(".case-viewer-label").nth(index + 5),
+          ).toHaveText(textOnPage);
         }),
       ]);
     } else {
