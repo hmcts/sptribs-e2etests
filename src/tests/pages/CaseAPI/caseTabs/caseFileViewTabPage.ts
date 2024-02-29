@@ -79,7 +79,7 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
         }),
         ...Array.from({ length: 4 }, (_, index) => {
           return expect(
-            page.locator(".node-nme-document").nth(index + 8),
+            page.locator(".node-name-document").nth(index + 8),
           ).toHaveText(path.basename(config.testWordFile));
         }),
       ]);
