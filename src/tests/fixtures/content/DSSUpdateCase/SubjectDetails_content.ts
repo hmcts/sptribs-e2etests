@@ -1,8 +1,10 @@
 const subjectDetailsContent = {
   header: "Update an appeal to the First-tier Tribunal",
-  feedbackBanner: "Help us improve this service" +
+  feedbackBanner:
+    "Help us improve this service" +
     "This is a new service. Help us for others to improve it by",
-  feedbackLink: "https://www.smartsurvey.co.uk/s/Specials_Feedback/?pageurl=/dss-update/subject-details",
+  feedbackLink:
+    "https://www.smartsurvey.co.uk/s/Specials_Feedback/?pageurl=/dss-update/subject-details",
   feedbackLinkText: "giving your feedback",
   pageTitle: "Subject of this case",
   subHeading1: "Full name",

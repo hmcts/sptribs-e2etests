@@ -22,9 +22,16 @@ const caseFinderPage: CaseFinderPage = {
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       CaseFinderDetails.header,
     );
-    await expect(page.locator(".govuk-phase-banner__text")).toContainText(CaseFinderDetails.feedbackBanner);
-    await expect(page.locator("a.govuk-link").nth(2)).toHaveText(CaseFinderDetails.feedbackLinkText);
-    await expect(page.locator('a.govuk-link').nth(2)).toHaveAttribute('href', CaseFinderDetails.feedbackLink);
+    await expect(page.locator(".govuk-phase-banner__text")).toContainText(
+      CaseFinderDetails.feedbackBanner,
+    );
+    await expect(page.locator("a.govuk-link").nth(2)).toHaveText(
+      CaseFinderDetails.feedbackLinkText,
+    );
+    await expect(page.locator("a.govuk-link").nth(2)).toHaveAttribute(
+      "href",
+      CaseFinderDetails.feedbackLink,
+    );
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       CaseFinderDetails.pageTitle,
     );

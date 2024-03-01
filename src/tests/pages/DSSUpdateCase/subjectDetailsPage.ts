@@ -32,9 +32,16 @@ const subjectDetailsPage: SubjectDetailsPage = {
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       SubjectDetailsContent.header,
     );
-    await expect(page.locator(".govuk-phase-banner__text")).toContainText(SubjectDetailsContent.feedbackBanner);
-    await expect(page.locator("a.govuk-link").nth(2)).toHaveText(SubjectDetailsContent.feedbackLinkText);
-    await expect(page.locator('a.govuk-link').nth(2)).toHaveAttribute('href', SubjectDetailsContent.feedbackLink);
+    await expect(page.locator(".govuk-phase-banner__text")).toContainText(
+      SubjectDetailsContent.feedbackBanner,
+    );
+    await expect(page.locator("a.govuk-link").nth(2)).toHaveText(
+      SubjectDetailsContent.feedbackLinkText,
+    );
+    await expect(page.locator("a.govuk-link").nth(2)).toHaveAttribute(
+      "href",
+      SubjectDetailsContent.feedbackLink,
+    );
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       SubjectDetailsContent.pageTitle,
     );
