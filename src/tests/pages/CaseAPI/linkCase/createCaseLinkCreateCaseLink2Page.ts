@@ -10,10 +10,7 @@ type CreateCaseLinkCreateCaseLink2Page = {
   previous: string;
   submit: string;
   cancel: string;
-  checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void>;
+  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(
     page: Page,
     caseNumber1: string,
@@ -28,10 +25,7 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
   submit: '[type="submit"]',
   cancel: ".cancel",
 
-  async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
       page.locator(this.next).isVisible(),
       page.locator(this.previous).isVisible(),
