@@ -43,12 +43,11 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       eventTimes1,
       false,
     );
-
   });
 
   test("Create hearing options in the 'Ready to list' state. @CaseAPI", async ({
-                                                                                   page,
-                                                                                 }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     let previousEvents1: allEvents[] = [];
     let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
     const caseNumber1: string = await createCase.createCase(
@@ -87,15 +86,9 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
     );
   });
 
-  test("Test error messaging. @CaseAPI", async ({
-                                                                                   page,
-                                                                                 }): Promise<void> => {
-
-  });
+  test("Test error messaging. @CaseAPI", async ({ page }): Promise<void> => {});
 });
 
 test("Accessibility test @accessibilityCaseAPI", async ({
-                                                                                 page,
-                                                                               }): Promise<void> => {
-
-});
+  page,
+}): Promise<void> => {});

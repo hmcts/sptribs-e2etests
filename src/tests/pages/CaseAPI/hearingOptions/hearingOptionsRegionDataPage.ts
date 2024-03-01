@@ -26,7 +26,7 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-  ): Promise<void>{
+  ): Promise<void> {
     await Promise.all([
       commonHelpers.checkNumberAndSubject(page, caseNumber),
       expect(page.locator(".govuk-heading-xl")).toHaveText(
@@ -42,13 +42,11 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
     if (accessibilityTest) {
       await axeTest(page);
     }
-
   },
 
-  async fillInFields(page: Page): Promise<void>{
+  async fillInFields(page: Page): Promise<void> {
     await page.fill(this.region, hearingOptionsRegionDataContent.region);
   },
-}
-
+};
 
 export default hearingOptionsRegionData;
