@@ -20,6 +20,9 @@ const landingPage: LandingPage = {
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       LandingPageDetails.header,
     );
+    await expect(page.locator(".govuk-phase-banner__text")).toContainText(LandingPageDetails.feedbackBanner);
+    await expect(page.locator("a.govuk-link").nth(0)).toHaveText(LandingPageDetails.feedbackLinkText);
+    await expect(page.locator('a.govuk-link').nth(0)).toHaveAttribute('href', LandingPageDetails.feedbackLink);
     await expect(page.locator(".govuk-heading-l")).toHaveText(
       LandingPageDetails.pageTitle,
     );

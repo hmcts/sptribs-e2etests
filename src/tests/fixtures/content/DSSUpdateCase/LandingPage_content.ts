@@ -1,5 +1,9 @@
 const landingPageContent = {
   header: "Update an appeal to the First-tier Tribunal",
+  feedbackBanner: "Help us improve this service" +
+    "This is a new service. Help us for others to improve it by",
+  feedbackLink: "https://www.smartsurvey.co.uk/s/Specials_Feedback/?pageurl=/",
+  feedbackLinkText: "giving your feedback",
   pageTitle: "Update an existing First-tier Tribunal case",
   hintMessage:
     "Use this service to update a case that has already been submitted to the First-tier Tribunal.",

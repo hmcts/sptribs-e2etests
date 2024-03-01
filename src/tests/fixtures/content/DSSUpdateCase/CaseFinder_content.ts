@@ -1,5 +1,9 @@
 const caseFinderContent = {
   header: "Update an appeal to the First-tier Tribunal",
+  feedbackBanner: "Help us improve this service" +
+    "This is a new service. Help us for others to improve it by",
+  feedbackLink: "https://www.smartsurvey.co.uk/s/Specials_Feedback/?pageurl=/dss-update/casefinder",
+  feedbackLinkText: "giving your feedback",
   pageTitle: "Existing case details",
   hintMessage:
     "You can find this information in the email you received after submitting your tribunal forms.",
