@@ -222,9 +222,9 @@ const commonHelpers: CommonHelpers = {
         ),
         ...Array.from({ length: 2 }, (_, index) => {
           const textOnPage = (CookiesContent as any)[`textOnPage${index + 1}`];
-          return expect(
-            page.locator(".govuk-body").nth(index),
-          ).toContainText(textOnPage);
+          return expect(page.locator(".govuk-body").nth(index)).toContainText(
+            textOnPage,
+          );
         }),
       ]);
     }
