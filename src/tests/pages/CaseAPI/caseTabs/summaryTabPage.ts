@@ -32,45 +32,36 @@ const summaryTabPage: SummaryTabPage = {
     representationPresent: boolean,
     caseNumber: string,
   ): Promise<void> {
-    await commonHelpers.checkAllCaseTabs(page, caseNumber);
-    await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
-      summaryTabContent.caseState,
-    );
-    await expect(page.locator("dl[id='case-details'] h3")).toHaveText(
-      summaryTabContent.subHeading1,
-    );
-    await expect(page.locator(".case-viewer-label").nth(0)).toHaveText(
-      summaryTabContent.textOnPage1,
-    );
-    await expect(page.locator(".case-viewer-label").nth(1)).toHaveText(
-      summaryTabContent.textOnPage2,
-    );
-    await expect(page.locator(".case-viewer-label").nth(2)).toHaveText(
-      summaryTabContent.textOnPage3,
-    );
-    await expect(page.locator(".case-viewer-label").nth(3)).toHaveText(
-      summaryTabContent.textOnPage4,
-    );
-
+    await Promise.all([
+      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
+        summaryTabContent.caseState,
+      ),
+      expect(page.locator("dl[id='case-details'] h3")).toHaveText(
+        summaryTabContent.subHeading1,
+      ),
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (summaryTabContent as any)[`textOnPage${index + 1}`];
+        return expect(page.locator(".case-viewer-label").nth(index)).toHaveText(
+          textOnPage,
+        );
+      }),
+    ]);
     if (representationPresent) {
-      // await expect( TODO: Fix selector
-      //   page.locator("dl[id='representativeDetailsContent'] h3"),
-      // ).toHaveText(summaryTabContent.subHeading2);
-      await expect(page.locator(".case-viewer-label").nth(4)).toHaveText(
-        summaryTabContent.textOnPage5,
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`h3:text-is("${summaryTabContent.subHeading2}")`),
+        1,
       );
-      await expect(page.locator(".case-viewer-label").nth(5)).toHaveText(
-        summaryTabContent.textOnPage6,
-      );
-      await expect(page.locator(".case-viewer-label").nth(6)).toHaveText(
-        summaryTabContent.textOnPage7,
-      );
-      await expect(page.locator(".case-viewer-label").nth(7)).toHaveText(
-        summaryTabContent.textOnPage8,
-      );
-      await expect(page.locator(".case-viewer-label").nth(8)).toHaveText(
-        summaryTabContent.textOnPage9,
-      );
+      await Promise.all([
+        ...Array.from({ length: 5 }, (_, index) => {
+          const textOnPage = (summaryTabContent as any)[
+            `textOnPage${index + 5}`
+          ];
+          return expect(
+            page.locator(".case-viewer-label").nth(index + 4),
+          ).toHaveText(textOnPage);
+        }),
+      ]);
     }
 
     if (accessibilityTest) {
@@ -88,33 +79,35 @@ const summaryTabPage: SummaryTabPage = {
     representationPresent: boolean,
     representationQualified: boolean,
   ): Promise<void> {
-    await expect(
-      page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-    ).toHaveText(subjectDetailsContent.name);
-    await expect(
-      page.locator("ccd-read-date-field[class='ng-star-inserted']"),
-    ).toHaveText(await commonHelpers.convertDate(true));
-    await expect(
-      page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
-    ).toHaveText(subjectContactDetailsContent.emailAddress);
-    await expect(
-      page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(1),
-    ).toHaveText(caseNumber);
-
+    await Promise.all([
+      expect(
+        page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
+      ).toHaveText(subjectDetailsContent.name),
+      expect(
+        page.locator("ccd-read-date-field[class='ng-star-inserted']"),
+      ).toHaveText(await commonHelpers.convertDate(true)),
+      expect(
+        page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
+      ).toHaveText(subjectContactDetailsContent.emailAddress),
+      expect(
+        page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(1),
+      ).toHaveText(caseNumber),
+    ]);
     if (representationPresent) {
-      await expect(
-        page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(2),
-      ).toHaveText(representativeDetailsContent.Organisation);
-      await expect(
-        page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(3),
-      ).toHaveText(representativeDetailsContent.fullName);
-      await expect(
-        page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(4),
-      ).toHaveText(representativeDetailsContent.contactNumber);
-      await expect(
-        page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(1),
-      ).toHaveText(representativeDetailsContent.emailAddress);
-
+      await Promise.all([
+        expect(
+          page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(2),
+        ).toHaveText(representativeDetailsContent.Organisation),
+        expect(
+          page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(3),
+        ).toHaveText(representativeDetailsContent.fullName),
+        expect(
+          page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(4),
+        ).toHaveText(representativeDetailsContent.contactNumber),
+        expect(
+          page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(1),
+        ).toHaveText(representativeDetailsContent.emailAddress),
+      ]);
       if (representationQualified) {
         await expect(page.locator("ccd-read-yes-no-field").nth(0)).toHaveText(
           "Yes",
