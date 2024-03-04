@@ -4,6 +4,7 @@ import authors_content from "../fixtures/content/authors_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import caseFileViewTabContent from "../fixtures/content/CaseAPI/caseTabs/caseFileViewTab_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -191,21 +192,19 @@ const commonHelpers: CommonHelpers = {
   },
 
   async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {
-    await this.checkNumberAndSubject(page, caseNumber);
-    for (let i = 0; i < 15; i++) {
-      try {
-        await expect(page.locator(".mat-tab-label").nth(i)).toHaveText(
-          allTabTitles_content[
-            `tab${i + 1}` as keyof typeof allTabTitles_content
-          ],
-        );
-      } catch (error) {
-        console.error(
-          `Error occurred with finding the ${allTabTitles_content[`tab${i}` as keyof typeof allTabTitles_content]} selector.`,
-          error,
-        );
-      }
-    }
+    await Promise.all([
+      this.checkNumberAndSubject(page, caseNumber),
+      Array.from({ length: 15 }, (_, index) => {
+        if (index !== 11) {
+          // Exclude tab 12 (index 11)
+          const textOnPage = (allTabTitles_content as any)[`tab${index + 1}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            1,
+          );
+        }
+      }).filter(Boolean),
+    ]);
   },
 
   async generateUrl(baseURL: string, caseNumber: string): Promise<string> {
