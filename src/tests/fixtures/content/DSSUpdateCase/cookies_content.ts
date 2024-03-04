@@ -1,0 +1,8 @@
+const updateCaseCookiesContent = {
+  title: "Cookies on Update an appeal to the First-tier Tribunal",
+  textOnPage1: "We use some essential cookies to make this service work.",
+  textOnPage2:
+    "We’d also like to use analytics cookies so we can understand how you use the service and make improvements.",
+} as const;
+
+export default updateCaseCookiesContent;
