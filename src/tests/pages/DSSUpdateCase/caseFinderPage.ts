@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
-import CookiesContent from "../../fixtures/content/DSSUpdateCase/cookies_content.ts";
 import CaseFinderDetails from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
+import CommonHelpers from "../../helpers/commonHelpers.ts";
 
 type CaseFinderPage = {
   caseReferenceNumber: string;
@@ -20,17 +20,7 @@ const caseFinderPage: CaseFinderPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
-      CookiesContent.title,
-    );
-    await expect(
-      page.locator(".govuk-cookie-banner__content").nth(0),
-    ).toContainText(CookiesContent.textOnPage1);
-    await expect(
-      page.locator(".govuk-cookie-banner__content").nth(0),
-    ).toContainText(CookiesContent.textOnPage2);
-    await page.locator(".govuk-button").nth(0).click();
-    await page.getByRole("button", { name: "Hide this message" }).click();
+    await CommonHelpers.checkAndAcceptCookies(page);
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       CaseFinderDetails.header,
     );

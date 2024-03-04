@@ -1,10 +1,10 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Locator, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
+import CookiesContent from "../fixtures/content/cookies_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
-import caseFileViewTabContent from "../fixtures/content/CaseAPI/caseTabs/caseFileViewTab_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -21,6 +21,7 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
+  checkAndAcceptCookies(page: Page): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
@@ -210,6 +211,22 @@ const commonHelpers: CommonHelpers = {
   async generateUrl(baseURL: string, caseNumber: string): Promise<string> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     return `${baseURL}/case-details/${caseNumberDigits}#History`;
+  },
+
+  async checkAndAcceptCookies(page: Page): Promise<void> {
+    await Promise.all([
+      expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
+        CookiesContent.title,
+      ),
+      ...Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (CookiesContent as any)[`textOnPage${index + 2}`];
+        return expect(
+          page.locator(".govuk-cookie-banner__content").nth(index + 1),
+        ).toContainText(textOnPage);
+      }),
+    ]);
+    await page.locator(".govuk-button").nth(0).click();
+    await page.getByRole("button", { name: "Hide this message" }).click();
   },
 };
 
