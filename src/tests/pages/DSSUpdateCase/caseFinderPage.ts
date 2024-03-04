@@ -20,7 +20,6 @@ const caseFinderPage: CaseFinderPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await page.pause();
     await CommonHelpers.checkAndAcceptCookies(page, "UC");
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       CaseFinderDetails.header,
