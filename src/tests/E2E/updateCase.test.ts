@@ -69,7 +69,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         true,
         false,
-        true,
+        false,
         false,
       );
     await updateCaseJourney.updateCase(
@@ -93,7 +93,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         true,
         false,
-        true,
+        false,
         false,
       );
     await updateCaseJourney.updateCase(
