@@ -23,15 +23,14 @@ const caseFinderPage: CaseFinderPage = {
     await expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
       CookiesContent.title,
     );
-    await expect(page.locator(".govuk-cookie-banner__content").nth(0)).toContainText(
-      CookiesContent.textOnPage1,
-    );
-    await expect(page.locator(".govuk-cookie-banner__content").nth(0)).toContainText(
-      CookiesContent.textOnPage2,
-    );
+    await expect(
+      page.locator(".govuk-cookie-banner__content").nth(0),
+    ).toContainText(CookiesContent.textOnPage1);
+    await expect(
+      page.locator(".govuk-cookie-banner__content").nth(0),
+    ).toContainText(CookiesContent.textOnPage2);
     await page.locator(".govuk-button").nth(0).click();
     await page.getByRole("button", { name: "Hide this message" }).click();
-
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       CaseFinderDetails.header,
     );
