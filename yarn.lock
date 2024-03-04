@@ -1169,7 +1169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.42.0, playwright-core@npm:^1.40.1":
+"playwright-core@npm:1.42.0, playwright-core@npm:^1.42.0":
   version: 1.42.0
   resolution: "playwright-core@npm:1.42.0"
   bin:
@@ -1487,7 +1487,7 @@ __metadata:
     "@playwright/test": ^1.40.0
     "@types/node": ^20.10.0
     dependency-check: ^4.1.0
-    playwright-core: ^1.40.1
+    playwright-core: ^1.42.0
     pre-commit: ^1.2.2
     prettier: 3.2.5
     typescript: ^5.3.3

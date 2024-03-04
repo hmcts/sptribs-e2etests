@@ -16,42 +16,44 @@ const casesPage: CasesPage = {
   caseType: "#wb-case-type",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-heading-xl")).toHaveText(
-      casesContent.pageTitle,
-    );
-    await expect(page.locator("h2[aria-label='Filters']")).toHaveText(
-      casesContent.subTitle1,
-    );
-    await expect(page.locator("label[for='wb-jurisdiction']")).toHaveText(
-      casesContent.textOnPage1,
-    );
-    await expect(page.locator("label[for='wb-case-type']")).toHaveText(
-      casesContent.textOnPage2,
-    );
-    await expect(page.locator("label[for='wb-case-state']")).toHaveText(
-      casesContent.textOnPage3,
-    );
-    await expect(page.locator("label[for='[CASE_REFERENCE]']")).toHaveText(
-      casesContent.textOnPage4,
-    );
-    await expect(page.locator("label[for='hearingVenueName']")).toHaveText(
-      casesContent.textOnPage5,
-    );
-    await expect(page.locator("label[for='cicCaseFullName']")).toHaveText(
-      casesContent.textOnPage6,
-    );
-    await expect(
-      page.locator("label[for='cicCaseAddress.PostCode']"),
-    ).toHaveText(casesContent.textOnPage7);
-    await expect(page.locator("#cicCaseDateOfBirth")).toHaveText(
-      casesContent.textOnPage8,
-    );
-    await expect(
-      page.locator("label[for='cicCaseApplicantFullName']"),
-    ).toHaveText(casesContent.textOnPage9);
-    await expect(
-      page.locator("label[for='cicCaseRepresentativeReference']"),
-    ).toHaveText(casesContent.textOnPage10);
+    await Promise.all([
+      expect(page.locator(".govuk-heading-xl")).toHaveText(
+        casesContent.pageTitle,
+      ),
+      expect(page.locator("h2[aria-label='Filters']")).toHaveText(
+        casesContent.subTitle1,
+      ),
+      expect(page.locator("label[for='wb-jurisdiction']")).toHaveText(
+        casesContent.textOnPage1,
+      ),
+      expect(page.locator("label[for='wb-case-type']")).toHaveText(
+        casesContent.textOnPage2,
+      ),
+      expect(page.locator("label[for='wb-case-state']")).toHaveText(
+        casesContent.textOnPage3,
+      ),
+      expect(page.locator("label[for='[CASE_REFERENCE]']")).toHaveText(
+        casesContent.textOnPage4,
+      ),
+      expect(page.locator("label[for='hearingVenueName']")).toHaveText(
+        casesContent.textOnPage5,
+      ),
+      expect(page.locator("label[for='cicCaseFullName']")).toHaveText(
+        casesContent.textOnPage6,
+      ),
+      expect(page.locator("label[for='cicCaseAddress.PostCode']")).toHaveText(
+        casesContent.textOnPage7,
+      ),
+      expect(page.locator("#cicCaseDateOfBirth")).toHaveText(
+        casesContent.textOnPage8,
+      ),
+      expect(page.locator("label[for='cicCaseApplicantFullName']")).toHaveText(
+        casesContent.textOnPage9,
+      ),
+      expect(
+        page.locator("label[for='cicCaseRepresentativeReference']"),
+      ).toHaveText(casesContent.textOnPage10),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
