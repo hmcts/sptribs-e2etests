@@ -20,12 +20,16 @@ const caseDateObjectsPage: CaseDateObjectsPage = {
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toHaveText(caseDateObjects_content.pageHint),
-      expect(page.locator(".govuk-heading-l")).toHaveText(caseDateObjects_content.pageTitle),
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseDateObjects_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseDateObjects_content.pageTitle,
+      ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (caseDateObjects_content as any)[
           `textOnPage${index + 1}`
-          ];
+        ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
