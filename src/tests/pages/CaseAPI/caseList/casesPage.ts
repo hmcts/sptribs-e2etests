@@ -54,6 +54,9 @@ const casesPage: CasesPage = {
         page.locator("label[for='cicCaseRepresentativeReference']"),
       ).toHaveText(casesContent.textOnPage10),
     ]);
+    if (await page.locator(".govuk-link--no-visited-state").isVisible()) {
+      await page.click(".govuk-link--no-visited-state");
+    }
     if (accessibilityTest) {
       await axeTest(page);
     }
