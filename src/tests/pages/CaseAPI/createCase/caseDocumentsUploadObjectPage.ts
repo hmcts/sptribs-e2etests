@@ -24,27 +24,29 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
   cancelRemove: "button-secondary",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseDocumentsUploadObject_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseDocumentsUploadObject_content.pageTitle,
-    );
-    await expect(page.locator("[class='markdown'] p")).toHaveText(
-      caseDocumentsUploadObject_content.textOnPage1,
-    );
-    await expect(
-      page.locator("body exui-root exui-case-create-submit li:nth-child(1)"),
-    ).toHaveText(caseDocumentsUploadObject_content.textOnPage2);
-    await expect(
-      page.locator("body exui-root exui-case-create-submit li:nth-child(2)"),
-    ).toHaveText(caseDocumentsUploadObject_content.textOnPage3);
-    await expect(
-      page.locator("body exui-root exui-case-create-submit li:nth-child(3)"),
-    ).toHaveText(caseDocumentsUploadObject_content.textOnPage4);
-    await expect(page.locator(".heading-h2").nth(0)).toHaveText(
-      caseDocumentsUploadObject_content.subSubTitle1,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseDocumentsUploadObject_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseDocumentsUploadObject_content.pageTitle,
+      ),
+      expect(page.locator("[class='markdown'] p")).toHaveText(
+        caseDocumentsUploadObject_content.textOnPage1,
+      ),
+      expect(
+        page.locator("body exui-root exui-case-create-submit li:nth-child(1)"),
+      ).toHaveText(caseDocumentsUploadObject_content.textOnPage2),
+      expect(
+        page.locator("body exui-root exui-case-create-submit li:nth-child(2)"),
+      ).toHaveText(caseDocumentsUploadObject_content.textOnPage3),
+      expect(
+        page.locator("body exui-root exui-case-create-submit li:nth-child(3)"),
+      ).toHaveText(caseDocumentsUploadObject_content.textOnPage4),
+      expect(page.locator(".heading-h2").nth(0)).toHaveText(
+        caseDocumentsUploadObject_content.subSubTitle1,
+      ),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

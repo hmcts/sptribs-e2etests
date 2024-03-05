@@ -33,39 +33,23 @@ const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
   selectPost: "#cicCaseApplicantContactDetailsPreference-Post",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseApplicantDetailsObject_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseApplicantDetailsObject_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage2,
-    );
-    await expect(page.locator(".form-label").nth(2)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage3,
-    );
-    await expect(page.locator(".form-label").nth(3)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage4,
-    );
-    await expect(page.locator(".form-label").nth(4)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage5,
-    );
-    await expect(page.locator(".form-label").nth(5)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage6,
-    );
-    await expect(page.locator(".form-label").nth(6)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage7,
-    );
-    await expect(page.locator(".form-label").nth(7)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage8,
-    );
-    await expect(page.locator(".form-label").nth(8)).toHaveText(
-      caseApplicantDetailsObject_content.textOnPage9,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseApplicantDetailsObject_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseApplicantDetailsObject_content.pageTitle,
+      ),
+      ...Array.from({ length: 9 }, (_, index) => {
+        const textOnPage = (caseApplicantDetailsObject_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -99,15 +83,17 @@ const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
     } else if (contactPreference === "Post") {
       await page.click(this.selectPost);
       await page.click(this.selectPost);
-      await expect(page.locator(".heading-h2")).toHaveText(
-        caseApplicantDetailsObject_content.subTitle1,
-      );
-      await expect(page.locator(".form-label").nth(9)).toHaveText(
-        caseApplicantDetailsObject_content.textOnPage11,
-      );
-      await expect(page.locator(".manual-link")).toHaveText(
-        caseApplicantDetailsObject_content.linkOnPage1,
-      );
+      await Promise.all([
+        expect(page.locator(".heading-h2")).toHaveText(
+          caseApplicantDetailsObject_content.subTitle1,
+        ),
+        expect(page.locator(".form-label").nth(9)).toHaveText(
+          caseApplicantDetailsObject_content.textOnPage11,
+        ),
+        expect(page.locator(".manual-link")).toHaveText(
+          caseApplicantDetailsObject_content.linkOnPage1,
+        ),
+      ]);
       await commonHelpers.postcodeHandler(page, "Applicant");
     }
     await page.click(this.continue);

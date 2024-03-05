@@ -24,24 +24,22 @@ const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
   applicantSelectBox: "#cicCasePartiesCIC-ApplicantCIC",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseObjectsSubjects_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseObjectsSubjects_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseObjectsSubjects_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseObjectsSubjects_content.textOnPage2,
-    );
-    await expect(page.locator(".form-label").nth(2)).toHaveText(
-      caseObjectsSubjects_content.textOnPage3,
-    );
-    await expect(page.locator(".form-label").nth(3)).toHaveText(
-      caseObjectsSubjects_content.textOnPage4,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseObjectsSubjects_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseObjectsSubjects_content.pageTitle,
+      ),
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (caseObjectsSubjects_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return expect(page.locator(".form-label").nth(index)).toHaveText(
+          textOnPage,
+        );
+      }),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
