@@ -12,11 +12,16 @@ type UploadDocumentsPage = {
     documentRelevance: string;
     additionalInfo: string;
   };
+  deleteButton: string;
   continueButton: string;
   backButton: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(page: Page, additionalInformation: boolean): Promise<void>;
-  uploadDocumentsSection(page: Page, uploadDocument: boolean, multipleDocuments: boolean): Promise<void>;
+  uploadDocumentsSection(
+    page: Page,
+    uploadDocument: boolean,
+    multipleDocuments: boolean,
+  ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
@@ -30,6 +35,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
     fileUploadedOption: 'button[type="upload document"]',
     documentRelevance: "#eventName",
   },
+  deleteButton: ".govuk-link--no-visited-state",
   continueButton: "button[name='continue']",
   backButton: ".govuk-back-link",
 
@@ -96,14 +102,19 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       expect(page.locator(".govuk-body").nth(11)).toHaveText(
         UploadDocumentsContent.textOnPage16,
       ),
-      expect(page.locator(this.continueButton)).toHaveText(UploadDocumentsContent.continueButton),
+      expect(page.locator(this.continueButton)).toHaveText(
+        UploadDocumentsContent.continueButton,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
   },
 
-  async fillInFields(page: Page, additionalInformation: boolean): Promise<void> {
+  async fillInFields(
+    page: Page,
+    additionalInformation: boolean,
+  ): Promise<void> {
     if (additionalInformation) {
       await page.fill(
         this.fields.additionalInfo,
@@ -125,6 +136,21 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
       );
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        UploadDocumentsContent.deleteButton,
+      );
+      await page.click(this.deleteButton);
+      await expect(page.locator(".uploadedFile")).toHaveCount(0);
+      await page
+        .locator(this.fields.uploadFileButton)
+        .setInputFiles(config.testWordFile);
+      await page.click(this.fields.fileUploadedOption);
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        path.basename(config.testWordFile),
+      );
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        UploadDocumentsContent.deleteButton,
+      );
       if (multipleDocuments) {
         for (let i = 0; i < 4; i++) {
           await page
@@ -134,6 +160,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
             path.basename(config.testPdfFile),
           );
+          await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
+            UploadDocumentsContent.deleteButton,
+          );
         }
         for (let i = 0; i < 5; i++) {
           await page
@@ -142,6 +171,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           await page.click(this.fields.fileUploadedOption);
           await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
             path.basename(config.testFile),
+          );
+          await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
+            UploadDocumentsContent.deleteButton,
           );
         }
       }

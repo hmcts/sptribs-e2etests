@@ -28,7 +28,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
       false,
-      false
+      false,
     );
   });
 
@@ -54,15 +54,15 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       caseNumber,
       true,
       true,
+      true,
       false,
       false,
-      false
     );
   });
 
   test("Check for an existing case to update, upload one document and no additional information", async ({
-                                                                                                              page,
-                                                                                                            }) => {
+    page,
+  }) => {
     const caseNumber: string | void =
       await createFEApplication.createFEApplication(
         page,
@@ -84,13 +84,13 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
       false,
-      false
+      false,
     );
   });
 
   test("Check for an existing case to update, upload no documents and additional information", async ({
-                                                                                                           page,
-                                                                                                         }) => {
+    page,
+  }) => {
     const caseNumber: string | void =
       await createFEApplication.createFEApplication(
         page,
@@ -112,7 +112,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      false
+      false,
     );
   });
 
@@ -140,7 +140,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
       true,
-      false
+      false,
     );
   });
 
@@ -166,7 +166,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
       false,
-      true
+      true,
     );
   });
 });
@@ -195,6 +195,6 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     true,
     false,
     false,
-    false
+    false,
   );
 });
