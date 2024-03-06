@@ -31,7 +31,7 @@ const uploadDocumentsContent = {
   button: "Upload file",
   additionalInfo: "Lorem ipsum additional information",
   documentRelevance: "Lorem ipsum relevance",
-  button2: "Continue",
+  continueButton: "Continue",
   deleteButton: "Delete",
   errorBanner: "There is a problem on this page",
   continueError:

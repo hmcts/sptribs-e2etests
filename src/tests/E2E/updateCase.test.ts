@@ -3,7 +3,7 @@ import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
-  test("Check for an existing case to update and upload one document.", async ({
+  test("Check for an existing case to update, upload one document and additional information.", async ({
     page,
   }) => {
     const caseNumber: string | void =
@@ -24,13 +24,15 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       page,
       false,
       caseNumber,
+      true,
+      true,
       false,
       false,
-      false,
+      false
     );
   });
 
-  test("Check for an existing case to update and upload multiple documents.", async ({
+  test("Check for an existing case to update, upload multiple documents and additional information", async ({
     page,
   }) => {
     const caseNumber: string | void =
@@ -51,8 +53,66 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       caseNumber,
       true,
+      true,
       false,
       false,
+      false
+    );
+  });
+
+  test("Check for an existing case to update, upload one document and no additional information", async ({
+                                                                                                              page,
+                                                                                                            }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      false,
+      true,
+      false,
+      false,
+      false
+    );
+  });
+
+  test("Check for an existing case to update, upload no documents and additional information", async ({
+                                                                                                           page,
+                                                                                                         }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      true,
+      false,
+      false,
+      false,
+      false
     );
   });
 
@@ -76,9 +136,11 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       page,
       false,
       caseNumber,
-      false,
+      true,
       true,
       false,
+      true,
+      false
     );
   });
 
@@ -100,9 +162,11 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       page,
       false,
       caseNumber,
-      false,
-      false,
       true,
+      true,
+      false,
+      false,
+      true
     );
   });
 });
@@ -127,8 +191,10 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     page,
     true,
     caseNumber,
+    true,
+    true,
     false,
     false,
-    false,
+    false
   );
 });

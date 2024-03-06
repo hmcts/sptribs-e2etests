@@ -10,6 +10,8 @@ type UpdateCaseJourney = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string | void,
+    additionalInformation: boolean,
+    uploadDocument: boolean,
     multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
@@ -22,6 +24,8 @@ const updateCaseJourney: UpdateCaseJourney = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string | void,
+    additionalInformation: boolean,
+    uploadDocument: boolean,
     multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
@@ -38,9 +42,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
-        await uploadDocumentsPage.fillInFields(page);
+        await uploadDocumentsPage.fillInFields(page, additionalInformation);
         await uploadDocumentsPage.uploadDocumentsSection(
           page,
+          uploadDocument,
           multipleDocuments,
         );
         await uploadDocumentsPage.continueOn(page);
@@ -62,9 +67,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.triggerErrorMessages(page);
         await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
-        await uploadDocumentsPage.fillInFields(page);
+        await uploadDocumentsPage.fillInFields(page, additionalInformation);
         await uploadDocumentsPage.uploadDocumentsSection(
           page,
+          uploadDocument,
           multipleDocuments,
         );
         await uploadDocumentsPage.continueOn(page);
