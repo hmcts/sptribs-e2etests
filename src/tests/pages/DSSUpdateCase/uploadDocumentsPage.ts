@@ -48,16 +48,20 @@ const uploadDocumentsPage: UploadDocumentsPage = {
         UploadDocumentsContent.subTitle1,
       ),
       ...Array.from({ length: 3 }, (_, index) => {
-        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 1}`];
+        const textOnPage = (UploadDocumentsContent as any)[
+          `textOnPage${index + 1}`
+        ];
         return expect(page.locator(".govuk-body").nth(index + 4)).toHaveText(
           textOnPage,
         );
       }),
       ...Array.from({ length: 4 }, (_, index) => {
-        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 4}`];
-        return expect(page.locator(`div[class='govuk-body'] li:nth-child(${index+1})`)).toHaveText(
-          textOnPage,
-        );
+        const textOnPage = (UploadDocumentsContent as any)[
+          `textOnPage${index + 4}`
+        ];
+        return expect(
+          page.locator(`div[class='govuk-body'] li:nth-child(${index + 1})`),
+        ).toHaveText(textOnPage);
       }),
       expect(page.locator(".govuk-body").nth(8)).toHaveText(
         UploadDocumentsContent.textOnPage8,
@@ -69,16 +73,22 @@ const uploadDocumentsPage: UploadDocumentsPage = {
     await page.click(this.fields.dropDown);
     await Promise.all([
       ...Array.from({ length: 4 }, (_, index) => {
-        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 9}`];
-        return expect(page.locator(`details[class='govuk-details'] li:nth-child(${index+1})`)).toHaveText(
-          textOnPage,
-        );
+        const textOnPage = (UploadDocumentsContent as any)[
+          `textOnPage${index + 9}`
+        ];
+        return expect(
+          page.locator(
+            `details[class='govuk-details'] li:nth-child(${index + 1})`,
+          ),
+        ).toHaveText(textOnPage);
       }),
       expect(page.locator("details[class='govuk-details'] p")).toContainText(
         UploadDocumentsContent.textOnPage13,
       ),
       ...Array.from({ length: 2 }, (_, index) => {
-        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 14}`];
+        const textOnPage = (UploadDocumentsContent as any)[
+          `textOnPage${index + 14}`
+        ];
         return expect(page.locator(".govuk-label").nth(index)).toHaveText(
           textOnPage,
         );
@@ -104,14 +114,25 @@ const uploadDocumentsPage: UploadDocumentsPage = {
     page: Page,
     multipleDocuments: boolean,
   ): Promise<void> {
-    // await page
-    //   .locator(this.fields.uploadFileButton)
-    //   .setInputFiles(config.testWordFile);
-    // await page.click(this.fields.fileUploadedOption);
-    // await expect(page.locator(".uploadedFile").first()).toContainText(
-    //   path.basename(config.testWordFile),
-    // );
-    // To be completed with upload document fix
+    await page
+      .locator(this.fields.uploadFileButton)
+      .setInputFiles(config.testWordFile);
+    await page.click(this.fields.fileUploadedOption);
+    await expect(page.locator(".uploadedFile").first()).toContainText(
+      path.basename(config.testWordFile),
+    );
+    if (multipleDocuments) {
+      const files = [config.testPdfFile, config.testFile];
+      for (let i = 0; i < 2; i++) {
+        await page
+          .locator(this.fields.uploadFileButton)
+          .setInputFiles(files[i]);
+        await page.click(this.fields.fileUploadedOption);
+        await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
+          path.basename(files[i]),
+        );
+      }
+    }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
