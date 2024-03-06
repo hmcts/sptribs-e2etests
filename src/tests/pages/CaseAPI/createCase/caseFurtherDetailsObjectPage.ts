@@ -43,45 +43,47 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
   explainedNo: "#cicCaseMissedTheDeadLineCic_No",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseFurtherDetailsObject_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseFurtherDetailsObject_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseFurtherDetailsObject_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseFurtherDetailsObject_content.textOnPage2,
-    );
-    await expect(page.locator(".form-label").nth(2)).toHaveText(
-      caseFurtherDetailsObject_content.textOnPage3,
-    );
-    await expect(page.locator(".form-label").nth(3)).toHaveText(
-      caseFurtherDetailsObject_content.yes,
-    );
-    await expect(page.locator(".form-label").nth(4)).toHaveText(
-      caseFurtherDetailsObject_content.no,
-    );
-    await expect(page.locator(".form-label").nth(6)).toHaveText(
-      caseFurtherDetailsObject_content.textOnPage5,
-    );
-    await expect(page.locator(".form-label").nth(7)).toHaveText(
-      caseFurtherDetailsObject_content.yes,
-    );
-    await expect(page.locator(".form-label").nth(8)).toHaveText(
-      caseFurtherDetailsObject_content.no,
-    );
-    await expect(page.locator(".form-label").nth(9)).toHaveText(
-      caseFurtherDetailsObject_content.textOnPage6,
-    );
-    await expect(page.locator(".form-label").nth(10)).toHaveText(
-      caseFurtherDetailsObject_content.yes,
-    );
-    await expect(page.locator(".form-label").nth(11)).toHaveText(
-      caseFurtherDetailsObject_content.no,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseFurtherDetailsObject_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseFurtherDetailsObject_content.pageTitle,
+      ),
+      expect(page.locator(".form-label").nth(0)).toHaveText(
+        caseFurtherDetailsObject_content.textOnPage1,
+      ),
+      expect(page.locator(".form-label").nth(1)).toHaveText(
+        caseFurtherDetailsObject_content.textOnPage2,
+      ),
+      expect(page.locator(".form-label").nth(2)).toHaveText(
+        caseFurtherDetailsObject_content.textOnPage3,
+      ),
+      expect(page.locator(".form-label").nth(3)).toHaveText(
+        caseFurtherDetailsObject_content.yes,
+      ),
+      expect(page.locator(".form-label").nth(4)).toHaveText(
+        caseFurtherDetailsObject_content.no,
+      ),
+      expect(page.locator(".form-label").nth(6)).toHaveText(
+        caseFurtherDetailsObject_content.textOnPage5,
+      ),
+      expect(page.locator(".form-label").nth(7)).toHaveText(
+        caseFurtherDetailsObject_content.yes,
+      ),
+      expect(page.locator(".form-label").nth(8)).toHaveText(
+        caseFurtherDetailsObject_content.no,
+      ),
+      expect(page.locator(".form-label").nth(9)).toHaveText(
+        caseFurtherDetailsObject_content.textOnPage6,
+      ),
+      expect(page.locator(".form-label").nth(10)).toHaveText(
+        caseFurtherDetailsObject_content.yes,
+      ),
+      expect(page.locator(".form-label").nth(11)).toHaveText(
+        caseFurtherDetailsObject_content.no,
+      ),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -116,15 +118,18 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
       await page.click(this.tribunalFormInTimeYes);
     } else {
       await page.click(this.tribunalFormInTimeNo);
-      await expect(page.locator(".form-label").nth(12)).toHaveText(
-        caseFurtherDetailsObject_content.textOnPage7,
-      );
-      await expect(page.locator(".form-label").nth(13)).toHaveText(
-        caseFurtherDetailsObject_content.yes,
-      );
-      await expect(page.locator(".form-label").nth(14)).toHaveText(
-        caseFurtherDetailsObject_content.no,
-      );
+      await Promise.all([
+        expect(page.locator(".form-label").nth(12)).toHaveText(
+          caseFurtherDetailsObject_content.textOnPage7,
+        ),
+        expect(page.locator(".form-label").nth(13)).toHaveText(
+          caseFurtherDetailsObject_content.yes,
+        ),
+        expect(page.locator(".form-label").nth(14)).toHaveText(
+          caseFurtherDetailsObject_content.no,
+        ),
+      ]);
+
       if (applicantExplained) {
         await page.click(this.explainedYes);
       } else {

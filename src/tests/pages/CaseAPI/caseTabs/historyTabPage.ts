@@ -1,12 +1,11 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import allTabsTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import historyTabContent from "../../../fixtures/content/CaseAPI/caseTabs/historyTab_content.ts";
 import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import authorsContent from "../../../fixtures/content/authors_content.ts";
-import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
 import { UserRole } from "../../../config.ts";
+import allTabTitles_content from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 
 type HistoryTabPage = {
   checkPageLoads(
@@ -31,99 +30,52 @@ const historyTabPage: HistoryTabPage = {
     caseNumber: string,
     state: string,
   ): Promise<void> {
-    await expect(page.locator(".case-field").first()).toContainText(
-      allTabsTitlesContent.pageTitle + caseNumber,
-    );
-    await expect(page.locator(".mat-tab-label").nth(0)).toHaveText(
-      allTabsTitlesContent.tab1,
-    );
-    await expect(page.locator(".mat-tab-label").nth(1)).toHaveText(
-      allTabsTitlesContent.tab2,
-    );
-    await expect(page.locator(".mat-tab-label").nth(2)).toHaveText(
-      allTabsTitlesContent.tab3,
-    );
-    await expect(page.locator(".mat-tab-label").nth(3)).toHaveText(
-      allTabsTitlesContent.tab4,
-    );
-    await expect(page.locator(".mat-tab-label").nth(4)).toHaveText(
-      allTabsTitlesContent.tab5,
-    );
-    await expect(page.locator(".mat-tab-label").nth(5)).toHaveText(
-      allTabsTitlesContent.tab6,
-    );
-    await expect(page.locator(".mat-tab-label").nth(6)).toHaveText(
-      allTabsTitlesContent.tab7,
-    );
-    await expect(page.locator(".mat-tab-label").nth(7)).toHaveText(
-      allTabsTitlesContent.tab8,
-    );
-    await expect(page.locator(".mat-tab-label").nth(8)).toHaveText(
-      allTabsTitlesContent.tab9,
-    );
-    await expect(page.locator(".mat-tab-label").nth(9)).toHaveText(
-      allTabsTitlesContent.tab10,
-    );
-    await expect(page.locator(".mat-tab-label").nth(10)).toHaveText(
-      allTabsTitlesContent.tab11,
-    );
+    await commonHelpers.checkAllCaseTabs(page, caseNumber);
     if (state == stateTabContent.DSSSubmittedState) {
-      await expect(page.locator(".mat-tab-label").nth(11)).toHaveText(
-        allTabsTitlesContent.tab12,
-      );
-      await expect(page.locator(".mat-tab-label").nth(12)).toHaveText(
-        allTabsTitlesContent.tab13,
-      );
-      await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
-        allTabsTitlesContent.tab14,
-      );
-      await expect(page.locator(".mat-tab-label").nth(14)).toHaveText(
-        allTabTitlesContent.tab15,
-      );
+      await Promise.all([
+        ...Array.from({ length: 4 }, (_, index) => {
+          const textOnPage = (allTabTitles_content as any)[`tab${index + 12}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
     } else {
-      await expect(page.locator(".mat-tab-label").nth(11)).toHaveText(
-        allTabsTitlesContent.tab13,
-      );
-      await expect(page.locator(".mat-tab-label").nth(12)).toHaveText(
-        allTabsTitlesContent.tab14,
-      );
-      await expect(page.locator(".mat-tab-label").nth(13)).toHaveText(
-        allTabsTitlesContent.tab15,
-      );
+      await Promise.all([
+        ...Array.from({ length: 3 }, (_, index) => {
+          const textOnPage = (allTabTitles_content as any)[`tab${index + 13}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+        Array.from({ length: 2 }, (_, index) => {
+          const textOnPage = (historyTabContent as any)[`heading${index + 1}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.heading-h2:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+        Array.from({ length: 6 }, (_, index) => {
+          const textOnPage = (historyTabContent as any)[
+            `textOnPage${index + 1}`
+          ];
+          if (index !== 2 && index !== 4 && index !== 5) {
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`span.text-16:text-is("${textOnPage}")`),
+              2,
+            );
+          } else {
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`span.text-16:text-is("${textOnPage}")`),
+              1,
+            );
+          }
+        }).filter(Boolean),
+      ]);
     }
-    await expect(page.locator(".heading-h2").nth(0)).toHaveText(
-      historyTabContent.heading1,
-    );
-    await expect(page.locator(".heading-h2").nth(1)).toHaveText(
-      historyTabContent.heading2,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage1}")`),
-      2,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage2}")`),
-      2,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage3}")`),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage4}")`),
-      2,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage5}")`),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${historyTabContent.textOnPage6}")`),
-      1,
-    );
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    if (accessibilityTest) await axeTest(page);
   },
 
   async checkPageInfo(
