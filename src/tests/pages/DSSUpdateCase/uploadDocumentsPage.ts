@@ -34,71 +34,60 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-header__service-name")).toHaveText(
-      UploadDocumentsContent.header,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      UploadDocumentsContent.pageTitle,
-    );
-    await expect(page.locator(".govuk-hint")).toHaveText(
-      UploadDocumentsContent.hintText,
-    );
-    await expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
-      UploadDocumentsContent.subTitle1,
-    );
-    await expect(page.locator(".govuk-body").nth(0)).toHaveText(
-      UploadDocumentsContent.textOnPage1,
-    );
-    await expect(page.locator(".govuk-body").nth(1)).toHaveText(
-      UploadDocumentsContent.textOnPage2,
-    );
-    await expect(page.locator(".govuk-body").nth(2)).toHaveText(
-      UploadDocumentsContent.textOnPage3,
-    );
-    await expect(
-      page.locator("div[class='govuk-body'] li:nth-child(1)"),
-    ).toHaveText(UploadDocumentsContent.textOnPage4);
-    await expect(
-      page.locator("div[class='govuk-body'] li:nth-child(2)"),
-    ).toHaveText(UploadDocumentsContent.textOnPage5);
-    await expect(
-      page.locator("div[class='govuk-body'] li:nth-child(3)"),
-    ).toHaveText(UploadDocumentsContent.textOnPage6);
-    await expect(
-      page.locator("div[class='govuk-body'] li:nth-child(4)"),
-    ).toHaveText(UploadDocumentsContent.textOnPage7);
-    await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-      UploadDocumentsContent.textOnPage8,
-    );
-    await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-      UploadDocumentsContent.dropdownLink,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-header__service-name")).toHaveText(
+        UploadDocumentsContent.header,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        UploadDocumentsContent.pageTitle,
+      ),
+      expect(page.locator(".govuk-hint")).toHaveText(
+        UploadDocumentsContent.hintText,
+      ),
+      expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
+        UploadDocumentsContent.subTitle1,
+      ),
+      ...Array.from({ length: 3 }, (_, index) => {
+        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 1}`];
+        return expect(page.locator(".govuk-body").nth(index + 4)).toHaveText(
+          textOnPage,
+        );
+      }),
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 4}`];
+        return expect(page.locator(`div[class='govuk-body'] li:nth-child(${index+1})`)).toHaveText(
+          textOnPage,
+        );
+      }),
+      expect(page.locator(".govuk-body").nth(8)).toHaveText(
+        UploadDocumentsContent.textOnPage8,
+      ),
+      expect(page.locator(".govuk-details__summary-text")).toHaveText(
+        UploadDocumentsContent.dropdownLink,
+      ),
+    ]);
     await page.click(this.fields.dropDown);
-    await expect(
-      page.locator("details[class='govuk-details'] li:nth-child(1)"),
-    ).toHaveText(UploadDocumentsContent.textOnPage9);
-    await expect(
-      page.locator("details[class='govuk-details'] li:nth-child(2)"),
-    ).toContainText(UploadDocumentsContent.textOnPage10);
-    await expect(
-      page.locator("details[class='govuk-details'] li:nth-child(3)"),
-    ).toContainText(UploadDocumentsContent.textOnPage11);
-    await expect(
-      page.locator("details[class='govuk-details'] li:nth-child(4)"),
-    ).toContainText(UploadDocumentsContent.textOnPage12);
-    await expect(
-      page.locator("details[class='govuk-details'] p"),
-    ).toContainText(UploadDocumentsContent.textOnPage13);
-    await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-      UploadDocumentsContent.textOnPage14,
-    );
-    await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-      UploadDocumentsContent.textOnPage15,
-    );
-    await expect(page.locator(".govuk-body").nth(7)).toHaveText(
-      UploadDocumentsContent.textOnPage16,
-    );
-    await expect(page.locator(this.continueButton)).toHaveText("Continue");
+    await Promise.all([
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 9}`];
+        return expect(page.locator(`details[class='govuk-details'] li:nth-child(${index+1})`)).toHaveText(
+          textOnPage,
+        );
+      }),
+      expect(page.locator("details[class='govuk-details'] p")).toContainText(
+        UploadDocumentsContent.textOnPage13,
+      ),
+      ...Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (UploadDocumentsContent as any)[`textOnPage${index + 14}`];
+        return expect(page.locator(".govuk-label").nth(index)).toHaveText(
+          textOnPage,
+        );
+      }),
+      expect(page.locator(".govuk-body").nth(11)).toHaveText(
+        UploadDocumentsContent.textOnPage16,
+      ),
+      expect(page.locator(this.continueButton)).toHaveText("Continue"),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

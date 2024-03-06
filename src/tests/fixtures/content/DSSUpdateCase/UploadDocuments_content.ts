@@ -15,11 +15,11 @@ const uploadDocumentsContent = {
   textOnPage7: "related reports",
   textOnPage8:
     "For each piece of additional information or evidence you are submitting, please state why it is relevant to your case.",
-  dropdownLink: "File upload requirements",
+  dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
-  textOnPage10: "File size per document: up to 20 megabytes (MB)",
-  textOnPage11: "File size per multimedia file: up to 30 megabytes (MB)",
+  textOnPage10: "File size per document: up to 500 megabytes (MB)",
+  textOnPage11: "File size per multimedia file: up to 500 megabytes (MB)",
   textOnPage12: "Files cannot be password protected",
   textOnPage13:
     "You can't upload executable (.exe), zip or other archive files due to virus risks.",
@@ -33,11 +33,11 @@ const uploadDocumentsContent = {
   documentRelevance: "Lorem ipsum relevance",
   button2: "Continue",
   deleteButton: "Delete",
-  errorBanner: "There is a problem on this page",
+  errorBanner: "There is a problem",
   continueError:
     "You cannot continue without providing additional information or a document",
   fileTypeError:
-    "This service only accepts files in the formats - Ms Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
+    "This service only accepts files in the formats - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
 };
 
 export default uploadDocumentsContent;
