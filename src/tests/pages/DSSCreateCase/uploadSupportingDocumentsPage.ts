@@ -186,9 +186,9 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             uploadSupportingDocumentsContent.errorBannerCy,
@@ -211,7 +211,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         ]);
         break;
       default:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             uploadSupportingDocumentsContent.errorBanner,
