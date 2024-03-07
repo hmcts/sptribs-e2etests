@@ -36,12 +36,14 @@ const landingPage: LandingPage = {
           expect(page.locator(".govuk-body-l").nth(1)).toContainText(
             LandingPageDetails.subHeadingCy,
           ),
-          expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-            LandingPageDetails.textOnPageCy1,
-          ),
-          expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-            LandingPageDetails.textOnPageCy2,
-          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (LandingPageDetails as any)[
+              `textOnPageCy${index + 1}`
+              ];
+            return expect(
+              page.locator(".govuk-body-l").nth(index + 2),
+            ).toHaveText(textOnPage);
+          }),
           expect(page.locator(landingPage.startButton)).toHaveText(
             "Dechrau nawr",
           ),
@@ -59,12 +61,14 @@ const landingPage: LandingPage = {
           expect(page.locator(".govuk-body-l").nth(1)).toContainText(
             LandingPageDetails.subHeading,
           ),
-          expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-            LandingPageDetails.textOnPage1,
-          ),
-          expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-            LandingPageDetails.textOnPage2,
-          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (LandingPageDetails as any)[
+              `textOnPage${index + 1}`
+              ];
+            return expect(
+              page.locator(".govuk-body-l").nth(index + 2),
+            ).toHaveText(textOnPage);
+          }),
           expect(page.locator(landingPage.startButton)).toHaveText("Start now"),
         ]);
         if (accessibilityTest) {
