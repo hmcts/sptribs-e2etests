@@ -46,9 +46,9 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.click(this.fields.dropDown);
     switch (cy) {
       case true:
-        await page.click(this.fields.dropDown);
         await Promise.all([
           expect(page.locator(".govuk-heading-l")).toHaveText(
             uploadOtherInformationContent.pageTitleCy,
@@ -116,7 +116,6 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         ]);
         break;
       default:
-        await page.click(this.fields.dropDown);
         await Promise.all([
           expect(page.locator(".govuk-heading-l")).toHaveText(
             uploadOtherInformationContent.pageTitle,
