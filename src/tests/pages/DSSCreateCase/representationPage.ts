@@ -37,10 +37,10 @@ const representationPage: RepresentationPage = {
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationContent as any)[
               `textOnPageCy${index + 1}`
-              ];
-            return expect(
-              page.locator(".govuk-label").nth(index),
-            ).toHaveText(textOnPage);
+            ];
+            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
+              textOnPage,
+            );
           }),
         ]);
         break;
@@ -52,10 +52,10 @@ const representationPage: RepresentationPage = {
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationContent as any)[
               `textOnPage${index + 1}`
-              ];
-            return expect(
-              page.locator(".govuk-label").nth(index),
-            ).toHaveText(textOnPage);
+            ];
+            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
+              textOnPage,
+            );
           }),
         ]);
         break;

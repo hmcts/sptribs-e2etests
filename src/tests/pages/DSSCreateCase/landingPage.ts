@@ -39,7 +39,7 @@ const landingPage: LandingPage = {
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (LandingPageDetails as any)[
               `textOnPageCy${index + 1}`
-              ];
+            ];
             return expect(
               page.locator(".govuk-body-l").nth(index + 2),
             ).toHaveText(textOnPage);
@@ -64,7 +64,7 @@ const landingPage: LandingPage = {
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (LandingPageDetails as any)[
               `textOnPage${index + 1}`
-              ];
+            ];
             return expect(
               page.locator(".govuk-body-l").nth(index + 2),
             ).toHaveText(textOnPage);
