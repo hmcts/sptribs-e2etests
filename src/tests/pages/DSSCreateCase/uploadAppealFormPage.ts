@@ -41,9 +41,9 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.click(this.fields.dropDown);
     switch (cy) {
       case true:
-        await page.click(this.fields.dropDown);
         await Promise.all([
           expect(page.locator(".govuk-heading-l")).toHaveText(
             uploadAppealFormContent.pageTitleCy,
@@ -81,7 +81,6 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         ]);
         break;
       default:
-        await page.click(this.fields.dropDown);
         await Promise.all([
           expect(page.locator(".govuk-heading-l")).toHaveText(
             uploadAppealFormContent.pageTitle,

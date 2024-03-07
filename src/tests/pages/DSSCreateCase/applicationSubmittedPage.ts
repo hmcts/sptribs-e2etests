@@ -44,7 +44,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (applicationSubmittedContent as any)[
               `textOnPageCy${index + 3}`
-              ];
+            ];
             return expect(
               page.locator(".govuk-notification-banner__content"),
             ).toContainText(textOnPage);
@@ -73,7 +73,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (applicationSubmittedContent as any)[
               `textOnPage${index + 3}`
-              ];
+            ];
             return expect(
               page.locator(".govuk-notification-banner__content"),
             ).toContainText(textOnPage);
