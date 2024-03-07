@@ -59,15 +59,6 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           expect(page.locator(".govuk-details__summary-text")).toHaveText(
             uploadAppealFormContent.dropdownLinkCy,
           ),
-          expect(
-            page.locator("details[class='govuk-details'] li:nth-child(1)"),
-          ).toHaveText(uploadAppealFormContent.textOnPageCy3),
-          expect(
-            page.locator("details[class='govuk-details'] li:nth-child(2)"),
-          ).toContainText(uploadAppealFormContent.textOnPageCy4),
-          expect(
-            page.locator("details[class='govuk-details'] li:nth-child(3)"),
-          ).toContainText(uploadAppealFormContent.textOnPageCy5),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadAppealFormContent as any)[
               `textOnPageCy${index + 3}`
@@ -106,15 +97,6 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           expect(page.locator(".govuk-details__summary-text")).toHaveText(
             uploadAppealFormContent.dropdownLink,
           ),
-          expect(
-            page.locator("details[class='govuk-details'] li:nth-child(1)"),
-          ).toHaveText(uploadAppealFormContent.textOnPage3),
-          expect(
-            page.locator("details[class='govuk-details'] li:nth-child(2)"),
-          ).toContainText(uploadAppealFormContent.textOnPage4),
-          expect(
-            page.locator("details[class='govuk-details'] li:nth-child(3)"),
-          ).toContainText(uploadAppealFormContent.textOnPage5),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadAppealFormContent as any)[
               `textOnPage${index + 3}`
