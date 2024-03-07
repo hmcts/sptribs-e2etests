@@ -189,9 +189,9 @@ const uploadAppealFormPage: UploadAppealFormPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             uploadAppealFormContent.errorBannerCy,
@@ -214,7 +214,6 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         ]);
         break;
       default:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             uploadAppealFormContent.errorBanner,
