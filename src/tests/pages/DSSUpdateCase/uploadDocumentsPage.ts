@@ -40,6 +40,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.click(this.fields.dropDown);
     await Promise.all([
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         UploadDocumentsContent.header,
@@ -75,9 +76,6 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       expect(page.locator(".govuk-details__summary-text")).toHaveText(
         UploadDocumentsContent.dropdownLink,
       ),
-    ]);
-    await page.click(this.fields.dropDown);
-    await Promise.all([
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (UploadDocumentsContent as any)[
           `textOnPage${index + 9}`
@@ -182,22 +180,26 @@ const uploadDocumentsPage: UploadDocumentsPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continueButton);
-    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-      UploadDocumentsContent.errorBanner,
-    );
-    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-      UploadDocumentsContent.continueError,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        UploadDocumentsContent.errorBanner,
+      ),
+      expect(page.locator("[href='#file-upload-1']")).toHaveText(
+        UploadDocumentsContent.continueError,
+      ),
+    ]);
     await page
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testOdtFile);
     await page.click(this.fields.fileUploadedOption);
-    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-      UploadDocumentsContent.errorBanner,
-    );
-    await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-      UploadDocumentsContent.fileTypeError,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        UploadDocumentsContent.errorBanner,
+      ),
+      expect(page.locator("[href='#file-upload-1']")).toHaveText(
+        UploadDocumentsContent.fileTypeError,
+      ),
+    ]);
   },
 
   async continueOn(page: Page): Promise<void> {
