@@ -41,15 +41,14 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
           expect(page.locator(".govuk-notification-banner__title")).toHaveText(
             applicationSubmittedContent.subTitleCy2,
           ),
-          expect(
-            page.locator(".govuk-notification-banner__content"),
-          ).toContainText(applicationSubmittedContent.textOnPageCy3),
-          expect(
-            page.locator(".govuk-notification-banner__content"),
-          ).toContainText(applicationSubmittedContent.textOnPageCy4),
-          expect(
-            page.locator(".govuk-notification-banner__content"),
-          ).toContainText(applicationSubmittedContent.textOnPageCy5),
+          ...Array.from({ length: 3 }, (_, index) => {
+            const textOnPage = (applicationSubmittedContent as any)[
+              `textOnPageCy${index + 3}`
+              ];
+            return expect(
+              page.locator(".govuk-notification-banner__content"),
+            ).toContainText(textOnPage);
+          }),
         ]);
         break;
       default:
@@ -71,15 +70,14 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
           expect(page.locator(".govuk-notification-banner__title")).toHaveText(
             applicationSubmittedContent.subTitle2,
           ),
-          expect(
-            page.locator(".govuk-notification-banner__content"),
-          ).toContainText(applicationSubmittedContent.textOnPage3),
-          expect(
-            page.locator(".govuk-notification-banner__content"),
-          ).toContainText(applicationSubmittedContent.textOnPage4),
-          expect(
-            page.locator(".govuk-notification-banner__content"),
-          ).toContainText(applicationSubmittedContent.textOnPage5),
+          ...Array.from({ length: 3 }, (_, index) => {
+            const textOnPage = (applicationSubmittedContent as any)[
+              `textOnPage${index + 3}`
+              ];
+            return expect(
+              page.locator(".govuk-notification-banner__content"),
+            ).toContainText(textOnPage);
+          }),
         ]);
         break;
     }
