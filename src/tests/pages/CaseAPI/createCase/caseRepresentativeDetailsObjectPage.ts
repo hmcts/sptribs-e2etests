@@ -43,42 +43,22 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
       page: Page,
       accessibilityTest: boolean,
     ): Promise<void> {
-      await expect(page.locator(".govuk-caption-l")).toHaveText(
-        caseRepresentativeDetailsObject_content.pageHint,
-      );
-      await expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseRepresentativeDetailsObject_content.pageTitle,
-      );
-      await expect(page.locator(".form-label").nth(0)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage1,
-      );
-      await expect(page.locator(".form-label").nth(1)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage2,
-      );
-      await expect(page.locator(".form-label").nth(2)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage3,
-      );
-      await expect(page.locator(".form-label").nth(3)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage4,
-      );
-      await expect(page.locator(".form-label").nth(4)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage5,
-      );
-      await expect(page.locator(".form-label").nth(5)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage6,
-      );
-      await expect(page.locator(".form-label").nth(6)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage7,
-      );
-      await expect(page.locator(".form-label").nth(7)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage8,
-      );
-      await expect(page.locator(".form-label").nth(8)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage9,
-      );
-      await expect(page.locator(".form-label").nth(9)).toHaveText(
-        caseRepresentativeDetailsObject_content.textOnPage10,
-      );
+      await Promise.all([
+        expect(page.locator(".govuk-caption-l")).toHaveText(
+          caseRepresentativeDetailsObject_content.pageHint,
+        ),
+        expect(page.locator(".govuk-heading-l")).toHaveText(
+          caseRepresentativeDetailsObject_content.pageTitle,
+        ),
+        ...Array.from({ length: 10 }, (_, index) => {
+          const textOnPage = (caseRepresentativeDetailsObject_content as any)[
+            `textOnPage${index + 1}`
+          ];
+          return expect(page.locator(".form-label").nth(index)).toHaveText(
+            textOnPage,
+          );
+        }),
+      ]);
       if (accessibilityTest) {
         await axeTest(page);
       }
@@ -119,15 +99,17 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
       } else if (contactPreference === "Post") {
         await page.click(this.selectPost);
         await page.click(this.selectPost);
-        await expect(page.locator(".heading-h2")).toHaveText(
-          caseRepresentativeDetailsObject_content.subTitle1,
-        );
-        await expect(page.locator(".form-label").nth(10)).toHaveText(
-          caseRepresentativeDetailsObject_content.textOnPage11,
-        );
-        await expect(page.locator(".manual-link")).toHaveText(
-          caseRepresentativeDetailsObject_content.linkOnPage1,
-        );
+        await Promise.all([
+          expect(page.locator(".heading-h2")).toHaveText(
+            caseRepresentativeDetailsObject_content.subTitle1,
+          ),
+          expect(page.locator(".form-label").nth(10)).toHaveText(
+            caseRepresentativeDetailsObject_content.textOnPage11,
+          ),
+          expect(page.locator(".manual-link")).toHaveText(
+            caseRepresentativeDetailsObject_content.linkOnPage1,
+          ),
+        ]);
         await commonHelpers.postcodeHandler(page, "Representative");
       }
       await page.click(this.continue);

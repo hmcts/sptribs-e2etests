@@ -20,18 +20,18 @@ const buildCaseConfirmPage: ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
-    await expect(page.locator(".heading-h1")).toHaveText(
-      confirm_content.pageTitle,
-    );
-    await expect(page.locator("markdown > h1")).toContainText(
-      confirm_content.subTitle1,
-    );
-    await expect(page.locator("markdown > h3")).toContainText(
-      subjectDetailsContent.name,
-    );
-    await expect(page.locator("markdown > p")).toContainText(
-      buildCase_content.caseReference + caseNumber,
-    );
+    await Promise.all([
+      expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
+      expect(page.locator("markdown > h1")).toContainText(
+        confirm_content.subTitle1,
+      ),
+      expect(page.locator("markdown > h3")).toContainText(
+        subjectDetailsContent.name,
+      ),
+      expect(page.locator("markdown > p")).toContainText(
+        buildCase_content.caseReference + caseNumber,
+      ),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

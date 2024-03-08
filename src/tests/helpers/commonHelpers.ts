@@ -1,9 +1,11 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Locator, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
+import CookiesContent from "../fixtures/content/cookies_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -20,6 +22,7 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
+  checkAndAcceptCookies(page: Page, service: string): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
@@ -191,26 +194,42 @@ const commonHelpers: CommonHelpers = {
   },
 
   async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {
-    await this.checkNumberAndSubject(page, caseNumber);
-    for (let i = 0; i < 15; i++) {
-      try {
-        await expect(page.locator(".mat-tab-label").nth(i)).toHaveText(
-          allTabTitles_content[
-            `tab${i + 1}` as keyof typeof allTabTitles_content
-          ],
-        );
-      } catch (error) {
-        console.error(
-          `Error occurred with finding the ${allTabTitles_content[`tab${i}` as keyof typeof allTabTitles_content]} selector.`,
-          error,
-        );
-      }
-    }
+    await Promise.all([
+      this.checkNumberAndSubject(page, caseNumber),
+      Array.from({ length: 15 }, (_, index) => {
+        if (index !== 11) {
+          // Exclude tab 12 (index 11)
+          const textOnPage = (allTabTitles_content as any)[`tab${index + 1}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            1,
+          );
+        }
+      }).filter(Boolean),
+    ]);
   },
 
   async generateUrl(baseURL: string, caseNumber: string): Promise<string> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     return `${baseURL}/case-details/${caseNumberDigits}#History`;
+  },
+
+  async checkAndAcceptCookies(page: Page, service: string): Promise<void> {
+    if (service == "UC") {
+      await Promise.all([
+        expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
+          CookiesContent.title + CaseFinderContent.header,
+        ),
+        ...Array.from({ length: 2 }, (_, index) => {
+          const textOnPage = (CookiesContent as any)[`textOnPage${index + 1}`];
+          return expect(page.locator(".govuk-body").nth(index)).toContainText(
+            textOnPage,
+          );
+        }),
+      ]);
+    }
+    await page.locator(".govuk-button").nth(0).click();
+    await page.getByRole("button", { name: "Hide this message" }).click();
   },
 };
 
