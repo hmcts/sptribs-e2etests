@@ -33,51 +33,36 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
   selectPost: "#cicCaseContactPreferenceType-Post",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseSubjectDetailsObject_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseSubjectDetailsObject_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage2,
-    );
-    await expect(page.locator(".form-label").nth(2)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage3,
-    );
-    await expect(page.locator(".form-label").nth(3)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage4,
-    );
-    await expect(page.locator(".form-label").nth(4)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage5,
-    );
-    await expect(page.locator(".heading-h2")).toHaveText(
-      caseSubjectDetailsObject_content.subTitle1,
-    );
-    await expect(page.locator(".form-label").nth(5)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage6,
-    );
-    await expect(page.locator(".manual-link")).toHaveText(
-      caseSubjectDetailsObject_content.linkOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(6)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage7,
-    );
-    await expect(page.locator(".form-label").nth(14)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage8,
-    );
-    await expect(page.locator(".form-label").nth(15)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage9,
-    );
-    await expect(page.locator(".form-label").nth(16)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage10,
-    );
-    await expect(page.locator(".form-label").nth(17)).toHaveText(
-      caseSubjectDetailsObject_content.textOnPage11,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseSubjectDetailsObject_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseSubjectDetailsObject_content.pageTitle,
+      ),
+      ...Array.from({ length: 7 }, (_, index) => {
+        const textOnPage = (caseSubjectDetailsObject_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return expect(page.locator(".form-label").nth(index)).toHaveText(
+          textOnPage,
+        );
+      }),
+      expect(page.locator(".heading-h2")).toHaveText(
+        caseSubjectDetailsObject_content.subTitle1,
+      ),
+      expect(page.locator(".manual-link")).toHaveText(
+        caseSubjectDetailsObject_content.linkOnPage1,
+      ),
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (caseSubjectDetailsObject_content as any)[
+          `textOnPage${index + 8}`
+        ];
+        return expect(page.locator(".form-label").nth(index + 14)).toHaveText(
+          textOnPage,
+        );
+      }),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

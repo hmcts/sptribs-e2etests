@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CaseDateObjectsPage = {
   continue: string;
@@ -18,24 +19,23 @@ const caseDateObjectsPage: CaseDateObjectsPage = {
   year: "#cicCaseCaseReceivedDate-year",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseDateObjects_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseDateObjects_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseDateObjects_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseDateObjects_content.textOnPage2,
-    );
-    await expect(page.locator(".form-label").nth(2)).toHaveText(
-      caseDateObjects_content.textOnPage3,
-    );
-    await expect(page.locator(".form-label").nth(3)).toHaveText(
-      caseDateObjects_content.textOnPage4,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseDateObjects_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseDateObjects_content.pageTitle,
+      ),
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (caseDateObjects_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
