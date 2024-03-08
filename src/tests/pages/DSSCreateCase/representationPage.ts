@@ -30,26 +30,34 @@ const representationPage: RepresentationPage = {
   ): Promise<void> {
     switch (cy) {
       case true:
-        await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-          representationContent.pageTitleCy,
-        );
-        await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          representationContent.textOnPageCy1,
-        );
-        await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-          representationContent.textOnPageCy2,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+            representationContent.pageTitleCy,
+          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (representationContent as any)[
+              `textOnPageCy${index + 1}`
+            ];
+            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
+              textOnPage,
+            );
+          }),
+        ]);
         break;
       default:
-        await expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-          representationContent.pageTitle,
-        );
-        await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          representationContent.textOnPage1,
-        );
-        await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-          representationContent.textOnPage2,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+            representationContent.pageTitle,
+          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (representationContent as any)[
+              `textOnPage${index + 1}`
+            ];
+            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
+              textOnPage,
+            );
+          }),
+        ]);
         break;
     }
     if (accessibilityTest) {
@@ -73,27 +81,31 @@ const representationPage: RepresentationPage = {
     switch (cy) {
       case true:
         await page.click(this.continueButton);
-        await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          representationContent.errorBannerCy,
-        );
-        await expect(page.locator("[href='#representation']")).toHaveText(
-          representationContent.selectionErrorCy,
-        );
-        await expect(page.locator("#representation-error")).toContainText(
-          representationContent.selectionErrorCy,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            representationContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#representation']")).toHaveText(
+            representationContent.selectionErrorCy,
+          ),
+          expect(page.locator("#representation-error")).toContainText(
+            representationContent.selectionErrorCy,
+          ),
+        ]);
         break;
       default:
         await page.click(this.continueButton);
-        await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          representationContent.errorBanner,
-        );
-        await expect(page.locator("[href='#representation']")).toHaveText(
-          representationContent.selectionError,
-        );
-        await expect(page.locator("#representation-error")).toContainText(
-          representationContent.selectionError,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            representationContent.errorBanner,
+          ),
+          expect(page.locator("[href='#representation']")).toHaveText(
+            representationContent.selectionError,
+          ),
+          expect(page.locator("#representation-error")).toContainText(
+            representationContent.selectionError,
+          ),
+        ]);
         break;
     }
   },
