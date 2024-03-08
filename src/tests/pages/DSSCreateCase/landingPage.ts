@@ -25,46 +25,52 @@ const landingPage: LandingPage = {
       case true:
         await page.goto(config.FEBaseURL);
         await page.locator(".govuk-link").nth(1).click();
-        await expect(page.locator(".govuk-link").nth(1)).toHaveText("English");
-        await expect(page.locator(".govuk-heading-l")).toHaveText(
-          LandingPageDetails.pageTitleCy,
-        );
-        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.hintMessageCy,
-        );
-        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.subHeadingCy,
-        );
-        await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-          LandingPageDetails.textOnPageCy1,
-        );
-        await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-          LandingPageDetails.textOnPageCy2,
-        );
-        await expect(page.locator(landingPage.startButton)).toHaveText(
-          "Dechrau nawr",
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-link").nth(1)).toHaveText("English"),
+          expect(page.locator(".govuk-heading-l")).toHaveText(
+            LandingPageDetails.pageTitleCy,
+          ),
+          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+            LandingPageDetails.hintMessageCy,
+          ),
+          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+            LandingPageDetails.subHeadingCy,
+          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (LandingPageDetails as any)[
+              `textOnPageCy${index + 1}`
+            ];
+            return expect(
+              page.locator(".govuk-body-l").nth(index + 2),
+            ).toHaveText(textOnPage);
+          }),
+          expect(page.locator(landingPage.startButton)).toHaveText(
+            "Dechrau nawr",
+          ),
+        ]);
         break;
       default:
         await page.goto(config.FEBaseURL);
-        await expect(page.locator(".govuk-heading-l")).toHaveText(
-          LandingPageDetails.pageTitle,
-        );
-        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.hintMessage,
-        );
-        await expect(page.locator(".govuk-body-l").nth(1)).toContainText(
-          LandingPageDetails.subHeading,
-        );
-        await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-          LandingPageDetails.textOnPage1,
-        );
-        await expect(page.locator(".govuk-body-l").nth(3)).toHaveText(
-          LandingPageDetails.textOnPage2,
-        );
-        await expect(page.locator(landingPage.startButton)).toHaveText(
-          "Start now",
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-heading-l")).toHaveText(
+            LandingPageDetails.pageTitle,
+          ),
+          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+            LandingPageDetails.hintMessage,
+          ),
+          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+            LandingPageDetails.subHeading,
+          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (LandingPageDetails as any)[
+              `textOnPage${index + 1}`
+            ];
+            return expect(
+              page.locator(".govuk-body-l").nth(index + 2),
+            ).toHaveText(textOnPage);
+          }),
+          expect(page.locator(landingPage.startButton)).toHaveText("Start now"),
+        ]);
         if (accessibilityTest) {
           await axeTest(page);
         }
