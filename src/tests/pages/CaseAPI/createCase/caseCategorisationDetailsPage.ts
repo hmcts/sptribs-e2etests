@@ -1,7 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseCategorisationDetails_content from "../../../fixtures/content/CaseAPI/createCase/caseCategorisationDetails_content.ts";
-import { Category, SubCategory } from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  Category,
+  SubCategory,
+} from "../../../helpers/commonHelpers.ts";
 
 type CaseCategorisationDetailsPage = {
   continue: string;
@@ -21,18 +24,23 @@ const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
   subCategory: "#cicCaseCaseSubcategory",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseCategorisationDetails_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseCategorisationDetails_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseCategorisationDetails_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseCategorisationDetails_content.textOnPage2,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseCategorisationDetails_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseCategorisationDetails_content.pageTitle,
+      ),
+      ...Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (caseCategorisationDetails_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

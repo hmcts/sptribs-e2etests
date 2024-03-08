@@ -33,10 +33,10 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         true,
         false,
-        true,
+        false,
         false,
       );
-    await updateCaseJourney.updateCase(page, true, caseNumber, true, false);
+    await updateCaseJourney.updateCase(page, false, caseNumber, true, false);
   });
 
   test("Error messaging", async ({ page }) => {
@@ -50,10 +50,10 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         true,
         false,
-        true,
+        false,
         false,
       );
-    await updateCaseJourney.updateCase(page, true, caseNumber, false, true);
+    await updateCaseJourney.updateCase(page, false, caseNumber, false, true);
   });
 });
 

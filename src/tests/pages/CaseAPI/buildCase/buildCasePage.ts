@@ -18,18 +18,21 @@ const builtCasePage: BuildCasePage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      buildCase_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      buildCase_content.pageTitle,
-    );
-    await expect(page.locator("markdown > h3")).toContainText(
-      subjectDetailsContent.name,
-    );
-    await expect(page.locator("markdown > p")).toContainText(
-      buildCase_content.caseReference + caseNumber,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        buildCase_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        buildCase_content.pageTitle,
+      ),
+      expect(page.locator("markdown > h3")).toContainText(
+        subjectDetailsContent.name,
+      ),
+      expect(page.locator("markdown > p")).toContainText(
+        buildCase_content.caseReference + caseNumber,
+      ),
+    ]);
+
     if (accessibilityTest) {
       await axeTest(page);
     }

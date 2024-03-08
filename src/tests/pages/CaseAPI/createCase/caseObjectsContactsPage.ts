@@ -24,30 +24,22 @@ const caseObjectsContactsPage: CaseObjectsContactsPage = {
   representativeSelectBox: "#cicCaseRepresentativeCIC-RepresentativeCIC",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-caption-l")).toHaveText(
-      caseObjectsContacts_content.pageHint,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      caseObjectsContacts_content.pageTitle,
-    );
-    await expect(page.locator(".form-label").nth(0)).toHaveText(
-      caseObjectsContacts_content.textOnPage1,
-    );
-    await expect(page.locator(".form-label").nth(1)).toHaveText(
-      caseObjectsContacts_content.textOnPage2,
-    );
-    await expect(page.locator(".form-label").nth(2)).toHaveText(
-      caseObjectsContacts_content.textOnPage3,
-    );
-    await expect(page.locator(".form-label").nth(3)).toHaveText(
-      caseObjectsContacts_content.textOnPage4,
-    );
-    await expect(page.locator(".form-label").nth(4)).toHaveText(
-      caseObjectsContacts_content.textOnPage5,
-    );
-    await expect(page.locator(".form-label").nth(5)).toHaveText(
-      caseObjectsContacts_content.textOnPage6,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-caption-l")).toHaveText(
+        caseObjectsContacts_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        caseObjectsContacts_content.pageTitle,
+      ),
+      ...Array.from({ length: 6 }, (_, index) => {
+        const textOnPage = (caseObjectsContacts_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return expect(page.locator(".form-label").nth(index)).toHaveText(
+          textOnPage,
+        );
+      }),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

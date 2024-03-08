@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import CaseFinderDetails from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
+import CommonHelpers from "../../helpers/commonHelpers.ts";
 
 type CaseFinderPage = {
   caseReferenceNumber: string;
@@ -19,6 +20,7 @@ const caseFinderPage: CaseFinderPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await CommonHelpers.checkAndAcceptCookies(page, "UC");
     await expect(page.locator(".govuk-header__service-name")).toHaveText(
       CaseFinderDetails.header,
     );
