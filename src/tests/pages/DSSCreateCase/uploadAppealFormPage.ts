@@ -41,78 +41,81 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.click(this.fields.dropDown);
     switch (cy) {
       case true:
-        await expect(page.locator(".govuk-heading-l")).toHaveText(
-          uploadAppealFormContent.pageTitleCy,
-        );
-        await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-          uploadAppealFormContent.textOnPageCy1,
-        );
-        await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-          uploadAppealFormContent.textOnPageCy2,
-        );
-        await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadAppealFormContent.dropdownLinkCy,
-        );
-        await page.click(this.fields.dropDown);
-        await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadAppealFormContent.dropdownLinkCy,
-        );
-        await expect(
-          page.locator("details[class='govuk-details'] li:nth-child(1)"),
-        ).toHaveText(uploadAppealFormContent.textOnPageCy3);
-        await expect(
-          page.locator("details[class='govuk-details'] li:nth-child(2)"),
-        ).toContainText(uploadAppealFormContent.textOnPageCy4);
-        await expect(
-          page.locator("details[class='govuk-details'] li:nth-child(3)"),
-        ).toContainText(uploadAppealFormContent.textOnPageCy5);
-        await expect(page.locator(".govuk-details__text")).toContainText(
-          uploadAppealFormContent.textOnPageCy6,
-        );
-        await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          uploadAppealFormContent.textOnPageCy7,
-        );
-        await expect(
-          page.locator("form[class='formRow'] p[class='govuk-body']"),
-        ).toHaveText(uploadAppealFormContent.textOnPageCy8);
+        await Promise.all([
+          expect(page.locator(".govuk-heading-l")).toHaveText(
+            uploadAppealFormContent.pageTitleCy,
+          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (uploadAppealFormContent as any)[
+              `textOnPageCy${index + 1}`
+            ];
+            return expect(
+              page.locator(".govuk-body").nth(index + 4),
+            ).toHaveText(textOnPage);
+          }),
+          expect(page.locator(".govuk-details__summary-text")).toHaveText(
+            uploadAppealFormContent.dropdownLinkCy,
+          ),
+          ...Array.from({ length: 3 }, (_, index) => {
+            const textOnPage = (uploadAppealFormContent as any)[
+              `textOnPageCy${index + 3}`
+            ];
+            return expect(
+              page.locator(
+                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+              ),
+            ).toHaveText(textOnPage);
+          }),
+          expect(page.locator(".govuk-details__text")).toContainText(
+            uploadAppealFormContent.textOnPageCy6,
+          ),
+          expect(page.locator(".govuk-label").nth(0)).toHaveText(
+            uploadAppealFormContent.textOnPageCy7,
+          ),
+          expect(
+            page.locator("form[class='formRow'] p[class='govuk-body']"),
+          ).toHaveText(uploadAppealFormContent.textOnPageCy8),
+        ]);
         break;
       default:
-        await expect(page.locator(".govuk-heading-l")).toHaveText(
-          uploadAppealFormContent.pageTitle,
-        );
-        await expect(page.locator(".govuk-body").nth(4)).toHaveText(
-          uploadAppealFormContent.textOnPage1,
-        );
-        await expect(page.locator(".govuk-body").nth(5)).toHaveText(
-          uploadAppealFormContent.textOnPage2,
-        );
-        await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadAppealFormContent.dropdownLink,
-        );
-        await page.click(this.fields.dropDown);
-        await expect(page.locator(".govuk-details__summary-text")).toHaveText(
-          uploadAppealFormContent.dropdownLink,
-        );
-        await expect(
-          page.locator("details[class='govuk-details'] li:nth-child(1)"),
-        ).toHaveText(uploadAppealFormContent.textOnPage3);
-        await expect(
-          page.locator("details[class='govuk-details'] li:nth-child(2)"),
-        ).toContainText(uploadAppealFormContent.textOnPage4);
-        await expect(
-          page.locator("details[class='govuk-details'] li:nth-child(3)"),
-        ).toContainText(uploadAppealFormContent.textOnPage5);
-        await expect(page.locator(".govuk-details__text")).toContainText(
-          uploadAppealFormContent.textOnPage6,
-        );
-        await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-          uploadAppealFormContent.textOnPage7,
-        );
-        await expect(
-          page.locator("form[class='formRow'] p[class='govuk-body']"),
-        ).toHaveText(uploadAppealFormContent.textOnPage8);
+        await Promise.all([
+          expect(page.locator(".govuk-heading-l")).toHaveText(
+            uploadAppealFormContent.pageTitle,
+          ),
+          ...Array.from({ length: 2 }, (_, index) => {
+            const textOnPage = (uploadAppealFormContent as any)[
+              `textOnPage${index + 1}`
+            ];
+            return expect(
+              page.locator(".govuk-body").nth(index + 4),
+            ).toHaveText(textOnPage);
+          }),
+          expect(page.locator(".govuk-details__summary-text")).toHaveText(
+            uploadAppealFormContent.dropdownLink,
+          ),
+          ...Array.from({ length: 3 }, (_, index) => {
+            const textOnPage = (uploadAppealFormContent as any)[
+              `textOnPage${index + 3}`
+            ];
+            return expect(
+              page.locator(
+                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+              ),
+            ).toHaveText(textOnPage);
+          }),
+          expect(page.locator(".govuk-details__text")).toContainText(
+            uploadAppealFormContent.textOnPage6,
+          ),
+          expect(page.locator(".govuk-label").nth(0)).toHaveText(
+            uploadAppealFormContent.textOnPage7,
+          ),
+          expect(
+            page.locator("form[class='formRow'] p[class='govuk-body']"),
+          ).toHaveText(uploadAppealFormContent.textOnPage8),
+        ]);
         break;
     }
     if (accessibilityTest) {
@@ -186,44 +189,51 @@ const uploadAppealFormPage: UploadAppealFormPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
-        await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadAppealFormContent.errorBannerCy,
-        );
-        await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadAppealFormContent.noUploadErrorCy,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadAppealFormContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.noUploadErrorCy,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
-        await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadAppealFormContent.errorBannerCy,
-        );
-        await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadAppealFormContent.fileTypeErrorCy,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadAppealFormContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.fileTypeErrorCy,
+          ),
+        ]);
         break;
       default:
-        await page.click(this.continueButton);
-        await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadAppealFormContent.errorBanner,
-        );
-        await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadAppealFormContent.noUploadError,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadAppealFormContent.errorBanner,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.noUploadError,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
-        await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-          uploadAppealFormContent.errorBanner,
-        );
-        await expect(page.locator("[href='#file-upload-1']")).toHaveText(
-          uploadAppealFormContent.fileTypeError,
-        );
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadAppealFormContent.errorBanner,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.fileTypeError,
+          ),
+        ]);
         break;
     }
   },
