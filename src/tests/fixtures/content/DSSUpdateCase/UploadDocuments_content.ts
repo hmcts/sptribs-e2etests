@@ -33,7 +33,7 @@ const uploadDocumentsContent = {
   documentRelevance: "Lorem ipsum relevance",
   continueButton: "Continue",
   deleteButton: "Delete",
-  errorBanner: "There is a problem on this page",
+  errorBanner: "There is a problem",
   continueError:
     "You cannot continue without providing additional information or a document",
   fileTypeError:
