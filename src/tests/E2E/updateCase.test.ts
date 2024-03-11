@@ -3,7 +3,9 @@ import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
-  test("Check for an existing case to update.", async ({ page }) => {
+  test("Check for an existing case to update, upload one document and additional information.", async ({
+    page,
+  }) => {
     const caseNumber: string | void =
       await createFEApplication.createFEApplication(
         page,
@@ -17,7 +19,101 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         false,
       );
-    await updateCaseJourney.updateCase(page, false, caseNumber, false, false);
+
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      true,
+      true,
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Check for an existing case to update, upload multiple documents and additional information", async ({
+    page,
+  }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      true,
+      true,
+      true,
+      false,
+      false,
+    );
+  });
+
+  test("Check for an existing case to update, upload one document and no additional information", async ({
+    page,
+  }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      false,
+      true,
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Check for an existing case to update, upload no documents and additional information", async ({
+    page,
+  }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      true,
+      false,
+      false,
+      false,
+      false,
+    );
   });
 
   test("Test all back buttons on the Update Case application", async ({
@@ -36,7 +132,16 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         false,
       );
-    await updateCaseJourney.updateCase(page, false, caseNumber, true, false);
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
   });
 
   test("Error messaging", async ({ page }) => {
@@ -53,7 +158,16 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
         false,
         false,
       );
-    await updateCaseJourney.updateCase(page, false, caseNumber, false, true);
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      caseNumber,
+      true,
+      true,
+      false,
+      false,
+      true,
+    );
   });
 });
 
@@ -73,5 +187,14 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
       true,
       false,
     );
-  await updateCaseJourney.updateCase(page, true, caseNumber, false, false);
+  await updateCaseJourney.updateCase(
+    page,
+    true,
+    caseNumber,
+    true,
+    true,
+    false,
+    false,
+    false,
+  );
 });

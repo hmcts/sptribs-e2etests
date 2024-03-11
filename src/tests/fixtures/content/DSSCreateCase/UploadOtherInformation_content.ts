@@ -33,8 +33,6 @@ const uploadOtherInformation_content = {
   documentRelevance: "Lorem ipsum relevance",
   additionalInfo: "Lorem ipsum additional information",
   button2: "Continue",
-  fileUploadedSuccess:
-    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
   deleteButton: "Delete",
   errorBanner: "There is a problem",
   fileTypeError:
@@ -72,8 +70,6 @@ const uploadOtherInformation_content = {
   textOnPageCy17:
     "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr achos hwn. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
   buttonCy2: "Parhau",
-  fileUploadedSuccessCy:
-    'li[class="uploadedFile govuk-!-padding-top-2 govuk-!-padding-bottom-3 govuk-section-break govuk-section-break--visible"]',
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",
   fileTypeErrorCy:
