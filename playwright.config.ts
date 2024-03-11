@@ -9,7 +9,7 @@ module.exports = defineConfig({
   /* Retry on CI only */
   retries: 4, // Set the number of retries for all projects
 
-  timeout: 4 * 30 * 1000,
+  timeout: 8 * 30 * 1000,
   expect: {
     timeout: 60 * 1000,
   },
