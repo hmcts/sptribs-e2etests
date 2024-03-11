@@ -51,7 +51,10 @@ const updateCaseJourney: UpdateCaseJourney = {
         );
         await uploadDocumentsPage.continueOn(page);
         await checkYourAnswersPage.checkPageLoads(page, accessibilityTest);
-        await checkYourAnswersPage.checkValidInfoAllFields(page, multipleDocuments);
+        await checkYourAnswersPage.checkValidInfoAllFields(
+          page,
+          multipleDocuments,
+        );
         await checkYourAnswersPage.continueOn(page);
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
