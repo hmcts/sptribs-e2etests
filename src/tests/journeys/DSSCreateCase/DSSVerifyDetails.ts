@@ -95,8 +95,13 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       caseNumber,
       multipleDocuments,
+      uploadOtherInfo,
     );
-    await caseDocumentsTabPage.checkPageInfo(page, multipleDocuments);
+    await caseDocumentsTabPage.checkPageInfo(
+      page,
+      multipleDocuments,
+      uploadOtherInfo,
+    );
     await caseFileViewTabPage.changeToCaseFileViewTab(page);
     await caseFileViewTabPage.checkPageLoads(
       page,
