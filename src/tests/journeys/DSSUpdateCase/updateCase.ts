@@ -50,7 +50,11 @@ const updateCaseJourney: UpdateCaseJourney = {
           multipleDocuments,
         );
         await uploadDocumentsPage.continueOn(page);
-        await checkYourAnswersPage.checkPageLoads(page, accessibilityTest);
+        await checkYourAnswersPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          multipleDocuments,
+        );
         await checkYourAnswersPage.checkValidInfoAllFields(
           page,
           multipleDocuments,

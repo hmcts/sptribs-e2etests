@@ -142,6 +142,10 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       await page
         .locator(this.fields.uploadFileButton)
         .setInputFiles(config.testWordFile);
+      await page.fill(
+        this.fields.documentRelevance,
+        UploadDocumentsContent.documentRelevance,
+      );
       await page.click(this.fields.fileUploadedOption);
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
@@ -154,6 +158,10 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           await page
             .locator(this.fields.uploadFileButton)
             .setInputFiles(config.testPdfFile);
+          await page.fill(
+            this.fields.documentRelevance,
+            UploadDocumentsContent.documentRelevance,
+          );
           await page.click(this.fields.fileUploadedOption);
           await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
             path.basename(config.testPdfFile),
@@ -166,6 +174,10 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           await page
             .locator(this.fields.uploadFileButton)
             .setInputFiles(config.testFile);
+          await page.fill(
+            this.fields.documentRelevance,
+            UploadDocumentsContent.documentRelevance,
+          );
           await page.click(this.fields.fileUploadedOption);
           await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
             path.basename(config.testFile),
