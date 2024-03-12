@@ -168,10 +168,10 @@ const commonHelpers: CommonHelpers = {
   },
 
   async checkVisibleAndPresent(locator: Locator, count: number): Promise<void> {
-    await expect(locator).toHaveCount(count);
-    for (let i = 0; i < count; i++) {
-      await expect(locator.nth(i)).toBeVisible();
-    }
+    const promises = Array.from({ length: count }, (_, i) => {
+      return expect(locator.nth(i)).toBeVisible();
+    });
+    await Promise.all([promises, expect(locator).toHaveCount(count)]);
   },
 
   async chooseEventFromDropdown(
