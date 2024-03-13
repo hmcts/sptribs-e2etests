@@ -183,14 +183,16 @@ const commonHelpers: CommonHelpers = {
   },
 
   async checkNumberAndSubject(page: Page, caseNumber: string): Promise<void> {
-    await expect(
-      page.locator(
-        "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
+    await Promise.all([
+      expect(
+        page.locator(
+          "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
+        ),
+      ).toHaveText(SubjectDetails_content.name),
+      expect(page.locator(".case-field").first()).toContainText(
+        allTabTitles_content.pageTitle + caseNumber,
       ),
-    ).toHaveText(SubjectDetails_content.name);
-    await expect(page.locator(".case-field").first()).toContainText(
-      allTabTitles_content.pageTitle + caseNumber,
-    );
+    ]);
   },
 
   async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {

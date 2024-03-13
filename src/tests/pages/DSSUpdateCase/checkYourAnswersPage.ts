@@ -19,6 +19,7 @@ type CheckYourAnswersPage = {
     page: Page,
     multipleDocuments: boolean,
     uploadDocument: boolean,
+    additionalInformation: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
@@ -114,13 +115,16 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     page: Page,
     multipleDocuments: boolean,
     uploadDocument: boolean,
+    additionalInformation: boolean,
   ): Promise<void> {
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `.govuk-summary-list__value:text-is("${uploadDocuments_content.additionalInfo}")`,
-      ),
-      1,
-    );
+    if (additionalInformation) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-summary-list__value:text-is("${uploadDocuments_content.additionalInfo}")`,
+        ),
+        1,
+      );
+    }
     if (!multipleDocuments) {
       if (uploadDocument) {
         await Promise.all([
@@ -146,9 +150,9 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
       } else {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `a.govuk-link[href="/upload-documents"]:text-is("change")`,
+            `a.govuk-link[href="/upload-documents"]:text-is("change"):nth-child(1)`,
           ),
-          2,
+          1,
         );
       }
     } else {
