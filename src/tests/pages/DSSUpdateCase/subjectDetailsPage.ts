@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import SubjectDetailsContent from "../../fixtures/content/DSSUpdateCase/SubjectDetails_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type SubjectDetailsPage = {
   fields: {
@@ -30,6 +31,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
+      commonHelpers.feedbackBanner(page),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         SubjectDetailsContent.header,
       ),

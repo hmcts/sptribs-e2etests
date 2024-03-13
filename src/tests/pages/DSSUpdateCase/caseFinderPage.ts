@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import CaseFinderDetails from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import CommonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type CaseFinderPage = {
   caseReferenceNumber: string;
@@ -21,6 +22,7 @@ const caseFinderPage: CaseFinderPage = {
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
+      commonHelpers.feedbackBanner(page),
       CommonHelpers.checkAndAcceptCookies(page, "UC"),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         CaseFinderDetails.header,

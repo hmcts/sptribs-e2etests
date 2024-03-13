@@ -37,6 +37,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
   ): Promise<void> {
     if (!multipleDocuments) {
       await Promise.all([
+        commonHelpers.feedbackBanner(page),
         expect(page.locator(".govuk-header__service-name")).toHaveText(
           CheckYourAnswersContent.header,
         ),
