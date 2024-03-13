@@ -4,6 +4,7 @@ import loginPage from "../../pages/DSSUpdateCase/loginPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
 import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
 import uploadDocumentsPage from "../../pages/DSSUpdateCase/uploadDocumentsPage.ts";
+import checkYourAnswersPage from "../../pages/DSSUpdateCase/checkYourAnswersPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -49,6 +50,19 @@ const updateCaseJourney: UpdateCaseJourney = {
           multipleDocuments,
         );
         await uploadDocumentsPage.continueOn(page);
+        await checkYourAnswersPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          multipleDocuments,
+          uploadDocument,
+        );
+        await checkYourAnswersPage.checkValidInfoAllFields(
+          page,
+          multipleDocuments,
+          uploadDocument,
+          additionalInformation,
+        );
+        await checkYourAnswersPage.continueOn(page);
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
         }
