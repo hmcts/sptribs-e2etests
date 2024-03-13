@@ -19,7 +19,7 @@ const landingPage: LandingPage = {
   ): Promise<void> {
     await page.goto(config.UpdateCaseBaseURL);
     await Promise.all([
-      commonHelpers.feedbackBanner(page),
+      commonHelpers.feedbackBanner(page, true),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         LandingPageDetails.header,
       ),

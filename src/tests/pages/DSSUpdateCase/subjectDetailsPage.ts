@@ -31,7 +31,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
-      commonHelpers.feedbackBanner(page),
+      commonHelpers.feedbackBanner(page, false),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         SubjectDetailsContent.header,
       ),

@@ -43,7 +43,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await page.click(this.fields.dropDown);
     await Promise.all([
-      commonHelpers.feedbackBanner(page),
+      commonHelpers.feedbackBanner(page, false),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         UploadDocumentsContent.header,
       ),

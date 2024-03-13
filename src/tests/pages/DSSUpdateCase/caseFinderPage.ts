@@ -22,7 +22,7 @@ const caseFinderPage: CaseFinderPage = {
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
-      commonHelpers.feedbackBanner(page),
+      commonHelpers.feedbackBanner(page, false),
       CommonHelpers.checkAndAcceptCookies(page, "UC"),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         CaseFinderDetails.header,
