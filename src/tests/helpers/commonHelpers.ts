@@ -247,7 +247,7 @@ const commonHelpers: CommonHelpers = {
       "href",
       feedbackBanner_content.feedbackLink,
     );
-  }
+  },
 };
 
 export default commonHelpers;
