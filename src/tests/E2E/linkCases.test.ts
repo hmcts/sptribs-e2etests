@@ -161,7 +161,7 @@ test.describe("Linking cases tests @CaseAPI", (): void => {
     await createCase.verifyDetails(
       page,
       "caseWorker",
-      true,
+      false,
       caseNumber1,
       previousEvents1,
       eventTimes1,
@@ -224,7 +224,7 @@ test("Accessibility test @accessibilityCaseAPI", async ({
   await createCase.verifyDetails(
     page,
     "caseWorker",
-    true,
+    false,
     caseNumber1,
     previousEvents1,
     eventTimes1,

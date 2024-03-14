@@ -2,6 +2,7 @@ import config from "../../config";
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import LandingPageDetails from "../../fixtures/content/DSSUpdateCase/LandingPage_content";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type LandingPage = {
   startButton: string;
@@ -17,22 +18,27 @@ const landingPage: LandingPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.goto(config.UpdateCaseBaseURL);
-    await expect(page.locator(".govuk-header__service-name")).toHaveText(
-      LandingPageDetails.header,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      LandingPageDetails.pageTitle,
-    );
-    await expect(page.locator(".govuk-body-l").nth(0)).toContainText(
-      LandingPageDetails.hintMessage,
-    );
-    await expect(page.locator(".govuk-body-l").nth(1)).toHaveText(
-      LandingPageDetails.textOnPage1,
-    );
-    await expect(page.locator(".govuk-body-l").nth(2)).toHaveText(
-      LandingPageDetails.textOnPage2,
-    );
-    await expect(page.locator(landingPage.startButton)).toHaveText("Start now");
+    await Promise.all([
+      commonHelpers.feedbackBanner(page, true),
+      expect(page.locator(".govuk-header__service-name")).toHaveText(
+        LandingPageDetails.header,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        LandingPageDetails.pageTitle,
+      ),
+      expect(page.locator(".govuk-body-l").nth(0)).toContainText(
+        LandingPageDetails.hintMessage,
+      ),
+      ...Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (LandingPageDetails as any)[
+          `textOnPage${index + 1}`
+        ];
+        return expect(page.locator(".govuk-body-l").nth(index + 1)).toHaveText(
+          textOnPage,
+        );
+      }),
+      expect(page.locator(landingPage.startButton)).toHaveText("Start now"),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }

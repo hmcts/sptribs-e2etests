@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import SubjectDetailsContent from "../../fixtures/content/DSSUpdateCase/SubjectDetails_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type SubjectDetailsPage = {
   fields: {
@@ -29,27 +30,29 @@ const subjectDetailsPage: SubjectDetailsPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await expect(page.locator(".govuk-header__service-name")).toHaveText(
-      SubjectDetailsContent.header,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      SubjectDetailsContent.pageTitle,
-    );
-    await expect(page.locator(".govuk-label").nth(0)).toHaveText(
-      SubjectDetailsContent.subHeading1,
-    );
-    await expect(page.locator(".govuk-fieldset__legend")).toHaveText(
-      SubjectDetailsContent.subHeading2,
-    );
-    await expect(page.locator(".govuk-label").nth(1)).toHaveText(
-      SubjectDetailsContent.textOnPage1,
-    );
-    await expect(page.locator(".govuk-label").nth(2)).toHaveText(
-      SubjectDetailsContent.textOnPage2,
-    );
-    await expect(page.locator(".govuk-label").nth(3)).toHaveText(
-      SubjectDetailsContent.textOnPage3,
-    );
+    await Promise.all([
+      commonHelpers.feedbackBanner(page, false),
+      expect(page.locator(".govuk-header__service-name")).toHaveText(
+        SubjectDetailsContent.header,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        SubjectDetailsContent.pageTitle,
+      ),
+      expect(page.locator(".govuk-label").nth(0)).toHaveText(
+        SubjectDetailsContent.subHeading1,
+      ),
+      expect(page.locator(".govuk-fieldset__legend")).toHaveText(
+        SubjectDetailsContent.subHeading2,
+      ),
+      ...Array.from({ length: 3 }, (_, index) => {
+        const textOnPage = (SubjectDetailsContent as any)[
+          `textOnPage${index + 1}`
+        ];
+        return expect(page.locator(".govuk-label").nth(index + 1)).toHaveText(
+          textOnPage,
+        );
+      }),
+    ]);
     await expect(page.locator(this.continueButton)).toHaveText("Continue");
     if (accessibilityTest) {
       await axeTest(page);
@@ -68,24 +71,28 @@ const subjectDetailsPage: SubjectDetailsPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continueButton);
-    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-      SubjectDetailsContent.errorBanner,
-    );
-    await expect(page.locator("#subjectFullName-error")).toContainText(
-      SubjectDetailsContent.fullNameError,
-    );
-    await expect(page.locator("#subjectDOB-error")).toContainText(
-      SubjectDetailsContent.dateOfBirthError,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        SubjectDetailsContent.errorBanner,
+      ),
+      expect(page.locator("#subjectFullName-error")).toContainText(
+        SubjectDetailsContent.fullNameError,
+      ),
+      expect(page.locator("#subjectDOB-error")).toContainText(
+        SubjectDetailsContent.dateOfBirthError,
+      ),
+    ]);
     await page.fill(this.fields.fullName, "!@£$%^&*()");
     await page.fill(this.fields.dayOfBirth, "90");
     await page.click(this.continueButton);
-    await expect(page.locator("#subjectFullName-error")).toContainText(
-      SubjectDetailsContent.validFullNameError,
-    );
-    await expect(page.locator("#subjectDOB-error")).toContainText(
-      SubjectDetailsContent.validDateOfBirthError,
-    );
+    await Promise.all([
+      expect(page.locator("#subjectFullName-error")).toContainText(
+        SubjectDetailsContent.validFullNameError,
+      ),
+      expect(page.locator("#subjectDOB-error")).toContainText(
+        SubjectDetailsContent.validDateOfBirthError,
+      ),
+    ]);
   },
 
   async continueOn(page: Page): Promise<void> {

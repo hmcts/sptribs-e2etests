@@ -70,27 +70,35 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
         ...Array.from({ length: 4 }, (_, index) => {
           return expect(
             page.locator(".node-name-document").nth(index),
-          ).toHaveText(path.basename(config.testFile));
+          ).toHaveText(path.basename(config.testWordFile));
         }),
         ...Array.from({ length: 4 }, (_, index) => {
           return expect(
             page.locator(".node-name-document").nth(index + 4),
-          ).toHaveText(path.basename(config.testPdfFile));
+          ).toHaveText(path.basename(config.testFile));
         }),
         ...Array.from({ length: 4 }, (_, index) => {
           return expect(
             page.locator(".node-name-document").nth(index + 8),
-          ).toHaveText(path.basename(config.testWordFile));
+          ).toHaveText(path.basename(config.testPdfFile));
         }),
       ]);
     } else {
       if (!uploadAdditionalInfo) {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.node__count:text-is("${uploadedDocumentsContent.totalDocuments}")`,
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.node__count:text-is("${uploadedDocumentsContent.totalDocuments}")`,
+            ),
+            1,
           ),
-          1,
-        );
+          expect(page.locator(".node-name-document").nth(0)).toHaveText(
+            path.basename(config.testFile),
+          ),
+          expect(page.locator(".node-name-document").nth(1)).toHaveText(
+            path.basename(config.testPdfFile),
+          ),
+        ]);
       } else {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
@@ -99,19 +107,17 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
             ),
             1,
           ),
-          expect(page.locator(".node-name-document").nth(2)).toHaveText(
+          expect(page.locator(".node-name-document").nth(0)).toHaveText(
             path.basename(config.testWordFile),
+          ),
+          expect(page.locator(".node-name-document").nth(1)).toHaveText(
+            path.basename(config.testFile),
+          ),
+          expect(page.locator(".node-name-document").nth(2)).toHaveText(
+            path.basename(config.testPdfFile),
           ),
         ]);
       }
-      await Promise.all([
-        expect(page.locator(".node-name-document").nth(0)).toHaveText(
-          path.basename(config.testFile),
-        ),
-        expect(page.locator(".node-name-document").nth(1)).toHaveText(
-          path.basename(config.testPdfFile),
-        ),
-      ]);
     }
   },
 };

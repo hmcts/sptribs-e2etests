@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import CaseFinderDetails from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import CommonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type CaseFinderPage = {
   caseReferenceNumber: string;
@@ -20,23 +21,26 @@ const caseFinderPage: CaseFinderPage = {
   backButton: ".govuk-back-link",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await CommonHelpers.checkAndAcceptCookies(page, "UC");
-    await expect(page.locator(".govuk-header__service-name")).toHaveText(
-      CaseFinderDetails.header,
-    );
-    await expect(page.locator(".govuk-heading-l")).toHaveText(
-      CaseFinderDetails.pageTitle,
-    );
-    await expect(page.locator(".govuk-hint").nth(0)).toContainText(
-      CaseFinderDetails.hintMessage,
-    );
-    await expect(page.locator(".govuk-label")).toHaveText(
-      CaseFinderDetails.subTitle,
-    );
-    await expect(page.locator(".govuk-hint").nth(1)).toHaveText(
-      CaseFinderDetails.textOnPage1,
-    );
-    await expect(page.locator(this.continueButton)).toHaveText("Continue");
+    await Promise.all([
+      commonHelpers.feedbackBanner(page, false),
+      CommonHelpers.checkAndAcceptCookies(page, "UC"),
+      expect(page.locator(".govuk-header__service-name")).toHaveText(
+        CaseFinderDetails.header,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        CaseFinderDetails.pageTitle,
+      ),
+      expect(page.locator(".govuk-hint").nth(0)).toContainText(
+        CaseFinderDetails.hintMessage,
+      ),
+      expect(page.locator(".govuk-label")).toHaveText(
+        CaseFinderDetails.subTitle,
+      ),
+      expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+        CaseFinderDetails.textOnPage1,
+      ),
+      expect(page.locator(this.continueButton)).toHaveText("Continue"),
+    ]);
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -44,12 +48,14 @@ const caseFinderPage: CaseFinderPage = {
 
   async triggerErrorMessages(page: Page) {
     await page.click(this.continueButton);
-    await expect(page.locator(".govuk-error-summary__title")).toHaveText(
-      CaseFinderDetails.errorBanner,
-    );
-    await expect(page.locator("#applicantCaseId-error")).toContainText(
-      CaseFinderDetails.referenceNumberError,
-    );
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        CaseFinderDetails.errorBanner,
+      ),
+      expect(page.locator("#applicantCaseId-error")).toContainText(
+        CaseFinderDetails.referenceNumberError,
+      ),
+    ]);
     await page.fill(this.caseReferenceNumber, "111111111111111");
     await page.click(this.continueButton);
     await expect(page.locator("#applicantCaseId-error")).toContainText(
