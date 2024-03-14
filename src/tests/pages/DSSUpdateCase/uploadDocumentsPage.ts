@@ -3,6 +3,7 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import UploadDocumentsContent from "../../fixtures/content/DSSUpdateCase/UploadDocuments_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadDocumentsPage = {
   fields: {
@@ -42,6 +43,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await page.click(this.fields.dropDown);
     await Promise.all([
+      commonHelpers.feedbackBanner(page, false),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         UploadDocumentsContent.header,
       ),

@@ -6,6 +6,7 @@ import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/creat
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
+import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -27,6 +28,7 @@ interface CommonHelpers {
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
+  feedbackBanner(page: Page, landingPage: boolean): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -232,6 +234,35 @@ const commonHelpers: CommonHelpers = {
     }
     await page.locator(".govuk-button").nth(0).click();
     await page.getByRole("button", { name: "Hide this message" }).click();
+  },
+
+  async feedbackBanner(page: Page, landingPage: boolean): Promise<void> {
+    if (landingPage) {
+      await Promise.all([
+        expect(page.locator(".govuk-phase-banner__text")).toContainText(
+          feedbackBanner_content.feedbackBanner,
+        ),
+        expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+          feedbackBanner_content.feedbackLinkText,
+        ),
+        expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+          "href",
+          feedbackBanner_content.feedbackLink,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        expect(page.locator(".govuk-phase-banner__text")).toContainText(
+          feedbackBanner_content.feedbackBanner,
+        ),
+        expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+          feedbackBanner_content.feedbackLinkText,
+        ),
+        expect(
+          await page.locator("a.govuk-link").nth(3).getAttribute("href"),
+        ).toContain(feedbackBanner_content.feedbackLink),
+      ]);
+    }
   },
 };
 

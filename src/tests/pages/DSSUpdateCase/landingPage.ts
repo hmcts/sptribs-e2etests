@@ -2,6 +2,7 @@ import config from "../../config";
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import LandingPageDetails from "../../fixtures/content/DSSUpdateCase/LandingPage_content";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type LandingPage = {
   startButton: string;
@@ -18,6 +19,7 @@ const landingPage: LandingPage = {
   ): Promise<void> {
     await page.goto(config.UpdateCaseBaseURL);
     await Promise.all([
+      commonHelpers.feedbackBanner(page, true),
       expect(page.locator(".govuk-header__service-name")).toHaveText(
         LandingPageDetails.header,
       ),
