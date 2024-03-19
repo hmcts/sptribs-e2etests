@@ -6,7 +6,7 @@ const caseFinderContent = {
   subTitle: "Case reference number",
   textOnPage1:
     "This number will be 16 digits long. It should not include spaces or any of these characters: - * ( ) & ! / ;",
-  errorBanner: "There is a problem on this page",
+  errorBanner: "There is a problem",
   referenceNumberError: "Please enter a reference number",
   characterError:
     "Please enter a valid reference number. The reference number should not include spaces or any characters - * ( ) & ! / ;",

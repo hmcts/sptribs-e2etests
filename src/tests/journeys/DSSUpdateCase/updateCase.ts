@@ -5,6 +5,7 @@ import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
 import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts";
 import uploadDocumentsPage from "../../pages/DSSUpdateCase/uploadDocumentsPage.ts";
 import checkYourAnswersPage from "../../pages/DSSUpdateCase/checkYourAnswersPage.ts";
+import confirmPage from "../../pages/DSSUpdateCase/confirmPage.ts";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -24,7 +25,7 @@ const updateCaseJourney: UpdateCaseJourney = {
   async updateCase(
     page: Page,
     accessibilityTest: boolean,
-    caseNumber: string | void,
+    caseNumber: string,
     additionalInformation: boolean,
     uploadDocument: boolean,
     multipleDocuments: boolean,
@@ -62,10 +63,14 @@ const updateCaseJourney: UpdateCaseJourney = {
           uploadDocument,
           additionalInformation,
         );
-        await checkYourAnswersPage.continueOn(page);
         if (backButtonJourney) {
           await this.handleBackButtonJourney(page);
+          break;
         }
+        await checkYourAnswersPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.returnCaseNumber(page, caseNumber);
+        await confirmPage.closeAndReturnToCase(page);
         break;
       case true:
         await landingPage.seeTheLandingPage(page, accessibilityTest);
@@ -92,9 +97,9 @@ const updateCaseJourney: UpdateCaseJourney = {
   },
 
   async handleBackButtonJourney(page: Page): Promise<void> {
-    await caseFinderPage.pressBackButton(page);
-    await subjectDetailsPage.pressBackButton(page);
+    await checkYourAnswersPage.pressBackButton(page);
     await uploadDocumentsPage.pressBackButton(page);
+    await subjectDetailsPage.pressBackButton(page);
   },
 };
 
