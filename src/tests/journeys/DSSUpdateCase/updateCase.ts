@@ -100,7 +100,6 @@ const updateCaseJourney: UpdateCaseJourney = {
     await checkYourAnswersPage.pressBackButton(page);
     await uploadDocumentsPage.pressBackButton(page);
     await subjectDetailsPage.pressBackButton(page);
-    await checkYourAnswersPage.pressBackButton(page);
   },
 };
 
