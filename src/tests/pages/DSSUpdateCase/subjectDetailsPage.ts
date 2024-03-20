@@ -84,6 +84,8 @@ const subjectDetailsPage: SubjectDetailsPage = {
     ]);
     await page.fill(this.fields.fullName, "!@£$%^&*()");
     await page.fill(this.fields.dayOfBirth, "90");
+    await page.fill(this.fields.monthOfBirth, "90");
+    await page.fill(this.fields.yearOfBirth, "2000");
     await page.click(this.continueButton);
     await Promise.all([
       expect(page.locator("#subjectFullName-error")).toContainText(
