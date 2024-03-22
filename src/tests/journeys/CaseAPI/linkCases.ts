@@ -40,7 +40,6 @@ const linkCases: LinkCases = {
         await createCaseLinkCreateCaseLink.fillInFields(page);
         await createCaseLinkCreateCaseLink2.checkPageLoads(
           page,
-          caseNumber1,
           accessibilityTest,
         );
         await createCaseLinkCreateCaseLink2.fillInFields(

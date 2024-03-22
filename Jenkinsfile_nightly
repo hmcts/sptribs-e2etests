@@ -16,7 +16,7 @@ properties([
                 ),
                 string(
                         name: 'SPTRIBS_UPDATE_URL',
-                        defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/dss-update/start',
+                        defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/',
                         description: 'The Update Case URL to test against'
                 ),
                 string(
@@ -36,7 +36,7 @@ properties([
                 ),
                 booleanParam(
                         name: 'skipDSSUpdateTests',
-                        defaultValue: true,
+                        defaultValue: false,
                         description: 'Tick the checkbox for skipping DSS Update Case tests.'
                 ),
         ])

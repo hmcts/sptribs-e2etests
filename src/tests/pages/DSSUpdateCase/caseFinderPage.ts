@@ -12,7 +12,6 @@ type CaseFinderPage = {
   fillInFields(page: Page, caseNumber: string | void): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
-  pressBackButton(page: Page): Promise<void>;
 };
 
 const caseFinderPage: CaseFinderPage = {
@@ -82,10 +81,6 @@ const caseFinderPage: CaseFinderPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continueButton);
-  },
-
-  async pressBackButton(page: Page): Promise<void> {
-    await page.click(this.backButton);
   },
 };
 

@@ -10,7 +10,7 @@ const subjectDetailsContent = {
   dayOfBirth: "1",
   monthOfBirth: "1",
   yearOfBirth: "2000",
-  errorBanner: "There is a problem on this page",
+  errorBanner: "There is a problem",
   fullNameError: "Please enter full name",
   dateOfBirthError: "Please enter date of birth",
   validFullNameError: "Please enter a valid name",
