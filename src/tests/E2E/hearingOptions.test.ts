@@ -49,8 +49,8 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       caseNumber,
       previousEvents1,
       eventTimes1,
-      false
-    )
+      false,
+    );
   });
 
   test("Edit hearing options in the 'Ready to list' state. @CaseAPI", async ({

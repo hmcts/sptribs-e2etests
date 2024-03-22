@@ -46,12 +46,15 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await page.selectOption(this.region, hearingOptionsRegionDataContent.region);
+    await page.selectOption(
+      this.region,
+      hearingOptionsRegionDataContent.region,
+    );
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.click(this.continue)
-  }
+    await page.click(this.continue);
+  },
 };
 
 export default hearingOptionsRegionData;
