@@ -51,7 +51,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       eventTimes1,
       "Face to Face",
       false,
-      false
+      false,
     );
   });
 

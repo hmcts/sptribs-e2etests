@@ -38,8 +38,16 @@ const hearingOptions: HearingOptions = {
     );
     await hearingOptionsRegionDataPage.fillInFields(page);
     await hearingOptionsRegionDataPage.continueOn(page);
-    await hearingOptionsHearingDetailsPage.checkPageLoads(page, caseNumber, accessibilityTest);
-    await hearingOptionsHearingDetails.fillInFields(page, hearingFormat, shortNoticeHearing);
+    await hearingOptionsHearingDetailsPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+    );
+    await hearingOptionsHearingDetails.fillInFields(
+      page,
+      hearingFormat,
+      shortNoticeHearing,
+    );
     await hearingOptionsHearingDetailsPage.continueOn(page);
   },
 };

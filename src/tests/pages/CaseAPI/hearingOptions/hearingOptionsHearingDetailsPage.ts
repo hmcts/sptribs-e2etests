@@ -1,8 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import hearingOptionsHearingDetailsContent
-  from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
+import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 
 type HearingOptionsHearingDetailsPage = {
   venue: string;
@@ -16,7 +15,11 @@ type HearingOptionsHearingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page, hearingFormat: string, shortNoticeHearing: boolean): Promise<void>;
+  fillInFields(
+    page: Page,
+    hearingFormat: string,
+    shortNoticeHearing: boolean,
+  ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -41,7 +44,7 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
       ...Array.from({ length: 11 }, (_, index) => {
         const textOnPage = (hearingOptionsHearingDetailsContent as any)[
           `textOnPage${index + 1}`
-          ];
+        ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
@@ -56,18 +59,25 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
     }
   },
 
-  async fillInFields(page: Page, hearingFormat: string, shortNoticeHearing: boolean): Promise<void> {
+  async fillInFields(
+    page: Page,
+    hearingFormat: string,
+    shortNoticeHearing: boolean,
+  ): Promise<void> {
     await page.selectOption(
       this.venue,
       hearingOptionsHearingDetailsContent.venue,
     );
     await page.fill(this.roomAtVenue, hearingOptionsHearingDetailsContent.room);
-    await page.fill(this.instructions, hearingOptionsHearingDetailsContent.instructions);
+    await page.fill(
+      this.instructions,
+      hearingOptionsHearingDetailsContent.instructions,
+    );
     await page.getByLabel(hearingFormat).check();
     if (shortNoticeHearing) {
-      await page.getByLabel("Yes",  { exact: true }).check();
+      await page.getByLabel("Yes", { exact: true }).check();
     } else {
-      await page.getByLabel("No",  { exact: true }).check();
+      await page.getByLabel("No", { exact: true }).check();
     }
   },
 

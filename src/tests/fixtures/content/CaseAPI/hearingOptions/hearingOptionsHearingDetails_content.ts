@@ -11,9 +11,10 @@ const hearingOptionsHearingDetails_content = {
   textOnPage9: "Telephone",
   textOnPage10: "Paper",
   textOnPage11: "Case eligible for a short notice hearing? (Optional)",
-  venue: "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+  venue:
+    "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
   room: "Lorem ipsum room",
-  instructions: "Lorem ipsum instructions"
+  instructions: "Lorem ipsum instructions",
 } as const;
 
 export default hearingOptionsHearingDetails_content;
