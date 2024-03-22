@@ -1,6 +1,6 @@
 const hearingOptionsRegionData_content = {
   pageTitle: "Region Data",
-  label: "Region (Optional)",
+  textOnPage: "Region (Optional)",
   region: "1-London",
 } as const;
 

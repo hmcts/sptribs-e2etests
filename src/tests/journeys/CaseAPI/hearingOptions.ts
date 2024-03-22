@@ -2,6 +2,8 @@ import { Page } from "@playwright/test";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
+import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
+import hearingOptionsHearingDetails from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
 
 type HearingOptions = {
   hearingOptions(
@@ -9,6 +11,8 @@ type HearingOptions = {
     caseNumber: string,
     previousEvents: allEvents[],
     eventTimes: string[],
+    hearingFormat: string,
+    shortNoticeHearing: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
 };
@@ -19,6 +23,8 @@ const hearingOptions: HearingOptions = {
     caseNumber: string,
     previousEvents: allEvents[],
     eventTimes: string[],
+    hearingFormat: string,
+    shortNoticeHearing: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await commonHelpers.chooseEventFromDropdown(
@@ -32,6 +38,9 @@ const hearingOptions: HearingOptions = {
     );
     await hearingOptionsRegionDataPage.fillInFields(page);
     await hearingOptionsRegionDataPage.continueOn(page);
+    await hearingOptionsHearingDetailsPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await hearingOptionsHearingDetails.fillInFields(page, hearingFormat, shortNoticeHearing);
+    await hearingOptionsHearingDetailsPage.continueOn(page);
   },
 };
 

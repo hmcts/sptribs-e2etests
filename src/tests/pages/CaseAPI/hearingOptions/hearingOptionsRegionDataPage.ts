@@ -34,7 +34,7 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
         hearingOptionsRegionDataContent.pageTitle,
       ),
       await expect(page.locator(".form-label")).toHaveText(
-        hearingOptionsRegionDataContent.label,
+        hearingOptionsRegionDataContent.textOnPage,
       ),
       page.locator(this.previous).isVisible(),
       page.locator(this.continue).isVisible(),

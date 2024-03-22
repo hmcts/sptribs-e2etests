@@ -5,7 +5,7 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
 test.describe("Create hearing options tests @CaseAPI", (): void => {
-  test.only("Create hearing options in the 'Case management' state. @CaseAPI", async ({
+  test.only("Create hearing options for a face to face hearing format and ineligible for a short notice hearing in the 'Case management' state. @CaseAPI", async ({
     page,
   }): Promise<void> => {
     let previousEvents1: allEvents[] = [];
@@ -49,7 +49,9 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       caseNumber,
       previousEvents1,
       eventTimes1,
+      "Face to Face",
       false,
+      false
     );
   });
 
