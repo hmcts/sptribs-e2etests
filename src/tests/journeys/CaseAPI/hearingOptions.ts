@@ -19,13 +19,20 @@ const hearingOptions: HearingOptions = {
     caseNumber: string,
     previousEvents: allEvents[],
     eventTimes: string[],
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
-    await commonHelpers.chooseEventFromDropdown(page, events_content.hearingOptions);
-    await hearingOptionsRegionDataPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      events_content.hearingOptions,
+    );
+    await hearingOptionsRegionDataPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+    );
     await hearingOptionsRegionDataPage.fillInFields(page);
     await hearingOptionsRegionDataPage.continueOn(page);
-  }
-}
+  },
+};
 
 export default hearingOptions;
