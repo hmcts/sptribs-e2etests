@@ -6,6 +6,8 @@ import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts"
 import uploadDocumentsPage from "../../pages/DSSUpdateCase/uploadDocumentsPage.ts";
 import checkYourAnswersPage from "../../pages/DSSUpdateCase/checkYourAnswersPage.ts";
 import confirmPage from "../../pages/DSSUpdateCase/confirmPage.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import config from "../../config.ts";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -19,6 +21,7 @@ type UpdateCaseJourney = {
     errorMessaging: boolean,
   ): Promise<void>;
   handleBackButtonJourney(page: Page): Promise<void>;
+  verifyDetails(page: Page, caseNumber: string): Promise<void>;
 };
 
 const updateCaseJourney: UpdateCaseJourney = {
@@ -70,7 +73,16 @@ const updateCaseJourney: UpdateCaseJourney = {
         await checkYourAnswersPage.continueOn(page);
         await confirmPage.checkPageLoads(page, accessibilityTest);
         await confirmPage.returnCaseNumber(page, caseNumber);
-        await confirmPage.closeAndReturnToCase(page);
+        const caseNumberFinal = await confirmPage.returnCaseNumber(
+          page,
+          caseNumber,
+        );
+        const timeStamp = await confirmPage.closeAndReturnToCase(page);
+        if (typeof caseNumberFinal === "string") {
+          await this.verifyDetails(page, caseNumberFinal);
+        } else {
+          console.error("caseNumber is void, unable to proceed.");
+        }
         break;
       case true:
         await landingPage.seeTheLandingPage(page, accessibilityTest);
@@ -100,6 +112,15 @@ const updateCaseJourney: UpdateCaseJourney = {
     await checkYourAnswersPage.pressBackButton(page);
     await uploadDocumentsPage.pressBackButton(page);
     await subjectDetailsPage.pressBackButton(page);
+  },
+
+  async verifyDetails(page: Page, caseNumber: string): Promise<void> {
+    const navigationPage = await commonHelpers.generateUrl(
+      config.CaseAPIBaseURL,
+      caseNumber,
+    );
+    await page.goto(navigationPage);
+    console.log("here");
   },
 };
 
