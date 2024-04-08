@@ -6,13 +6,13 @@ __metadata:
   cacheKey: 8
 
 "@axe-core/playwright@npm:^4.8.4":
-  version: 4.8.4
-  resolution: "@axe-core/playwright@npm:4.8.4"
+  version: 4.9.0
+  resolution: "@axe-core/playwright@npm:4.9.0"
   dependencies:
-    axe-core: ~4.8.3
+    axe-core: ~4.9.0
   peerDependencies:
     playwright-core: ">= 1.0.0"
-  checksum: f61efffb64ab06b1ad45aab264d4269ab08cb94518ba4e11a09fd91955d81ceda952ea9cc20a6df0777aa5105a50da476cd3e1bdb2596a412aacb5164f3142b8
+  checksum: 6e58d01048669418ada99588d424ee14a49d025a508327ecbf290161f04f7ead04ecff81ce28bd95b677c4b43b3e13582c42542e58d192fdf38beaca115ed112
   languageName: node
   linkType: hard
 
@@ -101,11 +101,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^20.10.0":
-  version: 20.12.2
-  resolution: "@types/node@npm:20.12.2"
+  version: 20.12.4
+  resolution: "@types/node@npm:20.12.4"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 3242ab04fe69ae32a2da29a7a2fce41fccb370bc1189de43d2dfbb491bd3253d3ee2070cbb5613061148e4862fdaa9cf62722c43128ce5c7d33fe83750956613
+  checksum: c29879642bd4f1f35ffc6e2356121c5ffdb6530d41db1e6ac013c6fbd1dfa4b213b9529a1213cf1f320f801423d00301176ffb41689f790b0cd8c1e82fe3ee74
   languageName: node
   linkType: hard
 
@@ -185,10 +185,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:~4.8.3":
-  version: 4.8.3
-  resolution: "axe-core@npm:4.8.3"
-  checksum: f546c74d1f3a7bff81752457fe9e5573693a8ecce11d3c265db501a82105efe0cd29964a491dd98e5979f6f3d85db6776e5e46626c2b09ab579a3729108964fd
+"axe-core@npm:~4.9.0":
+  version: 4.9.0
+  resolution: "axe-core@npm:4.9.0"
+  checksum: cabaa07586a92510f4befc742744b548c30033dfda99dd439c21d736f51913d52022c8836180084b13f2098f06a01c716dc42d8e91599c43c9db25905ba5403f
   languageName: node
   linkType: hard
 

@@ -154,6 +154,8 @@ const commonHelpers: CommonHelpers = {
       await expect(page.locator(".form-label").nth(2)).toHaveText(
         caseDocumentsUploadObject_content.textOnPage7,
       );
+    } else {
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
     }
 
     await page.selectOption(
