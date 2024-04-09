@@ -101,11 +101,12 @@ const issueToRespondent: IssueToRespondent = {
       accessibilityTest,
       caseNumber,
     );
-    console.log("here");
     switch (errorMessaging) {
       default:
-
+        await selectAdditionalDocuments.continueOn(page);
+        break;
       case true:
+        break;
     }
   },
 };

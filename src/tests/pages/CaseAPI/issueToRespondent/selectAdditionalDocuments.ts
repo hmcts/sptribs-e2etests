@@ -4,6 +4,7 @@ import selectAdditionalDocuments_content from "../../../fixtures/content/CaseAPI
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import path from "path";
 import config from "../../../config.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type SelectAdditionalDocuments = {
   checkPageLoads(
@@ -12,6 +13,7 @@ type SelectAdditionalDocuments = {
     caseNumber: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const selectAdditionalDocuments: SelectAdditionalDocuments = {
@@ -43,8 +45,15 @@ const selectAdditionalDocuments: SelectAdditionalDocuments = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.getByRole("button", { name: "Submit" }).click();
+    await page.locator(".form-control").click();
+    await page.getByRole("button", { name: "Continue" }).click();
   },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.getByRole("button", { name: "Continue" }).click();
+    await commonHelpers.checkVisibleAndPresent(page.locator(".error-summary-heading"), 1);
+    await commonHelpers.checkVisibleAndPresent(page.locator(".error-summary-list"), 1);
+  }
 };
 
 export default selectAdditionalDocuments;
