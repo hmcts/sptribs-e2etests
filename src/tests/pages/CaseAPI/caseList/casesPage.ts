@@ -58,7 +58,7 @@ const casesPage: CasesPage = {
       await page.click(".govuk-link--no-visited-state");
     }
     if (accessibilityTest) {
-      // await axeTest(page); disabled due to EXUI accessibility issues.
+      // await axeTest(page); disabled due to EXUI accessibility issues DTSSTCI-733.
     }
   },
 
