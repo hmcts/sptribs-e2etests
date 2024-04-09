@@ -106,6 +106,8 @@ const issueToRespondent: IssueToRespondent = {
         await selectAdditionalDocuments.continueOn(page);
         break;
       case true:
+        await selectAdditionalDocuments.triggerErrorMessages(page);
+        await selectAdditionalDocuments.continueOn(page);
         break;
     }
   },
