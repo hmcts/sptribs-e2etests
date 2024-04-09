@@ -155,7 +155,7 @@ const commonHelpers: CommonHelpers = {
         caseDocumentsUploadObject_content.textOnPage7,
       );
     } else {
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
     }
 
     await page.selectOption(
