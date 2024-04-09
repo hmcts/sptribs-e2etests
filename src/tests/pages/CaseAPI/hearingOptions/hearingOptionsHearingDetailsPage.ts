@@ -13,6 +13,7 @@ type HearingOptionsHearingDetailsPage = {
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(
     page: Page,
+    venue: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void>;
@@ -52,13 +53,16 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
 
   async fillInFields(
     page: Page,
+    venue: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void> {
-    await page.selectOption(
-      this.venue,
-      hearingOptionsHearingDetailsContent.venue,
-    );
+    if (venue) {
+      await page.selectOption(
+        this.venue,
+        hearingOptionsHearingDetailsContent.venue,
+      );
+    }
     await page.fill(this.roomAtVenue, hearingOptionsHearingDetailsContent.room);
     await page.fill(
       this.instructions,

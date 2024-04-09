@@ -9,9 +9,16 @@ type SubmitPage = {
   saveAndContinue: string;
   previous: string;
   cancel: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    region: boolean,
+    venue: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   checkValidInfo(
     page: Page,
+    region: boolean,
+    venue: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void>;
@@ -23,7 +30,12 @@ const submitPage: SubmitPage = {
   previous: ".button-secondary",
   cancel: ".cancel",
 
-  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    region: boolean,
+    venue: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
@@ -31,8 +43,8 @@ const submitPage: SubmitPage = {
       expect(page.locator(".text-16").nth(0)).toHaveText(
         submitContent.textOnPage1,
       ),
-      ...Array.from({ length: 6 }, (_, index) => {
-        const textOnPage = (submitContent as any)[`textOnPage${index + 2}`];
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (submitContent as any)[`textOnPage${index + 4}`];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(
             `th.case-field-label > span.text-16:text-is("${textOnPage}")`,
@@ -44,6 +56,22 @@ const submitPage: SubmitPage = {
       page.locator(this.saveAndContinue).isVisible(),
       page.locator(this.cancel).isVisible(),
     ]);
+    if (region) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage2}")`,
+        ),
+        1,
+      );
+    }
+    if (venue) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage3}")`,
+        ),
+        1,
+      );
+    }
     if (accessibilityTest) {
       await axeTest(page);
     }
@@ -51,22 +79,28 @@ const submitPage: SubmitPage = {
 
   async checkValidInfo(
     page: Page,
+    region: boolean,
+    venue: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void> {
-    await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
+    if (region) {
+      await commonHelpers.checkVisibleAndPresent(
         page.locator(
           `ccd-read-dynamic-list-field > span.text-16:text-is("${hearingOptionsRegionDataContent.region}")`,
         ),
         1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
+      );
+    }
+    if (venue) {
+      await commonHelpers.checkVisibleAndPresent(
         page.locator(
           `ccd-read-dynamic-list-field > span.text-16:text-is("${hearingOptionsHearingDetailsContent.venue}")`,
         ),
         1,
-      ),
+      );
+    }
+    await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `ccd-read-text-field > span.text-16:text-is("${hearingOptionsHearingDetailsContent.room}")`,

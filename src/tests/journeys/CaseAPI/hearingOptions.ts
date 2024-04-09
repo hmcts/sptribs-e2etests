@@ -10,6 +10,8 @@ type HearingOptions = {
   hearingOptions(
     page: Page,
     caseNumber: string,
+    region: boolean,
+    venue: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
     accessibilityTest: boolean,
@@ -20,6 +22,8 @@ const hearingOptions: HearingOptions = {
   async hearingOptions(
     page: Page,
     caseNumber: string,
+    region: boolean,
+    venue: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
     accessibilityTest: boolean,
@@ -33,7 +37,7 @@ const hearingOptions: HearingOptions = {
       caseNumber,
       accessibilityTest,
     );
-    await hearingOptionsRegionDataPage.fillInFields(page);
+    await hearingOptionsRegionDataPage.fillInFields(page, region);
     await hearingOptionsRegionDataPage.continueOn(page);
     await hearingOptionsHearingDetailsPage.checkPageLoads(
       page,
@@ -41,12 +45,19 @@ const hearingOptions: HearingOptions = {
     );
     await hearingOptionsHearingDetails.fillInFields(
       page,
+      venue,
       hearingFormat,
       shortNoticeHearing,
     );
     await hearingOptionsHearingDetailsPage.continueOn(page);
-    await submitPage.checkPageLoads(page, accessibilityTest);
-    await submitPage.checkValidInfo(page, hearingFormat, shortNoticeHearing);
+    await submitPage.checkPageLoads(page, region, venue, accessibilityTest);
+    await submitPage.checkValidInfo(
+      page,
+      region,
+      venue,
+      hearingFormat,
+      shortNoticeHearing,
+    );
     await submitPage.continueOn(page);
   },
 };

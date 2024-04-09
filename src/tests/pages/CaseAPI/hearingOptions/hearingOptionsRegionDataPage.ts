@@ -13,7 +13,7 @@ type HearingOptionsRegionDataPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, region: boolean): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -45,11 +45,13 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {
-    await page.selectOption(
-      this.region,
-      hearingOptionsRegionDataContent.region,
-    );
+  async fillInFields(page: Page, region: boolean): Promise<void> {
+    if (region) {
+      await page.selectOption(
+        this.region,
+        hearingOptionsRegionDataContent.region,
+      );
+    }
   },
 
   async continueOn(page: Page): Promise<void> {
