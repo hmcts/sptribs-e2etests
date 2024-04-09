@@ -1,8 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import hearingOptionsRegionDataContent
-  from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsRegionData_content.ts";
+import hearingOptionsRegionDataContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsRegionData_content.ts";
 import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/hearingOptions/submit_content.ts";
 
@@ -28,20 +27,24 @@ const submitPage: SubmitPage = {
   previous: ".button-secondary",
   cancel: ".cancel",
 
-  async checkPageLoads(page: Page,caseNumber: string, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
       ),
       expect(page.locator(".text-16").nth(0)).toHaveText(
-        submitContent.textOnPage1
+        submitContent.textOnPage1,
       ),
       ...Array.from({ length: 6 }, (_, index) => {
-        const textOnPage = (submitContent as any)[
-          `textOnPage${index + 2}`
-          ];
+        const textOnPage = (submitContent as any)[`textOnPage${index + 2}`];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`th.case-field-label > span.text-16:text-is("${textOnPage}")`),
+          page.locator(
+            `th.case-field-label > span.text-16:text-is("${textOnPage}")`,
+          ),
           1,
         );
       }),
@@ -54,7 +57,11 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async checkValidInfo(page: Page, hearingFormat: string, shortNoticeHearing: boolean): Promise<void>{
+  async checkValidInfo(
+    page: Page,
+    hearingFormat: string,
+    shortNoticeHearing: boolean,
+  ): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -85,30 +92,24 @@ const submitPage: SubmitPage = {
           `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingFormat}")`,
         ),
         1,
-      )
+      ),
     ]);
     if (shortNoticeHearing) {
       await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-yes-no-field > span.text-16:text-is("Yes")`,
-        ),
+        page.locator(`ccd-read-yes-no-field > span.text-16:text-is("Yes")`),
         1,
       );
     } else {
       await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-yes-no-field > span.text-16:text-is("No")`,
-        ),
+        page.locator(`ccd-read-yes-no-field > span.text-16:text-is("No")`),
         1,
       );
     }
   },
 
-  async continueOn(page:Page): Promise<void>{
+  async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);
-  }
-}
+  },
+};
 
 export default submitPage;
-
-

@@ -7,7 +7,7 @@ const submit_content = {
   textOnPage4: "Room at venue",
   textOnPage5: "Additional instructions and directions",
   textOnPage6: "Hearing format",
-  textOnPage7: "Case eligible for a short notice hearing?"
+  textOnPage7: "Case eligible for a short notice hearing?",
 } as const;
 
 export default submit_content;
