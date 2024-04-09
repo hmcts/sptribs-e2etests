@@ -51,9 +51,15 @@ const selectAdditionalDocuments: SelectAdditionalDocuments = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.getByRole("button", { name: "Continue" }).click();
-    await commonHelpers.checkVisibleAndPresent(page.locator(".error-summary-heading"), 1);
-    await commonHelpers.checkVisibleAndPresent(page.locator(".error-summary-list"), 1);
-  }
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(".error-summary-heading"),
+      1,
+    );
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(".error-summary-list"),
+      1,
+    );
+  },
 };
 
 export default selectAdditionalDocuments;
