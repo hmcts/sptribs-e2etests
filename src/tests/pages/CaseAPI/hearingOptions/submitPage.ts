@@ -19,6 +19,7 @@ type SubmitPage = {
     page: Page,
     region: boolean,
     venue: boolean,
+    venueNotListed: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void>;
@@ -81,6 +82,7 @@ const submitPage: SubmitPage = {
     page: Page,
     region: boolean,
     venue: boolean,
+    venueNotListed: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void> {
@@ -96,6 +98,14 @@ const submitPage: SubmitPage = {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
           `ccd-read-dynamic-list-field > span.text-16:text-is("${hearingOptionsHearingDetailsContent.venue}")`,
+        ),
+        1,
+      );
+    }
+    if (venueNotListed) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `span.text-16:text-is("${hearingOptionsHearingDetailsContent.textOnPage2}")`,
         ),
         1,
       );

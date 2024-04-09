@@ -49,6 +49,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       caseNumber,
       true,
       true,
+      false,
       "Face to Face",
       false,
       false,
@@ -99,6 +100,109 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       caseNumber,
       false,
       false,
+      false,
+      "Face to Face",
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing options with no region and venue not listed in the 'Case management' state. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    let previousEvents: allEvents[] = [];
+    let eventTimes: string[] = [];
+    const caseNumber: string = await createCase.createCase(
+      page,
+      "caseWorker",
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      true,
+      true,
+    );
+    await createCase.verifyDetails(
+      page,
+      "caseWorker",
+      false,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+    );
+    await buildCase.buildCase(
+      page,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+      false,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      caseNumber,
+      false,
+      false,
+      true,
+      "Face to Face",
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing options with a region but venue not listed in the 'Case management' state. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    let previousEvents: allEvents[] = [];
+    let eventTimes: string[] = [];
+    const caseNumber: string = await createCase.createCase(
+      page,
+      "caseWorker",
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      true,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      true,
+      true,
+    );
+    await createCase.verifyDetails(
+      page,
+      "caseWorker",
+      false,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+    );
+    await buildCase.buildCase(
+      page,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+      false,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      caseNumber,
+      true,
+      false,
+      true,
       "Face to Face",
       false,
       false,
@@ -149,6 +253,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       caseNumber,
       true,
       true,
+      false,
       "Face to Face",
       false,
       false,
@@ -158,6 +263,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
       caseNumber,
       true,
       true,
+      false,
       "Hybrid",
       true,
       false,
@@ -203,6 +309,7 @@ test("Accessibility test @accessibilityCaseAPI", async ({
     caseNumber,
     true,
     true,
+    false,
     "Face to Face",
     false,
     true,

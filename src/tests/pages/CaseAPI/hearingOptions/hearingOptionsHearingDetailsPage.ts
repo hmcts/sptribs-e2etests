@@ -5,6 +5,7 @@ import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseA
 
 type HearingOptionsHearingDetailsPage = {
   venue: string;
+  venueNotListed: string;
   roomAtVenue: string;
   instructions: string;
   previous: string;
@@ -14,6 +15,7 @@ type HearingOptionsHearingDetailsPage = {
   fillInFields(
     page: Page,
     venue: boolean,
+    venueNotListed: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void>;
@@ -22,6 +24,7 @@ type HearingOptionsHearingDetailsPage = {
 
 const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
   venue: "#hearingVenues",
+  venueNotListed: "#venueNotListedOption-VenueNotListed",
   roomAtVenue: "#roomAtVenue",
   instructions: "#addlInstr",
   previous: ".button-secondary",
@@ -54,6 +57,7 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
   async fillInFields(
     page: Page,
     venue: boolean,
+    venueNotListed: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
   ): Promise<void> {
@@ -62,6 +66,9 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
         this.venue,
         hearingOptionsHearingDetailsContent.venue,
       );
+    }
+    if (venueNotListed) {
+      await page.getByLabel("Venue not listed").check();
     }
     await page.fill(this.roomAtVenue, hearingOptionsHearingDetailsContent.room);
     await page.fill(

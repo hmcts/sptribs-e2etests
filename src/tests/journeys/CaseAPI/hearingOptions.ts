@@ -12,6 +12,7 @@ type HearingOptions = {
     caseNumber: string,
     region: boolean,
     venue: boolean,
+    venueNotListed: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
     accessibilityTest: boolean,
@@ -24,6 +25,7 @@ const hearingOptions: HearingOptions = {
     caseNumber: string,
     region: boolean,
     venue: boolean,
+    venueNotListed: boolean,
     hearingFormat: string,
     shortNoticeHearing: boolean,
     accessibilityTest: boolean,
@@ -46,6 +48,7 @@ const hearingOptions: HearingOptions = {
     await hearingOptionsHearingDetails.fillInFields(
       page,
       venue,
+      venueNotListed,
       hearingFormat,
       shortNoticeHearing,
     );
@@ -55,6 +58,7 @@ const hearingOptions: HearingOptions = {
       page,
       region,
       venue,
+      venueNotListed,
       hearingFormat,
       shortNoticeHearing,
     );
