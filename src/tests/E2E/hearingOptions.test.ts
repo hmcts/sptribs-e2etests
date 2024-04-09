@@ -5,11 +5,11 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
 test.describe("Create hearing options tests @CaseAPI", (): void => {
-  test.only("Create hearing options for a face to face hearing format and ineligible for a short notice hearing in the 'Case management' state. @CaseAPI", async ({
+  test("Create hearing options for a face to face hearing format and ineligible for a short notice hearing in the 'Case management' state. @CaseAPI", async ({
     page,
   }): Promise<void> => {
-    let previousEvents1: allEvents[] = [];
-    let eventTimes1: string[] = [];
+    let previousEvents: allEvents[] = [];
+    let eventTimes: string[] = [];
     const caseNumber: string = await createCase.createCase(
       page,
       "caseWorker",
@@ -32,34 +32,32 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
     await createCase.verifyDetails(
       page,
       "caseWorker",
-      true,
+      false,
       caseNumber,
-      previousEvents1,
-      eventTimes1,
+      previousEvents,
+      eventTimes,
     );
     await buildCase.buildCase(
       page,
       caseNumber,
-      previousEvents1,
-      eventTimes1,
+      previousEvents,
+      eventTimes,
       false,
     );
     await hearingOptions.hearingOptions(
       page,
       caseNumber,
-      previousEvents1,
-      eventTimes1,
       "Face to Face",
       false,
       false,
     );
   });
 
-  test("Edit hearing options in the 'Ready to list' state. @CaseAPI", async ({
+  test("Edit hearing options in the 'Ready to list' state - change hearing format to 'Hybrid' and eligible for a short hearing. @CaseAPI", async ({
     page,
   }): Promise<void> => {
-    let previousEvents1: allEvents[] = [];
-    let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
+    let previousEvents: allEvents[] = [];
+    let eventTimes: string[] = [];
     const caseNumber: string = await createCase.createCase(
       page,
       "caseWorker",
@@ -82,16 +80,30 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
     await createCase.verifyDetails(
       page,
       "caseWorker",
-      true,
+      false,
       caseNumber,
-      previousEvents1,
-      eventTimes1,
+      previousEvents,
+      eventTimes,
     );
     await buildCase.buildCase(
       page,
       caseNumber,
-      previousEvents1,
-      eventTimes1,
+      previousEvents,
+      eventTimes,
+      false,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      caseNumber,
+      "Face to Face",
+      false,
+      false,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      caseNumber,
+      "Hybrid",
+      true,
       false,
     );
   });
@@ -101,4 +113,48 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
 
 test("Accessibility test @accessibilityCaseAPI", async ({
   page,
-}): Promise<void> => {});
+}): Promise<void> => {
+  let previousEvents: allEvents[] = [];
+  let eventTimes: string[] = [];
+  const caseNumber: string = await createCase.createCase(
+    page,
+    "caseWorker",
+    true,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    true,
+    true,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    true,
+    true,
+  );
+  await createCase.verifyDetails(
+    page,
+    "caseWorker",
+    true,
+    caseNumber,
+    previousEvents,
+    eventTimes,
+  );
+  await buildCase.buildCase(
+    page,
+    caseNumber,
+    previousEvents,
+    eventTimes,
+    true,
+  );
+  await hearingOptions.hearingOptions(
+    page,
+    caseNumber,
+    "Face to Face",
+    false,
+    true,
+  );
+});

@@ -9,10 +9,7 @@ type SubmitPage = {
   saveAndContinue: string;
   previous: string;
   cancel: string;
-  checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void>;
+  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   checkValidInfo(
     page: Page,
     hearingFormat: string,
@@ -26,10 +23,7 @@ const submitPage: SubmitPage = {
   previous: ".button-secondary",
   cancel: ".cancel",
 
-  async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,

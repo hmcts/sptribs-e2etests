@@ -10,10 +10,7 @@ type HearingOptionsHearingDetailsPage = {
   previous: string;
   continue: string;
   cancel: string;
-  checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void>;
+  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(
     page: Page,
     hearingFormat: string,
@@ -30,10 +27,7 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
   continue: '[type="submit"]',
   cancel: ".cancel",
 
-  async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         hearingOptionsHearingDetailsContent.pageTitle,

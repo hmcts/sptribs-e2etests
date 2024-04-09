@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
@@ -10,8 +10,6 @@ type HearingOptions = {
   hearingOptions(
     page: Page,
     caseNumber: string,
-    previousEvents: allEvents[],
-    eventTimes: string[],
     hearingFormat: string,
     shortNoticeHearing: boolean,
     accessibilityTest: boolean,
@@ -22,8 +20,6 @@ const hearingOptions: HearingOptions = {
   async hearingOptions(
     page: Page,
     caseNumber: string,
-    previousEvents: allEvents[],
-    eventTimes: string[],
     hearingFormat: string,
     shortNoticeHearing: boolean,
     accessibilityTest: boolean,
