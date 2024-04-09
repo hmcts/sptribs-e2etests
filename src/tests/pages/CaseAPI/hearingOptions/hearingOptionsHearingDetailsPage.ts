@@ -12,7 +12,6 @@ type HearingOptionsHearingDetailsPage = {
   cancel: string;
   checkPageLoads(
     page: Page,
-    caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
   fillInFields(
@@ -33,7 +32,6 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
 
   async checkPageLoads(
     page: Page,
-    caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([

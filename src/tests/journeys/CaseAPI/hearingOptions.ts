@@ -41,7 +41,6 @@ const hearingOptions: HearingOptions = {
     await hearingOptionsRegionDataPage.continueOn(page);
     await hearingOptionsHearingDetailsPage.checkPageLoads(
       page,
-      caseNumber,
       accessibilityTest,
     );
     await hearingOptionsHearingDetails.fillInFields(
@@ -50,7 +49,7 @@ const hearingOptions: HearingOptions = {
       shortNoticeHearing,
     );
     await hearingOptionsHearingDetailsPage.continueOn(page);
-    await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await submitPage.checkPageLoads(page, accessibilityTest);
     await submitPage.checkValidInfo(page, hearingFormat, shortNoticeHearing);
     await submitPage.continueOn(page);
   },

@@ -11,7 +11,6 @@ type SubmitPage = {
   cancel: string;
   checkPageLoads(
     page: Page,
-    caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
   checkValidInfo(
@@ -29,7 +28,6 @@ const submitPage: SubmitPage = {
 
   async checkPageLoads(
     page: Page,
-    caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
