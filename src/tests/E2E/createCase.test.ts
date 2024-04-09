@@ -80,7 +80,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     await createCase.createCase(
       page,
       "caseWorker",
-      true,
+      false,
       "Assessment",
       "Paragraph 26",
       false,
