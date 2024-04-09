@@ -4,6 +4,7 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
 import hearingOptionsHearingDetails from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
+import submitPage from "../../pages/CaseAPI/hearingOptions/submitPage.ts";
 
 type HearingOptions = {
   hearingOptions(
@@ -49,6 +50,9 @@ const hearingOptions: HearingOptions = {
       shortNoticeHearing,
     );
     await hearingOptionsHearingDetailsPage.continueOn(page);
+    await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await submitPage.checkValidInfo(page, hearingFormat, shortNoticeHearing);
+    await submitPage.continueOn(page);
   },
 };
 

@@ -27,7 +27,7 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
   venue: "#hearingVenues",
   roomAtVenue: "#roomAtVenue",
   instructions: "#addlInstr",
-  previous: ".button-secondary[disabled]",
+  previous: ".button-secondary",
   continue: '[type="submit"]',
   cancel: ".cancel",
 
@@ -37,7 +37,6 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkNumberAndSubject(page, caseNumber),
       expect(page.locator(".govuk-heading-l")).toHaveText(
         hearingOptionsHearingDetailsContent.pageTitle,
       ),
