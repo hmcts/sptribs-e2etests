@@ -24,7 +24,7 @@ interface CommonHelpers {
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   checkAndAcceptCookies(page: Page, service: string): Promise<void>;
-  chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
+  chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
@@ -332,4 +332,5 @@ export type allEvents =
   | "Submit case (cic)"
   | "Create Case"
   | "Case: Build case"
-  | "To link related cases";
+  | "To link related cases"
+  | "Case: Issue to respondent";
