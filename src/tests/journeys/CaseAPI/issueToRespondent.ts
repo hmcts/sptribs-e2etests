@@ -10,7 +10,8 @@ import commonHelpers, {
   SubCategory,
 } from "../../helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
-import selectAdditionalDocuments from "../../pages/CaseAPI/issueToRespondent/selectAdditionalDocuments.ts";
+import selectAdditionalDocuments from "../../pages/CaseAPI/issueToRespondent/selectAdditionalDocumentsPage.ts";
+import notifyOtherPartiesPage from "../../pages/CaseAPI/issueToRespondent/notifyOtherPartiesPage.ts";
 
 type IssueToRespondent = {
   issueToRespondent(
@@ -32,6 +33,7 @@ type IssueToRespondent = {
     applicantExplained: boolean,
     needLogin: boolean,
     errorMessaging: boolean,
+    recipients: string[],
   ): Promise<void>;
 };
 
@@ -55,6 +57,7 @@ const issueToRespondent: IssueToRespondent = {
     applicantExplained: boolean,
     needLogin: boolean,
     errorMessaging: boolean,
+    recipients: string[],
   ): Promise<void> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
@@ -104,10 +107,22 @@ const issueToRespondent: IssueToRespondent = {
     switch (errorMessaging) {
       default:
         await selectAdditionalDocuments.continueOn(page);
+        await notifyOtherPartiesPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+        );
+        await notifyOtherPartiesPage.continueOn(page, recipients);
         break;
       case true:
         await selectAdditionalDocuments.triggerErrorMessages(page);
         await selectAdditionalDocuments.continueOn(page);
+        await notifyOtherPartiesPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+        );
+        await notifyOtherPartiesPage.triggerErrorMessages(page);
         break;
     }
   },

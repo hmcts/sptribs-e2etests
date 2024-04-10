@@ -6,7 +6,7 @@ import path from "path";
 import config from "../../../config.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
-type SelectAdditionalDocuments = {
+type SelectAdditionalDocumentsPage = {
   checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -16,7 +16,7 @@ type SelectAdditionalDocuments = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const selectAdditionalDocuments: SelectAdditionalDocuments = {
+const selectAdditionalDocuments: SelectAdditionalDocumentsPage = {
   async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
