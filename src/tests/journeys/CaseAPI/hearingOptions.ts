@@ -12,7 +12,6 @@ import commonHelpers, {
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
-import hearingOptionsHearingDetails from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
 import submitPage from "../../pages/CaseAPI/hearingOptions/submitPage.ts";
 import createCase from "./createCase.ts";
 import buildCase from "./buildCase.ts";
@@ -128,7 +127,7 @@ const hearingOptions: HearingOptions = {
       page,
       accessibilityTest,
     );
-    await hearingOptionsHearingDetails.fillInFields(
+    await hearingOptionsHearingDetailsPage.fillInFields(
       page,
       venue,
       venueNotListed,
@@ -168,7 +167,7 @@ const hearingOptions: HearingOptions = {
         page,
         accessibilityTest,
       );
-      await hearingOptionsHearingDetails.fillInFields(
+      await hearingOptionsHearingDetailsPage.fillInFields(
         page,
         venue,
         venueNotListed,
