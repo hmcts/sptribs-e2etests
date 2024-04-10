@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import commonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers, { caseRegionCode } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
@@ -11,6 +11,7 @@ type HearingOptions = {
     page: Page,
     caseNumber: string,
     region: boolean,
+    caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
     hearingFormat: string,
@@ -24,6 +25,7 @@ const hearingOptions: HearingOptions = {
     page: Page,
     caseNumber: string,
     region: boolean,
+    caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
     hearingFormat: string,
@@ -39,7 +41,11 @@ const hearingOptions: HearingOptions = {
       caseNumber,
       accessibilityTest,
     );
-    await hearingOptionsRegionDataPage.fillInFields(page, region);
+    await hearingOptionsRegionDataPage.fillInFields(
+      page,
+      region,
+      caseRegionCode,
+    );
     await hearingOptionsRegionDataPage.continueOn(page);
     await hearingOptionsHearingDetailsPage.checkPageLoads(
       page,
@@ -57,6 +63,7 @@ const hearingOptions: HearingOptions = {
     await submitPage.checkValidInfo(
       page,
       region,
+      caseRegionCode,
       venue,
       venueNotListed,
       hearingFormat,

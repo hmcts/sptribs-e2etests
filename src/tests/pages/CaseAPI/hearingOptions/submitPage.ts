@@ -1,7 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import hearingOptionsRegionDataContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsRegionData_content.ts";
+import commonHelpers, {
+  caseRegionCode,
+} from "../../../helpers/commonHelpers.ts";
 import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/hearingOptions/submit_content.ts";
 
@@ -18,6 +19,7 @@ type SubmitPage = {
   checkValidInfo(
     page: Page,
     region: boolean,
+    caseRegionCode: caseRegionCode,
     venue: boolean,
     venueNotListed: boolean,
     hearingFormat: string,
@@ -81,6 +83,7 @@ const submitPage: SubmitPage = {
   async checkValidInfo(
     page: Page,
     region: boolean,
+    caseRegionCode: caseRegionCode,
     venue: boolean,
     venueNotListed: boolean,
     hearingFormat: string,
@@ -89,7 +92,7 @@ const submitPage: SubmitPage = {
     if (region) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `ccd-read-dynamic-list-field > span.text-16:text-is("${hearingOptionsRegionDataContent.region}")`,
+          `ccd-read-dynamic-list-field > span.text-16:text-is("${caseRegionCode}")`,
         ),
         1,
       );

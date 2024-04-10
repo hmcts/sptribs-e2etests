@@ -1,7 +1,9 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import hearingOptionsRegionDataContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsRegionData_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  caseRegionCode,
+} from "../../../helpers/commonHelpers.ts";
 
 type HearingOptionsRegionDataPage = {
   region: string;
@@ -13,7 +15,11 @@ type HearingOptionsRegionDataPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page, region: boolean): Promise<void>;
+  fillInFields(
+    page: Page,
+    region: boolean,
+    caseRegionCode: caseRegionCode | null,
+  ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -45,12 +51,13 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
     }
   },
 
-  async fillInFields(page: Page, region: boolean): Promise<void> {
+  async fillInFields(
+    page: Page,
+    region: boolean,
+    caseRegionCode: caseRegionCode | null,
+  ): Promise<void> {
     if (region) {
-      await page.selectOption(
-        this.region,
-        hearingOptionsRegionDataContent.region,
-      );
+      await page.selectOption(this.region, caseRegionCode);
     }
   },
 
