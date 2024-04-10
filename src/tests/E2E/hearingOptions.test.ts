@@ -126,7 +126,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing options in the 'Ready to list' state - change hearing format to 'Hybrid' and eligible for a short hearing. @CaseAPI", async ({
+  test("Edit hearing options in the 'Ready to list' state. @CaseAPI", async ({
     page,
   }): Promise<void> => {
     await hearingOptions.hearingOptions(
