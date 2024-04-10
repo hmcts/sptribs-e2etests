@@ -270,6 +270,8 @@ const commonHelpers: CommonHelpers = {
 
 export default commonHelpers;
 
+export type parties = "Subject" | "Representative" | "Respondent" | "Applicant";
+
 export type Category = "Assessment" | "Eligibility";
 
 export type SubCategory =

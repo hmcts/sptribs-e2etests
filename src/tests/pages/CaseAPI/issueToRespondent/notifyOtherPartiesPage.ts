@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
+import commonHelpers, { parties } from "../../../helpers/commonHelpers.ts";
 import notifyOtherParties_content from "../../../fixtures/content/CaseAPI/issueToRespondent/notifyOtherParties_content.ts";
 
 type NotifyOtherPartiesPage = {
@@ -10,7 +10,7 @@ type NotifyOtherPartiesPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void>;
-  continueOn(page: Page, recipients: string[]): Promise<void>;
+  continueOn(page: Page, recipients: parties[]): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -60,7 +60,7 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
     }
   },
 
-  async continueOn(page: Page, recipients: string[]): Promise<void> {
+  async continueOn(page: Page, recipients: parties[]): Promise<void> {
     if (recipients.includes("Subject")) {
       await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
     }

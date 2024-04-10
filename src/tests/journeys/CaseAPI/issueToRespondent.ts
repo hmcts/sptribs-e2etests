@@ -6,12 +6,14 @@ import commonHelpers, {
   caseRegion,
   Category,
   ContactPreference,
+  parties,
   Scheme,
   SubCategory,
 } from "../../helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import selectAdditionalDocuments from "../../pages/CaseAPI/issueToRespondent/selectAdditionalDocumentsPage.ts";
 import notifyOtherPartiesPage from "../../pages/CaseAPI/issueToRespondent/notifyOtherPartiesPage.ts";
+import submitPage from "../../pages/CaseAPI/issueToRespondent/submitPage.ts";
 
 type IssueToRespondent = {
   issueToRespondent(
@@ -33,7 +35,7 @@ type IssueToRespondent = {
     applicantExplained: boolean,
     needLogin: boolean,
     errorMessaging: boolean,
-    recipients: string[],
+    recipients: parties[],
   ): Promise<void>;
 };
 
@@ -57,7 +59,7 @@ const issueToRespondent: IssueToRespondent = {
     applicantExplained: boolean,
     needLogin: boolean,
     errorMessaging: boolean,
-    recipients: string[],
+    recipients: parties[],
   ): Promise<void> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
@@ -113,6 +115,13 @@ const issueToRespondent: IssueToRespondent = {
           caseNumber,
         );
         await notifyOtherPartiesPage.continueOn(page, recipients);
+        await submitPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          recipients,
+        );
+        await submitPage.continueOn(page, recipients);
         break;
       case true:
         await selectAdditionalDocuments.triggerErrorMessages(page);
