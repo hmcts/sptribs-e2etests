@@ -76,7 +76,6 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
       await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
     }
     await page.getByRole("button", { name: "Continue" }).click();
-    console.log("here");
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
