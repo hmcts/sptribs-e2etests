@@ -328,6 +328,16 @@ export type caseRegion =
   | "North West"
   | "Wales & South West";
 
+export type caseRegionCode =
+  | "1-London"
+  | "11-Scotland"
+  | "2-Midlands"
+  | "3-North East"
+  | "4-North West"
+  | "5-South East"
+  | "6-South West"
+  | "7-Wales";
+
 export type allEvents =
   | "Submit case (cic)"
   | "Create Case"

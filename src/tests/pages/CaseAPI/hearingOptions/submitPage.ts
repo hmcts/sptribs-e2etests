@@ -19,7 +19,7 @@ type SubmitPage = {
   checkValidInfo(
     page: Page,
     region: boolean,
-    caseRegionCode: caseRegionCode,
+    caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
     hearingFormat: string,
@@ -83,7 +83,7 @@ const submitPage: SubmitPage = {
   async checkValidInfo(
     page: Page,
     region: boolean,
-    caseRegionCode: caseRegionCode,
+    caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
     hearingFormat: string,
