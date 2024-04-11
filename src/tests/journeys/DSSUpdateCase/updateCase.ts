@@ -65,12 +65,14 @@ const updateCaseJourney: UpdateCaseJourney = {
         await uploadDocumentsPage.continueOn(page);
         await checkYourAnswersPage.checkPageLoads(
           page,
+          cy,
           accessibilityTest,
           multipleDocuments,
           uploadDocument,
         );
         await checkYourAnswersPage.checkValidInfoAllFields(
           page,
+          cy,
           multipleDocuments,
           uploadDocument,
           additionalInformation,
@@ -80,7 +82,7 @@ const updateCaseJourney: UpdateCaseJourney = {
           break;
         }
         await checkYourAnswersPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(page, cy, accessibilityTest);
         await confirmPage.returnCaseNumber(page, caseNumber);
         const caseNumberFinal = await confirmPage.returnCaseNumber(
           page,

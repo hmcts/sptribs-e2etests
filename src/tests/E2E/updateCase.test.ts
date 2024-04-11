@@ -33,7 +33,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     );
   });
 
-  test.only("Check for an existing case to update, upload one document and additional information - CY", async ({
+  test("Check for an existing case to update, upload one document and additional information - CY", async ({
     page,
   }) => {
     const caseNumber: string | void =

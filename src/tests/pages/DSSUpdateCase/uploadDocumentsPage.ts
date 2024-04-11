@@ -16,7 +16,11 @@ type UploadDocumentsPage = {
   deleteButton: string;
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    cy: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page, additionalInformation: boolean): Promise<void>;
   uploadDocumentsSection(
     page: Page,
@@ -41,7 +45,11 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   continueButton: "button[name='continue']",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    cy: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await page.click(this.fields.dropDown);
     switch (cy) {
       case true:
@@ -62,17 +70,19 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPageCy${index + 1}`
-              ];
-            return expect(page.locator(".govuk-body").nth(index + 4)).toHaveText(
-              textOnPage,
-            );
+            ];
+            return expect(
+              page.locator(".govuk-body").nth(index + 4),
+            ).toHaveText(textOnPage);
           }),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPageCy${index + 4}`
-              ];
+            ];
             return expect(
-              page.locator(`div[class='govuk-body'] li:nth-child(${index + 1})`),
+              page.locator(
+                `div[class='govuk-body'] li:nth-child(${index + 1})`,
+              ),
             ).toHaveText(textOnPage);
           }),
           expect(page.locator(".govuk-body").nth(8)).toHaveText(
@@ -84,20 +94,20 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPageCy${index + 9}`
-              ];
+            ];
             return expect(
               page.locator(
                 `details[class='govuk-details'] li:nth-child(${index + 1})`,
               ),
             ).toHaveText(textOnPage);
           }),
-          expect(page.locator("details[class='govuk-details'] p")).toContainText(
-            UploadDocumentsContent.textOnPageCy13,
-          ),
+          expect(
+            page.locator("details[class='govuk-details'] p"),
+          ).toContainText(UploadDocumentsContent.textOnPageCy13),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPageCy${index + 14}`
-              ];
+            ];
             return expect(page.locator(".govuk-label").nth(index)).toHaveText(
               textOnPage,
             );
@@ -112,7 +122,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
         break;
       default:
         await Promise.all([
-          commonHelpers.feedbackBanner(page, cy,false),
+          commonHelpers.feedbackBanner(page, cy, false),
           expect(page.locator(".govuk-header__service-name")).toHaveText(
             UploadDocumentsContent.header,
           ),
@@ -128,17 +138,19 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPage${index + 1}`
-              ];
-            return expect(page.locator(".govuk-body").nth(index + 4)).toHaveText(
-              textOnPage,
-            );
+            ];
+            return expect(
+              page.locator(".govuk-body").nth(index + 4),
+            ).toHaveText(textOnPage);
           }),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPage${index + 4}`
-              ];
+            ];
             return expect(
-              page.locator(`div[class='govuk-body'] li:nth-child(${index + 1})`),
+              page.locator(
+                `div[class='govuk-body'] li:nth-child(${index + 1})`,
+              ),
             ).toHaveText(textOnPage);
           }),
           expect(page.locator(".govuk-body").nth(8)).toHaveText(
@@ -150,20 +162,20 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPage${index + 9}`
-              ];
+            ];
             return expect(
               page.locator(
                 `details[class='govuk-details'] li:nth-child(${index + 1})`,
               ),
             ).toHaveText(textOnPage);
           }),
-          expect(page.locator("details[class='govuk-details'] p")).toContainText(
-            UploadDocumentsContent.textOnPage13,
-          ),
+          expect(
+            page.locator("details[class='govuk-details'] p"),
+          ).toContainText(UploadDocumentsContent.textOnPage13),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (UploadDocumentsContent as any)[
               `textOnPage${index + 14}`
-              ];
+            ];
             return expect(page.locator(".govuk-label").nth(index)).toHaveText(
               textOnPage,
             );
@@ -253,13 +265,13 @@ const uploadDocumentsPage: UploadDocumentsPage = {
             path.basename(config.testPdfFile),
           );
           if (cy) {
-            await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
-              UploadDocumentsContent.deleteButtonCy,
-            );
+            await expect(
+              page.locator(".uploadedFile").nth(i + 1),
+            ).toContainText(UploadDocumentsContent.deleteButtonCy);
           } else {
-            await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
-              UploadDocumentsContent.deleteButton,
-            );
+            await expect(
+              page.locator(".uploadedFile").nth(i + 1),
+            ).toContainText(UploadDocumentsContent.deleteButton);
           }
         }
         for (let i = 0; i < 5; i++) {
@@ -275,13 +287,13 @@ const uploadDocumentsPage: UploadDocumentsPage = {
             path.basename(config.testFile),
           );
           if (cy) {
-            await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
-              UploadDocumentsContent.deleteButtonCy,
-            );
+            await expect(
+              page.locator(".uploadedFile").nth(i + 5),
+            ).toContainText(UploadDocumentsContent.deleteButtonCy);
           } else {
-            await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
-              UploadDocumentsContent.deleteButton,
-            );
+            await expect(
+              page.locator(".uploadedFile").nth(i + 5),
+            ).toContainText(UploadDocumentsContent.deleteButton);
           }
         }
       }
