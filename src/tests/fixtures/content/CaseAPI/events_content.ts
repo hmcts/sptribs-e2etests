@@ -3,6 +3,7 @@ const events_content = {
   createCase: "Create Case",
   buildCase: "Case: Build case",
   linkCases: "Link cases",
+  hearingOptions: "Case: Hearing Options",
 } as const;
 
 export default events_content;
