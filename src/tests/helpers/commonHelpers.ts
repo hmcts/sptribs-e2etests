@@ -255,7 +255,7 @@ const commonHelpers: CommonHelpers = {
             ),
             expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
               "href",
-              feedbackBanner_content.feedbackLinkCy,
+              feedbackBanner_content.feedbackLink,
             ),
           ]);
         } else {
@@ -268,7 +268,7 @@ const commonHelpers: CommonHelpers = {
             ),
             expect(
               await page.locator("a.govuk-link").nth(3).getAttribute("href"),
-            ).toContain(feedbackBanner_content.feedbackLinkCy),
+            ).toContain(feedbackBanner_content.feedbackLink),
           ]);
         }
         break;

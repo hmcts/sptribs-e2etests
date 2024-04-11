@@ -48,7 +48,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
-        await caseFinderPage.checkPageLoads(page, accessibilityTest);
+        await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
         await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
@@ -100,8 +100,8 @@ const updateCaseJourney: UpdateCaseJourney = {
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
-        await caseFinderPage.checkPageLoads(page, accessibilityTest);
-        await caseFinderPage.triggerErrorMessages(page);
+        await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
+        await caseFinderPage.triggerErrorMessages(page, cy);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
         await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
