@@ -28,10 +28,10 @@ const caseFinderPage: CaseFinderPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await CommonHelpers.checkAndAcceptCookies(page, "UC");
     switch (cy) {
       case true:
         await page.locator(".govuk-link").nth(4).click();
+        await CommonHelpers.checkAndAcceptCookies(page, cy, "UC");
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
           expect(page.locator(".govuk-header__service-name")).toHaveText(
@@ -53,6 +53,7 @@ const caseFinderPage: CaseFinderPage = {
         ]);
         break;
       default:
+        await CommonHelpers.checkAndAcceptCookies(page, cy, "UC");
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
           expect(page.locator(".govuk-header__service-name")).toHaveText(

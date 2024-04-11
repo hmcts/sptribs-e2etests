@@ -23,7 +23,11 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
-  checkAndAcceptCookies(page: Page, service: string): Promise<void>;
+  checkAndAcceptCookies(
+    page: Page,
+    cy: boolean,
+    service: string,
+  ): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
@@ -220,22 +224,53 @@ const commonHelpers: CommonHelpers = {
     return `${baseURL}/case-details/${caseNumberDigits}#History`;
   },
 
-  async checkAndAcceptCookies(page: Page, service: string): Promise<void> {
-    if (service == "UC") {
-      await Promise.all([
-        expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
-          CookiesContent.title + CaseFinderContent.header,
-        ),
-        ...Array.from({ length: 2 }, (_, index) => {
-          const textOnPage = (CookiesContent as any)[`textOnPage${index + 1}`];
-          return expect(page.locator(".govuk-body").nth(index)).toContainText(
-            textOnPage,
-          );
-        }),
-      ]);
+  async checkAndAcceptCookies(
+    page: Page,
+    cy: boolean,
+    service: string,
+  ): Promise<void> {
+    switch (cy) {
+      case true:
+        if (service == "UC") {
+          await Promise.all([
+            expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
+              CookiesContent.titleCy + CaseFinderContent.headerCy,
+            ),
+            ...Array.from({ length: 2 }, (_, index) => {
+              const textOnPage = (CookiesContent as any)[
+                `textOnPageCy${index + 1}`
+              ];
+              return expect(
+                page.locator(".govuk-body").nth(index),
+              ).toContainText(textOnPage);
+            }),
+          ]);
+        }
+        await page.locator(".govuk-button").nth(0).click();
+        await page
+          .getByRole("button", { name: "Cuddio'r neges cwcihon" })
+          .click();
+        break;
+      default:
+        if (service == "UC") {
+          await Promise.all([
+            expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
+              CookiesContent.title + CaseFinderContent.header,
+            ),
+            ...Array.from({ length: 2 }, (_, index) => {
+              const textOnPage = (CookiesContent as any)[
+                `textOnPage${index + 1}`
+              ];
+              return expect(
+                page.locator(".govuk-body").nth(index),
+              ).toContainText(textOnPage);
+            }),
+          ]);
+        }
+        await page.locator(".govuk-button").nth(0).click();
+        await page.getByRole("button", { name: "Hide this message" }).click();
+        break;
     }
-    await page.locator(".govuk-button").nth(0).click();
-    await page.getByRole("button", { name: "Hide this message" }).click();
   },
 
   async feedbackBanner(
