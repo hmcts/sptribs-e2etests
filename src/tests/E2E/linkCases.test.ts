@@ -72,39 +72,12 @@ test.describe("Linking cases tests @CaseAPI", (): void => {
   }): Promise<void> => {
     let previousEvents1: allEvents[] = [];
     let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
-    const caseNumber1: string = await createCase.createCase(
+    const caseNumber1: string = await buildCase.buildCase(
       page,
-      "caseWorker",
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      true,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      true,
-      true,
-    );
-    await createCase.verifyDetails(
-      page,
-      "caseWorker",
-      true,
-      caseNumber1,
-      previousEvents1,
-      eventTimes1,
-    );
-    await buildCase.buildCase(
-      page,
-      caseNumber1,
       previousEvents1,
       eventTimes1,
       false,
+      "caseWorker",
     );
     const caseNumber2: string = await createCase.createCase(
       page,
