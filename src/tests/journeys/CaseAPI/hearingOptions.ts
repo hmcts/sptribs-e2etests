@@ -3,17 +3,11 @@ import { UserRole } from "../../config.ts";
 import commonHelpers, {
   allEvents,
   caseRegionCode,
-  Category,
-  SubCategory,
-  ContactPreference,
-  Scheme,
-  caseRegion,
 } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
 import submitPage from "../../pages/CaseAPI/hearingOptions/submitPage.ts";
-import createCase from "./createCase.ts";
 import buildCase from "./buildCase.ts";
 
 type HearingOptions = {
@@ -21,20 +15,6 @@ type HearingOptions = {
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-    category: Category,
-    subCategory: SubCategory,
-    representative: boolean,
-    applicant: boolean,
-    contactPreference: ContactPreference,
-    representativeQualified: boolean,
-    multipleFiles: boolean,
-    schemeSelection: Scheme,
-    caseRegionSelection: caseRegion,
-    claimsLinked: boolean,
-    compensationLinked: boolean,
-    tribunalFormsInTime: boolean,
-    applicantExplained: boolean,
-    needLogin: boolean,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
@@ -50,20 +30,6 @@ const hearingOptions: HearingOptions = {
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-    category: Category,
-    subCategory: SubCategory,
-    representative: boolean,
-    applicant: boolean,
-    contactPreference: ContactPreference,
-    representativeQualified: boolean,
-    multipleFiles: boolean,
-    schemeSelection: Scheme,
-    caseRegionSelection: caseRegion,
-    claimsLinked: boolean,
-    compensationLinked: boolean,
-    tribunalFormsInTime: boolean,
-    applicantExplained: boolean,
-    needLogin: boolean,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
@@ -74,36 +40,8 @@ const hearingOptions: HearingOptions = {
   ): Promise<void> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
-    const caseNumber: string = await createCase.createCase(
+    const caseNumber = await buildCase.buildCase(
       page,
-      user,
-      accessibilityTest,
-      category,
-      subCategory,
-      representative,
-      applicant,
-      contactPreference,
-      representativeQualified,
-      multipleFiles,
-      schemeSelection,
-      caseRegionSelection,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
-      needLogin,
-    );
-    await createCase.verifyDetails(
-      page,
-      user,
-      accessibilityTest,
-      caseNumber,
-      previousEvents,
-      eventTimes,
-    );
-    await buildCase.buildCase(
-      page,
-      caseNumber,
       previousEvents,
       eventTimes,
       accessibilityTest,

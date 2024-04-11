@@ -6,11 +6,11 @@ import buildCaseConfirmPage from "../../pages/CaseAPI/buildCase/confirmPage.ts";
 import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
 import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import { UserRole } from "../../config.ts";
+import createCase from "./createCase.ts";
 
 type BuildCase = {
   buildCase(
     page: Page,
-    caseNumber: string,
     previousEvents: allEvents[],
     eventTimes: string[],
     accessibilityTest: boolean,
@@ -21,12 +21,38 @@ type BuildCase = {
 const buildCase: BuildCase = {
   async buildCase(
     page: Page,
-    caseNumber: string,
     previousEvents: allEvents[],
     eventTimes: string[],
     accessibilityTest: boolean,
     user: UserRole,
   ): Promise<string> {
+    const caseNumber: string = await createCase.createCase(
+      page,
+      user,
+      true,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      true,
+      true,
+    );
+    await createCase.verifyDetails(
+      page,
+      user,
+      true,
+      caseNumber,
+      previousEvents,
+      eventTimes,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await builtCasePage.checkPageLoads(page, accessibilityTest, caseNumber);
     await builtCasePage.continueOn(page);
