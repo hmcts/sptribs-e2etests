@@ -24,7 +24,7 @@ interface CommonHelpers {
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   checkAndAcceptCookies(page: Page, service: string): Promise<void>;
-  chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<void>;
+  chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
@@ -270,6 +270,8 @@ const commonHelpers: CommonHelpers = {
 
 export default commonHelpers;
 
+export type parties = "Subject" | "Representative" | "Respondent" | "Applicant";
+
 export type Category = "Assessment" | "Eligibility";
 
 export type SubCategory =
@@ -342,4 +344,6 @@ export type allEvents =
   | "Submit case (cic)"
   | "Create Case"
   | "Case: Build case"
-  | "To link related cases";
+  | "To link related cases"
+  | "Case: Issue to respondent"
+  | "Case: Hearing Options";

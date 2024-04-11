@@ -107,6 +107,7 @@ const hearingOptions: HearingOptions = {
       previousEvents,
       eventTimes,
       accessibilityTest,
+      user,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
