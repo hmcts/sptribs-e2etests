@@ -40,6 +40,7 @@ test.describe("Case-API Build case tests.", () => {
       previousEvents,
       eventTimes,
       true,
+      "caseWorker",
     );
   });
 });
