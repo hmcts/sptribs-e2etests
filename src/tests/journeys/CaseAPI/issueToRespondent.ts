@@ -14,6 +14,7 @@ import buildCase from "./buildCase.ts";
 import selectAdditionalDocuments from "../../pages/CaseAPI/issueToRespondent/selectAdditionalDocumentsPage.ts";
 import notifyOtherPartiesPage from "../../pages/CaseAPI/issueToRespondent/notifyOtherPartiesPage.ts";
 import submitPage from "../../pages/CaseAPI/issueToRespondent/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/issueToRespondent/confirmPage.ts";
 
 type IssueToRespondent = {
   issueToRespondent(
@@ -96,6 +97,7 @@ const issueToRespondent: IssueToRespondent = {
       previousEvents,
       eventTimes,
       accessibilityTest,
+      user,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -122,6 +124,13 @@ const issueToRespondent: IssueToRespondent = {
           recipients,
         );
         await submitPage.continueOn(page, recipients);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          recipients,
+        );
+        await confirmPage.continueOn(page);
         break;
       case true:
         await selectAdditionalDocuments.triggerErrorMessages(page);

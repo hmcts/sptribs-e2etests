@@ -345,4 +345,5 @@ export type allEvents =
   | "Create Case"
   | "Case: Build case"
   | "To link related cases"
-  | "Case: Issue to respondent";
+  | "Case: Issue to respondent"
+  | "Case: Hearing Options";
