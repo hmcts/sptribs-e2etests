@@ -13,6 +13,7 @@ import path from "path";
 type UpdateCaseJourney = {
   updateCase(
     page: Page,
+    cy: boolean,
     accessibilityTest: boolean,
     caseNumber: string | void,
     additionalInformation: boolean,
@@ -33,6 +34,7 @@ type UpdateCaseJourney = {
 const updateCaseJourney: UpdateCaseJourney = {
   async updateCase(
     page: Page,
+    cy: boolean,
     accessibilityTest: boolean,
     caseNumber: string,
     additionalInformation: boolean,
@@ -43,7 +45,7 @@ const updateCaseJourney: UpdateCaseJourney = {
   ): Promise<void> {
     switch (errorMessaging) {
       default:
-        await landingPage.seeTheLandingPage(page, accessibilityTest);
+        await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, accessibilityTest);
@@ -95,7 +97,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         }
         break;
       case true:
-        await landingPage.seeTheLandingPage(page, accessibilityTest);
+        await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, accessibilityTest);

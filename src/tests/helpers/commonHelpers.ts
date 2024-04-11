@@ -28,7 +28,7 @@ interface CommonHelpers {
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
-  feedbackBanner(page: Page, landingPage: boolean): Promise<void>;
+  feedbackBanner(page: Page, cy: boolean, landingPage: boolean): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -238,32 +238,68 @@ const commonHelpers: CommonHelpers = {
     await page.getByRole("button", { name: "Hide this message" }).click();
   },
 
-  async feedbackBanner(page: Page, landingPage: boolean): Promise<void> {
-    if (landingPage) {
-      await Promise.all([
-        expect(page.locator(".govuk-phase-banner__text")).toContainText(
-          feedbackBanner_content.feedbackBanner,
-        ),
-        expect(page.locator("a.govuk-link").nth(0)).toHaveText(
-          feedbackBanner_content.feedbackLinkText,
-        ),
-        expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
-          "href",
-          feedbackBanner_content.feedbackLink,
-        ),
-      ]);
-    } else {
-      await Promise.all([
-        expect(page.locator(".govuk-phase-banner__text")).toContainText(
-          feedbackBanner_content.feedbackBanner,
-        ),
-        expect(page.locator("a.govuk-link").nth(3)).toHaveText(
-          feedbackBanner_content.feedbackLinkText,
-        ),
-        expect(
-          await page.locator("a.govuk-link").nth(3).getAttribute("href"),
-        ).toContain(feedbackBanner_content.feedbackLink),
-      ]);
+  async feedbackBanner(
+    page: Page,
+    cy: boolean,
+    landingPage: boolean,
+  ): Promise<void> {
+    switch (cy) {
+      case true:
+        if (landingPage) {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBannerCy,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+              feedbackBanner_content.feedbackLinkTextCy,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+              "href",
+              feedbackBanner_content.feedbackLinkCy,
+            ),
+          ]);
+        } else {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBannerCy,
+            ),
+            expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+              feedbackBanner_content.feedbackLinkTextCy,
+            ),
+            expect(
+              await page.locator("a.govuk-link").nth(3).getAttribute("href"),
+            ).toContain(feedbackBanner_content.feedbackLinkCy),
+          ]);
+        }
+        break;
+      default:
+        if (landingPage) {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBanner,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+              feedbackBanner_content.feedbackLinkText,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+              "href",
+              feedbackBanner_content.feedbackLink,
+            ),
+          ]);
+        } else {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBanner,
+            ),
+            expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+              feedbackBanner_content.feedbackLinkText,
+            ),
+            expect(
+              await page.locator("a.govuk-link").nth(3).getAttribute("href"),
+            ).toContain(feedbackBanner_content.feedbackLink),
+          ]);
+        }
+        break;
     }
   },
 };
