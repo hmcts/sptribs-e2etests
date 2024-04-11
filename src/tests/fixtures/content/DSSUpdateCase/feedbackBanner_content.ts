@@ -8,7 +8,8 @@ const feedbackBanner_content = {
   feedbackBannerCy:
     "Helpwch ni i wella’r gwasanaeth hwn" +
     "Mae hwn yn wasanaeth newydd. Helpwch ni ei wella i bobl eraill trwy",
-  feedbackLinkCy: "https://www.smartsurvey.co.uk/s/Specials_Feedback/?pageurl=/?lang=cy",
+  feedbackLinkCy:
+    "https://www.smartsurvey.co.uk/s/Specials_Feedback/?pageurl=/?lang=cy",
   feedbackLinkTextCy: "roi eich adborth",
 } as const;
 
