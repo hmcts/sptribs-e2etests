@@ -67,7 +67,7 @@ const uploadDocumentsContent = {
   textOnPageCy15:
     "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch achos.",
   textOnPageCy16:
-    'Unwaith y byddwch wedi dewis y ffeil, cliciwch ar ”Upload file” i’w llwytho.',
+    "Unwaith y byddwch wedi dewis y ffeil, cliciwch ar ”Upload file” i’w llwytho.",
   buttonCy: "Llwytho ffeil",
   continueButtonCy: "Parhau",
   deleteButtonCy: "Dileu",
@@ -76,7 +76,6 @@ const uploadDocumentsContent = {
     "Ni allwch barhau heb ddarparu gwybodaeth ychwanegol neu ddogfen",
   fileTypeErrorCy:
     "Mae’r gwasanaeth hwn yn derbyn ffeiliau yn y fformatau canlynol yn unig - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
-
 };
 
 export default uploadDocumentsContent;
