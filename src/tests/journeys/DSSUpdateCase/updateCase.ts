@@ -51,7 +51,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
-        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+        await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
@@ -104,8 +104,8 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.triggerErrorMessages(page, cy);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
-        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
-        await subjectDetailsPage.triggerErrorMessages(page);
+        await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
+        await subjectDetailsPage.triggerErrorMessages(page, cy);
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.triggerErrorMessages(page);

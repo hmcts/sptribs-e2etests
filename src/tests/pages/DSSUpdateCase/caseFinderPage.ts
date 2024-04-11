@@ -8,7 +8,11 @@ type CaseFinderPage = {
   caseReferenceNumber: string;
   continueButton: string;
   backButton: string;
-  checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    cy: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   fillInFields(page: Page, caseNumber: string | void): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
@@ -19,9 +23,13 @@ const caseFinderPage: CaseFinderPage = {
   continueButton: "button[name='saveAndContinue']",
   backButton: ".govuk-back-link",
 
-  async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    cy: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await CommonHelpers.checkAndAcceptCookies(page, "UC");
-    switch (cy){
+    switch (cy) {
       case true:
         await page.locator(".govuk-link").nth(4).click();
         await Promise.all([

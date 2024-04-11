@@ -255,7 +255,7 @@ const commonHelpers: CommonHelpers = {
             ),
             expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
               "href",
-              feedbackBanner_content.feedbackLink,
+              feedbackBanner_content.feedbackLink + "?lang=cy",
             ),
           ]);
         } else {
