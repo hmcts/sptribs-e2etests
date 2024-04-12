@@ -231,7 +231,7 @@ const commonHelpers: CommonHelpers = {
   ): Promise<void> {
     switch (cy) {
       case true:
-        if (service == "UC") {
+        if (service === "UC") {
           await Promise.all([
             expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
               CookiesContent.titleCy + CaseFinderContent.headerCy,
@@ -252,7 +252,7 @@ const commonHelpers: CommonHelpers = {
           .click();
         break;
       default:
-        if (service == "UC") {
+        if (service === "UC") {
           await Promise.all([
             expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
               CookiesContent.title + CaseFinderContent.header,
