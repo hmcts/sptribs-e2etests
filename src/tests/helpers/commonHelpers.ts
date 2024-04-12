@@ -346,4 +346,14 @@ export type allEvents =
   | "Case: Build case"
   | "To link related cases"
   | "Case: Issue to respondent"
-  | "Case: Hearing Options";
+  | "Case: Hearing Options"
+  | "Hearings: Create listing";
+
+export type hearingType = "Case management" | "Final" | "Interlocutory";
+
+export type hearingFormat =
+  | "Face to Face"
+  | "Hybrid"
+  | "Video"
+  | "Telephone"
+  | "Paper";
