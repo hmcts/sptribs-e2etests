@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
-import createCase from "./createCase.ts";
 import commonHelpers, {
   allEvents,
   caseRegion,
@@ -64,36 +63,8 @@ const issueToRespondent: IssueToRespondent = {
   ): Promise<void> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
-    const caseNumber = await createCase.createCase(
+    const caseNumber = await buildCase.buildCase(
       page,
-      user,
-      accessibilityTest,
-      category,
-      subCategory,
-      representative,
-      applicant,
-      contactPreference,
-      representativeQualified,
-      multipleFiles,
-      schemeSelection,
-      caseRegionSelection,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
-      needLogin,
-    );
-    await createCase.verifyDetails(
-      page,
-      user,
-      accessibilityTest,
-      caseNumber,
-      previousEvents,
-      eventTimes,
-    );
-    await buildCase.buildCase(
-      page,
-      caseNumber,
       previousEvents,
       eventTimes,
       accessibilityTest,
