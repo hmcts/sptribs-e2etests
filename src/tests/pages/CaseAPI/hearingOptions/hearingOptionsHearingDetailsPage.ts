@@ -1,6 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  hearingFormat,
+} from "../../../helpers/commonHelpers.ts";
 import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 
 type HearingOptionsHearingDetailsPage = {
@@ -16,7 +18,7 @@ type HearingOptionsHearingDetailsPage = {
     page: Page,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -58,7 +60,7 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
     page: Page,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
   ): Promise<void> {
     if (venue) {

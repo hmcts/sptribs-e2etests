@@ -3,6 +3,7 @@ import { UserRole } from "../../config.ts";
 import commonHelpers, {
   allEvents,
   caseRegionCode,
+  hearingFormat,
 } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
@@ -19,10 +20,10 @@ type HearingOptions = {
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
     editJourney: boolean,
-  ): Promise<void>;
+  ): Promise<string>;
 };
 
 const hearingOptions: HearingOptions = {
@@ -34,10 +35,10 @@ const hearingOptions: HearingOptions = {
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
     editJourney: boolean,
-  ): Promise<void> {
+  ): Promise<string> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
     const caseNumber = await buildCase.buildCase(
@@ -126,6 +127,7 @@ const hearingOptions: HearingOptions = {
       );
       await submitPage.continueOn(page);
     }
+    return caseNumber;
   },
 };
 
