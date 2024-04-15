@@ -23,12 +23,16 @@ interface CommonHelpers {
     file: string,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
-  checkAndAcceptCookies(page: Page, service: string): Promise<void>;
+  checkAndAcceptCookies(
+    page: Page,
+    cy: boolean,
+    service: string,
+  ): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
-  feedbackBanner(page: Page, landingPage: boolean): Promise<void>;
+  feedbackBanner(page: Page, cy: boolean, landingPage: boolean): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -220,50 +224,117 @@ const commonHelpers: CommonHelpers = {
     return `${baseURL}/case-details/${caseNumberDigits}#History`;
   },
 
-  async checkAndAcceptCookies(page: Page, service: string): Promise<void> {
-    if (service == "UC") {
-      await Promise.all([
-        expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
-          CookiesContent.title + CaseFinderContent.header,
-        ),
-        ...Array.from({ length: 2 }, (_, index) => {
-          const textOnPage = (CookiesContent as any)[`textOnPage${index + 1}`];
-          return expect(page.locator(".govuk-body").nth(index)).toContainText(
-            textOnPage,
-          );
-        }),
-      ]);
+  async checkAndAcceptCookies(
+    page: Page,
+    cy: boolean,
+    service: string,
+  ): Promise<void> {
+    switch (cy) {
+      case true:
+        if (service === "UC") {
+          await Promise.all([
+            expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
+              CookiesContent.titleCy + CaseFinderContent.headerCy,
+            ),
+            ...Array.from({ length: 2 }, (_, index) => {
+              const textOnPage = (CookiesContent as any)[
+                `textOnPageCy${index + 1}`
+              ];
+              return expect(
+                page.locator(".govuk-body").nth(index),
+              ).toContainText(textOnPage);
+            }),
+          ]);
+        }
+        await page.locator(".govuk-button").nth(0).click();
+        await page
+          .getByRole("button", { name: "Cuddio'r neges cwcihon" })
+          .click();
+        break;
+      default:
+        if (service === "UC") {
+          await Promise.all([
+            expect(page.locator(".govuk-cookie-banner__heading")).toHaveText(
+              CookiesContent.title + CaseFinderContent.header,
+            ),
+            ...Array.from({ length: 2 }, (_, index) => {
+              const textOnPage = (CookiesContent as any)[
+                `textOnPage${index + 1}`
+              ];
+              return expect(
+                page.locator(".govuk-body").nth(index),
+              ).toContainText(textOnPage);
+            }),
+          ]);
+        }
+        await page.locator(".govuk-button").nth(0).click();
+        await page.getByRole("button", { name: "Hide this message" }).click();
+        break;
     }
-    await page.locator(".govuk-button").nth(0).click();
-    await page.getByRole("button", { name: "Hide this message" }).click();
   },
 
-  async feedbackBanner(page: Page, landingPage: boolean): Promise<void> {
-    if (landingPage) {
-      await Promise.all([
-        expect(page.locator(".govuk-phase-banner__text")).toContainText(
-          feedbackBanner_content.feedbackBanner,
-        ),
-        expect(page.locator("a.govuk-link").nth(0)).toHaveText(
-          feedbackBanner_content.feedbackLinkText,
-        ),
-        expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
-          "href",
-          feedbackBanner_content.feedbackLink,
-        ),
-      ]);
-    } else {
-      await Promise.all([
-        expect(page.locator(".govuk-phase-banner__text")).toContainText(
-          feedbackBanner_content.feedbackBanner,
-        ),
-        expect(page.locator("a.govuk-link").nth(3)).toHaveText(
-          feedbackBanner_content.feedbackLinkText,
-        ),
-        expect(
-          await page.locator("a.govuk-link").nth(3).getAttribute("href"),
-        ).toContain(feedbackBanner_content.feedbackLink),
-      ]);
+  async feedbackBanner(
+    page: Page,
+    cy: boolean,
+    landingPage: boolean,
+  ): Promise<void> {
+    switch (cy) {
+      case true:
+        if (landingPage) {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBannerCy,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+              feedbackBanner_content.feedbackLinkTextCy,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+              "href",
+              feedbackBanner_content.feedbackLink + "?lang=cy",
+            ),
+          ]);
+        } else {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBannerCy,
+            ),
+            expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+              feedbackBanner_content.feedbackLinkTextCy,
+            ),
+            expect(
+              await page.locator("a.govuk-link").nth(3).getAttribute("href"),
+            ).toContain(feedbackBanner_content.feedbackLink),
+          ]);
+        }
+        break;
+      default:
+        if (landingPage) {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBanner,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+              feedbackBanner_content.feedbackLinkText,
+            ),
+            expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+              "href",
+              feedbackBanner_content.feedbackLink,
+            ),
+          ]);
+        } else {
+          await Promise.all([
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
+              feedbackBanner_content.feedbackBanner,
+            ),
+            expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+              feedbackBanner_content.feedbackLinkText,
+            ),
+            expect(
+              await page.locator("a.govuk-link").nth(3).getAttribute("href"),
+            ).toContain(feedbackBanner_content.feedbackLink),
+          ]);
+        }
+        break;
     }
   },
 };

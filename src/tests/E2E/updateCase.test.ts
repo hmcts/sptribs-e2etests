@@ -23,6 +23,37 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      false,
+      caseNumber,
+      true,
+      true,
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Check for an existing case to update, upload one document and additional information - CY", async ({
+    page,
+  }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+
+    await updateCaseJourney.updateCase(
+      page,
+      true,
+      false,
       caseNumber,
       true,
       true,
@@ -50,6 +81,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       );
     await updateCaseJourney.updateCase(
       page,
+      false,
       false,
       caseNumber,
       true,
@@ -79,6 +111,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      false,
       caseNumber,
       false,
       true,
@@ -106,6 +139,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       );
     await updateCaseJourney.updateCase(
       page,
+      false,
       false,
       caseNumber,
       true,
@@ -135,6 +169,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      false,
       caseNumber,
       true,
       true,
@@ -160,6 +195,34 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       );
     await updateCaseJourney.updateCase(
       page,
+      false,
+      false,
+      caseNumber,
+      true,
+      true,
+      false,
+      false,
+      true,
+    );
+  });
+
+  test("Error messaging - CY", async ({ page }) => {
+    const caseNumber: string | void =
+      await createFEApplication.createFEApplication(
+        page,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+      );
+    await updateCaseJourney.updateCase(
+      page,
+      true,
       false,
       caseNumber,
       true,
@@ -189,6 +252,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     );
   await updateCaseJourney.updateCase(
     page,
+    false,
     true,
     caseNumber,
     true,
