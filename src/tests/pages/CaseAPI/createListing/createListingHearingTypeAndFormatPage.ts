@@ -5,6 +5,7 @@ import commonHelpers, {
   hearingType,
 } from "../../../helpers/commonHelpers.ts";
 import createListingHearingTypeAndFormatContent from "../../../fixtures/content/CaseAPI/createListing/createListingHearingTypeAndFormat_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateListingHearingTypeAndFormatPage = {
   previous: string;
@@ -36,12 +37,17 @@ const createListingHearingTypeAndFormatPage: CreateListingHearingTypeAndFormatPa
       accessibilityTest: boolean,
     ): Promise<void> {
       await Promise.all([
-        commonHelpers.checkNumberAndSubject(page, caseNumber),
         expect(page.locator(".govuk-caption-l")).toHaveText(
           createListingHearingTypeAndFormatContent.pageHint,
         ),
         expect(page.locator(".govuk-heading-l")).toHaveText(
           createListingHearingTypeAndFormatContent.pageTitle,
+        ),
+        expect(page.locator("markdown > h3")).toContainText(
+          caseSubjectDetailsObject_content.name,
+        ),
+        expect(page.locator("markdown > p").nth(0)).toContainText(
+          createListingHearingTypeAndFormatContent.caseReference + caseNumber,
         ),
         ...Array.from({ length: 10 }, (_, index) => {
           const textOnPage = (createListingHearingTypeAndFormatContent as any)[
