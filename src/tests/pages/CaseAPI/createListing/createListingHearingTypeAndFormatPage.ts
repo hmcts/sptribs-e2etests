@@ -43,7 +43,7 @@ const createListingHearingTypeAndFormatPage: CreateListingHearingTypeAndFormatPa
         expect(page.locator(".govuk-heading-l")).toHaveText(
           createListingHearingTypeAndFormatContent.pageTitle,
         ),
-        ...Array.from({ length: 11 }, (_, index) => {
+        ...Array.from({ length: 10 }, (_, index) => {
           const textOnPage = (createListingHearingTypeAndFormatContent as any)[
             `textOnPage${index + 1}`
           ];
