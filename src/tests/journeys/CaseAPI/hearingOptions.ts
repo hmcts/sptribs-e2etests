@@ -22,7 +22,7 @@ type HearingOptions = {
     hearingFormat: string,
     shortNoticeHearing: boolean,
     editJourney: boolean,
-  ): Promise<void>;
+  ): Promise<string>;
 };
 
 const hearingOptions: HearingOptions = {
@@ -37,7 +37,7 @@ const hearingOptions: HearingOptions = {
     hearingFormat: string,
     shortNoticeHearing: boolean,
     editJourney: boolean,
-  ): Promise<void> {
+  ): Promise<string> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
     const caseNumber = await buildCase.buildCase(
@@ -126,6 +126,7 @@ const hearingOptions: HearingOptions = {
       );
       await submitPage.continueOn(page);
     }
+    return caseNumber;
   },
 };
 
