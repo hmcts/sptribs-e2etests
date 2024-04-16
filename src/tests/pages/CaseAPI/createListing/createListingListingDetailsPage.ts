@@ -80,9 +80,9 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         exact: true,
       })
       .check();
-    await expect(page.locator("label[for='hearingVenueNameAndAddress']")).toHaveText(
-      (`${createListingListingDetailsContent.textOnPage3}`)
-    );
+    await expect(
+      page.locator("label[for='hearingVenueNameAndAddress']"),
+    ).toHaveText(`${createListingListingDetailsContent.textOnPage3}`);
     await page
       .getByLabel(createListingListingDetailsContent.textOnPage2, {
         exact: true,
@@ -138,7 +138,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     await page.fill(this.day, `${currentDate.getDate()}`);
     await page.fill(this.month, `${currentDate.getMonth() + 1}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);
-    await page.getByLabel(hearingSession).dblclick();
+    await page.getByLabel(hearingSession).dispatchEvent("click");
     if (hearingSession === "Morning" || "All day") {
       await page.fill(this.startTime, "9:00");
     } else if (hearingSession === "Afternoon") {
