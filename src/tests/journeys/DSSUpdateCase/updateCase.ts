@@ -13,6 +13,7 @@ import path from "path";
 type UpdateCaseJourney = {
   updateCase(
     page: Page,
+    cy: boolean,
     accessibilityTest: boolean,
     caseNumber: string | void,
     additionalInformation: boolean,
@@ -33,6 +34,7 @@ type UpdateCaseJourney = {
 const updateCaseJourney: UpdateCaseJourney = {
   async updateCase(
     page: Page,
+    cy: boolean,
     accessibilityTest: boolean,
     caseNumber: string,
     additionalInformation: boolean,
@@ -43,31 +45,34 @@ const updateCaseJourney: UpdateCaseJourney = {
   ): Promise<void> {
     switch (errorMessaging) {
       default:
-        await landingPage.seeTheLandingPage(page, accessibilityTest);
+        await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
-        await caseFinderPage.checkPageLoads(page, accessibilityTest);
+        await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
-        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
+        await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
-        await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
+        await uploadDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadDocumentsPage.fillInFields(page, additionalInformation);
         await uploadDocumentsPage.uploadDocumentsSection(
           page,
+          cy,
           uploadDocument,
           multipleDocuments,
         );
         await uploadDocumentsPage.continueOn(page);
         await checkYourAnswersPage.checkPageLoads(
           page,
+          cy,
           accessibilityTest,
           multipleDocuments,
           uploadDocument,
         );
         await checkYourAnswersPage.checkValidInfoAllFields(
           page,
+          cy,
           multipleDocuments,
           uploadDocument,
           additionalInformation,
@@ -77,7 +82,7 @@ const updateCaseJourney: UpdateCaseJourney = {
           break;
         }
         await checkYourAnswersPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(page, cy, accessibilityTest);
         await confirmPage.returnCaseNumber(page, caseNumber);
         const caseNumberFinal = await confirmPage.returnCaseNumber(
           page,
@@ -95,22 +100,23 @@ const updateCaseJourney: UpdateCaseJourney = {
         }
         break;
       case true:
-        await landingPage.seeTheLandingPage(page, accessibilityTest);
+        await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
-        await caseFinderPage.checkPageLoads(page, accessibilityTest);
-        await caseFinderPage.triggerErrorMessages(page);
+        await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
+        await caseFinderPage.triggerErrorMessages(page, cy);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
-        await subjectDetailsPage.checkPageLoads(page, accessibilityTest);
-        await subjectDetailsPage.triggerErrorMessages(page);
+        await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
+        await subjectDetailsPage.triggerErrorMessages(page, cy);
         await subjectDetailsPage.fillInFields(page);
         await subjectDetailsPage.continueOn(page);
-        await uploadDocumentsPage.triggerErrorMessages(page);
-        await uploadDocumentsPage.checkPageLoads(page, accessibilityTest);
+        await uploadDocumentsPage.triggerErrorMessages(page, cy);
+        await uploadDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadDocumentsPage.fillInFields(page, additionalInformation);
         await uploadDocumentsPage.uploadDocumentsSection(
           page,
+          cy,
           uploadDocument,
           multipleDocuments,
         );
