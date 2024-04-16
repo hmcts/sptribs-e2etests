@@ -13,6 +13,8 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "1-London",
       "Case management",
       "Face to Face",
+      "Morning",
+      false,
       false,
       false,
     );
@@ -29,6 +31,8 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "1-London",
       "Case management",
       "Face to Face",
+      "Morning",
+      false,
       true,
       false,
     );
@@ -43,6 +47,8 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "1-London",
       "Case management",
       "Face to Face",
+      "Morning",
+      false,
       false,
       true,
     );

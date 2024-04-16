@@ -10,6 +10,7 @@ import commonHelpers, {
 import hearingOptions from "./hearingOptions.ts";
 import createListingHearingTypeAndFormatPage from "../../pages/CaseAPI/createListing/createListingHearingTypeAndFormatPage.ts";
 import createListingRegionInfoPage from "../../pages/CaseAPI/createListing/createListingRegionInfoPage.ts";
+import createListingListingDetailsPage from "../../pages/CaseAPI/createListing/createListingListingDetailsPage.ts";
 
 type CreateListing = {
   createListing(
@@ -20,6 +21,8 @@ type CreateListing = {
     caseRegionCode: caseRegionCode | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
+    hearingSession: string,
+    hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     errorMessaging: boolean,
   ): Promise<void>;
@@ -34,6 +37,8 @@ const createListing: CreateListing = {
     caseRegionCode: caseRegionCode | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
+    hearingSession: string,
+    hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
@@ -68,7 +73,6 @@ const createListing: CreateListing = {
       "Hearings: Create listing",
     );
     if (caseNumber !== undefined) {
-      await page.pause();
       await createListingHearingTypeAndFormatPage.checkPageLoads(
         page,
         caseNumber,
@@ -80,6 +84,7 @@ const createListing: CreateListing = {
         hearingFormat,
       );
       await createListingHearingTypeAndFormatPage.continueOn(page);
+      await page.waitForTimeout(1000);
       await createListingRegionInfoPage.checkPageLoads(
         page,
         caseNumber,
@@ -91,6 +96,18 @@ const createListing: CreateListing = {
         caseRegionCode,
       );
       await createListingRegionInfoPage.continueOn(page);
+      await createListingListingDetailsPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+      );
+      await createListingListingDetailsPage.fillInFields(
+        page,
+        true,
+        false,
+        hearingSession,
+        hearingAcrossMultipleDays,
+      );
     }
   },
 };
