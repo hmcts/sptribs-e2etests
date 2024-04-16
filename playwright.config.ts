@@ -13,6 +13,7 @@ module.exports = defineConfig({
   expect: {
     timeout: 60 * 1000,
   },
+  reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */
   workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
