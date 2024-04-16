@@ -431,6 +431,8 @@ export type hearingFormat =
   | "Telephone"
   | "Paper";
 
+export type hearingSession = "Morning" | "Afternoon" | "All day";
+
 export type hearingVenues =
   | "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London"
   | "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London"

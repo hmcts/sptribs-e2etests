@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
 test.describe("Create hearing listing tests @CaseAPI", (): void => {
-  test.only("Create hearing listing as a caseworker in the 'Case management' state. @CaseAPI", async ({
+  test("Create hearing listing as a caseworker in the 'Case management' state. @CaseAPI", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -13,6 +13,132 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "1-London",
       "Case management",
       "Face to Face",
+      "Morning",
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a senior caseworker in Scotland for a Final hearing. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "seniorCaseworker",
+      false,
+      true,
+      "11-Scotland",
+      "Final",
+      "Hybrid",
+      "Morning",
+      true,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a hearing centre admin in the Midlands for an Interlocutory hearing. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "hearingCentreAdmin",
+      false,
+      true,
+      "2-Midlands",
+      "Interlocutory",
+      "Video",
+      "Afternoon",
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a hearing centre team leader in the North East for a Case management hearing. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "hearingCentreTeamLead",
+      true,
+      true,
+      "3-North East",
+      "Case management",
+      "Telephone",
+      "All day",
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a caseworker in the North West for a Final hearing with Paper format. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "caseWorker",
+      false,
+      true,
+      "4-North West",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a senior judge in the South East for an Interlocutory hearing across multiple days. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "seniorJudge",
+      false,
+      true,
+      "5-South East",
+      "Interlocutory",
+      "Video",
+      "Afternoon",
+      true,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a hearing centre admin in the South West for a Case management hearing. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "hearingCentreAdmin",
+      true,
+      true,
+      "6-South West",
+      "Case management",
+      "Hybrid",
+      "All day",
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Create hearing listing as a hearing centre team lead in Wales for a Final hearing with Telephone format. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "hearingCentreTeamLead",
+      false,
+      true,
+      "7-Wales",
+      "Final",
+      "Telephone",
       "Morning",
       false,
       false,
