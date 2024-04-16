@@ -15,6 +15,19 @@ const subjectDetailsContent = {
   dateOfBirthError: "Please enter date of birth",
   validFullNameError: "Please enter a valid name",
   validDateOfBirthError: "Please enter valid date of birth",
+
+  headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
+  pageTitleCy: "Testun yr achos hwn",
+  subHeadingCy1: "Enw llawn",
+  subHeadingCy2: "Dyddiad geni",
+  textOnPageCy1: "Diwrnod",
+  textOnPageCy2: "Mis",
+  textOnPageCy3: "Blwyddyn",
+  errorBannerCy: "Mae yna broblem",
+  fullNameErrorCy: "Nodwch enw llawn",
+  dateOfBirthErrorCy: "Nodwch ddyddiad geni",
+  validFullNameErrorCy: "Rhowch enw dilys",
+  validDateOfBirthErrorCy: "Nodwch ddyddiad geni dilys",
 } as const;
 
 export default subjectDetailsContent;
