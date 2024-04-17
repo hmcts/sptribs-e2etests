@@ -20,6 +20,8 @@ const createListingListingDetails_content = {
   textOnPage15: "Will this hearing take place across a number of days?",
   textOnPage16: "Yes",
   textOnPage17: "No",
+  subTitle2: "Additional Hearing date",
+  textOnPage18: "Start time (24hr format)",
   errorBanner: "There is a problem",
   hearingDateError: "Hearing Date is required",
   additionalHearingDateError: "Additional Hearing date is required",

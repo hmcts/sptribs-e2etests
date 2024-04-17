@@ -118,6 +118,7 @@ const createListing: CreateListing = {
             hearingAcrossMultipleDays,
           );
           await createListingListingDetailsPage.continueOn(page);
+          await page.waitForTimeout(1000);
           await createListingRemoteHearingInformationPage.checkPageLoads(
             page,
             caseNumber,
