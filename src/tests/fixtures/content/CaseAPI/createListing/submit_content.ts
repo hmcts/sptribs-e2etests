@@ -18,6 +18,10 @@ const submit_content = {
   textOnPage14: "Conference call number",
   textOnPage15: "Other important information",
   textOnPage16: "Listing information recipient",
+  venueNull: "Hearing Venue",
+  additionalHearingDateTitle: "Additional Hearing date 1",
+  additionalHearingDate: "Hearing date",
+  additionalHearingDateTime: "Start time (24hr format)",
 } as const;
 
 export default submit_content;

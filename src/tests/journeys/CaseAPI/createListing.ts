@@ -140,7 +140,14 @@ const createListing: CreateListing = {
             accessibilityTest,
           );
           await createListingNotifyPage.continueOn(page);
-          await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            region,
+            hearingAcrossMultipleDays,
+            venue,
+            accessibilityTest,
+          );
           await submitPage.checkValidInfo(
             page,
             region,
@@ -149,6 +156,7 @@ const createListing: CreateListing = {
             hearingFormat,
             hearingSession,
             hearingAcrossMultipleDays,
+            venue,
           );
           await submitPage.continueOn(page);
           break;

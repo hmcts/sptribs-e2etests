@@ -32,10 +32,10 @@ const createListingListingDetails_content = {
   timeError: "Start time (24 hour format; e.g. 14:30) is required",
   numberOfDaysError:
     "Will this hearing take place across a number of days? is required",
-  venue:
-    "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
   room: "Lorem ipsum room",
   instructions: "Lorem ipsum instructions",
+  morningTime: "9:00",
+  afternoonTime: "14:00",
 } as const;
 
 export default createListingListingDetails_content;

@@ -176,9 +176,15 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     await page.fill(this.year, `${currentDate.getFullYear()}`);
     await page.getByLabel(hearingSession).nth(0).dispatchEvent("click");
     if (hearingSession === "Morning" || "All day") {
-      await page.fill(this.startTime, "9:00");
+      await page.fill(
+        this.startTime,
+        createListingListingDetailsContent.morningTime,
+      );
     } else if (hearingSession === "Afternoon") {
-      await page.fill(this.startTime, "14:00");
+      await page.fill(
+        this.startTime,
+        createListingListingDetailsContent.afternoonTime,
+      );
     }
     if (!hearingAcrossMultipleDays) {
       await page.getByLabel("No", { exact: true }).click();
@@ -193,9 +199,15 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await page.fill("#hearingVenueDate-year", `${currentDate.getFullYear()}`);
       await page.getByLabel(hearingSession).nth(1).dispatchEvent("click");
       if (hearingSession === "Morning" || "All day") {
-        await page.fill("#additionalHearingDate_0_hearingVenueTime", "9:00");
+        await page.fill(
+          "#additionalHearingDate_0_hearingVenueTime",
+          createListingListingDetailsContent.morningTime,
+        );
       } else if (hearingSession === "Afternoon") {
-        await page.fill("#additionalHearingDate_0_hearingVenueTime", "14:00");
+        await page.fill(
+          "#additionalHearingDate_0_hearingVenueTime",
+          createListingListingDetailsContent.afternoonTime,
+        );
       }
     }
   },
@@ -246,7 +258,10 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     await page.fill(this.month, `${currentDate.getMonth() + 1}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);
     await page.getByLabel("Morning").dispatchEvent("click");
-    await page.fill(this.startTime, "9:00");
+    await page.fill(
+      this.startTime,
+      createListingListingDetailsContent.morningTime,
+    );
     await page.click(this.continue);
     await expect(page.locator(".error-summary-list")).toHaveText(
       createListingListingDetailsContent.validHearingVenueError,

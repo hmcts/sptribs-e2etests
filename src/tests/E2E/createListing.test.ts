@@ -173,7 +173,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test.only("Create hearing listing with the hearing across multiple days. @CaseAPI", async ({
+  test("Create hearing listing with the hearing across multiple days. @CaseAPI", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
