@@ -54,9 +54,16 @@ const casesPage: CasesPage = {
         page.locator("label[for='cicCaseRepresentativeReference']"),
       ).toHaveText(casesContent.textOnPage10),
     ]);
-    if (await page.locator(".govuk-link--no-visited-state").isVisible()) {
-      await page.click(".govuk-link--no-visited-state");
+
+    if ((await page.locator(".govuk-link--no-visited-state").count()) >= 1) {
+      let warnings = await page
+        .locator(".govuk-link--no-visited-state")
+        .count();
+      for (let i = 0; i < warnings; i++) {
+        await page.locator(".govuk-link--no-visited-state").nth(0).click();
+      }
     }
+
     if (accessibilityTest) {
       // await axeTest(page); disabled due to EXUI accessibility issues DTSSTCI-733.
     }
