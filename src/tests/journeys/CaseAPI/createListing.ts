@@ -7,6 +7,7 @@ import commonHelpers, {
   hearingFormat,
   hearingSession,
   hearingType,
+  hearingVenues,
 } from "../../helpers/commonHelpers.ts";
 import hearingOptions from "./hearingOptions.ts";
 import createListingHearingTypeAndFormatPage from "../../pages/CaseAPI/createListing/createListingHearingTypeAndFormatPage.ts";
@@ -29,6 +30,7 @@ type CreateListing = {
     hearingSession: string,
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
+    venue: hearingVenues | null,
     errorMessaging: boolean,
   ): Promise<void>;
 };
@@ -45,6 +47,7 @@ const createListing: CreateListing = {
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
+    venue: hearingVenues | null,
     errorMessaging: boolean,
   ): Promise<void> {
     let caseNumber: string | undefined;
@@ -83,69 +86,125 @@ const createListing: CreateListing = {
         caseNumber,
         accessibilityTest,
       );
-      await createListingHearingTypeAndFormatPage.fillInFields(
-        page,
-        hearingType,
-        hearingFormat,
-      );
-      await createListingHearingTypeAndFormatPage.continueOn(page);
-      await page.waitForTimeout(1000);
-      await createListingRegionInfoPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await createListingRegionInfoPage.fillInFields(
-        page,
-        region,
-        caseRegionCode,
-      );
-      await createListingRegionInfoPage.continueOn(page);
-      await createListingListingDetailsPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await createListingListingDetailsPage.fillInFields(
-        page,
-        true,
-        false,
-        hearingSession,
-        hearingAcrossMultipleDays,
-      );
-      await createListingListingDetailsPage.continueOn(page);
-      await createListingRemoteHearingInformationPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await createListingRemoteHearingInformationPage.fillInFields(page);
-      await createListingRemoteHearingInformationPage.continueOn(page);
-      await page.waitForTimeout(1000);
-      await createListingOtherInformationPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await createListingOtherInformationPage.fillInFields(page);
-      await createListingOtherInformationPage.continueOn(page);
-      await createListingNotifyPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await createListingNotifyPage.continueOn(page);
-      await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
-      await submitPage.checkValidInfo(
-        page,
-        region,
-        caseRegionCode,
-        hearingType,
-        hearingFormat,
-        hearingSession,
-        hearingAcrossMultipleDays,
-      );
-      await submitPage.continueOn(page);
+      switch (errorMessaging) {
+        default:
+          await createListingHearingTypeAndFormatPage.fillInFields(
+            page,
+            hearingType,
+            hearingFormat,
+          );
+          await createListingHearingTypeAndFormatPage.continueOn(page);
+          await page.waitForTimeout(1000);
+          await createListingRegionInfoPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingRegionInfoPage.fillInFields(
+            page,
+            region,
+            caseRegionCode,
+          );
+          await createListingRegionInfoPage.continueOn(page);
+          await createListingListingDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingListingDetailsPage.fillInFields(
+            page,
+            venue,
+            hearingSession,
+            hearingAcrossMultipleDays,
+          );
+          await createListingListingDetailsPage.continueOn(page);
+          await createListingRemoteHearingInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingRemoteHearingInformationPage.fillInFields(page);
+          await createListingRemoteHearingInformationPage.continueOn(page);
+          await page.waitForTimeout(1000);
+          await createListingOtherInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingOtherInformationPage.fillInFields(page);
+          await createListingOtherInformationPage.continueOn(page);
+          await createListingNotifyPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingNotifyPage.continueOn(page);
+          await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await submitPage.checkValidInfo(
+            page,
+            region,
+            caseRegionCode,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+          );
+          await submitPage.continueOn(page);
+          break;
+        case true:
+          await createListingHearingTypeAndFormatPage.triggerErrorMessage(page);
+          await createListingHearingTypeAndFormatPage.fillInFields(
+            page,
+            hearingType,
+            hearingFormat,
+          );
+          await createListingHearingTypeAndFormatPage.continueOn(page);
+          await page.waitForTimeout(1000);
+          await createListingRegionInfoPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingRegionInfoPage.fillInFields(
+            page,
+            region,
+            caseRegionCode,
+          );
+          await createListingRegionInfoPage.continueOn(page);
+          await createListingListingDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingListingDetailsPage.triggerErrorMessages(page);
+          await createListingListingDetailsPage.fillInFields(
+            page,
+            venue,
+            hearingSession,
+            hearingAcrossMultipleDays,
+          );
+          await createListingListingDetailsPage.continueOn(page);
+          await createListingRemoteHearingInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingRemoteHearingInformationPage.continueOn(page);
+          await page.waitForTimeout(1000);
+          await createListingOtherInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingOtherInformationPage.continueOn(page);
+          await createListingNotifyPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createListingNotifyPage.triggerErrorMessages(page);
+          break;
+      }
     }
   },
 };

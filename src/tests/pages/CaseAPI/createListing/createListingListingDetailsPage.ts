@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   hearingSession,
+  hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
@@ -26,8 +27,7 @@ type CreateListingListingDetailsPage = {
   ): Promise<void>;
   fillInFields(
     page: Page,
-    venue: boolean,
-    venueNotListed: boolean,
+    venue: hearingVenues | null,
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
   ): Promise<void>;
@@ -114,18 +114,13 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
 
   async fillInFields(
     page: Page,
-    venue: boolean,
-    venueNotListed: boolean,
+    venue: hearingVenues | null,
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
   ): Promise<void> {
-    if (venue) {
-      await page.selectOption(
-        this.venue,
-        "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
-      );
-    }
-    if (venueNotListed) {
+    if (venue !== null) {
+      await page.selectOption(this.venue, venue);
+    } else {
       await page
         .getByLabel(createListingListingDetailsContent.textOnPage2)
         .check();

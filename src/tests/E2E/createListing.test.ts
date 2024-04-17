@@ -16,6 +16,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Morning",
       false,
       false,
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
     );
   });
@@ -34,6 +35,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Morning",
       true,
       false,
+      "Aberdeen Tribunal Hearing Centre-AB1, 48 Huntly Street, Aberdeen, AB10 1SH",
       false,
     );
   });
@@ -52,6 +54,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Afternoon",
       false,
       false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
     );
   });
@@ -70,6 +73,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "All day",
       false,
       false,
+      "Sheffield Magistrates Court-Castle Street",
       false,
     );
   });
@@ -88,6 +92,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Morning",
       false,
       false,
+      "Liverpool Civil And Family Court-Vernon Street, City Square",
       false,
     );
   });
@@ -106,6 +111,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Afternoon",
       true,
       false,
+      "Brighton Tribunal Hearing Centre-City Gate House, 185 Dyke Road",
       false,
     );
   });
@@ -124,6 +130,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "All day",
       false,
       false,
+      "Bristol Magistrates Court-Marlborough Street, Bristol, BS1 3NU",
       false,
     );
   });
@@ -142,6 +149,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Morning",
       false,
       false,
+      "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
       false,
     );
   });
@@ -160,11 +168,50 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Morning",
       false,
       true,
+      "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
     );
   });
 
-  test("Error messaging. @CaseAPI", async ({ page }): Promise<void> => {
+  test("Create hearing listing with the hearing across multiple days. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "caseWorker",
+      false,
+      true,
+      "1-London",
+      "Case management",
+      "Face to Face",
+      "Morning",
+      true,
+      false,
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      false,
+    );
+  });
+
+  test("Create hearing listing with no region and venue not listed. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "caseWorker",
+      false,
+      false,
+      null,
+      "Case management",
+      "Face to Face",
+      "Morning",
+      false,
+      false,
+      null,
+      false,
+    );
+  });
+
+  test.only("Error messaging. @CaseAPI", async ({ page }): Promise<void> => {
     await createListing.createListing(
       page,
       "caseWorker",
@@ -176,6 +223,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Morning",
       false,
       false,
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       true,
     );
   });
