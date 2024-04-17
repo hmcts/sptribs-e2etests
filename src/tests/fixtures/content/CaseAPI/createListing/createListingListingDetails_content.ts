@@ -25,6 +25,7 @@ const createListingListingDetails_content = {
   additionalHearingDateError: "Additional Hearing date is required",
   invalidHearingDateError: "The data entered is not valid for Hearing Date",
   hearingVenueError: "Hearing Venue is required",
+  validHearingVenueError: "Please enter valid Hearing venue",
   sessionError: "Session is required",
   timeError: "Start time (24 hour format; e.g. 14:30) is required",
   numberOfDaysError:

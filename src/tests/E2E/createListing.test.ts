@@ -211,7 +211,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test.only("Error messaging. @CaseAPI", async ({ page }): Promise<void> => {
+  test("Error messaging. @CaseAPI", async ({ page }): Promise<void> => {
     await createListing.createListing(
       page,
       "caseWorker",

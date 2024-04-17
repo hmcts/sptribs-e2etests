@@ -148,7 +148,58 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     }
   },
 
-  async triggerErrorMessages(page: Page): Promise<void> {},
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        createListingListingDetailsContent.errorBanner,
+      ),
+      expect(page.locator(".error-message").nth(0)).toHaveText(
+        createListingListingDetailsContent.hearingDateError,
+      ),
+      expect(page.locator(".error-message").nth(1)).toHaveText(
+        createListingListingDetailsContent.sessionError,
+      ),
+      expect(page.locator(".error-message").nth(2)).toHaveText(
+        createListingListingDetailsContent.timeError,
+      ),
+      expect(page.locator(".error-message").nth(3)).toHaveText(
+        createListingListingDetailsContent.numberOfDaysError,
+      ),
+    ]);
+    await page
+      .getByLabel(createListingListingDetailsContent.textOnPage2)
+      .check();
+    await page.click(this.inputVenue);
+    await page.click(this.roomAtVenue);
+    await expect(page.locator(".error-message").nth(0)).toHaveText(
+      createListingListingDetailsContent.hearingVenueError,
+    );
+    await page
+      .getByLabel(createListingListingDetailsContent.textOnPage2)
+      .click();
+    await page.fill(this.day, "0");
+    await page.click(this.month);
+    await expect(page.locator(".error-message").nth(0)).toHaveText(
+      createListingListingDetailsContent.invalidHearingDateError,
+    );
+    await page.locator(this.day).clear();
+    await page.getByLabel("Yes", { exact: true }).click();
+    await expect(page.locator(".error-message").nth(3)).toHaveText(
+      createListingListingDetailsContent.additionalHearingDateError,
+    );
+    await page.getByLabel("No", { exact: true }).click();
+    const currentDate = new Date();
+    await page.fill(this.day, `${currentDate.getDate()}`);
+    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
+    await page.fill(this.year, `${currentDate.getFullYear()}`);
+    await page.getByLabel("Morning").dispatchEvent("click");
+    await page.fill(this.startTime, "9:00");
+    await page.click(this.continue);
+    await expect(page.locator(".error-summary-list")).toHaveText(
+      createListingListingDetailsContent.validHearingVenueError,
+    );
+  },
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continue);
