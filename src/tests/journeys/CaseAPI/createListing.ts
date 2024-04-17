@@ -5,6 +5,7 @@ import commonHelpers, {
   allEvents,
   caseRegionCode,
   hearingFormat,
+  hearingSession,
   hearingType,
 } from "../../helpers/commonHelpers.ts";
 import hearingOptions from "./hearingOptions.ts";
@@ -14,6 +15,7 @@ import createListingListingDetailsPage from "../../pages/CaseAPI/createListing/c
 import createListingRemoteHearingInformationPage from "../../pages/CaseAPI/createListing/createListingRemoteHearingInformationPage.ts";
 import createListingOtherInformationPage from "../../pages/CaseAPI/createListing/createListingOtherInformationPage.ts";
 import createListingNotifyPage from "../../pages/CaseAPI/createListing/createListingNotifyPage.ts";
+import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
 
 type CreateListing = {
   createListing(
@@ -40,7 +42,7 @@ const createListing: CreateListing = {
     caseRegionCode: caseRegionCode | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
-    hearingSession: string,
+    hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     errorMessaging: boolean,
@@ -133,6 +135,17 @@ const createListing: CreateListing = {
         accessibilityTest,
       );
       await createListingNotifyPage.continueOn(page);
+      await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+      await submitPage.checkValidInfo(
+        page,
+        region,
+        caseRegionCode,
+        hearingType,
+        hearingFormat,
+        hearingSession,
+        hearingAcrossMultipleDays,
+      );
+      await submitPage.continueOn(page);
     }
   },
 };

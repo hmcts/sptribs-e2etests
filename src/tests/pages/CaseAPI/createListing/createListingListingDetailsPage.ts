@@ -1,6 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  hearingSession,
+} from "../../../helpers/commonHelpers.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
@@ -26,7 +28,7 @@ type CreateListingListingDetailsPage = {
     page: Page,
     venue: boolean,
     venueNotListed: boolean,
-    hearingSession: string,
+    hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
   ): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -114,7 +116,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     page: Page,
     venue: boolean,
     venueNotListed: boolean,
-    hearingSession: string,
+    hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
   ): Promise<void> {
     if (venue) {

@@ -1,6 +1,6 @@
 const submit_content = {
-  pageHint: "Hearings: Create listing",
-  pageTitle: "Check your answers",
+  pageTitle: "Hearings: Create listing",
+  subTitle: "Check your answers",
   caseReference: "Case number: ",
   textOnPage1: "Check the information below carefully.",
   textOnPage2: "Hearing type",
