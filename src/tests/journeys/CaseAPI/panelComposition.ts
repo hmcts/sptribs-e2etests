@@ -1,0 +1,60 @@
+import { Page } from "@playwright/test";
+import { UserRole } from "../../config.ts";
+import commonHelpers, {
+  allEvents,
+} from "../../helpers/commonHelpers.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "./buildCase.ts";
+import casePanelCompositionPage, {
+  Panel2,
+  Panel3,
+} from "../../pages/CaseAPI/panelComposition/casePanelCompositionPage.ts";
+
+type PanelComposition = {
+  panelComposition(
+    page: Page,
+    user: UserRole,
+    accessibilityTest: boolean,
+    panel2: Panel2,
+    panel3: Panel3,
+    specialisms: boolean,
+  ): Promise<void>;
+};
+
+const panelComposition: PanelComposition = {
+  async panelComposition(
+    page: Page,
+    user: UserRole,
+    accessibilityTest: boolean,
+    panel2: Panel2,
+    panel3: Panel3,
+    specialisms: boolean,
+  ): Promise<void> {
+    let previousEvents: allEvents[] = [];
+    let eventTimes: string[] = [];
+    const caseNumber = await buildCase.buildCase(
+      page,
+      previousEvents,
+      eventTimes,
+      accessibilityTest,
+      user,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      events_content.panelComposition,
+    );
+    await casePanelCompositionPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+    );
+    await casePanelCompositionPage.fillInFields(
+      page,
+      panel2,
+      panel3,
+      specialisms,
+    );
+  },
+};
+
+export default panelComposition;

@@ -4,6 +4,7 @@ const events_content = {
   buildCase: "Case: Build case",
   linkCases: "Link cases",
   hearingOptions: "Case: Hearing Options",
+  panelComposition: "Case: Panel Composition",
 } as const;
 
 export default events_content;
