@@ -1,14 +1,13 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
-import commonHelpers, {
-  allEvents,
-} from "../../helpers/commonHelpers.ts";
+import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "./buildCase.ts";
 import casePanelCompositionPage, {
   Panel2,
   Panel3,
 } from "../../pages/CaseAPI/panelComposition/casePanelCompositionPage.ts";
+import submitPage from "../../pages/CaseAPI/panelComposition/submitPage.ts";
 
 type PanelComposition = {
   panelComposition(
@@ -32,7 +31,7 @@ const panelComposition: PanelComposition = {
   ): Promise<void> {
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
-    const caseNumber = await buildCase.buildCase(
+    const caseNumber: string = await buildCase.buildCase(
       page,
       previousEvents,
       eventTimes,
@@ -54,6 +53,15 @@ const panelComposition: PanelComposition = {
       panel3,
       specialisms,
     );
+    await submitPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      panel2,
+      panel3,
+      specialisms,
+    );
+    await submitPage.continueOn(page);
   },
 };
 

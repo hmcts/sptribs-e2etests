@@ -80,13 +80,13 @@ const casePanelCompositionPage: CasePanelCompositionPage = {
   ): Promise<void> {
     if (panel2 !== null) {
       await page.selectOption(`#panel2`, panel2);
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${casePanelComposition_content.pageSubTitle3}")`,
-        ),
-        1,
-      );
       if (panel3 !== null) {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.form-label:text-is("${casePanelComposition_content.pageSubTitle3}")`,
+          ),
+          1,
+        );
         await page.selectOption(`#panel3`, panel3);
       }
     }
