@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
 test.describe("Create hearing listing tests @CaseAPI", (): void => {
-  test("Create hearing listing as a caseworker in the 'Case management' state. @CaseAPI", async ({
+  test("Create hearing listing as a caseworker in the 'Case management' state.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -21,7 +21,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a senior caseworker in Scotland for a Final hearing. @CaseAPI", async ({
+  test("Create hearing listing as a senior caseworker in Scotland for a Final hearing.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -40,7 +40,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a hearing centre admin in the Midlands for an Interlocutory hearing. @CaseAPI", async ({
+  test("Create hearing listing as a hearing centre admin in the Midlands for an Interlocutory hearing.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -59,7 +59,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a hearing centre team leader in the North East for a Case management hearing. @CaseAPI", async ({
+  test("Create hearing listing as a hearing centre team leader in the North East for a Case management hearing.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -78,7 +78,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a caseworker in the North West for a Final hearing with Paper format. @CaseAPI", async ({
+  test("Create hearing listing as a caseworker in the North West for a Final hearing with Paper format.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -97,7 +97,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a senior judge in the South East for an Interlocutory hearing across multiple days. @CaseAPI", async ({
+  test("Create hearing listing as a senior judge in the South East for an Interlocutory hearing across multiple days.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -116,7 +116,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a hearing centre admin in the South West for a Case management hearing. @CaseAPI", async ({
+  test("Create hearing listing as a hearing centre admin in the South West for a Case management hearing.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -135,7 +135,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing as a hearing centre team lead in Wales for a Final hearing with Telephone format. @CaseAPI", async ({
+  test("Create hearing listing as a hearing centre team lead in Wales for a Final hearing with Telephone format.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -154,7 +154,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing in the 'Ready to list' state. @CaseAPI", async ({
+  test("Create hearing listing in the 'Ready to list' state.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -173,7 +173,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing with the hearing across multiple days. @CaseAPI", async ({
+  test("Create hearing listing with the hearing across multiple days.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -192,7 +192,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing with no region and venue not listed. @CaseAPI", async ({
+  test("Create hearing listing with no region and venue not listed.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -211,7 +211,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing with a region but venue not listed. @CaseAPI", async ({
+  test("Create hearing listing with a region but venue not listed.", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -230,7 +230,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging. @CaseAPI", async ({ page }): Promise<void> => {
+  test("Error messaging.", async ({ page }): Promise<void> => {
     await createListing.createListing(
       page,
       "caseWorker",

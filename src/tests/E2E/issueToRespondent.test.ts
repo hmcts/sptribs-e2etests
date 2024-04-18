@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
 import issueToRespondent from "../journeys/CaseAPI/issueToRespondent.ts";
 
-test.describe("Issue to respondent tests", () => {
-  test("As a caseworker Issue a case to all parties @CaseAPI", async ({
+test.describe("Issue to respondent tests @CaseAPI", () => {
+  test("As a caseworker Issue a case to all parties.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -13,7 +13,7 @@ test.describe("Issue to respondent tests", () => {
       ["Subject", "Representative", "Respondent", "Applicant"],
     );
   });
-  test("As a caseworker Issue a case to a subject @CaseAPI", async ({
+  test("As a caseworker Issue a case to a subject.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -24,7 +24,7 @@ test.describe("Issue to respondent tests", () => {
       ["Subject"],
     );
   });
-  test("As a caseworker Issue a case to a representative @CaseAPI", async ({
+  test("As a caseworker Issue a case to a representative.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -35,7 +35,7 @@ test.describe("Issue to respondent tests", () => {
       ["Representative"],
     );
   });
-  test("As a caseworker Issue a case to a respondent @CaseAPI", async ({
+  test("As a caseworker Issue a case to a respondent.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -46,7 +46,7 @@ test.describe("Issue to respondent tests", () => {
       ["Respondent"],
     );
   });
-  test("As a caseworker Issue a case to an applicant @CaseAPI", async ({
+  test("As a caseworker Issue a case to an applicant.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -57,7 +57,7 @@ test.describe("Issue to respondent tests", () => {
       ["Applicant"],
     );
   });
-  test("As a senior caseworker Issue a case to all parties @CaseAPI", async ({
+  test("As a senior caseworker Issue a case to all parties.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -68,7 +68,7 @@ test.describe("Issue to respondent tests", () => {
       ["Subject", "Representative", "Respondent", "Applicant"],
     );
   });
-  test("As a hearing centre admin Issue a case to all parties @CaseAPI", async ({
+  test("As a hearing centre admin Issue a case to all parties.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -79,7 +79,7 @@ test.describe("Issue to respondent tests", () => {
       ["Subject", "Representative", "Respondent", "Applicant"],
     );
   });
-  test("As a hearing centre team lead Issue a case to all parties @CaseAPI", async ({
+  test("As a hearing centre team lead Issue a case to all parties.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -90,7 +90,7 @@ test.describe("Issue to respondent tests", () => {
       ["Subject", "Representative", "Respondent", "Applicant"],
     );
   });
-  test("Error messaging - Issue to respondent @CaseAPI", async ({
+  test("Error messaging - Issue to respondent.", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(page, "caseWorker", false, true, [
