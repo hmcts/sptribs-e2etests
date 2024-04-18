@@ -30,10 +30,10 @@ const landingPage: LandingPage = {
           expect(page.locator(".govuk-heading-l")).toHaveText(
             LandingPageDetails.pageTitleCy,
           ),
-          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          expect(page.locator(".govuk-body-l").nth(0)).toContainText(
             LandingPageDetails.hintMessageCy,
           ),
-          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          expect(page.locator("h2 > span")).toContainText(
             LandingPageDetails.subHeadingCy,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
@@ -41,10 +41,10 @@ const landingPage: LandingPage = {
               `textOnPageCy${index + 1}`
             ];
             return expect(
-              page.locator(".govuk-body-l").nth(index + 2),
-            ).toHaveText(textOnPage);
+              page.locator(".govuk-body-l").nth( 1),
+            ).toContainText(textOnPage);
           }),
-          expect(page.locator(landingPage.startButton)).toHaveText(
+          expect(page.locator(landingPage.startButton)).toContainText(
             "Dechrau nawr",
           ),
         ]);
@@ -55,10 +55,10 @@ const landingPage: LandingPage = {
           expect(page.locator(".govuk-heading-l")).toHaveText(
             LandingPageDetails.pageTitle,
           ),
-          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          expect(page.locator(".govuk-body-l").nth(0)).toContainText(
             LandingPageDetails.hintMessage,
           ),
-          expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+          expect(page.locator("h2 > span")).toContainText(
             LandingPageDetails.subHeading,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
@@ -66,8 +66,8 @@ const landingPage: LandingPage = {
               `textOnPage${index + 1}`
             ];
             return expect(
-              page.locator(".govuk-body-l").nth(index + 2),
-            ).toHaveText(textOnPage);
+              page.locator(".govuk-body-l").nth(1),
+            ).toContainText(textOnPage);
           }),
           expect(page.locator(landingPage.startButton)).toHaveText("Start now"),
         ]);
