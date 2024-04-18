@@ -103,7 +103,11 @@ const historyTabPage: HistoryTabPage = {
           );
         }
       } else {
-        if (allEvents.length > 1 && eventTimes[i] === eventTimes[i - 1]) {
+        if (
+          allEvents.length > 1 &&
+          i > 0 &&
+          eventTimes[i] === eventTimes[i - 1]
+        ) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
             3,
