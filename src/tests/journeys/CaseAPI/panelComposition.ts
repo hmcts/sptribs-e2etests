@@ -8,6 +8,7 @@ import casePanelCompositionPage, {
   Panel3,
 } from "../../pages/CaseAPI/panelComposition/casePanelCompositionPage.ts";
 import submitPage from "../../pages/CaseAPI/panelComposition/submitPage.ts";
+import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type PanelComposition = {
   panelComposition(
@@ -62,6 +63,8 @@ const panelComposition: PanelComposition = {
       specialisms,
     );
     await submitPage.continueOn(page);
+    await page.locator(`.mat-tab-label-content:text-is("Hearings")`).click();
+    await hearingsTabPage.checkPanelComposition(page, panel2, panel3, specialisms);
   },
 };
 

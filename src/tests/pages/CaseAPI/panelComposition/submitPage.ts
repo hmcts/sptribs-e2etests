@@ -14,9 +14,7 @@ type SubmitPage = {
     panel3: Panel3,
     specialisms: boolean,
   ): Promise<void>;
-  continueOn(
-    page: Page,
-  ): Promise<void>;
+  continueOn(page: Page): Promise<void>;
 };
 
 const submitPage: SubmitPage = {
@@ -92,7 +90,7 @@ const submitPage: SubmitPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.locator(`.button:text-is("Save and continue")`).click();
-  }
+  },
 };
 
 export default submitPage;
