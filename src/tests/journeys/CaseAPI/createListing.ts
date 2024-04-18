@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
+import config, { UserRole } from "../../config.ts";
 import buildCase from "./buildCase.ts";
 import commonHelpers, {
   allEvents,
@@ -17,6 +17,7 @@ import createListingRemoteHearingInformationPage from "../../pages/CaseAPI/creat
 import createListingOtherInformationPage from "../../pages/CaseAPI/createListing/createListingOtherInformationPage.ts";
 import createListingNotifyPage from "../../pages/CaseAPI/createListing/createListingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
+import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
 
 type CreateListing = {
   createListing(
@@ -68,13 +69,29 @@ const createListing: CreateListing = {
         false,
       );
     } else {
-      caseNumber = await buildCase.buildCase(
-        page,
-        previousEvents,
-        eventTimes,
-        accessibilityTest,
-        user,
-      );
+      if (user === "seniorJudge") {
+        caseNumber = await buildCase.buildCase(
+          page,
+          previousEvents,
+          eventTimes,
+          accessibilityTest,
+          "caseWorker",
+        );
+        await page.getByText("Sign out").click();
+        await idamLoginHelper.signInUser(page, user, config.CaseAPIBaseURL);
+        await page.goto(
+          config.CaseAPIBaseURL +
+            `/case-details/${caseNumber.replace(/-/g, "")}#History`,
+        );
+      } else {
+        caseNumber = await buildCase.buildCase(
+          page,
+          previousEvents,
+          eventTimes,
+          accessibilityTest,
+          user,
+        );
+      }
     }
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -110,6 +127,7 @@ const createListing: CreateListing = {
             page,
             caseNumber,
             accessibilityTest,
+            errorMessaging,
           );
           await createListingListingDetailsPage.fillInFields(
             page,
@@ -184,6 +202,7 @@ const createListing: CreateListing = {
             page,
             caseNumber,
             accessibilityTest,
+            errorMessaging,
           );
           await createListingListingDetailsPage.triggerErrorMessages(page);
           await createListingListingDetailsPage.fillInFields(

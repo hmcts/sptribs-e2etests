@@ -25,6 +25,7 @@ type CreateListingListingDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -55,6 +56,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -109,43 +111,44 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       page.locator(this.continue).isVisible(),
       page.locator(this.cancel).isVisible(),
     ]);
-    await page.getByLabel("Yes", { exact: true }).click();
-    await page.getByRole("button", { name: "Add new" }).click();
-    await Promise.all([
-      expect(page.locator(".heading-h2").nth(0)).toHaveText(
-        createListingListingDetailsContent.subTitle2,
-      ),
-      expect(page.locator(".heading-h3")).toHaveText(
-        createListingListingDetailsContent.subTitle2,
-      ),
-      page.locator(this.remove).isVisible(),
-      expect(
-        page.locator("#hearingVenueDate > fieldset > legend > span"),
-      ).toHaveText(createListingListingDetailsContent.subTitle1),
-      ...Array.from({ length: 7 }, (_, index) => {
-        const textOnPage = (createListingListingDetailsContent as any)[
-          `textOnPage${index + 7}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
-          2,
-        );
-      }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${createListingListingDetailsContent.textOnPage18}")`,
+    if (!errorMessaging) {
+      await page.getByLabel("Yes", { exact: true }).click();
+      await page.getByRole("button", { name: "Add new" }).click();
+      await Promise.all([
+        expect(page.locator(".heading-h2").nth(0)).toHaveText(
+          createListingListingDetailsContent.subTitle2,
         ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.getByRole("button", { name: "Add new" }),
-        2,
-      ),
-    ]);
-    await page.click(this.remove);
-    await expect(page.locator(".cdk-overlay-container")).toBeVisible();
-    await page.locator("button[title='Remove']").click();
-
+        expect(
+          page.locator("div.float-left > label > h3.heading-h3"),
+        ).toHaveText(createListingListingDetailsContent.subTitle2),
+        page.locator(this.remove).isVisible(),
+        expect(
+          page.locator("#hearingVenueDate > fieldset > legend > span"),
+        ).toHaveText(createListingListingDetailsContent.subTitle1),
+        ...Array.from({ length: 7 }, (_, index) => {
+          const textOnPage = (createListingListingDetailsContent as any)[
+            `textOnPage${index + 7}`
+          ];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.form-label:text-is("${textOnPage}")`),
+            2,
+          );
+        }),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.form-label:text-is("${createListingListingDetailsContent.textOnPage18}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.getByRole("button", { name: "Add new" }),
+          2,
+        ),
+      ]);
+      await page.click(this.remove);
+      await expect(page.locator(".cdk-overlay-container")).toBeVisible();
+      await page.locator("button[title='Remove']").click();
+    }
     if (accessibilityTest) {
       await axeTest(page);
     }

@@ -65,7 +65,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     await createListing.createListing(
       page,
       "hearingCentreTeamLead",
-      true,
+      false,
       true,
       "3-North East",
       "Case management",
@@ -122,7 +122,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     await createListing.createListing(
       page,
       "hearingCentreAdmin",
-      true,
+      false,
       true,
       "6-South West",
       "Case management",
@@ -211,6 +211,25 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
+  test("Create hearing listing with a region but venue not listed. @CaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await createListing.createListing(
+      page,
+      "caseWorker",
+      false,
+      true,
+      "2-Midlands",
+      "Case management",
+      "Face to Face",
+      "Morning",
+      false,
+      false,
+      null,
+      false,
+    );
+  });
+
   test("Error messaging. @CaseAPI", async ({ page }): Promise<void> => {
     await createListing.createListing(
       page,
@@ -227,4 +246,23 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       true,
     );
   });
+});
+
+test("Accessibility test - create listing @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await createListing.createListing(
+    page,
+    "caseWorker",
+    true,
+    true,
+    "1-London",
+    "Case management",
+    "Face to Face",
+    "Morning",
+    false,
+    false,
+    "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+    false,
+  );
 });
