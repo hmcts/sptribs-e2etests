@@ -1,47 +1,45 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import buildCase from "./buildCase.ts";
+import panelComposition from "./panelComposition.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 import casePanelCompositionPage, {
   Panel2,
   Panel3,
-} from "../../pages/CaseAPI/panelComposition/casePanelCompositionPage.ts";
-import submitPage from "../../pages/CaseAPI/panelComposition/submitPage.ts";
+} from "../../pages/CaseAPI/editPanelComposition/casePanelCompositionPage.ts";
+import submitPage from "../../pages/CaseAPI/editPanelComposition/submitPage.ts";
 import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
-type PanelComposition = {
-  panelComposition(
+type EditPanelComposition = {
+  editPanelComposition(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
-  ): Promise<string>;
+  ): Promise<void>;
 };
 
-const panelComposition: PanelComposition = {
-  async panelComposition(
+const editPanelComposition: EditPanelComposition = {
+  async editPanelComposition(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
-  ): Promise<string> {
-    let previousEvents: allEvents[] = [];
-    let eventTimes: string[] = [];
-    const caseNumber: string = await buildCase.buildCase(
+  ): Promise<void> {
+    const caseNumber: string = await panelComposition.panelComposition(
       page,
-      previousEvents,
-      eventTimes,
-      accessibilityTest,
       user,
+      accessibilityTest,
+      "Medical Member",
+      "Lay Member",
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
-      events_content.panelComposition,
+      "Case: Edit Panel Composition",
     );
     await casePanelCompositionPage.checkPageLoads(
       page,
@@ -70,8 +68,7 @@ const panelComposition: PanelComposition = {
       panel3,
       specialisms,
     );
-    return caseNumber;
   },
 };
 
-export default panelComposition;
+export default editPanelComposition;

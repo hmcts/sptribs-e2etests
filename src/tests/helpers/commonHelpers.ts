@@ -420,4 +420,5 @@ export type allEvents =
   | "Case: Hearing Options"
   | "Link cases"
   | "Case: Clear Hearing Options"
-  | "Case: Panel Composition";
+  | "Case: Panel Composition"
+  | "Case: Edit Panel Composition";
