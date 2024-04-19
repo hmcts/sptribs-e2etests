@@ -2,14 +2,13 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirmContent from "../../../fixtures/content/CaseAPI/createListing/confirm_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content
-  from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type ConfirmPage = {
   checkPageLoads(
     page: Page,
     caseNumber: string,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -18,7 +17,7 @@ const confirmPage: ConfirmPage = {
   async checkPageLoads(
     page: Page,
     caseNumber: string,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(confirmContent.pageHint),
@@ -33,9 +32,7 @@ const confirmPage: ConfirmPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h2:has-text("${confirmContent.textOnPage}")`,
-        ),
+        page.locator(`markdown > h2:has-text("${confirmContent.textOnPage}")`),
         1,
       ),
     ]);
