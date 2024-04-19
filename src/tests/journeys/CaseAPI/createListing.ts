@@ -18,6 +18,7 @@ import createListingOtherInformationPage from "../../pages/CaseAPI/createListing
 import createListingNotifyPage from "../../pages/CaseAPI/createListing/createListingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
 import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
+import confirmPage from "../../pages/CaseAPI/createListing/confirmPage.ts";
 
 type CreateListing = {
   createListing(
@@ -111,7 +112,7 @@ const createListing: CreateListing = {
             hearingFormat,
           );
           await createListingHearingTypeAndFormatPage.continueOn(page);
-          await page.waitForTimeout(1000);
+          // await page.waitForTimeout(1000);
           await createListingRegionInfoPage.checkPageLoads(
             page,
             caseNumber,
@@ -136,7 +137,7 @@ const createListing: CreateListing = {
             hearingAcrossMultipleDays,
           );
           await createListingListingDetailsPage.continueOn(page);
-          await page.waitForTimeout(1000);
+          // await page.waitForTimeout(1000);
           await createListingRemoteHearingInformationPage.checkPageLoads(
             page,
             caseNumber,
@@ -144,7 +145,7 @@ const createListing: CreateListing = {
           );
           await createListingRemoteHearingInformationPage.fillInFields(page);
           await createListingRemoteHearingInformationPage.continueOn(page);
-          await page.waitForTimeout(1000);
+          // await page.waitForTimeout(1000);
           await createListingOtherInformationPage.checkPageLoads(
             page,
             caseNumber,
@@ -177,6 +178,10 @@ const createListing: CreateListing = {
             venue,
           );
           await submitPage.continueOn(page);
+          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await confirmPage.continueOn(page);
+          await page.pause();
+          // check hearings tab
           break;
         case true:
           await createListingHearingTypeAndFormatPage.triggerErrorMessage(page);
@@ -186,7 +191,7 @@ const createListing: CreateListing = {
             hearingFormat,
           );
           await createListingHearingTypeAndFormatPage.continueOn(page);
-          await page.waitForTimeout(1000);
+          // await page.waitForTimeout(1000);
           await createListingRegionInfoPage.checkPageLoads(
             page,
             caseNumber,
@@ -218,7 +223,7 @@ const createListing: CreateListing = {
             accessibilityTest,
           );
           await createListingRemoteHearingInformationPage.continueOn(page);
-          await page.waitForTimeout(1000);
+          // await page.waitForTimeout(1000);
           await createListingOtherInformationPage.checkPageLoads(
             page,
             caseNumber,
