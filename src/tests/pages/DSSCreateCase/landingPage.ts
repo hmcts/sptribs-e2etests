@@ -40,9 +40,9 @@ const landingPage: LandingPage = {
             const textOnPage = (LandingPageDetails as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body-l").nth( 1),
-            ).toContainText(textOnPage);
+            return expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+              textOnPage,
+            );
           }),
           expect(page.locator(landingPage.startButton)).toContainText(
             "Dechrau nawr",
@@ -65,9 +65,9 @@ const landingPage: LandingPage = {
             const textOnPage = (LandingPageDetails as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body-l").nth(1),
-            ).toContainText(textOnPage);
+            return expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+              textOnPage,
+            );
           }),
           expect(page.locator(landingPage.startButton)).toHaveText("Start now"),
         ]);

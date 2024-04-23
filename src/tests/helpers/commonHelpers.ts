@@ -420,7 +420,9 @@ export type allEvents =
   | "Case: Hearing Options"
   | "Case: Clear Hearing Options"
   | "Hearings: Create listing"
-  | "Link cases";
+  | "Link cases"
+  | "Case: Panel Composition"
+  | "Case: Edit Panel Composition";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
