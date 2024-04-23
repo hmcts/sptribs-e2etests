@@ -103,8 +103,11 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           ]);
         }
         await Promise.all([
-          expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
-            CheckYourAnswersContent.subTitleCy7,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitleCy7}")`,
+            ),
+            1,
           ),
           expect(page.locator(".govuk-body-l")).toHaveText(
             CheckYourAnswersContent.textOnPageCy16,
@@ -173,8 +176,11 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           ]);
         }
         await Promise.all([
-          expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
-            CheckYourAnswersContent.subTitle7,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitle7}")`,
+            ),
+            1,
           ),
           expect(page.locator(".govuk-body-l")).toHaveText(
             CheckYourAnswersContent.textOnPage16,

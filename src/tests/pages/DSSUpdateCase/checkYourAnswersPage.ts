@@ -70,8 +70,11 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
                 ),
                 1,
               ),
-              expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
-                CheckYourAnswersContent.subTitleCy,
+              commonHelpers.checkVisibleAndPresent(
+                page.locator(
+                  `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitleCy}")`,
+                ),
+                1,
               ),
               expect(page.locator(".govuk-body-l")).toHaveText(
                 CheckYourAnswersContent.textOnPageCy4,
@@ -104,8 +107,11 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
               ),
               10,
             ),
-            expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
-              CheckYourAnswersContent.subTitleCy,
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitleCy}")`,
+              ),
+              1,
             ),
             expect(page.locator(".govuk-body-l")).toHaveText(
               CheckYourAnswersContent.textOnPageCy4,
@@ -144,8 +150,11 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
                 ),
                 1,
               ),
-              expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
-                CheckYourAnswersContent.subTitle,
+              commonHelpers.checkVisibleAndPresent(
+                page.locator(
+                  `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitle}")`,
+                ),
+                1,
               ),
               expect(page.locator(".govuk-body-l")).toHaveText(
                 CheckYourAnswersContent.textOnPage4,
@@ -178,8 +187,11 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
               ),
               10,
             ),
-            expect(page.locator(".govuk-heading-l").nth(1)).toHaveText(
-              CheckYourAnswersContent.subTitle,
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitle}")`,
+              ),
+              1,
             ),
             expect(page.locator(".govuk-body-l")).toHaveText(
               CheckYourAnswersContent.textOnPage4,
