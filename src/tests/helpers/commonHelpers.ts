@@ -419,4 +419,6 @@ export type allEvents =
   | "Case: Issue to respondent"
   | "Case: Hearing Options"
   | "Link cases"
-  | "Case: Clear Hearing Options";
+  | "Case: Clear Hearing Options"
+  | "Case: Panel Composition"
+  | "Case: Edit Panel Composition";
