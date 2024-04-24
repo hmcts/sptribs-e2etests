@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
-test.describe("Create hearing listing tests @CaseAPI", (): void => {
+test.describe.only("Create hearing listing tests @CaseAPI", (): void => {
   test("Create hearing listing as a caseworker in the 'Case management' state.", async ({
     page,
   }): Promise<void> => {

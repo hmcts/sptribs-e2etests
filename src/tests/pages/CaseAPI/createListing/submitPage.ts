@@ -294,7 +294,7 @@ const submitPage: SubmitPage = {
         ),
       ]);
 
-      if (hearingSession === "Morning" || "All day") {
+      if (hearingSession === "Morning" || hearingSession === "All day") {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
             `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
@@ -329,7 +329,7 @@ const submitPage: SubmitPage = {
         ),
       ]);
 
-      if (hearingSession === "Morning" || "All day") {
+      if (hearingSession === "Morning" || hearingSession === "All day") {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
             `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,

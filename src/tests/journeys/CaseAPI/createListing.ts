@@ -19,6 +19,8 @@ import createListingNotifyPage from "../../pages/CaseAPI/createListing/createLis
 import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
 import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
 import confirmPage from "../../pages/CaseAPI/createListing/confirmPage.ts";
+import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
+import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type CreateListing = {
   createListing(
@@ -177,7 +179,26 @@ const createListing: CreateListing = {
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-          // check hearings tab
+          await hearingTabPage.changeToHearingsTab(page);
+          await hearingsTabPage.checkPageLoads(
+            page,
+            region,
+            hearingAcrossMultipleDays,
+            readyToList,
+            venue,
+            accessibilityTest,
+          );
+          await hearingsTabPage.checkValidInfo(
+            page,
+            region,
+            caseRegionCode,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+            readyToList,
+            venue,
+          );
           break;
         case true:
           await createListingHearingTypeAndFormatPage.triggerErrorMessage(page);
