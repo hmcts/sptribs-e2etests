@@ -25,7 +25,7 @@ const hearingsTab_content = {
   textOnPage21: "Video call link",
   textOnPage22: "Conference call number",
   textOnPage23: "Other important information",
-  additionalHearingDateTitle: "Additional Hearing date 1",
+  additionalHearingDateTitle: "Additional Hearing date",
   additionalHearingDate: "Hearing date",
   additionalHearingDateTime: "Start time (24hr format)",
   listedStatus: "Listed",

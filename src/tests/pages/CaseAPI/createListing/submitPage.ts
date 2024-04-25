@@ -136,27 +136,27 @@ const submitPage: SubmitPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `dl.complex-panel-title > dt > span.text-16:text-is("${submitContent.additionalHearingDateTitle}")`,
+            `dl.complex-panel-title > dt > span.text-16:has-text("${submitContent.additionalHearingDateTitle}")`,
           ),
-          1,
+          3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.additionalHearingDate}")`,
           ),
-          1,
+          3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.textOnPage9}")`,
           ),
-          1,
+          3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.additionalHearingDateTime}")`,
           ),
-          1,
+          3,
         ),
       ]);
     }
@@ -319,13 +319,13 @@ const submitPage: SubmitPage = {
           page.locator(
             `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
           ),
-          2,
+          4,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
           ),
-          2,
+          4,
         ),
       ]);
 
@@ -334,14 +334,14 @@ const submitPage: SubmitPage = {
           page.locator(
             `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
           ),
-          2,
+          4,
         );
       } else if (hearingSession === "Afternoon") {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
             `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
           ),
-          2,
+          4,
         );
       }
     }

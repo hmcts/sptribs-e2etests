@@ -7,6 +7,8 @@ import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTit
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
+import { UserRole } from "../config.ts";
+import idamLoginHelper from "./idamLoginHelper.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -33,6 +35,12 @@ interface CommonHelpers {
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
   feedbackBanner(page: Page, cy: boolean, landingPage: boolean): Promise<void>;
+  signOutAndGoToCase(
+    page: Page,
+    user: UserRole,
+    baseURL: string,
+    caseNumber: string,
+  ): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -336,6 +344,17 @@ const commonHelpers: CommonHelpers = {
         }
         break;
     }
+  },
+
+  async signOutAndGoToCase(
+    page: Page,
+    user: UserRole,
+    baseURL: string,
+    caseNumber: string,
+  ): Promise<void> {
+    await page.getByText("Sign out").click();
+    await idamLoginHelper.signInUser(page, user, baseURL);
+    await page.goto(await this.generateUrl(baseURL, caseNumber));
   },
 };
 

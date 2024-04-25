@@ -19,7 +19,7 @@ const submit_content = {
   textOnPage15: "Other important information",
   textOnPage16: "Listing information recipient",
   venueNull: "Hearing Venue",
-  additionalHearingDateTitle: "Additional Hearing date 1",
+  additionalHearingDateTitle: "Additional Hearing date",
   additionalHearingDate: "Hearing date",
   additionalHearingDateTime: "Start time (24hr format)",
 } as const;

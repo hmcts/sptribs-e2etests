@@ -212,6 +212,52 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
           createListingListingDetailsContent.afternoonTime,
         );
       }
+      await page.getByRole("button", { name: "Add new" }).nth(1).click();
+      await page
+        .locator("#hearingVenueDate-day")
+        .nth(1)
+        .fill(`${currentDate.getDate()}`);
+      await page
+        .locator("#hearingVenueDate-month")
+        .nth(1)
+        .fill(`${currentDate.getMonth() + 1}`);
+      await page
+        .locator("#hearingVenueDate-year")
+        .nth(1)
+        .fill(`${currentDate.getFullYear()}`);
+      await page.getByLabel(hearingSession).nth(2).dispatchEvent("click");
+      if (hearingSession === "Morning" || hearingSession === "All day") {
+        await page
+          .locator("#additionalHearingDate_1_hearingVenueTime")
+          .fill(createListingListingDetailsContent.morningTime);
+      } else if (hearingSession === "Afternoon") {
+        await page
+          .locator("#additionalHearingDate_1_hearingVenueTime")
+          .fill(createListingListingDetailsContent.afternoonTime);
+      }
+      await page.getByRole("button", { name: "Add new" }).nth(1).click();
+      await page
+        .locator("#hearingVenueDate-day")
+        .nth(2)
+        .fill(`${currentDate.getDate()}`);
+      await page
+        .locator("#hearingVenueDate-month")
+        .nth(2)
+        .fill(`${currentDate.getMonth() + 1}`);
+      await page
+        .locator("#hearingVenueDate-year")
+        .nth(2)
+        .fill(`${currentDate.getFullYear()}`);
+      await page.getByLabel(hearingSession).nth(3).dispatchEvent("click");
+      if (hearingSession === "Morning" || hearingSession === "All day") {
+        await page
+          .locator("#additionalHearingDate_2_hearingVenueTime")
+          .fill(createListingListingDetailsContent.morningTime);
+      } else if (hearingSession === "Afternoon") {
+        await page
+          .locator("#additionalHearingDate_2_hearingVenueTime")
+          .fill(createListingListingDetailsContent.afternoonTime);
+      }
     }
   },
 
