@@ -3,6 +3,7 @@ import { UserRole } from "../../config.ts";
 import commonHelpers, {
   allEvents,
   caseRegionCode,
+  hearingFormat,
 } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
@@ -19,7 +20,7 @@ type HearingOptions = {
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
     editJourney: boolean,
   ): Promise<string>;
@@ -34,7 +35,7 @@ const hearingOptions: HearingOptions = {
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
     editJourney: boolean,
   ): Promise<string> {

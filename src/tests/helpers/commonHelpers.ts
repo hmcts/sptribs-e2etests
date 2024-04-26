@@ -7,6 +7,8 @@ import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTit
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
+import { UserRole } from "../config.ts";
+import idamLoginHelper from "./idamLoginHelper.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -33,6 +35,12 @@ interface CommonHelpers {
   checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
   feedbackBanner(page: Page, cy: boolean, landingPage: boolean): Promise<void>;
+  signOutAndGoToCase(
+    page: Page,
+    user: UserRole,
+    baseURL: string,
+    caseNumber: string,
+  ): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -337,6 +345,17 @@ const commonHelpers: CommonHelpers = {
         break;
     }
   },
+
+  async signOutAndGoToCase(
+    page: Page,
+    user: UserRole,
+    baseURL: string,
+    caseNumber: string,
+  ): Promise<void> {
+    await page.getByText("Sign out").click();
+    await idamLoginHelper.signInUser(page, user, baseURL);
+    await page.goto(await this.generateUrl(baseURL, caseNumber));
+  },
 };
 
 export default commonHelpers;
@@ -418,7 +437,50 @@ export type allEvents =
   | "To link related cases"
   | "Case: Issue to respondent"
   | "Case: Hearing Options"
-  | "Link cases"
   | "Case: Clear Hearing Options"
+  | "Hearings: Create listing"
+  | "Link cases"
   | "Case: Panel Composition"
   | "Case: Edit Panel Composition";
+
+export type hearingType = "Case management" | "Final" | "Interlocutory";
+
+export type hearingFormat =
+  | "Face to Face"
+  | "Hybrid"
+  | "Video"
+  | "Telephone"
+  | "Paper";
+
+export type hearingSession = "Morning" | "Afternoon" | "All day";
+
+export type hearingVenues =
+  | "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London"
+  | "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London"
+  | "Aberdeen Tribunal Hearing Centre-AB1, 48 Huntly Street, Aberdeen, AB10 1SH"
+  | "Glasgow Tribunals Centre-20 York Street, Glasgow"
+  | "Dundee Tribunal Hearing Centre-Endeavour House, Ground Floor, 1 Greenmarket, Dundee, DD1 4QB"
+  | "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street"
+  | "North Staffordshire Justice Centre - Magistrates-Ryecroft"
+  | "Nottingham Magistrates Court-Carrington Street"
+  | "Wolverhampton Social Security And Child Support Tribunal-Wolverhampton ASC, Norwich Union House, 31 Waterloo Road, WV1 4DJ"
+  | "Bradford Tribunal Hearing Centre-Rushton Avenue"
+  | "Leeds Employment Tribunal-4th floor, City Exchange, 11 Albion Street, LS1 5ES"
+  | "North Shields County Court And Family Court-2nd Floor, Kings Court, Earl Grey Way, Royal Quays"
+  | "Sheffield Magistrates Court-Castle Street"
+  | "Birkenhead County Court And Family Court-76 Hamilton Street"
+  | "Liverpool Civil And Family Court-Vernon Street, City Square"
+  | "Ashford Tribunal Hearing Centre-County Square"
+  | "Brighton Tribunal Hearing Centre-City Gate House, 185 Dyke Road"
+  | "Chelmsford Justice Centre-Priory Place, New London Road, CM2 0PP"
+  | "Ipswich Magistrates Court-Elm Street, Ipswich, IP1 2AP"
+  | "Kings Lynn Crown Court (& Magistrates)-St Margaret's Place, College Lane"
+  | "Kings Lynn Crown Court-St Margaret's Place, College Lane"
+  | "Norwich Social Security And Child Support Tribunal-The Old Bakery, 115 Queens Road, NR1 3PL"
+  | "Southend Magistrates' Court-The Court House, 80 Victoria Avenue, Southend On Sea, SS2 6EU"
+  | "Bristol Magistrates Court-Marlborough Street, Bristol, BS1 3NU"
+  | "Havant Justice Centre-The Court House, Elmleigh Road, Havant, Portsmouth, PO9 2AL"
+  | "Plymouth As St Catherine's House-St Catherine's House, 5 Notte Street Plymouth Devon"
+  | "Taunton Magistrates Court-St John's Road"
+  | "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road"
+  | "Port Talbot Justice Centre - Family-Harbourside Road";

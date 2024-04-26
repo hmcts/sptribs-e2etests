@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   caseRegionCode,
+  hearingFormat,
 } from "../../../helpers/commonHelpers.ts";
 import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/hearingOptions/submit_content.ts";
@@ -22,7 +23,7 @@ type SubmitPage = {
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -86,7 +87,7 @@ const submitPage: SubmitPage = {
     caseRegionCode: caseRegionCode | null,
     venue: boolean,
     venueNotListed: boolean,
-    hearingFormat: string,
+    hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
   ): Promise<void> {
     if (region) {
