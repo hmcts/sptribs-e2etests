@@ -17,7 +17,6 @@ import createListingRemoteHearingInformationPage from "../../pages/CaseAPI/creat
 import createListingOtherInformationPage from "../../pages/CaseAPI/createListing/createListingOtherInformationPage.ts";
 import createListingNotifyPage from "../../pages/CaseAPI/createListing/createListingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
-import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
 import confirmPage from "../../pages/CaseAPI/createListing/confirmPage.ts";
 import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
@@ -36,7 +35,7 @@ type CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<void>;
+  ): Promise<string | undefined>;
 };
 
 const createListing: CreateListing = {
@@ -53,7 +52,7 @@ const createListing: CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<void> {
+  ): Promise<string | undefined> {
     let caseNumber: string | undefined;
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
@@ -62,7 +61,7 @@ const createListing: CreateListing = {
       caseNumber = await hearingOptions.hearingOptions(
         page,
         user,
-        accessibilityTest,
+        false,
         true,
         "1-London",
         true,
@@ -77,21 +76,16 @@ const createListing: CreateListing = {
           page,
           previousEvents,
           eventTimes,
-          accessibilityTest,
+          false,
           "caseWorker",
         );
-        await page.getByText("Sign out").click();
-        await idamLoginHelper.signInUser(page, user, config.CaseAPIBaseURL);
-        await page.goto(
-          config.CaseAPIBaseURL +
-            `/case-details/${caseNumber.replace(/-/g, "")}#History`,
-        );
+        await commonHelpers.signOutAndGoToCase(page, user, config.CaseAPIBaseURL, caseNumber);
       } else {
         caseNumber = await buildCase.buildCase(
           page,
           previousEvents,
           eventTimes,
-          accessibilityTest,
+          false,
           user,
         );
       }
@@ -199,7 +193,7 @@ const createListing: CreateListing = {
             readyToList,
             venue,
           );
-          break;
+          return caseNumber;
         case true:
           await createListingHearingTypeAndFormatPage.triggerErrorMessage(page);
           await createListingHearingTypeAndFormatPage.fillInFields(

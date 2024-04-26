@@ -36,9 +36,9 @@ const confirmPage: ConfirmPage = {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await axeTest(page);
-    // }
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async continueOn(page: Page): Promise<void> {
