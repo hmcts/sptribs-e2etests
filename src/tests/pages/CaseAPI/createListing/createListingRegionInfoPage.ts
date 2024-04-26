@@ -56,9 +56,9 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
       page.locator(this.continue).isVisible(),
       page.locator(this.cancel).isVisible(),
     ]);
-    // if (accessibilityTest) {
-    //   await axeTest(page);
-    // }
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async fillInFields(

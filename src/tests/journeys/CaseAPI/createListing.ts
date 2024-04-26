@@ -17,6 +17,7 @@ import createListingRemoteHearingInformationPage from "../../pages/CaseAPI/creat
 import createListingOtherInformationPage from "../../pages/CaseAPI/createListing/createListingOtherInformationPage.ts";
 import createListingNotifyPage from "../../pages/CaseAPI/createListing/createListingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
+import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
 import confirmPage from "../../pages/CaseAPI/createListing/confirmPage.ts";
 import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
@@ -35,7 +36,7 @@ type CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<string | undefined>;
+  ): Promise<void>;
 };
 
 const createListing: CreateListing = {
@@ -52,7 +53,7 @@ const createListing: CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<string | undefined> {
+  ): Promise<void> {
     let caseNumber: string | undefined;
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
@@ -61,7 +62,7 @@ const createListing: CreateListing = {
       caseNumber = await hearingOptions.hearingOptions(
         page,
         user,
-        false,
+        accessibilityTest,
         true,
         "1-London",
         true,
@@ -76,21 +77,21 @@ const createListing: CreateListing = {
           page,
           previousEvents,
           eventTimes,
-          false,
+          accessibilityTest,
           "caseWorker",
         );
-        await commonHelpers.signOutAndGoToCase(
-          page,
-          user,
-          config.CaseAPIBaseURL,
-          caseNumber,
+        await page.getByText("Sign out").click();
+        await idamLoginHelper.signInUser(page, user, config.CaseAPIBaseURL);
+        await page.goto(
+          config.CaseAPIBaseURL +
+            `/case-details/${caseNumber.replace(/-/g, "")}#History`,
         );
       } else {
         caseNumber = await buildCase.buildCase(
           page,
           previousEvents,
           eventTimes,
-          false,
+          accessibilityTest,
           user,
         );
       }
@@ -198,7 +199,7 @@ const createListing: CreateListing = {
             readyToList,
             venue,
           );
-          return caseNumber;
+          break;
         case true:
           await createListingHearingTypeAndFormatPage.triggerErrorMessage(page);
           await createListingHearingTypeAndFormatPage.fillInFields(

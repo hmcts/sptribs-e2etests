@@ -55,9 +55,9 @@ const createListingNotifyPage: CreateListingNotifyPage = {
         );
       }),
     ]);
-    // if (accessibilityTest) {
-    //   await axeTest(page);
-    // }
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async continueOn(page: Page): Promise<void> {

@@ -149,9 +149,9 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await expect(page.locator(".cdk-overlay-container")).toBeVisible();
       await page.locator("button[title='Remove']").click();
     }
-    // if (accessibilityTest) {
-    //   await axeTest(page);
-    // }
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async fillInFields(
