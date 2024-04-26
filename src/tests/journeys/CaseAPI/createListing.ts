@@ -79,7 +79,12 @@ const createListing: CreateListing = {
           false,
           "caseWorker",
         );
-        await commonHelpers.signOutAndGoToCase(page, user, config.CaseAPIBaseURL, caseNumber);
+        await commonHelpers.signOutAndGoToCase(
+          page,
+          user,
+          config.CaseAPIBaseURL,
+          caseNumber,
+        );
       } else {
         caseNumber = await buildCase.buildCase(
           page,
