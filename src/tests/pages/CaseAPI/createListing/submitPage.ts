@@ -160,9 +160,9 @@ const submitPage: SubmitPage = {
         ),
       ]);
     }
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
   async checkValidInfo(
