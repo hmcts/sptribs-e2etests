@@ -53,7 +53,7 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await page.locator("#cicCaseHearingList").selectOption({ value: "1" });
+    await page.locator("#cicCaseHearingList").selectOption({ index: 1 });
   },
 
   async continueOn(page: Page): Promise<void> {

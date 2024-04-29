@@ -35,7 +35,7 @@ type CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<string | undefined>;
+  ): Promise<string | void>;
 };
 
 const createListing: CreateListing = {
@@ -52,8 +52,8 @@ const createListing: CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<string | undefined> {
-    let caseNumber: string | undefined;
+  ): Promise<string | void> {
+    let caseNumber: string | void;
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
 

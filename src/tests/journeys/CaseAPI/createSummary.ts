@@ -1,13 +1,18 @@
 import { Page } from "@playwright/test";
 import createListing from "./createListing.ts";
 import { UserRole } from "../../config.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  hearingAdjournedReasons,
+  hearingOutcome,
+} from "../../helpers/commonHelpers.ts";
 import createSummarySelectHearingPage from "../../pages/CaseAPI/createSummary/createSummarySelectHearingPage.ts";
 
 type CreateSummary = {
   createSummary(
     page: Page,
     user: UserRole,
+    hearingOutcome: hearingOutcome,
+    hearingAdjournedReason: hearingAdjournedReasons | null,
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<string | void>;
@@ -17,6 +22,8 @@ const createSummary: CreateSummary = {
   async createSummary(
     page: Page,
     user: UserRole,
+    hearingOutcome: hearingOutcome,
+    hearingAdjournedReason: hearingAdjournedReasons | null,
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<string | void> {
@@ -24,7 +31,7 @@ const createSummary: CreateSummary = {
 
     caseNumber = await createListing.createListing(
       page,
-      "caseWorker",
+      user,
       false,
       true,
       "1-London",
@@ -50,7 +57,7 @@ const createSummary: CreateSummary = {
           );
           await createSummarySelectHearingPage.fillInFields(page);
           await createSummarySelectHearingPage.continueOn(page);
-
+          await page.pause();
           break;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(
