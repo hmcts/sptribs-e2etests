@@ -4,7 +4,7 @@ const uploadSupportingDocuments_content = {
     "You must send a copy of the Authority's Review decision letter with the completed tribunal form.",
   dropdownLink: "File uploads requirements",
   textOnPage2: "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
-  textOnPage3: "File size per document: up to 20 megabytes (MB)",
+  textOnPage3: "File size per document: up to 100 megabytes (MB)",
   textOnPage4: "Files cannot be password protected",
   textOnPage5:
     "You can’t upload executable (.exe), .zip or other archive files due to virus risks.",
@@ -26,7 +26,7 @@ const uploadSupportingDocuments_content = {
   dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
   textOnPageCy2:
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF",
-  textOnPageCy3: "Maint ffeil pob dogfen: hyd at 20 megabeit (MB)",
+  textOnPageCy3: "Maint ffeil pob dogfen: hyd at 100 megabeit (MB)",
   textOnPageCy4: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
   textOnPageCy5:
     "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau .zip neu ffeiliau eraill oherwydd y risg o firws.",
