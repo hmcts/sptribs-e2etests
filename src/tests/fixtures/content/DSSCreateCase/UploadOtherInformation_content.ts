@@ -16,7 +16,7 @@ const uploadOtherInformation_content = {
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
   textOnPage10: "File size per document: up to 100 megabytes (MB)",
-  textOnPage11: "File size per multimedia file: 30 megabytes (MB)",
+  textOnPage11: "File size per multimedia file: 100 megabytes (MB)",
   textOnPage12: "Files cannot be password protected",
   textOnPage13:
     "You can’t upload executable (.exe), .zip or other archive files due to virus risks.",

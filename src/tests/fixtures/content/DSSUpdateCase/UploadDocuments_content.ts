@@ -18,8 +18,8 @@ const uploadDocumentsContent = {
   dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
-  textOnPage10: "File size per document: up to 500 megabytes (MB)",
-  textOnPage11: "File size per multimedia file: up to 500 megabytes (MB)",
+  textOnPage10: "File size per document: up to 100 megabytes (MB)",
+  textOnPage11: "File size per multimedia file: up to 100 megabytes (MB)",
   textOnPage12: "Files cannot be password protected",
   textOnPage13:
     "You can't upload executable (.exe), zip or other archive files due to virus risks.",
