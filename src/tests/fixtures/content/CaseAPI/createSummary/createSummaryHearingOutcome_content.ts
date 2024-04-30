@@ -29,15 +29,16 @@ const createSummaryHearingOutcome_content = {
   textOnPage22: "Further police evidence required - Respondent",
   textOnPage23: "Further police evidence required - Appellant",
   textOnPage24: "Further police evidence required - HMCTS (Summons)",
-  textOnPage25:"Insufficient time",
+  textOnPage25: "Insufficient time",
   textOnPage26: "Interpreter required",
   textOnPage27: "Member Unable to Attend",
   textOnPage28: "PO did not attend",
   textOnPage29: "Poor Evidence",
   textOnPage30: "Venue not suitable",
-  textOnPage31:"Witness did not attend",
+  textOnPage31: "Witness did not attend",
   textOnPage32: "Other",
-  textOnPage33: "Enter any other important information about this adjournment (Optional)"
-}
+  textOnPage33:
+    "Enter any other important information about this adjournment (Optional)",
+};
 
 export default createSummaryHearingOutcome_content;

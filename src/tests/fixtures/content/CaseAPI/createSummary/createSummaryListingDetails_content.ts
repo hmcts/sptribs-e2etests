@@ -28,7 +28,8 @@ const createSummaryListingDetails_content = {
   hearingVenueError: "Hearing Venue is required",
   validHearingVenueError: "Please enter valid Hearing venue",
   timeError: "Start time (24 hour format; e.g. 14:30) is required",
-  validTimeError: "The data entered is not valid for Start time (24 hour format; e.g. 14:30)",
+  validTimeError:
+    "The data entered is not valid for Start time (24 hour format; e.g. 14:30)",
   numberOfDaysError:
     "Will this hearing take place across a number of days? is required",
   room: "Lorem ipsum room",

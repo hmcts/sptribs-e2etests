@@ -20,6 +20,7 @@ type CreateSummaryHearingTypeAndFormatPage = {
     page: Page,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
+    editJourney: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -70,9 +71,14 @@ const createSummaryHearingTypeAndFormatPage: CreateSummaryHearingTypeAndFormatPa
       page: Page,
       hearingType: hearingType,
       hearingFormat: hearingFormat,
+      editJourney: boolean,
     ): Promise<void> {
-      await page.getByLabel(hearingType).check();
-      await page.getByLabel(hearingFormat).check();
+      await expect(page.getByLabel(hearingType)).toBeChecked();
+      await expect(page.getByLabel(hearingFormat)).toBeChecked();
+      if (editJourney) {
+        await page.getByLabel("Final").check();
+        await page.getByLabel("Video").check();
+      }
     },
 
     async continueOn(page: Page): Promise<void> {

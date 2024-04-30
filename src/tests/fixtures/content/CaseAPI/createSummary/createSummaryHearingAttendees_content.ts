@@ -16,7 +16,7 @@ const createSummaryHearingAttendees_content = {
   textOnPage8: "Observer",
   textOnPage9: "Appraiser",
   nameError: "Name of the panel member is required",
-  roleError: "What was their role on panel? is required"
+  roleError: "What was their role on panel? is required",
 } as const;
 
 export default createSummaryHearingAttendees_content;
