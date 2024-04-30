@@ -6,7 +6,7 @@ const uploadAppealForm_content = {
     "If you have other evidence or supporting documents, you can upload these files on the next screen.",
   dropdownLink: "File uploads requirements",
   textOnPage3: "File formats: MS Word, PDF",
-  textOnPage4: "File size per document: up to 20 megabytes (MB)",
+  textOnPage4: "File size per document: up to 100 megabytes (MB)",
   textOnPage5: "Files cannot be password protected",
   textOnPage6:
     "You can’t upload executable (.exe), .zip or other archive files due to virus risks.",

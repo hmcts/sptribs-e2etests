@@ -15,7 +15,7 @@ const uploadOtherInformation_content = {
   dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
-  textOnPage10: "File size per document: up to 20 megabytes (MB)",
+  textOnPage10: "File size per document: up to 100 megabytes (MB)",
   textOnPage11: "File size per multimedia file: 30 megabytes (MB)",
   textOnPage12: "Files cannot be password protected",
   textOnPage13:
