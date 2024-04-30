@@ -54,7 +54,7 @@ const uploadOtherInformation_content = {
   dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
   textOnPageCy9:
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF, MP4, MP3",
-  textOnPageCy10: "Maint ffeil pob dogfen: hyd at 10 megabeit (MB)",
+  textOnPageCy10: "Maint ffeil pob dogfen: hyd at 100 megabeit (MB)",
   textOnPageCy11: "Maint pob ffeil amlgyfrwng: 100 megabeit (MB)",
   textOnPageCy12: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
   textOnPageCy13:
