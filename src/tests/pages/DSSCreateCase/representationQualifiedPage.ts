@@ -30,22 +30,22 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
           expect(page.locator(".govuk-fieldset__heading")).toHaveText(
             representationQualifiedContent.pageTitleCy,
           ),
-          expect(page.locator(".govuk-hint")).toHaveText(
-            representationQualifiedContent.hintMessageCy,
-          ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationQualifiedContent as any)[
               `textOnPageCy${index + 1}`
-            ];
+              ];
             return expect(
               page.locator(".govuk-radios__label").nth(index),
             ).toHaveText(textOnPage);
           }),
+          expect(page.locator(".govuk-hint")).toHaveText(
+            representationQualifiedContent.hintMessageCy,
+          ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+          expect(page.locator(".govuk-heading-l")).toHaveText(
             representationQualifiedContent.pageTitle,
           ),
           expect(page.locator(".govuk-hint")).toHaveText(

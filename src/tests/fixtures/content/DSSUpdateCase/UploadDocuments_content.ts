@@ -18,8 +18,8 @@ const uploadDocumentsContent = {
   dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
-  textOnPage10: "File size per document: up to 500 megabytes (MB)",
-  textOnPage11: "File size per multimedia file: up to 500 megabytes (MB)",
+  textOnPage10: "File size per document: up to 100 megabytes (MB)",
+  textOnPage11: "File size per multimedia file: up to 100 megabytes (MB)",
   textOnPage12: "Files cannot be password protected",
   textOnPage13:
     "You can't upload executable (.exe), zip or other archive files due to virus risks.",
@@ -58,8 +58,8 @@ const uploadDocumentsContent = {
   dropdownLinkCy: "Gofynion llwytho ffeil",
   textOnPageCy9:
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, PNG, TXT, RFT, MP4, MP3",
-  textOnPageCy10: "Maint ffeil pob dogfen: hyd at 500 megabeit (MB)",
-  textOnPageCy11: "Maint pob ffeil amlgyfrwng: 500 megabeit (MB)",
+  textOnPageCy10: "Maint ffeil pob dogfen: hyd at 100 megabeit (MB)",
+  textOnPageCy11: "Maint pob ffeil amlgyfrwng: 100 megabeit (MB)",
   textOnPageCy12: "Ni ellir llwytho ffeiliau sydd wedi’u diogelu â chyfrinair",
   textOnPageCy13:
     "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau archif eraill oherwydd y risg o firws.",
