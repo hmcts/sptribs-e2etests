@@ -1,9 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingOutcome_content.ts";
-import commonHelpers, { hearingAdjournedReasons, hearingOutcome } from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content
-  from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import commonHelpers, {
+  hearingAdjournedReasons,
+  hearingOutcome,
+} from "../../../helpers/commonHelpers.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateSummaryHearingOutcomePage = {
   previous: string;
@@ -13,9 +15,13 @@ type CreateSummaryHearingOutcomePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    errorMessaging: boolean
+    errorMessaging: boolean,
   ): Promise<void>;
-  fillFields(page: Page, hearingOutcome: hearingOutcome, hearingAdjournedReason: hearingAdjournedReasons | null): Promise<void>;
+  fillFields(
+    page: Page,
+    hearingOutcome: hearingOutcome,
+    hearingAdjournedReason: hearingAdjournedReasons | null,
+  ): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -29,7 +35,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    errorMessaging: boolean
+    errorMessaging: boolean,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -47,7 +53,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
       ...Array.from({ length: 5 }, (_, index) => {
         const textOnPage = (createSummaryHearingOutcomeContent as any)[
           `textOnPage${index + 1}`
-          ];
+        ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
@@ -58,12 +64,14 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
       page.locator(this.cancel).isVisible(),
     ]);
     if (!errorMessaging) {
-      await page.getByLabel(createSummaryHearingOutcomeContent.textOnPage2).click();
+      await page
+        .getByLabel(createSummaryHearingOutcomeContent.textOnPage2)
+        .click();
       await Promise.all([
         ...Array.from({ length: 27 }, (_, index) => {
           const textOnPage = (createSummaryHearingOutcomeContent as any)[
             `textOnPage${index + 6}`
-            ];
+          ];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`.form-label:text-is("${textOnPage}")`),
             1,
@@ -86,7 +94,9 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
     if (hearingAdjournedReason !== null) {
       await page.getByLabel(hearingAdjournedReason).click();
       if (hearingAdjournedReason === "Other") {
-        await page.locator("#hearingAdjournedReason").fill(createSummaryHearingOutcomeContent.otherAdjournedReason)
+        await page
+          .locator("#hearingAdjournedReason")
+          .fill(createSummaryHearingOutcomeContent.otherAdjournedReason);
       }
     }
   },
@@ -101,7 +111,9 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
         createSummaryHearingOutcomeContent.decisionError,
       ),
     ]);
-    await page.getByLabel(createSummaryHearingOutcomeContent.textOnPage2).click();
+    await page
+      .getByLabel(createSummaryHearingOutcomeContent.textOnPage2)
+      .click();
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(

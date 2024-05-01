@@ -11,12 +11,14 @@ const createSummaryHearingRecordingUpload_content = {
   textOnPage5:
     "Note: If the remove button is disabled, please refresh the page to remove attachments",
   subTitle1: "Upload file (Optional)",
-  textOnPage6: "Document Category (Optional)",
-  textOnPage7: "Description (Optional)",
-  textOnPage8: "File (Optional)",
-  textOnPage9:
+  textOnPage6: "Upload file",
+  textOnPage7: "Document Category (Optional)",
+  textOnPage8: "Description (Optional)",
+  textOnPage9: "File (Optional)",
+  textOnPage10:
     "If you can't upload a recording of the hearing, please describe where it can be found. You can also enter a link to the recording",
-  textOnPage10: "Where can the recording be found? (Optional)",
+  textOnPage11: "Where can the recording be found? (Optional)",
+  description: "Lorem ipsum description",
 };
 
 export default createSummaryHearingRecordingUpload_content;

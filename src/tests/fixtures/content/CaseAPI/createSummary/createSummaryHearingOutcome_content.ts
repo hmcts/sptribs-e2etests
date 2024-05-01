@@ -40,7 +40,7 @@ const createSummaryHearingOutcome_content = {
   textOnPage33: "Other",
   textOnPage34:
     "Enter any other important information about this adjournment (Optional)",
-  otherAdjournedReason: "Lorem ipsum other adjournment reason"
+  otherAdjournedReason: "Lorem ipsum other adjournment reason",
 };
 
 export default createSummaryHearingOutcome_content;
