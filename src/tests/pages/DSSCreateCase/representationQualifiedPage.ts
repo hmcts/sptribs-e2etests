@@ -27,7 +27,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+          expect(page.locator(".govuk-heading-l")).toHaveText(
             representationQualifiedContent.pageTitleCy,
           ),
           expect(page.locator(".govuk-hint")).toHaveText(
@@ -45,7 +45,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+          expect(page.locator(".govuk-heading-l")).toHaveText(
             representationQualifiedContent.pageTitle,
           ),
           expect(page.locator(".govuk-hint")).toHaveText(

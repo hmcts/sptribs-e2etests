@@ -31,7 +31,7 @@ const representationPage: RepresentationPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+          expect(page.locator(".govuk-heading-l")).toHaveText(
             representationContent.pageTitleCy,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
@@ -46,7 +46,7 @@ const representationPage: RepresentationPage = {
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+          expect(page.locator(".govuk-heading-l")).toHaveText(
             representationContent.pageTitle,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
