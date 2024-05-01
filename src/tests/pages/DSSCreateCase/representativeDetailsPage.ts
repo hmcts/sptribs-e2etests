@@ -40,9 +40,6 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-            representativeDetailsContent.pageTitleCy,
-          ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representativeDetailsContent as any)[
               `textOnPageCy${index + 1}`
@@ -51,6 +48,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
               page.locator(".govuk-body").nth(index + 4),
             ).toHaveText(textOnPage);
           }),
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+            representativeDetailsContent.pageTitleCy,
+          ),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (representativeDetailsContent as any)[
               `subHeadingCy${index + 1}`

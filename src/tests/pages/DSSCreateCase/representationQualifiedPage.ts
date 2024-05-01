@@ -27,9 +27,6 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-            representationQualifiedContent.pageTitleCy,
-          ),
           expect(page.locator(".govuk-hint")).toHaveText(
             representationQualifiedContent.hintMessageCy,
           ),
@@ -41,6 +38,9 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
               page.locator(".govuk-radios__label").nth(index),
             ).toHaveText(textOnPage);
           }),
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+            representationQualifiedContent.pageTitleCy,
+          ),
         ]);
         break;
       default:
