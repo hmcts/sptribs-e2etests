@@ -30,7 +30,7 @@ const submit_content = {
   textOnPage20: "Document Category",
   textOnPage21: "Description",
   textOnPage22: "File",
-  textOnPage23: "Where can the recording be found?"
-}
+  textOnPage23: "Where can the recording be found?",
+};
 
 export default submit_content;

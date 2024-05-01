@@ -24,6 +24,7 @@ const createSummaryHearingAttendeesRole_content = {
   textOnPage18: "Other",
   textOnPage19: "Who was this other attendee?",
   otherAttendanceError: "Who was this other attendee? is required",
+  otherAttendee: "Test attendee",
 } as const;
 
 export default createSummaryHearingAttendeesRole_content;

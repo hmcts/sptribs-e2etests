@@ -30,7 +30,7 @@ type CreateListing = {
     caseRegionCode: caseRegionCode | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
-    hearingSession: string,
+    hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     venue: hearingVenues | null,
