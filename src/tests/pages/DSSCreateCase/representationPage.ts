@@ -31,7 +31,7 @@ const representationPage: RepresentationPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
             representationContent.pageTitleCy,
           ),
           ...Array.from({ length: 2 }, (_, index) => {

@@ -27,19 +27,19 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-hint")).toHaveText(
-            representationQualifiedContent.hintMessageCy,
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+            representationQualifiedContent.pageTitleCy,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationQualifiedContent as any)[
               `textOnPageCy${index + 1}`
-            ];
+              ];
             return expect(
               page.locator(".govuk-radios__label").nth(index),
             ).toHaveText(textOnPage);
           }),
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
-            representationQualifiedContent.pageTitleCy,
+          expect(page.locator(".govuk-hint")).toHaveText(
+            representationQualifiedContent.hintMessageCy,
           ),
         ]);
         break;
