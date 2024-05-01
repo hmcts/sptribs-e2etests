@@ -40,7 +40,7 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
+          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
             representativeDetailsContent.pageTitleCy,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
