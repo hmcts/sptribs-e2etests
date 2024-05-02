@@ -486,6 +486,17 @@ export type hearingVenues =
   | "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road"
   | "Port Talbot Justice Centre - Family-Harbourside Road";
 
+export type hearingVenueNames =
+  | "Sheffield Magistrates Court"
+  | "Liverpool Civil And Family Court"
+  | "Aberdeen Tribunal Hearing Centre"
+  | "Birmingham Civil And Family Justice Centre"
+  | "East London Tribunal Hearing Centre"
+  | "Cardiff Social Security And Child Support Tribunal"
+  | "Bristol Magistrates Court"
+  | "Fox Court"
+  | "Brighton Tribunal Hearing Centre";
+
 export type hearingOutcome =
   | "Adjourned"
   | "Allowed"

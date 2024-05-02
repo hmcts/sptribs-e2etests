@@ -20,7 +20,7 @@ type CreateSummaryHearingAttendeesRolePage = {
 
 const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePage =
   {
-    previous: ".button-secondary",
+    previous: "button[name='Previous']",
     continue: '[type="submit"]',
     cancel: ".cancel",
 
@@ -42,12 +42,17 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createSummaryHearingAttendeesRoleContent.caseReference + caseNumber,
         ),
-        ...Array.from({ length: 18 }, (_, index) => {
+        expect(page.locator("#roles > fieldset > legend > span")).toHaveText(
+          createSummaryHearingAttendeesRoleContent.textOnPage1,
+        ),
+        ...Array.from({ length: 17 }, (_, index) => {
           const textOnPage = (createSummaryHearingAttendeesRoleContent as any)[
-            `textOnPage${index + 1}`
+            `textOnPage${index + 2}`
           ];
           return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.form-label:text-is("${textOnPage}")`),
+            page.locator(
+              `#roles > fieldset > div > label.form-label:text-is("${textOnPage}")`,
+            ),
             1,
           );
         }),
@@ -56,16 +61,20 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         page.locator(this.cancel).isVisible(),
       ]);
       await page
-        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18)
+        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18, {
+          exact: true,
+        })
         .check();
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.form-label:text-is("${createSummaryHearingAttendeesRoleContent.textOnPage19}")`,
+          `#caseEditForm > div > ccd-field-write > div > ccd-write-text-field > div > label > span:text-is("${createSummaryHearingAttendeesRoleContent.textOnPage19}")`,
         ),
         1,
       );
       await page
-        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18)
+        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18, {
+          exact: true,
+        })
         .click();
 
       if (accessibilityTest) {
@@ -78,7 +87,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         const label = (createSummaryHearingAttendeesRoleContent as any)[
           `textOnPage${i}`
         ];
-        await page.getByLabel(label).click();
+        await page.getByLabel(label, { exact: true }).click();
       }
       await page
         .locator("#others")

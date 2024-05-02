@@ -65,18 +65,37 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
     ]);
     if (!errorMessaging) {
       await page
-        .getByLabel(createSummaryHearingOutcomeContent.textOnPage2)
+        .getByLabel(createSummaryHearingOutcomeContent.textOnPage2, {
+          exact: true,
+        })
+        .click();
+      await page
+        .getByLabel(createSummaryHearingOutcomeContent.textOnPage33, {
+          exact: true,
+        })
         .click();
       await Promise.all([
-        ...Array.from({ length: 27 }, (_, index) => {
+        expect(
+          page.locator(
+            "#adjournmentReasons > fieldset > legend > label > span",
+          ),
+        ).toHaveText(createSummaryHearingOutcomeContent.textOnPage6),
+        ...Array.from({ length: 26 }, (_, index) => {
           const textOnPage = (createSummaryHearingOutcomeContent as any)[
-            `textOnPage${index + 6}`
+            `textOnPage${index + 7}`
           ];
           return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.form-label:text-is("${textOnPage}")`),
+            page.locator(
+              `#adjournmentReasons > fieldset > div > label:text-is("${textOnPage}")`,
+            ),
             1,
           );
         }),
+        expect(
+          page.locator(
+            "#caseEditForm > div > ccd-field-write > div > ccd-write-text-area-field > div > label > span",
+          ),
+        ).toHaveText(createSummaryHearingOutcomeContent.textOnPage34),
       ]);
     }
 
@@ -90,9 +109,9 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
     hearingOutcome: hearingOutcome,
     hearingAdjournedReason: hearingAdjournedReasons | null,
   ): Promise<void> {
-    await page.getByLabel(hearingOutcome).click();
+    await page.getByLabel(hearingOutcome, { exact: true }).click();
     if (hearingAdjournedReason !== null) {
-      await page.getByLabel(hearingAdjournedReason).click();
+      await page.getByLabel(hearingAdjournedReason, { exact: true }).click();
       if (hearingAdjournedReason === "Other") {
         await page
           .locator("#hearingAdjournedReason")
@@ -112,7 +131,9 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
       ),
     ]);
     await page
-      .getByLabel(createSummaryHearingOutcomeContent.textOnPage2)
+      .getByLabel(createSummaryHearingOutcomeContent.textOnPage2, {
+        exact: true,
+      })
       .click();
     await page.click(this.continue);
     await Promise.all([

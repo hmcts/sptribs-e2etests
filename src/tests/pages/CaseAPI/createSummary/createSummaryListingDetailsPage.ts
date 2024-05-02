@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   hearingSession,
+  hearingVenueNames,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
@@ -23,11 +24,13 @@ type CreateListingListingDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    errorMessaging: boolean,
+    hearingAcrossMultipleDays: boolean,
+    venue: hearingVenues | null,
   ): Promise<void>;
   checkFields(
     page: Page,
     venue: hearingVenues | null,
+    venueName: hearingVenueNames | null,
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     editJourney: boolean,
@@ -53,7 +56,8 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    errorMessaging: boolean,
+    hearingAcrossMultipleDays: boolean,
+    venue: hearingVenues | null,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -74,27 +78,21 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(".form-label").nth(1)).toHaveText(
         createSummaryListingDetailsContent.textOnPage2,
       ),
-    ]);
-    await page
-      .getByLabel(createSummaryListingDetailsContent.textOnPage2, {
-        exact: true,
-      })
-      .check();
-    await expect(
-      page.locator("label[for='hearingVenueNameAndAddress']"),
-    ).toHaveText(`${createSummaryListingDetailsContent.textOnPage3}`);
-    await page
-      .getByLabel(createSummaryListingDetailsContent.textOnPage2, {
-        exact: true,
-      })
-      .click();
-    await Promise.all([
       expect(page.locator("markdown > h4")).toHaveText(
         createSummaryListingDetailsContent.subTitle1,
       ),
-      ...Array.from({ length: 13 }, (_, index) => {
+      ...Array.from({ length: 2 }, (_, index) => {
         const textOnPage = (createSummaryListingDetailsContent as any)[
           `textOnPage${index + 4}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+      ...Array.from({ length: 4 }, (_, index) => {
+        const textOnPage = (createSummaryListingDetailsContent as any)[
+          `textOnPage${index + 13}`
         ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
@@ -105,210 +103,179 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       page.locator(this.continue).isVisible(),
       page.locator(this.cancel).isVisible(),
     ]);
-    if (!errorMessaging) {
-      await page.getByLabel("Yes", { exact: true }).click();
-      await page.getByRole("button", { name: "Add new" }).click();
+    if (venue === null) {
+      await expect(
+        page.locator("label[for='hearingVenueNameAndAddress']"),
+      ).toHaveText(`${createSummaryListingDetailsContent.textOnPage3}`);
+    }
+
+    if (!hearingAcrossMultipleDays) {
+      await Promise.all([
+        ...Array.from({ length: 7 }, (_, index) => {
+          const textOnPage = (createSummaryListingDetailsContent as any)[
+            `textOnPage${index + 6}`
+          ];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.form-label:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
+    } else {
       await Promise.all([
         expect(page.locator(".heading-h2").nth(0)).toHaveText(
           createSummaryListingDetailsContent.subTitle2,
         ),
-        expect(
-          page.locator("div.float-left > label > h3.heading-h3"),
-        ).toHaveText(createListingListingDetailsContent.subTitle2),
-        page.locator(this.remove).isVisible(),
-        expect(
-          page.locator("#hearingVenueDate > fieldset > legend > span"),
-        ).toHaveText(createListingListingDetailsContent.subTitle1),
         ...Array.from({ length: 7 }, (_, index) => {
-          const textOnPage = (createListingListingDetailsContent as any)[
-            `textOnPage${index + 7}`
+          const textOnPage = (createSummaryListingDetailsContent as any)[
+            `textOnPage${index + 6}`
           ];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`.form-label:text-is("${textOnPage}")`),
-            2,
+            4,
           );
         }),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `.form-label:text-is("${createListingListingDetailsContent.textOnPage18}")`,
+            `div.float-left > label > h3.heading-h3:has-text("${createSummaryListingDetailsContent.additionalHearingDateTitle}")`,
           ),
-          1,
+          3,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.getByRole("button", { name: "Add new" }),
-          2,
+          page.locator(
+            `.form-label:text-is("${createSummaryListingDetailsContent.additionalHearingDateTitle}")`,
+          ),
+          3,
         ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.form-label:text-is("${createSummaryListingDetailsContent.additionalHearingDateTime}")`,
+          ),
+          3,
+        ),
+        commonHelpers.checkVisibleAndPresent(page.locator(this.remove), 3),
       ]);
-      await page.click(this.remove);
-      await expect(page.locator(".cdk-overlay-container")).toBeVisible();
-      await page.locator("button[title='Remove']").click();
     }
-    // if (accessibilityTest) {
-    //   await axeTest(page);
-    // }
+
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async checkFields(
     page: Page,
     venue: hearingVenues | null,
+    venueName: hearingVenueNames | null,
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
+    editJourney: boolean,
   ): Promise<void> {
-    if (venue !== null) {
-      await page.selectOption(this.venue, venue);
-    } else {
-      await page
-        .getByLabel(createListingListingDetailsContent.textOnPage2)
-        .check();
-      await page.fill(this.inputVenue, "Test Venue");
-    }
-    await page.fill(this.roomAtVenue, createListingListingDetailsContent.room);
-    await page.fill(
-      this.instructions,
-      createListingListingDetailsContent.instructions,
-    );
     const currentDate = new Date();
-    await page.fill(this.day, `${currentDate.getDate()}`);
-    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
-    await page.fill(this.year, `${currentDate.getFullYear()}`);
-    await page.getByLabel(hearingSession).nth(0).dispatchEvent("click");
-    if (hearingSession === "Morning" || hearingSession === "All day") {
-      await page.fill(
-        this.startTime,
-        createListingListingDetailsContent.morningTime,
-      );
-    } else if (hearingSession === "Afternoon") {
-      await page.fill(
-        this.startTime,
-        createListingListingDetailsContent.afternoonTime,
-      );
-    }
-    if (!hearingAcrossMultipleDays) {
-      await page.getByLabel("No", { exact: true }).click();
-    } else {
-      await page.getByLabel("Yes", { exact: true }).click();
-      await page.getByRole("button", { name: "Add new" }).click();
-      await page.fill("#hearingVenueDate-day", `${currentDate.getDate()}`);
-      await page.fill(
-        "#hearingVenueDate-month",
-        `${currentDate.getMonth() + 1}`,
-      );
-      await page.fill("#hearingVenueDate-year", `${currentDate.getFullYear()}`);
-      await page.getByLabel(hearingSession).nth(1).dispatchEvent("click");
-      if (hearingSession === "Morning" || hearingSession === "All day") {
-        await page.fill(
-          "#additionalHearingDate_0_hearingVenueTime",
-          createListingListingDetailsContent.morningTime,
-        );
-      } else if (hearingSession === "Afternoon") {
-        await page.fill(
-          "#additionalHearingDate_0_hearingVenueTime",
-          createListingListingDetailsContent.afternoonTime,
-        );
-      }
-      await page.getByRole("button", { name: "Add new" }).nth(1).click();
-      await page
-        .locator("#hearingVenueDate-day")
-        .nth(1)
-        .fill(`${currentDate.getDate()}`);
-      await page
-        .locator("#hearingVenueDate-month")
-        .nth(1)
-        .fill(`${currentDate.getMonth() + 1}`);
-      await page
-        .locator("#hearingVenueDate-year")
-        .nth(1)
-        .fill(`${currentDate.getFullYear()}`);
-      await page.getByLabel(hearingSession).nth(2).dispatchEvent("click");
-      if (hearingSession === "Morning" || hearingSession === "All day") {
-        await page
-          .locator("#additionalHearingDate_1_hearingVenueTime")
-          .fill(createListingListingDetailsContent.morningTime);
-      } else if (hearingSession === "Afternoon") {
-        await page
-          .locator("#additionalHearingDate_1_hearingVenueTime")
-          .fill(createListingListingDetailsContent.afternoonTime);
-      }
-      await page.getByRole("button", { name: "Add new" }).nth(1).click();
-      await page
-        .locator("#hearingVenueDate-day")
-        .nth(2)
-        .fill(`${currentDate.getDate()}`);
-      await page
-        .locator("#hearingVenueDate-month")
-        .nth(2)
-        .fill(`${currentDate.getMonth() + 1}`);
-      await page
-        .locator("#hearingVenueDate-year")
-        .nth(2)
-        .fill(`${currentDate.getFullYear()}`);
-      await page.getByLabel(hearingSession).nth(3).dispatchEvent("click");
-      if (hearingSession === "Morning" || hearingSession === "All day") {
-        await page
-          .locator("#additionalHearingDate_2_hearingVenueTime")
-          .fill(createListingListingDetailsContent.morningTime);
-      } else if (hearingSession === "Afternoon") {
-        await page
-          .locator("#additionalHearingDate_2_hearingVenueTime")
-          .fill(createListingListingDetailsContent.afternoonTime);
-      }
+    switch (editJourney) {
+      default:
+        if (venue) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${venueName}")`),
+            1,
+          );
+        } else {
+          await expect(
+            page.locator("#venueNotListedOption-VenueNotListed"),
+          ).toBeChecked();
+          await expect(page.locator(this.inputVenue)).toHaveText("Test Venue");
+        }
+        await Promise.all([
+          expect(page.locator(this.roomAtVenue)).toHaveValue(
+            createSummaryListingDetailsContent.room,
+          ),
+          expect(page.locator(this.day)).toHaveValue(
+            `${commonHelpers.padZero(currentDate.getDate())}`,
+          ),
+          expect(page.locator(this.month)).toHaveValue(
+            `${commonHelpers.padZero(currentDate.getMonth() + 1)}`,
+          ),
+          expect(page.locator(this.year)).toHaveValue(
+            `${currentDate.getFullYear()}`,
+          ),
+          expect(page.getByLabel(hearingSession)).toBeChecked(),
+        ]);
+        if (hearingSession === "Morning" || hearingSession === "All day") {
+          await expect(page.locator(this.startTime)).toHaveValue(
+            createSummaryListingDetailsContent.morningTime,
+          );
+        } else if (hearingSession === "Afternoon") {
+          await expect(page.locator(this.startTime)).toHaveValue(
+            createSummaryListingDetailsContent.afternoonTime,
+          );
+        }
+        if (!hearingAcrossMultipleDays) {
+          await expect(page.getByLabel("No", { exact: true })).toBeChecked();
+        } else {
+          await expect(page.getByLabel("Yes", { exact: true })).toBeChecked();
+          if (hearingSession === "Morning") {
+            for (let i = 0; i < 3; i++) {
+              await expect(
+                page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
+              ).toHaveText(createSummaryListingDetailsContent.morningTime);
+              await expect(
+                page.locator(
+                  `#additionalHearingDate_${i}_hearingVenueSession-morning`,
+                ),
+              ).toBeChecked();
+            }
+          } else if (hearingSession === "All day") {
+            for (let i = 0; i < 3; i++) {
+              await expect(
+                page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
+              ).toHaveText(createSummaryListingDetailsContent.morningTime);
+              await expect(
+                page.locator(
+                  `#additionalHearingDate_${i}_hearingVenueSession-allDay`,
+                ),
+              ).toBeChecked();
+            }
+          } else if (hearingSession === "Afternoon") {
+            for (let i = 0; i < 3; i++) {
+              await expect(
+                page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
+              ).toHaveText(createSummaryListingDetailsContent.afternoonTime);
+              await expect(
+                page.locator(
+                  `#additionalHearingDate_${i}_hearingVenueSession-afternoon`,
+                ),
+              ).toBeChecked();
+            }
+          }
+
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `#hearingVenueDate-day:text-is("${currentDate.getDate()}")`,
+              ),
+              3,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `#hearingVenueDate-month:text-is("${currentDate.getMonth() + 1}")`,
+              ),
+              3,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `#hearingVenueDate-year:text-is("${currentDate.getFullYear()}")`,
+              ),
+              3,
+            ),
+          ]);
+        }
+        break;
+      case true:
+        break;
     }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
-    await Promise.all([
-      expect(page.locator(".govuk-error-summary__title")).toHaveText(
-        createListingListingDetailsContent.errorBanner,
-      ),
-      expect(page.locator(".error-message").nth(0)).toHaveText(
-        createListingListingDetailsContent.hearingDateError,
-      ),
-      expect(page.locator(".error-message").nth(1)).toHaveText(
-        createListingListingDetailsContent.sessionError,
-      ),
-      expect(page.locator(".error-message").nth(2)).toHaveText(
-        createListingListingDetailsContent.timeError,
-      ),
-      expect(page.locator(".error-message").nth(3)).toHaveText(
-        createListingListingDetailsContent.numberOfDaysError,
-      ),
-    ]);
-    await page
-      .getByLabel(createListingListingDetailsContent.textOnPage2)
-      .check();
-    await page.click(this.inputVenue);
-    await page.click(this.roomAtVenue);
-    await expect(page.locator(".error-message").nth(0)).toHaveText(
-      createListingListingDetailsContent.hearingVenueError,
-    );
-    await page
-      .getByLabel(createListingListingDetailsContent.textOnPage2)
-      .click();
-    await page.fill(this.day, "0");
-    await page.click(this.month);
-    await expect(page.locator(".error-message").nth(0)).toHaveText(
-      createListingListingDetailsContent.invalidHearingDateError,
-    );
-    await page.locator(this.day).clear();
-    await page.getByLabel("Yes", { exact: true }).click();
-    await expect(page.locator(".error-message").nth(3)).toHaveText(
-      createListingListingDetailsContent.additionalHearingDateError,
-    );
-    await page.getByLabel("No", { exact: true }).click();
-    const currentDate = new Date();
-    await page.fill(this.day, `${currentDate.getDate()}`);
-    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
-    await page.fill(this.year, `${currentDate.getFullYear()}`);
-    await page.getByLabel("Morning").dispatchEvent("click");
-    await page.fill(
-      this.startTime,
-      createListingListingDetailsContent.morningTime,
-    );
-    await page.click(this.continue);
-    await expect(page.locator(".error-summary-list")).toHaveText(
-      createListingListingDetailsContent.validHearingVenueError,
-    );
   },
 
   async continueOn(page: Page): Promise<void> {
