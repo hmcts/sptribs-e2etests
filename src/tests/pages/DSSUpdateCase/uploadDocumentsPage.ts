@@ -220,6 +220,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
       );
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        UploadDocumentsContent.documentRelevance,
+      );
       if (cy) {
         await expect(page.locator(".uploadedFile").first()).toContainText(
           UploadDocumentsContent.deleteButtonCy,
