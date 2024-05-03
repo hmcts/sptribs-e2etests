@@ -216,6 +216,10 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       await page
         .locator(this.fields.uploadFileButton)
         .setInputFiles(config.testWordFile);
+      await page.fill(
+        this.fields.documentRelevance,
+        UploadDocumentsContent.documentRelevance,
+      );
       await page.click(this.fields.fileUploadedOption);
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
