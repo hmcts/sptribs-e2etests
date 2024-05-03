@@ -19,6 +19,7 @@ const createSummaryHearingRecordingUpload_content = {
     "If you can't upload a recording of the hearing, please describe where it can be found. You can also enter a link to the recording",
   textOnPage11: "Where can the recording be found? (Optional)",
   description: "Lorem ipsum description",
+  recordingLocation: "Lorem ipsum recording found here",
 };
 
 export default createSummaryHearingRecordingUpload_content;

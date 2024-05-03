@@ -18,6 +18,7 @@ import createSummaryHearingAttendeesPage from "../../pages/CaseAPI/createSummary
 import createSummaryHearingAttendeesRolePage from "../../pages/CaseAPI/createSummary/createSummaryHearingAttendeesRolePage.ts";
 import createSummaryHearingOutcomePage from "../../pages/CaseAPI/createSummary/createSummaryHearingOutcomePage.ts";
 import createSummaryHearingRecordingUploadPage from "../../pages/CaseAPI/createSummary/createSummaryHearingRecordingUploadPage.ts";
+import submitPage from "../../pages/CaseAPI/createSummary/submitPage.ts";
 
 type CreateSummary = {
   createSummary(
@@ -151,6 +152,17 @@ const createSummary: CreateSummary = {
           await createSummaryHearingRecordingUploadPage.fillFields(page);
           await createSummaryHearingRecordingUploadPage.continueOn(page);
           // submit page
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            hearingAcrossMultipleDays,
+            fullPanelHearing,
+            hearingOutcome,
+            hearingAdjournedReason,
+            venue,
+            accessibilityTest,
+          );
+
           // confirm page
 
           break;

@@ -27,10 +27,10 @@ const submit_content = {
   textOnPage17: "Why was the hearing adjourned?",
   textOnPage18: "Enter any other important information about this adjournment",
   textOnPage19: "Upload file",
-  textOnPage20: "Document Category",
-  textOnPage21: "Description",
-  textOnPage22: "File",
-  textOnPage23: "Where can the recording be found?",
+  textOnPage20: "Where can the recording be found?",
+  textOnPage21: "Document Category",
+  textOnPage22: "Description",
+  textOnPage23: "File",
 };
 
 export default submit_content;

@@ -31,6 +31,9 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
       caseNumber: string,
       accessibilityTest: boolean,
     ): Promise<void> {
+      await page.waitForURL(
+        `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingRecordingUploadPage`,
+      );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
           createSummaryHearingRecordingUploadContent.pageHint,
@@ -56,7 +59,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
           )[`textOnPage${index + 2}`];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `markdown > ul > li:nth-child(${index}):text-is("${textOnPage}")`,
+              `#theHearingRecordingUpload > dt > ccd-markdown > div > markdown > ul > li > p:text-is("${textOnPage}")`,
             ),
             1,
           );
@@ -64,15 +67,17 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
         expect(page.locator("markdown > p").nth(2)).toContainText(
           createSummaryHearingRecordingUploadContent.textOnPage5,
         ),
-        expect(page.locator(".h2").nth(1)).toContainText(
+        expect(page.locator(".heading-h2")).toContainText(
           createSummaryHearingRecordingUploadContent.subTitle1,
         ),
         expect(page.locator("markdown > h3").nth(1)).toContainText(
-          createSummaryHearingRecordingUploadContent.textOnPage9,
-        ),
-        expect(page.locator(".form-label")).toHaveText(
           createSummaryHearingRecordingUploadContent.textOnPage10,
         ),
+        expect(
+          page.locator(
+            "#caseEditForm > div > ccd-field-write > div > ccd-write-text-area-field > div > label > span",
+          ),
+        ).toHaveText(createSummaryHearingRecordingUploadContent.textOnPage11),
         page.locator(this.previous).isVisible(),
         page.locator(this.continue).isVisible(),
         page.locator(this.cancel).isVisible(),
@@ -112,35 +117,10 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
       await page
         .locator("#recFile_0_documentLink")
         .setInputFiles(config.testMP3File);
-      await expect(page.locator("#recFile_0_documentLink")).toContainText(
-        config.testMP3File,
-      );
-      await page.getByRole("button", { name: "Add new" }).nth(1).click();
+      await expect(page.locator(".error-message")).toHaveCount(0);
       await page
-        .locator("#recFile_1_documentCategory")
-        .selectOption({ index: 2 });
-      await page
-        .locator("#recFile_1_documentEmailContent")
-        .fill(createSummaryHearingRecordingUploadContent.description);
-      await page
-        .locator("#recFile_1_documentLink")
-        .setInputFiles(config.testMP3File);
-      await expect(page.locator("#recFile_1_documentLink")).toContainText(
-        config.testMP3File,
-      );
-      await page.getByRole("button", { name: "Add new" }).nth(1).click();
-      await page
-        .locator("#recFile_2_documentCategory")
-        .selectOption({ index: 2 });
-      await page
-        .locator("#recFile_2_documentEmailContent")
-        .fill(createSummaryHearingRecordingUploadContent.description);
-      await page
-        .locator("#recFile_2_documentLink")
-        .setInputFiles(config.testMP3File);
-      await expect(page.locator("#recFile_2_documentLink")).toContainText(
-        config.testMP3File,
-      );
+        .locator("#recDesc")
+        .fill(createSummaryHearingRecordingUploadContent.recordingLocation);
     },
 
     async continueOn(page: Page): Promise<void> {
