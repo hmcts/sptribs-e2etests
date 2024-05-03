@@ -33,7 +33,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationQualifiedContent as any)[
               `textOnPageCy${index + 1}`
-              ];
+            ];
             return expect(
               page.locator(".govuk-radios__label").nth(index),
             ).toHaveText(textOnPage);
