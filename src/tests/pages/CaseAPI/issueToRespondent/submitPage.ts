@@ -24,10 +24,12 @@ const submitPage: SubmitPage = {
     recipients: parties[],
   ): Promise<void> {
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toHaveText(
-        submit_content.pageHint,
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        submit_content.pageTitle,
       ),
-      expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
+      expect(page.locator(".heading-h2")).toHaveText(
+        submit_content.pageSubtitle,
+      ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
