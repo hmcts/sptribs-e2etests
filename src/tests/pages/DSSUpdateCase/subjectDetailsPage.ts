@@ -54,6 +54,12 @@ const subjectDetailsPage: SubjectDetailsPage = {
           expect(page.locator(".govuk-fieldset__legend")).toHaveText(
             SubjectDetailsContent.subHeadingCy2,
           ),
+          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+            SubjectDetailsContent.nameHintCy,
+          ),
+          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+            SubjectDetailsContent.DOBHintCy,
+          ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (SubjectDetailsContent as any)[
               `textOnPageCy${index + 1}`
@@ -79,6 +85,12 @@ const subjectDetailsPage: SubjectDetailsPage = {
           ),
           expect(page.locator(".govuk-fieldset__legend")).toHaveText(
             SubjectDetailsContent.subHeading2,
+          ),
+          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+            SubjectDetailsContent.nameHint,
+          ),
+          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+            SubjectDetailsContent.DOBHint,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (SubjectDetailsContent as any)[
