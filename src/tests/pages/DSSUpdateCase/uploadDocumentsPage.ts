@@ -216,9 +216,16 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       await page
         .locator(this.fields.uploadFileButton)
         .setInputFiles(config.testWordFile);
+      await page.fill(
+        this.fields.documentRelevance,
+        UploadDocumentsContent.documentRelevance,
+      );
       await page.click(this.fields.fileUploadedOption);
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
+      );
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        UploadDocumentsContent.documentRelevance,
       );
       if (cy) {
         await expect(page.locator(".uploadedFile").first()).toContainText(
@@ -242,6 +249,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       await expect(page.locator(".uploadedFile").first()).toContainText(
         path.basename(config.testWordFile),
       );
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        UploadDocumentsContent.documentRelevance,
+      );
       if (cy) {
         await expect(page.locator(".uploadedFile").first()).toContainText(
           UploadDocumentsContent.deleteButtonCy,
@@ -264,6 +274,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
             path.basename(config.testPdfFile),
           );
+          await expect(page.locator(".uploadedFile").nth(i + 1)).toContainText(
+            UploadDocumentsContent.documentRelevance,
+          );
           if (cy) {
             await expect(
               page.locator(".uploadedFile").nth(i + 1),
@@ -285,6 +298,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           await page.click(this.fields.fileUploadedOption);
           await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
             path.basename(config.testFile),
+          );
+          await expect(page.locator(".uploadedFile").nth(i + 5)).toContainText(
+            UploadDocumentsContent.documentRelevance,
           );
           if (cy) {
             await expect(
