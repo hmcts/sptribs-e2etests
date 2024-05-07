@@ -531,22 +531,3 @@ export type hearingAdjournedReasons =
   | "Venue not suitable"
   | "Witness did not attend"
   | "Other";
-
-export type hearingAttendees =
-  | "Medical member"
-  | "Representative - non-legal"
-  | "Witness - Police"
-  | "Lay member"
-  | "Presenting Officer"
-  | "Tribunal Judge"
-  | "Main Appellant (on behalf of victim)"
-  | "Tribunal clerk"
-  | "Witness - General"
-  | "Other"
-  | "Counsel"
-  | "Observer"
-  | "Interpreter"
-  | "Victim"
-  | "Appraiser"
-  | "Representative - legal"
-  | "Appellant";

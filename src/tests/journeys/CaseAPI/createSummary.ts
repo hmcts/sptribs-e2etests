@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingAdjournedReasons,
   hearingOutcome,
   hearingVenues,
-  caseRegionCode,
   hearingType,
   hearingFormat,
   hearingSession,
@@ -19,6 +18,7 @@ import createSummaryHearingAttendeesRolePage from "../../pages/CaseAPI/createSum
 import createSummaryHearingOutcomePage from "../../pages/CaseAPI/createSummary/createSummaryHearingOutcomePage.ts";
 import createSummaryHearingRecordingUploadPage from "../../pages/CaseAPI/createSummary/createSummaryHearingRecordingUploadPage.ts";
 import submitPage from "../../pages/CaseAPI/createSummary/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/createSummary/confirmPage.ts";
 
 type CreateSummary = {
   createSummary(
@@ -84,7 +84,8 @@ const createSummary: CreateSummary = {
             caseNumber,
             accessibilityTest,
           );
-          await createSummarySelectHearingPage.fillInFields(page);
+          const hearing =
+            await createSummarySelectHearingPage.fillInFields(page);
           await createSummarySelectHearingPage.continueOn(page);
           await createSummaryHearingTypeAndFormatPage.checkPageLoads(
             page,
@@ -151,7 +152,6 @@ const createSummary: CreateSummary = {
           );
           await createSummaryHearingRecordingUploadPage.fillFields(page);
           await createSummaryHearingRecordingUploadPage.continueOn(page);
-          // submit page
           await submitPage.checkPageLoads(
             page,
             caseNumber,
@@ -162,9 +162,23 @@ const createSummary: CreateSummary = {
             venue,
             accessibilityTest,
           );
-
-          // confirm page
-
+          await submitPage.checkValidInfo(
+            page,
+            fullPanelHearing,
+            hearing,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+            hearingOutcome,
+            hearingAdjournedReason,
+            venue,
+            venueName,
+          );
+          await submitPage.continueOn(page);
+          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await confirmPage.continueOn(page);
+          await page.pause();
           break;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(

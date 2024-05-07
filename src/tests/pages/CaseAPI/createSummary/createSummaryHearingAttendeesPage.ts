@@ -91,7 +91,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
   async fillFields(page: Page, fullPanelHearing: boolean): Promise<void> {
     await page.locator("#judge").selectOption({ index: 1 });
     if (!fullPanelHearing) {
-      await page.getByLabel("No", { exact: true }).click();
+      await page.getByLabel("No. It was a 'sit alone' hearing", { exact: true }).click();
     } else {
       await page.getByLabel("Yes", { exact: true }).click();
       await page.getByRole("button", { name: "Add new" }).click();

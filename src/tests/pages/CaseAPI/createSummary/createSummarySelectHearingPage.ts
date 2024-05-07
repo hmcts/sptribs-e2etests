@@ -12,7 +12,7 @@ type CreateSummarySelectHearingPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page): Promise<string | null>;
   triggerErrorMessages(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -52,8 +52,9 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {
+  async fillInFields(page: Page): Promise<string | null> {
     await page.locator("#cicCaseHearingList").selectOption({ index: 1 });
+    return await page.textContent("#cicCaseHearingList > option:nth-child(2)");
   },
 
   async continueOn(page: Page): Promise<void> {

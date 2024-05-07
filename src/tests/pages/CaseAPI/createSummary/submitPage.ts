@@ -11,8 +11,17 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
+import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
+import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
+import path from "path";
+import config from "../../../config.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import createSummaryHearingOutcomeContent
+  from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingOutcome_content.ts";
 
 type SubmitPage = {
+  hearingAttendees: string[];
   saveAndContinue: string;
   previous: string;
   cancel: string;
@@ -28,6 +37,8 @@ type SubmitPage = {
   ): Promise<void>;
   checkValidInfo(
     page: Page,
+    fullPanelHearing: boolean,
+    hearing: string | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
     hearingSession: hearingSession,
@@ -44,6 +55,25 @@ const submitPage: SubmitPage = {
   saveAndContinue: '[type="submit"]',
   previous: ".button-secondary",
   cancel: ".cancel",
+  hearingAttendees: [
+    "Medical member",
+    "Representative - non-legal",
+    "Witness - Police",
+    "Lay member",
+    "Presenting Officer",
+    "Tribunal Judge",
+    "Main Appellant (on behalf of victim)",
+    "Tribunal clerk",
+    "Witness - General",
+    "Other",
+    "Counsel",
+    "Observer",
+    "Interpreter",
+    "Victim",
+    "Appraiser",
+    "Representative - legal",
+    "Appellant",
+  ],
 
   async checkPageLoads(
     page: Page,
@@ -55,11 +85,14 @@ const submitPage: SubmitPage = {
     venue: hearingVenues | null,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForURL(
+      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/submit`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
+      expect(page.locator("markdown > h3").first()).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
@@ -109,7 +142,7 @@ const submitPage: SubmitPage = {
         page.locator(
           `dl.complex-panel-title > dt > span.text-16:has-text("${submitContent.textOnPage19}")`,
         ),
-        3,
+        1,
       ),
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (submitContent as any)[`textOnPage${index + 21}`];
@@ -221,6 +254,8 @@ const submitPage: SubmitPage = {
 
   async checkValidInfo(
     page: Page,
+    fullPanelHearing: boolean,
+    hearing: string | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
     hearingSession: hearingSession,
@@ -229,7 +264,241 @@ const submitPage: SubmitPage = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
     venueName: hearingVenueNames | null,
-  ): Promise<void> {},
+  ): Promise<void> {
+    const currentDate = new Date();
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-dynamic-list-field > span.text-16:text-is("${hearing}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingType}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingFormat}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-text-field > span.text-16:text-is("${createSummaryListingDetailsContent.room}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
+        ),
+        1,
+      ),
+      ...Array.from({ length: this.hearingAttendees.length }, (_, index) => {
+        const attendee = (this.hearingAttendees as any)[index];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-multi-select-list-field > table > tbody > tr > td > span:text-is("${attendee}")`,
+          ),
+          1,
+        );
+      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-text-field > span.text-16:text-is("${createSummaryHearingAttendeesRoleContent.otherAttendee}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingOutcome}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `table.complex-panel-table:has-text("A - Application Form")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `table.complex-panel-table:has-text("${createSummaryHearingRecordingUploadContent.description}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `table.complex-panel-table:has-text("${path.basename(config.testMP3File)}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-text-area-field > span:text-is("${createSummaryHearingRecordingUploadContent.recordingLocation}")`,
+        ),
+        1,
+      ),
+    ]);
+
+    if (venue) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-text-field > span.text-16:text-is("${venueName}")`,
+        ),
+        1,
+      );
+    } else {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`td > span:text-is("Venue not listed")`),
+        1,
+      );
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-text-field > span.text-16:text-is("Test Venue")`,
+        ),
+        1,
+      );
+    }
+
+    if (hearingOutcome === "Adjourned") {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingAdjournedReason}")`,
+        ),
+        1,
+      );
+      if (hearingAdjournedReason === "Other") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-text-area-field > span:text-is("${createSummaryHearingOutcomeContent.otherAdjournedReason}")`,
+          ),
+          1,
+        );
+      }
+    }
+
+    if (!hearingAcrossMultipleDays) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`ccd-read-yes-no-field > span.text-16:text-is("No")`),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+          ),
+          1,
+        ),
+      ]);
+
+      if (hearingSession === "Morning" || hearingSession === "All day") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+          ),
+          1,
+        );
+      } else if (hearingSession === "Afternoon") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+          ),
+          1,
+        );
+      }
+    } else {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`ccd-read-yes-no-field > span.text-16:text-is("Yes")`),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+          ),
+          4,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+          ),
+          4,
+        ),
+      ]);
+
+      if (hearingSession === "Morning" || hearingSession === "All day") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+          ),
+          4,
+        );
+      } else if (hearingSession === "Afternoon") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+          ),
+          4,
+        );
+      }
+    }
+
+    if (!fullPanelHearing) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`),
+        1,
+      );
+    } else {
+      await Promise.all(
+        [
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`),
+            1,
+          ),
+          ...Array.from({ length: 3 }, (_, index) => {
+            const member = (submitContent as any)[`member${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-dynamic-list-field > span.text-16:text-is("${member}")`,
+              ),
+              1,
+            );
+          }),
+          ...Array.from({ length: 3 }, (_, index) => {
+            const role = (submitContent as any)[`role${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("${role}")`,
+              ),
+              1,
+            );
+          }),
+        ]);
+    }
+
+  },
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);

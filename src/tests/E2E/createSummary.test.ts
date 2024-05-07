@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 
 test.describe("Create hearing summary tests @CaseAPI", (): void => {
-  test.only("Create hearing summary as a caseworker - hearing outcome is allowed.", async ({
+  test("Create hearing summary as a caseworker - hearing outcome is allowed.", async ({
     page,
   }): Promise<void> => {
     await createSummary.createSummary(
@@ -65,7 +65,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary as a hearing centre team lead - hearing outcome is refused.", async ({
+  test("Create hearing summary as a hearing centre team lead without a full panel- hearing outcome is refused.", async ({
     page,
   }): Promise<void> => {
     await createSummary.createSummary(
@@ -80,7 +80,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court",
       "Refused",
       null,
-      true,
+      false,
       false,
       false,
     );
