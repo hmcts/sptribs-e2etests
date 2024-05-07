@@ -27,7 +27,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-fieldset__heading")).toHaveText(
+          expect(page.locator(".govuk-heading-l")).toHaveText(
             representationQualifiedContent.pageTitleCy,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
