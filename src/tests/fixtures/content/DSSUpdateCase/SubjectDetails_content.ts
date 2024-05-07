@@ -13,10 +13,10 @@ const subjectDetailsContent = {
   monthOfBirth: "1",
   yearOfBirth: "2000",
   errorBanner: "There is a problem",
-  fullNameError: "Please enter full name",
-  dateOfBirthError: "Please enter date of birth",
-  validFullNameError: "Please enter a valid name",
-  validDateOfBirthError: "Please enter valid date of birth",
+  fullNameError: "Please enter a full name. This name must match exactly with the case record",
+  dateOfBirthError: "Please enter a full date of birth. For example, 31 3 1980",
+  validFullNameError: "Please enter a valid name. This name must match exactly with the case record",
+  validDateOfBirthError: "Please enter a valid date of birth. For example, 31 3 1980",
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
   pageTitleCy: "Testun yr achos hwn",
@@ -28,10 +28,10 @@ const subjectDetailsContent = {
   textOnPageCy2: "Mis",
   textOnPageCy3: "Blwyddyn",
   errorBannerCy: "Mae yna broblem",
-  fullNameErrorCy: "Nodwch enw llawn",
-  dateOfBirthErrorCy: "Nodwch ddyddiad geni",
-  validFullNameErrorCy: "Rhowch enw dilys",
-  validDateOfBirthErrorCy: "Nodwch ddyddiad geni dilys",
+  fullNameErrorCy: "Nodwch enw llawn. Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr achos",
+  dateOfBirthErrorCy: "Nodwch ddyddiad geni. Er enghraifft, 31 3 1980",
+  validFullNameErrorCy: "Rhowch enw dilys. Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr achos",
+  validDateOfBirthErrorCy: "Nodwch ddyddiad geni dilys. Er enghraifft, 31 3 1980",
 } as const;
 
 export default subjectDetailsContent;
