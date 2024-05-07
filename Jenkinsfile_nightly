@@ -27,17 +27,17 @@ properties([
                 booleanParam(
                         name: 'skipDSSCreateTests',
                         defaultValue: false,
-                        description: 'Tick the checkbox for skipping DSS Create tests.'
+                        description: 'Tick the checkbox for skipping DSS Create application tests.'
                 ),
                 booleanParam(
                         name: 'skipCaseAPITests',
                         defaultValue: false,
-                        description: 'Tick the checkbox for skipping Case API tests.'
+                        description: 'Tick the checkbox for skipping Case API application tests.'
                 ),
                 booleanParam(
                         name: 'skipDSSUpdateTests',
                         defaultValue: false,
-                        description: 'Tick the checkbox for skipping DSS Update Case tests.'
+                        description: 'Tick the checkbox for skipping DSS Update Case application tests.'
                 ),
         ])
 ])
@@ -92,7 +92,7 @@ withNightlyPipeline(type, product, component) {
   enableSlackNotifications('#special-tribunals-builds')
   afterAlways('DependencyCheckNightly') {
     if (!params.skipDSSCreateTests) {
-      stage('DSS Create E2E tests') {
+      stage('DSS Create E2E application tests') {
         try {
           yarnBuilder.yarn('test:FunctionalDSS')
         } catch (Error) {
@@ -109,7 +109,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
       }
-      stage('DSS Create Cross browser tests') {
+      stage('DSS Create application Cross browser tests') {
         try {
           yarnBuilder.yarn('test:CrossbrowserDSS')
         } catch (Error) {
@@ -126,7 +126,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
       }
-      stage('DSS Create accessibility tests') {
+      stage('DSS Create application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityDSS')
         } catch (Error) {
@@ -145,7 +145,7 @@ withNightlyPipeline(type, product, component) {
       }
     }
     if (!params.skipDSSUpdateTests) {
-      stage('DSS Update E2E tests') {
+      stage('DSS Update application E2E tests') {
         try {
           yarnBuilder.yarn('test:FunctionalUC')
         } catch (Error) {
@@ -162,7 +162,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
       }
-      stage('DSS Update Cross browser tests') {
+      stage('DSS Update application Cross browser tests') {
         try {
           yarnBuilder.yarn('test:CrossbrowserUC')
         } catch (Error) {
@@ -179,7 +179,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
       }
-      stage('DSS Update accessibility tests') {
+      stage('DSS Update application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityUC')
         } catch (Error) {
@@ -198,7 +198,7 @@ withNightlyPipeline(type, product, component) {
       }
     }
     if (!params.skipCaseAPITests) {
-      stage('Case-API E2E tests') {
+      stage('Case-API application E2E tests') {
         try {
           yarnBuilder.yarn('test:FunctionalCaseAPI')
         } catch (Error) {
@@ -215,7 +215,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-      stage('Case-API Cross browser tests') {
+      stage('Case-API application Cross browser tests') {
         try {
           yarnBuilder.yarn('test:CrossbrowserCaseAPI')
         } catch (Error) {
@@ -232,7 +232,7 @@ withNightlyPipeline(type, product, component) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-      stage('Case-API accessibility tests') {
+      stage('Case-API application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityCaseAPI')
         } catch (Error) {
