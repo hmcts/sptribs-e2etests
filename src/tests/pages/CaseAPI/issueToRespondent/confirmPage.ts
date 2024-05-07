@@ -24,7 +24,7 @@ const confirmPage: ConfirmPage = {
     recipients: parties[],
   ): Promise<void> {
     await Promise.all([
-      expect(page.locator(".heading-h1")).toHaveText(submit_content.pageHint),
+      expect(page.locator(".heading-h1")).toHaveText(submit_content.pageTitle),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),

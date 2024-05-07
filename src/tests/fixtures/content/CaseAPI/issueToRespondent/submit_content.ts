@@ -1,7 +1,7 @@
 const submit_content = {
-  pageHint: "Case: Issue to respondent",
+  pageTitle: "Case: Issue to respondent",
   caseReference: "Case number: ",
-  pageTitle: "Check your answers",
+  pageSubtitle: "Check your answers",
   textOnPage1: "Check the information below carefully.",
   textOnPage2: "Issue Case information recipient",
   textOnPage3: "Subject",
