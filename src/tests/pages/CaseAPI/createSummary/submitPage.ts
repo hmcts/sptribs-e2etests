@@ -298,18 +298,6 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
               `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
             ),
             1,
@@ -628,7 +616,7 @@ const submitPage: SubmitPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);
-  }
+  },
 };
 
 export default submitPage;

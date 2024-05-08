@@ -114,7 +114,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
       await page.getByLabel(hearingAdjournedReason, { exact: true }).click();
       if (hearingAdjournedReason === "Other") {
         await page
-          .locator("#hearingAdjournedReason")
+          .locator("#otherDetailsOfAdjournment")
           .fill(createSummaryHearingOutcomeContent.otherAdjournedReason);
       }
     }

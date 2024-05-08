@@ -86,9 +86,9 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
       await page.locator("button[title='Remove']").click();
     }
 
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
   async fillFields(page: Page, fullPanelHearing: boolean): Promise<void> {

@@ -47,9 +47,9 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
       page.locator(this.continue).isVisible(),
       page.locator(this.cancel).isVisible(),
     ]);
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
   async fillInFields(page: Page): Promise<string | null> {

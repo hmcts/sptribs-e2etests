@@ -185,9 +185,12 @@ const createListing: CreateListing = {
             hearingAcrossMultipleDays,
             readyToList,
             venue,
+            false,
+            null,
+            false,
             accessibilityTest,
           );
-          await hearingsTabPage.checkValidInfo(
+          await hearingsTabPage.checkValidInfoCreateListing(
             page,
             region,
             caseRegionCode,

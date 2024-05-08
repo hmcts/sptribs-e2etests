@@ -68,6 +68,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
           exact: true,
         })
         .check();
+      await page.waitForTimeout(1000);
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
           `#caseEditForm > div > ccd-field-write > div > ccd-write-text-field > div > label > span:text-is("${createSummaryHearingAttendeesRoleContent.textOnPage19}")`,

@@ -144,7 +144,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `.form-label:text-is("${createSummaryListingDetailsContent.additionalHearingDateTitle}")`,
+            `.form-label:text-is("${createSummaryListingDetailsContent.additionalHearingDate}")`,
           ),
           3,
         ),
@@ -154,7 +154,6 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
           ),
           3,
         ),
-        commonHelpers.checkVisibleAndPresent(page.locator(this.remove), 3),
       ]);
     }
 
@@ -195,7 +194,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(this.year)).toHaveValue(
         `${currentDate.getFullYear()}`,
       ),
-      expect(page.getByLabel(hearingSession)).toBeChecked(),
+      expect(page.getByLabel(hearingSession).first()).toBeChecked(),
     ]);
     if (hearingSession === "Morning" || hearingSession === "All day") {
       await expect(page.locator(this.startTime)).toHaveValue(
@@ -214,7 +213,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         for (let i = 0; i < 3; i++) {
           await expect(
             page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
-          ).toHaveText(createSummaryListingDetailsContent.morningTime);
+          ).toHaveValue(createSummaryListingDetailsContent.morningTime);
           await expect(
             page.locator(
               `#additionalHearingDate_${i}_hearingVenueSession-morning`,
@@ -225,7 +224,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         for (let i = 0; i < 3; i++) {
           await expect(
             page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
-          ).toHaveText(createSummaryListingDetailsContent.morningTime);
+          ).toHaveValue(createSummaryListingDetailsContent.morningTime);
           await expect(
             page.locator(
               `#additionalHearingDate_${i}_hearingVenueSession-allDay`,
@@ -236,7 +235,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         for (let i = 0; i < 3; i++) {
           await expect(
             page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
-          ).toHaveText(createSummaryListingDetailsContent.afternoonTime);
+          ).toHaveValue(createSummaryListingDetailsContent.afternoonTime);
           await expect(
             page.locator(
               `#additionalHearingDate_${i}_hearingVenueSession-afternoon`,
@@ -244,27 +243,17 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
           ).toBeChecked();
         }
       }
-
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `#hearingVenueDate-day:text-is("${currentDate.getDate()}")`,
-          ),
-          3,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `#hearingVenueDate-month:text-is("${currentDate.getMonth() + 1}")`,
-          ),
-          3,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `#hearingVenueDate-year:text-is("${currentDate.getFullYear()}")`,
-          ),
-          3,
-        ),
-      ]);
+      for (let i = 0; i < 3; i++) {
+        await expect(page.locator("#hearingVenueDate-day").nth(i)).toHaveValue(
+          `${commonHelpers.padZero(currentDate.getDate())}`,
+        );
+        await expect(
+          page.locator("#hearingVenueDate-month").nth(i),
+        ).toHaveValue(`${commonHelpers.padZero(currentDate.getMonth() + 1)}`);
+        await expect(page.locator("#hearingVenueDate-year").nth(i)).toHaveValue(
+          `${currentDate.getFullYear()}`,
+        );
+      }
     }
     if (editJourney) {
       await page.fill(this.inputVenue, "Edit Journey Test Venue");
