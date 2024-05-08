@@ -21,7 +21,7 @@ type CreateSummaryHearingAttendeesPage = {
 };
 
 const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
-  previous: ".button-secondary",
+  previous: "button[name='Previous']",
   continue: '[type="submit"]',
   cancel: ".cancel",
   remove: "button[aria-label='Remove Panel member and Role']",
@@ -32,6 +32,9 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
+    await page.waitForURL(
+      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingAttendees`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createSummaryHearingAttendeesContent.pageHint,
@@ -91,10 +94,12 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
   async fillFields(page: Page, fullPanelHearing: boolean): Promise<void> {
     await page.locator("#judge").selectOption({ index: 1 });
     if (!fullPanelHearing) {
-      await page.getByLabel("No. It was a 'sit alone' hearing", { exact: true }).click();
+      await page
+        .getByLabel("No. It was a 'sit alone' hearing", { exact: true })
+        .click();
     } else {
       await page.getByLabel("Yes", { exact: true }).click();
-      await page.getByRole("button", { name: "Add new" }).click();
+      await page.getByRole("button", { name: "Add new" }).first().click();
       await page.locator("#memberList_0_name").selectOption({ index: 2 });
       await page.locator("#memberList_0_role-fullMember").check();
       await page.getByRole("button", { name: "Add new" }).nth(1).click();
@@ -117,6 +122,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
       ),
     ]);
     await page.getByLabel("Yes", { exact: true }).click();
+    await page.waitForTimeout(1000);
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
@@ -127,6 +133,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
       ),
     ]);
     await page.getByRole("button", { name: "Add new" }).click();
+    await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
         createSummaryHearingAttendeesContent.errorBanner,
@@ -138,6 +145,12 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
         createSummaryHearingAttendeesContent.roleError,
       ),
     ]);
+    await page.click(this.remove);
+    await expect(page.locator(".cdk-overlay-container")).toBeVisible();
+    await page.locator("button[title='Remove']").click();
+    await page
+      .getByLabel("No. It was a 'sit alone' hearing", { exact: true })
+      .click();
   },
 
   async continueOn(page: Page): Promise<void> {

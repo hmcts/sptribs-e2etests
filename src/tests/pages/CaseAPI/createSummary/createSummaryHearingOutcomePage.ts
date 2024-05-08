@@ -135,6 +135,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
         exact: true,
       })
       .click();
+    await page.waitForTimeout(1000);
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(

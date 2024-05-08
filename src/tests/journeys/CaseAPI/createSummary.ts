@@ -178,7 +178,6 @@ const createSummary: CreateSummary = {
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-          await page.pause();
           break;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(
@@ -189,6 +188,52 @@ const createSummary: CreateSummary = {
           await createSummarySelectHearingPage.triggerErrorMessages(page);
           await createSummarySelectHearingPage.fillInFields(page);
           await createSummarySelectHearingPage.continueOn(page);
+          await createSummaryHearingTypeAndFormatPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createSummaryHearingTypeAndFormatPage.checkFields(
+            page,
+            hearingType,
+            hearingFormat,
+            editJourney,
+          );
+          await createSummaryHearingTypeAndFormatPage.continueOn(page);
+          await createSummaryListingDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            hearingAcrossMultipleDays,
+            venue,
+          );
+          await createSummaryListingDetailsPage.triggerErrorMessages(page);
+          await createSummaryListingDetailsPage.continueOn(page);
+          await createSummaryHearingAttendeesPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            errorMessaging,
+          );
+          await createSummaryHearingAttendeesPage.triggerErrorMessages(page);
+          await createSummaryHearingAttendeesPage.continueOn(page);
+          await createSummaryHearingAttendeesRolePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await createSummaryHearingAttendeesRolePage.triggerErrorMessages(
+            page,
+          );
+          await createSummaryHearingAttendeesRolePage.fillFields(page);
+          await createSummaryHearingAttendeesRolePage.continueOn(page);
+          await createSummaryHearingOutcomePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            errorMessaging,
+          );
+          await createSummaryHearingOutcomePage.triggerErrorMessages(page);
           break;
       }
     }

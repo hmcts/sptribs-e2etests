@@ -25,15 +25,11 @@ const createSummaryListingDetails_content = {
   additionalHearingDateTime: "Start time (24hr format)",
   errorBanner: "There is a problem",
   hearingDateError: "Hearing Date is required",
-  additionalHearingDateError: "Additional Hearing date is required",
-  invalidHearingDateError: "The data entered is not valid for Hearing Date",
+  sessionError: "Session is required",
+  additionalHearingDateError: "Hearing date is required",
+  additionalHearingTimeError: "Start time (24hr format) is required",
   hearingVenueError: "Hearing Venue is required",
-  validHearingVenueError: "Please enter valid Hearing venue",
   timeError: "Start time (24 hour format; e.g. 14:30) is required",
-  validTimeError:
-    "The data entered is not valid for Start time (24 hour format; e.g. 14:30)",
-  numberOfDaysError:
-    "Will this hearing take place across a number of days? is required",
   room: "Lorem ipsum room",
   instructions: "Lorem ipsum instructions",
   morningTime: "9:00",

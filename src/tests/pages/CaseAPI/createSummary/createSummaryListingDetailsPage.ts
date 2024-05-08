@@ -7,6 +7,7 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 
 type CreateListingListingDetailsPage = {
   venueNotListed: string;
@@ -270,12 +271,59 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         }
         break;
       case true:
+        // fill fields
         break;
     }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
+    await page.locator(this.inputVenue).clear();
+    await page.locator(this.day).clear();
+    await page.locator(this.month).clear();
+    await page.locator(this.year).clear();
+    await page.locator(this.startTime).clear();
     await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        createSummaryListingDetailsContent.errorBanner,
+      ),
+      expect(page.locator(".error-message").nth(0)).toHaveText(
+        createSummaryListingDetailsContent.hearingVenueError,
+      ),
+      expect(page.locator(".error-message").nth(1)).toHaveText(
+        createSummaryListingDetailsContent.hearingDateError,
+      ),
+      expect(page.locator(".error-message").nth(2)).toHaveText(
+        createSummaryListingDetailsContent.timeError,
+      ),
+    ]);
+    await page.getByLabel("Yes", { exact: true }).click();
+    await page.getByRole("button", { name: "Add new" }).click();
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        createSummaryListingDetailsContent.errorBanner,
+      ),
+      expect(page.locator(".error-message").nth(3)).toHaveText(
+        createSummaryListingDetailsContent.additionalHearingDateError,
+      ),
+      expect(page.locator(".error-message").nth(4)).toHaveText(
+        createSummaryListingDetailsContent.sessionError,
+      ),
+      expect(page.locator(".error-message").nth(5)).toHaveText(
+        createSummaryListingDetailsContent.additionalHearingTimeError,
+      ),
+    ]);
+    await page.getByLabel("No", { exact: true }).click();
+    const currentDate = new Date();
+    await page.fill(this.inputVenue, "Test Venue");
+    await page.fill(this.day, `${currentDate.getDate()}`);
+    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
+    await page.fill(this.year, `${currentDate.getFullYear()}`);
+    await page.fill(
+      this.startTime,
+      createListingListingDetailsContent.morningTime,
+    );
   },
 
   async continueOn(page: Page): Promise<void> {

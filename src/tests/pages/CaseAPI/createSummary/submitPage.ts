@@ -17,8 +17,7 @@ import createSummaryHearingRecordingUploadContent from "../../../fixtures/conten
 import path from "path";
 import config from "../../../config.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import createSummaryHearingOutcomeContent
-  from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingOutcome_content.ts";
+import createSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingOutcome_content.ts";
 
 type SubmitPage = {
   hearingAttendees: string[];
@@ -467,37 +466,39 @@ const submitPage: SubmitPage = {
 
     if (!fullPanelHearing) {
       await commonHelpers.checkVisibleAndPresent(
-        page.locator(`ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`),
+        page.locator(
+          `ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`,
+        ),
         1,
       );
     } else {
-      await Promise.all(
-        [
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(`ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`),
-            1,
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`,
           ),
-          ...Array.from({ length: 3 }, (_, index) => {
-            const member = (submitContent as any)[`member${index + 1}`];
-            return commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `ccd-read-dynamic-list-field > span.text-16:text-is("${member}")`,
-              ),
-              1,
-            );
-          }),
-          ...Array.from({ length: 3 }, (_, index) => {
-            const role = (submitContent as any)[`role${index + 1}`];
-            return commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `ccd-read-fixed-radio-list-field > span.text-16:text-is("${role}")`,
-              ),
-              1,
-            );
-          }),
-        ]);
+          1,
+        ),
+        ...Array.from({ length: 3 }, (_, index) => {
+          const member = (submitContent as any)[`member${index + 1}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${member}")`,
+            ),
+            1,
+          );
+        }),
+        ...Array.from({ length: 3 }, (_, index) => {
+          const role = (submitContent as any)[`role${index + 1}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${role}")`,
+            ),
+            1,
+          );
+        }),
+      ]);
     }
-
   },
 
   async continueOn(page: Page): Promise<void> {

@@ -29,6 +29,9 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
       caseNumber: string,
       accessibilityTest: boolean,
     ): Promise<void> {
+      await page.waitForURL(
+        `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingAttendeesRole`,
+      );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
           createSummaryHearingAttendeesRoleContent.pageHint,
@@ -105,8 +108,11 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         ),
       ]);
       await page
-        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18)
+        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18, {
+          exact: true,
+        })
         .click();
+      await page.waitForTimeout(1000);
       await page.click(this.continue);
       await Promise.all([
         expect(page.locator("#error-summary-title")).toHaveText(
@@ -117,7 +123,9 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         ),
       ]);
       await page
-        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18)
+        .getByLabel(createSummaryHearingAttendeesRoleContent.textOnPage18, {
+          exact: true,
+        })
         .click();
     },
 
