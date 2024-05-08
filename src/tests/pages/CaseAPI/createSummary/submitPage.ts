@@ -32,6 +32,7 @@ type SubmitPage = {
     hearingOutcome: hearingOutcome,
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
+    editJourney: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   checkValidInfo(
@@ -46,6 +47,7 @@ type SubmitPage = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
     venueName: hearingVenueNames | null,
+    editJourney: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -82,6 +84,7 @@ const submitPage: SubmitPage = {
     hearingOutcome: hearingOutcome,
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
+    editJourney: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForURL(
@@ -168,7 +171,7 @@ const submitPage: SubmitPage = {
         1,
       );
     }
-    if (hearingAcrossMultipleDays) {
+    if (hearingAcrossMultipleDays! && editJourney) {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
           page.locator(
@@ -263,247 +266,369 @@ const submitPage: SubmitPage = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
     venueName: hearingVenueNames | null,
+    editJourney: boolean,
   ): Promise<void> {
     const currentDate = new Date();
-    await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-dynamic-list-field > span.text-16:text-is("${hearing}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingType}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingFormat}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-text-field > span.text-16:text-is("${createSummaryListingDetailsContent.room}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
-        ),
-        1,
-      ),
-      ...Array.from({ length: this.hearingAttendees.length }, (_, index) => {
-        const attendee = (this.hearingAttendees as any)[index];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-multi-select-list-field > table > tbody > tr > td > span:text-is("${attendee}")`,
-          ),
-          1,
-        );
-      }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-text-field > span.text-16:text-is("${createSummaryHearingAttendeesRoleContent.otherAttendee}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingOutcome}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `table.complex-panel-table:has-text("A - Application Form")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `table.complex-panel-table:has-text("${createSummaryHearingRecordingUploadContent.description}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `table.complex-panel-table:has-text("${path.basename(config.testMP3File)}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-text-area-field > span:text-is("${createSummaryHearingRecordingUploadContent.recordingLocation}")`,
-        ),
-        1,
-      ),
-    ]);
-
-    if (venue) {
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-text-field > span.text-16:text-is("${venueName}")`,
-        ),
-        1,
-      );
-    } else {
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(`td > span:text-is("Venue not listed")`),
-        1,
-      );
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-text-field > span.text-16:text-is("Test Venue")`,
-        ),
-        1,
-      );
-    }
-
-    if (hearingOutcome === "Adjourned") {
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingAdjournedReason}")`,
-        ),
-        1,
-      );
-      if (hearingAdjournedReason === "Other") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-text-area-field > span:text-is("${createSummaryHearingOutcomeContent.otherAdjournedReason}")`,
-          ),
-          1,
-        );
-      }
-    }
-
-    if (!hearingAcrossMultipleDays) {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`ccd-read-yes-no-field > span.text-16:text-is("No")`),
-          1,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
-          ),
-          1,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
-          ),
-          1,
-        ),
-      ]);
-
-      if (hearingSession === "Morning" || hearingSession === "All day") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
-          ),
-          1,
-        );
-      } else if (hearingSession === "Afternoon") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
-          ),
-          1,
-        );
-      }
-    } else {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`ccd-read-yes-no-field > span.text-16:text-is("Yes")`),
-          1,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
-          ),
-          4,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
-          ),
-          4,
-        ),
-      ]);
-
-      if (hearingSession === "Morning" || hearingSession === "All day") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
-          ),
-          4,
-        );
-      } else if (hearingSession === "Afternoon") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
-          ),
-          4,
-        );
-      }
-    }
-
-    if (!fullPanelHearing) {
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`,
-        ),
-        1,
-      );
-    } else {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`,
-          ),
-          1,
-        ),
-        ...Array.from({ length: 3 }, (_, index) => {
-          const member = (submitContent as any)[`member${index + 1}`];
-          return commonHelpers.checkVisibleAndPresent(
+    switch (editJourney) {
+      default:
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `ccd-read-dynamic-list-field > span.text-16:text-is("${member}")`,
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${hearing}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingType}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingFormat}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("${createSummaryListingDetailsContent.room}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
+            ),
+            1,
+          ),
+          ...Array.from(
+            { length: this.hearingAttendees.length },
+            (_, index) => {
+              const attendee = (this.hearingAttendees as any)[index];
+              return commonHelpers.checkVisibleAndPresent(
+                page.locator(
+                  `ccd-read-multi-select-list-field > table > tbody > tr > td > span:text-is("${attendee}")`,
+                ),
+                1,
+              );
+            },
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("${createSummaryHearingAttendeesRoleContent.otherAttendee}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingOutcome}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `table.complex-panel-table:has-text("A - Application Form")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `table.complex-panel-table:has-text("${createSummaryHearingRecordingUploadContent.description}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `table.complex-panel-table:has-text("${path.basename(config.testMP3File)}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-area-field > span:text-is("${createSummaryHearingRecordingUploadContent.recordingLocation}")`,
+            ),
+            1,
+          ),
+        ]);
+
+        if (venue) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("${venueName}")`,
             ),
             1,
           );
-        }),
-        ...Array.from({ length: 3 }, (_, index) => {
-          const role = (submitContent as any)[`role${index + 1}`];
-          return commonHelpers.checkVisibleAndPresent(
+        } else {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`td > span:text-is("Venue not listed")`),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${role}")`,
+              `ccd-read-text-field > span.text-16:text-is("Test Venue")`,
             ),
             1,
           );
-        }),
-      ]);
+        }
+
+        if (hearingOutcome === "Adjourned") {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingAdjournedReason}")`,
+            ),
+            1,
+          );
+          if (hearingAdjournedReason === "Other") {
+            await commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-text-area-field > span:text-is("${createSummaryHearingOutcomeContent.otherAdjournedReason}")`,
+              ),
+              1,
+            );
+          }
+        }
+
+        if (!hearingAcrossMultipleDays) {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-yes-no-field > span.text-16:text-is("No")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+              ),
+              1,
+            ),
+          ]);
+
+          if (hearingSession === "Morning" || hearingSession === "All day") {
+            await commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+              ),
+              1,
+            );
+          } else if (hearingSession === "Afternoon") {
+            await commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+              ),
+              1,
+            );
+          }
+        } else {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-yes-no-field > span.text-16:text-is("Yes")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+              ),
+              4,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+              ),
+              4,
+            ),
+          ]);
+
+          if (hearingSession === "Morning" || hearingSession === "All day") {
+            await commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+              ),
+              4,
+            );
+          } else if (hearingSession === "Afternoon") {
+            await commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+              ),
+              4,
+            );
+          }
+        }
+
+        if (!fullPanelHearing) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`,
+            ),
+            1,
+          );
+        } else {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`,
+              ),
+              1,
+            ),
+            ...Array.from({ length: 3 }, (_, index) => {
+              const member = (submitContent as any)[`member${index + 1}`];
+              return commonHelpers.checkVisibleAndPresent(
+                page.locator(
+                  `ccd-read-dynamic-list-field > span.text-16:text-is("${member}")`,
+                ),
+                1,
+              );
+            }),
+            ...Array.from({ length: 3 }, (_, index) => {
+              const role = (submitContent as any)[`role${index + 1}`];
+              return commonHelpers.checkVisibleAndPresent(
+                page.locator(
+                  `ccd-read-fixed-radio-list-field > span.text-16:text-is("${role}")`,
+                ),
+                1,
+              );
+            }),
+          ]);
+        }
+        break;
+      case true:
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${hearing}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("Final")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("Video")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`td > span:text-is("Venue not listed")`),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("Edit Journey Test Venue")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("${createSummaryListingDetailsContent.room}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("Afternoon")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
+            ),
+            1,
+          ),
+          ...Array.from(
+            { length: this.hearingAttendees.length },
+            (_, index) => {
+              const attendee = (this.hearingAttendees as any)[index];
+              return commonHelpers.checkVisibleAndPresent(
+                page.locator(
+                  `ccd-read-multi-select-list-field > table > tbody > tr > td > span:text-is("${attendee}")`,
+                ),
+                1,
+              );
+            },
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-field > span.text-16:text-is("${createSummaryHearingAttendeesRoleContent.otherAttendee}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingOutcome}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `table.complex-panel-table:has-text("A - Application Form")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `table.complex-panel-table:has-text("${createSummaryHearingRecordingUploadContent.description}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `table.complex-panel-table:has-text("${path.basename(config.testMP3File)}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `ccd-read-text-area-field > span:text-is("${createSummaryHearingRecordingUploadContent.recordingLocation}")`,
+            ),
+            1,
+          ),
+        ]);
+        break;
     }
   },
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);
-  },
+  }
 };
 
 export default submitPage;

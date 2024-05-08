@@ -160,6 +160,7 @@ const createSummary: CreateSummary = {
             hearingOutcome,
             hearingAdjournedReason,
             venue,
+            editJourney,
             accessibilityTest,
           );
           await submitPage.checkValidInfo(
@@ -174,6 +175,7 @@ const createSummary: CreateSummary = {
             hearingAdjournedReason,
             venue,
             venueName,
+            editJourney,
           );
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);

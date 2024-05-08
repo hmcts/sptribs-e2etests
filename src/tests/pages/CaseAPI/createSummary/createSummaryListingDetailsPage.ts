@@ -172,107 +172,108 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     editJourney: boolean,
   ): Promise<void> {
     const currentDate = new Date();
-    switch (editJourney) {
-      default:
-        if (venue) {
-          await commonHelpers.checkVisibleAndPresent(
-            page.locator(`.text-16:text-is("${venueName}")`),
-            1,
-          );
-        } else {
+    if (venue) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${venueName}")`),
+        1,
+      );
+    } else {
+      await expect(
+        page.locator("#venueNotListedOption-VenueNotListed"),
+      ).toBeChecked();
+    }
+    await Promise.all([
+      expect(page.locator(this.roomAtVenue)).toHaveValue(
+        createSummaryListingDetailsContent.room,
+      ),
+      expect(page.locator(this.day)).toHaveValue(
+        `${commonHelpers.padZero(currentDate.getDate())}`,
+      ),
+      expect(page.locator(this.month)).toHaveValue(
+        `${commonHelpers.padZero(currentDate.getMonth() + 1)}`,
+      ),
+      expect(page.locator(this.year)).toHaveValue(
+        `${currentDate.getFullYear()}`,
+      ),
+      expect(page.getByLabel(hearingSession)).toBeChecked(),
+    ]);
+    if (hearingSession === "Morning" || hearingSession === "All day") {
+      await expect(page.locator(this.startTime)).toHaveValue(
+        createSummaryListingDetailsContent.morningTime,
+      );
+    } else if (hearingSession === "Afternoon") {
+      await expect(page.locator(this.startTime)).toHaveValue(
+        createSummaryListingDetailsContent.afternoonTime,
+      );
+    }
+    if (!hearingAcrossMultipleDays) {
+      await expect(page.getByLabel("No", { exact: true })).toBeChecked();
+    } else {
+      await expect(page.getByLabel("Yes", { exact: true })).toBeChecked();
+      if (hearingSession === "Morning") {
+        for (let i = 0; i < 3; i++) {
           await expect(
-            page.locator("#venueNotListedOption-VenueNotListed"),
+            page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
+          ).toHaveText(createSummaryListingDetailsContent.morningTime);
+          await expect(
+            page.locator(
+              `#additionalHearingDate_${i}_hearingVenueSession-morning`,
+            ),
           ).toBeChecked();
-          await expect(page.locator(this.inputVenue)).toHaveText("Test Venue");
         }
-        await Promise.all([
-          expect(page.locator(this.roomAtVenue)).toHaveValue(
-            createSummaryListingDetailsContent.room,
-          ),
-          expect(page.locator(this.day)).toHaveValue(
-            `${commonHelpers.padZero(currentDate.getDate())}`,
-          ),
-          expect(page.locator(this.month)).toHaveValue(
-            `${commonHelpers.padZero(currentDate.getMonth() + 1)}`,
-          ),
-          expect(page.locator(this.year)).toHaveValue(
-            `${currentDate.getFullYear()}`,
-          ),
-          expect(page.getByLabel(hearingSession)).toBeChecked(),
-        ]);
-        if (hearingSession === "Morning" || hearingSession === "All day") {
-          await expect(page.locator(this.startTime)).toHaveValue(
-            createSummaryListingDetailsContent.morningTime,
-          );
-        } else if (hearingSession === "Afternoon") {
-          await expect(page.locator(this.startTime)).toHaveValue(
-            createSummaryListingDetailsContent.afternoonTime,
-          );
+      } else if (hearingSession === "All day") {
+        for (let i = 0; i < 3; i++) {
+          await expect(
+            page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
+          ).toHaveText(createSummaryListingDetailsContent.morningTime);
+          await expect(
+            page.locator(
+              `#additionalHearingDate_${i}_hearingVenueSession-allDay`,
+            ),
+          ).toBeChecked();
         }
-        if (!hearingAcrossMultipleDays) {
-          await expect(page.getByLabel("No", { exact: true })).toBeChecked();
-        } else {
-          await expect(page.getByLabel("Yes", { exact: true })).toBeChecked();
-          if (hearingSession === "Morning") {
-            for (let i = 0; i < 3; i++) {
-              await expect(
-                page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
-              ).toHaveText(createSummaryListingDetailsContent.morningTime);
-              await expect(
-                page.locator(
-                  `#additionalHearingDate_${i}_hearingVenueSession-morning`,
-                ),
-              ).toBeChecked();
-            }
-          } else if (hearingSession === "All day") {
-            for (let i = 0; i < 3; i++) {
-              await expect(
-                page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
-              ).toHaveText(createSummaryListingDetailsContent.morningTime);
-              await expect(
-                page.locator(
-                  `#additionalHearingDate_${i}_hearingVenueSession-allDay`,
-                ),
-              ).toBeChecked();
-            }
-          } else if (hearingSession === "Afternoon") {
-            for (let i = 0; i < 3; i++) {
-              await expect(
-                page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
-              ).toHaveText(createSummaryListingDetailsContent.afternoonTime);
-              await expect(
-                page.locator(
-                  `#additionalHearingDate_${i}_hearingVenueSession-afternoon`,
-                ),
-              ).toBeChecked();
-            }
-          }
+      } else if (hearingSession === "Afternoon") {
+        for (let i = 0; i < 3; i++) {
+          await expect(
+            page.locator(`#additionalHearingDate_${i}_hearingVenueTime`),
+          ).toHaveText(createSummaryListingDetailsContent.afternoonTime);
+          await expect(
+            page.locator(
+              `#additionalHearingDate_${i}_hearingVenueSession-afternoon`,
+            ),
+          ).toBeChecked();
+        }
+      }
 
-          await Promise.all([
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `#hearingVenueDate-day:text-is("${currentDate.getDate()}")`,
-              ),
-              3,
-            ),
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `#hearingVenueDate-month:text-is("${currentDate.getMonth() + 1}")`,
-              ),
-              3,
-            ),
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `#hearingVenueDate-year:text-is("${currentDate.getFullYear()}")`,
-              ),
-              3,
-            ),
-          ]);
-        }
-        break;
-      case true:
-        // fill fields
-        break;
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `#hearingVenueDate-day:text-is("${currentDate.getDate()}")`,
+          ),
+          3,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `#hearingVenueDate-month:text-is("${currentDate.getMonth() + 1}")`,
+          ),
+          3,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `#hearingVenueDate-year:text-is("${currentDate.getFullYear()}")`,
+          ),
+          3,
+        ),
+      ]);
+    }
+    if (editJourney) {
+      await page.fill(this.inputVenue, "Edit Journey Test Venue");
+      await page.getByLabel("No", { exact: true }).click();
+      await page.getByLabel("Afternoon").dispatchEvent("click");
+      await page.fill(
+        this.startTime,
+        createListingListingDetailsContent.afternoonTime,
+      );
     }
   },
 
