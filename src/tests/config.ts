@@ -83,6 +83,10 @@ const config: Config = {
     __dirname,
     "../tests/fixtures/testFiles/mockFile.odt",
   ),
+  testMP3File: path.resolve(
+    __dirname,
+    "../tests/fixtures/testFiles/mockFile.mp3",
+  ),
 };
 
 export default config as {
@@ -95,4 +99,5 @@ export default config as {
   testPdfFile: string;
   testWordFile: string;
   testOdtFile: string;
+  testMP3File: string;
 };
