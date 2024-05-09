@@ -199,6 +199,9 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
             uploadAppealFormContent.noUploadErrorCy,
           ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadAppealFormContent.noUploadErrorCy,
+          ),
         ]);
         await page
           .locator(this.fields.uploadFileButton)
@@ -211,6 +214,9 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
             uploadAppealFormContent.fileTypeErrorCy,
           ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadAppealFormContent.fileTypeErrorCy,
+          ),
         ]);
         break;
       default:
@@ -219,6 +225,9 @@ const uploadAppealFormPage: UploadAppealFormPage = {
             uploadAppealFormContent.errorBanner,
           ),
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.noUploadError,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
             uploadAppealFormContent.noUploadError,
           ),
         ]);
@@ -231,6 +240,9 @@ const uploadAppealFormPage: UploadAppealFormPage = {
             uploadAppealFormContent.errorBanner,
           ),
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.fileTypeError,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
             uploadAppealFormContent.fileTypeError,
           ),
         ]);
