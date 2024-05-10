@@ -859,24 +859,28 @@ const hearingTabPage: HearingsTabPage = {
       ]);
 
       if (!hearingAcrossMultipleDays) {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(`ccd-read-yes-no-field > span.text-16:text-is("No")`),
-          1,
-        );
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            this.listingTable +
-              `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`ccd-read-yes-no-field > span.text-16:text-is("No")`),
+            1,
           ),
-          2,
-        );
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            this.listingTable +
-              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              this.listingTable +
+                `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+            ),
+            2,
           ),
-          1,
-        );
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              this.listingTable +
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+            ),
+            1,
+          ),
+        ]);
+
         if (hearingSession === "Morning" || hearingSession === "All day") {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
@@ -952,7 +956,8 @@ const hearingTabPage: HearingsTabPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `#case-viewer-field-read--hearingList > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.panelMemberTitle}")`,
+              this.listingTable +
+                ` ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.panelMemberTitle}")`,
             ),
             3,
           ),
@@ -960,7 +965,8 @@ const hearingTabPage: HearingsTabPage = {
             const member = (submit_content as any)[`member${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `#case-viewer-field-read--hearingList > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-dynamic-list-field > span:text-is("${member}")`,
+                this.listingTable +
+                  `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-dynamic-list-field > span:text-is("${member}")`,
               ),
               1,
             );
@@ -969,7 +975,8 @@ const hearingTabPage: HearingsTabPage = {
             const role = (submit_content as any)[`role${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `#case-viewer-field-read--hearingList > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-fixed-radio-list-field > span:text-is("${role}")`,
+                this.listingTable +
+                  `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-fixed-radio-list-field > span:text-is("${role}")`,
               ),
               1,
             );
