@@ -538,7 +538,6 @@ const hearingTabPage: HearingsTabPage = {
           1,
         ),
       ]);
-
       if (hearingSession === "Morning" || hearingSession === "All day") {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
@@ -771,7 +770,6 @@ const hearingTabPage: HearingsTabPage = {
         1,
       );
     }
-
     if (editJourney) {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
@@ -857,7 +855,6 @@ const hearingTabPage: HearingsTabPage = {
           2,
         ),
       ]);
-
       if (!hearingAcrossMultipleDays) {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
@@ -880,7 +877,6 @@ const hearingTabPage: HearingsTabPage = {
             1,
           ),
         ]);
-
         if (hearingSession === "Morning" || hearingSession === "All day") {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
