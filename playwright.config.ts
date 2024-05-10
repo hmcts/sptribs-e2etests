@@ -9,7 +9,7 @@ module.exports = defineConfig({
   /* Retry on CI only */
   retries: 4, // Set the number of retries for all projects
 
-  timeout: 8 * 30 * 1000,
+  timeout: 6 * 30 * 1000,
   expect: {
     timeout: 60 * 1000,
   },
@@ -21,45 +21,51 @@ module.exports = defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"],
+      use: {
+        ...devices["Desktop Chrome"],
         channel: "chrome",
         trace: "on-first-retry",
       },
     },
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"],
-        screenshot: 'only-on-failure',
-        trace: 'off'
+      use: {
+        ...devices["Desktop Firefox"],
+        screenshot: "only-on-failure",
+        trace: "off",
       },
     },
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"],
-        screenshot: 'only-on-failure',
-        trace: 'off'
+      use: {
+        ...devices["Desktop Safari"],
+        screenshot: "only-on-failure",
+        trace: "off",
       },
     },
     {
       name: "MobileChrome",
-      use: { ...devices["Pixel 5"],
-        screenshot: 'only-on-failure',
-        trace: 'off'
+      use: {
+        ...devices["Pixel 5"],
+        screenshot: "only-on-failure",
+        trace: "off",
       },
     },
     {
       name: "MobileSafari",
-      use: { ...devices["iPhone 12"],
-        screenshot: 'only-on-failure',
-        trace: 'off'
+      use: {
+        ...devices["iPhone 12"],
+        screenshot: "only-on-failure",
+        trace: "off",
       },
     },
     {
       name: "MicrosoftEdge",
-      use: { ...devices["Desktop Edge"],
+      use: {
+        ...devices["Desktop Edge"],
         channel: "msedge",
-        screenshot: 'only-on-failure',
-        trace: 'off'
+        screenshot: "only-on-failure",
+        trace: "off",
       },
     },
   ],
