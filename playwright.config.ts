@@ -18,33 +18,49 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
   reporter: process.env.CI ? "html" : "list",
-  use: {
-    trace: "on-first-retry",
-  },
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"], channel: "chrome" },
+      use: { ...devices["Desktop Chrome"],
+        channel: "chrome",
+        trace: "on-first-retry",
+      },
     },
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      use: { ...devices["Desktop Firefox"],
+        screenshot: 'only-on-failure',
+        trace: 'off'
+      },
     },
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: { ...devices["Desktop Safari"],
+        screenshot: 'only-on-failure',
+        trace: 'off'
+      },
     },
     {
       name: "MobileChrome",
-      use: { ...devices["Pixel 5"] },
+      use: { ...devices["Pixel 5"],
+        screenshot: 'only-on-failure',
+        trace: 'off'
+      },
     },
     {
       name: "MobileSafari",
-      use: { ...devices["iPhone 12"] },
+      use: { ...devices["iPhone 12"],
+        screenshot: 'only-on-failure',
+        trace: 'off'
+      },
     },
     {
       name: "MicrosoftEdge",
-      use: { ...devices["Desktop Edge"], channel: "msedge" },
+      use: { ...devices["Desktop Edge"],
+        channel: "msedge",
+        screenshot: 'only-on-failure',
+        trace: 'off'
+      },
     },
   ],
 });
