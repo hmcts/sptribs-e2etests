@@ -46,6 +46,7 @@ const hearingsTab_content = {
   textOnPage32: "Document Category",
   textOnPage33: "Description",
   textOnPage34: "File",
+  completedStatus: "Completed",
 } as const;
 
 export default hearingsTab_content;
