@@ -305,7 +305,7 @@ const hearingTabPage: HearingsTabPage = {
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             this.listingTable +
-            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.textOnPage31}")`,
+              `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.textOnPage31}")`,
           ),
           1,
         ),
@@ -741,20 +741,23 @@ const hearingTabPage: HearingsTabPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator( this.listingTable +
-          `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-fixed-list-field > span:has-text("A - Application Form")`,
+        page.locator(
+          this.listingTable +
+            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-fixed-list-field > span:has-text("A - Application Form")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator( this.listingTable +
-          `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-area-field > span:has-text("${createSummaryHearingRecordingUploadContent.description}")`,
+        page.locator(
+          this.listingTable +
+            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-area-field > span:has-text("${createSummaryHearingRecordingUploadContent.description}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator( this.listingTable +
-          `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a:has-text("${path.basename(config.testMP3File)}")`,
+        page.locator(
+          this.listingTable +
+            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a:has-text("${path.basename(config.testMP3File)}")`,
         ),
         1,
       ),
@@ -763,7 +766,7 @@ const hearingTabPage: HearingsTabPage = {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
           this.listingTable +
-          `ccd-read-fixed-radio-list-field > span:text-is("${hearingAdjournedReason}")`,
+            `ccd-read-fixed-radio-list-field > span:text-is("${hearingAdjournedReason}")`,
         ),
         1,
       );
@@ -863,14 +866,14 @@ const hearingTabPage: HearingsTabPage = {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
             this.listingTable +
-            `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+              `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
           ),
           2,
         );
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
             this.listingTable +
-            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
           ),
           1,
         );
@@ -878,7 +881,7 @@ const hearingTabPage: HearingsTabPage = {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
             ),
             1,
           );
@@ -886,12 +889,11 @@ const hearingTabPage: HearingsTabPage = {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
             ),
             1,
           );
         }
-
       } else {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
@@ -901,14 +903,14 @@ const hearingTabPage: HearingsTabPage = {
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+                `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
             ),
             5,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
             ),
             4,
           ),
@@ -917,7 +919,7 @@ const hearingTabPage: HearingsTabPage = {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
             ),
             4,
           );
@@ -925,7 +927,7 @@ const hearingTabPage: HearingsTabPage = {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
+                `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.afternoonTime}")`,
             ),
             4,
           );
@@ -935,7 +937,7 @@ const hearingTabPage: HearingsTabPage = {
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
             this.listingTable +
-            `ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`
+              `ccd-read-fixed-radio-list-field > span.text-16:text-is("No. It was a 'sit alone' hearing")`,
           ),
           1,
         );
@@ -944,7 +946,7 @@ const hearingTabPage: HearingsTabPage = {
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`
+                `ccd-read-fixed-radio-list-field > span.text-16:text-is("Yes")`,
             ),
             1,
           ),
@@ -955,9 +957,7 @@ const hearingTabPage: HearingsTabPage = {
             3,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
-            const member = (submit_content as any)[
-              `member${index + 1}`
-              ];
+            const member = (submit_content as any)[`member${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               page.locator(
                 `#case-viewer-field-read--hearingList > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-dynamic-list-field > span:text-is("${member}")`,
@@ -966,9 +966,7 @@ const hearingTabPage: HearingsTabPage = {
             );
           }),
           ...Array.from({ length: 3 }, (_, index) => {
-            const role = (submit_content as any)[
-              `role${index + 1}`
-              ];
+            const role = (submit_content as any)[`role${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               page.locator(
                 `#case-viewer-field-read--hearingList > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-fixed-radio-list-field > span:text-is("${role}")`,
@@ -976,7 +974,7 @@ const hearingTabPage: HearingsTabPage = {
               1,
             );
           }),
-        ])
+        ]);
       }
     }
   },
