@@ -31,6 +31,22 @@ const hearingsTab_content = {
   listedStatus: "Listed",
   shortHearing: "Case eligible for a short notice hearing?",
   subtitle3: "Hearing options",
+  textOnPage24: "Which judge heard the case?",
+  textOnPage25: "Was it a full panel hearing?",
+  panelMemberTitle: "Panel member and Role",
+  panelMemberName: "Name of the panel member",
+  panelMemberRole: "What was their role on the panel?",
+  textOnPage26: "Who attended the hearing?",
+  textOnPage27: "Who was this other attendee?",
+  textOnPage28: "What type of decision was given at the hearing?",
+  hearingAdjournedReason: "Why was the hearing adjourned?",
+  textOnPage29: "Subject Name",
+  textOnPage30: "Where can the recording be found?",
+  textOnPage31: "Upload the recording of the hearing",
+  textOnPage32: "Document Category",
+  textOnPage33: "Description",
+  textOnPage34: "File",
+  completedStatus: "Completed",
 } as const;
 
 export default hearingsTab_content;

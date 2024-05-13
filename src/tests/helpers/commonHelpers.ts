@@ -439,6 +439,7 @@ export type allEvents =
   | "Case: Hearing Options"
   | "Case: Clear Hearing Options"
   | "Hearings: Create listing"
+  | "Hearings:Create summary"
   | "Link cases"
   | "Case: Panel Composition"
   | "Case: Edit Panel Composition";
@@ -484,3 +485,49 @@ export type hearingVenues =
   | "Taunton Magistrates Court-St John's Road"
   | "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road"
   | "Port Talbot Justice Centre - Family-Harbourside Road";
+
+export type hearingVenueNames =
+  | "Sheffield Magistrates Court"
+  | "Liverpool Civil And Family Court"
+  | "Aberdeen Tribunal Hearing Centre"
+  | "Birmingham Civil And Family Justice Centre"
+  | "East London Tribunal Hearing Centre"
+  | "Cardiff Social Security And Child Support Tribunal"
+  | "Bristol Magistrates Court"
+  | "Fox Court"
+  | "Brighton Tribunal Hearing Centre";
+
+export type hearingOutcome =
+  | "Adjourned"
+  | "Allowed"
+  | "Refused"
+  | "Withdrawn at Hearing";
+
+export type hearingAdjournedReasons =
+  | "Adjourned to face to face"
+  | "Adjourned to Video"
+  | "Admin error"
+  | "Appellant did not attend"
+  | "Appellant did not have bundle"
+  | "Appellant not ready to proceed"
+  | "Complex case"
+  | "Failure to comply with directions"
+  | "For Legal Rep/No Sol"
+  | "For Other Parties to Attend"
+  | "Further evidence received at hearing"
+  | "Further evidence supplied but not before Tribunal at hearing"
+  | "Further Loss of Earnings information required - Appellant"
+  | "Further Loss of Earnings information required - Respondent"
+  | "Further medical evidence required - Appellant"
+  | "Further medical evidence required - Respondent"
+  | "Further police evidence required - Respondent"
+  | "Further police evidence required - Appellant"
+  | "Further police evidence required - HMCTS (Summons)"
+  | "Insufficient time"
+  | "Interpreter required"
+  | "Member Unable to Attend"
+  | "PO did not attend"
+  | "Poor Evidence"
+  | "Venue not suitable"
+  | "Witness did not attend"
+  | "Other";
