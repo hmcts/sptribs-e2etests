@@ -439,6 +439,7 @@ export type allEvents =
   | "Case: Hearing Options"
   | "Case: Clear Hearing Options"
   | "Hearings: Create listing"
+  | "Hearings: Cancel hearing"
   | "Hearings:Create summary"
   | "Link cases"
   | "Case: Panel Composition"
@@ -530,4 +531,13 @@ export type hearingAdjournedReasons =
   | "Poor Evidence"
   | "Venue not suitable"
   | "Witness did not attend"
+  | "Other";
+
+export type hearingCancelledReasons =
+  | "Case Rejected"
+  | "Consent Order received and no time for infill"
+  | "Incomplete Panel"
+  | "No suitable cases that are ready to list"
+  | "Request for R27 decision and no time for infill"
+  | "Venue Unavailable"
   | "Other";
