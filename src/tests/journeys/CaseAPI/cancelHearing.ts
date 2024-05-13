@@ -95,13 +95,10 @@ const cancelHearing: CancelHearing = {
           await hearingTabPage.checkValidInfoCancelHearing(
             page,
             reasonCancelled,
-            true,
             "2-Midlands",
             "Final",
             "Paper",
             "Morning",
-            false,
-            false,
             "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
           );
           break;
