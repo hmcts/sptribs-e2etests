@@ -97,7 +97,7 @@ test.describe.only("Cancel hearing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
+test.only("Accessibility test - create summary @accessibilityCaseAPI.", async ({
   page,
 }): Promise<void> => {
   await cancelHearing.cancelHearing(

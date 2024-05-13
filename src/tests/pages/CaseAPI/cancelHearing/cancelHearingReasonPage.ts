@@ -69,7 +69,7 @@ const cancelHearingReasonPage: CancelHearingReasonPage = {
     page: Page,
     reasonCancelled: hearingCancelledReasons,
   ): Promise<void> {
-    await page.getByLabel(reasonCancelled).click();
+    await page.getByLabel(reasonCancelled, { exact: true }).click();
     await page.fill(
       "#cancelHearingAdditionalDetail",
       cancelHearingReasonContent.otherImportantInformation,

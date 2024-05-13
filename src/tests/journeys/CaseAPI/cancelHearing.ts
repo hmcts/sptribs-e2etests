@@ -9,6 +9,8 @@ import cancelHearingReasonPage from "../../pages/CaseAPI/cancelHearing/cancelHea
 import cancelHearingNotifyPage from "../../pages/CaseAPI/cancelHearing/cancelHearingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/cancelHearing/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/cancelHearing/confirmPage.ts";
+import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
+import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type CancelHearing = {
   cancelHearing(
@@ -76,7 +78,32 @@ const cancelHearing: CancelHearing = {
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-
+          await hearingsTabPage.changeToHearingsTab(page);
+          await hearingsTabPage.checkPageLoads(
+            page,
+            true,
+            false,
+            false,
+            "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+            false,
+            null,
+            false,
+            false,
+            true,
+            accessibilityTest,
+          );
+          await hearingTabPage.checkValidInfoCancelHearing(
+            page,
+            reasonCancelled,
+            true,
+            "2-Midlands",
+            "Final",
+            "Paper",
+            "Morning",
+            false,
+            false,
+            "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+          );
           break;
         case true:
           await cancelHearingSelectHearingPage.checkPageLoads(
