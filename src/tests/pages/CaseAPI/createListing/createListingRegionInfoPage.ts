@@ -1,6 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { caseRegionCode } from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  caseRegionCode,
+} from "../../../helpers/commonHelpers.ts";
 import createListingRegionInfoContent from "../../../fixtures/content/CaseAPI/createListing/createListingRegionInfo_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
@@ -52,9 +54,12 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
       expect(page.locator(".form-label")).toHaveText(
         createListingRegionInfoContent.textOnPage,
       ),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.continue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     // if (accessibilityTest) {
     //   await axeTest(page);

@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import cancelHearingSelectHearingContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingSelectHearing_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CancelHearingSelectHearingPage = {
   previous: string;
@@ -43,9 +44,12 @@ const cancelHearingSelectHearingPage: CancelHearingSelectHearingPage = {
       expect(page.locator(".form-label")).toHaveText(
         cancelHearingSelectHearingContent.textOnPage,
       ),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.continue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     // if (accessibilityTest) {
     //   await axeTest(page);

@@ -56,9 +56,12 @@ const submitPage: SubmitPage = {
           1,
         );
       }),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.saveAndContinue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.saveAndContinue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (region) {
       await commonHelpers.checkVisibleAndPresent(

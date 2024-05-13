@@ -64,6 +64,12 @@ const submitPage: SubmitPage = {
         ),
         4,
       ),
+      commonHelpers.checkForButtons(
+        page,
+        this.saveAndContinue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

@@ -58,9 +58,12 @@ const createListingRemoteHearingInformationPage: CreateListingRemoteHearingInfor
             1,
           );
         }),
-        page.locator(this.previous).isVisible(),
-        page.locator(this.continue).isVisible(),
-        page.locator(this.cancel).isVisible(),
+        commonHelpers.checkForButtons(
+          page,
+          this.continue,
+          this.previous,
+          this.cancel,
+        ),
       ]);
       if (accessibilityTest) {
         await axeTest(page);

@@ -1,5 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createSummarySelectHearingContent from "../../../fixtures/content/CaseAPI/createSummary/createSummarySelectHearing_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
@@ -43,9 +44,12 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
       expect(page.locator(".form-label")).toHaveText(
         createSummarySelectHearingContent.textOnPage,
       ),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.continue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     // if (accessibilityTest) {
     //   await axeTest(page);

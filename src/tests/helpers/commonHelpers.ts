@@ -41,6 +41,12 @@ interface CommonHelpers {
     baseURL: string,
     caseNumber: string,
   ): Promise<void>;
+  checkForButtons(
+    page: Page,
+    continueButton: string,
+    previous: string,
+    cancel: string,
+  ): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -355,6 +361,19 @@ const commonHelpers: CommonHelpers = {
     await page.getByText("Sign out").click();
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.goto(await this.generateUrl(baseURL, caseNumber));
+  },
+
+  async checkForButtons(
+    page: Page,
+    continueButton: string,
+    previous: string,
+    cancel: string,
+  ): Promise<void> {
+    await Promise.all([
+      page.locator(continueButton).isVisible(),
+      page.locator(previous).isVisible(),
+      page.locator(cancel).isVisible(),
+    ]);
   },
 };
 
