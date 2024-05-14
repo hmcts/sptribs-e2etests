@@ -5,6 +5,7 @@ import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import caseWarningPage from "../../pages/CaseAPI/closeCase/caseWarningPage.ts";
+import selectReasonPage, { CaseCloseReason } from "../../pages/CaseAPI/closeCase/selectReasonPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -15,6 +16,8 @@ type CloseCase = {
     accessibilityTest: boolean,
     initialState: initialState,
     errorMessaging: boolean,
+    closeReason: CaseCloseReason,
+    optionalText: boolean,
   ): Promise<void>;
 };
 
@@ -25,6 +28,8 @@ const closeCase: CloseCase = {
     accessibilityTest: boolean,
     initialState: initialState,
     errorMessaging: boolean,
+    closeReason: CaseCloseReason,
+    optionalText: boolean,
   ): Promise<void> {
     let caseNumber: string = "";
     switch (initialState) {
@@ -63,10 +68,42 @@ const closeCase: CloseCase = {
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await caseWarningPage.checkPageLoads(page, caseNumber, accessibilityTest);
     await caseWarningPage.continueOn(page);
+    await selectReasonPage.checkPageLoads(page, caseNumber, accessibilityTest);
     switch (errorMessaging) {
       default:
+        await selectReasonPage.continueOn(page, closeReason, optionalText)
+        switch (closeReason) {
+          default: // Case withdrawn
+            break;
+          case "caseConcession":
+            break;
+          case "caseRejected":
+            break;
+          case "caseStrikeOut":
+            break;
+          case "consentOrder":
+            break;
+          case "rule27":
+            break;
+        }
         break;
       case true:
+        await selectReasonPage.triggerErrorMessages(page);
+        await selectReasonPage.continueOn(page, closeReason, false);
+        switch (closeReason) {
+          default:
+            break;
+          case "caseConcession":
+            break;
+          case "caseRejected":
+            break;
+          case "caseStrikeOut":
+            break;
+          case "consentOrder":
+            break;
+          case "rule27":
+            break;
+        }
         break;
     }
   },

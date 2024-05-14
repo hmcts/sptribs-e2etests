@@ -5,7 +5,7 @@ import createListingListingDetailsContent from "../../../fixtures/content/CaseAP
 import selectReason_content from "../../../fixtures/content/CaseAPI/closeCase/selectReason_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
-type CaseCloseReason =
+export type CaseCloseReason =
   | "caseWithdrawn"
   | "caseRejected"
   | "caseStrikeOut"
@@ -113,3 +113,5 @@ const selectReasonPage: SelectReasonPage = {
     await this.continueOn(page, "caseWithdrawn", false);
   },
 };
+
+export default selectReasonPage;
