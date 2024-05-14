@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import cancelHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingNotifyPage_content.ts";
+import postponeHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingNotifyPage_content.ts";
 
 type PostponeHearingNotifyPage = {
   checkPageLoads(
@@ -21,31 +21,31 @@ const postponeHearingNotifyPage: PostponeHearingNotifyPage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        cancelHearingNotifyPageContent.pageHint,
+        postponeHearingNotifyPageContent.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        cancelHearingNotifyPageContent.pageTitle,
+        postponeHearingNotifyPageContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        cancelHearingNotifyPageContent.caseReference + caseNumber,
+        postponeHearingNotifyPageContent.caseReference + caseNumber,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `dt > ccd-markdown > div > markdown > p:text-is("${cancelHearingNotifyPageContent.textOnPage1}")`,
+          `dt > ccd-markdown > div > markdown > p:text-is("${postponeHearingNotifyPageContent.textOnPage1}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.form-label:text-is("${cancelHearingNotifyPageContent.textOnPage2}")`,
+          `.form-label:text-is("${postponeHearingNotifyPageContent.textOnPage2}")`,
         ),
         3,
       ),
       ...Array.from({ length: 3 }, (_, index: number) => {
-        const textOnPage = (cancelHearingNotifyPageContent as any)[
+        const textOnPage = (postponeHearingNotifyPageContent as any)[
           `textOnPage${index + 3}`
         ];
         return commonHelpers.checkVisibleAndPresent(

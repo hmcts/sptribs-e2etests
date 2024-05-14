@@ -32,11 +32,15 @@ const confirmPage: ConfirmPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h2:nth-child(2):has-text("${confirmContent.textOnPage1}")`),
+        page.locator(
+          `markdown > h2:nth-child(2):has-text("${confirmContent.textOnPage1}")`,
+        ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h2:nth-child(3):has-text("${confirmContent.textOnPage2}")`),
+        page.locator(
+          `markdown > h2:nth-child(3):has-text("${confirmContent.textOnPage2}")`,
+        ),
         1,
       ),
     ]);

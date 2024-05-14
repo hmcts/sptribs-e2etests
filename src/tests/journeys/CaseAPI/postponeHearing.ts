@@ -77,7 +77,6 @@ const postponeHearing: PostponeHearing = {
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
 
-
           break;
         case true:
           await postponeHearingSelectHearingPage.checkPageLoads(

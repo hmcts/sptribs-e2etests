@@ -2,7 +2,7 @@ const postponeHearingNotifyPage_content = {
   pageHint: "Hearings: Postpone hearing",
   pageTitle: "Notify parties",
   caseReference: "Case number: ",
-  textOnPage1: "Who should be notified about this Postponement?",
+  textOnPage1: "Which parties should be notified this Postponement?",
   textOnPage2: "Postpone information recipient (Optional)",
   textOnPage3: "Subject",
   textOnPage4: "Representative",

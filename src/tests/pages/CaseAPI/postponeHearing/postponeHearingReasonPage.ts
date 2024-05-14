@@ -74,7 +74,7 @@ const postponeHearingReasonPage: PostponeHearingReasonPage = {
   ): Promise<void> {
     await page.getByLabel(reasonPostponed, { exact: true }).click();
     await page.fill(
-      "#cancelHearingAdditionalDetail",
+      "#postponeAdditionalInformation",
       postponeHearingReasonContent.otherImportantInformation,
     );
   },
