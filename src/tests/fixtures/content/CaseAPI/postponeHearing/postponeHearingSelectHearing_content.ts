@@ -1,5 +1,5 @@
-const cancelHearingSelectHearingContent = {
-  pageHint: "Hearings: Cancel hearing",
+const postponeHearingSelectHearingContent = {
+  pageHint: "Hearings: Postpone hearing",
   pageTitle: "Select hearing",
   caseReference: "Case number: ",
   textOnPage: "Choose a hearing",
@@ -7,4 +7,4 @@ const cancelHearingSelectHearingContent = {
   chooseHearingError: "Choose a hearing is required",
 } as const;
 
-export default cancelHearingSelectHearingContent;
+export default postponeHearingSelectHearingContent;
