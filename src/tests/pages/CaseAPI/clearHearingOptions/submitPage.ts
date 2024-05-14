@@ -38,6 +38,12 @@ const submitPage: SubmitPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),
+      commonHelpers.checkForButtons(
+        page,
+        this.saveAndContinue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
 
     if (accessibilityTest) {

@@ -42,9 +42,12 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
       await expect(page.locator(".form-label")).toHaveText(
         hearingOptionsRegionDataContent.textOnPage,
       ),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.continue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       // await axeTest(page);

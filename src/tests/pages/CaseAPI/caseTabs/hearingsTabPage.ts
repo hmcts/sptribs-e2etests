@@ -13,6 +13,7 @@ import commonHelpers, {
   hearingVenueNames,
   hearingAdjournedReasons,
   hearingOutcome,
+  hearingCancelledReasons,
 } from "../../../helpers/commonHelpers.ts";
 import hearingsTab_content from "../../../fixtures/content/CaseAPI/caseTabs/hearingsTab_content.ts";
 import casePanelComposition_content from "../../../fixtures/content/CaseAPI/panelComposition/casePanelComposition_content.ts";
@@ -25,6 +26,7 @@ import createSummaryHearingRecordingUploadContent from "../../../fixtures/conten
 import submit_content from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
 import path from "path";
 import config from "../../../config.ts";
+import cancelHearingReason_content from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
 
 type HearingsTabPage = {
   hearingsTab: string;
@@ -40,6 +42,7 @@ type HearingsTabPage = {
     hearingOutcome: hearingOutcome | null,
     fullPanelHearing: boolean,
     editJourney: boolean,
+    cancelHearing: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   changeToHearingsTab(page: Page): Promise<void>;
@@ -72,6 +75,15 @@ type HearingsTabPage = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     fullPanelHearing: boolean,
     editJourney: boolean,
+  ): Promise<void>;
+  checkValidInfoCancelHearing(
+    page: Page,
+    reasonCancelled: hearingCancelledReasons,
+    caseRegionCode: caseRegionCode | null,
+    hearingType: hearingType,
+    hearingFormat: hearingFormat,
+    hearingSession: hearingSession,
+    venue: hearingVenues | null,
   ): Promise<void>;
 };
 
@@ -109,6 +121,7 @@ const hearingTabPage: HearingsTabPage = {
     hearingOutcome: hearingOutcome | null,
     fullPanelHearing: boolean,
     editJourney: boolean,
+    cancelHearing: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
@@ -183,6 +196,19 @@ const hearingTabPage: HearingsTabPage = {
         1,
       ),
     ]);
+    if (cancelHearing) {
+      await Promise.all([
+        ...Array.from({ length: 3 }, (_, index) => {
+          const textOnPage = (hearingsTab_content as any)[
+            `textOnPage${index + 35}`
+          ];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`span.text-16:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
+    }
     if (region) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -980,6 +1006,138 @@ const hearingTabPage: HearingsTabPage = {
         ]);
       }
     }
+  },
+
+  async checkValidInfoCancelHearing(
+    page: Page,
+    reasonCancelled: hearingCancelledReasons,
+    caseRegionCode: caseRegionCode | null,
+    hearingType: hearingType,
+    hearingFormat: hearingFormat,
+    hearingSession: hearingSession,
+    venue: hearingVenues | null,
+  ): Promise<void> {
+    const currentDate = new Date();
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-fixed-radio-list-field > span:text-is("${hearingsTab_content.cancelledStatus}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-fixed-radio-list-field > span:text-is("${reasonCancelled}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-area-field > span:text-is("${cancelHearingReason_content.otherImportantInformation}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-fixed-radio-list-field > span:text-is("${hearingType}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingFormat}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.room}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.text-16:text-is("${createListingListingDetailsContent.instructions}")`,
+        ),
+        2,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-field > span.text-16:text-is("${createListingRemoteHearingInformationContent.videoCallLink}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-field > span.text-16:text-is("${createListingRemoteHearingInformationContent.conferenceCallNumber}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-area-field > span:text-is("${createListingOtherInformationContent.otherInformation}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-dynamic-list-field > span.text-16:text-is("${venue}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-field > span.text-16:text-is("${venue}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `td[id='case-viewer-field-read--hearingVenues'] span[class='text-16'] span[class='text-16']:text-is("${venue}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span.text-16:text-is("${caseRegionCode}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span.text-16:text-is("No")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-date-field > span.text-16:text-is("${currentDate.getDate()} ${commonHelpers.months[currentDate.getMonth()].slice(0, 3)} ${currentDate.getFullYear()}")`,
+        ),
+        3,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-fixed-radio-list-field > span.text-16:text-is("${hearingSession}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-field > span.text-16:text-is("${createListingListingDetailsContent.morningTime}")`,
+        ),
+        1,
+      ),
+    ]);
   },
 };
 

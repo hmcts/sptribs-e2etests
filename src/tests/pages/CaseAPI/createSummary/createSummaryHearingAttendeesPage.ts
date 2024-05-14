@@ -57,9 +57,12 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
           1,
         );
       }),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.continue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (!errorMessaging) {
       await page.getByLabel("Yes", { exact: true }).click();

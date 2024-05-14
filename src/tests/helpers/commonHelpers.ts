@@ -41,6 +41,12 @@ interface CommonHelpers {
     baseURL: string,
     caseNumber: string,
   ): Promise<void>;
+  checkForButtons(
+    page: Page,
+    continueButton: string,
+    previous: string,
+    cancel: string,
+  ): Promise<void>;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -356,6 +362,19 @@ const commonHelpers: CommonHelpers = {
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.goto(await this.generateUrl(baseURL, caseNumber));
   },
+
+  async checkForButtons(
+    page: Page,
+    continueButton: string,
+    previous: string,
+    cancel: string,
+  ): Promise<void> {
+    await Promise.all([
+      page.locator(continueButton).isVisible(),
+      page.locator(previous).isVisible(),
+      page.locator(cancel).isVisible(),
+    ]);
+  },
 };
 
 export default commonHelpers;
@@ -439,6 +458,7 @@ export type allEvents =
   | "Case: Hearing Options"
   | "Case: Clear Hearing Options"
   | "Hearings: Create listing"
+  | "Hearings: Cancel hearing"
   | "Hearings:Create summary"
   | "Link cases"
   | "Case: Panel Composition"
@@ -530,4 +550,13 @@ export type hearingAdjournedReasons =
   | "Poor Evidence"
   | "Venue not suitable"
   | "Witness did not attend"
+  | "Other";
+
+export type hearingCancelledReasons =
+  | "Case Rejected"
+  | "Consent Order received and no time for infill"
+  | "Incomplete Panel"
+  | "No suitable cases that are ready to list"
+  | "Request for R27 decision and no time for infill"
+  | "Venue Unavailable"
   | "Other";

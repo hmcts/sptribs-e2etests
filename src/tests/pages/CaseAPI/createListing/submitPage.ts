@@ -99,9 +99,12 @@ const submitPage: SubmitPage = {
         ),
         4,
       ),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.saveAndContinue).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.saveAndContinue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (region) {
       await commonHelpers.checkVisibleAndPresent(

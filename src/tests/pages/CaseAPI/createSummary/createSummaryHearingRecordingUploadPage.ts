@@ -78,9 +78,12 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
             "#caseEditForm > div > ccd-field-write > div > ccd-write-text-area-field > div > label > span",
           ),
         ).toHaveText(createSummaryHearingRecordingUploadContent.textOnPage11),
-        page.locator(this.previous).isVisible(),
-        page.locator(this.continue).isVisible(),
-        page.locator(this.cancel).isVisible(),
+        commonHelpers.checkForButtons(
+          page,
+          this.continue,
+          this.previous,
+          this.cancel,
+        ),
       ]);
       await page.getByRole("button", { name: "Add new" }).click();
       await Promise.all([
