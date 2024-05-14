@@ -279,6 +279,9 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
             uploadOtherInformationContent.fileTypeErrorCy,
           ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadOtherInformationContent.fileTypeErrorCy,
+          ),
         ]);
         break;
       default:
@@ -291,6 +294,9 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
             uploadOtherInformationContent.errorBanner,
           ),
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadOtherInformationContent.fileTypeError,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
             uploadOtherInformationContent.fileTypeError,
           ),
         ]);
