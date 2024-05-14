@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import cancelHearing from "../journeys/CaseAPI/cancelHearing.ts";
 
-test.describe.only("Cancel hearing tests @CaseAPI", (): void => {
+test.describe("Cancel hearing tests @CaseAPI", (): void => {
   test("Cancel hearing as a caseworker - case rejected.", async ({
     page,
   }): Promise<void> => {
