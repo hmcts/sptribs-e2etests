@@ -268,6 +268,8 @@ const createSummary: CreateSummary = {
           await createSummaryHearingOutcomePage.triggerErrorMessages(page);
           break;
       }
+    } else {
+      throw new Error("Case number is undefined.");
     }
   },
 };

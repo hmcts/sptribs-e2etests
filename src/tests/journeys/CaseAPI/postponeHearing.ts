@@ -122,6 +122,8 @@ const postponeHearing: PostponeHearing = {
           await postponeHearingReasonPage.continueOn(page);
           break;
       }
+    } else {
+      throw new Error("Case number is undefined.");
     }
   },
 };

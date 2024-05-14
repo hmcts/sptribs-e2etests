@@ -89,6 +89,9 @@ const postponeHearingReasonPage: PostponeHearingReasonPage = {
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
         postponeHearingReasonContent.errorBanner,
       ),
+      expect(page.locator(".validation-error")).toHaveText(
+        postponeHearingReasonContent.reasonError,
+      ),
       expect(page.locator(".error-message")).toHaveText(
         postponeHearingReasonContent.reasonError,
       ),

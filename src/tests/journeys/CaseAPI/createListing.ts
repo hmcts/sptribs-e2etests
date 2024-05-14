@@ -258,6 +258,8 @@ const createListing: CreateListing = {
           await createListingNotifyPage.triggerErrorMessages(page);
           break;
       }
+    } else {
+      throw new Error("Case number is undefined.");
     }
   },
 };

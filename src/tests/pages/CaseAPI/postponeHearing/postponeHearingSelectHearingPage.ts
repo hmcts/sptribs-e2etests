@@ -71,6 +71,9 @@ const postponeHearingSelectHearingPage: PostponeHearingSelectHearingPage = {
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
         postponeHearingSelectHearingContent.errorBanner,
       ),
+      expect(page.locator(".validation-error")).toHaveText(
+        postponeHearingSelectHearingContent.chooseHearingError,
+      ),
       expect(page.locator(".error-message")).toHaveText(
         postponeHearingSelectHearingContent.chooseHearingError,
       ),

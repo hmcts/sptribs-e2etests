@@ -31,18 +31,15 @@ const confirmPage: ConfirmPage = {
         page.locator(`markdown > h1:text-is("${confirmContent.pageTitle}")`),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h2:nth-child(2):has-text("${confirmContent.textOnPage1}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h2:nth-child(3):has-text("${confirmContent.textOnPage2}")`,
-        ),
-        1,
-      ),
+      ...Array.from({ length: 2 }, (_, index: number) => {
+        const textOnPage = (confirmContent as any)[`textOnPage${index + 1}`];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `markdown > h2:nth-child(${index + 2}):text-is("${textOnPage}")`,
+          ),
+          1,
+        );
+      }),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

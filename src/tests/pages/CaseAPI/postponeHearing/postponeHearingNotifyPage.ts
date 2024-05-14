@@ -5,6 +5,9 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import postponeHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingNotifyPage_content.ts";
 
 type PostponeHearingNotifyPage = {
+  previous: string;
+  continue: string;
+  cancel: string;
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -14,6 +17,10 @@ type PostponeHearingNotifyPage = {
 };
 
 const postponeHearingNotifyPage: PostponeHearingNotifyPage = {
+  previous: ".button-secondary",
+  continue: '[type="submit"]',
+  cancel: ".cancel",
+
   async checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -53,6 +60,12 @@ const postponeHearingNotifyPage: PostponeHearingNotifyPage = {
           1,
         );
       }),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);
