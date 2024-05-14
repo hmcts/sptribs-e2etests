@@ -5,6 +5,7 @@ const events_content = {
   linkCases: "Link cases",
   hearingOptions: "Case: Hearing Options",
   panelComposition: "Case: Panel Composition",
+  closeCase: "Case: Close Case",
 } as const;
 
 export default events_content;
