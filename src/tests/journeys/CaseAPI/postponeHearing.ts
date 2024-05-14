@@ -9,6 +9,8 @@ import postponeHearingReasonPage from "../../pages/CaseAPI/postponeHearing/postp
 import postponeHearingNotifyPage from "../../pages/CaseAPI/postponeHearing/postponeHearingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/postponeHearing/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/postponeHearing/confirmPage.ts";
+import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
+import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type PostponeHearing = {
   postponeHearing(
@@ -76,7 +78,30 @@ const postponeHearing: PostponeHearing = {
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-
+          await hearingsTabPage.changeToHearingsTab(page);
+          await hearingsTabPage.checkPageLoads(
+            page,
+            true,
+            false,
+            false,
+            "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+            false,
+            null,
+            false,
+            false,
+            false,
+            true,
+            accessibilityTest,
+          );
+          await hearingTabPage.checkValidInfoPostponeHearing(
+            page,
+            reasonPostponed,
+            "2-Midlands",
+            "Final",
+            "Paper",
+            "Morning",
+            "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+          );
           break;
         case true:
           await postponeHearingSelectHearingPage.checkPageLoads(

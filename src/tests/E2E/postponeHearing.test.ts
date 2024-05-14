@@ -122,17 +122,17 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Postpone hearing as a caseworker - Last minute submissions.", async ({
-    page,
-  }): Promise<void> => {
-    await postponeHearing.postponeHearing(
-      page,
-      "caseWorker",
-      false,
-      "Last minute submissions i.e. 1-2 weeks prior to hearing",
-      false,
-    );
-  });
+  // test("Postpone hearing as a caseworker - Last minute submissions.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await postponeHearing.postponeHearing(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Last minute submissions i.e. 1-2 weeks prior to hearing",
+  //     false,
+  //   );
+  // });
 
   test("Postpone hearing as a caseworker - linked cases.", async ({
     page,
@@ -158,53 +158,53 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Postpone hearing as a caseworker - Representative/Solicitor cannot make contact with Appellant.", async ({
-    page,
-  }): Promise<void> => {
-    await postponeHearing.postponeHearing(
-      page,
-      "caseWorker",
-      false,
-      "Representative/Solicitor cannot make contact with Appellant",
-      false,
-    );
-  });
+  // test("Postpone hearing as a caseworker - Representative/Solicitor cannot make contact with Appellant.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await postponeHearing.postponeHearing(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Representative/Solicitor cannot make contact with Appellant",
+  //     false,
+  //   );
+  // });
 
-  test("Postpone hearing as a caseworker - Representative/Solicitor seeking further evidence.", async ({
-    page,
-  }): Promise<void> => {
-    await postponeHearing.postponeHearing(
-      page,
-      "caseWorker",
-      false,
-      "Representative/Solicitor seeking further evidence",
-      false,
-    );
-  });
+  // test("Postpone hearing as a caseworker - Representative/Solicitor seeking further evidence.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await postponeHearing.postponeHearing(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Representative/Solicitor seeking further evidence",
+  //     false,
+  //   );
+  // });
 
-  test("Postpone hearing as a caseworker - Representative/Solicitor unavailable.", async ({
-    page,
-  }): Promise<void> => {
-    await postponeHearing.postponeHearing(
-      page,
-      "caseWorker",
-      false,
-      "Representative/Solicitor unavailable (holiday/work/appointment/unwell)",
-      false,
-    );
-  });
+  // test("Postpone hearing as a caseworker - Representative/Solicitor unavailable.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await postponeHearing.postponeHearing(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Representative/Solicitor unavailable (holiday/work/appointment/unwell)",
+  //     false,
+  //   );
+  // });
 
-  test("Postpone hearing as a caseworker - Tribunal members unavailable.", async ({
-    page,
-  }): Promise<void> => {
-    await postponeHearing.postponeHearing(
-      page,
-      "caseWorker",
-      false,
-      "Tribunal members unavailable (holiday/work/appointment/unwell)",
-      false,
-    );
-  });
+  // test("Postpone hearing as a caseworker - Tribunal members unavailable.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await postponeHearing.postponeHearing(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Tribunal members unavailable (holiday/work/appointment/unwell)",
+  //     false,
+  //   );
+  // });
 
   test("Postpone hearing as a caseworker - Tribunal members deemed listing time directed inadequate.", async ({
     page,

@@ -194,6 +194,7 @@ const createSummary: CreateSummary = {
             false,
             editJourney,
             false,
+            false,
             accessibilityTest,
           );
           await hearingTabPage.checkValidInfoCreateSummary(
