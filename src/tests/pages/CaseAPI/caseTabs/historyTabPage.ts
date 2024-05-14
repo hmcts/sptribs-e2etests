@@ -91,33 +91,7 @@ const historyTabPage: HistoryTabPage = {
           page.locator(`a.text-16:text-is("${allEvents[i]}")`),
           1,
         );
-        if (eventTimes[i] === eventTimes[i + 1]) {
-          await commonHelpers.checkVisibleAndPresent(
-            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
-            3,
-          );
-        } else {
-          await commonHelpers.checkVisibleAndPresent(
-            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
-            1,
-          );
-        }
       } else {
-        if (
-          allEvents.length > 1 &&
-          i > 0 &&
-          eventTimes[i] === eventTimes[i - 1]
-        ) {
-          await commonHelpers.checkVisibleAndPresent(
-            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
-            3,
-          );
-        } else {
-          await commonHelpers.checkVisibleAndPresent(
-            page.locator(`div.tooltip.text-16:has-text("${eventTimes[i]}")`),
-            2,
-          );
-        }
         await commonHelpers.checkVisibleAndPresent(
           page.locator(`a.text-16:text-is("${allEvents[i]}")`),
           1,

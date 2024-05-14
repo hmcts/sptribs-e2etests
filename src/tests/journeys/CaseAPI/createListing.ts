@@ -30,12 +30,12 @@ type CreateListing = {
     caseRegionCode: caseRegionCode | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
-    hearingSession: string,
+    hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<string | undefined>;
+  ): Promise<string | void>;
 };
 
 const createListing: CreateListing = {
@@ -52,8 +52,8 @@ const createListing: CreateListing = {
     readyToList: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
-  ): Promise<string | undefined> {
-    let caseNumber: string | undefined;
+  ): Promise<string | void> {
+    let caseNumber: string | void;
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
 
@@ -185,9 +185,14 @@ const createListing: CreateListing = {
             hearingAcrossMultipleDays,
             readyToList,
             venue,
+            false,
+            null,
+            false,
+            false,
+            false,
             accessibilityTest,
           );
-          await hearingsTabPage.checkValidInfo(
+          await hearingsTabPage.checkValidInfoCreateListing(
             page,
             region,
             caseRegionCode,

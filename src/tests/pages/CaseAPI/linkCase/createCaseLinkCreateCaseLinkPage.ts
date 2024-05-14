@@ -40,9 +40,12 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLinkPage = {
         createCaseLinkCreateCaseLink_content.textOnPage2,
       ),
       page.locator(this.next).isVisible(),
-      page.locator(this.previous).isVisible(),
-      page.locator(this.submit).isVisible(),
-      page.locator(this.cancel).isVisible(),
+      commonHelpers.checkForButtons(
+        page,
+        this.submit,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

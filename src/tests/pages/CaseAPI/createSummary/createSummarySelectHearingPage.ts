@@ -1,13 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers, {
-  caseRegionCode,
-} from "../../../helpers/commonHelpers.ts";
-import createListingRegionInfoContent from "../../../fixtures/content/CaseAPI/createListing/createListingRegionInfo_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import createSummarySelectHearingContent from "../../../fixtures/content/CaseAPI/createSummary/createSummarySelectHearing_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
-type CreateListingRegionInfoPage = {
-  region: string;
+type CreateSummarySelectHearingPage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -16,16 +13,12 @@ type CreateListingRegionInfoPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(
-    page: Page,
-    region: boolean,
-    caseRegionCode: caseRegionCode | null,
-  ): Promise<void>;
+  fillInFields(page: Page): Promise<string | null>;
+  triggerErrorMessages(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
-const createListingRegionInfoPage: CreateListingRegionInfoPage = {
-  region: "#regionList",
+const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
   previous: ".button-secondary[disabled]",
   continue: '[type="submit"]',
   cancel: ".cancel",
@@ -35,24 +28,21 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.waitForURL(
-      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-record-listing/caseworker-record-listingregionInfo`,
-    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        createListingRegionInfoContent.pageHint,
+        createSummarySelectHearingContent.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        createListingRegionInfoContent.pageTitle,
+        createSummarySelectHearingContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        createListingRegionInfoContent.caseReference + caseNumber,
+        createSummarySelectHearingContent.caseReference + caseNumber,
       ),
       expect(page.locator(".form-label")).toHaveText(
-        createListingRegionInfoContent.textOnPage,
+        createSummarySelectHearingContent.textOnPage,
       ),
       commonHelpers.checkForButtons(
         page,
@@ -66,19 +56,26 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
     // }
   },
 
-  async fillInFields(
-    page: Page,
-    region: boolean,
-    caseRegionCode: caseRegionCode | null,
-  ): Promise<void> {
-    if (region) {
-      await page.selectOption(this.region, caseRegionCode);
-    }
+  async fillInFields(page: Page): Promise<string | null> {
+    await page.locator("#cicCaseHearingList").selectOption({ index: 1 });
+    return await page.textContent("#cicCaseHearingList > option:nth-child(2)");
   },
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continue);
   },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".govuk-error-summary__title")).toHaveText(
+        createSummarySelectHearingContent.errorBanner,
+      ),
+      expect(page.locator(".error-message")).toHaveText(
+        createSummarySelectHearingContent.chooseHearingError,
+      ),
+    ]);
+  },
 };
 
-export default createListingRegionInfoPage;
+export default createSummarySelectHearingPage;
