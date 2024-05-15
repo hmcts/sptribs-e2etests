@@ -194,6 +194,7 @@ const createSummary: CreateSummary = {
             false,
             editJourney,
             false,
+            false,
             accessibilityTest,
           );
           await hearingTabPage.checkValidInfoCreateSummary(
@@ -267,6 +268,8 @@ const createSummary: CreateSummary = {
           await createSummaryHearingOutcomePage.triggerErrorMessages(page);
           break;
       }
+    } else {
+      throw new Error("Case number is undefined.");
     }
   },
 };
