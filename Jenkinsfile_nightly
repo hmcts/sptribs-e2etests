@@ -92,9 +92,9 @@ withNightlyPipeline(type, product, component) {
   enableSlackNotifications('#special-tribunals-builds')
   afterAlways('DependencyCheckNightly') {
     if (!params.skipDSSCreateTests) {
-      stage('DSS Create Case application E2E tests') {
+      stage('DSS Create Case Application E2E tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:FunctionalDSS')
+          yarnBuilder.yarn('test:ChromeDSS')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -104,14 +104,14 @@ withNightlyPipeline(type, product, component) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'DSS Create Case Application E2E Test Report'
+                  reportName: 'DSS Create Case Application Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
       }
-      stage('DSS Create case application cross browser tests') {
+      stage('DSS Create Case Application E2E tests - Firefox') {
         try {
-          yarnBuilder.yarn('test:CrossbrowserDSS')
+          yarnBuilder.yarn('test:FirefoxDSS')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -121,7 +121,24 @@ withNightlyPipeline(type, product, component) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'DSS Create Case Application Cross Browser Test Report'
+                  reportName: 'DSS Create Case Application Firefox E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+        }
+      }
+      stage('DSS Create Case Application E2E tests - Webkit') {
+        try {
+          yarnBuilder.yarn('test:WebkitDSS')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Create Case Application Webkit E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
@@ -145,9 +162,9 @@ withNightlyPipeline(type, product, component) {
       }
     }
     if (!params.skipDSSUpdateTests) {
-      stage('DSS Update case application E2E tests') {
+      stage('DSS Update Case Application E2E tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:FunctionalUC')
+          yarnBuilder.yarn('test:ChromeUC')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -157,14 +174,14 @@ withNightlyPipeline(type, product, component) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'DSS Update Application E2E Test Report'
+                  reportName: 'DSS Update Case Application Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
       }
-      stage('DSS Update case application cross browser tests') {
+      stage('DSS Update Case Application E2E tests - Firefox') {
         try {
-          yarnBuilder.yarn('test:CrossbrowserUC')
+          yarnBuilder.yarn('test:FirefoxUC')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -174,12 +191,29 @@ withNightlyPipeline(type, product, component) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'DSS Update Application Cross Browser Test Report'
+                  reportName: 'DSS Update Case Application Firefox E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
       }
-      stage('DSS Update case application accessibility tests') {
+      stage('DSS Update Case Application E2E tests - Webkit') {
+        try {
+          yarnBuilder.yarn('test:WebkitUC')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'DSS Update Case Application Webkit E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
+        }
+      }
+      stage('DSS Update Case Application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityUC')
         } catch (Error) {
@@ -198,9 +232,9 @@ withNightlyPipeline(type, product, component) {
       }
     }
     if (!params.skipCaseAPITests) {
-      stage('Case-API application E2E tests') {
+      stage('Case-API Application E2E tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:FunctionalCaseAPI')
+          yarnBuilder.yarn('test:ChromeCaseAPI')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -210,14 +244,14 @@ withNightlyPipeline(type, product, component) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'Case-API Application E2E Test Report'
+                  reportName: 'Case-API Application Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-      stage('Case-API application cross browser tests') {
+      stage('Case-API Application E2E tests - Firefox') {
         try {
-          yarnBuilder.yarn('test:CrossbrowserCaseAPI')
+          yarnBuilder.yarn('test:FirefoxCaseAPI')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -227,12 +261,29 @@ withNightlyPipeline(type, product, component) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'Case-API Application Cross Browser Test Report'
+                  reportName: 'Case-API Application Firefox E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-      stage('Case-API application accessibility tests') {
+      stage('Case-API Application E2E tests - Webkit') {
+        try {
+          yarnBuilder.yarn('test:WebkitCaseAPI')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Webkit E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Case-API Application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityCaseAPI')
         } catch (Error) {
