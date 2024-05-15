@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import postponeHearing from "../journeys/CaseAPI/postponeHearing.ts";
 
 test.describe("Postpone hearing tests @CaseAPI", (): void => {
-  test.only("Postpone hearing as a caseworker - Appellant is out of country.", async ({
+  test("Postpone hearing as a caseworker - Appellant is out of country.", async ({
     page,
   }): Promise<void> => {
     await postponeHearing.postponeHearing(
