@@ -48,9 +48,13 @@ const hearingsTab_content = {
   textOnPage34: "File",
   completedStatus: "Completed",
   cancelledStatus: "Cancelled",
+  postponedStatus: "Postponed",
   textOnPage35: "Date Cancelled",
   textOnPage36: "Reason Cancelled",
   textOnPage37: "Enter any other important information about this cancellation",
+  textOnPage38: "Date Postponed",
+  textOnPage39: "Reason Postponed",
+  textOnPage40: "Enter any other important information about this postponement",
 } as const;
 
 export default hearingsTab_content;
