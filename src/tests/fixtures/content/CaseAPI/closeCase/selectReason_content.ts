@@ -9,6 +9,9 @@ const selectReason_content = {
   textOnPage6: "Consent Order",
   textOnPage7: "Rule 27",
   textOnPage8: "Provide additional details (Optional)",
+
+  optionalText: "Lorem ipsum additional detail",
+
   errorBanner: "There is a problem",
   errorMessage: " Why is this case being closed? is required ",
 } as const;

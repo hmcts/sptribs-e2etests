@@ -5,7 +5,13 @@ import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import caseWarningPage from "../../pages/CaseAPI/closeCase/caseWarningPage.ts";
-import selectReasonPage, { CaseCloseReason } from "../../pages/CaseAPI/closeCase/selectReasonPage.ts";
+import selectReasonPage, {
+  CaseCloseReason,
+} from "../../pages/CaseAPI/closeCase/selectReasonPage.ts";
+import withdrawalDetailsPage from "../../pages/CaseAPI/closeCase/withdrawalDetailsPage.ts";
+import rejectionDetailsPage, {
+  RejectionReason,
+} from "../../pages/CaseAPI/closeCase/rejectionDetailsPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -18,6 +24,7 @@ type CloseCase = {
     errorMessaging: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
+    rejectionReason: RejectionReason,
   ): Promise<void>;
 };
 
@@ -30,6 +37,7 @@ const closeCase: CloseCase = {
     errorMessaging: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
+    rejectionReason: RejectionReason,
   ): Promise<void> {
     let caseNumber: string = "";
     switch (initialState) {
@@ -71,13 +79,25 @@ const closeCase: CloseCase = {
     await selectReasonPage.checkPageLoads(page, caseNumber, accessibilityTest);
     switch (errorMessaging) {
       default:
-        await selectReasonPage.continueOn(page, closeReason, optionalText)
+        await selectReasonPage.continueOn(page, closeReason, optionalText);
         switch (closeReason) {
           default: // Case withdrawn
-            break;
-          case "caseConcession":
+            await withdrawalDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await withdrawalDetailsPage.continueOn(page);
             break;
           case "caseRejected":
+            await rejectionDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await rejectionDetailsPage.continueOn(page, rejectionReason);
+            break;
+          case "caseConcession":
             break;
           case "caseStrikeOut":
             break;
@@ -92,10 +112,22 @@ const closeCase: CloseCase = {
         await selectReasonPage.continueOn(page, closeReason, false);
         switch (closeReason) {
           default:
-            break;
-          case "caseConcession":
+            await withdrawalDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await withdrawalDetailsPage.triggerErrorMessages(page);
             break;
           case "caseRejected":
+            await rejectionDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await rejectionDetailsPage.triggerErrorMessages(page);
+            break;
+          case "caseConcession":
             break;
           case "caseStrikeOut":
             break;
