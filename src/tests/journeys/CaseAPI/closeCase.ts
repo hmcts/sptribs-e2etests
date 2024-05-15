@@ -12,6 +12,9 @@ import withdrawalDetailsPage from "../../pages/CaseAPI/closeCase/withdrawalDetai
 import rejectionDetailsPage, {
   RejectionReason,
 } from "../../pages/CaseAPI/closeCase/rejectionDetailsPage.ts";
+import strikeoutDetailsPage, {
+  StrikeoutReason,
+} from "../../pages/CaseAPI/closeCase/strikeoutDetailsPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -25,6 +28,7 @@ type CloseCase = {
     closeReason: CaseCloseReason,
     optionalText: boolean,
     rejectionReason: RejectionReason,
+    strikeoutReason: StrikeoutReason,
   ): Promise<void>;
 };
 
@@ -38,6 +42,7 @@ const closeCase: CloseCase = {
     closeReason: CaseCloseReason,
     optionalText: boolean,
     rejectionReason: RejectionReason,
+    strikeoutReason: StrikeoutReason,
   ): Promise<void> {
     let caseNumber: string = "";
     switch (initialState) {
@@ -97,9 +102,15 @@ const closeCase: CloseCase = {
             );
             await rejectionDetailsPage.continueOn(page, rejectionReason);
             break;
-          case "caseConcession":
-            break;
           case "caseStrikeOut":
+            await strikeoutDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await strikeoutDetailsPage.continueOn(page, strikeoutReason);
+            break;
+          case "caseConcession":
             break;
           case "consentOrder":
             break;
@@ -127,9 +138,15 @@ const closeCase: CloseCase = {
             );
             await rejectionDetailsPage.triggerErrorMessages(page);
             break;
-          case "caseConcession":
-            break;
           case "caseStrikeOut":
+            await strikeoutDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await strikeoutDetailsPage.triggerErrorMessages(page);
+            break;
+          case "caseConcession":
             break;
           case "consentOrder":
             break;

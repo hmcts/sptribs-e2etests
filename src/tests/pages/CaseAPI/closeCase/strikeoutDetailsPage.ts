@@ -1,0 +1,130 @@
+import { expect, Page } from "@playwright/test";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import strikeoutDetails_content from "../../../fixtures/content/CaseAPI/closeCase/strikeoutDetails_content.ts";
+
+export type StrikeoutReason = "noncomplianceWithDirections" | "other";
+
+type StrikeoutDetailsPage = {
+  continue: string;
+  previous: string;
+  cancel: string;
+  checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void>;
+  continueOn(page: Page, strikeoutReason: StrikeoutReason): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
+};
+
+const strikeoutDetailsPage: StrikeoutDetailsPage = {
+  continue: '[type="submit"]',
+  previous: ".button-secondary",
+  cancel: ".cancel",
+
+  async checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await page.click(`#closeStrikeOutReason-other`);
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-caption-l:text-is("${strikeoutDetails_content.pageHint}")`,
+        ),
+        1,
+      ),
+      expect(page.locator("markdown > h3")).toContainText(
+        caseSubjectDetailsObject_content.name,
+      ),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        createListingListingDetailsContent.caseReference + caseNumber,
+      ),
+      ...Array.from({ length: 5 }, (_, index: number) => {
+        const textOnPage = (strikeoutDetails_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+      await commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
+  },
+
+  async continueOn(
+    page: Page,
+    strikeoutReason: StrikeoutReason,
+  ): Promise<void> {
+    await page.click(`#closeRejectionReason-${strikeoutReason}`);
+    if (strikeoutReason === "other") {
+      await page.fill(
+        `#closeStrikeOutDetails`,
+        strikeoutDetails_content.otherText,
+      );
+    }
+    await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `#error-summary-title:text-is("${strikeoutDetails_content.errorBanner}")`,
+        ),
+        1,
+      ),
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.validation-error:has-text("${strikeoutDetails_content.errorStrikeout}")`,
+        ),
+        1,
+      ),
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.error-message:has-text("${strikeoutDetails_content.errorStrikeout}")`,
+        ),
+        1,
+      ),
+    ]);
+    await page.click(`#closeStrikeOutReason-other`);
+    await page.click(this.continue);
+    await Promise.all([
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `#error-summary-title:text-is("${strikeoutDetails_content.errorBanner}")`,
+        ),
+        1,
+      ),
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.validation-error:has-text("${strikeoutDetails_content.errorAdditionalInfo}")`,
+        ),
+        1,
+      ),
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.error-message:has-text("${strikeoutDetails_content.errorAdditionalInfo}")`,
+        ),
+        1,
+      ),
+    ]);
+    await this.continueOn(page, "noncomplianceWithDirections");
+  },
+};
+
+export default strikeoutDetailsPage;
