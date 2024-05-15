@@ -37,7 +37,7 @@ There are several commands you can run, these include:
 - `yarn test:CrossDeviceDSS` - this will run the E2E tests for the DSS Submit application against the URL configured in tests/config.js, in a mobile Chromium and Webkit browsers - this does not work well.
 - `yarn test:AccessibilityDSS` - this will run the Accessibility tests for the DSS Submit application against the URL configured in tests/config.js, in a Chromium browser only, which is used in our Jenkins pipeline.
 - `yarn FunctionalCaseAPI` - this will run the E2E tests for the Case API application against the URL configured in tests/config.js, in a Chromium browser only, which is used in our Jenkins pipeline.
-- `yarn test:FirefoxCaseAPI` - this will run the E2E tests for the Case API application against the URL configured in tests/config.js, in a Chromium, Firefox, and Webkit browsers, which is used in our Jenkins pipeline.
+- `yarn test:FirefoxCaseAPI` - this will run the E2E tests for the Case API application against the URL configured in tests/config.js, in a Firefox browser, which is used in our Jenkins pipeline.
 - `yarn test:CrossDeviceCaseAPI` - this will run the E2E tests for the Case API application against the URL configured in tests/config.js, in a mobile Chromium and Webkit browsers - this does not work well.
 - `yarn test:AccessibilityCaseAPI` - this will run the Accessibility tests for the Case API application against the URL configured in tests/config.js, in a Chromium browser only, which is used in our Jenkins pipeline.
 - `yarn FunctionalUC` - this will run the E2E tests for the DSS Update application against the URL configured in tests/config.js, in a Chromium browser only, which is used in our Jenkins pipeline.
