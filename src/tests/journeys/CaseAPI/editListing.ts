@@ -10,6 +10,7 @@ import commonHelpers, {
 } from "../../helpers/commonHelpers.ts";
 import editListingSelectHearingPage from "../../pages/CaseAPI/editListing/editListingSelectHearingPage.ts";
 import editListingHearingTypeAndFormatPage from "../../pages/CaseAPI/editListing/editListingHearingTypeAndFormatPage.ts";
+import editListingRegionInfoPage from "../../pages/CaseAPI/editListing/editListingRegionInfoPage.ts";
 
 type EditListing = {
   editListing(
@@ -78,6 +79,9 @@ const editListing: EditListing = {
             hearingFormat,
           );
           await editListingHearingTypeAndFormatPage.continueOn(page);
+          await editListingRegionInfoPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await editListingRegionInfoPage.fillInFields(page, region, caseRegionCode);
+          await editListingRegionInfoPage.continueOn(page);
 
           break;
         case true:
@@ -95,6 +99,9 @@ const editListing: EditListing = {
             accessibilityTest,
           );
           await editListingHearingTypeAndFormatPage.continueOn(page);
+          await editListingRegionInfoPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await editListingRegionInfoPage.continueOn(page);
+
 
           break;
       }
