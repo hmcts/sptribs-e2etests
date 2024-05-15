@@ -58,7 +58,7 @@ const rejectionDetailsPage: RejectionDetailsPage = {
           1,
         );
       }),
-      await commonHelpers.checkForButtons(
+      commonHelpers.checkForButtons(
         page,
         this.continue,
         this.previous,
@@ -87,19 +87,19 @@ const rejectionDetailsPage: RejectionDetailsPage = {
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
     await Promise.all([
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `#error-summary-title:text-is("${rejectionDetails_content.errorBanner}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.validation-error:has-text("${rejectionDetails_content.errorNoInput}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.error-message:has-text("${rejectionDetails_content.errorNoInput}")`,
         ),
@@ -109,19 +109,19 @@ const rejectionDetailsPage: RejectionDetailsPage = {
     await page.click(`#closeRejectionReason-other`);
     await page.click(this.continue);
     await Promise.all([
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `#error-summary-title:text-is("${rejectionDetails_content.errorBanner}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.validation-error:has-text("${rejectionDetails_content.errorNoOther}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.error-message:has-text("${rejectionDetails_content.errorNoOther}")`,
         ),

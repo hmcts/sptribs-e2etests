@@ -53,7 +53,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
           1,
         );
       }),
-      await commonHelpers.checkForButtons(
+      commonHelpers.checkForButtons(
         page,
         this.continue,
         this.previous,
@@ -82,19 +82,19 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
     await Promise.all([
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `#error-summary-title:text-is("${strikeoutDetails_content.errorBanner}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.validation-error:has-text("${strikeoutDetails_content.errorStrikeout}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.error-message:has-text("${strikeoutDetails_content.errorStrikeout}")`,
         ),
@@ -104,19 +104,19 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
     await page.click(`#closeStrikeOutReason-other`);
     await page.click(this.continue);
     await Promise.all([
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `#error-summary-title:text-is("${strikeoutDetails_content.errorBanner}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.validation-error:has-text("${strikeoutDetails_content.errorAdditionalInfo}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.error-message:has-text("${strikeoutDetails_content.errorAdditionalInfo}")`,
         ),

@@ -91,19 +91,19 @@ const selectReasonPage: SelectReasonPage = {
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
     await Promise.all([
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `#error-summary-title:text-is("${selectReason_content.errorBanner}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.validation-error:has-text("${selectReason_content.errorMessage}")`,
         ),
         1,
       ),
-      await commonHelpers.checkVisibleAndPresent(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.error-message:has-text("${selectReason_content.errorMessage}")`,
         ),

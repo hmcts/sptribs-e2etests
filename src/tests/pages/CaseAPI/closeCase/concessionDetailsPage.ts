@@ -1,11 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import withdrawalDetails_content from "../../../fixtures/content/CaseAPI/closeCase/withdrawalDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import concessionDetails_content from "../../../fixtures/content/CaseAPI/closeCase/concessionDetails_content.ts";
 
-type WithdrawalDetailsPage = {
+type ConcessionDetailsPage = {
   continue: string;
   previous: string;
   cancel: string;
@@ -18,7 +18,7 @@ type WithdrawalDetailsPage = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const withdrawalDetailsPage: WithdrawalDetailsPage = {
+const concessionDetailsPage: ConcessionDetailsPage = {
   continue: '[type="submit"]',
   previous: ".button-secondary",
   cancel: ".cancel",
@@ -31,7 +31,7 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.govuk-caption-l:text-is("${withdrawalDetails_content.pageHint}")`,
+          `.govuk-caption-l:text-is("${concessionDetails_content.pageHint}")`,
         ),
         1,
       ),
@@ -41,8 +41,8 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 5 }, (_, index: number) => {
-        const textOnPage = (withdrawalDetails_content as any)[
+      ...Array.from({ length: 4 }, (_, index: number) => {
+        const textOnPage = (concessionDetails_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -50,7 +50,7 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
           1,
         );
       }),
-      commonHelpers.checkForButtons(
+      await commonHelpers.checkForButtons(
         page,
         this.continue,
         this.previous,
@@ -64,20 +64,16 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.fill(
-      `#closeWithdrawalFullName`,
-      `${withdrawalDetails_content.withdrawalName}`,
+      `#closeConcessionDate-day`,
+      `${concessionDetails_content.day}`,
     );
     await page.fill(
-      `#closeWithdrawalRequestDate-day`,
-      `${withdrawalDetails_content.day}`,
+      `#closeConcessionDate-month`,
+      `${concessionDetails_content.month}`,
     );
     await page.fill(
-      `#closeWithdrawalRequestDate-month`,
-      `${withdrawalDetails_content.month}`,
-    );
-    await page.fill(
-      `#closeWithdrawalRequestDate-year`,
-      `${withdrawalDetails_content.year}`,
+      `#closeConcessionDate-year`,
+      `${concessionDetails_content.year}`,
     );
     await page.click(this.continue);
   },
@@ -87,31 +83,19 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `#error-summary-title:text-is("${withdrawalDetails_content.errorBanner}")`,
+          `#error-summary-title:text-is("${concessionDetails_content.errorBanner}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.validation-error:has-text("${withdrawalDetails_content.errorWithdrew}")`,
+          `.validation-error:has-text("${concessionDetails_content.errorConceded}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.error-message:has-text("${withdrawalDetails_content.errorWithdrew}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.validation-error:has-text("${withdrawalDetails_content.errorDate}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.error-message:has-text("${withdrawalDetails_content.errorDate}")`,
+          `.error-message:has-text("${concessionDetails_content.errorConceded}")`,
         ),
         1,
       ),
@@ -120,4 +104,4 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
   },
 };
 
-export default withdrawalDetailsPage;
+export default concessionDetailsPage;
