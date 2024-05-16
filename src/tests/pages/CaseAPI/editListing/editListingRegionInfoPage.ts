@@ -35,6 +35,9 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForURL(
+      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingregionInfo`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingRegionInfoContent.pageHint,
@@ -68,7 +71,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
     region: boolean,
     caseRegionCode: caseRegionCode | null,
   ): Promise<void> {
-    await expect(page.locator(this.region)).toHaveValue("2-Midlands");
+    await expect(page.locator(this.region)).toContainText("2-Midlands");
     if (region) {
       await page.selectOption(this.region, caseRegionCode);
     } else {

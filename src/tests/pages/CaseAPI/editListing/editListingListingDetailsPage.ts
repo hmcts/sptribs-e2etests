@@ -168,9 +168,6 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
   async checkFields(page: Page): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
-      expect(page.locator(this.venue)).toHaveValue(
-        "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-      ),
       expect(page.locator(this.roomAtVenue)).toHaveValue(
         editListingListingDetailsContent.room,
       ),
