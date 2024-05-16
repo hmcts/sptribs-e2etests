@@ -48,8 +48,11 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
       expect(page.locator("markdown > p").nth(1)).toHaveText(
         editListingOtherInformationContent.textOnPage1,
       ),
-      expect(page.locator(".form-label")).toHaveText(
+      expect(page.locator("markdown > p").nth(2)).toHaveText(
         editListingOtherInformationContent.textOnPage2,
+      ),
+      expect(page.locator(".form-label")).toHaveText(
+        editListingOtherInformationContent.textOnPage3,
       ),
       commonHelpers.checkForButtons(
         page,
@@ -64,7 +67,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
   },
 
   async checkFields(page: Page): Promise<void> {
-    await expect(page.locator(this.importantInfo)).toContainText(
+    await expect(page.locator(this.importantInfo)).toHaveValue(
       editListingOtherInformationContent.otherInformation,
     );
   },

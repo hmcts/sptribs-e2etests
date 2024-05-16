@@ -16,6 +16,8 @@ import editListingRemoteHearingInformationPage from "../../pages/CaseAPI/editLis
 import editListingOtherInformationPage from "../../pages/CaseAPI/editListing/editListingOtherInformationPage.ts";
 import editListingChangeReasonPage from "../../pages/CaseAPI/editListing/editListingChangeReasonPage.ts";
 import editListingNotifyPage from "../../pages/CaseAPI/editListing/editListingNotifyPage.ts";
+import submitPage from "../../pages/CaseAPI/editListing/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/editListing/confirmPage.ts";
 
 type EditListing = {
   editListing(
@@ -137,6 +139,18 @@ const editListing: EditListing = {
             accessibilityTest,
           );
           await editListingNotifyPage.continueOn(page);
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            region,
+            hearingAcrossMultipleDays,
+            venue,
+            accessibilityTest,
+          );
+          await submitPage.checkValidInfo(page, region, caseRegionCode, hearing, hearingType, hearingFormat, hearingSession, hearingAcrossMultipleDays, venue)
+          await submitPage.continueOn(page);
+          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await confirmPage.continueOn(page);
 
           break;
         case true:

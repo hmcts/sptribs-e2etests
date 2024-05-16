@@ -70,10 +70,10 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
     },
 
     async checkFields(page: Page): Promise<void> {
-      await expect(page.locator(this.videoLink)).toContainText(
+      await expect(page.locator(this.videoLink)).toHaveValue(
         editListingRemoteHearingInformationContent.videoCallLink,
       );
-      await expect(page.locator(this.conferenceNumber)).toContainText(
+      await expect(page.locator(this.conferenceNumber)).toHaveValue(
         editListingRemoteHearingInformationContent.conferenceCallNumber,
       );
     },

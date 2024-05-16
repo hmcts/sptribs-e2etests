@@ -59,9 +59,7 @@ const editListingChangeReasonPage: EditListingChangeReasonPage = {
   },
 
   async fillFields(page: Page): Promise<void> {
-    await expect(page.locator(this.reason)).toContainText(
-      editListingChangeReasonContent.reason,
-    );
+    await page.fill(this.reason, editListingChangeReasonContent.reason);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
