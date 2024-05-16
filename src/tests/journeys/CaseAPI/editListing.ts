@@ -12,6 +12,8 @@ import editListingSelectHearingPage from "../../pages/CaseAPI/editListing/editLi
 import editListingHearingTypeAndFormatPage from "../../pages/CaseAPI/editListing/editListingHearingTypeAndFormatPage.ts";
 import editListingRegionInfoPage from "../../pages/CaseAPI/editListing/editListingRegionInfoPage.ts";
 import editListingListingDetailsPage from "../../pages/CaseAPI/editListing/editListingListingDetailsPage.ts";
+import editListingRemoteHearingInformationPage from "../../pages/CaseAPI/editListing/editListingRemoteHearingInformationPage.ts";
+import editListingOtherInformationPage from "../../pages/CaseAPI/editListing/editListingOtherInformationPage.ts";
 
 type EditListing = {
   editListing(
@@ -106,6 +108,20 @@ const editListing: EditListing = {
             hearingAcrossMultipleDays,
           );
           await editListingListingDetailsPage.continueOn(page);
+          await editListingRemoteHearingInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingRemoteHearingInformationPage.checkFields(page);
+          await editListingRemoteHearingInformationPage.continueOn(page);
+          await editListingOtherInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingOtherInformationPage.checkFields(page);
+          await editListingOtherInformationPage.continueOn(page);
 
           break;
         case true:
@@ -144,6 +160,18 @@ const editListing: EditListing = {
             hearingAcrossMultipleDays,
           );
           await editListingListingDetailsPage.continueOn(page);
+          await editListingRemoteHearingInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingRemoteHearingInformationPage.continueOn(page);
+          await editListingOtherInformationPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingOtherInformationPage.continueOn(page);
 
           break;
       }
