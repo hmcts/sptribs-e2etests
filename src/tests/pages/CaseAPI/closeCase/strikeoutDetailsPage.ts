@@ -123,7 +123,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
         1,
       ),
     ]);
-    await this.continueOn(page, "noncomplianceWithDirections");
+    await page.click(this.previous);
   },
 };
 

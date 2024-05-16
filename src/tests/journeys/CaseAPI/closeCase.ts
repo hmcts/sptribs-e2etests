@@ -15,6 +15,7 @@ import rejectionDetailsPage, {
 import strikeoutDetailsPage, {
   StrikeoutReason,
 } from "../../pages/CaseAPI/closeCase/strikeoutDetailsPage.ts";
+import concessionDetailsPage from "../../pages/CaseAPI/closeCase/concessionDetailsPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -111,6 +112,12 @@ const closeCase: CloseCase = {
             await strikeoutDetailsPage.continueOn(page, strikeoutReason);
             break;
           case "caseConcession":
+            await concessionDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await concessionDetailsPage.continueOn(page);
             break;
           case "consentOrder":
             break;
@@ -120,39 +127,34 @@ const closeCase: CloseCase = {
         break;
       case true:
         await selectReasonPage.triggerErrorMessages(page);
-        await selectReasonPage.continueOn(page, closeReason, false);
-        switch (closeReason) {
-          default:
-            await withdrawalDetailsPage.checkPageLoads(
-              page,
-              caseNumber,
-              accessibilityTest,
-            );
-            await withdrawalDetailsPage.triggerErrorMessages(page);
-            break;
-          case "caseRejected":
-            await rejectionDetailsPage.checkPageLoads(
-              page,
-              caseNumber,
-              accessibilityTest,
-            );
-            await rejectionDetailsPage.triggerErrorMessages(page);
-            break;
-          case "caseStrikeOut":
-            await strikeoutDetailsPage.checkPageLoads(
-              page,
-              caseNumber,
-              accessibilityTest,
-            );
-            await strikeoutDetailsPage.triggerErrorMessages(page);
-            break;
-          case "caseConcession":
-            break;
-          case "consentOrder":
-            break;
-          case "rule27":
-            break;
-        }
+        await selectReasonPage.continueOn(page, "caseWithdrawn", false);
+        await withdrawalDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await withdrawalDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.continueOn(page, "caseRejected", false);
+        await rejectionDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await rejectionDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.continueOn(page, "caseStrikeOut", false);
+        await strikeoutDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await strikeoutDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.continueOn(page, "caseConcession", false);
+        await concessionDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await concessionDetailsPage.triggerErrorMessages(page);
         break;
     }
   },

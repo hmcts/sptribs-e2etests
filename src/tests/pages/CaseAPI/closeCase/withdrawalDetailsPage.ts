@@ -116,7 +116,7 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
         1,
       ),
     ]);
-    await this.continueOn(page);
+    await page.click(this.previous);
   },
 };
 

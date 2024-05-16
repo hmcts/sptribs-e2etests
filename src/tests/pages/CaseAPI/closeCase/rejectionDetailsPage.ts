@@ -128,7 +128,7 @@ const rejectionDetailsPage: RejectionDetailsPage = {
         1,
       ),
     ]);
-    await this.continueOn(page, "createdInError");
+    await page.click(this.previous);
   },
 };
 

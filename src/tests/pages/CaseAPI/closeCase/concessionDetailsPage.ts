@@ -100,7 +100,7 @@ const concessionDetailsPage: ConcessionDetailsPage = {
         1,
       ),
     ]);
-    await this.continueOn(page);
+    await page.click(this.previous);
   },
 };
 
