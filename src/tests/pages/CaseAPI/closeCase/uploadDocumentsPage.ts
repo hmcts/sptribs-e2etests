@@ -76,10 +76,13 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.selectOption(`.ccd-dropdown`, "A - Application Form");
+    await page.selectOption(
+      `.ccd-dropdown`,
+      `${uploadDocuments_content.uploadedDocumentCategory}`,
+    );
     await page.fill(
       `#closeDocuments_0_documentEmailContent`,
-      `Lorem ipsum text A - Application Form`,
+      `${uploadDocuments_content.uploadedDocumentDescription}`,
     );
     await page
       .locator(`#closeDocuments_0_documentLink`)

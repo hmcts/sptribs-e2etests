@@ -12,6 +12,10 @@ const uploadDocuments_content = {
   textOnPage4: "Document Category (Optional)",
   textOnPage5: "Description (Optional)",
   textOnPage6: "File (Optional)",
+
+  uploadedDocumentCategory: "A - Application Form",
+  uploadedDocumentDescription: "Lorem ipsum text A - Application Form",
+
   errorMessage: "Error Uploading File",
 } as const;
 
