@@ -3,8 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   caseRegionCode,
 } from "../../../helpers/commonHelpers.ts";
-import editListingRegionInfoContent
-  from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
+import editListingRegionInfoContent from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditListingRegionInfoPage = {
@@ -73,7 +72,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
     if (region) {
       await page.selectOption(this.region, caseRegionCode);
     } else {
-      await page.selectOption(this.region, { value: "0"});
+      await page.selectOption(this.region, { value: "0" });
     }
   },
 

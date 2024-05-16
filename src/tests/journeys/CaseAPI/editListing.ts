@@ -11,6 +11,7 @@ import commonHelpers, {
 import editListingSelectHearingPage from "../../pages/CaseAPI/editListing/editListingSelectHearingPage.ts";
 import editListingHearingTypeAndFormatPage from "../../pages/CaseAPI/editListing/editListingHearingTypeAndFormatPage.ts";
 import editListingRegionInfoPage from "../../pages/CaseAPI/editListing/editListingRegionInfoPage.ts";
+import editListingListingDetailsPage from "../../pages/CaseAPI/editListing/editListingListingDetailsPage.ts";
 
 type EditListing = {
   editListing(
@@ -79,9 +80,32 @@ const editListing: EditListing = {
             hearingFormat,
           );
           await editListingHearingTypeAndFormatPage.continueOn(page);
-          await editListingRegionInfoPage.checkPageLoads(page, caseNumber, accessibilityTest);
-          await editListingRegionInfoPage.fillInFields(page, region, caseRegionCode);
+          await editListingRegionInfoPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingRegionInfoPage.fillInFields(
+            page,
+            region,
+            caseRegionCode,
+          );
           await editListingRegionInfoPage.continueOn(page);
+          await editListingListingDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            hearingAcrossMultipleDays,
+            venue,
+          );
+          await editListingListingDetailsPage.checkFields(page);
+          await editListingListingDetailsPage.fillFields(
+            page,
+            venue,
+            hearingSession,
+            hearingAcrossMultipleDays,
+          );
+          await editListingListingDetailsPage.continueOn(page);
 
           break;
         case true:
@@ -99,9 +123,27 @@ const editListing: EditListing = {
             accessibilityTest,
           );
           await editListingHearingTypeAndFormatPage.continueOn(page);
-          await editListingRegionInfoPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await editListingRegionInfoPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
           await editListingRegionInfoPage.continueOn(page);
-
+          await editListingListingDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            hearingAcrossMultipleDays,
+            venue,
+          );
+          await editListingListingDetailsPage.triggerErrorMessages(page);
+          await editListingListingDetailsPage.fillFields(
+            page,
+            venue,
+            hearingSession,
+            hearingAcrossMultipleDays,
+          );
+          await editListingListingDetailsPage.continueOn(page);
 
           break;
       }
