@@ -19,6 +19,7 @@ import concessionDetailsPage from "../../pages/CaseAPI/closeCase/concessionDetai
 import consentOrderPage from "../../pages/CaseAPI/closeCase/consentOrderPage.ts";
 import rule27Page from "../../pages/CaseAPI/closeCase/rule27Page.ts";
 import uploadDocumentsPage from "../../pages/CaseAPI/closeCase/uploadDocumentsPage.ts";
+import closeCaseNotifyPage from "../../pages/CaseAPI/closeCase/closeCaseNotifyPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -145,6 +146,12 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await uploadDocumentsPage.continueOn(page);
+        await closeCaseNotifyPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await closeCaseNotifyPage.continueOn(page);
         break;
       case true:
         await selectReasonPage.triggerErrorMessages(page);
@@ -192,6 +199,12 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await uploadDocumentsPage.triggerErrorMessages(page);
+        await closeCaseNotifyPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await closeCaseNotifyPage.triggerErrorMessages(page);
         break;
     }
   },
