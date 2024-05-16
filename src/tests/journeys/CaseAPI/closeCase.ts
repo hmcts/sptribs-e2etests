@@ -18,6 +18,7 @@ import strikeoutDetailsPage, {
 import concessionDetailsPage from "../../pages/CaseAPI/closeCase/concessionDetailsPage.ts";
 import consentOrderPage from "../../pages/CaseAPI/closeCase/consentOrderPage.ts";
 import rule27Page from "../../pages/CaseAPI/closeCase/rule27Page.ts";
+import uploadDocumentsPage from "../../pages/CaseAPI/closeCase/uploadDocumentsPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -122,10 +123,28 @@ const closeCase: CloseCase = {
             await concessionDetailsPage.continueOn(page);
             break;
           case "consentOrder":
+            await consentOrderPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await consentOrderPage.continueOn(page);
             break;
           case "rule27":
+            await rule27Page.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await rule27Page.continueOn(page);
             break;
         }
+        await uploadDocumentsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await uploadDocumentsPage.continueOn(page);
         break;
       case true:
         await selectReasonPage.triggerErrorMessages(page);
@@ -167,6 +186,12 @@ const closeCase: CloseCase = {
         await selectReasonPage.continueOn(page, "rule27", false);
         await rule27Page.checkPageLoads(page, caseNumber, accessibilityTest);
         await rule27Page.triggerErrorMessages(page);
+        await uploadDocumentsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await uploadDocumentsPage.triggerErrorMessages(page);
         break;
     }
   },

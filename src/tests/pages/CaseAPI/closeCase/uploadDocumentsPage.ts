@@ -3,12 +3,14 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import rule27_content from "../../../fixtures/content/CaseAPI/closeCase/rule27_content.ts";
+import uploadDocuments_content from "../../../fixtures/content/CaseAPI/closeCase/uploadDocuments_content.ts";
+import config from "../../../config.ts";
 
-type Rule27Page = {
+type UploadDocumentsPage = {
   continue: string;
   previous: string;
   cancel: string;
+  addNew: string;
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -18,19 +20,23 @@ type Rule27Page = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const rule27Page: Rule27Page = {
+const uploadDocumentsPage: UploadDocumentsPage = {
   continue: '[type="submit"]',
   previous: ".button-secondary",
   cancel: ".cancel",
+  addNew: ".write-collection-add-item__top",
 
   async checkPageLoads(
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.click(this.addNew);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.govuk-caption-l:text-is("${rule27_content.pageHint}")`),
+        page.locator(
+          `.govuk-caption-l:text-is("${uploadDocuments_content.pageHint}")`,
+        ),
         1,
       ),
       expect(page.locator("markdown > h3")).toContainText(
@@ -39,10 +45,21 @@ const rule27Page: Rule27Page = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 4 }, (_, index: number) => {
-        const textOnPage = (rule27_content as any)[`textOnPage${index + 1}`];
+      ...Array.from({ length: 7 }, (_, index: number) => {
+        const textOnPage = (uploadDocuments_content as any)[
+          `textOnPage${index + 1}`
+        ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+      ...Array.from({ length: 3 }, (_, index: number) => {
+        const subtitle = (uploadDocuments_content as any)[
+          `subTitle${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${subtitle}")`),
           1,
         );
       }),
@@ -59,36 +76,27 @@ const rule27Page: Rule27Page = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.fill(`#closeConcessionDate-day`, `${rule27_content.day}`);
-    await page.fill(`#closeConcessionDate-month`, `${rule27_content.month}`);
-    await page.fill(`#closeConcessionDate-year`, `${rule27_content.year}`);
+    await page.selectOption(`.ccd-dropdown`, "A - Application Form");
+    await page.fill(
+      `#closeDocuments_0_documentEmailContent`,
+      `Lorem ipsum text A - Application Form`,
+    );
+    await page
+      .locator(`#closeDocuments_0_documentLink`)
+      .setInputFiles(config.testPdfFile);
+    await expect(page.locator(".error-message")).toHaveCount(0);
     await page.click(this.continue);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await page.click(this.continue);
-    await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `#error-summary-title:text-is("${rule27_content.errorBanner}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.validation-error:has-text("${rule27_content.errorConceded}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.error-message:has-text("${rule27_content.errorConceded}")`,
-        ),
-        1,
-      ),
-    ]);
+    await page
+      .locator(`#closeDocuments_0_documentLink`)
+      .setInputFiles(config.testOdtFile);
+    await expect(page.locator(".error-message")).toHaveText(
+      uploadDocuments_content.errorMessage,
+    );
     await this.continueOn(page);
   },
 };
 
-export default rule27Page;
+export default uploadDocumentsPage;
