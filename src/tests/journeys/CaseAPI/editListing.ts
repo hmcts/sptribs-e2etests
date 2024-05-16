@@ -14,6 +14,8 @@ import editListingRegionInfoPage from "../../pages/CaseAPI/editListing/editListi
 import editListingListingDetailsPage from "../../pages/CaseAPI/editListing/editListingListingDetailsPage.ts";
 import editListingRemoteHearingInformationPage from "../../pages/CaseAPI/editListing/editListingRemoteHearingInformationPage.ts";
 import editListingOtherInformationPage from "../../pages/CaseAPI/editListing/editListingOtherInformationPage.ts";
+import editListingChangeReasonPage from "../../pages/CaseAPI/editListing/editListingChangeReasonPage.ts";
+import editListingNotifyPage from "../../pages/CaseAPI/editListing/editListingNotifyPage.ts";
 
 type EditListing = {
   editListing(
@@ -122,6 +124,19 @@ const editListing: EditListing = {
           );
           await editListingOtherInformationPage.checkFields(page);
           await editListingOtherInformationPage.continueOn(page);
+          await editListingChangeReasonPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingChangeReasonPage.fillFields(page);
+          await editListingChangeReasonPage.continueOn(page);
+          await editListingNotifyPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingNotifyPage.continueOn(page);
 
           break;
         case true:
@@ -172,7 +187,20 @@ const editListing: EditListing = {
             accessibilityTest,
           );
           await editListingOtherInformationPage.continueOn(page);
-
+          await editListingChangeReasonPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingChangeReasonPage.triggerErrorMessages(page);
+          await editListingChangeReasonPage.fillFields(page);
+          await editListingChangeReasonPage.continueOn(page);
+          await editListingNotifyPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editListingNotifyPage.triggerErrorMessages(page);
           break;
       }
     } else {
