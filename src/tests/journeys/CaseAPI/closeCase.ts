@@ -16,6 +16,8 @@ import strikeoutDetailsPage, {
   StrikeoutReason,
 } from "../../pages/CaseAPI/closeCase/strikeoutDetailsPage.ts";
 import concessionDetailsPage from "../../pages/CaseAPI/closeCase/concessionDetailsPage.ts";
+import consentOrderPage from "../../pages/CaseAPI/closeCase/consentOrderPage.ts";
+import rule27Page from "../../pages/CaseAPI/closeCase/rule27Page.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -155,6 +157,16 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await concessionDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.continueOn(page, "consentOrder", false);
+        await consentOrderPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await consentOrderPage.triggerErrorMessages(page);
+        await selectReasonPage.continueOn(page, "rule27", false);
+        await rule27Page.checkPageLoads(page, caseNumber, accessibilityTest);
+        await rule27Page.triggerErrorMessages(page);
         break;
     }
   },
