@@ -187,7 +187,7 @@ const editListing: EditListing = {
             hearingAcrossMultipleDays,
             false,
             venue,
-            true
+            true,
           );
           break;
         case true:
@@ -210,7 +210,11 @@ const editListing: EditListing = {
             caseNumber,
             accessibilityTest,
           );
-          await editListingRegionInfoPage.fillInFields(page, region, caseRegionCode);
+          await editListingRegionInfoPage.fillInFields(
+            page,
+            region,
+            caseRegionCode,
+          );
           await editListingRegionInfoPage.continueOn(page);
           await editListingListingDetailsPage.checkPageLoads(
             page,

@@ -102,7 +102,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       ...Array.from({ length: 7 }, (_, index) => {
         const textOnPage = (editListingListingDetailsContent as any)[
           `textOnPage${index + 6}`
-          ];
+        ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
