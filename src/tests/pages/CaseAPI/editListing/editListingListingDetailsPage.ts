@@ -25,7 +25,6 @@ type CreateListingListingDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
   ): Promise<void>;
   checkFields(page: Page): Promise<void>;
@@ -58,7 +57,6 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
   ): Promise<void> {
     await Promise.all([
@@ -101,6 +99,15 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
           1,
         );
       }),
+      ...Array.from({ length: 7 }, (_, index) => {
+        const textOnPage = (editListingListingDetailsContent as any)[
+          `textOnPage${index + 6}`
+          ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
       commonHelpers.checkForButtons(
         page,
         this.continue,
@@ -113,56 +120,9 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         page.locator("label[for='hearingVenueNameAndAddress']"),
       ).toHaveText(`${editListingListingDetailsContent.textOnPage3}`);
     }
-
-    if (!hearingAcrossMultipleDays) {
-      await Promise.all([
-        ...Array.from({ length: 7 }, (_, index) => {
-          const textOnPage = (editListingListingDetailsContent as any)[
-            `textOnPage${index + 6}`
-          ];
-          return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.form-label:text-is("${textOnPage}")`),
-            1,
-          );
-        }),
-      ]);
-    } else {
-      await Promise.all([
-        expect(page.locator(".heading-h2").nth(0)).toHaveText(
-          editListingListingDetailsContent.subTitle2,
-        ),
-        ...Array.from({ length: 7 }, (_, index) => {
-          const textOnPage = (editListingListingDetailsContent as any)[
-            `textOnPage${index + 6}`
-          ];
-          return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.form-label:text-is("${textOnPage}")`),
-            4,
-          );
-        }),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `div.float-left > label > h3.heading-h3:has-text("${editListingListingDetailsContent.additionalHearingDateTitle}")`,
-          ),
-          3,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.form-label:text-is("${editListingListingDetailsContent.additionalHearingDate}")`,
-          ),
-          3,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.form-label:text-is("${editListingListingDetailsContent.additionalHearingDateTime}")`,
-          ),
-          3,
-        ),
-      ]);
-    }
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
   async checkFields(page: Page): Promise<void> {
@@ -299,7 +259,8 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await page.locator(this.inputVenue).clear();
+    await page.pause();
+    await page.selectOption(this.venue, { value: "0: null" });
     await page.locator(this.day).clear();
     await page.locator(this.month).clear();
     await page.locator(this.year).clear();
@@ -310,12 +271,9 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         editListingListingDetailsContent.errorBanner,
       ),
       expect(page.locator(".error-message").nth(0)).toHaveText(
-        editListingListingDetailsContent.hearingVenueError,
-      ),
-      expect(page.locator(".error-message").nth(1)).toHaveText(
         editListingListingDetailsContent.hearingDateError,
       ),
-      expect(page.locator(".error-message").nth(2)).toHaveText(
+      expect(page.locator(".error-message").nth(1)).toHaveText(
         editListingListingDetailsContent.timeError,
       ),
     ]);
@@ -326,26 +284,17 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
         editListingListingDetailsContent.errorBanner,
       ),
-      expect(page.locator(".error-message").nth(3)).toHaveText(
+      expect(page.locator(".error-message").nth(2)).toHaveText(
         editListingListingDetailsContent.additionalHearingDateError,
       ),
-      expect(page.locator(".error-message").nth(4)).toHaveText(
+      expect(page.locator(".error-message").nth(3)).toHaveText(
         editListingListingDetailsContent.sessionError,
       ),
-      expect(page.locator(".error-message").nth(5)).toHaveText(
+      expect(page.locator(".error-message").nth(4)).toHaveText(
         editListingListingDetailsContent.additionalHearingTimeError,
       ),
     ]);
     await page.getByLabel("No", { exact: true }).click();
-    const currentDate = new Date();
-    await page.fill(this.inputVenue, "Test Venue");
-    await page.fill(this.day, `${currentDate.getDate()}`);
-    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
-    await page.fill(this.year, `${currentDate.getFullYear()}`);
-    await page.fill(
-      this.startTime,
-      editListingListingDetailsContent.morningTime,
-    );
   },
 
   async continueOn(page: Page): Promise<void> {

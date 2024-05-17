@@ -191,6 +191,7 @@ const createListing: CreateListing = {
             false,
             false,
             false,
+            false,
             accessibilityTest,
           );
           await hearingsTabPage.checkValidInfoCreateListing(
@@ -203,6 +204,7 @@ const createListing: CreateListing = {
             hearingAcrossMultipleDays,
             readyToList,
             venue,
+            false
           );
           return caseNumber;
         case true:

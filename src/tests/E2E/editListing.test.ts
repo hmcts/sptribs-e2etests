@@ -74,7 +74,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing listing as a senior judge in the South East for an Interlocutory hearing across multiple days.", async ({
+  test("Edit hearing listing as a senior judge.", async ({
     page,
   }): Promise<void> => {
     await editListing.editListing(

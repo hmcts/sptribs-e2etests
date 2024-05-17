@@ -18,6 +18,7 @@ import editListingChangeReasonPage from "../../pages/CaseAPI/editListing/editLis
 import editListingNotifyPage from "../../pages/CaseAPI/editListing/editListingNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/editListing/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/editListing/confirmPage.ts";
+import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type EditListing = {
   editListing(
@@ -101,7 +102,6 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
-            hearingAcrossMultipleDays,
             venue,
           );
           await editListingListingDetailsPage.checkFields(page);
@@ -147,11 +147,48 @@ const editListing: EditListing = {
             venue,
             accessibilityTest,
           );
-          await submitPage.checkValidInfo(page, region, caseRegionCode, hearing, hearingType, hearingFormat, hearingSession, hearingAcrossMultipleDays, venue)
+          await submitPage.checkValidInfo(
+            page,
+            region,
+            caseRegionCode,
+            hearing,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+            venue,
+          );
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-
+          await hearingsTabPage.changeToHearingsTab(page);
+          await hearingsTabPage.checkPageLoads(
+            page,
+            region,
+            hearingAcrossMultipleDays,
+            false,
+            venue,
+            false,
+            null,
+            false,
+            false,
+            false,
+            false,
+            true,
+            accessibilityTest,
+          );
+          await hearingsTabPage.checkValidInfoCreateListing(
+            page,
+            region,
+            caseRegionCode,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+            false,
+            venue,
+            true
+          );
           break;
         case true:
           await editListingSelectHearingPage.checkPageLoads(
@@ -173,12 +210,12 @@ const editListing: EditListing = {
             caseNumber,
             accessibilityTest,
           );
+          await editListingRegionInfoPage.fillInFields(page, region, caseRegionCode);
           await editListingRegionInfoPage.continueOn(page);
           await editListingListingDetailsPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
-            hearingAcrossMultipleDays,
             venue,
           );
           await editListingListingDetailsPage.triggerErrorMessages(page);

@@ -31,7 +31,7 @@ type SubmitPage = {
     page: Page,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
-    hearing: string  | null,
+    hearing: string | null,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
     hearingSession: hearingSession,

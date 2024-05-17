@@ -75,7 +75,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
     if (region) {
       await page.selectOption(this.region, caseRegionCode);
     } else {
-      await page.selectOption(this.region, { value: "0" });
+      await page.selectOption(this.region, { value: "0: null" });
     }
   },
 
