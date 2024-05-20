@@ -1,4 +1,4 @@
-const withdrawalDetails_content = {
+const concessionDetails_content = {
   pageHint: "Case: Close case",
   pageTitle: "Concession details",
   textOnPage1: "When was the case conceded?",
@@ -14,4 +14,4 @@ const withdrawalDetails_content = {
   errorConceded: "When was the case conceded? is required",
 } as const;
 
-export default withdrawalDetails_content;
+export default concessionDetails_content;

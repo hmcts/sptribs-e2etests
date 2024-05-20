@@ -1,4 +1,4 @@
-const withdrawalDetails_content = {
+const consentOrder_content = {
   pageHint: "Case: Close case",
   pageTitle: "Consent order details",
   textOnPage1: "When was the consent order approved?",
@@ -14,4 +14,4 @@ const withdrawalDetails_content = {
   errorConceded: "When was the consent order approved? is required",
 } as const;
 
-export default withdrawalDetails_content;
+export default consentOrder_content;

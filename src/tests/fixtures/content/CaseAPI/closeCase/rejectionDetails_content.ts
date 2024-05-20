@@ -10,7 +10,7 @@ const rejectionDetails_content = {
   textOnPage7: "Other",
   textOnPage8: "Additional details",
 
-  otherText: "Lorem ipsum person other.",
+  otherText: "Lorem ipsum reason other.",
 
   errorBanner: "There is a problem",
   errorNoInput: "Why was the case rejected? is required",

@@ -1,4 +1,4 @@
-const withdrawalDetails_content = {
+const rule27_content = {
   pageHint: "Case: Close case",
   pageTitle: "Rule 27 details",
   textOnPage1: "What was the date of Rule 27 decision?",
@@ -14,4 +14,4 @@ const withdrawalDetails_content = {
   errorConceded: "What was the date of Rule 27 decision? is required",
 } as const;
 
-export default withdrawalDetails_content;
+export default rule27_content;

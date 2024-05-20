@@ -32,8 +32,8 @@ type CloseCase = {
     errorMessaging: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
-    rejectionReason: RejectionReason,
-    strikeoutReason: StrikeoutReason,
+    rejectionReason: RejectionReason | null,
+    strikeoutReason: StrikeoutReason | null,
   ): Promise<void>;
 };
 
@@ -46,8 +46,8 @@ const closeCase: CloseCase = {
     errorMessaging: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
-    rejectionReason: RejectionReason,
-    strikeoutReason: StrikeoutReason,
+    rejectionReason: RejectionReason | null,
+    strikeoutReason: StrikeoutReason | null,
   ): Promise<void> {
     let caseNumber: string = "";
     switch (initialState) {
@@ -105,7 +105,9 @@ const closeCase: CloseCase = {
               caseNumber,
               accessibilityTest,
             );
-            await rejectionDetailsPage.continueOn(page, rejectionReason);
+            if (rejectionReason !== null) {
+              await rejectionDetailsPage.continueOn(page, rejectionReason);
+            }
             break;
           case "caseStrikeOut":
             await strikeoutDetailsPage.checkPageLoads(
@@ -113,7 +115,9 @@ const closeCase: CloseCase = {
               caseNumber,
               accessibilityTest,
             );
-            await strikeoutDetailsPage.continueOn(page, strikeoutReason);
+            if (strikeoutReason !== null) {
+              await strikeoutDetailsPage.continueOn(page, strikeoutReason);
+            }
             break;
           case "caseConcession":
             await concessionDetailsPage.checkPageLoads(
