@@ -3,6 +3,7 @@ const stateTab_content = {
   DSSSubmittedState: "DSS-Submitted",
   submittedState: "Submitted",
   caseManagementState: "Case management",
+  closedState: "Case closed",
 } as const;
 
 export default stateTab_content;

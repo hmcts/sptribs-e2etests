@@ -2,6 +2,7 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
+import stateTab_content from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
 type StateTabPage = {
   caseStateTab: string;
@@ -44,6 +45,10 @@ const stateTabPage: StateTabPage = {
     } else if (state == stateTabContent.caseManagementState) {
       await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
         stateTabContent.caseState + stateTabContent.caseManagementState,
+      );
+    } else if (state == stateTab_content.closedState) {
+      await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
+        stateTabContent.caseState + stateTabContent.closedState,
       );
     }
   },

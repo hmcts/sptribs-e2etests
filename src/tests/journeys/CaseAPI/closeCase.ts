@@ -20,6 +20,9 @@ import consentOrderPage from "../../pages/CaseAPI/closeCase/consentOrderPage.ts"
 import rule27Page from "../../pages/CaseAPI/closeCase/rule27Page.ts";
 import uploadDocumentsPage from "../../pages/CaseAPI/closeCase/uploadDocumentsPage.ts";
 import closeCaseNotifyPage from "../../pages/CaseAPI/closeCase/closeCaseNotifyPage.ts";
+import submitPage from "../../pages/CaseAPI/closeCase/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/closeCase/confirmPage.ts";
+import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
 
 type initialState = "Case Management" | "Ready to list";
 
@@ -156,6 +159,25 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await closeCaseNotifyPage.continueOn(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          closeReason,
+          optionalText,
+        );
+        await submitPage.checkAllInfo(
+          page,
+          closeReason,
+          optionalText,
+          rejectionReason,
+          strikeoutReason,
+        );
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.closeAndReturnToCase(page);
+        await stateTabPage.changeToStateTab(page);
+        await stateTabPage.checkStateTab(page, "Case closed");
         break;
       case true:
         await selectReasonPage.triggerErrorMessages(page);
