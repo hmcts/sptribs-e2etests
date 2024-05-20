@@ -2,32 +2,32 @@ import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import createListing from "./createListing.ts";
 import commonHelpers, {
-  hearingCancelledReasons,
+  hearingPostponedReasons,
 } from "../../helpers/commonHelpers.ts";
-import cancelHearingSelectHearingPage from "../../pages/CaseAPI/cancelHearing/cancelHearingSelectHearingPage.ts";
-import cancelHearingReasonPage from "../../pages/CaseAPI/cancelHearing/cancelHearingReasonPage.ts";
-import cancelHearingNotifyPage from "../../pages/CaseAPI/cancelHearing/cancelHearingNotifyPage.ts";
-import submitPage from "../../pages/CaseAPI/cancelHearing/submitPage.ts";
-import confirmPage from "../../pages/CaseAPI/cancelHearing/confirmPage.ts";
+import postponeHearingSelectHearingPage from "../../pages/CaseAPI/postponeHearing/postponeHearingSelectHearingPage.ts";
+import postponeHearingReasonPage from "../../pages/CaseAPI/postponeHearing/postponeHearingReasonPage.ts";
+import postponeHearingNotifyPage from "../../pages/CaseAPI/postponeHearing/postponeHearingNotifyPage.ts";
+import submitPage from "../../pages/CaseAPI/postponeHearing/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/postponeHearing/confirmPage.ts";
 import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
-type CancelHearing = {
-  cancelHearing(
+type PostponeHearing = {
+  postponeHearing(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-    reasonCancelled: hearingCancelledReasons,
+    reasonPostponed: hearingPostponedReasons,
     errorMessaging: boolean,
   ): Promise<void>;
 };
 
-const cancelHearing: CancelHearing = {
-  async cancelHearing(
+const postponeHearing: PostponeHearing = {
+  async postponeHearing(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-    reasonCancelled: hearingCancelledReasons,
+    reasonPostponed: hearingPostponedReasons,
     errorMessaging: boolean,
   ): Promise<void> {
     let caseNumber: string | void;
@@ -47,34 +47,34 @@ const cancelHearing: CancelHearing = {
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
-      "Hearings: Cancel hearing",
+      "Hearings: Postpone hearing",
     );
     if (caseNumber !== undefined) {
       switch (errorMessaging) {
         default:
-          await cancelHearingSelectHearingPage.checkPageLoads(
+          await postponeHearingSelectHearingPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
           const hearing =
-            await cancelHearingSelectHearingPage.fillInFields(page);
-          await cancelHearingSelectHearingPage.continueOn(page);
-          await cancelHearingReasonPage.checkPageLoads(
+            await postponeHearingSelectHearingPage.fillInFields(page);
+          await postponeHearingSelectHearingPage.continueOn(page);
+          await postponeHearingReasonPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await cancelHearingReasonPage.fillInFields(page, reasonCancelled);
-          await cancelHearingReasonPage.continueOn(page);
-          await cancelHearingNotifyPage.checkPageLoads(
+          await postponeHearingReasonPage.fillInFields(page, reasonPostponed);
+          await postponeHearingReasonPage.continueOn(page);
+          await postponeHearingNotifyPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await cancelHearingNotifyPage.continueOn(page);
+          await postponeHearingNotifyPage.continueOn(page);
           await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
-          await submitPage.checkValidInfo(page, hearing, reasonCancelled);
+          await submitPage.checkValidInfo(page, hearing, reasonPostponed);
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
@@ -89,13 +89,13 @@ const cancelHearing: CancelHearing = {
             null,
             false,
             false,
-            true,
             false,
+            true,
             accessibilityTest,
           );
-          await hearingTabPage.checkValidInfoCancelHearing(
+          await hearingTabPage.checkValidInfoPostponeHearing(
             page,
-            reasonCancelled,
+            reasonPostponed,
             "2-Midlands",
             "Final",
             "Paper",
@@ -104,28 +104,22 @@ const cancelHearing: CancelHearing = {
           );
           break;
         case true:
-          await cancelHearingSelectHearingPage.checkPageLoads(
+          await postponeHearingSelectHearingPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await cancelHearingSelectHearingPage.triggerErrorMessages(page);
-          await cancelHearingSelectHearingPage.fillInFields(page);
-          await cancelHearingSelectHearingPage.continueOn(page);
-          await cancelHearingReasonPage.checkPageLoads(
+          await postponeHearingSelectHearingPage.triggerErrorMessages(page);
+          await postponeHearingSelectHearingPage.fillInFields(page);
+          await postponeHearingSelectHearingPage.continueOn(page);
+          await postponeHearingReasonPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await cancelHearingReasonPage.triggerErrorMessages(page);
-          await cancelHearingReasonPage.fillInFields(page, reasonCancelled);
-          await cancelHearingReasonPage.continueOn(page);
-          await cancelHearingNotifyPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await cancelHearingNotifyPage.triggerErrorMessages(page);
+          await postponeHearingReasonPage.triggerErrorMessages(page);
+          await postponeHearingReasonPage.fillInFields(page, reasonPostponed);
+          await postponeHearingReasonPage.continueOn(page);
           break;
       }
     } else {
@@ -134,4 +128,4 @@ const cancelHearing: CancelHearing = {
   },
 };
 
-export default cancelHearing;
+export default postponeHearing;

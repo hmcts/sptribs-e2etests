@@ -458,6 +458,7 @@ export type allEvents =
   | "Case: Hearing Options"
   | "Case: Clear Hearing Options"
   | "Hearings: Create listing"
+  | "Hearings: Postpone hearing"
   | "Hearings: Cancel hearing"
   | "Hearings:Create summary"
   | "Link cases"
@@ -560,4 +561,25 @@ export type hearingCancelledReasons =
   | "No suitable cases that are ready to list"
   | "Request for R27 decision and no time for infill"
   | "Venue Unavailable"
+  | "Other";
+
+export type hearingPostponedReasons =
+  | "Appellant is out of country"
+  | "Appellant seeking legal advice"
+  | "Appellant unable to attend face to face,change of hearing format requested"
+  | "Appellant unavailable (holiday/work/appointmaent/unwell)"
+  | "Bereavement"
+  | "Case stayed due to Civil proceedings"
+  | "CICA requests case be heard by a single Judge as a Rule 27 decision"
+  | "CICA seeking Counsel"
+  | "Extension granted"
+  | "Face to face hearing required"
+  | "Last minute submissions i.e. 1-2 weeks prior to hearing"
+  | "Linked cases - to be heard together"
+  | "Member excluded - listed in error"
+  | "Representative/Solicitor cannot make contact with Appellant"
+  | "Representative/Solicitor seeking further evidence"
+  | "Representative/Solicitor unavailable (holiday/work/appointment/unwell)"
+  | "Tribunal members unavailable (holiday/work/appointment/unwell)"
+  | "Tribunal members deemed listing time directed inadequate"
   | "Other";
