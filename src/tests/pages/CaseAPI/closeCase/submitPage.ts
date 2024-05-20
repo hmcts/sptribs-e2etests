@@ -49,7 +49,7 @@ const submitPage: SubmitPage = {
   async checkCommon(page: Page, caseNumber: string): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.heading-h2:text-is("${submit_content.pageHint}")`),
+        page.locator(`.govuk-heading-l:text-is("${submit_content.pageHint}")`),
         1,
       ),
       expect(page.locator("markdown > h3")).toContainText(
@@ -107,14 +107,12 @@ const submitPage: SubmitPage = {
       case "caseRejected":
         await Promise.all([
           this.checkCommon(page, caseNumber),
-          ...Array.from({ length: 2 }, (_, index: number) => {
-            const textOnPage = (submit_content as any)[`rejected${index + 1}`];
-            return commonHelpers.checkVisibleAndPresent(
-              page.locator(`.text-16:text-is("${textOnPage}")`),
-              1,
-            );
-          }),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${submit_content.rejected1}")`),
+            1,
+          ),
         ]);
+
         if (optionalText) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.textOnPage1}")`),
@@ -125,13 +123,10 @@ const submitPage: SubmitPage = {
       case "caseStrikeOut":
         await Promise.all([
           this.checkCommon(page, caseNumber),
-          ...Array.from({ length: 2 }, (_, index: number) => {
-            const textOnPage = (submit_content as any)[`strikeout${index + 1}`];
-            return commonHelpers.checkVisibleAndPresent(
-              page.locator(`.text-16:text-is("${textOnPage}")`),
-              1,
-            );
-          }),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${submit_content.strikeOut1}")`),
+            1,
+          ),
         ]);
         if (optionalText) {
           await commonHelpers.checkVisibleAndPresent(
@@ -201,7 +196,7 @@ const submitPage: SubmitPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.text-16:text-is("${uploadDocuments_content.uploadedDocumentDescription}")`,
+          `span:text-is("${uploadDocuments_content.uploadedDocumentDescription}")`,
         ),
         1,
       ),
@@ -276,6 +271,10 @@ const submitPage: SubmitPage = {
           case "other":
             await Promise.all([
               this.checkCommonInfo(page),
+              commonHelpers.checkVisibleAndPresent(
+                page.locator(`.text-16:text-is("${submit_content.rejected2}")`),
+                1,
+              ),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage3}")`,
@@ -383,6 +382,12 @@ const submitPage: SubmitPage = {
               this.checkCommonInfo(page),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
+                  `.text-16:text-is("${submit_content.strikeOut2}")`,
+                ),
+                1,
+              ),
+              commonHelpers.checkVisibleAndPresent(
+                page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage4}")`,
                 ),
                 1,
@@ -485,7 +490,7 @@ const submitPage: SubmitPage = {
           this.checkCommonInfo(page),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.text-16:text-is("${selectReason_content.textOnPage6}")`,
+              `.text-16:text-is("${selectReason_content.textOnPage7}")`,
             ),
             1,
           ),

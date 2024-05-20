@@ -63,13 +63,16 @@ const consentOrderPage: ConsentOrderPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.fill(`#closeConcessionDate-day`, `${consentOrder_content.day}`);
     await page.fill(
-      `#closeConcessionDate-month`,
+      `#closeConsentOrderDate-day`,
+      `${consentOrder_content.day}`,
+    );
+    await page.fill(
+      `#closeConsentOrderDate-month`,
       `${consentOrder_content.month}`,
     );
     await page.fill(
-      `#closeConcessionDate-year`,
+      `#closeConsentOrderDate-year`,
       `${consentOrder_content.year}`,
     );
     await page.click(this.continue);

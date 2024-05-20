@@ -1,5 +1,5 @@
 const closeCaseNotifyPage_content = {
-  pageHint: "Hearings: Cancel hearing",
+  pageHint: "Case: Close case",
   pageTitle: "Select recipients",
   textOnPage1: "Who should be notified of the decision to close this case?",
   textOnPage2: "Close case recipient (Optional)",

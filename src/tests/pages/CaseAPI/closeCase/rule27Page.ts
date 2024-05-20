@@ -59,9 +59,12 @@ const rule27Page: Rule27Page = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.fill(`#closeConcessionDate-day`, `${rule27_content.day}`);
-    await page.fill(`#closeConcessionDate-month`, `${rule27_content.month}`);
-    await page.fill(`#closeConcessionDate-year`, `${rule27_content.year}`);
+    await page.fill(`#closeRule27DecisionDate-day`, `${rule27_content.day}`);
+    await page.fill(
+      `#closeRule27DecisionDate-month`,
+      `${rule27_content.month}`,
+    );
+    await page.fill(`#closeRule27DecisionDate-year`, `${rule27_content.year}`);
     await page.click(this.continue);
   },
 

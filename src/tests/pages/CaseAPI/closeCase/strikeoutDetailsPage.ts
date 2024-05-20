@@ -44,7 +44,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 5 }, (_, index: number) => {
+      ...Array.from({ length: 4 }, (_, index: number) => {
         const textOnPage = (strikeoutDetails_content as any)[
           `textOnPage${index + 1}`
         ];
@@ -69,7 +69,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
     page: Page,
     strikeoutReason: StrikeoutReason,
   ): Promise<void> {
-    await page.click(`#closeRejectionReason-${strikeoutReason}`);
+    await page.click(`#closeStrikeOutReason-${strikeoutReason}`);
     if (strikeoutReason === "other") {
       await page.fill(
         `#closeStrikeOutDetails`,

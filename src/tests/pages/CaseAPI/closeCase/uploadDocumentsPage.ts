@@ -22,7 +22,7 @@ type UploadDocumentsPage = {
 
 const uploadDocumentsPage: UploadDocumentsPage = {
   continue: '[type="submit"]',
-  previous: ".button-secondary",
+  previous: ".button-secondary:text-is('Previous')",
   cancel: ".cancel",
   addNew: ".write-collection-add-item__top",
 
@@ -39,30 +39,51 @@ const uploadDocumentsPage: UploadDocumentsPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
+        ),
+        1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 7 }, (_, index: number) => {
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`p:has-text("${uploadDocuments_content.textOnPage1}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown:has-text("${uploadDocuments_content.textOnPage2}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`p:has-text("${uploadDocuments_content.textOnPage3}")`),
+        1,
+      ),
+
+      ...Array.from({ length: 3 }, (_, index: number) => {
         const textOnPage = (uploadDocuments_content as any)[
-          `textOnPage${index + 1}`
+          `textOnPage${index + 4}`
         ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
         );
       }),
-      ...Array.from({ length: 3 }, (_, index: number) => {
-        const subtitle = (uploadDocuments_content as any)[
-          `subTitle${index + 1}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${subtitle}")`),
-          1,
-        );
-      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`h3:has-text("${uploadDocuments_content.subTitle1}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`h2:has-text("${uploadDocuments_content.subTitle2}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`h3:has-text("${uploadDocuments_content.subTitle3}")`),
+        1,
+      ),
       await commonHelpers.checkForButtons(
         page,
         this.continue,
@@ -81,11 +102,11 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       `${uploadDocuments_content.uploadedDocumentCategory}`,
     );
     await page.fill(
-      `#closeDocuments_0_documentEmailContent`,
+      `#closeDocumentsUpload_0_documentEmailContent`,
       `${uploadDocuments_content.uploadedDocumentDescription}`,
     );
     await page
-      .locator(`#closeDocuments_0_documentLink`)
+      .locator(`#closeDocumentsUpload_0_documentLink`)
       .setInputFiles(config.testPdfFile);
     await expect(page.locator(".error-message")).toHaveCount(0);
     await page.click(this.continue);
@@ -93,7 +114,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page
-      .locator(`#closeDocuments_0_documentLink`)
+      .locator(`#closeDocumentsUpload_0_documentLink`)
       .setInputFiles(config.testOdtFile);
     await expect(page.locator(".error-message")).toHaveText(
       uploadDocuments_content.errorMessage,

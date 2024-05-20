@@ -55,7 +55,7 @@ const selectReasonPage: SelectReasonPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `markdown > p:text-is("${selectReason_content.textOnPage1}")`,
+          `.form-label:text-is("${selectReason_content.textOnPage1}")`,
         ),
         1,
       ),
@@ -86,6 +86,7 @@ const selectReasonPage: SelectReasonPage = {
         `${selectReason_content.optionalText}`,
       );
     }
+    await page.click(this.continue);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
