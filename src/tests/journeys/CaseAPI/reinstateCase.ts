@@ -8,6 +8,7 @@ import reinstateReasonPage, {
   ReinstateReason,
 } from "../../pages/CaseAPI/reinstateCase/reinstateReasonPage.ts";
 import reinstateUploadDocumentPage from "../../pages/CaseAPI/reinstateCase/reinstateUploadDocumentPage.ts";
+import reinstateCaseNotifyPage from "../../pages/CaseAPI/reinstateCase/reinstateCaseNotifyPage.ts";
 
 type ReinstateCase = {
   reinstateCase(
@@ -74,6 +75,8 @@ const reinstateCase: ReinstateCase = {
           accessibilityTest,
         );
         await reinstateUploadDocumentPage.continueOn(page);
+        await reinstateCaseNotifyPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await reinstateCaseNotifyPage.continueOn(page);
         break;
       case true:
         await reinstateReasonPage.checkPageLoads(
@@ -88,6 +91,8 @@ const reinstateCase: ReinstateCase = {
           accessibilityTest,
         );
         await reinstateUploadDocumentPage.triggerErrorMessages(page);
+        await reinstateCaseNotifyPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await reinstateCaseNotifyPage.triggerErrorMessages(page);
         break;
     }
   },
