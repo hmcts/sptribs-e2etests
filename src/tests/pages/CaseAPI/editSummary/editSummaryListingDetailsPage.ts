@@ -4,10 +4,10 @@ import commonHelpers, {
   hearingSession,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
+import editSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryListingDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
-type CreateListingListingDetailsPage = {
+type EditSummaryListingDetailsPage = {
   venue: string;
   venueNotListed: string;
   inputVenue: string;
@@ -38,7 +38,7 @@ type CreateListingListingDetailsPage = {
   continueOn(page: Page): Promise<void>;
 };
 
-const createListingListingDetailsPage: CreateListingListingDetailsPage = {
+const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
   venue: "#hearingVenues",
   venueNotListed: "#venueNotListedOption-VenueNotListed",
   inputVenue: "#hearingVenueNameAndAddress",
@@ -61,28 +61,28 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        editListingListingDetailsContent.pageHint,
+        editSummaryListingDetailsContent.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        editListingListingDetailsContent.pageTitle,
+        editSummaryListingDetailsContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        editListingListingDetailsContent.caseReference + caseNumber,
+        editSummaryListingDetailsContent.caseReference + caseNumber,
       ),
       expect(page.locator(".case-field__label").nth(2)).toHaveText(
-        editListingListingDetailsContent.textOnPage1,
+        editSummaryListingDetailsContent.textOnPage1,
       ),
       expect(page.locator(".form-label").nth(1)).toHaveText(
-        editListingListingDetailsContent.textOnPage2,
+        editSummaryListingDetailsContent.textOnPage2,
       ),
       expect(page.locator("markdown > h4")).toHaveText(
-        editListingListingDetailsContent.subTitle1,
+        editSummaryListingDetailsContent.subTitle1,
       ),
       ...Array.from({ length: 2 }, (_, index) => {
-        const textOnPage = (editListingListingDetailsContent as any)[
+        const textOnPage = (editSummaryListingDetailsContent as any)[
           `textOnPage${index + 4}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -91,7 +91,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         );
       }),
       ...Array.from({ length: 4 }, (_, index) => {
-        const textOnPage = (editListingListingDetailsContent as any)[
+        const textOnPage = (editSummaryListingDetailsContent as any)[
           `textOnPage${index + 13}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -100,7 +100,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         );
       }),
       ...Array.from({ length: 7 }, (_, index) => {
-        const textOnPage = (editListingListingDetailsContent as any)[
+        const textOnPage = (editSummaryListingDetailsContent as any)[
           `textOnPage${index + 6}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -118,7 +118,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     if (venue === null) {
       await expect(
         page.locator("label[for='hearingVenueNameAndAddress']"),
-      ).toHaveText(`${editListingListingDetailsContent.textOnPage3}`);
+      ).toHaveText(`${editSummaryListingDetailsContent.textOnPage3}`);
     }
     // if (accessibilityTest) {
     //   await axeTest(page);
@@ -129,10 +129,10 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     const currentDate = new Date();
     await Promise.all([
       expect(page.locator(this.roomAtVenue)).toHaveValue(
-        editListingListingDetailsContent.room,
+        editSummaryListingDetailsContent.room,
       ),
       expect(page.locator(this.instructions)).toHaveValue(
-        editListingListingDetailsContent.instructions,
+        editSummaryListingDetailsContent.instructions,
       ),
       expect(page.locator(this.day)).toHaveValue(
         `${commonHelpers.padZero(currentDate.getDate())}`,
@@ -145,7 +145,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       ),
       expect(page.getByLabel("Morning").first()).toBeChecked(),
       expect(page.locator(this.startTime)).toHaveValue(
-        editListingListingDetailsContent.morningTime,
+        editSummaryListingDetailsContent.morningTime,
       ),
       expect(page.getByLabel("No", { exact: true })).toBeChecked(),
     ]);
@@ -162,14 +162,14 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await page.selectOption(this.venue, venue);
     } else {
       await page
-        .getByLabel(editListingListingDetailsContent.textOnPage2)
+        .getByLabel(editSummaryListingDetailsContent.textOnPage2)
         .check();
       await page.fill(this.inputVenue, "Test Venue");
     }
-    await page.fill(this.roomAtVenue, editListingListingDetailsContent.room);
+    await page.fill(this.roomAtVenue, editSummaryListingDetailsContent.room);
     await page.fill(
       this.instructions,
-      editListingListingDetailsContent.instructions,
+      editSummaryListingDetailsContent.instructions,
     );
     await page.fill(this.day, `${currentDate.getDate()}`);
     await page.fill(this.month, `${currentDate.getMonth() + 1}`);
@@ -178,12 +178,12 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     if (hearingSession === "Morning" || hearingSession === "All day") {
       await page.fill(
         this.startTime,
-        editListingListingDetailsContent.morningTime,
+        editSummaryListingDetailsContent.morningTime,
       );
     } else if (hearingSession === "Afternoon") {
       await page.fill(
         this.startTime,
-        editListingListingDetailsContent.afternoonTime,
+        editSummaryListingDetailsContent.afternoonTime,
       );
     }
     if (!hearingAcrossMultipleDays) {
@@ -201,12 +201,12 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       if (hearingSession === "Morning" || hearingSession === "All day") {
         await page.fill(
           "#additionalHearingDate_0_hearingVenueTime",
-          editListingListingDetailsContent.morningTime,
+          editSummaryListingDetailsContent.morningTime,
         );
       } else if (hearingSession === "Afternoon") {
         await page.fill(
           "#additionalHearingDate_0_hearingVenueTime",
-          editListingListingDetailsContent.afternoonTime,
+          editSummaryListingDetailsContent.afternoonTime,
         );
       }
       await page.getByRole("button", { name: "Add new" }).nth(1).click();
@@ -226,11 +226,11 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       if (hearingSession === "Morning" || hearingSession === "All day") {
         await page
           .locator("#additionalHearingDate_1_hearingVenueTime")
-          .fill(editListingListingDetailsContent.morningTime);
+          .fill(editSummaryListingDetailsContent.morningTime);
       } else if (hearingSession === "Afternoon") {
         await page
           .locator("#additionalHearingDate_1_hearingVenueTime")
-          .fill(editListingListingDetailsContent.afternoonTime);
+          .fill(editSummaryListingDetailsContent.afternoonTime);
       }
       await page.getByRole("button", { name: "Add new" }).nth(1).click();
       await page
@@ -249,17 +249,16 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       if (hearingSession === "Morning" || hearingSession === "All day") {
         await page
           .locator("#additionalHearingDate_2_hearingVenueTime")
-          .fill(editListingListingDetailsContent.morningTime);
+          .fill(editSummaryListingDetailsContent.morningTime);
       } else if (hearingSession === "Afternoon") {
         await page
           .locator("#additionalHearingDate_2_hearingVenueTime")
-          .fill(editListingListingDetailsContent.afternoonTime);
+          .fill(editSummaryListingDetailsContent.afternoonTime);
       }
     }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await page.selectOption(this.venue, { value: "0: null" });
     await page.locator(this.day).clear();
     await page.locator(this.month).clear();
     await page.locator(this.year).clear();
@@ -267,13 +266,13 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
-        editListingListingDetailsContent.errorBanner,
+        editSummaryListingDetailsContent.errorBanner,
       ),
       expect(page.locator(".error-message").nth(0)).toHaveText(
-        editListingListingDetailsContent.hearingDateError,
+        editSummaryListingDetailsContent.hearingDateError,
       ),
       expect(page.locator(".error-message").nth(1)).toHaveText(
-        editListingListingDetailsContent.timeError,
+        editSummaryListingDetailsContent.timeError,
       ),
     ]);
     await page.getByLabel("Yes", { exact: true }).click();
@@ -281,16 +280,16 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
-        editListingListingDetailsContent.errorBanner,
+        editSummaryListingDetailsContent.errorBanner,
       ),
       expect(page.locator(".error-message").nth(2)).toHaveText(
-        editListingListingDetailsContent.additionalHearingDateError,
+        editSummaryListingDetailsContent.additionalHearingDateError,
       ),
       expect(page.locator(".error-message").nth(3)).toHaveText(
-        editListingListingDetailsContent.sessionError,
+        editSummaryListingDetailsContent.sessionError,
       ),
       expect(page.locator(".error-message").nth(4)).toHaveText(
-        editListingListingDetailsContent.additionalHearingTimeError,
+        editSummaryListingDetailsContent.additionalHearingTimeError,
       ),
     ]);
     await page.getByLabel("No", { exact: true }).click();
@@ -301,4 +300,4 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
   },
 };
 
-export default createListingListingDetailsPage;
+export default editSummaryListingDetailsPage;

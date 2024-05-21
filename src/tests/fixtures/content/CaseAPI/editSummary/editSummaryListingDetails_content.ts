@@ -1,5 +1,5 @@
-const editListingListingDetails_content = {
-  pageHint: "Hearings: Edit listing",
+const editSummaryListingDetails_content = {
+  pageHint: "Hearings: Edit summary",
   pageTitle: "Listing Details",
   caseReference: "Case number: ",
   textOnPage1: "Venue Name",
@@ -36,4 +36,4 @@ const editListingListingDetails_content = {
   afternoonTime: "14:00",
 } as const;
 
-export default editListingListingDetails_content;
+export default editSummaryListingDetails_content;
