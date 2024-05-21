@@ -27,13 +27,15 @@
     "test:AccessibilityUC": "yarn playwright install && npx playwright test --project chromium --grep @UpdateAccessibility",
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --grep @accessibility --project chromium",
-    "lint": "yarn prettier . --write"
+    "lint": "yarn prettier . --write",
+    "delete-branch": "npx ts-node src/tests/helpers/nightlyDevDeletion.ts"
   },
   "pre-commit": [
     "lint"
   ],
   "dependencies": {
     "@axe-core/playwright": "^4.9.1",
+    "axios": "^1.7.1",
     "dependency-check": "^4.1.0",
     "playwright-core": "^1.42.0",
     "pre-commit": "^1.2.2",
@@ -42,7 +44,8 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.10.0",
-    "prettier": "3.2.5"
+    "prettier": "3.2.5",
+    "ts-node": "^10.9.2"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
