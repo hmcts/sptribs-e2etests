@@ -4,6 +4,9 @@ import closeCase from "./closeCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import reinstateWarningPage from "../../pages/CaseAPI/reinstateCase/reinstateWarningPage.ts";
+import reinstateReasonPage, {
+  ReinstateReason,
+} from "../../pages/CaseAPI/reinstateCase/reinstateReasonPage.ts";
 
 type ReinstateCase = {
   reinstateCase(
@@ -11,6 +14,8 @@ type ReinstateCase = {
     user: UserRole,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    reinstateReason: ReinstateReason,
+    optionalText: boolean,
   ): Promise<void>;
 };
 
@@ -20,6 +25,8 @@ const reinstateCase: ReinstateCase = {
     user: UserRole,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    reinstateReason: ReinstateReason,
+    optionalText: boolean,
   ): Promise<void> {
     const caseNumber = await closeCase.closeCase(
       page,
@@ -48,6 +55,28 @@ const reinstateCase: ReinstateCase = {
       accessibilityTest,
     );
     await reinstateWarningPage.continueOn(page);
+    switch (errorMessaging) {
+      default:
+        await reinstateReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await reinstateReasonPage.continueOn(
+          page,
+          reinstateReason,
+          optionalText,
+        );
+        break;
+      case true:
+        await reinstateReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await reinstateReasonPage.triggerErrorMessages(page);
+        break;
+    }
   },
 };
 
