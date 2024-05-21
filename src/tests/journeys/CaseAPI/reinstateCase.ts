@@ -7,6 +7,7 @@ import reinstateWarningPage from "../../pages/CaseAPI/reinstateCase/reinstateWar
 import reinstateReasonPage, {
   ReinstateReason,
 } from "../../pages/CaseAPI/reinstateCase/reinstateReasonPage.ts";
+import reinstateUploadDocumentPage from "../../pages/CaseAPI/reinstateCase/reinstateUploadDocumentPage.ts";
 
 type ReinstateCase = {
   reinstateCase(
@@ -67,6 +68,12 @@ const reinstateCase: ReinstateCase = {
           reinstateReason,
           optionalText,
         );
+        await reinstateUploadDocumentPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await reinstateUploadDocumentPage.continueOn(page);
         break;
       case true:
         await reinstateReasonPage.checkPageLoads(
@@ -75,6 +82,12 @@ const reinstateCase: ReinstateCase = {
           accessibilityTest,
         );
         await reinstateReasonPage.triggerErrorMessages(page);
+        await reinstateUploadDocumentPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await reinstateUploadDocumentPage.triggerErrorMessages(page);
         break;
     }
   },
