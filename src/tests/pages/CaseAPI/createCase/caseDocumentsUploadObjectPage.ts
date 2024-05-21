@@ -56,7 +56,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
     await page.click(this.addNew);
     await commonHelpers.uploadFileController(
       page,
-      "cicCaseApplicantDocumentsUploaded",
+      "cicCaseCaseDocumentsUpload",
       0,
       "A - Application Form",
       config.testPdfFile,
@@ -65,7 +65,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
       await page.click(this.addNewBottom);
       await commonHelpers.uploadFileController(
         page,
-        "cicCaseApplicantDocumentsUploaded",
+        "cicCaseCaseDocumentsUpload",
         1,
         "A - Application Form",
         config.testWordFile,
@@ -73,7 +73,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
       await page.click(this.addNewBottom);
       await commonHelpers.uploadFileController(
         page,
-        "cicCaseApplicantDocumentsUploaded",
+        "cicCaseCaseDocumentsUpload",
         2,
         "A - Application Form",
         config.testFile,
