@@ -37,7 +37,7 @@ type CloseCase = {
     optionalText: boolean,
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
-  ): Promise<void>;
+  ): Promise<string>;
 };
 
 const closeCase: CloseCase = {
@@ -51,7 +51,7 @@ const closeCase: CloseCase = {
     optionalText: boolean,
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
-  ): Promise<void> {
+  ): Promise<string> {
     let caseNumber: string = "";
     switch (initialState) {
       case "Ready to list":
@@ -269,6 +269,7 @@ const closeCase: CloseCase = {
         );
         break;
     }
+    return caseNumber;
   },
 };
 
