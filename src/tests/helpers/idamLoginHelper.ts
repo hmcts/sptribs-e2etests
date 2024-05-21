@@ -31,9 +31,13 @@ const idamLoginHelper: IdamLoginHelper = {
     if (!page.url().includes("idam-web-public.")) {
       await page.goto(application);
     }
-    await page.waitForSelector(
-      `#skiplinktarget:text("Sign in or create an account")`,
-    );
+    if (page.url().includes("demo")) {
+      await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
+    } else {
+      await page.waitForSelector(
+        `#skiplinktarget:text("Sign in or create an account")`,
+      );
+    }
 
     const isUserCredentials = (
       value: UserCredentials | string,
