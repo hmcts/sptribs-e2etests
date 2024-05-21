@@ -464,7 +464,8 @@ export type allEvents =
   | "Hearings:Create summary"
   | "Link cases"
   | "Case: Panel Composition"
-  | "Case: Edit Panel Composition";
+  | "Case: Edit Panel Composition"
+  | "Case: Close case";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
