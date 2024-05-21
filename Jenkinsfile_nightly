@@ -59,6 +59,7 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 
 def secrets = [
         'sptribs-${env}': [
+                secret('github-branch-secret', 'GITHUB_TOKEN'),
                 secret('idam-ui-secret', 'IDAM_SECRET'),
                 secret('idam-systemupdate-password', 'TEST_PASSWORD'),
                 secret('caseworker-user', 'CASEWORKER_USERNAME'),
@@ -91,6 +92,13 @@ withNightlyPipeline(type, product, component) {
   env.UC_BASE_URL = params.SPTRIBS_UPDATE_URL
   enableSlackNotifications('#special-tribunals-builds')
   afterAlways('DependencyCheckNightly') {
+    stage('Delete nightly dev branch') {
+      try {
+        yarnBuilder.yarn('delete-branch')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      }
+    }
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
         try {
