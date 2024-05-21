@@ -107,6 +107,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              errorMessaging,
             );
             if (rejectionReason !== null) {
               await rejectionDetailsPage.continueOn(page, rejectionReason);
@@ -117,6 +118,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              errorMessaging,
             );
             if (strikeoutReason !== null) {
               await strikeoutDetailsPage.continueOn(page, strikeoutReason);
@@ -181,27 +183,43 @@ const closeCase: CloseCase = {
         break;
       case true:
         await selectReasonPage.triggerErrorMessages(page);
-        await selectReasonPage.continueOn(page, "caseWithdrawn", false);
         await withdrawalDetailsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
         );
         await withdrawalDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await selectReasonPage.continueOn(page, "caseRejected", false);
         await rejectionDetailsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          errorMessaging,
         );
         await rejectionDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await selectReasonPage.continueOn(page, "caseStrikeOut", false);
         await strikeoutDetailsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          errorMessaging,
         );
         await strikeoutDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await selectReasonPage.continueOn(page, "caseConcession", false);
         await concessionDetailsPage.checkPageLoads(
           page,
@@ -209,6 +227,11 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await concessionDetailsPage.triggerErrorMessages(page);
+        await selectReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await selectReasonPage.continueOn(page, "consentOrder", false);
         await consentOrderPage.checkPageLoads(
           page,
@@ -216,6 +239,11 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await consentOrderPage.triggerErrorMessages(page);
+        await selectReasonPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await selectReasonPage.continueOn(page, "rule27", false);
         await rule27Page.checkPageLoads(page, caseNumber, accessibilityTest);
         await rule27Page.triggerErrorMessages(page);

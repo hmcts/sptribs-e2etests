@@ -20,6 +20,7 @@ type RejectionDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
   ): Promise<void>;
   continueOn(page: Page, rejectionReason: RejectionReason): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -34,8 +35,11 @@ const rejectionDetailsPage: RejectionDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
   ): Promise<void> {
-    await page.click(`#closeRejectionReason-other`);
+    if (!errorMessaging) {
+      await page.click(`#closeRejectionReason-other`);
+    }
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -107,6 +111,7 @@ const rejectionDetailsPage: RejectionDetailsPage = {
       ),
     ]);
     await page.click(`#closeRejectionReason-other`);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

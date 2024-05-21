@@ -15,6 +15,7 @@ type StrikeoutDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
   ): Promise<void>;
   continueOn(page: Page, strikeoutReason: StrikeoutReason): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -29,8 +30,11 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
   ): Promise<void> {
-    await page.click(`#closeStrikeOutReason-other`);
+    if (!errorMessaging) {
+      await page.click(`#closeStrikeOutReason-other`);
+    }
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -102,6 +106,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
       ),
     ]);
     await page.click(`#closeStrikeOutReason-other`);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

@@ -113,12 +113,14 @@ const uploadDocumentsPage: UploadDocumentsPage = {
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // avoid ExUI rate limiting.
     await page
       .locator(`#closeDocumentsUpload_0_documentLink`)
       .setInputFiles(config.testOdtFile);
     await expect(page.locator(".error-message")).toHaveText(
       uploadDocuments_content.errorMessage,
     );
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // avoid ExUI rate limiting.
     await this.continueOn(page);
   },
 };
