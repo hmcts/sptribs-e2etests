@@ -75,7 +75,11 @@ const reinstateCase: ReinstateCase = {
           accessibilityTest,
         );
         await reinstateUploadDocumentPage.continueOn(page);
-        await reinstateCaseNotifyPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await reinstateCaseNotifyPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await reinstateCaseNotifyPage.continueOn(page);
         break;
       case true:
@@ -91,7 +95,11 @@ const reinstateCase: ReinstateCase = {
           accessibilityTest,
         );
         await reinstateUploadDocumentPage.triggerErrorMessages(page);
-        await reinstateCaseNotifyPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await reinstateCaseNotifyPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
         await reinstateCaseNotifyPage.triggerErrorMessages(page);
         break;
     }

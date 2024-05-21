@@ -3,8 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
-import reinstateCaseNotifyPage_content
-  from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateCaseNotifyPage_content.ts";
+import reinstateCaseNotifyPage_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateCaseNotifyPage_content.ts";
 
 type ReinstateCaseNotifyPage = {
   checkPageLoads(
