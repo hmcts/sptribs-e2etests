@@ -32,9 +32,7 @@ const idamLoginHelper: IdamLoginHelper = {
       await page.goto(application);
     }
     if (page.url().includes("demo")) {
-      await page.waitForSelector(
-        `#skiplinktarget:text("Sign in")`,
-      );
+      await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
     } else {
       await page.waitForSelector(
         `#skiplinktarget:text("Sign in or create an account")`,
