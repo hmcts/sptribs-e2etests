@@ -33,7 +33,7 @@
     "lint"
   ],
   "dependencies": {
-    "@axe-core/playwright": "^4.8.4",
+    "@axe-core/playwright": "^4.9.1",
     "dependency-check": "^4.1.0",
     "playwright-core": "^1.42.0",
     "pre-commit": "^1.2.2",
