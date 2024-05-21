@@ -9,6 +9,7 @@ import reinstateReasonPage, {
 } from "../../pages/CaseAPI/reinstateCase/reinstateReasonPage.ts";
 import reinstateUploadDocumentPage from "../../pages/CaseAPI/reinstateCase/reinstateUploadDocumentPage.ts";
 import reinstateCaseNotifyPage from "../../pages/CaseAPI/reinstateCase/reinstateCaseNotifyPage.ts";
+import submitPage from "../../pages/CaseAPI/reinstateCase/submitPage.ts";
 
 type ReinstateCase = {
   reinstateCase(
@@ -81,6 +82,14 @@ const reinstateCase: ReinstateCase = {
           accessibilityTest,
         );
         await reinstateCaseNotifyPage.continueOn(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          optionalText,
+        );
+        await submitPage.checkValidInfo(page, reinstateReason, optionalText);
+        await submitPage.continueOn(page);
         break;
       case true:
         await reinstateReasonPage.checkPageLoads(

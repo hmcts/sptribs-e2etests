@@ -1,4 +1,4 @@
-const caseWarning_content = {
+const submit_content = {
   pageHint: "Case: Close case",
   pageTitle: "Check your answers",
   textOnPage1: "Provide additional details",
@@ -27,4 +27,4 @@ const caseWarning_content = {
   rule27: "What was the date of Rule 27 decision?",
 } as const;
 
-export default caseWarning_content;
+export default submit_content;
