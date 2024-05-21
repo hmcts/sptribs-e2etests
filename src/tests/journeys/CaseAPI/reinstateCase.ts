@@ -10,6 +10,8 @@ import reinstateReasonPage, {
 import reinstateUploadDocumentPage from "../../pages/CaseAPI/reinstateCase/reinstateUploadDocumentPage.ts";
 import reinstateCaseNotifyPage from "../../pages/CaseAPI/reinstateCase/reinstateCaseNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/reinstateCase/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/reinstateCase/confirmPage.ts";
+import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
 
 type ReinstateCase = {
   reinstateCase(
@@ -90,6 +92,10 @@ const reinstateCase: ReinstateCase = {
         );
         await submitPage.checkValidInfo(page, reinstateReason, optionalText);
         await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.closeAndReturnToCase(page);
+        await stateTabPage.changeToStateTab(page);
+        await stateTabPage.checkStateTab(page, "Case management");
         break;
       case true:
         await reinstateReasonPage.checkPageLoads(
