@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const githubToken = process.env.GITHUB_TOKEN;
+const githubToken =
+  process.env.GITHUB_TOKEN;
 const owner = "hmcts";
 const repo = "sptribs-e2etests";
 const branch = "nightly-dev";

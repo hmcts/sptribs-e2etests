@@ -28,7 +28,7 @@
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --grep @accessibility --project chromium",
     "lint": "yarn prettier . --write",
-    "delete-branch": "npx ts-node src/tests/helpers/nightlyDevDeletion.ts"
+    "delete-branch": "ts-node src/tests/helpers/nightlyDevDeletion.ts"
   },
   "pre-commit": [
     "lint"
