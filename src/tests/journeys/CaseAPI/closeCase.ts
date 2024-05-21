@@ -259,6 +259,14 @@ const closeCase: CloseCase = {
           accessibilityTest,
         );
         await closeCaseNotifyPage.triggerErrorMessages(page);
+        await closeCaseNotifyPage.continueOn(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          "rule27",
+          false,
+        );
         break;
     }
   },

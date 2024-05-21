@@ -369,3 +369,19 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 });
+
+test("Accessibility test - Close case @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await closeCase.closeCase(
+    page,
+    "caseWorker",
+    true,
+    "Case Management",
+    true,
+    "rule27",
+    false,
+    null,
+    null,
+  );
+});

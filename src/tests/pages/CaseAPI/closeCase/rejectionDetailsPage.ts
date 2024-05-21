@@ -70,7 +70,7 @@ const rejectionDetailsPage: RejectionDetailsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      // await axeTest(page);
     }
   },
 

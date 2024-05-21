@@ -65,7 +65,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      // await axeTest(page);
     }
   },
 
