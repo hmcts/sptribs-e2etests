@@ -112,13 +112,13 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
     async fillFields(page: Page): Promise<void> {
       await page.getByRole("button", { name: "Add new" }).click();
       await page
-        .locator("#recFile_0_documentCategory")
+        .locator("#recFileUpload_0_documentCategory")
         .selectOption({ index: 1 });
       await page
-        .locator("#recFile_0_documentEmailContent")
+        .locator("#recFileUpload_0_documentEmailContent")
         .fill(createSummaryHearingRecordingUploadContent.description);
       await page
-        .locator("#recFile_0_documentLink")
+        .locator("#recFileUpload_0_documentLink")
         .setInputFiles(config.testMP3File);
       await expect(page.locator(".error-message")).toHaveCount(0);
       await page
