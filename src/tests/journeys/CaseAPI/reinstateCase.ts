@@ -3,6 +3,7 @@ import config, { UserRole } from "../../config.ts";
 import closeCase from "./closeCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
+import reinstateWarningPage from "../../pages/CaseAPI/reinstateCase/reinstateWarningPage.ts";
 
 type ReinstateCase = {
   reinstateCase(
@@ -41,6 +42,12 @@ const reinstateCase: ReinstateCase = {
       page,
       events_content.reinstateCase,
     );
+    await reinstateWarningPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+    );
+    await reinstateWarningPage.continueOn(page);
   },
 };
 
