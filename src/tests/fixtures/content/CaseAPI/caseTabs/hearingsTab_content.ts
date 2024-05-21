@@ -55,6 +55,7 @@ const hearingsTab_content = {
   textOnPage38: "Date Postponed",
   textOnPage39: "Reason Postponed",
   textOnPage40: "Enter any other important information about this postponement",
+  changeReason: "Why is this listing record being changed?",
 } as const;
 
 export default hearingsTab_content;

@@ -29,6 +29,7 @@ import path from "path";
 import config from "../../../config.ts";
 import cancelHearingReason_content from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
 import postponeHearingReason_content from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingReason_content.ts";
+import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
 
 type HearingsTabPage = {
   hearingsTab: string;
@@ -46,6 +47,7 @@ type HearingsTabPage = {
     editJourney: boolean,
     cancelHearing: boolean,
     postponeHearing: boolean,
+    editListing: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   changeToHearingsTab(page: Page): Promise<void>;
@@ -65,6 +67,7 @@ type HearingsTabPage = {
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     venue: hearingVenues | null,
+    editListing: boolean,
   ): Promise<void>;
   checkValidInfoCreateSummary(
     page: Page,
@@ -135,6 +138,7 @@ const hearingTabPage: HearingsTabPage = {
     editJourney: boolean,
     cancelHearing: boolean,
     postponeHearing: boolean,
+    editListing: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
@@ -234,6 +238,14 @@ const hearingTabPage: HearingsTabPage = {
           );
         }),
       ]);
+    }
+    if (editListing) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `span.text-16:text-is("${hearingsTab_content.changeReason}")`,
+        ),
+        1,
+      );
     }
     if (region) {
       await commonHelpers.checkVisibleAndPresent(
@@ -497,6 +509,7 @@ const hearingTabPage: HearingsTabPage = {
     hearingAcrossMultipleDays: boolean,
     readyToList: boolean,
     venue: hearingVenues | null,
+    editListing: boolean,
   ): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
@@ -683,6 +696,15 @@ const hearingTabPage: HearingsTabPage = {
           1,
         ),
       ]);
+    }
+    if (editListing) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          this.listingTable +
+            `ccd-read-text-area-field > span:text-is("${editListingChangeReasonContent.reason}")`,
+        ),
+        1,
+      );
     }
   },
 

@@ -91,6 +91,7 @@ const cancelHearing: CancelHearing = {
             false,
             true,
             false,
+            false,
             accessibilityTest,
           );
           await hearingTabPage.checkValidInfoCancelHearing(
