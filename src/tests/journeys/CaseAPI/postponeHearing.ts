@@ -91,6 +91,7 @@ const postponeHearing: PostponeHearing = {
             false,
             false,
             true,
+            false,
             accessibilityTest,
           );
           await hearingTabPage.checkValidInfoPostponeHearing(
