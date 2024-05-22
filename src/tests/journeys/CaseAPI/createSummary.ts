@@ -123,7 +123,7 @@ const createSummary: CreateSummary = {
             accessibilityTest,
             errorMessaging,
           );
-          await createSummaryHearingAttendeesPage.fillFields(
+          const panel = await createSummaryHearingAttendeesPage.fillFields(
             page,
             fullPanelHearing,
           );
@@ -167,6 +167,7 @@ const createSummary: CreateSummary = {
           );
           await submitPage.checkValidInfo(
             page,
+            panel,
             fullPanelHearing,
             hearing,
             hearingType,
@@ -208,6 +209,7 @@ const createSummary: CreateSummary = {
             venueName,
             hearingOutcome,
             hearingAdjournedReason,
+            panel,
             fullPanelHearing,
             editJourney,
           );
