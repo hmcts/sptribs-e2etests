@@ -7,6 +7,7 @@ const events_content = {
   panelComposition: "Case: Panel Composition",
   closeCase: "Case: Close case",
   reinstateCase: "Case: Reinstate case",
+  createEditStay: "Stays: Create/edit stay",
 } as const;
 
 export default events_content;
