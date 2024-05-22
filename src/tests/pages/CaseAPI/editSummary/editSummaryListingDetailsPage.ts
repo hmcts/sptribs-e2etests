@@ -128,6 +128,10 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
   async checkFields(page: Page): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`ccd-read-text-field > span.text-16:text-is("Fox Court")`),
+        1,
+      ),
       expect(page.locator(this.roomAtVenue)).toHaveValue(
         editSummaryListingDetailsContent.room,
       ),
@@ -158,19 +162,13 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
     hearingAcrossMultipleDays: boolean,
   ): Promise<void> {
     const currentDate = new Date();
-    if (venue !== null) {
-      await page.selectOption(this.venue, venue);
-    } else {
+    if (venue === null) {
       await page
         .getByLabel(editSummaryListingDetailsContent.textOnPage2)
         .check();
       await page.fill(this.inputVenue, "Test Venue");
     }
     await page.fill(this.roomAtVenue, editSummaryListingDetailsContent.room);
-    await page.fill(
-      this.instructions,
-      editSummaryListingDetailsContent.instructions,
-    );
     await page.fill(this.day, `${currentDate.getDate()}`);
     await page.fill(this.month, `${currentDate.getMonth() + 1}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);
