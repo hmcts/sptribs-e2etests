@@ -13,7 +13,6 @@ type EditSummaryHearingAttendeesPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    errorMessaging: boolean,
   ): Promise<void>;
   fillFields(page: Page, fullPanelHearing: boolean): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -24,13 +23,12 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
   previous: "button[name='Previous']",
   continue: '[type="submit"]',
   cancel: ".cancel",
-  remove: "button[aria-label='Remove Panel member and Role']",
+  remove: "button[aria-label='Remove Panel member and Role 4']",
 
   async checkPageLoads(
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    errorMessaging: boolean,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -66,6 +64,12 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
       expect(page.locator("#memberList > div > h2")).toHaveText(
         editSummaryHearingAttendeesContent.subTitle1,
       ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `label > h3:has-text("${editSummaryHearingAttendeesContent.subTitle1}")`,
+        ),
+        4,
+      ),
       expect(
         page.locator("#memberList_0_0 > div > div > label > h3"),
       ).toHaveText(editSummaryHearingAttendeesContent.subTitle1),
@@ -75,7 +79,7 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
         ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
-          1,
+          4,
         );
       }),
     ]);
@@ -89,22 +93,27 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
   },
 
   async fillFields(page: Page, fullPanelHearing: boolean): Promise<void> {
-    await page.locator("#judge").selectOption({ index: 1 });
+    await expect(page.locator("#judge")).toHaveText(
+      "District Judge Jonathan Casey",
+    );
     if (!fullPanelHearing) {
       await page
         .getByLabel("No. It was a 'sit alone' hearing", { exact: true })
         .click();
     } else {
-      await page.getByLabel("Yes", { exact: true }).click();
-      await page.getByRole("button", { name: "Add new" }).first().click();
-      await page.locator("#memberList_0_name").selectOption({ index: 2 });
-      await page.locator("#memberList_0_role-fullMember").check();
-      await page.getByRole("button", { name: "Add new" }).nth(1).click();
-      await page.locator("#memberList_1_name").selectOption({ index: 3 });
-      await page.locator("#memberList_1_role-observer").check();
-      await page.getByRole("button", { name: "Add new" }).nth(1).click();
-      await page.locator("#memberList_2_name").selectOption({ index: 4 });
-      await page.locator("#memberList_2_role-appraiser").check();
+      await expect(page.getByLabel("Yes", { exact: true })).toBeChecked();
+      await expect(page.locator("#memberList_0_name")).toHaveText(
+        "Dr Alicia Jones",
+      );
+      await expect(page.locator("#memberList_0_role-fullMember")).toBeChecked();
+      await expect(page.locator("#memberList_1_name")).toHaveText(
+        "Dr Amanda Knight",
+      );
+      await expect(page.locator("#memberList_1_role-observer")).toBeChecked();
+      await expect(page.locator("#memberList_2_name")).toHaveText(
+        "Dr Brittney Smith",
+      );
+      await expect(page.locator("#memberList_2_role-appraiser")).toBeChecked();
     }
   },
 

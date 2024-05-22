@@ -13,6 +13,7 @@ import commonHelpers, {
 import editSummarySelectHearingPage from "../../pages/CaseAPI/editSummary/editSummarySelectHearingPage.ts";
 import editSummaryHearingTypeAndFormatPage from "../../pages/CaseAPI/editSummary/editSummaryHearingTypeAndFormatPage.ts";
 import editSummaryListingDetailsPage from "../../pages/CaseAPI/editSummary/editSummaryListingDetailsPage.ts";
+import editSummaryHearingAttendeesPage from "../../pages/CaseAPI/editSummary/editSummaryHearingAttendeesPage.ts";
 
 type EditSummary = {
   editSummary(
@@ -102,6 +103,16 @@ const editSummary: EditSummary = {
             hearingAcrossMultipleDays,
           );
           await editSummaryListingDetailsPage.continueOn(page);
+          await editSummaryHearingAttendeesPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editSummaryHearingAttendeesPage.fillFields(
+            page,
+            fullPanelHearing,
+          );
+          await editSummaryHearingAttendeesPage.continueOn(page);
 
           break;
         case true:
