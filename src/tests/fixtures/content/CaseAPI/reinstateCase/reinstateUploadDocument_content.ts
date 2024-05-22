@@ -3,7 +3,7 @@ const reinstateUploadDocument_content = {
   pageTitle: "Upload documents",
   textOnPage1:
     "Please upload any documents that explain why this case is being reinstated",
-  textOnPage2: "Files should be:",
+  textOnPage2: "Files should be",
   textOnPage3: "uploaded separately, not one large file",
   textOnPage4: "a maximum of 100MB in size (larger files must be split)",
   textOnPage5: "select the appropriate category from case file view",

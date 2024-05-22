@@ -65,16 +65,58 @@ const reinstateCaseNotifyPage: ReinstateCaseNotifyPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
-    await page
-      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+    const casePartyNotifySubject = page.locator(
+      `#cicCaseNotifyPartySubject-SubjectCIC`,
+    );
+    const casePartyNotifyRepresentative = page.locator(
+      `#cicCaseNotifyPartyRepresentative-RepresentativeCIC`,
+    );
+    const casePartyNotifyRespondent = page.locator(
+      `#cicCaseNotifyPartyRespondent-RespondentCIC`,
+    );
+    const casePartyNotifyApplicant = page.locator(
+      `#cicCaseNotifyPartyApplicant-ApplicantCIC`,
+    );
+    if (!(await casePartyNotifySubject.isChecked())) {
+      await casePartyNotifySubject.click();
+    }
+    if (!(await casePartyNotifyRepresentative.isChecked())) {
+      await casePartyNotifyRepresentative.click();
+    }
+    if (!(await casePartyNotifyRespondent.isChecked())) {
+      await casePartyNotifyRespondent.click();
+    }
+    if (!(await casePartyNotifyApplicant.isChecked())) {
+      await casePartyNotifyApplicant.click();
+    }
     await page.getByRole("button", { name: "Continue" }).click();
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
+    const casePartyNotifySubject = page.locator(
+      `#cicCaseNotifyPartySubject-SubjectCIC`,
+    );
+    const casePartyNotifyRepresentative = page.locator(
+      `#cicCaseNotifyPartyRepresentative-RepresentativeCIC`,
+    );
+    const casePartyNotifyRespondent = page.locator(
+      `#cicCaseNotifyPartyRespondent-RespondentCIC`,
+    );
+    const casePartyNotifyApplicant = page.locator(
+      `#cicCaseNotifyPartyApplicant-ApplicantCIC`,
+    );
+    if (await casePartyNotifySubject.isChecked()) {
+      await casePartyNotifySubject.click();
+    }
+    if (await casePartyNotifyRepresentative.isChecked()) {
+      await casePartyNotifyRepresentative.click();
+    }
+    if (await casePartyNotifyRespondent.isChecked()) {
+      await casePartyNotifyRespondent.click();
+    }
+    if (await casePartyNotifyApplicant.isChecked()) {
+      await casePartyNotifyApplicant.click();
+    }
     await page.getByRole("button", { name: "Continue" }).click();
     await commonHelpers.checkVisibleAndPresent(
       page.locator(

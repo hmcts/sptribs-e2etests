@@ -46,7 +46,7 @@ const submitPage: SubmitPage = {
       );
     }
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toHaveText(
+      expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,
       ),
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
@@ -62,14 +62,14 @@ const submitPage: SubmitPage = {
       ...Array.from({ length: 2 }, (_, index: number) => {
         const textOnPage = (submit_content as any)[`textOnPage${index + 1}`];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
+          page.locator(`.text-16:text-is("${textOnPage}")`),
           1,
         );
       }),
       ...Array.from({ length: 5 }, (_, index: number) => {
         const textOnPage = (submit_content as any)[`textOnPage${index + 4}`];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
+          page.locator(`.text-16:text-is("${textOnPage}")`),
           1,
         );
       }),
@@ -145,7 +145,7 @@ const submitPage: SubmitPage = {
     if (optionalText) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.text-16:text-is("${reinstateReason_content.optionalText}")`,
+          `.ng-valid > div > .ng-valid > div > ccd-read-text-area-field > span:text-is("${reinstateReason_content.optionalText}")`,
         ),
         1,
       );

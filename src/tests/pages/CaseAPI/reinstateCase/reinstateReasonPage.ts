@@ -87,7 +87,14 @@ const reinstateReasonPage: ReinstateReasonPage = {
     reinstateReason: ReinstateReason,
     optionalText: boolean,
   ): Promise<void> {
-    await page.click(`#cicCaseReinstateReason-${reinstateReason}`);
+    if (
+      reinstateReason ===
+      "Request to set aside a tribunal decision following an oral hearing"
+    ) {
+      await page.locator(`.form-control`).nth(5).click();
+    } else {
+      await page.click(`#cicCaseReinstateReason-${reinstateReason}`);
+    }
     if (optionalText) {
       await page.fill(
         `#cicCaseReinstateAdditionalDetail`,
