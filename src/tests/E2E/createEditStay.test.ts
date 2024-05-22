@@ -197,4 +197,29 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
     );
   });
+  test("Error messages - Create/Edit stay", async ({ page }): Promise<void> => {
+    await createEditStay.createEditStay(
+      page,
+      false,
+      "Case Management",
+      "caseWorker",
+      true,
+      "Other",
+      true,
+    );
+  });
+});
+
+test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await createEditStay.createEditStay(
+    page,
+    true,
+    "Case Management",
+    "caseWorker",
+    false,
+    "Other",
+    true,
+  );
 });
