@@ -129,7 +129,6 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
         ),
       );
       await page.locator("#memberList_2_role-appraiser").check();
-      console.log(panel);
       return panel;
     }
   },
