@@ -504,7 +504,7 @@ const submitPage: SubmitPage = {
         if (optionalText) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.text-16:text-is("${selectReason_content.optionalText}")`,
+              `.ng-valid > div > .ng-valid > div > ccd-read-text-area-field > span:text-is("${selectReason_content.optionalText}")`,
             ),
             1,
           );
