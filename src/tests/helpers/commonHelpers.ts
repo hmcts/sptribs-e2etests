@@ -467,7 +467,8 @@ export type allEvents =
   | "Case: Edit Panel Composition"
   | "Case: Close case"
   | "Case: Reinstate case"
-  | "Stays: Create/edit stay";
+  | "Stays: Create/edit stay"
+  | "Stays: Remove stay";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 

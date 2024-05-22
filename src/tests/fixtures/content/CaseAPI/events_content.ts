@@ -8,6 +8,7 @@ const events_content = {
   closeCase: "Case: Close case",
   reinstateCase: "Case: Reinstate case",
   createEditStay: "Stays: Create/edit stay",
+  removeStay: "Stays: Remove stay",
 } as const;
 
 export default events_content;
