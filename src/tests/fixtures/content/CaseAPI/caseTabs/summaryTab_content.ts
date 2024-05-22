@@ -15,6 +15,9 @@ const summaryTab_content = {
   textOnPage11: "Expiration Date",
   textOnPage12: "Provide additional details",
   textOnPage13: "Enter a flag type",
+  textOnPage14: "Why is the stay being removed from this case?",
+  textOnPage15: "Enter Other reason",
+  textOnPage16: "Provide additional details",
 } as const;
 
 export default summaryTab_content;

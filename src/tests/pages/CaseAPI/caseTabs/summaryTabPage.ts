@@ -5,9 +5,11 @@ import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summar
 import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
+import createEditStaySubmit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
+import removeStaySubmit_content from "../../../fixtures/content/CaseAPI/removeStay/submit_content.ts";
 import addStay_content from "../../../fixtures/content/CaseAPI/createEditStay/addStay_content.ts";
 import summaryTab_content from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
+import removeStay_content from "../../../fixtures/content/CaseAPI/removeStay/removeStay_content.ts";
 
 type SummaryTabPage = {
   summaryTab: string;
@@ -26,7 +28,12 @@ type SummaryTabPage = {
   ): Promise<void>;
   checkStayDetails(
     page: Page,
-    stayReason: keyof typeof submit_content,
+    stayReason: keyof typeof createEditStaySubmit_content,
+    optionalText: boolean,
+  ): Promise<void>;
+  checkRemoveStayDetails(
+    page: Page,
+    Remove: keyof typeof removeStaySubmit_content,
     optionalText: boolean,
   ): Promise<void>;
 };
@@ -130,10 +137,10 @@ const summaryTabPage: SummaryTabPage = {
 
   async checkStayDetails(
     page: Page,
-    stayReason: keyof typeof submit_content,
+    stayReason: keyof typeof createEditStaySubmit_content,
     optionalText: boolean,
   ): Promise<void> {
-    const stayReasonText = submit_content[stayReason];
+    const stayReasonText = createEditStaySubmit_content[stayReason];
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.text-16:text-is("${summaryTab_content.textOnPage10}")`),
@@ -178,6 +185,56 @@ const summaryTabPage: SummaryTabPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(`span:text-is("${addStay_content.optionalText}")`),
+          1,
+        ),
+      ]);
+    }
+  },
+
+  async checkRemoveStayDetails(
+    page: Page,
+    removeReason: keyof typeof removeStaySubmit_content,
+    optionalText: boolean,
+  ): Promise<void> {
+    const removeReasonText = removeStaySubmit_content[removeReason];
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage14}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage11}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${removeReasonText}")`),
+        1,
+      ),
+    ]);
+    if (removeReason === "Other") {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("${summaryTab_content.textOnPage15}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("${removeStay_content.otherText}")`),
+          1,
+        ),
+      ]);
+    }
+    if (optionalText) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("${summaryTab_content.textOnPage16}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("${removeStay_content.optionalText}")`),
           1,
         ),
       ]);

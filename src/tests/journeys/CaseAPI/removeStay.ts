@@ -6,6 +6,10 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import removeStayPage, {
   RemoveReason,
 } from "../../pages/CaseAPI/removeStay/removeStayPage.ts";
+import submitPage from "../../pages/CaseAPI/removeStay/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/removeStay/confirmPage.ts";
+import summaryTabPage from "../../pages/CaseAPI/caseTabs/summaryTabPage.ts";
+import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
 
 type RemoveStay = {
   removeStay(
@@ -54,6 +58,24 @@ const removeStay: RemoveStay = {
           accessibilityTest,
         );
         await removeStayPage.continueOn(page, removeReason, optionalText);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          removeReason,
+          optionalText,
+        );
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.closeAndReturnToCase(page);
+        await summaryTabPage.changeToSummaryTab(page);
+        await summaryTabPage.checkRemoveStayDetails(
+          page,
+          removeReason,
+          optionalText,
+        );
+        await stateTabPage.changeToStateTab(page);
+        await stateTabPage.checkStateTab(page, "Case management");
         break;
       case true:
         await removeStayPage.checkPageLoads(
