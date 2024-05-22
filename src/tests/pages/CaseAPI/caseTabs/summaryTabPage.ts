@@ -5,6 +5,9 @@ import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summar
 import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
+import addStay_content from "../../../fixtures/content/CaseAPI/createEditStay/addStay_content.ts";
+import summaryTab_content from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
 
 type SummaryTabPage = {
   summaryTab: string;
@@ -20,6 +23,11 @@ type SummaryTabPage = {
     caseNumber: string,
     representationPresent: boolean,
     representationQualified: boolean,
+  ): Promise<void>;
+  checkStayDetails(
+    page: Page,
+    stayReason: keyof typeof submit_content,
+    optionalText: boolean,
   ): Promise<void>;
 };
 
@@ -117,6 +125,62 @@ const summaryTabPage: SummaryTabPage = {
           "No",
         );
       }
+    }
+  },
+
+  async checkStayDetails(
+    page: Page,
+    stayReason: keyof typeof submit_content,
+    optionalText: boolean,
+  ): Promise<void> {
+    const stayReasonText = submit_content[stayReason];
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage10}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage11}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("${stayReasonText}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.text-16:text-is("${addStay_content.day} ${await commonHelpers.shortMonths(parseInt(addStay_content.month))} ${addStay_content.year}")`,
+        ),
+        1,
+      ),
+    ]);
+    if (stayReason === "Other") {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("${summaryTab_content.textOnPage13}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("${addStay_content.otherText}")`),
+          1,
+        ),
+      ]);
+    }
+    if (optionalText) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("${summaryTab_content.textOnPage12}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("${addStay_content.optionalText}")`),
+          1,
+        ),
+      ]);
     }
   },
 };

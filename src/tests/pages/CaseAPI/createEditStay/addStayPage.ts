@@ -9,7 +9,7 @@ export type StayReason =
   | "waitingOutcomeOfCivilCase"
   | "awaitingOutcomeOfCriminalProceedings"
   | "awaitingACourtJudgement"
-  | "unableToProgressDueToSubject’sAge"
+  | "unableToProgressDueToSubject"
   | "unableToProgressAsSubjectUndergoingOrAwaitingTreatment"
   | "awaitingOutcomeOfLinkedCase"
   | "Other";
@@ -75,7 +75,11 @@ const addStayPage: AddStayPage = {
     stayReason: StayReason,
     optionalText: Boolean,
   ): Promise<void> {
-    await page.click(`#stayStayReason-${stayReason}`);
+    if (stayReason !== "unableToProgressDueToSubject") {
+      await page.click(`#stayStayReason-${stayReason}`);
+    } else {
+      await page.click(`#stayStayReason-${stayReason}’sAge`);
+    }
     if (stayReason === "Other") {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(`.form-label:text-is("${addStay_content.textOnPage14}")`),
