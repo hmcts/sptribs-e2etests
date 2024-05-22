@@ -15,7 +15,7 @@ type CreateSummaryHearingAttendeesPage = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<void>;
-  fillFields(page: Page, fullPanelHearing: boolean): Promise<void>;
+  fillFields(page: Page, fullPanelHearing: boolean): Promise<string[]>;
   triggerErrorMessages(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -94,23 +94,42 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
     // }
   },
 
-  async fillFields(page: Page, fullPanelHearing: boolean): Promise<void> {
+  async fillFields(page: Page, fullPanelHearing: boolean): Promise<string[]> {
+    const panel: string[] = [];
     await page.locator("#judge").selectOption({ index: 1 });
+    panel.push(<string>await page.textContent("#judge > option:nth-child(2)"));
     if (!fullPanelHearing) {
       await page
         .getByLabel("No. It was a 'sit alone' hearing", { exact: true })
         .click();
+      return panel;
     } else {
       await page.getByLabel("Yes", { exact: true }).click();
       await page.getByRole("button", { name: "Add new" }).first().click();
       await page.locator("#memberList_0_name").selectOption({ index: 2 });
+      panel.push(
+        <string>(
+          await page.textContent("#memberList_0_name > option:nth-child(3)")
+        ),
+      );
       await page.locator("#memberList_0_role-fullMember").check();
       await page.getByRole("button", { name: "Add new" }).nth(1).click();
       await page.locator("#memberList_1_name").selectOption({ index: 3 });
+      panel.push(
+        <string>(
+          await page.textContent("#memberList_1_name > option:nth-child(4)")
+        ),
+      );
       await page.locator("#memberList_1_role-observer").check();
       await page.getByRole("button", { name: "Add new" }).nth(1).click();
       await page.locator("#memberList_2_name").selectOption({ index: 4 });
+      panel.push(
+        <string>(
+          await page.textContent("#memberList_2_name > option:nth-child(5)")
+        ),
+      );
       await page.locator("#memberList_2_role-appraiser").check();
+      return panel;
     }
   },
 

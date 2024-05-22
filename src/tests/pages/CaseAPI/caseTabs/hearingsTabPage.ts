@@ -79,6 +79,7 @@ type HearingsTabPage = {
     venueName: hearingVenueNames | null,
     hearingOutcome: hearingOutcome,
     hearingAdjournedReason: hearingAdjournedReasons | null,
+    panel: string[],
     fullPanelHearing: boolean,
     editJourney: boolean,
   ): Promise<void>;
@@ -718,6 +719,7 @@ const hearingTabPage: HearingsTabPage = {
     venueName: hearingVenueNames | null,
     hearingOutcome: hearingOutcome,
     hearingAdjournedReason: hearingAdjournedReasons | null,
+    panel: string[],
     fullPanelHearing: boolean,
     editJourney: boolean,
   ): Promise<void> {
@@ -771,7 +773,7 @@ const hearingTabPage: HearingsTabPage = {
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           this.listingTable +
-            `ccd-read-dynamic-list-field > span:text-is("${submit_content.judge}")`,
+            `ccd-read-dynamic-list-field > span:text-is("${panel[0]}")`,
         ),
         1,
       ),
@@ -1032,7 +1034,7 @@ const hearingTabPage: HearingsTabPage = {
             3,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
-            const member = (submit_content as any)[`member${index + 1}`];
+            const member = panel[`${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               page.locator(
                 this.listingTable +
