@@ -186,6 +186,7 @@ const createListing: CreateListing = {
             readyToList,
             venue,
             false,
+            false,
             null,
             false,
             false,

@@ -169,6 +169,7 @@ const editListing: EditListing = {
             false,
             venue,
             false,
+            false,
             null,
             false,
             false,

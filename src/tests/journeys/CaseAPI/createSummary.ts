@@ -191,6 +191,7 @@ const createSummary: CreateSummary = {
             false,
             venue,
             true,
+            false,
             null,
             false,
             editJourney,
