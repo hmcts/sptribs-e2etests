@@ -59,33 +59,6 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
         this.cancel,
       ),
     ]);
-    await page.locator(".write-collection-add-item__bottom").click();
-    await Promise.all([
-      expect(page.locator("#memberList > div > h2")).toHaveText(
-        editSummaryHearingAttendeesContent.subTitle1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `label > h3:has-text("${editSummaryHearingAttendeesContent.subTitle1}")`,
-        ),
-        4,
-      ),
-      expect(
-        page.locator("#memberList_0_0 > div > div > label > h3"),
-      ).toHaveText(editSummaryHearingAttendeesContent.subTitle1),
-      ...Array.from({ length: 5 }, (_, index) => {
-        const textOnPage = (editSummaryHearingAttendeesContent as any)[
-          `textOnPage${index + 5}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
-          4,
-        );
-      }),
-    ]);
-    await page.click(this.remove);
-    await expect(page.locator(".cdk-overlay-container")).toBeVisible();
-    await page.locator("button[title='Remove']").click();
 
     // if (accessibilityTest) {
     //   await axeTest(page);

@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import createSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingOutcome_content.ts";
+import editSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingOutcome_content.ts";
 import commonHelpers, {
   hearingAdjournedReasons,
   hearingOutcome,
@@ -39,19 +39,19 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        createSummaryHearingOutcomeContent.pageHint,
+        editSummaryHearingOutcomeContent.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        createSummaryHearingOutcomeContent.pageTitle,
+        editSummaryHearingOutcomeContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        createSummaryHearingOutcomeContent.caseReference + caseNumber,
+        editSummaryHearingOutcomeContent.caseReference + caseNumber,
       ),
       ...Array.from({ length: 5 }, (_, index) => {
-        const textOnPage = (createSummaryHearingOutcomeContent as any)[
+        const textOnPage = (editSummaryHearingOutcomeContent as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -68,12 +68,12 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
     ]);
     if (!errorMessaging) {
       await page
-        .getByLabel(createSummaryHearingOutcomeContent.textOnPage2, {
+        .getByLabel(editSummaryHearingOutcomeContent.textOnPage2, {
           exact: true,
         })
         .click();
       await page
-        .getByLabel(createSummaryHearingOutcomeContent.textOnPage33, {
+        .getByLabel(editSummaryHearingOutcomeContent.textOnPage33, {
           exact: true,
         })
         .click();
@@ -82,9 +82,9 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
           page.locator(
             "#adjournmentReasons > fieldset > legend > label > span",
           ),
-        ).toHaveText(createSummaryHearingOutcomeContent.textOnPage6),
+        ).toHaveText(editSummaryHearingOutcomeContent.textOnPage6),
         ...Array.from({ length: 26 }, (_, index) => {
-          const textOnPage = (createSummaryHearingOutcomeContent as any)[
+          const textOnPage = (editSummaryHearingOutcomeContent as any)[
             `textOnPage${index + 7}`
           ];
           return commonHelpers.checkVisibleAndPresent(
@@ -98,7 +98,7 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
           page.locator(
             "#caseEditForm > div > ccd-field-write > div > ccd-write-text-area-field > div > label > span",
           ),
-        ).toHaveText(createSummaryHearingOutcomeContent.textOnPage34),
+        ).toHaveText(editSummaryHearingOutcomeContent.textOnPage34),
       ]);
     }
 
@@ -118,14 +118,14 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
       if (hearingAdjournedReason === "Other") {
         await page
           .locator("#otherDetailsOfAdjournment")
-          .fill(createSummaryHearingOutcomeContent.otherAdjournedReason);
+          .fill(editSummaryHearingOutcomeContent.otherAdjournedReason);
       }
     }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page
-      .getByLabel(createSummaryHearingOutcomeContent.textOnPage2, {
+      .getByLabel(editSummaryHearingOutcomeContent.textOnPage2, {
         exact: true,
       })
       .click();
@@ -133,13 +133,13 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
-        createSummaryHearingOutcomeContent.errorBanner,
+        editSummaryHearingOutcomeContent.errorBanner,
       ),
       expect(page.locator(".error-message")).toHaveText(
-        createSummaryHearingOutcomeContent.adjournedError,
+        editSummaryHearingOutcomeContent.adjournedError,
       ),
       expect(page.locator(".validation-error")).toHaveText(
-        createSummaryHearingOutcomeContent.adjournedError,
+        editSummaryHearingOutcomeContent.adjournedError,
       ),
     ]);
   },
