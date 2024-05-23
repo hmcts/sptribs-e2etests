@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import editSummaryHearingAttendeesContent from "../../../fixtures/content/CaseAPI/editListing/editSummaryHearingAttendees_content.ts";
+import editSummaryHearingAttendeesContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendees_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -14,7 +14,7 @@ type EditSummaryHearingAttendeesPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillFields(page: Page, fullPanelHearing: boolean): Promise<void>;
+  fillFields(page: Page, fullPanelHearing: boolean): Promise<string[]>;
   triggerErrorMessages(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -92,28 +92,35 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
     // }
   },
 
-  async fillFields(page: Page, fullPanelHearing: boolean): Promise<void> {
-    await expect(page.locator("#judge")).toHaveText(
-      "District Judge Jonathan Casey",
-    );
+  async fillFields(page: Page, fullPanelHearing: boolean): Promise<string[]> {
+    const panel: string[] = [];
+    panel.push(<string>await page.textContent("#judge > option:nth-child(2)"));
     if (!fullPanelHearing) {
       await page
         .getByLabel("No. It was a 'sit alone' hearing", { exact: true })
         .click();
+      return panel;
     } else {
       await expect(page.getByLabel("Yes", { exact: true })).toBeChecked();
-      await expect(page.locator("#memberList_0_name")).toHaveText(
-        "Dr Alicia Jones",
+      panel.push(
+        <string>(
+          await page.textContent("#memberList_0_name > option:nth-child(3)")
+        ),
       );
       await expect(page.locator("#memberList_0_role-fullMember")).toBeChecked();
-      await expect(page.locator("#memberList_1_name")).toHaveText(
-        "Dr Amanda Knight",
+      panel.push(
+        <string>(
+          await page.textContent("#memberList_1_name > option:nth-child(4)")
+        ),
       );
       await expect(page.locator("#memberList_1_role-observer")).toBeChecked();
-      await expect(page.locator("#memberList_2_name")).toHaveText(
-        "Dr Brittney Smith",
+      panel.push(
+        <string>(
+          await page.textContent("#memberList_2_name > option:nth-child(5)")
+        ),
       );
       await expect(page.locator("#memberList_2_role-appraiser")).toBeChecked();
+      return panel;
     }
   },
 

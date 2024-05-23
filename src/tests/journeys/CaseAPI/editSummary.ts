@@ -14,6 +14,8 @@ import editSummarySelectHearingPage from "../../pages/CaseAPI/editSummary/editSu
 import editSummaryHearingTypeAndFormatPage from "../../pages/CaseAPI/editSummary/editSummaryHearingTypeAndFormatPage.ts";
 import editSummaryListingDetailsPage from "../../pages/CaseAPI/editSummary/editSummaryListingDetailsPage.ts";
 import editSummaryHearingAttendeesPage from "../../pages/CaseAPI/editSummary/editSummaryHearingAttendeesPage.ts";
+import editSummaryHearingAttendeesRolePage from "../../pages/CaseAPI/editSummary/editSummaryHearingAttendeesRolePage.ts";
+import editSummaryHearingOutcomePage from "../../pages/CaseAPI/editSummary/editSummaryHearingOutcomePage.ts";
 
 type EditSummary = {
   editSummary(
@@ -108,11 +110,30 @@ const editSummary: EditSummary = {
             caseNumber,
             accessibilityTest,
           );
-          await editSummaryHearingAttendeesPage.fillFields(
+          const panel = await editSummaryHearingAttendeesPage.fillFields(
             page,
             fullPanelHearing,
           );
           await editSummaryHearingAttendeesPage.continueOn(page);
+          await editSummaryHearingAttendeesRolePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editSummaryHearingAttendeesRolePage.checkFields(page);
+          await editSummaryHearingAttendeesRolePage.continueOn(page);
+          await editSummaryHearingOutcomePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            errorMessaging,
+          );
+          await editSummaryHearingOutcomePage.fillFields(
+            page,
+            hearingOutcome,
+            hearingAdjournedReason,
+          );
+          await editSummaryHearingOutcomePage.continueOn(page);
 
           break;
         case true:
