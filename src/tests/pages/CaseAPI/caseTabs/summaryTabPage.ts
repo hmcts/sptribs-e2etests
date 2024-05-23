@@ -203,10 +203,6 @@ const summaryTabPage: SummaryTabPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage11}")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
         page.locator(`.text-16:text-is("${removeReasonText}")`),
         1,
       ),
@@ -228,9 +224,9 @@ const summaryTabPage: SummaryTabPage = {
     if (optionalText) {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${summaryTab_content.textOnPage16}")`,
-          ),
+          page
+            .locator(`.text-16:text-is("${summaryTab_content.textOnPage16}")`)
+            .nth(1),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(

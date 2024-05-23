@@ -85,7 +85,10 @@ const removeStayPage: RemoveStayPage = {
         ),
         1,
       );
-      await page.fill(`#stayFlagType`, removeStay_content.otherText);
+      await page.fill(
+        `#removeStayStayRemoveOtherDescription`,
+        removeStay_content.otherText,
+      );
     }
     if (optionalText) {
       await page.fill(
@@ -119,6 +122,7 @@ const removeStayPage: RemoveStayPage = {
       ),
     ]);
     await page.click(`#removeStayStayRemoveReason-Other`);
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // avoid ExUI concurrency not loading
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

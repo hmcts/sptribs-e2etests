@@ -6,14 +6,14 @@ const submit_content = {
   textOnPage3: "Enter Other reason",
   textOnPage4: "Provide additional details",
 
-  receivedOutcomeOfCivilCase: "Awaiting outcome of civil case",
+  receivedOutcomeOfCivilCase: "Received outcome of civil case",
   receviedOutcomeOfCriminalProceedings:
-    "Awaiting outcome of criminal proceedings",
-  receivedACourtJudgement: "Awaiting a court judgement",
-  applicantHasReachedRequiredAge: "Unable to progress due to subject’s age",
+    "Received outcome of criminal proceedings",
+  receivedACourtJudgement: "Received a court judgement",
+  applicantHasReachedRequiredAge: "Applicant has reached required age",
   subjectHasReceivedTheirMedicalTreatment:
-    "Unable to progress as subject undergoing or awaiting treatment",
-  receivedOutcomeOfLinkedCase: "Awaiting outcome of linked case",
+    "Subject has received their medical treatment",
+  receivedOutcomeOfLinkedCase: "Received outcome of linked case",
   Other: "Other",
 } as const;
 

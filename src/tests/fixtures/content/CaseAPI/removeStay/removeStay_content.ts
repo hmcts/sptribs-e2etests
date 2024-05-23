@@ -13,7 +13,7 @@ const removeStay_content = {
   textOnPage10: "Enter Other reason",
 
   otherText: "Lorem ipsum other reason",
-  optionalText: "Lorem ipsum additional detail",
+  optionalText: "Lorem ipsum additional detail removeStay",
 
   errorBanner: "There is a problem",
   errorReasonMissing:
