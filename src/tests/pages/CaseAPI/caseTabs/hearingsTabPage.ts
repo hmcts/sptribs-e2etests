@@ -432,7 +432,7 @@ const hearingTabPage: HearingsTabPage = {
         ...Array.from({ length: 2 }, (_, index) => {
           const textOnPage = (hearingsTab_content as any)[
             `textOnPage${index + 24}`
-            ];
+          ];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`span.text-16:text-is("${textOnPage}")`),
             1,
@@ -441,7 +441,7 @@ const hearingTabPage: HearingsTabPage = {
         ...Array.from({ length: 3 }, (_, index) => {
           const textOnPage = (hearingsTab_content as any)[
             `textOnPage${index + 26}`
-            ];
+          ];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`span.text-16:text-is("${textOnPage}")`),
             1,
@@ -450,7 +450,7 @@ const hearingTabPage: HearingsTabPage = {
         ...Array.from({ length: 3 }, (_, index) => {
           const textOnPage = (hearingsTab_content as any)[
             `textOnPage${index + 29}`
-            ];
+          ];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`span.text-16:text-is("${textOnPage}")`),
             1,
@@ -459,18 +459,18 @@ const hearingTabPage: HearingsTabPage = {
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             this.listingTable +
-            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.textOnPage31}")`,
+              `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.textOnPage31}")`,
           ),
           1,
         ),
         ...Array.from({ length: 3 }, (_, index) => {
           const textOnPage = (hearingsTab_content as any)[
             `textOnPage${index + 32}`
-            ];
+          ];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(
               this.listingTable +
-              `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div> ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > span:has-text("${textOnPage}")`,
+                `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div> ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > span:has-text("${textOnPage}")`,
             ),
             1,
           );
@@ -493,20 +493,23 @@ const hearingTabPage: HearingsTabPage = {
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator( this.listingTable +
-              `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.panelMemberTitle}")`,
+            page.locator(
+              this.listingTable +
+                `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > dl > dt > span:has-text("${hearingsTab_content.panelMemberTitle}")`,
             ),
             3,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator( this.listingTable +
-              `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > span:text-is("${hearingsTab_content.panelMemberName}")`,
+            page.locator(
+              this.listingTable +
+                `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > span:text-is("${hearingsTab_content.panelMemberName}")`,
             ),
             3,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator( this.listingTable +
-              `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > span:text-is("${hearingsTab_content.panelMemberRole2}")`,
+            page.locator(
+              this.listingTable +
+                `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > span:text-is("${hearingsTab_content.panelMemberRole2}")`,
             ),
             3,
           ),

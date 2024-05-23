@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import editSummary from "../journeys/CaseAPI/editSummary.ts";
 
 test.describe("Edit hearing summary tests @CaseAPI", (): void => {
-  test.only("Edit hearing summary as a caseworker.", async ({
+  test("Edit hearing summary as a caseworker.", async ({
     page,
   }): Promise<void> => {
     await editSummary.editSummary(

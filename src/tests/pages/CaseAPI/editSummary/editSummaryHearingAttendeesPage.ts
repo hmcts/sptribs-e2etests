@@ -98,18 +98,7 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await page.getByLabel("Yes", { exact: true }).click();
-    await page.waitForTimeout(1000);
-    await page.click(this.continue);
-    await Promise.all([
-      expect(page.locator(".govuk-error-summary__title")).toHaveText(
-        editSummaryHearingAttendeesContent.errorBanner,
-      ),
-      expect(page.locator(".error-message").nth(0)).toHaveText(
-        editSummaryHearingAttendeesContent.panelMemberError,
-      ),
-    ]);
-    await page.getByRole("button", { name: "Add new" }).click();
+    await page.getByRole("button", { name: "Add new" }).nth(1).click();
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
@@ -125,9 +114,6 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
     await page.click(this.remove);
     await expect(page.locator(".cdk-overlay-container")).toBeVisible();
     await page.locator("button[title='Remove']").click();
-    await page
-      .getByLabel("No. It was a 'sit alone' hearing", { exact: true })
-      .click();
   },
 
   async continueOn(page: Page): Promise<void> {

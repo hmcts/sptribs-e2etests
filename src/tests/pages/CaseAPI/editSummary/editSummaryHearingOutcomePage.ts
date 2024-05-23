@@ -37,6 +37,9 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
+    await page.waitForURL(
+      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/edit-hearing-summaryhearingOutcome`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editSummaryHearingOutcomeContent.pageHint,

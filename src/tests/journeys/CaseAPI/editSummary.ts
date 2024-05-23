@@ -16,6 +16,10 @@ import editSummaryListingDetailsPage from "../../pages/CaseAPI/editSummary/editS
 import editSummaryHearingAttendeesPage from "../../pages/CaseAPI/editSummary/editSummaryHearingAttendeesPage.ts";
 import editSummaryHearingAttendeesRolePage from "../../pages/CaseAPI/editSummary/editSummaryHearingAttendeesRolePage.ts";
 import editSummaryHearingOutcomePage from "../../pages/CaseAPI/editSummary/editSummaryHearingOutcomePage.ts";
+import editSummaryHearingRecordingUploadPage from "../../pages/CaseAPI/editSummary/editSummaryHearingRecordingUploadPage.ts";
+import submitPage from "../../pages/CaseAPI/editSummary/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/editSummary/confirmPage.ts";
+import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type EditSummary = {
   editSummary(
@@ -134,7 +138,71 @@ const editSummary: EditSummary = {
             hearingAdjournedReason,
           );
           await editSummaryHearingOutcomePage.continueOn(page);
-
+          await editSummaryHearingRecordingUploadPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editSummaryHearingRecordingUploadPage.checkFields(page);
+          await editSummaryHearingRecordingUploadPage.continueOn(page);
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            hearingAcrossMultipleDays,
+            fullPanelHearing,
+            hearingOutcome,
+            hearingAdjournedReason,
+            venue,
+            accessibilityTest,
+          );
+          await submitPage.checkValidInfo(
+            page,
+            panel,
+            fullPanelHearing,
+            hearing,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+            hearingOutcome,
+            hearingAdjournedReason,
+            venue,
+            venueName,
+          );
+          await submitPage.continueOn(page);
+          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await confirmPage.continueOn(page);
+          await hearingsTabPage.changeToHearingsTab(page);
+          await hearingsTabPage.checkPageLoads(
+            page,
+            true,
+            hearingAcrossMultipleDays,
+            false,
+            venue,
+            false,
+            true,
+            hearingOutcome,
+            fullPanelHearing,
+            false,
+            false,
+            false,
+            false,
+            accessibilityTest,
+          );
+          await hearingsTabPage.checkValidInfoCreateSummary(
+            page,
+            hearingType,
+            hearingFormat,
+            hearingSession,
+            hearingAcrossMultipleDays,
+            venue,
+            venueName,
+            hearingOutcome,
+            hearingAdjournedReason,
+            panel,
+            fullPanelHearing,
+            false,
+          );
           break;
         case true:
           await editSummarySelectHearingPage.checkPageLoads(
@@ -158,8 +226,39 @@ const editSummary: EditSummary = {
             venue,
           );
           await editSummaryListingDetailsPage.triggerErrorMessages(page);
+          await editSummaryListingDetailsPage.fillFields(
+            page,
+            venue,
+            hearingSession,
+            hearingAcrossMultipleDays,
+          );
           await editSummaryListingDetailsPage.continueOn(page);
-
+          await editSummaryHearingAttendeesPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editSummaryHearingAttendeesPage.triggerErrorMessages(page);
+          await editSummaryHearingAttendeesPage.fillFields(
+            page,
+            fullPanelHearing,
+          );
+          await editSummaryHearingAttendeesPage.continueOn(page);
+          await editSummaryHearingAttendeesRolePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editSummaryHearingAttendeesRolePage.triggerErrorMessages(page);
+          await editSummaryHearingAttendeesRolePage.checkFields(page);
+          await editSummaryHearingAttendeesRolePage.continueOn(page);
+          await editSummaryHearingOutcomePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            errorMessaging,
+          );
+          await editSummaryHearingOutcomePage.triggerErrorMessages(page);
           break;
       }
     } else {

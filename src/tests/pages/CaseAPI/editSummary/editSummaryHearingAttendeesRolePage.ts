@@ -92,7 +92,7 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
         const label = (editSummaryHearingAttendeesRoleContent as any)[
           `textOnPage${i}`
         ];
-        await expect(page.getByLabel(label, { exact: true })).toBeChecked();
+        await page.getByLabel(label, { exact: true }).uncheck();
       }
       await page.click(this.continue);
       await Promise.all([
