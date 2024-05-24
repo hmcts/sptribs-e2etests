@@ -12,6 +12,7 @@ import referCaseToJudgeReasonPage, {
 } from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
 import referCaseToJudgeAdditionalInfoPage from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeAdditionalInfoPage.ts";
 import submitPage from "../../pages/CaseAPI/referCaseToJudge/submitPage.ts";
+import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
 
 type initialState =
   | "Case Management"
@@ -159,6 +160,13 @@ const referCaseToJudge: ReferCaseToJudge = {
           );
           await submitPage.checkAndFillInfo(page, referralReason);
           await submitPage.continueOn(page);
+          await historyTabPage.checkPageLoads(
+            page,
+            accessibilityTest,
+            caseNumber,
+            initialState,
+          );
+          await historyTabPage.checkReferral(page);
 
           break;
         case true:
