@@ -213,7 +213,7 @@ const createSummary: CreateSummary = {
             fullPanelHearing,
             editJourney,
           );
-          break;
+          return caseNumber;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(
             page,

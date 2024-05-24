@@ -105,6 +105,7 @@ const referCaseToJudgeReasonPage: ReferCaseToJudgeReasonPage = {
       ),
     ]);
     await page.selectOption("#referToJudgeReferralReason", "Other");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".govuk-error-summary__title")).toHaveText(
