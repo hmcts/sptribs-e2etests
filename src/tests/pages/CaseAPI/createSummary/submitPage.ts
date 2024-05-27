@@ -37,6 +37,7 @@ type SubmitPage = {
   ): Promise<void>;
   checkValidInfo(
     page: Page,
+    panel: string[],
     fullPanelHearing: boolean,
     hearing: string | null,
     hearingType: hearingType,
@@ -256,6 +257,7 @@ const submitPage: SubmitPage = {
 
   async checkValidInfo(
     page: Page,
+    panel: string[],
     fullPanelHearing: boolean,
     hearing: string | null,
     hearingType: hearingType,
@@ -298,7 +300,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${panel[0]}")`,
             ),
             1,
           ),
@@ -481,7 +483,7 @@ const submitPage: SubmitPage = {
               1,
             ),
             ...Array.from({ length: 3 }, (_, index) => {
-              const member = (submitContent as any)[`member${index + 1}`];
+              const member = panel[`${index + 1}`];
               return commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `ccd-read-dynamic-list-field > span.text-16:text-is("${member}")`,
@@ -557,7 +559,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `ccd-read-dynamic-list-field > span.text-16:text-is("${submitContent.judge}")`,
+              `ccd-read-dynamic-list-field > span.text-16:text-is("${panel[0]}")`,
             ),
             1,
           ),
