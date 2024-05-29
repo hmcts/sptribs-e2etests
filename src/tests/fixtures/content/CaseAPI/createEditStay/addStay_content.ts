@@ -14,7 +14,7 @@ const addStay_content = {
   textOnPage11: "Day",
   textOnPage12: "Month",
   textOnPage13: "Year",
-  textOnPage14: "Enter a flag type",
+  textOnPage14: "Enter reason for stay",
 
   day: "1",
   month: "1",
@@ -26,7 +26,7 @@ const addStay_content = {
   errorBanner: "There is a problem",
   errorReasonMissing: "Why is a stay being added to this case? is required",
   errorDateMissing: "Expiration Date is required",
-  errorOtherMissing: "Enter a flag type is required",
+  errorOtherMissing: "Enter reason for stay is required",
 } as const;
 
 export default addStay_content;
