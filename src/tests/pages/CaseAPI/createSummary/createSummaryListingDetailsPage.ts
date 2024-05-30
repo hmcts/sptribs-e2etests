@@ -7,9 +7,8 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 
-type CreateListingListingDetailsPage = {
+type CreateSummaryListingDetailsPage = {
   venueNotListed: string;
   inputVenue: string;
   roomAtVenue: string;
@@ -40,7 +39,7 @@ type CreateListingListingDetailsPage = {
   continueOn(page: Page): Promise<void>;
 };
 
-const createListingListingDetailsPage: CreateListingListingDetailsPage = {
+const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
   venueNotListed: "#venueNotListedOption-VenueNotListed",
   inputVenue: "#hearingVenueNameAndAddress",
   roomAtVenue: "#roomAtVenue",
@@ -264,7 +263,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await page.getByLabel("Afternoon").dispatchEvent("click");
       await page.fill(
         this.startTime,
-        createListingListingDetailsContent.afternoonTime,
+        createSummaryListingDetailsContent.afternoonTime,
       );
     }
   },
@@ -315,7 +314,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     await page.fill(this.year, `${currentDate.getFullYear()}`);
     await page.fill(
       this.startTime,
-      createListingListingDetailsContent.morningTime,
+      createSummaryListingDetailsContent.morningTime,
     );
   },
 
@@ -324,4 +323,4 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
   },
 };
 
-export default createListingListingDetailsPage;
+export default createSummaryListingDetailsPage;
