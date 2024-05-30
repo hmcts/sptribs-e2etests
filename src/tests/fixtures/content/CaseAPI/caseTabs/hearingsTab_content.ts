@@ -36,6 +36,7 @@ const hearingsTab_content = {
   panelMemberTitle: "Panel member and Role",
   panelMemberName: "Name of the panel member",
   panelMemberRole: "What was their role on the panel?",
+  panelMemberRole2: "What was their role on panel?",
   textOnPage26: "Who attended the hearing?",
   textOnPage27: "Who was this other attendee?",
   textOnPage28: "What type of decision was given at the hearing?",

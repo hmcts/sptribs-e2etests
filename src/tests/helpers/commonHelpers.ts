@@ -462,6 +462,7 @@ export type allEvents =
   | "Hearings: Postpone hearing"
   | "Hearings: Cancel hearing"
   | "Hearings:Create summary"
+  | "Hearings: Edit summary"
   | "Link cases"
   | "Case: Panel Composition"
   | "Case: Edit Panel Composition"

@@ -29,7 +29,7 @@ const buildCase: BuildCase = {
     const caseNumber: string = await createCase.createCase(
       page,
       user,
-      true,
+      false,
       "Assessment",
       "Other",
       true,
@@ -48,7 +48,7 @@ const buildCase: BuildCase = {
     await createCase.verifyDetails(
       page,
       user,
-      true,
+      false,
       caseNumber,
       previousEvents,
       eventTimes,

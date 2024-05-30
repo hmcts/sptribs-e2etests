@@ -191,6 +191,7 @@ const createSummary: CreateSummary = {
             false,
             venue,
             true,
+            false,
             null,
             false,
             editJourney,
@@ -213,7 +214,7 @@ const createSummary: CreateSummary = {
             fullPanelHearing,
             editJourney,
           );
-          break;
+          return caseNumber;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(
             page,
@@ -269,7 +270,6 @@ const createSummary: CreateSummary = {
             errorMessaging,
           );
           await createSummaryHearingOutcomePage.triggerErrorMessages(page);
-          break;
       }
     } else {
       throw new Error("Case number is undefined.");
