@@ -3,7 +3,7 @@ const caseReferralsTab_content = {
   title2: "Referral to Legal Officer",
   textOnPage1: "Why are you referring this case?",
   textOnPage2: "Provide additional details",
-  textOnPage3: "Referral Date"
+  textOnPage3: "Referral Date",
 } as const;
 
 export default caseReferralsTab_content;
