@@ -76,15 +76,19 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
     },
 
     async checkFields(page: Page): Promise<void> {
-      for (let i = 2; i < 19; i++) {
-        const label = (editSummaryHearingAttendeesRoleContent as any)[
-          `textOnPage${i}`
-        ];
-        await expect(page.getByLabel(label, { exact: true })).toBeChecked();
-      }
-      await expect(page.locator("#others")).toHaveValue(
-        editSummaryHearingAttendeesRoleContent.otherAttendee,
-      );
+      await Promise.all([
+        ...Array.from({ length: 17 }, (_, index) => {
+          const textOnPage = (editSummaryHearingAttendeesRoleContent as any)[
+            `textOnPage${index + 2}`
+          ];
+          return expect(
+            page.getByLabel(textOnPage, { exact: true }),
+          ).toBeChecked();
+        }),
+        expect(page.locator("#others")).toHaveValue(
+          editSummaryHearingAttendeesRoleContent.otherAttendee,
+        ),
+      ]);
     },
 
     async triggerErrorMessages(page: Page): Promise<void> {
@@ -125,6 +129,7 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
           editSummaryHearingAttendeesRoleContent.otherAttendanceError,
         ),
       ]);
+      await page.pause();
       for (let i = 2; i < 18; i++) {
         const label = (editSummaryHearingAttendeesRoleContent as any)[
           `textOnPage${i}`
