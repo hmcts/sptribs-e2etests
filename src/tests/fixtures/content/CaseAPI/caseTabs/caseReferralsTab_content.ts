@@ -4,6 +4,7 @@ const caseReferralsTab_content = {
   textOnPage1: "Why are you referring this case?",
   textOnPage2: "Provide additional details",
   textOnPage3: "Referral Date",
+  reason: "Reason for referral",
 } as const;
 
 export default caseReferralsTab_content;
