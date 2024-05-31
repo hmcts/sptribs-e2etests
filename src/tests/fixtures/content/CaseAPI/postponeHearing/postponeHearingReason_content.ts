@@ -6,8 +6,8 @@ const postponeHearingReason_content = {
   textOnPage2: "Appellant is out of country",
   textOnPage3: "Appellant seeking legal advice",
   textOnPage4:
-    "Appellant unable to attend face to face,change of hearing format requested",
-  textOnPage5: "Appellant unavailable (holiday/work/appointmaent/unwell)",
+    "Appellant unable to attend face to face, change of hearing format requested",
+  textOnPage5: "Appellant unavailable (holiday/work/appointment/unwell)",
   textOnPage6: "Bereavement",
   textOnPage7: "Case stayed due to Civil proceedings",
   textOnPage8:

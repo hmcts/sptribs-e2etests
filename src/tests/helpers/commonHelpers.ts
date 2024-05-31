@@ -572,8 +572,8 @@ export type hearingCancelledReasons =
 export type hearingPostponedReasons =
   | "Appellant is out of country"
   | "Appellant seeking legal advice"
-  | "Appellant unable to attend face to face,change of hearing format requested"
-  | "Appellant unavailable (holiday/work/appointmaent/unwell)"
+  | "Appellant unable to attend face to face, change of hearing format requested"
+  | "Appellant unavailable (holiday/work/appointment/unwell)"
   | "Bereavement"
   | "Case stayed due to Civil proceedings"
   | "CICA requests case be heard by a single Judge as a Rule 27 decision"
