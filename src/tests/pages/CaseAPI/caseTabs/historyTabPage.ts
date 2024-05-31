@@ -6,6 +6,7 @@ import authorsContent from "../../../fixtures/content/authors_content.ts";
 import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
 import { UserRole } from "../../../config.ts";
 import allTabTitles_content from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
+import submitContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/submit_content.ts";
 
 type HistoryTabPage = {
   checkPageLoads(
@@ -21,6 +22,7 @@ type HistoryTabPage = {
     user: UserRole,
     state: string,
   ): Promise<void>;
+  checkReferral(page: Page): Promise<void>;
 };
 
 const historyTabPage: HistoryTabPage = {
@@ -142,6 +144,19 @@ const historyTabPage: HistoryTabPage = {
         1,
       );
     }
+  },
+
+  async checkReferral(page: Page): Promise<void> {
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span.text-16:text-is("${submitContent.summary}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span.text-16:text-is("${submitContent.description}")`),
+        1,
+      ),
+    ]);
   },
 };
 
