@@ -7,25 +7,17 @@ import closeCase from "./closeCase.ts";
 import createEditStay from "./createEditStay.ts";
 import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
-import referCaseToJudgeReasonPage, {
-  referralReason,
-} from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
-import referCaseToJudgeAdditionalInfoPage from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeAdditionalInfoPage.ts";
-import submitPage from "../../pages/CaseAPI/referCaseToJudge/submitPage.ts";
+import { initialState } from "./referCaseToJudge.ts";
+import { referralReason } from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
+import referCaseToLegalOfficerReasonPage from "../../pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReasonPage.ts";
+import referCaseToLegalOfficerAdditionalInfoPage from "../../pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerAdditionalInfoPage.ts";
+import submitPage from "../../pages/CaseAPI/referCaseToLegalOfficer/submitPage.ts";
 import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
 import caseReferralsTabPage from "../../pages/CaseAPI/caseTabs/caseReferralsTabPage.ts";
-import confirmPage from "../../pages/CaseAPI/referCaseToJudge/confirmPage.ts";
+import confirmPage from "../../pages/CaseAPI/referCaseToLegalOfficer/confirmPage.ts";
 
-export type initialState =
-  | "Case Management"
-  | "Ready to list"
-  | "Awaiting hearing"
-  | "Awaiting outcome"
-  | "Case stayed"
-  | "Case closed";
-
-type ReferCaseToJudge = {
-  referCaseToJudge(
+type ReferCaseToLegalOfficer = {
+  referCaseToLegalOfficer(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
@@ -35,8 +27,8 @@ type ReferCaseToJudge = {
   ): Promise<void>;
 };
 
-const referCaseToJudge: ReferCaseToJudge = {
-  async referCaseToJudge(
+const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
+  async referCaseToLegalOfficer(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
@@ -137,23 +129,29 @@ const referCaseToJudge: ReferCaseToJudge = {
         config.CaseAPIBaseURL,
         caseNumber,
       );
-      await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
+      await commonHelpers.chooseEventFromDropdown(
+        page,
+        "Refer case to legal officer",
+      );
       switch (errorMessaging) {
         default:
-          await referCaseToJudgeReasonPage.checkPageLoads(
+          await referCaseToLegalOfficerReasonPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await referCaseToJudgeReasonPage.fillFields(page, referralReason);
-          await referCaseToJudgeReasonPage.continueOn(page);
-          await referCaseToJudgeAdditionalInfoPage.checkPageLoads(
+          await referCaseToLegalOfficerReasonPage.fillFields(
+            page,
+            referralReason,
+          );
+          await referCaseToLegalOfficerReasonPage.continueOn(page);
+          await referCaseToLegalOfficerAdditionalInfoPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await referCaseToJudgeAdditionalInfoPage.fillFields(page);
-          await referCaseToJudgeAdditionalInfoPage.continueOn(page);
+          await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
+          await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
           await submitPage.checkPageLoads(
             page,
             caseNumber,
@@ -181,12 +179,12 @@ const referCaseToJudge: ReferCaseToJudge = {
           await caseReferralsTabPage.checkValidInfo(page, referralReason);
           break;
         case true:
-          await referCaseToJudgeReasonPage.checkPageLoads(
+          await referCaseToLegalOfficerReasonPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
           );
-          await referCaseToJudgeReasonPage.triggerErrorMessages(page);
+          await referCaseToLegalOfficerReasonPage.triggerErrorMessages(page);
           break;
       }
     } else {
@@ -195,4 +193,4 @@ const referCaseToJudge: ReferCaseToJudge = {
   },
 };
 
-export default referCaseToJudge;
+export default referCaseToLegalOfficer;

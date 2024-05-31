@@ -470,7 +470,8 @@ export type allEvents =
   | "Case: Reinstate case"
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
-  | "Refer case to judge";
+  | "Refer case to judge"
+  | "Refer case to legal officer";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
