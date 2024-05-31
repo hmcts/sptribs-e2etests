@@ -4,7 +4,7 @@ const submit_content = {
   textOnPage1: "Check the information below carefully.",
   textOnPage2: "Why is a stay being added to this case?",
   textOnPage3: "Expiration Date",
-  textOnPage4: "Enter a flag type",
+  textOnPage4: "Enter reason for stay",
   textOnPage5: "Provide additional details",
 
   waitingOutcomeOfCivilCase: "Awaiting outcome of civil case",
