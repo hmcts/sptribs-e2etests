@@ -1,8 +1,7 @@
 import { test } from "@playwright/test";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 
-test.describe
-  .only("Case-API Refer case to legal officer tests. @CaseAPI", () => {
+test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
   test("Refer case to legal officer as a caseworker - case management, listing directions", async ({
     page,
   }): Promise<void> => {
@@ -587,7 +586,7 @@ test.describe
   });
 });
 
-test.only("Accessibility test - refer case to legal officer @accessibilityCaseAPI", async ({
+test("Accessibility test - refer case to legal officer @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await referCaseToLegalOfficer.referCaseToLegalOfficer(
