@@ -14,7 +14,7 @@ const summaryTab_content = {
   textOnPage10: "Why is a stay being added to this case?",
   textOnPage11: "Expiration Date",
   textOnPage12: "Provide additional details",
-  textOnPage13: "Enter a flag type",
+  textOnPage13: "Enter reason for stay",
   textOnPage14: "Why is the stay being removed from this case?",
   textOnPage15: "Enter Other reason",
   textOnPage16: "Provide additional details",
