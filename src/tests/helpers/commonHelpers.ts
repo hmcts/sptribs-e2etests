@@ -471,7 +471,8 @@ export type allEvents =
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"
-  | "Refer case to legal officer";
+  | "Refer case to legal officer"
+  | "Decision: Issue final decision";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
