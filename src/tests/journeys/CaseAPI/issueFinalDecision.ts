@@ -10,6 +10,7 @@ import selectTemplatePage, {
   DecisionTemplate,
 } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import finalDecisionMainPage from "../../pages/CaseAPI/issueFinalDecision/finalDecisionMainPage.ts";
+import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDocumentFooterPage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -92,10 +93,11 @@ const issueFinalDecision: IssueFinalDecision = {
                 decisionTemplate,
               );
               await finalDecisionMainPage.fillInFields(page);
+              await addDocumentFooterPage.checkPageLoads(page, caseNumber, accessibilityTest);
+              await addDocumentFooterPage.fillInFields(page);
               break;
           }
           break;
-
         case true:
           await noticeOptionPage.checkPageLoads(
             page,
@@ -128,9 +130,10 @@ const issueFinalDecision: IssueFinalDecision = {
             decisionTemplate,
           );
           await finalDecisionMainPage.triggerErrorMessages(page);
+          await addDocumentFooterPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await addDocumentFooterPage.triggerErrorMessages(page);
           break;
       }
-
       return caseNumber;
     }
   },
