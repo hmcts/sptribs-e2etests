@@ -23,7 +23,7 @@ const stateTabPage: StateTabPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
-    await commonHelpers.checkAllCaseTabs(page, caseNumber);
+    await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
     if (accessibilityTest) {
       await axeTest(page);
     }

@@ -30,7 +30,7 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     caseNumber: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator(".govuk-heading-l")).toHaveText(
         caseFileViewTabContent.pageTitle,
       ),

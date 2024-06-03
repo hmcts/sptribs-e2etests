@@ -38,7 +38,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     uploadOtherInfo: boolean,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
         caseDocumentsTabContent.pageTitle,
       ),

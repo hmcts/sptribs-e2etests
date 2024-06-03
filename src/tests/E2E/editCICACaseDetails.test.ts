@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import editCICACaseDetails from "../journeys/CaseAPI/editCICACaseDetails.ts";
 
-test.describe.only("Edit CICA case details tests @CaseAPI", (): void => {
+test.describe("Edit CICA case details tests @CaseAPI", (): void => {
   test("Edit CICA case details as a respondent - case management.", async ({
     page,
   }): Promise<void> => {
@@ -24,7 +24,7 @@ test.describe.only("Edit CICA case details tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit CICA case details as a respondent - awaiting outcome.", async ({
+  test.only("Edit CICA case details as a respondent - awaiting outcome.", async ({
     page,
   }): Promise<void> => {
     await editCICACaseDetails.editCICACaseDetails(

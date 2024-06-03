@@ -9,6 +9,7 @@ import closeCase from "./closeCase.ts";
 import editCICACaseDetailsEditCaseDetailsPage from "../../pages/CaseAPI/editCICACaseDetails/editCICACaseDetailsEditCaseDetailsPage.ts";
 import submitPage from "../../pages/CaseAPI/editCICACaseDetails/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/editCICACaseDetails/confirmPage.ts";
+import CICADetailsTabPage from "../../pages/CaseAPI/caseTabs/CICADetailsTabPage.ts";
 
 type initialState =
   | "Case Management"
@@ -128,6 +129,13 @@ const editCICACaseDetails: EditCICACaseDetails = {
       await submitPage.continueOn(page);
       await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
       await confirmPage.continueOn(page);
+      await CICADetailsTabPage.changeToCICADetailsTab(page);
+      await CICADetailsTabPage.checkPageLoads(
+        page,
+        accessibilityTest,
+        caseNumber,
+      );
+      await CICADetailsTabPage.checkValidInfo(page);
     } else {
       throw new Error("Case number is undefined.");
     }
