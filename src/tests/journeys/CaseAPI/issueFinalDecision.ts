@@ -93,7 +93,11 @@ const issueFinalDecision: IssueFinalDecision = {
                 decisionTemplate,
               );
               await finalDecisionMainPage.fillInFields(page);
-              await addDocumentFooterPage.checkPageLoads(page, caseNumber, accessibilityTest);
+              await addDocumentFooterPage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+              );
               await addDocumentFooterPage.fillInFields(page);
               break;
           }
@@ -130,7 +134,11 @@ const issueFinalDecision: IssueFinalDecision = {
             decisionTemplate,
           );
           await finalDecisionMainPage.triggerErrorMessages(page);
-          await addDocumentFooterPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await addDocumentFooterPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
           await addDocumentFooterPage.triggerErrorMessages(page);
           break;
       }

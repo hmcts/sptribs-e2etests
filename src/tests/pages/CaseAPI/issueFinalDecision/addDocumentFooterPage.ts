@@ -2,8 +2,7 @@ import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import addDocumentFooter_content
-  from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
+import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
 
 type AddDocumentFooterPage = {
   previous: string;
@@ -50,7 +49,12 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
           1,
         );
       }),
-      commonHelpers.checkVisibleAndPresent(page.locator(`.form-label:text-is("${addDocumentFooter_content.textOnPage3}")`), 1),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.form-label:text-is("${addDocumentFooter_content.textOnPage3}")`,
+        ),
+        1,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,
