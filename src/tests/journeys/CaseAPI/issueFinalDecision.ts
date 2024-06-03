@@ -5,6 +5,10 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 import noticeOptionPage, {
   NoticeType,
 } from "../../pages/CaseAPI/issueFinalDecision/noticeOptionPage.ts";
+import decisionUploadPage from "../../pages/CaseAPI/issueFinalDecision/decisionUploadPage.ts";
+import selectTemplatePage, {
+  DecisionTemplate,
+} from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -13,6 +17,7 @@ type IssueFinalDecision = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     noticeType: NoticeType,
+    decisionTemplate: DecisionTemplate,
   ): Promise<string | void>;
 };
 
@@ -23,6 +28,7 @@ const issueFinalDecision: IssueFinalDecision = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     noticeType: NoticeType,
+    decisionTemplate: DecisionTemplate,
   ): Promise<string | void> {
     let caseNumber: string | void;
     caseNumber = await createSummary.createSummary(
@@ -62,6 +68,24 @@ const issueFinalDecision: IssueFinalDecision = {
             accessibilityTest,
           );
           await noticeOptionPage.fillInFields(page, noticeType);
+          switch (noticeType) {
+            default: //Upload
+              await decisionUploadPage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+              );
+              await decisionUploadPage.fillInFields(page);
+              break;
+            case "Create":
+              await selectTemplatePage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+              );
+              await selectTemplatePage.fillInFields(page, decisionTemplate);
+              break;
+          }
           break;
 
         case true:
@@ -71,6 +95,24 @@ const issueFinalDecision: IssueFinalDecision = {
             accessibilityTest,
           );
           await noticeOptionPage.triggerErrorMessages(page);
+          await decisionUploadPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await decisionUploadPage.triggerErrorMessages(page);
+          await noticeOptionPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await noticeOptionPage.fillInFields(page, "Create");
+          await selectTemplatePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await selectTemplatePage.triggerErrorMessages(page);
           break;
       }
 
