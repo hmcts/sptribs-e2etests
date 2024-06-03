@@ -9,6 +9,7 @@ import decisionUploadPage from "../../pages/CaseAPI/issueFinalDecision/decisionU
 import selectTemplatePage, {
   DecisionTemplate,
 } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
+import finalDecisionMainPage from "../../pages/CaseAPI/issueFinalDecision/finalDecisionMainPage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -84,6 +85,13 @@ const issueFinalDecision: IssueFinalDecision = {
                 accessibilityTest,
               );
               await selectTemplatePage.fillInFields(page, decisionTemplate);
+              await finalDecisionMainPage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+                decisionTemplate,
+              );
+              await finalDecisionMainPage.fillInFields(page);
               break;
           }
           break;
@@ -113,6 +121,13 @@ const issueFinalDecision: IssueFinalDecision = {
             accessibilityTest,
           );
           await selectTemplatePage.triggerErrorMessages(page);
+          await finalDecisionMainPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            decisionTemplate,
+          );
+          await finalDecisionMainPage.triggerErrorMessages(page);
           break;
       }
 
