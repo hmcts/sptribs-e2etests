@@ -468,6 +468,7 @@ export type allEvents =
   | "Case: Edit Panel Composition"
   | "Case: Close case"
   | "Case: Reinstate case"
+  | "Case: Edit case details"
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"
