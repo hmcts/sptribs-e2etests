@@ -34,8 +34,11 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         addDocumentFooter_content.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `div > markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
+        ),
+        1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         addDocumentFooter_content.caseReference + caseNumber,
@@ -45,7 +48,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`p:has-text("${textOnPage}")`),
+          page.locator(`p:text-is("${textOnPage}")`),
           1,
         );
       }),
@@ -68,13 +71,13 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await expect(page.locator(`textarea`)).toBeEmpty();
+    await expect(page.locator(`input`)).toBeEmpty();
     await page.fill(`#decisionSignature`, addDocumentFooter_content.signature);
     await page.click(this.continue);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await expect(page.locator(`textarea`)).toBeEmpty();
+    await expect(page.locator(`input`)).toBeEmpty();
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

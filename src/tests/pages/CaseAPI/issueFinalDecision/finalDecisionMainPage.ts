@@ -68,49 +68,48 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
         this.cancel,
       ),
     ]);
+    let textBoxValue = "";
     switch (decisionTemplate) {
       default:
         await expect(page.locator(`textarea`)).toBeEmpty();
         break;
       case "CIC1 - Eligibility":
-        await expect(page.locator(`textarea`)).toContainText(
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(
           `${finalDecisionMain_content.eligibility}`,
         );
         break;
       case "CIC2 - Quantum":
-        await expect(page.locator(`textarea`)).toContainText(
-          `${finalDecisionMain_content.quantum}`,
-        );
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(`${finalDecisionMain_content.quantum}`);
         break;
       case "CIC3 - Rule 27":
-        await expect(page.locator(`textarea`)).toContainText(
-          `${finalDecisionMain_content.rule27}`,
-        );
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(`${finalDecisionMain_content.rule27}`);
         break;
       case "CIC7 - ME Dmi Reports":
-        await expect(page.locator(`textarea`)).toContainText(
-          `${finalDecisionMain_content.dmiReports}`,
-        );
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(`${finalDecisionMain_content.dmiReports}`);
         break;
       case "CIC8 - ME Joint Instructions":
-        await expect(page.locator(`textarea`)).toContainText(
-          `${finalDecisionMain_content.joint}`,
-        );
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(`${finalDecisionMain_content.joint}`);
         break;
       case "CIC10 - Strike Out Warning":
-        await expect(page.locator(`textarea`)).toContainText(
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(
           `${finalDecisionMain_content.strikeoutWarn}`,
         );
         break;
       case "CIC11 - Strike Out Decision Notice":
-        await expect(page.locator(`textarea`)).toContainText(
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(
           `${finalDecisionMain_content.strikeoutNotice}`,
         );
         break;
       case "CIC13 - Pro Forma Summons":
-        await expect(page.locator(`textarea`)).toContainText(
-          `${finalDecisionMain_content.proForma}`,
-        );
+        textBoxValue = await page.locator(`textarea`).inputValue();
+        expect(textBoxValue).toEqual(`${finalDecisionMain_content.proForma}`);
         break;
     }
     if (accessibilityTest) {

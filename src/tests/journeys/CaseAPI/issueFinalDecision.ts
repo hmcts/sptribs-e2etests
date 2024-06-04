@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import createSummary from "./createSummary.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers, { CaseNoticeType } from "../../helpers/commonHelpers.ts";
 import noticeOptionPage, {
   NoticeType,
 } from "../../pages/CaseAPI/issueFinalDecision/noticeOptionPage.ts";
@@ -11,6 +11,7 @@ import selectTemplatePage, {
 } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import finalDecisionMainPage from "../../pages/CaseAPI/issueFinalDecision/finalDecisionMainPage.ts";
 import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDocumentFooterPage.ts";
+import previewTemplatePage from "../../pages/CaseAPI/issueFinalDecision/previewTemplatePage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -20,6 +21,7 @@ type IssueFinalDecision = {
     errorMessaging: boolean,
     noticeType: NoticeType,
     decisionTemplate: DecisionTemplate,
+    caseNoticeType: CaseNoticeType,
   ): Promise<string | void>;
 };
 
@@ -31,13 +33,14 @@ const issueFinalDecision: IssueFinalDecision = {
     errorMessaging: boolean,
     noticeType: NoticeType,
     decisionTemplate: DecisionTemplate,
+    caseNoticeType: CaseNoticeType,
   ): Promise<string | void> {
     let caseNumber: string | void;
     caseNumber = await createSummary.createSummary(
       page,
       "caseWorker",
       false,
-      "Case management",
+      "Final",
       "Hybrid",
       "Morning",
       false,
@@ -99,6 +102,17 @@ const issueFinalDecision: IssueFinalDecision = {
                 accessibilityTest,
               );
               await addDocumentFooterPage.fillInFields(page);
+              await previewTemplatePage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+              );
+              await previewTemplatePage.fillInFields(
+                page,
+                decisionTemplate,
+                caseNumber,
+                caseNoticeType,
+              );
               break;
           }
           break;

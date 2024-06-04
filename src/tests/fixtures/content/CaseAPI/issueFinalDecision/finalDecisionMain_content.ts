@@ -12,9 +12,9 @@ const finalDecisionMain_content = {
   textOnPage3:
     "The footer will be automatically generated. You can preview this in pdf document on the next screen.",
 
-  eligibility: `1. The appeal against the CICA’s Review decision dated…..under paragraph….. is successful. Mr/Mrs …… is eligible for compensation. The CICA must now consider if any compensation should be awarded.
-2. Mr/ Mrs …….application is now returned to the CICA for further decision making and action.
-3. Summary of reasons for the decision`,
+  eligibility: `1.     The appeal against the CICA’s Review decision dated…..under paragraph….. is successful. Mr/Mrs …… is eligible for compensation. The CICA must now consider if any compensation should be awarded.
+2.     Mr/ Mrs …….application is now returned to the CICA for further decision making and action.
+3.     Summary of reasons for the decision`,
   quantum: `1.    The appeal is allowed.
 2.     The appeal against the CICA's Review Decision dated........under paragraphs 32&33 is successful.
 3.     Mr/Ms B is entitled to a total award of…………  Details of this award are set out in the calculation overleaf.

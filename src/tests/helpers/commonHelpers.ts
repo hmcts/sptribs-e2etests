@@ -9,6 +9,11 @@ import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_cont
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
 import { UserRole } from "../config.ts";
 import idamLoginHelper from "./idamLoginHelper.ts";
+import { DecisionTemplate } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
+import eligibility from "../fixtures/content/CaseAPI/documents/eligibility.ts";
+import caseSubjectDetailsObject_content from "../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import finalDecisionMain_content from "../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import addDocumentFooter_content from "../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -46,6 +51,12 @@ interface CommonHelpers {
     continueButton: string,
     previous: string,
     cancel: string,
+  ): Promise<void>;
+  checkDocument(
+    page: Page,
+    decisionTemplate: DecisionTemplate,
+    caseNumber: string,
+    noticeType: CaseNoticeType,
   ): Promise<void>;
 }
 
@@ -375,6 +386,78 @@ const commonHelpers: CommonHelpers = {
       page.locator(cancel).isVisible(),
     ]);
   },
+
+  async checkDocument(
+    page: Page,
+    decisionTemplate: DecisionTemplate,
+    caseNumber: string,
+    caseNoticeType: CaseNoticeType,
+  ): Promise<void> {
+    const context = page.context();
+    const [newPage] = await Promise.all([
+      context.waitForEvent("page"),
+      page.click(`ccd-read-document-field > a.ng-star-inserted`, {
+        modifiers: ["ControlOrMeta"],
+      }),
+    ]);
+    const now = new Date();
+    const dateString = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    const [month, day, year] = dateString
+      .split("/")
+      .map((part) => part.padStart(2, "0"));
+    await newPage.waitForLoadState("domcontentloaded");
+    switch (decisionTemplate) {
+      default:
+        throw new Error("No template selected");
+      case "CIC1 - Eligibility":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (eligibility as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkVisibleAndPresent(
+            newPage.locator(
+              `span:text-is("${caseSubjectDetailsObject_content.name}")`,
+            ),
+            1,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(`span:text-is("${caseNumber.replace(/-/g, "")}")`),
+            1,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(`span:text-is("${caseNoticeType}")`),
+            1,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(
+              `span:text-is("${finalDecisionMain_content.description}")`,
+            ),
+            1,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(
+              `span:text-is("Dated ${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}")`,
+            ),
+            1,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(
+              `span:text-is("${addDocumentFooter_content.signature}")`,
+            ),
+            1,
+          ),
+        ]);
+        console.log("HERE");
+    }
+  },
 };
 
 export default commonHelpers;
@@ -591,3 +674,5 @@ export type hearingPostponedReasons =
   | "Tribunal members unavailable (holiday/work/appointment/unwell)"
   | "Tribunal members deemed listing time directed inadequate"
   | "Other";
+
+export type CaseNoticeType = "CaseManagement" | "Final";
