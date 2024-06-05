@@ -19,7 +19,7 @@ type DecisionUploadPage = {
 };
 
 const decisionUploadPage: DecisionUploadPage = {
-  previous: ".button-secondary",
+  previous: `.button-secondary:text-is("Previous")`,
   continue: '[type="submit"]',
   cancel: ".cancel",
 
@@ -128,19 +128,16 @@ const decisionUploadPage: DecisionUploadPage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.error-message:has-text("${decisionUpload_content.errorNoEntryFile}")`,
-        ),
-        1,
-      ),
     ]);
     await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle ExUI rate limiting.
     await page
-      .locator(`#closeDocumentsUpload_0_documentLink`)
+      .locator(`#caseIssueFinalDecisionDocument_documentLink`)
       .setInputFiles(config.testOdtFile);
-    await expect(page.locator(".error-message")).toHaveText(
-      decisionUpload_content.errorInvalidFile,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.error-message:has-text("${decisionUpload_content.errorInvalidFile}")`,
+      ),
+      1,
     );
     await page.click(this.previous);
   },

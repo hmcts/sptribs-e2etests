@@ -105,7 +105,7 @@ const selectTemplatePage: SelectTemplatePage = {
         1,
       ),
     ]);
-    await this.fillInFields(page, "CIC1 - Eligibility");
+    await this.fillInFields(page, "CIC4 - Blank Decision Notice");
   },
 };
 

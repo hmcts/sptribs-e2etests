@@ -2,6 +2,76 @@ import { test } from "@playwright/test";
 import issueFinalDecision from "../journeys/CaseAPI/issueFinalDecision.ts";
 
 test.describe("Issue a final decision tests @CaseAPI", () => {
+  test("As a caseworker issue a final decision which is uploaded", async ({
+    page,
+  }): Promise<void> => {
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      "caseWorker",
+      false,
+      false,
+      "upload",
+      null,
+      "Final",
+    );
+  });
+
+  test("As a senior caseworker issue a final decision which is uploaded", async ({
+    page,
+  }): Promise<void> => {
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      "seniorCaseworker",
+      false,
+      false,
+      "upload",
+      null,
+      "Final",
+    );
+  });
+
+  test("As a hearing centre admin issue a final decision which is uploaded", async ({
+    page,
+  }): Promise<void> => {
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      "hearingCentreAdmin",
+      false,
+      false,
+      "upload",
+      null,
+      "Final",
+    );
+  });
+
+  test("As a hearing centre team lead issue a final decision which is uploaded", async ({
+    page,
+  }): Promise<void> => {
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      "hearingCentreTeamLead",
+      false,
+      false,
+      "upload",
+      null,
+      "Final",
+    );
+  });
+
+  test("As a senior judge issue a final decision which is uploaded", async ({
+    page,
+  }): Promise<void> => {
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      "seniorJudge",
+      false,
+      false,
+      "upload",
+      null,
+      "Final",
+    );
+  });
+
   test("As a caseworker issue a final decision which is a generated Eligibility decision", async ({
     page,
   }): Promise<void> => {
@@ -99,6 +169,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
       "Final",
     );
   });
+
   test("As a caseworker issue a final decision which is a strike out warning", async ({
     page,
   }): Promise<void> => {
@@ -112,6 +183,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
       "Final",
     );
   });
+
   test("As a caseworker issue a final decision which is a strike decision notice", async ({
     page,
   }): Promise<void> => {
@@ -125,6 +197,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
       "Final",
     );
   });
+
   test("As a caseworker issue a final decision which is a Pro Forma Summons", async ({
     page,
   }): Promise<void> => {
@@ -138,4 +211,32 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
       "Final",
     );
   });
+
+  test("Error Messaging - Issue a final decision", async ({
+    page,
+  }): Promise<void> => {
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      "caseWorker",
+      false,
+      true,
+      "Create",
+      "CIC4 - Blank Decision Notice",
+      "Final",
+    );
+  });
+});
+
+test("Accessibility test - Issue a final decision @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await issueFinalDecision.issueFinalDecision(
+    page,
+    "caseWorker",
+    true,
+    true,
+    "Create",
+    "CIC4 - Blank Decision Notice",
+    "Final",
+  );
 });

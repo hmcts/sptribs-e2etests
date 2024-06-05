@@ -65,6 +65,10 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
+    await page.getByRole("button", { name: "Continue" }).click();
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
     await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
     await page
       .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
@@ -72,22 +76,26 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
     await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
     await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
     await page.getByRole("button", { name: "Continue" }).click();
-  },
-
-  async triggerErrorMessages(page: Page): Promise<void> {
-    await page.getByRole("button", { name: "Continue" }).click();
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `.error-summary-heading:has-text("${issueFinalDecisionNotifyPage_content.errorTitle}")`,
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.error-summary-heading:has-text("${issueFinalDecisionNotifyPage_content.errorTitle}")`,
+        ),
+        1,
       ),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `.error-summary-list:has-text("${issueFinalDecisionNotifyPage_content.errorMessage}")`,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.error-summary-list:has-text("${issueFinalDecisionNotifyPage_content.errorMessage}")`,
+        ),
+        1,
       ),
-      1,
-    );
+    ]);
+    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
+    await page
+      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+      .click();
+    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
+    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
     await this.continueOn(page);
   },
 };

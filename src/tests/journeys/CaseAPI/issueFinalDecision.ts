@@ -13,6 +13,7 @@ import finalDecisionMainPage from "../../pages/CaseAPI/issueFinalDecision/finalD
 import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDocumentFooterPage.ts";
 import previewTemplatePage from "../../pages/CaseAPI/issueFinalDecision/previewTemplatePage.ts";
 import issueFinalDecisionNotifyPage from "../../pages/CaseAPI/issueFinalDecision/issueFinalDecisionNotifyPage.ts";
+import submitPage from "../../pages/CaseAPI/issueFinalDecision/submitPage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -126,6 +127,14 @@ const issueFinalDecision: IssueFinalDecision = {
                 accessibilityTest,
               );
               await issueFinalDecisionNotifyPage.continueOn(page);
+              await submitPage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+                noticeType,
+              );
+              await submitPage.checkAllInfo(page, noticeType, decisionTemplate);
+              await submitPage.continueOn(page);
               break;
           }
           break;
@@ -184,6 +193,12 @@ const issueFinalDecision: IssueFinalDecision = {
             accessibilityTest,
           );
           await issueFinalDecisionNotifyPage.triggerErrorMessages(page);
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            noticeType,
+          );
           break;
       }
       return caseNumber;

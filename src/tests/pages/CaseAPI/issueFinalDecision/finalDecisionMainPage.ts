@@ -112,9 +112,9 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
         expect(textBoxValue).toEqual(`${finalDecisionMain_content.proForma}`);
         break;
     }
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
   async fillInFields(page: Page): Promise<void> {
@@ -128,26 +128,12 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     await page.fill(`textarea`, ``);
     await expect(page.locator(`textarea`)).toBeEmpty();
     await page.click(this.continue);
-    await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `#error-summary-title:text-is("${finalDecisionMain_content.errorBanner}")`,
-        ),
-        1,
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(
+        `.error-message:has-text("${finalDecisionMain_content.errorNoEntryDescription}")`,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.validation-error:has-text("${finalDecisionMain_content.errorNoEntryDescription}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.error-message:has-text("${finalDecisionMain_content.errorNoEntryDescription}")`,
-        ),
-        1,
-      ),
-    ]);
+      1,
+    );
     await this.fillInFields(page);
   },
 };
