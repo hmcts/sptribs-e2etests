@@ -12,6 +12,7 @@ import selectTemplatePage, {
 import finalDecisionMainPage from "../../pages/CaseAPI/issueFinalDecision/finalDecisionMainPage.ts";
 import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDocumentFooterPage.ts";
 import previewTemplatePage from "../../pages/CaseAPI/issueFinalDecision/previewTemplatePage.ts";
+import issueFinalDecisionNotifyPage from "../../pages/CaseAPI/issueFinalDecision/issueFinalDecisionNotifyPage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -81,6 +82,12 @@ const issueFinalDecision: IssueFinalDecision = {
                 accessibilityTest,
               );
               await decisionUploadPage.fillInFields(page);
+              await issueFinalDecisionNotifyPage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+              );
+              await issueFinalDecisionNotifyPage.continueOn(page);
               break;
             case "Create":
               await selectTemplatePage.checkPageLoads(
@@ -113,6 +120,12 @@ const issueFinalDecision: IssueFinalDecision = {
                 caseNumber,
                 caseNoticeType,
               );
+              await issueFinalDecisionNotifyPage.checkPageLoads(
+                page,
+                caseNumber,
+                accessibilityTest,
+              );
+              await issueFinalDecisionNotifyPage.continueOn(page);
               break;
           }
           break;
@@ -154,6 +167,23 @@ const issueFinalDecision: IssueFinalDecision = {
             accessibilityTest,
           );
           await addDocumentFooterPage.triggerErrorMessages(page);
+          await previewTemplatePage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await previewTemplatePage.fillInFields(
+            page,
+            decisionTemplate,
+            caseNumber,
+            caseNoticeType,
+          );
+          await issueFinalDecisionNotifyPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await issueFinalDecisionNotifyPage.triggerErrorMessages(page);
           break;
       }
       return caseNumber;
