@@ -37,8 +37,11 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         finalDecisionMain_content.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
+        ),
+        1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         finalDecisionMain_content.caseReference + caseNumber,
