@@ -85,7 +85,7 @@ const submitPage: SubmitPage = {
           }),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.upload1}")`),
-            1,
+            2,
           ),
           this.checkCommon(page, caseNumber),
         ]);

@@ -14,6 +14,8 @@ import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDoc
 import previewTemplatePage from "../../pages/CaseAPI/issueFinalDecision/previewTemplatePage.ts";
 import issueFinalDecisionNotifyPage from "../../pages/CaseAPI/issueFinalDecision/issueFinalDecisionNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/issueFinalDecision/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/issueFinalDecision/confirmPage.ts";
+import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
 
 type IssueFinalDecision = {
   issueFinalDecision(
@@ -127,16 +129,20 @@ const issueFinalDecision: IssueFinalDecision = {
                 accessibilityTest,
               );
               await issueFinalDecisionNotifyPage.continueOn(page);
-              await submitPage.checkPageLoads(
-                page,
-                caseNumber,
-                accessibilityTest,
-                noticeType,
-              );
-              await submitPage.checkAllInfo(page, noticeType, decisionTemplate);
-              await submitPage.continueOn(page);
               break;
           }
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            noticeType,
+          );
+          await submitPage.checkAllInfo(page, noticeType, decisionTemplate);
+          await submitPage.continueOn(page);
+          await confirmPage.checkPageLoads(page, accessibilityTest);
+          await confirmPage.closeAndReturnToCase(page);
+          await stateTabPage.changeToStateTab(page);
+          await stateTabPage.checkStateTab(page, "Case closed");
           break;
         case true:
           await noticeOptionPage.checkPageLoads(
