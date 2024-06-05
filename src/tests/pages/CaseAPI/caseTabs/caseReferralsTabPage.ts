@@ -28,7 +28,7 @@ const caseReferralsTabPage: CaseReferralsTabPage = {
     referralReason: referralReason,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator("#referral-to-judge")).toHaveText(
         caseReferralsTabContent.title1,
       ),

@@ -48,7 +48,7 @@ const summaryTabPage: SummaryTabPage = {
     caseNumber: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
         summaryTabContent.caseState,
       ),

@@ -47,7 +47,11 @@ interface CommonHelpers {
   ): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
   checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
-  checkAllCaseTabs(page: Page, caseNumber: string): Promise<void>;
+  checkAllCaseTabs(
+    page: Page,
+    caseNumber: string,
+    respondent: boolean,
+  ): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
   feedbackBanner(page: Page, cy: boolean, landingPage: boolean): Promise<void>;
   signOutAndGoToCase(
@@ -244,20 +248,43 @@ const commonHelpers: CommonHelpers = {
     ]);
   },
 
-  async checkAllCaseTabs(page: Page, caseNumber: string): Promise<void> {
-    await Promise.all([
-      this.checkNumberAndSubject(page, caseNumber),
-      Array.from({ length: 15 }, (_, index) => {
-        if (index !== 11) {
-          // Exclude tab 12 (index 11)
+  async checkAllCaseTabs(
+    page: Page,
+    caseNumber: string,
+    respondent: boolean,
+  ): Promise<void> {
+    await this.checkNumberAndSubject(page, caseNumber);
+    if (respondent) {
+      await Promise.all([
+        Array.from({ length: 11 }, (_, index) => {
           const textOnPage = (allTabTitles_content as any)[`tab${index + 1}`];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
             1,
           );
-        }
-      }).filter(Boolean),
-    ]);
+        }).filter(Boolean),
+        Array.from({ length: 2 }, (_, index) => {
+          const textOnPage = (allTabTitles_content as any)[`tab${index + 14}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            1,
+          );
+        }).filter(Boolean),
+      ]);
+    } else {
+      await Promise.all([
+        Array.from({ length: 15 }, (_, index) => {
+          if (index !== 11) {
+            // Exclude tab 12 (index 11)
+            const textOnPage = (allTabTitles_content as any)[`tab${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+              1,
+            );
+          }
+        }).filter(Boolean),
+      ]);
+    }
   },
 
   async generateUrl(baseURL: string, caseNumber: string): Promise<string> {
@@ -757,6 +784,7 @@ export type allEvents =
   | "Case: Edit Panel Composition"
   | "Case: Close case"
   | "Case: Reinstate case"
+  | "Case: Edit case details"
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"

@@ -32,7 +32,7 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
     caseNumber: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator("dl[id='case-details'] h3")).toHaveText(
         caseDetailsTabContent.pageTitle,
       ),

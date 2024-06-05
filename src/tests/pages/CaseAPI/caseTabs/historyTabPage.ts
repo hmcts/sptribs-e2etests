@@ -32,7 +32,7 @@ const historyTabPage: HistoryTabPage = {
     caseNumber: string,
     state: string,
   ): Promise<void> {
-    await commonHelpers.checkAllCaseTabs(page, caseNumber);
+    await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
     if (state == stateTabContent.DSSSubmittedState) {
       await Promise.all([
         ...Array.from({ length: 4 }, (_, index) => {

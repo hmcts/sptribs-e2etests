@@ -34,7 +34,7 @@ const casePartiesTabPage: CasePartiesTabPage = {
     caseNumber: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator(".case-field").nth(1)).toHaveText(
         casePartiesTabContent.subHeading1,
       ),
