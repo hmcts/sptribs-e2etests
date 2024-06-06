@@ -12,8 +12,6 @@ import buildCase from "./buildCase.ts";
 import hearingOptions from "./hearingOptions.ts";
 import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
-import createEditStay from "./createEditStay.ts";
-import closeCase from "./closeCase.ts";
 import DSSCreateCase from "../DSSCreateCase/createCase.ts";
 import createCase from "./createCase.ts";
 
@@ -44,6 +42,7 @@ type EditCase = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    errorMessaging: boolean
   ): Promise<void>;
 };
 
@@ -66,6 +65,7 @@ const editCase: EditCase = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    errorMessaging: boolean
   ): Promise<void> {
     let caseNumber: string | void;
     switch (initialState) {
@@ -172,6 +172,12 @@ const editCase: EditCase = {
         caseNumber,
       );
       await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
+      switch (errorMessaging) {
+        default:
+          break;
+        case true:
+          break;
+      }
     } else {
       throw new Error("Case number is undefined.");
     }
