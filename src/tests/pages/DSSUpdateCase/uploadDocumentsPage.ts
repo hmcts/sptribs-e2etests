@@ -327,6 +327,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
             UploadDocumentsContent.continueErrorCy,
           ),
+          expect(page.locator("p.govuk-error-message")).toContainText(
+            UploadDocumentsContent.continueErrorCy,
+          ),
         ]);
         await page
           .locator(this.fields.uploadFileButton)
@@ -337,6 +340,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
             UploadDocumentsContent.errorBannerCy,
           ),
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            UploadDocumentsContent.fileTypeErrorCy,
+          ),
+          expect(page.locator("p.govuk-error-message")).toContainText(
             UploadDocumentsContent.fileTypeErrorCy,
           ),
         ]);
@@ -350,6 +356,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
             UploadDocumentsContent.continueError,
           ),
+          expect(page.locator("p.govuk-error-message")).toContainText(
+            UploadDocumentsContent.continueError,
+          ),
         ]);
         await page
           .locator(this.fields.uploadFileButton)
@@ -360,6 +369,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
             UploadDocumentsContent.errorBanner,
           ),
           expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            UploadDocumentsContent.fileTypeError,
+          ),
+          expect(page.locator("p.govuk-error-message")).toContainText(
             UploadDocumentsContent.fileTypeError,
           ),
         ]);

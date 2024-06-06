@@ -131,7 +131,13 @@ const subjectDetailsPage: SubjectDetailsPage = {
           expect(page.locator("#subjectFullName-error")).toContainText(
             SubjectDetailsContent.fullNameErrorCy,
           ),
+          expect(page.locator("[href='#subjectFullName']")).toContainText(
+            SubjectDetailsContent.fullNameErrorCy,
+          ),
           expect(page.locator("#subjectDOB-error")).toContainText(
+            SubjectDetailsContent.dateOfBirthErrorCy,
+          ),
+          expect(page.locator("[href='#subjectDOB']")).toContainText(
             SubjectDetailsContent.dateOfBirthErrorCy,
           ),
         ]);
@@ -144,7 +150,13 @@ const subjectDetailsPage: SubjectDetailsPage = {
           expect(page.locator("#subjectFullName-error")).toContainText(
             SubjectDetailsContent.validFullNameErrorCy,
           ),
+          expect(page.locator("[href='#subjectFullName']")).toContainText(
+            SubjectDetailsContent.validFullNameErrorCy,
+          ),
           expect(page.locator("#subjectDOB-error")).toContainText(
+            SubjectDetailsContent.validDateOfBirthErrorCy,
+          ),
+          expect(page.locator("[href='#subjectDOB']")).toContainText(
             SubjectDetailsContent.validDateOfBirthErrorCy,
           ),
         ]);
@@ -158,7 +170,13 @@ const subjectDetailsPage: SubjectDetailsPage = {
           expect(page.locator("#subjectFullName-error")).toContainText(
             SubjectDetailsContent.fullNameError,
           ),
+          expect(page.locator("[href='#subjectFullName']")).toContainText(
+            SubjectDetailsContent.fullNameError,
+          ),
           expect(page.locator("#subjectDOB-error")).toContainText(
+            SubjectDetailsContent.dateOfBirthError,
+          ),
+          expect(page.locator("[href='#subjectDOB']")).toContainText(
             SubjectDetailsContent.dateOfBirthError,
           ),
         ]);
@@ -171,7 +189,13 @@ const subjectDetailsPage: SubjectDetailsPage = {
           expect(page.locator("#subjectFullName-error")).toContainText(
             SubjectDetailsContent.validFullNameError,
           ),
+          expect(page.locator("[href='#subjectFullName']")).toContainText(
+            SubjectDetailsContent.validFullNameError,
+          ),
           expect(page.locator("#subjectDOB-error")).toContainText(
+            SubjectDetailsContent.validDateOfBirthError,
+          ),
+          expect(page.locator("[href='#subjectDOB']")).toContainText(
             SubjectDetailsContent.validDateOfBirthError,
           ),
         ]);
