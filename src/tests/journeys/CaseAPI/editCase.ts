@@ -42,7 +42,7 @@ type EditCase = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
-    errorMessaging: boolean
+    errorMessaging: boolean,
   ): Promise<void>;
 };
 
@@ -65,7 +65,7 @@ const editCase: EditCase = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
-    errorMessaging: boolean
+    errorMessaging: boolean,
   ): Promise<void> {
     let caseNumber: string | void;
     switch (initialState) {
