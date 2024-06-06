@@ -6,7 +6,7 @@ import commonHelpers, {
   Category,
   ContactPreference,
   Scheme,
-  SubCategory
+  SubCategory,
 } from "../../helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import hearingOptions from "./hearingOptions.ts";
@@ -15,9 +15,15 @@ import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
 import closeCase from "./closeCase.ts";
 import DSSCreateCase from "../DSSCreateCase/createCase.ts";
-import createCase from "./createCase.ts"
+import createCase from "./createCase.ts";
 
-type initialState = "DSS Submitted" | "Submitted" | "Case Management" | "Ready to list" | "Awaiting hearing" | "Awaiting outcome";
+type initialState =
+  | "DSS Submitted"
+  | "Submitted"
+  | "Case Management"
+  | "Ready to list"
+  | "Awaiting hearing"
+  | "Awaiting outcome";
 
 type EditCase = {
   editCase(
@@ -133,7 +139,7 @@ const editCase: EditCase = {
           true,
           false,
           false,
-          false
+          false,
         );
         break;
       case "Submitted":
@@ -154,7 +160,8 @@ const editCase: EditCase = {
           true,
           true,
           true,
-          true,)
+          true,
+        );
         break;
     }
     if (caseNumber !== undefined) {
@@ -165,7 +172,6 @@ const editCase: EditCase = {
         caseNumber,
       );
       await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
-
     } else {
       throw new Error("Case number is undefined.");
     }
