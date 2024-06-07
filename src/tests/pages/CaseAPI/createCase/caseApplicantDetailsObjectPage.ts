@@ -18,6 +18,7 @@ type CaseApplicantDetailsObjectPage = {
   selectPost: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(page: Page, contactPreference: ContactPreference): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
@@ -98,6 +99,11 @@ const caseApplicantDetailsObjectPage: CaseApplicantDetailsObjectPage = {
     }
     await page.click(this.continue);
   },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+
+  }
 };
 
 export default caseApplicantDetailsObjectPage;
