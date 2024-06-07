@@ -135,7 +135,7 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
     );
     await page.locator(this.day).clear();
     await page.fill("#cicCaseAddress_cicCaseAddress_postcodeInput", "...");
-    await page.click(".button-30");
+    await page.click(this.findAddress);
     await expect(page.locator(".error-message").nth(2)).toHaveText(
       caseSubjectDetailsObject_content.validPostcodeError,
     );
