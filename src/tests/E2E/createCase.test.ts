@@ -23,6 +23,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -47,6 +48,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -71,6 +73,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -95,6 +98,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -119,6 +123,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -143,6 +148,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -167,6 +173,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -191,6 +198,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -215,6 +223,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -239,6 +248,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -263,6 +273,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -287,6 +298,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -311,6 +323,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -335,6 +348,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -359,6 +373,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       false,
       true,
+      false,
     );
   });
 
@@ -383,6 +398,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       true,
       true,
+      false,
     );
   });
 
@@ -407,6 +423,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       true,
       true,
       true,
+      false,
     );
   });
 
@@ -426,6 +443,30 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       false,
       "1996",
       "Midlands",
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+    );
+  });
+
+  test("Error messaging.", async ({ page }) => {
+    await createCase.createCase(
+      page,
+      "caseWorker",
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Midlands",
+      true,
       true,
       true,
       true,
@@ -456,5 +497,6 @@ test("Accessibility test every page. @accessibilityCaseAPI", async ({
     true,
     true,
     true,
+    false,
   );
 });

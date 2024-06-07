@@ -13,6 +13,7 @@ type caseDocumentsUploadObjectPage = {
   cancelRemove: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(page: Page, multipleFiles: boolean): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
@@ -80,6 +81,47 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
       );
     }
     await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseDocumentsUploadObject_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error")).toHaveText(
+        caseDocumentsUploadObject_content.fileError,
+      ),
+      expect(page.locator(".error-message")).toHaveText(
+        caseDocumentsUploadObject_content.fileError,
+      ),
+    ]);
+    await page.click(this.addNew);
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseDocumentsUploadObject_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error").nth(0)).toHaveText(
+        caseDocumentsUploadObject_content.categoryError,
+      ),
+      expect(page.locator(".validation-error").nth(1)).toHaveText(
+        caseDocumentsUploadObject_content.descriptionError,
+      ),
+      expect(page.locator(".validation-error").nth(2)).toHaveText(
+        caseDocumentsUploadObject_content.fieldError,
+      ),
+      expect(page.locator(".error-message").nth(0)).toHaveText(
+        caseDocumentsUploadObject_content.categoryError,
+      ),
+      expect(page.locator(".error-message").nth(1)).toHaveText(
+        caseDocumentsUploadObject_content.descriptionError,
+      ),
+    ]);
+    await page.click(this.remove);
+    await expect(page.locator(".cdk-overlay-container")).toBeVisible();
+    await page.click(this.confirmRemove);
+    await page.waitForTimeout(500);
   },
 };
 
