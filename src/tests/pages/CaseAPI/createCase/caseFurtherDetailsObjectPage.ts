@@ -26,6 +26,7 @@ type CaseFurtherDetailsObjectPage = {
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
   ): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
@@ -137,6 +138,58 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
       }
     }
     await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseFurtherDetailsObject_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error").nth(0)).toHaveText(
+        caseFurtherDetailsObject_content.schemeError,
+      ),
+      expect(page.locator(".validation-error").nth(1)).toHaveText(
+        caseFurtherDetailsObject_content.regionError,
+      ),
+      expect(page.locator(".validation-error").nth(2)).toHaveText(
+        caseFurtherDetailsObject_content.linksError,
+      ),
+      expect(page.locator(".validation-error").nth(3)).toHaveText(
+        caseFurtherDetailsObject_content.compensationError,
+      ),
+      expect(page.locator(".validation-error").nth(4)).toHaveText(
+        caseFurtherDetailsObject_content.tribunalError,
+      ),
+      expect(page.locator(".error-message").nth(0)).toHaveText(
+        caseFurtherDetailsObject_content.schemeError,
+      ),
+      expect(page.locator(".error-message").nth(1)).toHaveText(
+        caseFurtherDetailsObject_content.regionError,
+      ),
+      expect(page.locator(".error-message").nth(2)).toHaveText(
+        caseFurtherDetailsObject_content.linksError,
+      ),
+      expect(page.locator(".error-message").nth(3)).toHaveText(
+        caseFurtherDetailsObject_content.compensationError,
+      ),
+      expect(page.locator(".error-message").nth(4)).toHaveText(
+        caseFurtherDetailsObject_content.tribunalError,
+      ),
+    ]);
+    await page.click(this.claimLinkedYes);
+    await page.click(this.tribunalFormInTimeNo);
+    await page.fill(this.CICAReferenceNumber, "1");
+    await page.locator(this.CICAReferenceNumber).clear();
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".error-message").nth(2)).toHaveText(
+        caseFurtherDetailsObject_content.CICAError,
+      ),
+      expect(page.locator(".error-message").nth(4)).toHaveText(
+        caseFurtherDetailsObject_content.deadlineError,
+      ),
+    ]);
   },
 };
 

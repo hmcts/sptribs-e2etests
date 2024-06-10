@@ -10,6 +10,7 @@ type CaseDateObjectsPage = {
   year: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(page: Page): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseDateObjectsPage: CaseDateObjectsPage = {
@@ -49,6 +50,35 @@ const caseDateObjectsPage: CaseDateObjectsPage = {
     if (page.url().includes("casedateObjects")) {
       await page.click(this.continue); // This is here in the chance that the "continue" button does not continue
     }
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseDateObjects_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error")).toHaveText(
+        caseDateObjects_content.dateError,
+      ),
+      expect(page.locator(".error-message")).toHaveText(
+        caseDateObjects_content.dateError,
+      ),
+    ]);
+    await page.fill(this.day, "90");
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseDateObjects_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error")).toHaveText(
+        caseDateObjects_content.validDateError,
+      ),
+      expect(page.locator(".error-message")).toHaveText(
+        caseDateObjects_content.inlineValidDateError,
+      ),
+    ]);
+    await page.locator(this.day).clear();
   },
 };
 

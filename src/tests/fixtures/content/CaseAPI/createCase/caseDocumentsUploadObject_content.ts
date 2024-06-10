@@ -11,6 +11,11 @@ const caseDocumentsUploadObject_content = {
   textOnPage5: "Document Category",
   textOnPage6: "Description",
   textOnPage7: "File",
+  errorBanner: "There is a problem",
+  fileError: "File Attachments is required",
+  categoryError: "Document Category is required",
+  descriptionError: "Description is required",
+  fieldError: "Select or fill the required File field",
 } as const;
 
 export default caseDocumentsUploadObject_content;

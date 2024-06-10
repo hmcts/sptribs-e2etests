@@ -7,6 +7,8 @@ const caseObjectsContacts_content = {
   textOnPage4: "Applicant (if different from subject)",
   textOnPage5: "Case information recipient (Optional)",
   textOnPage6: "Representative",
+  errorBanner: "Errors",
+  errorMessage: "One recipient must be selected.",
 } as const;
 
 export default caseObjectsContacts_content;

@@ -9,6 +9,21 @@ import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_cont
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
 import { UserRole } from "../config.ts";
 import idamLoginHelper from "./idamLoginHelper.ts";
+import { DecisionTemplate } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
+import eligibility from "../fixtures/content/CaseAPI/documents/eligibility.ts";
+import caseSubjectDetailsObject_content from "../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import finalDecisionMain_content from "../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import addDocumentFooter_content from "../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
+import quantum from "../fixtures/content/CaseAPI/documents/quantum.ts";
+import rule27 from "../fixtures/content/CaseAPI/documents/rule27.ts";
+import blank from "../fixtures/content/CaseAPI/documents/blank.ts";
+import generalDirections from "../fixtures/content/CaseAPI/documents/generalDirections.ts";
+import MeDmi from "../fixtures/content/CaseAPI/documents/MeDmi.ts";
+import MeJoint from "../fixtures/content/CaseAPI/documents/MeJoint.ts";
+import strikeoutWarning from "../fixtures/content/CaseAPI/documents/strikeoutWarning.ts";
+import strikeoutNotice from "../fixtures/content/CaseAPI/documents/strikeoutNotice.ts";
+import proFormaSummons from "../fixtures/content/CaseAPI/documents/proFormaSummons.ts";
+import createSummaryListingDetails_content from "../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -50,6 +65,18 @@ interface CommonHelpers {
     continueButton: string,
     previous: string,
     cancel: string,
+  ): Promise<void>;
+  checkCommonDocument(
+    newPage: Page,
+    caseNumber: string,
+    caseNoticeType: CaseNoticeType,
+    decisionTemplate: DecisionTemplate,
+  ): Promise<void>;
+  checkDocument(
+    page: Page,
+    decisionTemplate: DecisionTemplate,
+    caseNumber: string,
+    noticeType: CaseNoticeType,
   ): Promise<void>;
 }
 
@@ -402,6 +429,268 @@ const commonHelpers: CommonHelpers = {
       page.locator(cancel).isVisible(),
     ]);
   },
+
+  async checkCommonDocument(
+    newPage: Page,
+    caseNumber: string,
+    caseNoticeType: CaseNoticeType,
+    decisionTemplate: DecisionTemplate,
+  ): Promise<void> {
+    const now = new Date();
+    const dateString = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    const [month, day, year] = dateString
+      .split("/")
+      .map((part) => part.padStart(2, "0"));
+    await Promise.all([
+      this.checkVisibleAndPresent(
+        newPage.locator(
+          `span:text-is("${caseSubjectDetailsObject_content.name}")`,
+        ),
+        1,
+      ),
+      this.checkVisibleAndPresent(
+        newPage.locator(`span:text-is("${caseNumber.replace(/-/g, "")}")`),
+        1,
+      ),
+      this.checkVisibleAndPresent(
+        newPage.locator(
+          `span:text-is("${finalDecisionMain_content.description}")`,
+        ),
+        1,
+      ),
+      this.checkVisibleAndPresent(
+        newPage.locator(
+          `span:text-is("Dated ${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}")`,
+        ),
+        1,
+      ),
+      this.checkVisibleAndPresent(
+        newPage.locator(
+          `span:text-is("${addDocumentFooter_content.signature}")`,
+        ),
+        1,
+      ),
+    ]);
+    if (decisionTemplate !== "CIC13 - Pro Forma Summons") {
+      await this.checkVisibleAndPresent(
+        newPage.locator(`span:text-is("${caseNoticeType}")`),
+        1,
+      );
+    }
+  },
+
+  async checkDocument(
+    page: Page,
+    decisionTemplate: DecisionTemplate,
+    caseNumber: string,
+    caseNoticeType: CaseNoticeType,
+  ): Promise<void> {
+    const context = page.context();
+    const [newPage] = await Promise.all([
+      context.waitForEvent("page"),
+      page.click(`ccd-read-document-field > a.ng-star-inserted`, {
+        modifiers: ["ControlOrMeta"],
+      }),
+    ]);
+    await newPage.waitForLoadState("domcontentloaded");
+    switch (decisionTemplate) {
+      default:
+        throw new Error("No template selected");
+      case "CIC1 - Eligibility":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (eligibility as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC2 - Quantum":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (quantum as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC3 - Rule 27":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (rule27 as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC4 - Blank Decision Notice":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (blank as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC6 - General Directions":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (generalDirections as any)[
+              `textOnPage${index + 1}`
+            ];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC7 - ME Dmi Reports":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (MeDmi as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC8 - ME Joint Instructions":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (MeJoint as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC10 - Strike Out Warning":
+        await Promise.all([
+          ...Array.from({ length: 14 }, (_, index) => {
+            const textOnPage = (strikeoutWarning as any)[
+              `textOnPage${index + 1}`
+            ];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC11 - Strike Out Decision Notice":
+        await Promise.all([
+          ...Array.from({ length: 12 }, (_, index) => {
+            const textOnPage = (strikeoutNotice as any)[
+              `textOnPage${index + 1}`
+            ];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+        ]);
+        break;
+      case "CIC13 - Pro Forma Summons":
+        await Promise.all([
+          ...Array.from({ length: 11 }, (_, index) => {
+            const textOnPage = (proFormaSummons as any)[
+              `textOnPage${index + 1}`
+            ];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            decisionTemplate,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(`span:text-is("Fox Court")`),
+            1,
+          ),
+          this.checkVisibleAndPresent(
+            newPage.locator(
+              `span:text-is("${createSummaryListingDetails_content.morningTime}")`,
+            ),
+            1,
+          ),
+        ]);
+        break;
+    }
+    await newPage.close();
+  },
 };
 
 export default commonHelpers;
@@ -500,7 +789,8 @@ export type allEvents =
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"
-  | "Refer case to legal officer";
+  | "Refer case to legal officer"
+  | "Decision: Issue final decision";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
@@ -619,3 +909,5 @@ export type hearingPostponedReasons =
   | "Tribunal members unavailable (holiday/work/appointment/unwell)"
   | "Tribunal members deemed listing time directed inadequate"
   | "Other";
+
+export type CaseNoticeType = "CaseManagement" | "Final";

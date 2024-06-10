@@ -45,6 +45,7 @@ type CreateCase = {
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
     needLogin: boolean,
+    errorMessaging: boolean,
   ): Promise<string>;
   verifyDetails(
     page: Page,
@@ -75,6 +76,7 @@ const createCase: CreateCase = {
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
     needLogin: boolean,
+    errorMessaging: boolean,
   ): Promise<string> {
     if (needLogin) {
       await caseAPILoginPage.SignInUser(page, user);
@@ -83,90 +85,217 @@ const createCase: CreateCase = {
     await casesPage.createCase(page);
     await caseFilterPage.checkPageLoads(page, accessibilityTest);
     await caseFilterPage.fillInFields(page);
-    await caseCategorisationDetailsPage.checkPageLoads(page, accessibilityTest);
-    await caseCategorisationDetailsPage.fillInFields(
-      page,
-      category,
-      subCategory,
-    );
-    await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
-    await caseDateObjectsPage.fillInFields(page);
-    await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
-    await caseObjectsSubjectsPage.fillInFields(
-      page,
-      representative,
-      applicant,
-      subCategory,
-    );
-    await caseSubjectDetailsObjectPage.checkPageLoads(page, accessibilityTest);
-    await caseSubjectDetailsObjectPage.fillInFields(page, contactPreference);
-    if (applicant) {
-      await caseApplicantDetailsObjectPage.checkPageLoads(
-        page,
-        accessibilityTest,
-      );
-      await caseApplicantDetailsObjectPage.fillInFields(
-        page,
-        contactPreference,
-      );
+    switch (errorMessaging) {
+      default:
+        await caseCategorisationDetailsPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseCategorisationDetailsPage.fillInFields(
+          page,
+          category,
+          subCategory,
+        );
+        await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
+        await caseDateObjectsPage.fillInFields(page);
+        await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
+        await caseObjectsSubjectsPage.fillInFields(
+          page,
+          representative,
+          applicant,
+          subCategory,
+        );
+        await caseSubjectDetailsObjectPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseSubjectDetailsObjectPage.fillInFields(
+          page,
+          contactPreference,
+        );
+        if (applicant) {
+          await caseApplicantDetailsObjectPage.checkPageLoads(
+            page,
+            accessibilityTest,
+          );
+          await caseApplicantDetailsObjectPage.fillInFields(
+            page,
+            contactPreference,
+          );
+        }
+        if (representative) {
+          await caseRepresentativeDetailsObjectPage.checkPageLoads(
+            page,
+            accessibilityTest,
+          );
+          await caseRepresentativeDetailsObjectPage.fillInFields(
+            page,
+            contactPreference,
+            representativeQualified,
+          );
+        }
+        await caseObjectsContactsPage.checkPageLoads(page, accessibilityTest);
+        await caseObjectsContactsPage.fillInFields(
+          page,
+          subCategory,
+          representative,
+          applicant,
+        );
+        await caseDocumentsUploadObjectPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseDocumentsUploadObjectPage.fillInFields(page, multipleFiles);
+        await caseFurtherDetailsObjectPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseFurtherDetailsObjectPage.fillInFields(
+          page,
+          schemeSelection,
+          caseRegionSelection,
+          claimsLinked,
+          compensationLinked,
+          tribunalFormsInTime,
+          applicantExplained,
+        );
+        await submitPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          contactPreference,
+          applicant,
+          representative,
+          multipleFiles,
+          tribunalFormsInTime,
+        );
+        await submitPage.checkValidInfo(
+          page,
+          contactPreference,
+          applicant,
+          representative,
+          multipleFiles,
+          category,
+          subCategory,
+          schemeSelection,
+          caseRegionSelection,
+          representativeQualified,
+          claimsLinked,
+          compensationLinked,
+          tribunalFormsInTime,
+          applicantExplained,
+        );
+        await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
+        return await createCaseConfirmPage.returnCaseNumber(page);
+      case true:
+        await caseCategorisationDetailsPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseCategorisationDetailsPage.triggerErrorMessages(page);
+        await caseCategorisationDetailsPage.fillInFields(
+          page,
+          category,
+          subCategory,
+        );
+        await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
+        await caseDateObjectsPage.triggerErrorMessages(page);
+        await caseDateObjectsPage.fillInFields(page);
+        await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
+        await caseObjectsSubjectsPage.triggerErrorMessages(page);
+        await caseObjectsSubjectsPage.fillInFields(
+          page,
+          representative,
+          applicant,
+          subCategory,
+        );
+        await caseSubjectDetailsObjectPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseSubjectDetailsObjectPage.triggerErrorMessages(page);
+        await caseSubjectDetailsObjectPage.fillInFields(
+          page,
+          contactPreference,
+        );
+        if (applicant) {
+          await caseApplicantDetailsObjectPage.checkPageLoads(
+            page,
+            accessibilityTest,
+          );
+          await caseApplicantDetailsObjectPage.triggerErrorMessages(page);
+          await caseApplicantDetailsObjectPage.fillInFields(
+            page,
+            contactPreference,
+          );
+        }
+        if (representative) {
+          await caseRepresentativeDetailsObjectPage.checkPageLoads(
+            page,
+            accessibilityTest,
+          );
+          await caseRepresentativeDetailsObjectPage.triggerErrorMessages(page);
+          await caseRepresentativeDetailsObjectPage.fillInFields(
+            page,
+            contactPreference,
+            representativeQualified,
+          );
+        }
+        await caseObjectsContactsPage.checkPageLoads(page, accessibilityTest);
+        await caseObjectsContactsPage.triggerErrorMessages(page);
+        await caseObjectsContactsPage.fillInFields(
+          page,
+          subCategory,
+          representative,
+          applicant,
+        );
+        await caseDocumentsUploadObjectPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseDocumentsUploadObjectPage.triggerErrorMessages(page);
+        await caseDocumentsUploadObjectPage.fillInFields(page, multipleFiles);
+        await caseFurtherDetailsObjectPage.checkPageLoads(
+          page,
+          accessibilityTest,
+        );
+        await caseFurtherDetailsObjectPage.triggerErrorMessages(page);
+        await caseFurtherDetailsObjectPage.fillInFields(
+          page,
+          schemeSelection,
+          caseRegionSelection,
+          claimsLinked,
+          compensationLinked,
+          tribunalFormsInTime,
+          applicantExplained,
+        );
+        await submitPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          contactPreference,
+          applicant,
+          representative,
+          multipleFiles,
+          tribunalFormsInTime,
+        );
+        await submitPage.checkValidInfo(
+          page,
+          contactPreference,
+          applicant,
+          representative,
+          multipleFiles,
+          category,
+          subCategory,
+          schemeSelection,
+          caseRegionSelection,
+          representativeQualified,
+          claimsLinked,
+          compensationLinked,
+          tribunalFormsInTime,
+          applicantExplained,
+        );
+        await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
+        return await createCaseConfirmPage.returnCaseNumber(page);
     }
-    if (representative) {
-      await caseRepresentativeDetailsObjectPage.checkPageLoads(
-        page,
-        accessibilityTest,
-      );
-      await caseRepresentativeDetailsObjectPage.fillInFields(
-        page,
-        contactPreference,
-        representativeQualified,
-      );
-    }
-    await caseObjectsContactsPage.checkPageLoads(page, accessibilityTest);
-    await caseObjectsContactsPage.fillInFields(
-      page,
-      subCategory,
-      representative,
-      applicant,
-    );
-    await caseDocumentsUploadObjectPage.checkPageLoads(page, accessibilityTest);
-    await caseDocumentsUploadObjectPage.fillInFields(page, multipleFiles);
-    await caseFurtherDetailsObjectPage.checkPageLoads(page, accessibilityTest);
-    await caseFurtherDetailsObjectPage.fillInFields(
-      page,
-      schemeSelection,
-      caseRegionSelection,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
-    );
-    await submitPage.checkPageLoads(
-      page,
-      accessibilityTest,
-      contactPreference,
-      applicant,
-      representative,
-      multipleFiles,
-      tribunalFormsInTime,
-    );
-    await submitPage.checkValidInfo(
-      page,
-      contactPreference,
-      applicant,
-      representative,
-      multipleFiles,
-      category,
-      subCategory,
-      schemeSelection,
-      caseRegionSelection,
-      representativeQualified,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
-    );
-    await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
-    return await createCaseConfirmPage.returnCaseNumber(page);
   },
 
   async verifyDetails(

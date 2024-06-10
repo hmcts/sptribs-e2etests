@@ -20,6 +20,18 @@ const caseRepresentativeDetailsObject_content = {
   button: "Continue",
   emailAddress: "AutoTestRepresentative@mail.com",
   contactNumber: "01234567893",
+  errorBanner: "There is a problem",
+  nameError: "Representative's full name is required",
+  phoneNumberError: "Representative's contact number is required",
+  validPhoneNumberError:
+    "The data entered is not valid for Representative's contact number",
+  qualifiedError: "Is the representative legally qualified? is required",
+  contactError: "What is representative's contact preference? is required",
+  emailError: "Representative's email address is required",
+  addressError: "An address is required",
+  postcodeError: "Enter a Postcode",
+  validPostcodeError: "Enter a valid Postcode",
+  streetError: "Building and Street is required",
 } as const;
 
 export default caseRepresentativeDetailsObject_content;
