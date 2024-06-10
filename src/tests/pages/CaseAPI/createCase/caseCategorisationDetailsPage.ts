@@ -16,6 +16,7 @@ type CaseCategorisationDetailsPage = {
     category: Category,
     subCategory: SubCategory,
   ): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
@@ -54,6 +55,27 @@ const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
     await page.selectOption(this.category, category);
     await page.selectOption(this.subCategory, subCategory);
     await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseCategorisationDetails_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error").nth(0)).toHaveText(
+        caseCategorisationDetails_content.categoryError,
+      ),
+      expect(page.locator(".validation-error").nth(1)).toHaveText(
+        caseCategorisationDetails_content.subcategoryError,
+      ),
+      expect(page.locator(".error-message").nth(0)).toHaveText(
+        caseCategorisationDetails_content.categoryError,
+      ),
+      expect(page.locator(".error-message").nth(1)).toHaveText(
+        caseCategorisationDetails_content.subcategoryError,
+      ),
+    ]);
   },
 };
 

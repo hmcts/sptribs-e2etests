@@ -21,6 +21,17 @@ const caseApplicantDetailsObject_content = {
   button: "Continue",
   emailAddress: "AutoTestApplicant@mail.com",
   contactNumber: "01234567892",
+  errorBanner: "There is a problem",
+  nameError: "Applicant's full name is required",
+  phoneNumberError: "Applicant's phone number is required",
+  validPhoneNumberError:
+    "The data entered is not valid for Applicant's phone number",
+  addressError: "An address is required",
+  postcodeError: "Enter a Postcode",
+  validPostcodeError: "Enter a valid Postcode",
+  streetError: "Building and Street is required",
+  contactError: "What is applicant's contact preference? is required",
+  emailError: "Applicant's email address is required",
 } as const;
 
 export default caseApplicantDetailsObject_content;

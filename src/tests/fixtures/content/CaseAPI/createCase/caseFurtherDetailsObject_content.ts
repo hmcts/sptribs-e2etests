@@ -10,4 +10,15 @@ export const caseFurtherDetailsObject_content = {
   textOnPage7: "Has the applicant explained why they missed the deadline?",
   yes: "Yes",
   no: "No",
+  errorBanner: "There is a problem",
+  schemeError: "Scheme is required",
+  regionError: "Case Region is required",
+  linksError:
+    "Have any claims linked to this case been lodged with CICA? is required",
+  CICAError: "CICA reference number is required",
+  compensationError:
+    "Are there any ongoing compensation claims linked to this case? is required",
+  tribunalError: "Have the tribunal forms been received in time? is required",
+  deadlineError:
+    "Has the applicant explained why they missed the deadline? is required",
 } as const;
