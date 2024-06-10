@@ -18,6 +18,7 @@ type CaseSubjectDetailsObjectPage = {
   selectPost: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   fillInFields(page: Page, contactPreference: ContactPreference): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
@@ -91,6 +92,64 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
       await page.click(this.selectPost);
     }
     await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseSubjectDetailsObject_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error").nth(0)).toHaveText(
+        caseSubjectDetailsObject_content.nameError,
+      ),
+      expect(page.locator(".error-message").nth(0)).toHaveText(
+        caseSubjectDetailsObject_content.nameError,
+      ),
+      expect(page.locator(".validation-error").nth(1)).toHaveText(
+        caseSubjectDetailsObject_content.dobError,
+      ),
+      expect(page.locator(".error-message").nth(1)).toHaveText(
+        caseSubjectDetailsObject_content.dobError,
+      ),
+      expect(page.locator(".validation-error").nth(2)).toHaveText(
+        caseSubjectDetailsObject_content.addressError,
+      ),
+      expect(page.locator(".error-message").nth(2)).toHaveText(
+        caseSubjectDetailsObject_content.postcodeError,
+      ),
+      expect(page.locator(".validation-error").nth(3)).toHaveText(
+        caseSubjectDetailsObject_content.contactError,
+      ),
+      expect(page.locator(".error-message").nth(3)).toHaveText(
+        caseSubjectDetailsObject_content.streetError,
+      ),
+      expect(page.locator(".error-message").nth(4)).toHaveText(
+        caseSubjectDetailsObject_content.contactError,
+      ),
+    ]);
+    await page.fill(this.day, "90");
+    await page.click(this.month);
+    await expect(page.locator(".error-message").nth(1)).toHaveText(
+      caseSubjectDetailsObject_content.invalidDOBError,
+    );
+    await page.locator(this.day).clear();
+    await page.fill("#cicCaseAddress_cicCaseAddress_postcodeInput", "...");
+    await page.click(this.findAddress);
+    await expect(page.locator(".error-message").nth(2)).toHaveText(
+      caseSubjectDetailsObject_content.validPostcodeError,
+    );
+    await page.getByLabel("Email", { exact: true }).click();
+    await page.click(this.emailAddress);
+    await page.locator(this.continue).dispatchEvent("click");
+    await Promise.all([
+      expect(page.locator(".validation-error").last()).toHaveText(
+        caseSubjectDetailsObject_content.emailError,
+      ),
+      expect(page.locator(".error-message").last()).toHaveText(
+        caseSubjectDetailsObject_content.emailError,
+      ),
+    ]);
   },
 };
 

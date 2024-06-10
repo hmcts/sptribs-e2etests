@@ -21,6 +21,17 @@ const caseSubjectDetailsObject_content = {
   button: "Continue",
   emailAddress: "AutoTestSubject@mail.com",
   contactNumber: "01234567891",
+  errorBanner: "There is a problem",
+  nameError: "Subject's full name is required",
+  dobError: "Subject's date of birth is required",
+  invalidDOBError: "The data entered is not valid for Subject's date of birth",
+  addressError: "An address is required",
+  selectAddressError: "Select an address",
+  postcodeError: "Enter a Postcode",
+  validPostcodeError: "Enter a valid Postcode",
+  streetError: "Building and Street is required",
+  contactError: "What is subject's contact preference type? is required",
+  emailError: "Subject's email address is required",
 } as const;
 
 export default caseSubjectDetailsObject_content;

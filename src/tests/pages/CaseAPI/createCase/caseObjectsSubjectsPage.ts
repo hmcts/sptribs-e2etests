@@ -15,6 +15,7 @@ type CaseObjectsSubjectsPage = {
     applicant: boolean,
     subcategory: SubCategory,
   ): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
@@ -65,6 +66,29 @@ const caseObjectsSubjectsPage: CaseObjectsSubjectsPage = {
       await page.click(this.applicantSelectBox);
     }
     await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator("#error-summary-title")).toHaveText(
+        caseObjectsSubjects_content.errorBanner,
+      ),
+      expect(page.locator(".validation-error")).toHaveText(
+        caseObjectsSubjects_content.partiesError,
+      ),
+      expect(page.locator(".error-message")).toHaveText(
+        caseObjectsSubjects_content.partiesError,
+      ),
+    ]);
+    await page.click(this.representativeSelectBox);
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".error-summary-list")).toContainText(
+        caseObjectsSubjects_content.subjectError,
+      ),
+    ]);
+    await page.click(this.representativeSelectBox);
   },
 };
 
