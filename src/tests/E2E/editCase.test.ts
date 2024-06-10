@@ -27,7 +27,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Submitted - Assessment - Medical Re-opening Category, Email Contact", async ({
+  test.only("Caseworker - Submitted - Assessment - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
     await editCase.editCase(

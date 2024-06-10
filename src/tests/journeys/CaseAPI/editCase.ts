@@ -14,8 +14,10 @@ import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import DSSCreateCase from "../DSSCreateCase/createCase.ts";
 import createCase from "./createCase.ts";
+import editCaseCategorisationDetailsPage from "../../pages/CaseAPI/editCase/editCaseCategorisationDetailsPage.ts";
+import editCaseDateObjectsPage from "../../pages/CaseAPI/editCase/editCaseDateObjectsPage.ts";
 
-type initialState =
+export type initialState =
   | "DSS Submitted"
   | "Submitted"
   | "Case Management"
@@ -161,6 +163,7 @@ const editCase: EditCase = {
           true,
           true,
           true,
+          false,
         );
         break;
     }
@@ -174,8 +177,52 @@ const editCase: EditCase = {
       await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
       switch (errorMessaging) {
         default:
+          await editCaseCategorisationDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editCaseCategorisationDetailsPage.checkAndFillInFields(
+            page,
+            initialState,
+            category,
+            subCategory,
+          );
+          await editCaseDateObjectsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editCaseDateObjectsPage.checkAndFillInFields(
+            page,
+            initialState,
+          );
+
           break;
         case true:
+          await editCaseCategorisationDetailsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editCaseCategorisationDetailsPage.triggerErrorMessages(page);
+          await editCaseCategorisationDetailsPage.checkAndFillInFields(
+            page,
+            initialState,
+            category,
+            subCategory,
+          );
+          await editCaseDateObjectsPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editCaseDateObjectsPage.triggerErrorMessages(page);
+          await editCaseDateObjectsPage.checkAndFillInFields(
+            page,
+            initialState,
+          );
+
           break;
       }
     } else {
