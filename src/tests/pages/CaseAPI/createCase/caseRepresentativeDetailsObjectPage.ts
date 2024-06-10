@@ -23,6 +23,7 @@ type CaseRepresentativeDetailsObjectPage = {
     contactPreference: ContactPreference,
     representativeQualified: boolean,
   ): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
@@ -113,6 +114,72 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
         await commonHelpers.postcodeHandler(page, "Representative");
       }
       await page.click(this.continue);
+    },
+
+    async triggerErrorMessages(page: Page): Promise<void> {
+      await page.click(this.continue);
+      await Promise.all([
+        expect(page.locator("#error-summary-title")).toHaveText(
+          caseRepresentativeDetailsObject_content.errorBanner,
+        ),
+        expect(page.locator(".validation-error").nth(0)).toHaveText(
+          caseRepresentativeDetailsObject_content.nameError,
+        ),
+        expect(page.locator(".validation-error").nth(1)).toHaveText(
+          caseRepresentativeDetailsObject_content.phoneNumberError,
+        ),
+        expect(page.locator(".validation-error").nth(2)).toHaveText(
+          caseRepresentativeDetailsObject_content.qualifiedError,
+        ),
+        expect(page.locator(".validation-error").nth(3)).toHaveText(
+          caseRepresentativeDetailsObject_content.contactError,
+        ),
+        expect(page.locator(".error-message").nth(0)).toHaveText(
+          caseRepresentativeDetailsObject_content.nameError,
+        ),
+        expect(page.locator(".error-message").nth(1)).toHaveText(
+          caseRepresentativeDetailsObject_content.phoneNumberError,
+        ),
+        expect(page.locator(".error-message").nth(2)).toHaveText(
+          caseRepresentativeDetailsObject_content.qualifiedError,
+        ),
+        expect(page.locator(".error-message").nth(3)).toHaveText(
+          caseRepresentativeDetailsObject_content.contactError,
+        ),
+      ]);
+      await page.fill(this.phoneNumber, "abc");
+      await expect(page.locator(".error-message").nth(1)).toHaveText(
+        caseRepresentativeDetailsObject_content.validPhoneNumberError,
+      );
+      await page.locator(this.phoneNumber).clear();
+      await page.getByLabel("Email", { exact: true }).click();
+      await page.click(this.emailAddress);
+      await page.locator(this.continue).dispatchEvent("click");
+      await expect(page.locator(".error-message").last()).toHaveText(
+        caseRepresentativeDetailsObject_content.emailError,
+      );
+      await page.getByLabel("Post", { exact: true }).click();
+      await page.click(this.findAddress);
+      await expect(page.locator(".error-message").last()).toHaveText(
+        caseRepresentativeDetailsObject_content.postcodeError,
+      );
+      await page.fill(
+        "#cicCaseRepresentativeAddress_cicCaseRepresentativeAddress_postcodeInput",
+        "...",
+      );
+      await page.click(this.findAddress);
+      await expect(page.locator(".error-message").last()).toHaveText(
+        caseRepresentativeDetailsObject_content.validPostcodeError,
+      );
+      await page.locator(this.continue).dispatchEvent("click");
+      await Promise.all([
+        expect(page.locator(".validation-error").last()).toHaveText(
+          caseRepresentativeDetailsObject_content.addressError,
+        ),
+        expect(page.locator(".error-message").last()).toHaveText(
+          caseRepresentativeDetailsObject_content.streetError,
+        ),
+      ]);
     },
   };
 

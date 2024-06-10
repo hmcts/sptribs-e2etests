@@ -15,6 +15,7 @@ type CaseObjectsContactsPage = {
     representative: boolean,
     applicant: boolean,
   ): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const caseObjectsContactsPage: CaseObjectsContactsPage = {
@@ -61,6 +62,18 @@ const caseObjectsContactsPage: CaseObjectsContactsPage = {
       await page.click(this.applicantSelectBox);
     }
     await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      expect(page.locator(".error-summary-heading").nth(1)).toHaveText(
+        caseObjectsContacts_content.errorBanner,
+      ),
+      expect(page.locator(".error-summary-list")).toContainText(
+        caseObjectsContacts_content.errorMessage,
+      ),
+    ]);
   },
 };
 
