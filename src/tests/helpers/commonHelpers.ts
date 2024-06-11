@@ -910,3 +910,13 @@ export type hearingPostponedReasons =
   | "Other";
 
 export type CaseNoticeType = "CaseManagement" | "Final";
+
+export type State =
+  | "DSS-Submitted"
+  | "Submitted"
+  | "Case Management"
+  | "Ready to list"
+  | "Awaiting Hearing"
+  | "Awaiting Outcome"
+  | "Case closed"
+  | "Case Stayed";
