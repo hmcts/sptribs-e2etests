@@ -92,15 +92,24 @@ const caseFinderPage: CaseFinderPage = {
           expect(page.locator("#applicantCaseId-error")).toContainText(
             CaseFinderDetails.referenceNumberErrorCy,
           ),
+          expect(page.locator("[href='#applicantCaseId']")).toContainText(
+            CaseFinderDetails.referenceNumberErrorCy,
+          ),
         ]);
         await page.fill(this.caseReferenceNumber, "111111111111111");
         await page.click(this.continueButton);
         await expect(page.locator("#applicantCaseId-error")).toContainText(
           CaseFinderDetails.validReferenceNumberErrorCy,
         );
+        await expect(page.locator("[href='#applicantCaseId']")).toContainText(
+          CaseFinderDetails.validReferenceNumberErrorCy,
+        );
         await page.fill(this.caseReferenceNumber, "asdfghjkl;'-");
         await page.click(this.continueButton);
         await expect(page.locator("#applicantCaseId-error")).toContainText(
+          CaseFinderDetails.characterErrorCy,
+        );
+        await expect(page.locator("[href='#applicantCaseId']")).toContainText(
           CaseFinderDetails.characterErrorCy,
         );
         break;
@@ -113,15 +122,24 @@ const caseFinderPage: CaseFinderPage = {
           expect(page.locator("#applicantCaseId-error")).toContainText(
             CaseFinderDetails.referenceNumberError,
           ),
+          expect(page.locator("[href='#applicantCaseId']")).toContainText(
+            CaseFinderDetails.referenceNumberError,
+          ),
         ]);
         await page.fill(this.caseReferenceNumber, "111111111111111");
         await page.click(this.continueButton);
         await expect(page.locator("#applicantCaseId-error")).toContainText(
           CaseFinderDetails.validReferenceNumberError,
         );
+        await expect(page.locator("[href='#applicantCaseId']")).toContainText(
+          CaseFinderDetails.validReferenceNumberError,
+        );
         await page.fill(this.caseReferenceNumber, "asdfghjkl;'-");
         await page.click(this.continueButton);
         await expect(page.locator("#applicantCaseId-error")).toContainText(
+          CaseFinderDetails.characterError,
+        );
+        await expect(page.locator("[href='#applicantCaseId']")).toContainText(
           CaseFinderDetails.characterError,
         );
         break;
