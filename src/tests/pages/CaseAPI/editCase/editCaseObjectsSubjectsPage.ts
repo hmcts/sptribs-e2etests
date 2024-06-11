@@ -86,7 +86,6 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
       if (!applicant) {
         await page.click(this.applicantSelectBox);
       }
-      await page.click(this.continue);
     } else {
       if (representative) {
         await page.click(this.representativeSelectBox);
@@ -95,6 +94,7 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
         await page.click(this.applicantSelectBox);
       }
     }
+    await page.click(this.continue);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
