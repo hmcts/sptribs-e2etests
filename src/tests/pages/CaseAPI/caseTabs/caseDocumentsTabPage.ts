@@ -366,9 +366,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
       month: "2-digit",
       day: "2-digit",
     });
-    const [month, day, year] = dateString.split('/'); // Corrected destructuring
+    const [month, day, year] = dateString.split("/");
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
-  }
+  },
 };
 
 export default caseDocumentsTabPage;
