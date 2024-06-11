@@ -25,6 +25,7 @@ type CaseDocumentsTabPage = {
     uploadOtherInfo: boolean,
   ): Promise<void>;
   handleMultipleDocuments(page: Page, uploadOtherInfo: boolean): Promise<void>;
+  handleTodayDate(): Promise<string>;
 };
 
 const caseDocumentsTabPage: CaseDocumentsTabPage = {
@@ -73,6 +74,12 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             ),
             2,
           ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+            ),
+            2,
+          ),
         ]);
       } else {
         await this.handleMultipleDocumentsLoad(page, uploadOtherInfo);
@@ -107,6 +114,12 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${caseDocumentsTabContent.textOnPage2}")`,
+            ),
+            3,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
             ),
             3,
           ),
@@ -152,6 +165,11 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
             1,
           ),
+
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+            2,
+          ),
         ]);
       } else {
         await this.handleMultipleDocuments(page, uploadOtherInfo);
@@ -189,6 +207,11 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
             1,
           ),
+
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+            3,
+          ),
         ]);
       } else {
         await this.handleMultipleDocuments(page, uploadOtherInfo);
@@ -224,6 +247,12 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           ),
           count,
         ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+          ),
+          count,
+        ),
       ]);
     } else {
       let count = 12;
@@ -246,6 +275,12 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
         commonHelpers.checkVisibleAndPresent(
           page.locator(
             `.text-16:text-is("${caseDocumentsTabContent.textOnPage2}")`,
+          ),
+          count,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
           ),
           count,
         ),
@@ -278,6 +313,10 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
         commonHelpers.checkVisibleAndPresent(
           page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
           4,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+          8,
         ),
       ]);
     } else {
@@ -312,9 +351,24 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
           4,
         ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+          12,
+        ),
       ]);
     }
   },
+
+  async handleTodayDate(): Promise<string> {
+    const now = new Date();
+    const dateString = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    const [month, day, year] = dateString.split('/'); // Corrected destructuring
+    return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
+  }
 };
 
 export default caseDocumentsTabPage;
