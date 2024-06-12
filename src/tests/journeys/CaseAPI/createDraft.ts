@@ -14,6 +14,7 @@ import createDraftOrderPage from "../../pages/CaseAPI/createDraft/createDraftOrd
 import orderMainContentPage from "../../pages/CaseAPI/createDraft/orderMainContentPage.ts";
 import addDocumentFooterPage from "../../pages/CaseAPI/createDraft/addDocumentFooterPage.ts";
 import previewTemplatePage from "../../pages/CaseAPI/createDraft/previewTemplatePage.ts";
+import submitPage from "../../pages/CaseAPI/createDraft/submitPage.ts";
 
 type CreateDraft = {
   createDraft(
@@ -158,6 +159,8 @@ const createDraft: CreateDraft = {
           caseNumber,
           null,
         );
+        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.continueOn(page);
         break;
       case true:
         await createDraftOrderPage.triggerErrorMessages(page);
