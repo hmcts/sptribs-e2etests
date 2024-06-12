@@ -7,7 +7,7 @@ import { NoticeType } from "./noticeOptionPage.ts";
 import decisionUpload_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/decisionUpload_content.ts";
 import path from "path";
 import config from "../../../config.ts";
-import { DecisionTemplate } from "./selectTemplatePage.ts";
+import { Template } from "./selectTemplatePage.ts";
 import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
 import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
 
@@ -26,7 +26,7 @@ type SubmitPage = {
   checkAllInfo(
     page: Page,
     noticeType: NoticeType,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -135,7 +135,7 @@ const submitPage: SubmitPage = {
   async checkAllInfo(
     page: Page,
     noticeType: NoticeType,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
   ): Promise<void> {
     switch (noticeType) {
       default:
@@ -169,7 +169,7 @@ const submitPage: SubmitPage = {
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`.text-16:text-is("${decisionTemplate}")`),
+            page.locator(`.text-16:text-is("${template}")`),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(

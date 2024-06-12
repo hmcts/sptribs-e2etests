@@ -2,24 +2,9 @@ import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import selectTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/selectTemplate_content.ts";
+import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/createDraft/addDocumentFooter_content.ts";
 
-export type Template =
-  | "--Select a value--"
-  | "CIC1 - Eligibility"
-  | "CIC2 - Quantum"
-  | "CIC3 - Rule 27"
-  | "CIC4 - Blank Decision Notice"
-  | "CIC6 - General Directions"
-  | "CIC7 - ME Dmi Reports"
-  | "CIC8 - ME Joint Instructions"
-  | "CIC10 - Strike Out Warning"
-  | "CIC11 - Strike Out Decision Notice"
-  | "CIC13 - Pro Forma Summons"
-  | "CIC14 – LO General Directions"
-  | null; // for template upload.
-
-type SelectTemplatePage = {
+type AddDocumentFooterPage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -28,11 +13,11 @@ type SelectTemplatePage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page, template: Template): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const selectTemplatePage: SelectTemplatePage = {
+const addDocumentFooterPage: AddDocumentFooterPage = {
   previous: ".button-secondary",
   continue: '[type="submit"]',
   cancel: ".cancel",
@@ -44,20 +29,32 @@ const selectTemplatePage: SelectTemplatePage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        selectTemplate_content.pageHint,
+        addDocumentFooter_content.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        selectTemplate_content.pageTitle,
-      ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
-      expect(page.locator("markdown > p").nth(0)).toContainText(
-        selectTemplate_content.caseReference + caseNumber,
+        addDocumentFooter_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.form-label:text-is("${selectTemplate_content.textOnPage1}")`,
+          `div > markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
+        ),
+        1,
+      ),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        addDocumentFooter_content.caseReference + caseNumber,
+      ),
+      ...Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (addDocumentFooter_content as any)[
+          `textOnPage${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`p:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.form-label:text-is("${addDocumentFooter_content.textOnPage3}")`,
         ),
         1,
       ),
@@ -73,35 +70,40 @@ const selectTemplatePage: SelectTemplatePage = {
     }
   },
 
-  async fillInFields(page: Page, template: Template): Promise<void> {
-    await page.selectOption(`#caseIssueFinalDecisionTemplate`, template);
+  async fillInFields(page: Page): Promise<void> {
+    await expect(page.locator(`input`)).toBeEmpty();
+    await page.fill(
+      `#orderContentOrderSignature`,
+      addDocumentFooter_content.signature,
+    );
     await page.click(this.continue);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
+    await expect(page.locator(`input`)).toBeEmpty();
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `#error-summary-title:text-is("${selectTemplate_content.errorBanner}")`,
+          `#error-summary-title:text-is("${addDocumentFooter_content.errorBanner}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.validation-error:has-text("${selectTemplate_content.errorNoEntry}")`,
+          `.validation-error:has-text("${addDocumentFooter_content.errorNoEntry}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.error-message:has-text("${selectTemplate_content.errorNoEntry}")`,
+          `.error-message:has-text("${addDocumentFooter_content.errorNoEntry}")`,
         ),
         1,
       ),
     ]);
-    await this.fillInFields(page, "CIC4 - Blank Decision Notice");
+    await this.fillInFields(page);
   },
 };
 
-export default selectTemplatePage;
+export default addDocumentFooterPage;

@@ -2,10 +2,10 @@ import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { Template } from "./selectTemplatePage.ts";
-import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
+import orderMainContent_content from "../../../fixtures/content/CaseAPI/createDraft/orderMainContent_content.ts";
 
-type FinalDecisionMainPage = {
+type OrderMainContentPage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -19,7 +19,7 @@ type FinalDecisionMainPage = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const finalDecisionMainPage: FinalDecisionMainPage = {
+const orderMainContentPage: OrderMainContentPage = {
   previous: ".button-secondary",
   continue: '[type="submit"]',
   cancel: ".cancel",
@@ -32,10 +32,10 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        finalDecisionMain_content.pageHint,
+        orderMainContent_content.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        finalDecisionMain_content.pageTitle,
+        orderMainContent_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -44,19 +44,26 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        finalDecisionMain_content.caseReference + caseNumber,
+        orderMainContent_content.caseReference + caseNumber,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown:has-text("${orderMainContent_content.textOnPage1}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`p:has-text("${orderMainContent_content.textOnPage2}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown:has-text("${orderMainContent_content.textOnPage3}")`,
+        ),
+        1,
       ),
       ...Array.from({ length: 3 }, (_, index) => {
-        const textOnPage = (finalDecisionMain_content as any)[
-          `textOnPage${index + 1}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`markdown:has-text("${textOnPage}")`),
-          1,
-        );
-      }),
-      ...Array.from({ length: 3 }, (_, index) => {
-        const subTitle = (finalDecisionMain_content as any)[
+        const subTitle = (orderMainContent_content as any)[
           `subTitle${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -76,54 +83,38 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
       default:
         await expect(page.locator(`textarea`)).toBeEmpty();
         break;
-      case "CIC1 - Eligibility":
-        textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(
-          `${finalDecisionMain_content.eligibility}`,
-        );
-        break;
-      case "CIC2 - Quantum":
-        textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.quantum}`);
-        break;
       case "CIC3 - Rule 27":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.rule27}`);
+        expect(textBoxValue).toEqual(`${orderMainContent_content.rule27}`);
         break;
       case "CIC7 - ME Dmi Reports":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.dmiReports}`);
+        expect(textBoxValue).toEqual(`${orderMainContent_content.dmiReports}`);
         break;
       case "CIC8 - ME Joint Instructions":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.joint}`);
+        expect(textBoxValue).toEqual(`${orderMainContent_content.joint}`);
         break;
       case "CIC10 - Strike Out Warning":
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(
-          `${finalDecisionMain_content.strikeoutWarn}`,
-        );
-        break;
-      case "CIC11 - Strike Out Decision Notice":
-        textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(
-          `${finalDecisionMain_content.strikeoutNotice}`,
+          `${orderMainContent_content.strikeoutWarn}`,
         );
         break;
       case "CIC13 - Pro Forma Summons":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.proForma}`);
+        expect(textBoxValue).toEqual(`${orderMainContent_content.proForma}`);
         break;
     }
-    // if (accessibilityTest) {
-    //   await axeTest(page);
-    // }
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async fillInFields(page: Page): Promise<void> {
     await page.fill(`textarea`, ``);
     await expect(page.locator(`textarea`)).toBeEmpty();
-    await page.fill(`textarea`, finalDecisionMain_content.description);
+    await page.fill(`textarea`, orderMainContent_content.description);
     await page.click(this.continue);
   },
 
@@ -133,7 +124,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     await page.click(this.continue);
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
-        `.error-message:has-text("${finalDecisionMain_content.errorNoEntryDescription}")`,
+        `.error-message:has-text("${orderMainContent_content.errorNoEntryDescription}")`,
       ),
       1,
     );
@@ -141,4 +132,4 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
   },
 };
 
-export default finalDecisionMainPage;
+export default orderMainContentPage;

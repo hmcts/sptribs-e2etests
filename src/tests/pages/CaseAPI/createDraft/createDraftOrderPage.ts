@@ -1,25 +1,11 @@
 import { expect, Page } from "@playwright/test";
+import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import selectTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/selectTemplate_content.ts";
+import createDraftOrder_content from "../../../fixtures/content/CaseAPI/createDraft/createDraftOrder_content.ts";
 
-export type Template =
-  | "--Select a value--"
-  | "CIC1 - Eligibility"
-  | "CIC2 - Quantum"
-  | "CIC3 - Rule 27"
-  | "CIC4 - Blank Decision Notice"
-  | "CIC6 - General Directions"
-  | "CIC7 - ME Dmi Reports"
-  | "CIC8 - ME Joint Instructions"
-  | "CIC10 - Strike Out Warning"
-  | "CIC11 - Strike Out Decision Notice"
-  | "CIC13 - Pro Forma Summons"
-  | "CIC14 – LO General Directions"
-  | null; // for template upload.
-
-type SelectTemplatePage = {
+type CreateDraftOrderPage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -32,7 +18,7 @@ type SelectTemplatePage = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const selectTemplatePage: SelectTemplatePage = {
+const createDraftOrderPage: CreateDraftOrderPage = {
   previous: ".button-secondary",
   continue: '[type="submit"]',
   cancel: ".cancel",
@@ -44,20 +30,24 @@ const selectTemplatePage: SelectTemplatePage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        selectTemplate_content.pageHint,
+        createDraftOrder_content.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        selectTemplate_content.pageTitle,
+        createDraftOrder_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        selectTemplate_content.caseReference + caseNumber,
+        createDraftOrder_content.caseReference + caseNumber,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`p:text-is("${createDraftOrder_content.textOnPage1}")`),
+        1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.form-label:text-is("${selectTemplate_content.textOnPage1}")`,
+          `.form-label:text-is("${createDraftOrder_content.textOnPage2}")`,
         ),
         1,
       ),
@@ -74,7 +64,7 @@ const selectTemplatePage: SelectTemplatePage = {
   },
 
   async fillInFields(page: Page, template: Template): Promise<void> {
-    await page.selectOption(`#caseIssueFinalDecisionTemplate`, template);
+    await page.selectOption(`#orderContentOrderTemplate`, template);
     await page.click(this.continue);
   },
 
@@ -83,25 +73,25 @@ const selectTemplatePage: SelectTemplatePage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `#error-summary-title:text-is("${selectTemplate_content.errorBanner}")`,
+          `#error-summary-title:text-is("${createDraftOrder_content.errorBanner}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.validation-error:has-text("${selectTemplate_content.errorNoEntry}")`,
+          `.validation-error:has-text("${createDraftOrder_content.errorNoEntry}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.error-message:has-text("${selectTemplate_content.errorNoEntry}")`,
+          `.error-message:has-text("${createDraftOrder_content.errorNoEntry}")`,
         ),
         1,
       ),
     ]);
-    await this.fillInFields(page, "CIC4 - Blank Decision Notice");
+    await this.fillInFields(page, "CIC14 – LO General Directions");
   },
 };
 
-export default selectTemplatePage;
+export default createDraftOrderPage;
