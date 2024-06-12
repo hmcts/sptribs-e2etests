@@ -98,6 +98,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
     ]);
     await page.click(this.addNew);
     await page.click(this.continue);
+    await page.click(this.continue);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
         caseDocumentsUploadObject_content.errorBanner,
