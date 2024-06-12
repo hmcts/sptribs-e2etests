@@ -249,7 +249,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       false,
       "DSS Submitted",
       "Assessment",
-      "Fatal",
+      "Medical Re-opening",
       true,
       true,
       "Email",

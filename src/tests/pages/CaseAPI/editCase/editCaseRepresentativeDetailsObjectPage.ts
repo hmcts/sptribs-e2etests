@@ -150,6 +150,9 @@ const editCaseRepresentativeDetailsObjectPage: EditCaseRepresentativeDetailsObje
     },
 
     async triggerErrorMessages(page: Page): Promise<void> {
+      await page.locator(this.fullName).clear();
+      await page.locator(this.phoneNumber).clear();
+      await page.locator(this.emailAddress).clear();
       await page.click(this.continue);
       await Promise.all([
         expect(page.locator("#error-summary-title")).toHaveText(
@@ -162,10 +165,7 @@ const editCaseRepresentativeDetailsObjectPage: EditCaseRepresentativeDetailsObje
           editCaseRepresentativeDetailsObjectContent.phoneNumberError,
         ),
         expect(page.locator(".validation-error").nth(2)).toHaveText(
-          editCaseRepresentativeDetailsObjectContent.qualifiedError,
-        ),
-        expect(page.locator(".validation-error").nth(3)).toHaveText(
-          editCaseRepresentativeDetailsObjectContent.contactError,
+          editCaseRepresentativeDetailsObjectContent.emailError,
         ),
         expect(page.locator(".error-message").nth(0)).toHaveText(
           editCaseRepresentativeDetailsObjectContent.nameError,
@@ -174,10 +174,7 @@ const editCaseRepresentativeDetailsObjectPage: EditCaseRepresentativeDetailsObje
           editCaseRepresentativeDetailsObjectContent.phoneNumberError,
         ),
         expect(page.locator(".error-message").nth(2)).toHaveText(
-          editCaseRepresentativeDetailsObjectContent.qualifiedError,
-        ),
-        expect(page.locator(".error-message").nth(3)).toHaveText(
-          editCaseRepresentativeDetailsObjectContent.contactError,
+          editCaseRepresentativeDetailsObjectContent.emailError,
         ),
       ]);
       await page.fill(this.phoneNumber, "abc");
@@ -185,12 +182,6 @@ const editCaseRepresentativeDetailsObjectPage: EditCaseRepresentativeDetailsObje
         editCaseRepresentativeDetailsObjectContent.validPhoneNumberError,
       );
       await page.locator(this.phoneNumber).clear();
-      await page.getByLabel("Email", { exact: true }).click();
-      await page.click(this.emailAddress);
-      await page.locator(this.continue).dispatchEvent("click");
-      await expect(page.locator(".error-message").last()).toHaveText(
-        editCaseRepresentativeDetailsObjectContent.emailError,
-      );
       await page.getByLabel("Post", { exact: true }).click();
       await page.click(this.findAddress);
       await expect(page.locator(".error-message").last()).toHaveText(

@@ -80,8 +80,6 @@ const editCaseCategorisationDetailsPage: EditCaseCategorisationDetailsPage = {
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await page.selectOption(this.category, "0: null");
-    await page.selectOption(this.subCategory, "0:null");
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(

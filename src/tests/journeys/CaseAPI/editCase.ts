@@ -153,7 +153,7 @@ const editCase: EditCase = {
       case "Submitted":
         caseNumber = await createCase.createCase(
           page,
-          user,
+          "caseWorker",
           false,
           "Assessment",
           "Other",

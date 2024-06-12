@@ -95,6 +95,7 @@ const editCaseObjectsContactsPage: EditCaseObjectsContactsPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.subjectSelectBox);
+    await page.click(this.representativeSelectBox);
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator(".error-summary-heading").nth(1)).toHaveText(
@@ -104,6 +105,8 @@ const editCaseObjectsContactsPage: EditCaseObjectsContactsPage = {
         editCaseObjectsContactsContent.errorMessage,
       ),
     ]);
+    await page.click(this.subjectSelectBox);
+    await page.click(this.representativeSelectBox);
   },
 };
 
