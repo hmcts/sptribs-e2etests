@@ -15,6 +15,7 @@ import orderMainContentPage from "../../pages/CaseAPI/createDraft/orderMainConte
 import addDocumentFooterPage from "../../pages/CaseAPI/createDraft/addDocumentFooterPage.ts";
 import previewTemplatePage from "../../pages/CaseAPI/createDraft/previewTemplatePage.ts";
 import submitPage from "../../pages/CaseAPI/createDraft/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/createDraft/confirmPage.ts";
 
 type CreateDraft = {
   createDraft(
@@ -161,6 +162,9 @@ const createDraft: CreateDraft = {
         );
         await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
         await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.closeAndReturnToCase(page);
+        await page.click(`.mat-tab-label:text-is("Orders & Decisions")`);
         break;
       case true:
         await createDraftOrderPage.triggerErrorMessages(page);
