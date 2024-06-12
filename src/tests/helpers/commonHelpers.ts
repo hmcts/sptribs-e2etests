@@ -1,10 +1,10 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Locator, Page } from "@playwright/test";
 import authors_content from "../fixtures/content/authors_content.ts";
 import CookiesContent from "../fixtures/content/cookies_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
-import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
 import { UserRole } from "../config.ts";
@@ -28,6 +28,7 @@ import createSummaryListingDetails_content from "../fixtures/content/CaseAPI/cre
 interface CommonHelpers {
   readonly months: string[];
   shortMonths(index: number): Promise<string>;
+  todayDate(): Promise<string>;
   padZero(value: number): string;
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
@@ -99,6 +100,19 @@ const commonHelpers: CommonHelpers = {
   async shortMonths(index: number): Promise<string> {
     const monthFullName = this.months[index - 1];
     return monthFullName.substring(0, 3);
+  },
+
+  async todayDate(): Promise<string> {
+    const now = new Date();
+    const dateString = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    const [month, day, year] = dateString
+      .split("/")
+      .map((part) => part.padStart(2, "0"));
+    return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
   },
 
   padZero(value: number): string {
@@ -436,15 +450,6 @@ const commonHelpers: CommonHelpers = {
     caseNoticeType: CaseNoticeType,
     decisionTemplate: DecisionTemplate,
   ): Promise<void> {
-    const now = new Date();
-    const dateString = now.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    const [month, day, year] = dateString
-      .split("/")
-      .map((part) => part.padStart(2, "0"));
     await Promise.all([
       this.checkVisibleAndPresent(
         newPage.locator(
@@ -463,9 +468,7 @@ const commonHelpers: CommonHelpers = {
         1,
       ),
       this.checkVisibleAndPresent(
-        newPage.locator(
-          `span:text-is("Dated ${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}")`,
-        ),
+        newPage.locator(`span:text-is("Dated ${await this.todayDate()}")`),
         1,
       ),
       this.checkVisibleAndPresent(
@@ -790,7 +793,8 @@ export type allEvents =
   | "Stays: Remove stay"
   | "Refer case to judge"
   | "Refer case to legal officer"
-  | "Decision: Issue final decision";
+  | "Decision: Issue final decision"
+  | "Case: Add note";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
@@ -911,3 +915,13 @@ export type hearingPostponedReasons =
   | "Other";
 
 export type CaseNoticeType = "CaseManagement" | "Final";
+
+export type State =
+  | "DSS-Submitted"
+  | "Submitted"
+  | "Case Management"
+  | "Ready to list"
+  | "Awaiting Hearing"
+  | "Awaiting Outcome"
+  | "Case closed"
+  | "Case Stayed";
