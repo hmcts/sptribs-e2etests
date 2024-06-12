@@ -49,7 +49,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, "caseWorker", "Case closed", false);
   });
 
-  test("Add a note to a case closed stayed as a caseworker.", async ({
+  test("Add a note to a case stayed as a caseworker.", async ({
     page,
   }): Promise<void> => {
     await addNote.addNote(page, "caseWorker", "Case Stayed", false);

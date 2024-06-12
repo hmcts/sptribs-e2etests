@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import buildCase_content from "../../../fixtures/content/CaseAPI/buildCase/buildCase_content.ts";
 import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
