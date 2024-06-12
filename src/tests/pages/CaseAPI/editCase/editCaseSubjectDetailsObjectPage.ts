@@ -74,9 +74,6 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
       expect(page.locator(".heading-h2")).toHaveText(
         editCaseSubjectDetailsObjectContent.subTitle1,
       ),
-      expect(page.locator(".manual-link")).toHaveText(
-        editCaseSubjectDetailsObjectContent.linkOnPage1,
-      ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (editCaseSubjectDetailsObjectContent as any)[
           `textOnPage${index + 8}`

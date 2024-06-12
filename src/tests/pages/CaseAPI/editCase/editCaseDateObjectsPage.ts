@@ -88,9 +88,9 @@ const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
       );
     }
     await page.click(this.continue);
-    if (page.url().includes("casedateObjects")) {
-      await page.click(this.continue); // This is here in the chance that the "continue" button does not continue
-    }
+    // if (page.url().includes("casedateObjects")) {
+    //   await page.click(this.continue); // This is here in the chance that the "continue" button does not continue
+    // }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {

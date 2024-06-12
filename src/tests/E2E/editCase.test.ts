@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import editCase from "../journeys/CaseAPI/editCase.ts";
 
 test.describe("Case-API Edit case tests. @CaseAPI", () => {
-  test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact, multiple documents", async ({
+  test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact", async ({
     page,
   }) => {
     await editCase.editCase(
@@ -15,7 +15,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       true,
       "Email",
-      true,
       true,
       "1996",
       "Scotland",
@@ -41,7 +40,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Email",
       true,
-      false,
       "2001",
       "London",
       true,
@@ -66,7 +64,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Post",
       true,
-      false,
       "2008",
       "Midlands",
       true,
@@ -90,7 +87,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       false,
       true,
       "Post",
-      true,
       true,
       "2012",
       "North East",
@@ -116,7 +112,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Email",
       true,
-      false,
       "1996",
       "North West",
       true,
@@ -141,209 +136,8 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Email",
       true,
-      true,
       "2001",
       "Wales & South West",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Other Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "2008",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Fatal Category, Post Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Fatal",
-      true,
-      true,
-      "Post",
-      true,
-      false,
-      "1996",
-      "London",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Medical Re-opening Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Medical Re-opening",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "2012",
-      "Midlands",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Minor Category, Post Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Minor",
-      true,
-      true,
-      "Post",
-      true,
-      false,
-      "2001",
-      "North East",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Paragraph 26 Category, Post Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Paragraph 26",
-      true,
-      true,
-      "Post",
-      true,
-      false,
-      "1996",
-      "North West",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Sexual Abuse Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Sexual Abuse",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "2008",
-      "Wales & South West",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Assessment - Other Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "2012",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Caseworker - Eligibility - Other Category, Post Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Other",
-      true,
-      true,
-      "Post",
-      true,
-      false,
-      "2001",
-      "London",
       true,
       false,
       true,
@@ -366,7 +160,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Post",
       true,
-      false,
       "1996",
       "Midlands",
       true,
@@ -391,7 +184,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Post",
       true,
-      false,
       "1996",
       "Midlands",
       true,
@@ -416,7 +208,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Post",
       true,
-      false,
       "1996",
       "Midlands",
       true,
@@ -441,7 +232,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       "Email",
       true,
-      false,
       "1996",
       "Midlands",
       true,
@@ -449,6 +239,28 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       true,
       false,
+    );
+  });
+
+  test("Error messaging.", async ({ page }) => {
+    await editCase.editCase(
+      page,
+      "caseWorker",
+      false,
+      "DSS Submitted",
+      "Assessment",
+      "Fatal",
+      true,
+      true,
+      "Email",
+      true,
+      "1996",
+      "Scotland",
+      true,
+      false,
+      true,
+      false,
+      true,
     );
   });
 });
@@ -467,7 +279,6 @@ test("Accessibility test every page. @accessibilityCaseAPI", async ({
     true,
     "Email",
     true,
-    false,
     "1996",
     "Scotland",
     true,

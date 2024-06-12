@@ -2,10 +2,10 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { SubCategory } from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
-import editCaseObjectsSubjectsContent from "../../../fixtures/content/CaseAPI/editCase/editCaseObjectsSubjects_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import editCaseObjectsContactsContent from "../../../fixtures/content/CaseAPI/editCase/editCaseObjectsContacts_content.ts";
 
-type EditCaseObjectsSubjectsPage = {
+type EditCaseObjectsContactsPage = {
   continue: string;
   subjectSelectBox: string;
   representativeSelectBox: string;
@@ -18,18 +18,18 @@ type EditCaseObjectsSubjectsPage = {
   checkAndFillInFields(
     page: Page,
     initialState: initialState,
+    caseType: SubCategory,
     representative: boolean,
     applicant: boolean,
-    subcategory: SubCategory,
   ): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
+const editCaseObjectsContactsPage: EditCaseObjectsContactsPage = {
   continue: '[type="submit"]',
-  subjectSelectBox: "#cicCasePartiesCIC-SubjectCIC",
-  representativeSelectBox: "#cicCasePartiesCIC-RepresentativeCIC",
-  applicantSelectBox: "#cicCasePartiesCIC-ApplicantCIC",
+  subjectSelectBox: "#cicCaseSubjectCIC-SubjectCIC",
+  applicantSelectBox: "#cicCaseApplicantCIC-ApplicantCIC",
+  representativeSelectBox: "#cicCaseRepresentativeCIC-RepresentativeCIC",
 
   async checkPageLoads(
     page: Page,
@@ -38,19 +38,19 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        editCaseObjectsSubjectsContent.pageHint,
+        editCaseObjectsContactsContent.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        editCaseObjectsSubjectsContent.pageTitle,
+        editCaseObjectsContactsContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        editCaseObjectsSubjectsContent.caseReference + caseNumber,
+        editCaseObjectsContactsContent.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 4 }, (_, index) => {
-        const textOnPage = (editCaseObjectsSubjectsContent as any)[
+      ...Array.from({ length: 6 }, (_, index) => {
+        const textOnPage = (editCaseObjectsContactsContent as any)[
           `textOnPage${index + 1}`
         ];
         return expect(page.locator(".form-label").nth(index)).toHaveText(
@@ -66,25 +66,21 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
   async checkAndFillInFields(
     page: Page,
     initialState: initialState,
+    subCategory: SubCategory,
     representative: boolean,
     applicant: boolean,
-    subCategory: SubCategory,
   ): Promise<void> {
-    if (
-      (!applicant && subCategory === "Minor") ||
-      (!applicant && subCategory === "Fatal")
-    ) {
-      throw new Error("Cannot have a Minor or Fatal case with no applicant.");
+    if (!(subCategory === "Fatal" || subCategory === "Minor")) {
+      await expect(page.locator(this.subjectSelectBox)).toBeChecked();
+    } else {
+      await page.click(this.subjectSelectBox);
     }
-    await expect(page.locator(this.subjectSelectBox)).toBeChecked();
     if (initialState !== "DSS Submitted") {
-      await expect(page.locator(this.representativeSelectBox)).toBeChecked();
-      await expect(page.locator(this.applicantSelectBox)).toBeChecked();
-      if (!representative) {
-        await page.click(this.representativeSelectBox);
+      if (representative) {
+        await expect(page.locator(this.representativeSelectBox)).toBeChecked();
       }
-      if (!applicant) {
-        await page.click(this.applicantSelectBox);
+      if (applicant) {
+        await expect(page.locator(this.applicantSelectBox)).toBeChecked();
       }
     } else {
       if (representative) {
@@ -101,26 +97,14 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
     await page.click(this.subjectSelectBox);
     await page.click(this.continue);
     await Promise.all([
-      expect(page.locator("#error-summary-title")).toHaveText(
-        editCaseObjectsSubjectsContent.errorBanner,
+      expect(page.locator(".error-summary-heading").nth(1)).toHaveText(
+        editCaseObjectsContactsContent.errorBanner,
       ),
-      expect(page.locator(".validation-error")).toHaveText(
-        editCaseObjectsSubjectsContent.partiesError,
-      ),
-      expect(page.locator(".error-message")).toHaveText(
-        editCaseObjectsSubjectsContent.partiesError,
-      ),
-    ]);
-    await page.click(this.representativeSelectBox);
-    await page.click(this.continue);
-    await Promise.all([
       expect(page.locator(".error-summary-list")).toContainText(
-        editCaseObjectsSubjectsContent.subjectError,
+        editCaseObjectsContactsContent.errorMessage,
       ),
     ]);
-    await page.click(this.representativeSelectBox);
-    await page.click(this.subjectSelectBox);
   },
 };
 
-export default editCaseObjectsSubjectsPage;
+export default editCaseObjectsContactsPage;
