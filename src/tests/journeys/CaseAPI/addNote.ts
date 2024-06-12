@@ -12,13 +12,25 @@ import hearingOptions from "./hearingOptions.ts";
 import createSummary from "./createSummary.ts";
 import issueFinalDecision from "./issueFinalDecision.ts";
 import createEditStay from "./createEditStay.ts";
+import addCaseNotePage from "../../pages/CaseAPI/addNote/addCaseNotePage.ts";
+import notesTabPage from "../../pages/CaseAPI/caseTabs/notesTabPage.ts";
 
 type AddNote = {
-  addNote(page: Page, user: UserRole, state: State): Promise<void>;
+  addNote(
+    page: Page,
+    user: UserRole,
+    state: State,
+    accessibilityTest: boolean,
+  ): Promise<void>;
 };
 
 const addNote: AddNote = {
-  async addNote(page: Page, user: UserRole, state: State): Promise<void> {
+  async addNote(
+    page: Page,
+    user: UserRole,
+    state: State,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     let caseNumber: string | void;
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
@@ -150,6 +162,11 @@ const addNote: AddNote = {
       config.CaseAPIBaseURL,
       caseNumber,
     );
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Add note");
+    await addCaseNotePage.checkPageLoads(page, accessibilityTest, caseNumber);
+    await addCaseNotePage.fillInFields(page);
+    await page.click(`.mat-tab-label-content:text-is("Notes")`);
+    await notesTabPage.checkAddedNote(page, user);
   },
 };
 
