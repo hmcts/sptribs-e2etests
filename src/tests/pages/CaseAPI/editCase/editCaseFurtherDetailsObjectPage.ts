@@ -1,12 +1,17 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { caseRegion, Scheme } from "../../../helpers/commonHelpers.ts";
+import commonHelpers, {
+  caseRegion,
+  Scheme,
+} from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import editCaseFurtherDetailsObjectContent from "../../../fixtures/content/CaseAPI/editCase/editCaseFurtherDetailsObject_content.ts";
 
 type EditCaseFurtherDetailsObjectPage = {
+  previous: string;
   continue: string;
+  cancel: string;
   scheme: string;
   caseRegion: string;
   CICAReferenceNumber: string;
@@ -37,7 +42,9 @@ type EditCaseFurtherDetailsObjectPage = {
 };
 
 const editCaseFurtherDetailsObjectPage: EditCaseFurtherDetailsObjectPage = {
+  previous: "button[name='Previous']",
   continue: '[type="submit"]',
+  cancel: ".cancel",
   scheme: "#cicCaseSchemeCic",
   caseRegion: "#cicCaseRegionCIC",
   CICAReferenceNumber: "#cicCaseCicaReferenceNumber",
@@ -100,6 +107,12 @@ const editCaseFurtherDetailsObjectPage: EditCaseFurtherDetailsObjectPage = {
       ),
       expect(page.locator(".form-label").nth(11)).toHaveText(
         editCaseFurtherDetailsObjectContent.no,
+      ),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
       ),
     ]);
     if (accessibilityTest) {

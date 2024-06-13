@@ -17,6 +17,8 @@ import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/
 
 type SubmitPage = {
   saveAndContinue: string;
+  previous: string;
+  cancel: string;
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -81,6 +83,8 @@ type SubmitPage = {
 
 const submitPage: SubmitPage = {
   saveAndContinue: '[type="submit"]',
+  previous: ".button-secondary",
+  cancel: ".cancel",
 
   async checkPageLoads(
     page: Page,
@@ -122,6 +126,12 @@ const submitPage: SubmitPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
+      ),
+      commonHelpers.checkForButtons(
+        page,
+        this.saveAndContinue,
+        this.previous,
+        this.cancel,
       ),
       expect(page.locator(".text-16").nth(0)).toHaveText(
         submit_content.textOnPage1,

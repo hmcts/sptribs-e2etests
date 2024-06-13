@@ -6,7 +6,9 @@ import editCaseDateObjectsContent from "../../../fixtures/content/CaseAPI/editCa
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditCaseDateObjectsPage = {
+  previous: string;
   continue: string;
+  cancel: string;
   day: string;
   month: string;
   year: string;
@@ -20,7 +22,9 @@ type EditCaseDateObjectsPage = {
 };
 
 const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
+  previous: "button[name='Previous']",
   continue: '[type="submit"]',
+  cancel: ".cancel",
   day: "#cicCaseCaseReceivedDate-day",
   month: "#cicCaseCaseReceivedDate-month",
   year: "#cicCaseCaseReceivedDate-year",
@@ -52,6 +56,12 @@ const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
           1,
         );
       }),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

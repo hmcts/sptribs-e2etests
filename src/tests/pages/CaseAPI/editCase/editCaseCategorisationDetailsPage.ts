@@ -9,7 +9,9 @@ import editCaseCategorisationDetailsContent from "../../../fixtures/content/Case
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditCaseCategorisationDetailsPage = {
+  previous: string;
   continue: string;
+  cancel: string;
   category: string;
   subCategory: string;
   checkPageLoads(
@@ -27,7 +29,9 @@ type EditCaseCategorisationDetailsPage = {
 };
 
 const editCaseCategorisationDetailsPage: EditCaseCategorisationDetailsPage = {
+  previous: ".button-secondary[disabled]",
   continue: '[type="submit"]',
+  cancel: ".cancel",
   category: "#cicCaseCaseCategory",
   subCategory: "#cicCaseCaseSubcategory",
 
@@ -58,6 +62,12 @@ const editCaseCategorisationDetailsPage: EditCaseCategorisationDetailsPage = {
           1,
         );
       }),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

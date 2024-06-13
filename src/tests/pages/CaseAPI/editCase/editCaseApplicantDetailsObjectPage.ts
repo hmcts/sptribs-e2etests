@@ -8,7 +8,9 @@ import editCaseApplicantDetailsObjectContent from "../../../fixtures/content/Cas
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditCaseApplicantDetailsObjectPage = {
+  previous: string;
   continue: string;
+  cancel: string;
   findAddress: string;
   fullName: string;
   phoneNumber: string;
@@ -29,7 +31,9 @@ type EditCaseApplicantDetailsObjectPage = {
 };
 
 const editCaseApplicantDetailsObjectPage: EditCaseApplicantDetailsObjectPage = {
+  previous: "button[name='Previous']",
   continue: '[type="submit"]',
+  cancel: ".cancel",
   findAddress: ".button-30",
   fullName: "#cicCaseApplicantFullName",
   phoneNumber: "#cicCaseApplicantPhoneNumber",
@@ -67,6 +71,12 @@ const editCaseApplicantDetailsObjectPage: EditCaseApplicantDetailsObjectPage = {
           1,
         );
       }),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

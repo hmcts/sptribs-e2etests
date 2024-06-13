@@ -1,12 +1,14 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { SubCategory } from "../../../helpers/commonHelpers.ts";
+import commonHelpers, { SubCategory } from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
 import editCaseObjectsSubjectsContent from "../../../fixtures/content/CaseAPI/editCase/editCaseObjectsSubjects_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditCaseObjectsSubjectsPage = {
+  previous: string;
   continue: string;
+  cancel: string;
   subjectSelectBox: string;
   representativeSelectBox: string;
   applicantSelectBox: string;
@@ -26,7 +28,9 @@ type EditCaseObjectsSubjectsPage = {
 };
 
 const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
+  previous: "button[name='Previous']",
   continue: '[type="submit"]',
+  cancel: ".cancel",
   subjectSelectBox: "#cicCasePartiesCIC-SubjectCIC",
   representativeSelectBox: "#cicCasePartiesCIC-RepresentativeCIC",
   applicantSelectBox: "#cicCasePartiesCIC-ApplicantCIC",
@@ -57,6 +61,12 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
           textOnPage,
         );
       }),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (accessibilityTest) {
       await axeTest(page);
