@@ -27,7 +27,7 @@ type CreateSummaryHearingTypeAndFormatPage = {
 
 const createSummaryHearingTypeAndFormatPage: CreateSummaryHearingTypeAndFormatPage =
   {
-    previous: ".button-secondary[disabled]",
+    previous: "button[name='Previous']",
     continue: '[type="submit"]',
     cancel: ".cancel",
 
