@@ -81,20 +81,22 @@ const editCaseRepresentativeDetailsObjectPage: EditCaseRepresentativeDetailsObje
 
     async checkFields(page: Page, initialState: initialState): Promise<void> {
       if (initialState !== "DSS Submitted") {
-        await expect(page.locator(this.fullName)).toHaveValue(
-          editCaseRepresentativeDetailsObjectContent.name,
-        );
-        await expect(page.locator(this.orgName)).toHaveValue(
-          editCaseRepresentativeDetailsObjectContent.organisation,
-        );
-        await expect(page.locator(this.phoneNumber)).toHaveValue(
-          editCaseRepresentativeDetailsObjectContent.contactNumber,
-        );
-        await expect(page.getByLabel("Yes", { exact: true })).toBeChecked();
-        await expect(page.getByLabel("Email", { exact: true })).toBeChecked();
-        await expect(page.locator(this.emailAddress)).toHaveValue(
-          editCaseRepresentativeDetailsObjectContent.emailAddress,
-        );
+        await Promise.all([
+          expect(page.locator(this.fullName)).toHaveValue(
+            editCaseRepresentativeDetailsObjectContent.name,
+          ),
+          expect(page.locator(this.orgName)).toHaveValue(
+            editCaseRepresentativeDetailsObjectContent.organisation,
+          ),
+          expect(page.locator(this.phoneNumber)).toHaveValue(
+            editCaseRepresentativeDetailsObjectContent.contactNumber,
+          ),
+          expect(page.getByLabel("Yes", { exact: true })).toBeChecked(),
+          expect(page.getByLabel("Email", { exact: true })).toBeChecked(),
+          expect(page.locator(this.emailAddress)).toHaveValue(
+            editCaseRepresentativeDetailsObjectContent.emailAddress,
+          ),
+        ]);
       }
     },
 

@@ -89,38 +89,42 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
   },
 
   async checkFields(page: Page, initialState: initialState): Promise<void> {
-    await expect(page.locator(this.fullName)).toHaveValue(
-      editCaseSubjectDetailsObjectContent.name,
-    );
-    await expect(page.locator(this.phoneNumber)).toHaveValue(
-      editCaseSubjectDetailsObjectContent.contactNumber,
-    );
-    await expect(page.locator(this.day)).toHaveValue(
-      "0" + editCaseSubjectDetailsObjectContent.dayOfBirth,
-    );
-    await expect(page.locator(this.year)).toHaveValue(
-      editCaseSubjectDetailsObjectContent.yearOfBirth,
-    );
-    await expect(page.getByLabel("Email", { exact: true })).toBeChecked();
-    await expect(page.locator(this.emailAddress)).toHaveValue(
-      editCaseSubjectDetailsObjectContent.emailAddress,
-    );
+    await Promise.all([
+      expect(page.locator(this.fullName)).toHaveValue(
+        editCaseSubjectDetailsObjectContent.name,
+      ),
+      expect(page.locator(this.phoneNumber)).toHaveValue(
+        editCaseSubjectDetailsObjectContent.contactNumber,
+      ),
+      expect(page.locator(this.day)).toHaveValue(
+        "0" + editCaseSubjectDetailsObjectContent.dayOfBirth,
+      ),
+      expect(page.locator(this.year)).toHaveValue(
+        editCaseSubjectDetailsObjectContent.yearOfBirth,
+      ),
+      expect(page.getByLabel("Email", { exact: true })).toBeChecked(),
+      expect(page.locator(this.emailAddress)).toHaveValue(
+        editCaseSubjectDetailsObjectContent.emailAddress,
+      ),
+    ]);
     if (initialState !== "DSS Submitted") {
-      await expect(page.locator(this.month)).toHaveValue(
-        "0" + editCaseSubjectDetailsObjectContent.monthOfBirth,
-      );
-      await expect(
-        page.locator("#cicCaseAddress__detailAddressLine1"),
-      ).toHaveValue(authors_content.buildingAndStreet);
-      await expect(page.locator("#cicCaseAddress__detailPostTown")).toHaveValue(
-        authors_content.townOrCity,
-      );
-      await expect(page.locator("#cicCaseAddress__detailCountry")).toHaveValue(
-        authors_content.country,
-      );
-      await expect(page.locator("#cicCaseAddress__detailPostCode")).toHaveValue(
-        authors_content.postCode,
-      );
+      await Promise.all([
+        expect(page.locator(this.month)).toHaveValue(
+          "0" + editCaseSubjectDetailsObjectContent.monthOfBirth,
+        ),
+        expect(page.locator("#cicCaseAddress__detailAddressLine1")).toHaveValue(
+          authors_content.buildingAndStreet,
+        ),
+        expect(page.locator("#cicCaseAddress__detailPostTown")).toHaveValue(
+          authors_content.townOrCity,
+        ),
+        expect(page.locator("#cicCaseAddress__detailCountry")).toHaveValue(
+          authors_content.country,
+        ),
+        expect(page.locator("#cicCaseAddress__detailPostCode")).toHaveValue(
+          authors_content.postCode,
+        ),
+      ]);
     } else {
       await expect(page.locator(this.month)).toHaveValue("01");
     }

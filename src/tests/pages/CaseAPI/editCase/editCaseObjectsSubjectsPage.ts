@@ -78,8 +78,10 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
     }
     await expect(page.locator(this.subjectSelectBox)).toBeChecked();
     if (initialState !== "DSS Submitted") {
-      await expect(page.locator(this.representativeSelectBox)).toBeChecked();
-      await expect(page.locator(this.applicantSelectBox)).toBeChecked();
+      await Promise.all([
+        expect(page.locator(this.representativeSelectBox)).toBeChecked(),
+        expect(page.locator(this.applicantSelectBox)).toBeChecked(),
+      ]);
       if (!representative) {
         await page.click(this.representativeSelectBox);
       }
@@ -114,11 +116,9 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
     ]);
     await page.click(this.representativeSelectBox);
     await page.click(this.continue);
-    await Promise.all([
-      expect(page.locator(".error-summary-list")).toContainText(
-        editCaseObjectsSubjectsContent.subjectError,
-      ),
-    ]);
+    await expect(page.locator(".error-summary-list")).toContainText(
+      editCaseObjectsSubjectsContent.subjectError,
+    );
     await page.click(this.subjectSelectBox);
   },
 };

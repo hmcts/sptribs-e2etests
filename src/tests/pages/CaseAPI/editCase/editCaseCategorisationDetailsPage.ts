@@ -71,8 +71,10 @@ const editCaseCategorisationDetailsPage: EditCaseCategorisationDetailsPage = {
     subCategory: string,
   ): Promise<void> {
     if (initialState !== "DSS Submitted") {
-      await expect(page.locator(this.category)).toHaveValue("1: Assessment");
-      await expect(page.locator(this.subCategory)).toHaveValue("7: other");
+      await Promise.all([
+        expect(page.locator(this.category)).toHaveValue("1: Assessment"),
+        expect(page.locator(this.subCategory)).toHaveValue("7: other"),
+      ]);
     }
     await page.selectOption(this.category, category);
     await page.selectOption(this.subCategory, subCategory);

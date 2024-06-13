@@ -109,12 +109,14 @@ const editCaseFurtherDetailsObjectPage: EditCaseFurtherDetailsObjectPage = {
 
   async checkFields(page: Page, initialState: initialState): Promise<void> {
     if (initialState !== "DSS Submitted") {
-      await expect(page.locator(this.scheme)).toHaveValue("1: Preference");
-      await expect(page.locator(this.caseRegion)).toHaveValue("1: Scotland");
-      await expect(page.locator(this.claimLinkedYes)).toBeChecked();
-      await expect(page.locator(this.CICAReferenceNumber)).toHaveValue("1");
-      await expect(page.locator(this.compensationLinkedYes)).toBeChecked();
-      await expect(page.locator(this.tribunalFormInTimeYes)).toBeChecked();
+      await Promise.all([
+        expect(page.locator(this.scheme)).toHaveValue("1: Preference"),
+        expect(page.locator(this.caseRegion)).toHaveValue("1: Scotland"),
+        expect(page.locator(this.claimLinkedYes)).toBeChecked(),
+        expect(page.locator(this.CICAReferenceNumber)).toHaveValue("1"),
+        expect(page.locator(this.compensationLinkedYes)).toBeChecked(),
+        expect(page.locator(this.tribunalFormInTimeYes)).toBeChecked(),
+      ]);
     }
   },
 

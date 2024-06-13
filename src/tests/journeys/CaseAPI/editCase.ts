@@ -316,7 +316,6 @@ const editCase: EditCase = {
           );
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-
           break;
         case true:
           await editCaseCategorisationDetailsPage.checkPageLoads(

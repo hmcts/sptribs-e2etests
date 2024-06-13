@@ -75,25 +75,27 @@ const editCaseApplicantDetailsObjectPage: EditCaseApplicantDetailsObjectPage = {
 
   async checkFields(page: Page, initialState: initialState): Promise<void> {
     if (initialState !== "DSS Submitted") {
-      await expect(page.locator(this.fullName)).toHaveValue(
-        editCaseApplicantDetailsObjectContent.name,
-      );
-      await expect(page.locator(this.phoneNumber)).toHaveValue(
-        editCaseApplicantDetailsObjectContent.contactNumber,
-      );
-      await expect(page.locator(this.day)).toHaveValue(
-        "0" + editCaseApplicantDetailsObjectContent.dayOfBirth,
-      );
-      await expect(page.locator(this.month)).toHaveValue(
-        "0" + editCaseApplicantDetailsObjectContent.monthOfBirth,
-      );
-      await expect(page.locator(this.year)).toHaveValue(
-        editCaseApplicantDetailsObjectContent.yearOfBirth,
-      );
-      await expect(page.getByLabel("Email", { exact: true })).toBeChecked();
-      await expect(page.locator(this.emailAddress)).toHaveValue(
-        editCaseApplicantDetailsObjectContent.emailAddress,
-      );
+      await Promise.all([
+        expect(page.locator(this.fullName)).toHaveValue(
+          editCaseApplicantDetailsObjectContent.name,
+        ),
+        expect(page.locator(this.phoneNumber)).toHaveValue(
+          editCaseApplicantDetailsObjectContent.contactNumber,
+        ),
+        expect(page.locator(this.day)).toHaveValue(
+          "0" + editCaseApplicantDetailsObjectContent.dayOfBirth,
+        ),
+        expect(page.locator(this.month)).toHaveValue(
+          "0" + editCaseApplicantDetailsObjectContent.monthOfBirth,
+        ),
+        expect(page.locator(this.year)).toHaveValue(
+          editCaseApplicantDetailsObjectContent.yearOfBirth,
+        ),
+        expect(page.getByLabel("Email", { exact: true })).toBeChecked(),
+        expect(page.locator(this.emailAddress)).toHaveValue(
+          editCaseApplicantDetailsObjectContent.emailAddress,
+        ),
+      ]);
     }
   },
 
