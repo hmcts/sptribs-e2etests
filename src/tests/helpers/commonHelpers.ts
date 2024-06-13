@@ -494,11 +494,13 @@ const commonHelpers: CommonHelpers = {
         1,
       );
     }
-    if (template === "CIC13 - Pro Forma Summons" && caseNoticeType !== null) {
-      await this.checkVisibleAndPresent(
-        newPage.locator(`span:text-is("${caseNoticeType}")`),
-        1,
-      );
+    if (template !== "CIC13 - Pro Forma Summons") {
+      if (caseNoticeType !== null) {
+        await this.checkVisibleAndPresent(
+          newPage.locator(`span:text-is("${caseNoticeType}")`),
+          1
+        );
+      }
     }
   },
 

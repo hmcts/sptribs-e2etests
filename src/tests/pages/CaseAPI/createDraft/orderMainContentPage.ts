@@ -79,30 +79,26 @@ const orderMainContentPage: OrderMainContentPage = {
       ),
     ]);
     let textBoxValue = "";
+    textBoxValue = await page.locator(`textarea`).inputValue();
     switch (template) {
       default:
         await expect(page.locator(`textarea`)).toBeEmpty();
         break;
       case "CIC3 - Rule 27":
-        textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(`${orderMainContent_content.rule27}`);
         break;
       case "CIC7 - ME Dmi Reports":
-        textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(`${orderMainContent_content.dmiReports}`);
         break;
       case "CIC8 - ME Joint Instruction":
-        textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(`${orderMainContent_content.joint}`);
         break;
       case "CIC10 - Strike Out Warning":
-        textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(
           `${orderMainContent_content.strikeoutWarn}`,
         );
         break;
       case "CIC13 - Pro Forma Summons":
-        textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(`${orderMainContent_content.proForma}`);
         break;
     }

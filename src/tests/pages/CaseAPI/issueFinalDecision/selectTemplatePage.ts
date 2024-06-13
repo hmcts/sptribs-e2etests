@@ -75,7 +75,7 @@ const selectTemplatePage: SelectTemplatePage = {
   },
 
   async fillInFields(page: Page, template: Template): Promise<void> {
-    await page.selectOption(`#caseIssueFinalDecisionTemplate`, template);
+    await page.selectOption(`#caseIssueFinalDecisionDecisionTemplate`, template);
     await page.click(this.continue);
   },
 
