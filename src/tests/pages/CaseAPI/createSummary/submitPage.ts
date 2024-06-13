@@ -156,6 +156,12 @@ const submitPage: SubmitPage = {
           1,
         );
       }),
+      commonHelpers.checkForButtons(
+        page,
+        this.saveAndContinue,
+        this.previous,
+        this.cancel,
+      ),
     ]);
     if (venue) {
       await commonHelpers.checkVisibleAndPresent(
