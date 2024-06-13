@@ -468,18 +468,33 @@ const commonHelpers: CommonHelpers = {
         ),
         1,
       ),
-      this.checkVisibleAndPresent(
+    ]);
+    if (template === "CIC14 – LO General Directions") {
+      await Promise.all([
+        this.checkVisibleAndPresent(
+          newPage.locator(`span:text-is("Dated ")`),
+          1,
+        ),
+        this.checkVisibleAndPresent(
+          newPage.locator(`span:text-is("${await this.todayDate()}")`),
+          1,
+        ),
+      ]);
+    } else {
+      await this.checkVisibleAndPresent(
         newPage.locator(`span:text-is("Dated ${await this.todayDate()}")`),
         1,
-      ),
-      this.checkVisibleAndPresent(
+      );
+    }
+    if (template !== "CIC3 - Rule 27" && caseNoticeType !== null) {
+      await this.checkVisibleAndPresent(
         newPage.locator(
           `span:text-is("${addDocumentFooter_content.signature}")`,
         ),
         1,
-      ),
-    ]);
-    if (template !== "CIC13 - Pro Forma Summons" || caseNoticeType !== null) {
+      );
+    }
+    if (template === "CIC13 - Pro Forma Summons" && caseNoticeType !== null) {
       await this.checkVisibleAndPresent(
         newPage.locator(`span:text-is("${caseNoticeType}")`),
         1,
@@ -625,6 +640,23 @@ const commonHelpers: CommonHelpers = {
           ),
         ]);
         break;
+      case "CIC8 - ME Joint Instruction":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (MeJoint as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            template,
+          ),
+        ]);
+        break;
       case "CIC10 - Strike Out Warning":
         await Promise.all([
           ...Array.from({ length: 14 }, (_, index) => {
@@ -680,21 +712,25 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
           ),
-          this.checkVisibleAndPresent(
-            newPage.locator(`span:text-is("Fox Court")`),
-            1,
-          ),
-          this.checkVisibleAndPresent(
-            newPage.locator(
-              `span:text-is("${createSummaryListingDetails_content.morningTime}")`,
-            ),
-            1,
-          ),
         ]);
+        if (caseNoticeType !== null) {
+          await Promise.all([
+            this.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("Fox Court")`),
+              1,
+            ),
+            this.checkVisibleAndPresent(
+              newPage.locator(
+                `span:text-is("${createSummaryListingDetails_content.morningTime}")`,
+              ),
+              1,
+            ),
+          ]);
+        }
         break;
       case "CIC14 – LO General Directions":
         await Promise.all([
-          ...Array.from({ length: 16 }, (_, index) => {
+          ...Array.from({ length: 15 }, (_, index) => {
             const textOnPage = (loGeneralDirections as any)[
               `textOnPage${index + 1}`
             ];

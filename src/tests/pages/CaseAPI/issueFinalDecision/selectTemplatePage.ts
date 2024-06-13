@@ -13,6 +13,7 @@ export type Template =
   | "CIC6 - General Directions"
   | "CIC7 - ME Dmi Reports"
   | "CIC8 - ME Joint Instructions"
+  | "CIC8 - ME Joint Instruction"
   | "CIC10 - Strike Out Warning"
   | "CIC11 - Strike Out Decision Notice"
   | "CIC13 - Pro Forma Summons"

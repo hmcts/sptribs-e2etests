@@ -4,13 +4,13 @@ const orderMainContent_content = {
   caseReference: "Case number: ",
   subTitle1: "Header",
   textOnPage1:
-    "The header will be automatically generated.You can preview this in pdf document on the next screen.",
+    "The header will be automatically generated. You can preview this in the pdf document on the next screen.",
   subTitle2: "Main content",
   textOnPage2:
     "Enter text in the box below. This will be added into the centre of the generated order document.",
   subTitle3: "Footer",
   textOnPage3:
-    "The footer will be automatically generated. You can preview this in pdf document on the next screen.",
+    "The footer will be automatically generated. You can preview this in the pdf document on the next screen.",
 
   rule27: `1.     Rule 27 (4) provides that the Tribunal may make a decision which disposes of proceedings without a hearing.
 2.     The Tribunal has decided to make a decision without a hearing because
@@ -73,7 +73,7 @@ Failure to comply with this summons or order may lead to the matter being referr
   description: "Lorem ipsum main content.",
 
   errorBanner: "There is a problem",
-  errorNoEntryDescription: "Field is required",
+  errorNoEntryDescription: "Main content is required",
 } as const;
 
 export default orderMainContent_content;

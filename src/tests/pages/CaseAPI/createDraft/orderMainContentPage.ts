@@ -91,7 +91,7 @@ const orderMainContentPage: OrderMainContentPage = {
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(`${orderMainContent_content.dmiReports}`);
         break;
-      case "CIC8 - ME Joint Instructions":
+      case "CIC8 - ME Joint Instruction":
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(`${orderMainContent_content.joint}`);
         break;
