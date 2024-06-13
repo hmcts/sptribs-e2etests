@@ -148,6 +148,8 @@ const closeCase: CloseCase = {
             );
             await rule27Page.continueOn(page);
             break;
+          case "deathOfAppellant":
+            break;
         }
         await uploadDocumentsPage.checkPageLoads(
           page,

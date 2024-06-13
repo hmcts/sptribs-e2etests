@@ -11,7 +11,8 @@ export type CaseCloseReason =
   | "caseStrikeOut"
   | "caseConcession"
   | "consentOrder"
-  | "rule27";
+  | "rule27"
+  | "deathOfAppellant";
 
 type SelectReasonPage = {
   continue: string;

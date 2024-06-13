@@ -112,7 +112,6 @@ const submitPage: SubmitPage = {
             1,
           ),
         ]);
-
         if (optionalText) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.textOnPage1}")`),
@@ -173,6 +172,14 @@ const submitPage: SubmitPage = {
             1,
           ),
         ]);
+        if (optionalText) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${submit_content.textOnPage1}")`),
+            1,
+          );
+        }
+        break;
+      case "deathOfAppellant":
         if (optionalText) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.textOnPage1}")`),
@@ -497,6 +504,25 @@ const submitPage: SubmitPage = {
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${rule27_content.day} ${await commonHelpers.shortMonths(parseInt(rule27_content.month))} ${rule27_content.year}")`,
+            ),
+            1,
+          ),
+        ]);
+        if (optionalText) {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.ng-valid > div > .ng-valid > div > ccd-read-text-area-field > span:text-is("${selectReason_content.optionalText}")`,
+            ),
+            1,
+          );
+        }
+        break;
+      case "deathOfAppellant":
+        await Promise.all([
+          this.checkCommonInfo(page),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${selectReason_content.textOnPage9}")`,
             ),
             1,
           ),
