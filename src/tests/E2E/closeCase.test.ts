@@ -371,7 +371,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a ready to list case due to death of appellant as a caseworker with optional information.", async ({
+  test("Close a ready to list case due to death of appellant as a caseworker with no optional information.", async ({
     page,
   }): Promise<void> => {
     await closeCase.closeCase(
@@ -381,7 +381,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       "Ready to list",
       false,
       "deathOfAppellant",
-      true,
+      false,
       null,
       null,
     );

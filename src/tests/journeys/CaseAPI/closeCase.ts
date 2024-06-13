@@ -94,13 +94,7 @@ const closeCase: CloseCase = {
       default:
         await selectReasonPage.continueOn(page, closeReason, optionalText);
         switch (closeReason) {
-          default: // Case withdrawn
-            await withdrawalDetailsPage.checkPageLoads(
-              page,
-              caseNumber,
-              accessibilityTest,
-            );
-            await withdrawalDetailsPage.continueOn(page);
+          default: // Death of appellant
             break;
           case "caseRejected":
             await rejectionDetailsPage.checkPageLoads(
@@ -148,7 +142,13 @@ const closeCase: CloseCase = {
             );
             await rule27Page.continueOn(page);
             break;
-          case "deathOfAppellant":
+          case "caseWithdrawn":
+            await withdrawalDetailsPage.checkPageLoads(
+              page,
+              caseNumber,
+              accessibilityTest,
+            );
+            await withdrawalDetailsPage.continueOn(page);
             break;
         }
         await uploadDocumentsPage.checkPageLoads(
