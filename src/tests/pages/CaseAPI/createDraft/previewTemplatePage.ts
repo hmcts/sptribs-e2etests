@@ -4,8 +4,8 @@ import commonHelpers, {
   CaseNoticeType,
 } from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import previewTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/previewTemplate_content.ts";
-import { Template } from "./selectTemplatePage.ts";
+import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
+import previewTemplate_content from "../../../fixtures/content/CaseAPI/createDraft/previewTemplate_content.ts";
 
 type PreviewTemplatePage = {
   previous: string;
@@ -53,10 +53,15 @@ const previewTemplatePage: PreviewTemplatePage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`p:text-is("${previewTemplate_content.textOnPage2}")`),
-        1,
-      ),
+      ...Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (previewTemplate_content as any)[
+          `textOnPage${index + 2}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`p:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
       commonHelpers.checkForButtons(
         page,
         this.continue,

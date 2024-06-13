@@ -7,7 +7,7 @@ import noticeOptionPage, {
 } from "../../pages/CaseAPI/issueFinalDecision/noticeOptionPage.ts";
 import decisionUploadPage from "../../pages/CaseAPI/issueFinalDecision/decisionUploadPage.ts";
 import selectTemplatePage, {
-  DecisionTemplate,
+  Template,
 } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import finalDecisionMainPage from "../../pages/CaseAPI/issueFinalDecision/finalDecisionMainPage.ts";
 import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDocumentFooterPage.ts";
@@ -24,7 +24,7 @@ type IssueFinalDecision = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     noticeType: NoticeType,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
     caseNoticeType: CaseNoticeType,
   ): Promise<string | void>;
 };
@@ -36,7 +36,7 @@ const issueFinalDecision: IssueFinalDecision = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     noticeType: NoticeType,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
     caseNoticeType: CaseNoticeType,
   ): Promise<string | void> {
     let caseNumber: string | void;
@@ -98,12 +98,12 @@ const issueFinalDecision: IssueFinalDecision = {
                 caseNumber,
                 accessibilityTest,
               );
-              await selectTemplatePage.fillInFields(page, decisionTemplate);
+              await selectTemplatePage.fillInFields(page, template);
               await finalDecisionMainPage.checkPageLoads(
                 page,
                 caseNumber,
                 accessibilityTest,
-                decisionTemplate,
+                template,
               );
               await finalDecisionMainPage.fillInFields(page);
               await addDocumentFooterPage.checkPageLoads(
@@ -119,7 +119,7 @@ const issueFinalDecision: IssueFinalDecision = {
               );
               await previewTemplatePage.fillInFields(
                 page,
-                decisionTemplate,
+                template,
                 caseNumber,
                 caseNoticeType,
               );
@@ -137,7 +137,7 @@ const issueFinalDecision: IssueFinalDecision = {
             accessibilityTest,
             noticeType,
           );
-          await submitPage.checkAllInfo(page, noticeType, decisionTemplate);
+          await submitPage.checkAllInfo(page, noticeType, template);
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, accessibilityTest);
           await confirmPage.closeAndReturnToCase(page);
@@ -173,7 +173,7 @@ const issueFinalDecision: IssueFinalDecision = {
             page,
             caseNumber,
             accessibilityTest,
-            decisionTemplate,
+            template,
           );
           await finalDecisionMainPage.triggerErrorMessages(page);
           await addDocumentFooterPage.checkPageLoads(
@@ -189,7 +189,7 @@ const issueFinalDecision: IssueFinalDecision = {
           );
           await previewTemplatePage.fillInFields(
             page,
-            decisionTemplate,
+            template,
             caseNumber,
             caseNoticeType,
           );
