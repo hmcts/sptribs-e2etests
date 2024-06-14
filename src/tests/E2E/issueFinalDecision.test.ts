@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import issueFinalDecision from "../journeys/CaseAPI/issueFinalDecision.ts";
 
-test.describe("Issue a final decision tests @CaseAPI", () => {
+test.describe.only("Issue a final decision tests @CaseAPI", () => {
   test("As a caseworker issue a final decision which is uploaded", async ({
     page,
   }): Promise<void> => {

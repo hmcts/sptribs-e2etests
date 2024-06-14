@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import editDraft from "../journeys/CaseAPI/editDraft.ts";
 
-test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
-  test("As a Caseworker create a CIC3 draft in the Case Management state.", async ({
+test.describe.only("Case-API Edit draft tests. @CaseAPI", () => {
+  test("As a Caseworker edit a CIC3 draft in the Case Management state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "caseWorker",
       "Case Management",
@@ -15,10 +15,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a Senior Caseworker create a CIC6 draft in the Ready to list state.", async ({
+  test("As a Senior Caseworker edit a CIC6 draft in the Ready to list state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "seniorCaseworker",
       "Ready to list",
@@ -28,10 +28,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a hearing centre admin create a CIC7 draft in the Awaiting Hearing state.", async ({
+  test("As a hearing centre admin edit a CIC7 draft in the Awaiting Hearing state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "hearingCentreAdmin",
       "Awaiting Hearing",
@@ -41,10 +41,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a hearing Centre Team Lead create a CIC8 draft in the Case Stayed state.", async ({
+  test("As a hearing Centre Team Lead edit a CIC8 draft in the Case Stayed state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "hearingCentreTeamLead",
       "Case Stayed",
@@ -54,10 +54,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a Senior Judge create a CIC10 draft in the Case closed state.", async ({
+  test("As a Senior Judge edit a CIC10 draft in the Case closed state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "seniorJudge",
       "Case closed",
@@ -67,10 +67,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a Judge create a CIC13 draft in the case management state.", async ({
+  test("As a Judge edit a CIC13 draft in the case management state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "judge",
       "Case Management",
@@ -80,10 +80,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a Caseworker create a CIC14 draft in the case management state.", async ({
+  test("As a Caseworker edit a CIC14 draft in the case management state.", async ({
     page,
   }) => {
-    await createDraft.createDraft(
+    await editDraft.editDraft(
       page,
       "caseWorker",
       "Case Management",
@@ -93,8 +93,8 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Create draft", async ({ page }) => {
-    await createDraft.createDraft(
+  test("Error messaging - Edit draft", async ({ page }) => {
+    await editDraft.editDraft(
       page,
       "caseWorker",
       "Case Management",
@@ -105,10 +105,10 @@ test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Create draft @accessibilityCaseAPI", async ({
+test("Accessibility test - Edit draft @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
-  await createDraft.createDraft(
+  await editDraft.editDraft(
     page,
     "caseWorker",
     "Case Management",

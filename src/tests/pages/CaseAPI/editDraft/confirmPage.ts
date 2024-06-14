@@ -1,0 +1,52 @@
+import { expect, Page } from "@playwright/test";
+import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import confirm_content from "../../../fixtures/content/CaseAPI/editDraft/confirm_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+
+type ConfirmPage = {
+  closeAndReturn: string;
+  checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void>;
+  closeAndReturnToCase(page: Page): Promise<void>;
+};
+
+const createCaseConfirmPage: ConfirmPage = {
+  closeAndReturn: ".button",
+
+  async checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await Promise.all([
+      expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
+      expect(page.locator("markdown > h3")).toContainText(
+        caseSubjectDetailsObject_content.name,
+      ),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        confirm_content.caseReference + caseNumber,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`markdown > h1:text-is("${confirm_content.subTitle}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`markdown > h2:text-is("${confirm_content.textOnPage}")`),
+        1,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
+  },
+
+  async closeAndReturnToCase(page: Page): Promise<void> {
+    await page.locator(this.closeAndReturn).click();
+  },
+};
+
+export default createCaseConfirmPage;
