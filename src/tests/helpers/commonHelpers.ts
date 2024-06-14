@@ -498,7 +498,7 @@ const commonHelpers: CommonHelpers = {
       if (caseNoticeType !== null) {
         await this.checkVisibleAndPresent(
           newPage.locator(`span:text-is("${caseNoticeType}")`),
-          1
+          1,
         );
       }
     }
