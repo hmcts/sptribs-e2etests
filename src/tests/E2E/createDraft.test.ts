@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
 
-test.describe.only("Case-API Create draft tests. @CaseAPI", () => {
+test.describe("Case-API Create draft tests. @CaseAPI", () => {
   test("As a Caseworker create a CIC3 draft in the Case Management state.", async ({
     page,
   }) => {
