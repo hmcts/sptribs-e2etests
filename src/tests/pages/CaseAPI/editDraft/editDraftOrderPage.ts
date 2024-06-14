@@ -19,7 +19,7 @@ type EditDraftOrderPage = {
 };
 
 const editDraftOrderPage: EditDraftOrderPage = {
-  previous: ".button-secondary",
+  previous: ".button-secondary[disabled]",
   continue: '[type="submit"]',
   cancel: ".cancel",
 
@@ -65,7 +65,9 @@ const editDraftOrderPage: EditDraftOrderPage = {
 
   async fillInFields(page: Page): Promise<string | null> {
     await page.selectOption(`#cicCaseDraftOrderDynamicList`, { index: 1 });
-    return await page.textContent("#cicCaseDraftOrderDynamicList > option:nth-child(2)");
+    return await page.textContent(
+      "#cicCaseDraftOrderDynamicList > option:nth-child(2)",
+    );
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
