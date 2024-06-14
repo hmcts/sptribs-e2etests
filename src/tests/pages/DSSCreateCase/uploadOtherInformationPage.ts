@@ -268,6 +268,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
     switch (cy) {
       case true:
+        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -285,6 +286,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         ]);
         break;
       default:
+        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -302,6 +304,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         ]);
         break;
     }
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
   },
 
   async pressBackButton(page: Page): Promise<void> {
