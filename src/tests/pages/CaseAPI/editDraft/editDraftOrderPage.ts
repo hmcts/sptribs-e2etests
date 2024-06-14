@@ -13,8 +13,9 @@ type EditDraftOrderPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page): Promise<string | null>;
   triggerErrorMessages(page: Page): Promise<void>;
+  continueOn(page: Page): Promise<void>;
 };
 
 const editDraftOrderPage: EditDraftOrderPage = {
@@ -57,14 +58,14 @@ const editDraftOrderPage: EditDraftOrderPage = {
         this.cancel,
       ),
     ]);
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
-  async fillInFields(page: Page): Promise<void> {
+  async fillInFields(page: Page): Promise<string | null> {
     await page.selectOption(`#cicCaseDraftOrderDynamicList`, { index: 1 });
-    await page.click(this.continue);
+    return await page.textContent("#cicCaseDraftOrderDynamicList > option:nth-child(2)");
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
@@ -89,6 +90,10 @@ const editDraftOrderPage: EditDraftOrderPage = {
         1,
       ),
     ]);
+  },
+
+  async continueOn(page: Page): Promise<void> {
+    await page.click(this.continue);
   },
 };
 

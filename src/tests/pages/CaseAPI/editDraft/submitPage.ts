@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/editDraft/submit_content.ts";
 import editDraftOrderMainContentContent from "../../../fixtures/content/CaseAPI/editDraft/editDraftOrderMainContent_content.ts";
@@ -16,7 +15,7 @@ type SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  checkAllInfo(page: Page, template: Template): Promise<void>;
+  checkAllInfo(page: Page, editedTemplate: string | null): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -64,10 +63,10 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async checkAllInfo(page: Page, template: Template): Promise<void> {
+  async checkAllInfo(page: Page, editedTemplate: string | null): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${template}")`),
+        page.locator(`.text-16:text-is("${editedTemplate}")`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(

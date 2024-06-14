@@ -103,7 +103,8 @@ const editDraft: EditDraft = {
     );
     switch (errorMessaging) {
       default:
-        await editDraftOrderPage.fillInFields(page);
+        const editedTemplate = await editDraftOrderPage.fillInFields(page);
+        await editDraftOrderPage.continueOn(page);
         await editDraftOrderMainContentPage.checkPageLoads(
           page,
           caseNumber,
@@ -128,7 +129,7 @@ const editDraft: EditDraft = {
           null,
         );
         await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
-        await submitPage.checkAllInfo(page, template);
+        await submitPage.checkAllInfo(page, editedTemplate);
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
         await confirmPage.closeAndReturnToCase(page);
@@ -140,6 +141,8 @@ const editDraft: EditDraft = {
         break;
       case true:
         await editDraftOrderPage.triggerErrorMessages(page);
+        await editDraftOrderPage.fillInFields(page);
+        await editDraftOrderPage.continueOn(page);
         await editDraftOrderMainContentPage.checkPageLoads(
           page,
           caseNumber,
