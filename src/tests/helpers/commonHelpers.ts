@@ -853,7 +853,8 @@ export type allEvents =
   | "Refer case to legal officer"
   | "Decision: Issue final decision"
   | "Case: Add note"
-  | "Orders: Create draft";
+  | "Orders: Create draft"
+  | "Orders: Send order";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
