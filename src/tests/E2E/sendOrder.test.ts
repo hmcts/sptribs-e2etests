@@ -30,7 +30,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       false,
-      "1",
+      "3",
     );
   });
 
@@ -46,7 +46,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       true,
-      "1",
+      "5",
     );
   });
 
@@ -62,7 +62,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       false,
       true,
-      "1",
+      "7",
     );
   });
 
@@ -94,7 +94,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       true,
-      "1",
+      "3",
     );
   });
 
@@ -110,7 +110,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       true,
-      "1",
+      "5",
     );
   });
 
@@ -126,7 +126,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       false,
-      "1",
+      "7",
     );
   });
 
@@ -158,7 +158,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       false,
       true,
-      "1",
+      "3",
     );
   });
 
@@ -174,7 +174,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       false,
-      "1",
+      "5",
     );
   });
 
@@ -190,7 +190,7 @@ test.describe("Send order tests @CaseAPI", () => {
       false,
       true,
       true,
-      "1",
+      "7",
     );
   });
 
@@ -207,4 +207,20 @@ test.describe("Send order tests @CaseAPI", () => {
       "1",
     );
   });
+});
+
+test("Accessibility test - Send order @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await sendOrder.sendOrder(
+    page,
+    "caseWorker",
+    "Case Management",
+    "UploadOrder",
+    true,
+    true,
+    true,
+    true,
+    "1",
+  );
 });
