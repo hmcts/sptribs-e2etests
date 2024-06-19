@@ -80,6 +80,7 @@ const previewTemplatePage: PreviewTemplatePage = {
       template,
       caseNumber,
       caseNoticeType,
+      false,
     );
     await page.click(this.continue);
   },

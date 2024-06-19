@@ -5,9 +5,9 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
-import previewTemplate_content from "../../../fixtures/content/CaseAPI/createDraft/previewTemplate_content.ts";
+import editDraftPreviewTemplateContent from "../../../fixtures/content/CaseAPI/editDraft/editDraftPreviewTemplate_content.ts";
 
-type PreviewTemplatePage = {
+type EditDraftPreviewTemplatePage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -24,7 +24,7 @@ type PreviewTemplatePage = {
   ): Promise<void>;
 };
 
-const previewTemplatePage: PreviewTemplatePage = {
+const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
   previous: ".button-secondary",
   continue: '[type="submit"]',
   cancel: ".cancel",
@@ -36,25 +36,25 @@ const previewTemplatePage: PreviewTemplatePage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        previewTemplate_content.pageHint,
+        editDraftPreviewTemplateContent.pageHint,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        previewTemplate_content.pageTitle,
+        editDraftPreviewTemplateContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        previewTemplate_content.caseReference + caseNumber,
+        editDraftPreviewTemplateContent.caseReference + caseNumber,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.case-field__label:text-is("${previewTemplate_content.textOnPage1}")`,
+          `.case-field__label:text-is("${editDraftPreviewTemplateContent.textOnPage1}")`,
         ),
         1,
       ),
       ...Array.from({ length: 2 }, (_, index) => {
-        const textOnPage = (previewTemplate_content as any)[
+        const textOnPage = (editDraftPreviewTemplateContent as any)[
           `textOnPage${index + 2}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -85,10 +85,10 @@ const previewTemplatePage: PreviewTemplatePage = {
       template,
       caseNumber,
       caseNoticeType,
-      false,
+      true,
     );
     await page.click(this.continue);
   },
 };
 
-export default previewTemplatePage;
+export default editDraftPreviewTemplatePage;

@@ -168,7 +168,7 @@ const createDraft: CreateDraft = {
         await page.click(
           `.mat-tab-label-content:text-is("Orders & Decisions")`,
         );
-        await ordersAndDecisionsTabPage.checkDraftOrder(page, template);
+        await ordersAndDecisionsTabPage.checkDraftOrder(page, template, false);
         break;
       case true:
         await createDraftOrderPage.triggerErrorMessages(page);
