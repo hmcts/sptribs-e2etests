@@ -20,6 +20,7 @@ import sendOrderNotifyPage from "../../pages/CaseAPI/sendOrder/sendOrderNotifyPa
 import sendReminderPage, {
   ReminderDays,
 } from "../../pages/CaseAPI/sendOrder/sendReminderPage.ts";
+import submitPage from "../../pages/CaseAPI/sendOrder/submitPage.ts";
 
 type SendOrder = {
   sendOrder(
@@ -184,6 +185,21 @@ const sendOrder: SendOrder = {
           accessibilityTest,
         );
         await sendReminderPage.fillInFields(page, reminder, reminderDays);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          orderType,
+          completed,
+          reminder,
+        );
+        await submitPage.checkValidInfo(
+          page,
+          orderType,
+          completed,
+          reminder,
+          reminderDays,
+        );
         break;
       case true:
         await selectOrderIssuingTypePage.triggerErrorMessages(page);
