@@ -86,7 +86,7 @@ const sendReminderPage: SendReminderPage = {
             );
           }),
         ]);
-        await page.click(`#cicCaseOrderReminderDays-${days}\ day`);
+        await page.click(`[id^="cicCaseOrderReminderDays-${days}"]`);
         break;
       case false:
         await page.click(`#cicCaseOrderReminderYesOrNo-No`);
@@ -118,6 +118,7 @@ const sendReminderPage: SendReminderPage = {
       ),
     ]);
     await page.click(`#cicCaseOrderReminderYesOrNo-Yes`);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

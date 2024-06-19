@@ -18,7 +18,7 @@ type OrderDueDatesPage = {
 };
 
 const orderDueDatesPage: OrderDueDatesPage = {
-  previous: ".button-secondary",
+  previous: `.button-secondary:text-is("Previous")`,
   continue: '[type="submit"]',
   cancel: ".cancel",
   addNew: ".write-collection-add-item__top",
@@ -80,7 +80,9 @@ const orderDueDatesPage: OrderDueDatesPage = {
       orderDueDates_content.information,
     );
     if (completed) {
-      await page.click(`cicCaseOrderDueDates_0_orderMarkAsCompleted`);
+      await page.click(
+        `[id^="cicCaseOrderDueDates_0_orderMarkAsCompleted-Mark"]`,
+      );
     }
     await page.click(this.continue);
   },

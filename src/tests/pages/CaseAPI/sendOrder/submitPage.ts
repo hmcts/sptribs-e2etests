@@ -216,23 +216,25 @@ const submitPage: SubmitPage = {
         1,
       );
     }
-    switch (reminderDays) {
-      default:
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${reminderDays} ${submit_content.reminderDays}")`,
-          ),
-          1,
-        );
-        break;
-      case "1":
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${reminderDays} ${submit_content.reminderDay}")`,
-          ),
-          1,
-        );
-        break;
+    if (reminder) {
+      switch (reminderDays) {
+        default:
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${reminderDays} ${submit_content.reminderDays}")`,
+            ),
+            1,
+          );
+          break;
+        case "1":
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${reminderDays}${submit_content.reminderDay}")`,
+            ),
+            1,
+          );
+          break;
+      }
     }
   },
 

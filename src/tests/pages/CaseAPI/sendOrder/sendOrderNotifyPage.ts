@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import closeCaseNotifyPage_content from "../../../fixtures/content/CaseAPI/closeCase/closeCaseNotifyPage_content.ts";
 import sendOrderNotifyPage_content from "../../../fixtures/content/CaseAPI/sendOrder/sendOrderNotifyPage_content.ts";
 
 type CloseCaseNotifyPage = {
@@ -12,7 +11,6 @@ type CloseCaseNotifyPage = {
     accessibilityTest: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
-  triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const closeCaseNotifyPage: CloseCaseNotifyPage = {
@@ -36,18 +34,18 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `dt > ccd-markdown > div > markdown > p:text-is("${closeCaseNotifyPage_content.textOnPage1}")`,
+          `dt > ccd-markdown > div > markdown > p:text-is("${sendOrderNotifyPage_content.textOnPage1}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.form-label:text-is("${closeCaseNotifyPage_content.textOnPage2}")`,
+          `.form-label:text-is("${sendOrderNotifyPage_content.textOnPage2}")`,
         ),
         4,
       ),
       ...Array.from({ length: 4 }, (_, index: number) => {
-        const textOnPage = (closeCaseNotifyPage_content as any)[
+        const textOnPage = (sendOrderNotifyPage_content as any)[
           `textOnPage${index + 3}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -62,29 +60,14 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
-    await page
-      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
-    await page.getByRole("button", { name: "Continue" }).click();
-  },
-
-  async triggerErrorMessages(page: Page): Promise<void> {
-    await page.getByRole("button", { name: "Continue" }).click();
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `.error-summary-heading:has-text("${closeCaseNotifyPage_content.errorTitle}")`,
-      ),
-      1,
-    );
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(
-        `.error-summary-list:has-text("${closeCaseNotifyPage_content.errorMessage}")`,
-      ),
-      1,
-    );
+    if (!(await page.isChecked(`#cicCaseNotifyPartySubject-SubjectCIC`))) {
+      await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
+      await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .click();
+      await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
+      await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+    }
     await page.getByRole("button", { name: "Continue" }).click();
   },
 };

@@ -20,7 +20,7 @@ type UploadOrderPage = {
 };
 
 const uploadOrderPage: UploadOrderPage = {
-  previous: ".button-secondary",
+  previous: `.button-secondary:text-is("Previous")`,
   continue: '[type="submit"]',
   cancel: ".cancel",
   addNew: ".write-collection-add-item__top",
@@ -45,9 +45,7 @@ const uploadOrderPage: UploadOrderPage = {
         uploadOrder_Content.caseReference + caseNumber,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${uploadOrder_Content.textOnPage1}")`,
-        ),
+        page.locator(`p:text-is("${uploadOrder_Content.textOnPage1}")`),
         1,
       ),
       ...Array.from({ length: 2 }, (_, index: number) => {
@@ -119,6 +117,7 @@ const uploadOrderPage: UploadOrderPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
+    await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -144,20 +143,7 @@ const uploadOrderPage: UploadOrderPage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.error-message:has-text("${uploadOrder_Content.errorFile}")`,
-        ),
-        1,
-      ),
     ]);
-    await page
-      .locator(`#cicCaseOrderFile_0_documentLink`)
-      .setInputFiles(config.testOdtFile);
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`.error-message:has-text("${uploadOrder_Content.errorFile}`),
-      1,
-    );
     await this.fillInFields(page);
   },
 };

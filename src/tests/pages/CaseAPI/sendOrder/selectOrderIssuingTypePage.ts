@@ -64,7 +64,7 @@ const selectOrderIssuingTypePage: SelectOrderIssuingTypePage = {
   },
 
   async fillInFields(page: Page, orderType: OrderType): Promise<void> {
-    await page.click(`cicCaseOrderIssuingType-${orderType}`);
+    await page.click(`#cicCaseOrderIssuingType-${orderType}`);
     await page.click(this.continue);
   },
 
@@ -90,7 +90,7 @@ const selectOrderIssuingTypePage: SelectOrderIssuingTypePage = {
         1,
       ),
     ]);
-    await this.fillInFields(page, "UploadOrder");
+    await this.fillInFields(page, "DraftOrder");
   },
 };
 
