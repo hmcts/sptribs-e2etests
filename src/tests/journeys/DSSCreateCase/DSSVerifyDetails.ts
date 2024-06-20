@@ -96,6 +96,8 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       caseNumber,
       multipleDocuments,
       uploadOtherInfo,
+      false,
+      user,
     );
     await caseDocumentsTabPage.checkPageInfo(
       page,

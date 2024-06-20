@@ -61,6 +61,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
       0,
       "A - Application Form",
       config.testPdfFile,
+      false,
     );
     if (multipleFiles) {
       await page.click(this.addNewBottom);
@@ -70,6 +71,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
         1,
         "A - Application Form",
         config.testWordFile,
+        false,
       );
       await page.click(this.addNewBottom);
       await commonHelpers.uploadFileController(
@@ -78,6 +80,7 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
         2,
         "A - Application Form",
         config.testFile,
+        false,
       );
     }
     await page.click(this.continue);
