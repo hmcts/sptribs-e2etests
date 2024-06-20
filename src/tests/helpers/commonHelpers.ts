@@ -901,6 +901,7 @@ export type allEvents =
   | "Decision: Issue final decision"
   | "Case: Add note"
   | "Orders: Create draft"
+  | "Orders: Send order"
   | "Orders: Edit draft"
   | "Document management: Upload";
 
