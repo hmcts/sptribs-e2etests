@@ -5,7 +5,7 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import previewTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/previewTemplate_content.ts";
-import { DecisionTemplate } from "./selectTemplatePage.ts";
+import { Template } from "./selectTemplatePage.ts";
 
 type PreviewTemplatePage = {
   previous: string;
@@ -18,7 +18,7 @@ type PreviewTemplatePage = {
   ): Promise<void>;
   fillInFields(
     page: Page,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
   ): Promise<void>;
@@ -71,15 +71,16 @@ const previewTemplatePage: PreviewTemplatePage = {
 
   async fillInFields(
     page: Page,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
   ): Promise<void> {
     await commonHelpers.checkDocument(
       page,
-      decisionTemplate,
+      template,
       caseNumber,
       caseNoticeType,
+      false,
     );
     await page.click(this.continue);
   },

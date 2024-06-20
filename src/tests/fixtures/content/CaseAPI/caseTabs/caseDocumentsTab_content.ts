@@ -6,6 +6,7 @@ const caseDocumentsTab_content = {
   firstDocCategory: "DSS Other information documents",
   secondDocCategory: "DSS Supporting uploaded documents",
   textOnPage2: "File",
+  textOnPage3: "Date",
   title2: "Case Documents 2",
   thirdDocCategory: "DSS Tribunal form uploaded documents",
   title3: "Case Documents 3",

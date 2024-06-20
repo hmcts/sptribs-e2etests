@@ -203,6 +203,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
             uploadAppealFormContent.noUploadErrorCy,
           ),
         ]);
+        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -231,6 +232,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
             uploadAppealFormContent.noUploadError,
           ),
         ]);
+        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -248,6 +250,7 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         ]);
         break;
     }
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
   },
 
   async pressBackButton(page: Page): Promise<void> {

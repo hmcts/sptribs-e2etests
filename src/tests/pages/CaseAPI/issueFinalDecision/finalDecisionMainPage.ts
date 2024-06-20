@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { DecisionTemplate } from "./selectTemplatePage.ts";
+import { Template } from "./selectTemplatePage.ts";
 import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
 
 type FinalDecisionMainPage = {
@@ -13,7 +13,7 @@ type FinalDecisionMainPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -28,7 +28,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -72,7 +72,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
       ),
     ]);
     let textBoxValue = "";
-    switch (decisionTemplate) {
+    switch (template) {
       default:
         await expect(page.locator(`textarea`)).toBeEmpty();
         break;

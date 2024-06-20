@@ -9,7 +9,7 @@ import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_cont
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
 import { UserRole } from "../config.ts";
 import idamLoginHelper from "./idamLoginHelper.ts";
-import { DecisionTemplate } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
+import { Template } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import eligibility from "../fixtures/content/CaseAPI/documents/eligibility.ts";
 import caseSubjectDetailsObject_content from "../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import finalDecisionMain_content from "../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
@@ -24,6 +24,9 @@ import strikeoutWarning from "../fixtures/content/CaseAPI/documents/strikeoutWar
 import strikeoutNotice from "../fixtures/content/CaseAPI/documents/strikeoutNotice.ts";
 import proFormaSummons from "../fixtures/content/CaseAPI/documents/proFormaSummons.ts";
 import createSummaryListingDetails_content from "../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
+import loGeneralDirections from "../fixtures/content/CaseAPI/documents/loGeneralDirections.ts";
+import editDraftAddDocumentFooter_content from "../fixtures/content/CaseAPI/editDraft/editDraftAddDocumentFooter_content.ts";
+import editDraftOrderMainContent_content from "../fixtures/content/CaseAPI/editDraft/editDraftOrderMainContent_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -71,13 +74,15 @@ interface CommonHelpers {
     newPage: Page,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
+    editDraftJourney: boolean,
   ): Promise<void>;
   checkDocument(
     page: Page,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
     caseNumber: string,
     noticeType: CaseNoticeType,
+    editDraftJourney: boolean,
   ): Promise<void>;
 }
 
@@ -448,7 +453,8 @@ const commonHelpers: CommonHelpers = {
     newPage: Page,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
+    editDraftJourney: boolean,
   ): Promise<void> {
     await Promise.all([
       this.checkVisibleAndPresent(
@@ -461,36 +467,74 @@ const commonHelpers: CommonHelpers = {
         newPage.locator(`span:text-is("${caseNumber.replace(/-/g, "")}")`),
         1,
       ),
-      this.checkVisibleAndPresent(
+    ]);
+
+    if (editDraftJourney) {
+      await this.checkVisibleAndPresent(
+        newPage.locator(
+          `span:text-is("${editDraftOrderMainContent_content.editDescription}")`,
+        ),
+        1,
+      );
+    } else {
+      await this.checkVisibleAndPresent(
         newPage.locator(
           `span:text-is("${finalDecisionMain_content.description}")`,
         ),
         1,
-      ),
-      this.checkVisibleAndPresent(
+      );
+    }
+
+    if (template === "CIC14 – LO General Directions") {
+      await Promise.all([
+        this.checkVisibleAndPresent(
+          newPage.locator(`span:text-is("Dated ")`),
+          1,
+        ),
+        this.checkVisibleAndPresent(
+          newPage.locator(`span:text-is("${await this.todayDate()}")`),
+          1,
+        ),
+      ]);
+    } else {
+      await this.checkVisibleAndPresent(
         newPage.locator(`span:text-is("Dated ${await this.todayDate()}")`),
         1,
-      ),
-      this.checkVisibleAndPresent(
-        newPage.locator(
-          `span:text-is("${addDocumentFooter_content.signature}")`,
-        ),
-        1,
-      ),
-    ]);
-    if (decisionTemplate !== "CIC13 - Pro Forma Summons") {
-      await this.checkVisibleAndPresent(
-        newPage.locator(`span:text-is("${caseNoticeType}")`),
-        1,
       );
+    }
+    if (template !== "CIC3 - Rule 27" && caseNoticeType !== null) {
+      if (editDraftJourney) {
+        await this.checkVisibleAndPresent(
+          newPage.locator(
+            `span:text-is("${editDraftAddDocumentFooter_content.editSignature}")`,
+          ),
+          1,
+        );
+      } else {
+        await this.checkVisibleAndPresent(
+          newPage.locator(
+            `span:text-is("${addDocumentFooter_content.signature}")`,
+          ),
+          1,
+        );
+      }
+    }
+    if (template !== "CIC13 - Pro Forma Summons") {
+      if (caseNoticeType !== null) {
+        await this.checkVisibleAndPresent(
+          newPage.locator(`span:text-is("${caseNoticeType}")`),
+          1,
+        );
+      }
     }
   },
 
   async checkDocument(
     page: Page,
-    decisionTemplate: DecisionTemplate,
+    template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
+    editDraftJourney: boolean,
   ): Promise<void> {
     const context = page.context();
     const [newPage] = await Promise.all([
@@ -500,7 +544,7 @@ const commonHelpers: CommonHelpers = {
       }),
     ]);
     await newPage.waitForLoadState("domcontentloaded");
-    switch (decisionTemplate) {
+    switch (template) {
       default:
         throw new Error("No template selected");
       case "CIC1 - Eligibility":
@@ -516,7 +560,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -533,7 +578,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -550,7 +596,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -567,7 +614,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -586,7 +634,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -603,7 +652,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -620,7 +670,26 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
+          ),
+        ]);
+        break;
+      case "CIC8 - ME Joint Instruction":
+        await Promise.all([
+          ...Array.from({ length: 13 }, (_, index) => {
+            const textOnPage = (MeJoint as any)[`textOnPage${index + 1}`];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -639,7 +708,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -658,7 +728,8 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -677,17 +748,42 @@ const commonHelpers: CommonHelpers = {
             newPage,
             caseNumber,
             caseNoticeType,
-            decisionTemplate,
+            template,
+            editDraftJourney,
           ),
-          this.checkVisibleAndPresent(
-            newPage.locator(`span:text-is("Fox Court")`),
-            1,
-          ),
-          this.checkVisibleAndPresent(
-            newPage.locator(
-              `span:text-is("${createSummaryListingDetails_content.morningTime}")`,
+        ]);
+        if (caseNoticeType !== null) {
+          await Promise.all([
+            this.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("Fox Court")`),
+              1,
             ),
-            1,
+            this.checkVisibleAndPresent(
+              newPage.locator(
+                `span:text-is("${createSummaryListingDetails_content.morningTime}")`,
+              ),
+              1,
+            ),
+          ]);
+        }
+        break;
+      case "CIC14 – LO General Directions":
+        await Promise.all([
+          ...Array.from({ length: 15 }, (_, index) => {
+            const textOnPage = (loGeneralDirections as any)[
+              `textOnPage${index + 1}`
+            ];
+            return commonHelpers.checkVisibleAndPresent(
+              newPage.locator(`span:text-is("${textOnPage}")`),
+              1,
+            );
+          }),
+          this.checkCommonDocument(
+            newPage,
+            caseNumber,
+            caseNoticeType,
+            template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -786,6 +882,7 @@ export type allEvents =
   | "Case: Panel Composition"
   | "Case: Edit Panel Composition"
   | "Case: Close case"
+  | "Case: Edit case"
   | "Case: Reinstate case"
   | "Case: Edit case details"
   | "Stays: Create/edit stay"
@@ -793,7 +890,10 @@ export type allEvents =
   | "Refer case to judge"
   | "Refer case to legal officer"
   | "Decision: Issue final decision"
-  | "Case: Add note";
+  | "Case: Add note"
+  | "Orders: Create draft"
+  | "Orders: Send order"
+  | "Orders: Edit draft";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
@@ -913,7 +1013,7 @@ export type hearingPostponedReasons =
   | "Tribunal members deemed listing time directed inadequate"
   | "Other";
 
-export type CaseNoticeType = "CaseManagement" | "Final";
+export type CaseNoticeType = "CaseManagement" | "Final" | null;
 
 export type State =
   | "DSS-Submitted"

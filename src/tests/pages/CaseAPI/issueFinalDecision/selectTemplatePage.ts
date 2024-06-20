@@ -4,7 +4,7 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/selectTemplate_content.ts";
 
-export type DecisionTemplate =
+export type Template =
   | "--Select a value--"
   | "CIC1 - Eligibility"
   | "CIC2 - Quantum"
@@ -13,9 +13,11 @@ export type DecisionTemplate =
   | "CIC6 - General Directions"
   | "CIC7 - ME Dmi Reports"
   | "CIC8 - ME Joint Instructions"
+  | "CIC8 - ME Joint Instruction"
   | "CIC10 - Strike Out Warning"
   | "CIC11 - Strike Out Decision Notice"
   | "CIC13 - Pro Forma Summons"
+  | "CIC14 – LO General Directions"
   | null; // for template upload.
 
 type SelectTemplatePage = {
@@ -27,7 +29,7 @@ type SelectTemplatePage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page, decisionTemplate: DecisionTemplate): Promise<void>;
+  fillInFields(page: Page, template: Template): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -72,13 +74,10 @@ const selectTemplatePage: SelectTemplatePage = {
     }
   },
 
-  async fillInFields(
-    page: Page,
-    decisionTemplate: DecisionTemplate,
-  ): Promise<void> {
+  async fillInFields(page: Page, template: Template): Promise<void> {
     await page.selectOption(
       `#caseIssueFinalDecisionDecisionTemplate`,
-      decisionTemplate,
+      template,
     );
     await page.click(this.continue);
   },
