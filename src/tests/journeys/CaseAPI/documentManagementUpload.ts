@@ -188,12 +188,12 @@ const documentManagementUpload: DocumentManagementUpload = {
             multipleDocuments,
             false,
             true,
-            user
+            user,
           );
           await caseDocumentsTabPage.docManagementUploadCheckInfo(
             page,
             multipleDocuments,
-            user
+            user,
           );
           break;
         case true:

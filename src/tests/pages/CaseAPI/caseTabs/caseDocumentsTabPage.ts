@@ -14,7 +14,7 @@ type CaseDocumentsTabPage = {
     multipleDocuments: boolean,
     uploadOtherInfo: boolean,
     docManagementUploadJourney: boolean,
-    user: UserRole
+    user: UserRole,
   ): Promise<void>;
   changeToCaseDocumentsTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -31,7 +31,7 @@ type CaseDocumentsTabPage = {
   docManagementUploadCheckInfo(
     page: Page,
     multipleDocuments: boolean,
-    user: UserRole
+    user: UserRole,
   ): Promise<void>;
 };
 
@@ -45,7 +45,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     multipleDocuments: boolean,
     uploadOtherInfo: boolean,
     docManagementUploadJourney: boolean,
-    user: UserRole
+    user: UserRole,
   ): Promise<void> {
     if (user === "respondent") {
       await commonHelpers.checkAllCaseTabs(page, caseNumber, true);
@@ -465,7 +465,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
   async docManagementUploadCheckInfo(
     page: Page,
     multipleDocuments: boolean,
-    user: UserRole
+    user: UserRole,
   ): Promise<void> {
     await commonHelpers.checkVisibleAndPresent(
       page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
