@@ -28,7 +28,7 @@ const confirmPage: ConfirmPage = {
         confirmContent.caseReference + caseNumber,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`#case-updated:text-is("${confirmContent.pageTitle}")`),
+        page.locator(`markdown > h1:text-is("${confirmContent.pageTitle}")`),
         1,
       ),
     ]);
