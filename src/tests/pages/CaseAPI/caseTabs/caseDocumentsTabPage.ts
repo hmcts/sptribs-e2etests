@@ -473,27 +473,31 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     );
     if (!(user === "respondent")) {
       if (multipleDocuments) {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+            ),
+            3,
           ),
-          3,
-        );
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${await this.handleTodayDate()}")`),
-          3,
-        );
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+            3,
+          ),
+        ]);
       } else {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+            ),
+            1,
           ),
-          1,
-        );
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${await this.handleTodayDate()}")`),
-          1,
-        );
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+            1,
+          ),
+        ]);
       }
     }
     if (!multipleDocuments) {
