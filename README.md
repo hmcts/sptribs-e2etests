@@ -52,6 +52,12 @@ As well as this, we have:
 
 Accessibility testing is done as a part of the tests marked @\_\_\_\_Accessibility, and run as a part of our pipeline.
 
+### Running the application locally.
+Should you wish to run a test locally, I recommend using Intellij Aqua, and you can press the green play button against any of the tests defined in ___.test.ts.
+Should you wish to run in headed mode, you can select modify run configuration, and then change the playwright options, the following are recommended:
+`--project chromium --headed`
+This runs a test in Chrome, whilst headed.
+
 ### To obtain an E2E report, use the following command:
 
 `yarn test:report`
