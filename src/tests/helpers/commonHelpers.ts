@@ -27,6 +27,7 @@ import createSummaryListingDetails_content from "../fixtures/content/CaseAPI/cre
 import loGeneralDirections from "../fixtures/content/CaseAPI/documents/loGeneralDirections.ts";
 import editDraftAddDocumentFooter_content from "../fixtures/content/CaseAPI/editDraft/editDraftAddDocumentFooter_content.ts";
 import editDraftOrderMainContent_content from "../fixtures/content/CaseAPI/editDraft/editDraftOrderMainContent_content.ts";
+import uploadCaseDocuments_content from "../fixtures/content/CaseAPI/documentManagementUpload/uploadCaseDocuments_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -42,6 +43,7 @@ interface CommonHelpers {
     docNumber: number,
     documentCategory: documentCategory,
     file: string,
+    docManagementUpload: boolean,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   checkAndAcceptCookies(
@@ -208,11 +210,18 @@ const commonHelpers: CommonHelpers = {
     docNumber: number,
     documentCategory: documentCategory,
     file: string,
+    docManagementUpload: boolean,
   ): Promise<void> {
     if (docNumber === 0) {
-      await expect(page.locator(".heading-h3")).toHaveText(
-        caseDocumentsUploadObject_content.subSubTitle1,
-      );
+      if (docManagementUpload) {
+        await expect(page.locator(".heading-h3")).toHaveText(
+          uploadCaseDocuments_content.subTitle1,
+        );
+      } else {
+        await expect(page.locator(".heading-h3")).toHaveText(
+          caseDocumentsUploadObject_content.subSubTitle1,
+        );
+      }
       await expect(page.locator(".form-label").nth(0)).toHaveText(
         caseDocumentsUploadObject_content.textOnPage5,
       );
@@ -892,7 +901,8 @@ export type allEvents =
   | "Decision: Issue final decision"
   | "Case: Add note"
   | "Orders: Create draft"
-  | "Orders: Edit draft";
+  | "Orders: Edit draft"
+  | "Document management: Upload";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
