@@ -9,6 +9,7 @@ const selectReason_content = {
   textOnPage6: "Consent Order",
   textOnPage7: "Rule 27",
   textOnPage8: "Provide additional details (Optional)",
+  textOnPage9: "Death of Appellant",
 
   optionalText: "Lorem ipsum additional detail",
 
