@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import path from "path";
-import config from "../../../config.ts";
+import config, { UserRole } from "../../../config.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseDocumentsTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseDocumentsTab_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
@@ -13,6 +13,8 @@ type CaseDocumentsTabPage = {
     caseNumber: string,
     multipleDocuments: boolean,
     uploadOtherInfo: boolean,
+    docManagementUploadJourney: boolean,
+    user: UserRole,
   ): Promise<void>;
   changeToCaseDocumentsTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -26,6 +28,11 @@ type CaseDocumentsTabPage = {
   ): Promise<void>;
   handleMultipleDocuments(page: Page, uploadOtherInfo: boolean): Promise<void>;
   handleTodayDate(): Promise<string>;
+  docManagementUploadCheckInfo(
+    page: Page,
+    multipleDocuments: boolean,
+    user: UserRole,
+  ): Promise<void>;
 };
 
 const caseDocumentsTabPage: CaseDocumentsTabPage = {
@@ -37,9 +44,15 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     caseNumber: string,
     multipleDocuments: boolean,
     uploadOtherInfo: boolean,
+    docManagementUploadJourney: boolean,
+    user: UserRole,
   ): Promise<void> {
+    if (user === "respondent") {
+      await commonHelpers.checkAllCaseTabs(page, caseNumber, true);
+    } else {
+      await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
+    }
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
         caseDocumentsTabContent.pageTitle,
       ),
@@ -47,18 +60,21 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
         caseDocumentsTabContent.subHeading1,
       ),
     ]);
-    if (!uploadOtherInfo) {
+    if (docManagementUploadJourney) {
+      await Promise.all([
+        expect(page.locator(".case-viewer-label").nth(1)).toHaveText(
+          caseDocumentsTabContent.subHeading2,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`.text-16:text-is("${caseDocumentsTabContent.title1}")`),
+          1,
+        ),
+      ]);
       if (!multipleDocuments) {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.title1}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.title2}")`,
+              `.text-16:text-is("${caseDocumentsTabContent.docTitle1}")`,
             ),
             1,
           ),
@@ -76,56 +92,132 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage4}")`,
             ),
             2,
           ),
         ]);
       } else {
-        await this.handleMultipleDocumentsLoad(page, uploadOtherInfo);
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.docTitle1}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.docTitle2}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.docTitle3}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage1}")`,
+            ),
+            4,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage2}")`,
+            ),
+            4,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage4}")`,
+            ),
+            4,
+          ),
+        ]);
       }
     } else {
-      if (!multipleDocuments) {
-        await Promise.all([
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.title1}")`,
+      if (!uploadOtherInfo) {
+        if (!multipleDocuments) {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.title1}")`,
+              ),
+              1,
             ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.title2}")`,
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.title2}")`,
+              ),
+              1,
             ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.title3}")`,
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.textOnPage1}")`,
+              ),
+              2,
             ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.textOnPage1}")`,
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.textOnPage2}")`,
+              ),
+              2,
             ),
-            3,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.textOnPage2}")`,
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+              ),
+              2,
             ),
-            3,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
-            ),
-            3,
-          ),
-        ]);
+          ]);
+        } else {
+          await this.handleMultipleDocumentsLoad(page, uploadOtherInfo);
+        }
       } else {
-        await this.handleMultipleDocumentsLoad(page, uploadOtherInfo);
+        if (!multipleDocuments) {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.title1}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.title2}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.title3}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.textOnPage1}")`,
+              ),
+              3,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.textOnPage2}")`,
+              ),
+              3,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+              ),
+              3,
+            ),
+          ]);
+        } else {
+          await this.handleMultipleDocumentsLoad(page, uploadOtherInfo);
+        }
       }
     }
     if (accessibilityTest) {
@@ -368,6 +460,77 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     });
     const [month, day, year] = dateString.split("/");
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
+  },
+
+  async docManagementUploadCheckInfo(
+    page: Page,
+    multipleDocuments: boolean,
+    user: UserRole,
+  ): Promise<void> {
+    await commonHelpers.checkVisibleAndPresent(
+      page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
+      2,
+    );
+    if (!(user === "respondent")) {
+      if (multipleDocuments) {
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+            ),
+            3,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+            3,
+          ),
+        ]);
+      } else {
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.text-16:text-is("${caseDocumentsTabContent.textOnPage3}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${await this.handleTodayDate()}")`),
+            1,
+          ),
+        ]);
+      }
+    }
+    if (!multipleDocuments) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`.text-16:text-is("TG - Other")`),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("Lorem ipsum text TG - Other")`),
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`.text-16:text-is("TG - Other")`),
+          3,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span:text-is("Lorem ipsum text TG - Other")`),
+          3,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`a:text-is("${path.basename(config.testWordFile)}")`),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`a:text-is("${path.basename(config.testFile)}")`),
+          1,
+        ),
+      ]);
+    }
   },
 };
 

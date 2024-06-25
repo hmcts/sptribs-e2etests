@@ -24,7 +24,7 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
-        trace: "on-first-retry",
+        trace: "on",
         javaScriptEnabled: true,
       },
     },
@@ -32,8 +32,8 @@ module.exports = defineConfig({
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
-        screenshot: "only-on-failure",
-        trace: "off",
+        screenshot: "off",
+        trace: "on",
         javaScriptEnabled: true,
       },
     },
@@ -41,8 +41,8 @@ module.exports = defineConfig({
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
-        screenshot: "only-on-failure",
-        trace: "off",
+        screenshot: "off",
+        trace: "on",
         javaScriptEnabled: true,
       },
     },

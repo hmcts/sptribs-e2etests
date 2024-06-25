@@ -25,6 +25,9 @@ import strikeoutNotice from "../fixtures/content/CaseAPI/documents/strikeoutNoti
 import proFormaSummons from "../fixtures/content/CaseAPI/documents/proFormaSummons.ts";
 import createSummaryListingDetails_content from "../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 import loGeneralDirections from "../fixtures/content/CaseAPI/documents/loGeneralDirections.ts";
+import editDraftAddDocumentFooter_content from "../fixtures/content/CaseAPI/editDraft/editDraftAddDocumentFooter_content.ts";
+import editDraftOrderMainContent_content from "../fixtures/content/CaseAPI/editDraft/editDraftOrderMainContent_content.ts";
+import uploadCaseDocuments_content from "../fixtures/content/CaseAPI/documentManagementUpload/uploadCaseDocuments_content.ts";
 
 interface CommonHelpers {
   readonly months: string[];
@@ -40,6 +43,7 @@ interface CommonHelpers {
     docNumber: number,
     documentCategory: documentCategory,
     file: string,
+    docManagementUpload: boolean,
   ): Promise<void>;
   checkVisibleAndPresent(locator: Locator, count: number): Promise<void>;
   checkAndAcceptCookies(
@@ -73,12 +77,14 @@ interface CommonHelpers {
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
     template: Template,
+    editDraftJourney: boolean,
   ): Promise<void>;
   checkDocument(
     page: Page,
     template: Template,
     caseNumber: string,
     noticeType: CaseNoticeType,
+    editDraftJourney: boolean,
   ): Promise<void>;
 }
 
@@ -204,11 +210,18 @@ const commonHelpers: CommonHelpers = {
     docNumber: number,
     documentCategory: documentCategory,
     file: string,
+    docManagementUpload: boolean,
   ): Promise<void> {
     if (docNumber === 0) {
-      await expect(page.locator(".heading-h3")).toHaveText(
-        caseDocumentsUploadObject_content.subSubTitle1,
-      );
+      if (docManagementUpload) {
+        await expect(page.locator(".heading-h3")).toHaveText(
+          uploadCaseDocuments_content.subTitle1,
+        );
+      } else {
+        await expect(page.locator(".heading-h3")).toHaveText(
+          caseDocumentsUploadObject_content.subSubTitle1,
+        );
+      }
       await expect(page.locator(".form-label").nth(0)).toHaveText(
         caseDocumentsUploadObject_content.textOnPage5,
       );
@@ -450,6 +463,7 @@ const commonHelpers: CommonHelpers = {
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
     template: Template,
+    editDraftJourney: boolean,
   ): Promise<void> {
     await Promise.all([
       this.checkVisibleAndPresent(
@@ -462,13 +476,24 @@ const commonHelpers: CommonHelpers = {
         newPage.locator(`span:text-is("${caseNumber.replace(/-/g, "")}")`),
         1,
       ),
-      this.checkVisibleAndPresent(
+    ]);
+
+    if (editDraftJourney) {
+      await this.checkVisibleAndPresent(
+        newPage.locator(
+          `span:text-is("${editDraftOrderMainContent_content.editDescription}")`,
+        ),
+        1,
+      );
+    } else {
+      await this.checkVisibleAndPresent(
         newPage.locator(
           `span:text-is("${finalDecisionMain_content.description}")`,
         ),
         1,
-      ),
-    ]);
+      );
+    }
+
     if (template === "CIC14 – LO General Directions") {
       await Promise.all([
         this.checkVisibleAndPresent(
@@ -487,12 +512,21 @@ const commonHelpers: CommonHelpers = {
       );
     }
     if (template !== "CIC3 - Rule 27" && caseNoticeType !== null) {
-      await this.checkVisibleAndPresent(
-        newPage.locator(
-          `span:text-is("${addDocumentFooter_content.signature}")`,
-        ),
-        1,
-      );
+      if (editDraftJourney) {
+        await this.checkVisibleAndPresent(
+          newPage.locator(
+            `span:text-is("${editDraftAddDocumentFooter_content.editSignature}")`,
+          ),
+          1,
+        );
+      } else {
+        await this.checkVisibleAndPresent(
+          newPage.locator(
+            `span:text-is("${addDocumentFooter_content.signature}")`,
+          ),
+          1,
+        );
+      }
     }
     if (template !== "CIC13 - Pro Forma Summons") {
       if (caseNoticeType !== null) {
@@ -509,6 +543,7 @@ const commonHelpers: CommonHelpers = {
     template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
+    editDraftJourney: boolean,
   ): Promise<void> {
     const context = page.context();
     const [newPage] = await Promise.all([
@@ -535,6 +570,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -552,6 +588,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -569,6 +606,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -586,6 +624,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -605,6 +644,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -622,6 +662,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -639,6 +680,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -656,6 +698,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -675,6 +718,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -694,6 +738,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -713,6 +758,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         if (caseNoticeType !== null) {
@@ -746,6 +792,7 @@ const commonHelpers: CommonHelpers = {
             caseNumber,
             caseNoticeType,
             template,
+            editDraftJourney,
           ),
         ]);
         break;
@@ -853,7 +900,10 @@ export type allEvents =
   | "Refer case to legal officer"
   | "Decision: Issue final decision"
   | "Case: Add note"
-  | "Orders: Create draft";
+  | "Orders: Create draft"
+  | "Orders: Send order"
+  | "Orders: Edit draft"
+  | "Document management: Upload";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 

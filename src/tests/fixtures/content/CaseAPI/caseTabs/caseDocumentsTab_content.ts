@@ -1,12 +1,14 @@
 const caseDocumentsTab_content = {
   pageTitle: "Case Documents",
   subHeading1: "Case Documents",
+  subHeading2: "Documents",
   title1: "Case Documents 1",
   textOnPage1: "Document Category",
   firstDocCategory: "DSS Other information documents",
   secondDocCategory: "DSS Supporting uploaded documents",
   textOnPage2: "File",
   textOnPage3: "Date",
+  textOnPage4: "Description",
   title2: "Case Documents 2",
   thirdDocCategory: "DSS Tribunal form uploaded documents",
   title3: "Case Documents 3",
@@ -19,6 +21,9 @@ const caseDocumentsTab_content = {
   title10: "Case Documents 10",
   title11: "Case Documents 11",
   title12: "Case Documents 12",
+  docTitle1: "Documents 1",
+  docTitle2: "Documents 2",
+  docTitle3: "Documents 3",
 } as const;
 
 export default caseDocumentsTab_content;

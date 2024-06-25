@@ -1,0 +1,92 @@
+import { expect, Page } from "@playwright/test";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import selectDraftOrder_content from "../../../fixtures/content/CaseAPI/sendOrder/selectDraftOrder_content.ts";
+
+type SelectDraftOrderPage = {
+  previous: string;
+  continue: string;
+  cancel: string;
+  checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
+  triggerErrorMessages(page: Page): Promise<void>;
+};
+
+const selectDraftOrderPage: SelectDraftOrderPage = {
+  previous: ".button-secondary",
+  continue: '[type="submit"]',
+  cancel: ".cancel",
+
+  async checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-caption-l:text-is("${selectDraftOrder_content.pageHint}")`,
+        ),
+        1,
+      ),
+      expect(page.locator("markdown > h3")).toContainText(
+        caseSubjectDetailsObject_content.name,
+      ),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        selectDraftOrder_content.caseReference + caseNumber,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.form-label:text-is("${selectDraftOrder_content.textOnPage1}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
+  },
+
+  async fillInFields(page: Page): Promise<void> {
+    await page.selectOption(`#cicCaseDraftOrderDynamicList`, { index: 1 });
+    await page.click(this.continue);
+  },
+
+  async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(this.continue);
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `#error-summary-title:text-is("${selectDraftOrder_content.errorBanner}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.validation-error:has-text("${selectDraftOrder_content.errorBlank}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.error-message:has-text("${selectDraftOrder_content.errorBlank}")`,
+        ),
+        1,
+      ),
+    ]);
+    await page.click(this.previous);
+  },
+};
+
+export default selectDraftOrderPage;

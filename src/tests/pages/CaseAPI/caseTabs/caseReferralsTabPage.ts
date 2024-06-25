@@ -29,10 +29,10 @@ const caseReferralsTabPage: CaseReferralsTabPage = {
   ): Promise<void> {
     await Promise.all([
       commonHelpers.checkAllCaseTabs(page, caseNumber, false),
-      expect(page.locator("#referral-to-judge")).toHaveText(
+      expect(page.locator("h4").nth(0)).toHaveText(
         caseReferralsTabContent.title1,
       ),
-      expect(page.locator("#referral-to-legal-officer")).toHaveText(
+      expect(page.locator("h4").nth(1)).toHaveText(
         caseReferralsTabContent.title2,
       ),
       ...Array.from({ length: 3 }, (_, index: number) => {
