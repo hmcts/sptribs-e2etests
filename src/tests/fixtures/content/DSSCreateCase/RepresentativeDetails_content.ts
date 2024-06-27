@@ -16,13 +16,11 @@ const representativeDetailsContent = {
   errorBanner: "There is a problem",
   fullNameError: "Please enter full name",
   organisationNameError: "Please enter organisation or business name",
-  validEmailError: "Please enter a valid email address",
+  validEmailError: "Enter an email address",
   partEmailEntry: "test@test",
   partEmailError:
     "Every email address consists of 3 elements: local-part, @ symbol (pronounced as “at”), and a domain name",
   validContactNumberError: "Please enter a valid contact number",
-  agreeError:
-    "Please agree to be contacted using the details provided to continue",
 
   pageTitleCy: "Manylion y cynrychiolydd",
   textOnPageCy1:
@@ -41,8 +39,6 @@ const representativeDetailsContent = {
   partEmailErrorCy:
     "Mae pob cyfeiriad e-bost yn cynnwys tair elfen: rhan lleol, symbol @ (a ynganir fel “at”), ac enw parth",
   validContactNumberErrorCy: "Nodwch rif cyswllt dilys",
-  agreeErrorCy:
-    "Dylech gytuno i’r llys gysylltu â chi gan ddefnyddio’r manylion a ddarparwyd cyn y gallwch barhau",
 } as const;
 
 export default representativeDetailsContent;

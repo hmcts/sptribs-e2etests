@@ -3,19 +3,22 @@ const subjectContactDetailsContent = {
   textOnPage1: "Please enter your contact details to use for this case.",
   subHeading1: "Email address",
   subHeading2: "Contact number",
+  emailHint: "Enter an email address in the correct format, like name@example.com",
+  numberHint: "Enter a telephone number in the correct format, like 01632 960 001 or 07700 900 982",
   textOnPage2:
     "I agree to be contacted about this case using the details I have provided",
   emailAddress: "AutoTestSubject@mail.com",
   contactNumber: "01234567891",
   button: "Continue",
   errorBanner: "There is a problem",
-  validEmailError: "Please enter a valid email address",
+  validEmailError: "Enter an email address",
   partEmailEntry: "test@test",
   partEmailError:
-    "Every email address consists of 3 elements: local-part, @ symbol (pronounced as “at”), and a domain name",
+    "Enter an email address in the correct format",
   validContactNumberError: "Please enter a valid contact number",
   agreeError:
-    "Please agree to be contacted using the details provided to continue",
+    "You must agree to be contacted using the details provided to continue",
+
   pageTitleCy: "Rhowch fanylion cyswllt",
   textOnPageCy1:
     "Rhowch y manylion cyswllt sydd fwyaf addas ar gyfer yr achos hwn.",
