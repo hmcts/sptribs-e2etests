@@ -17,7 +17,8 @@ const uploadAppealForm_content = {
   button2: "Continue",
   deleteButton: "Delete",
   errorBanner: "There is a problem",
-  noUploadError: "You must upload the application before you can proceed further",
+  noUploadError:
+    "You must upload the application before you can proceed further",
   fileTypeError:
     "This service only accepts files in the formats - Ms Word, PDF",
 

@@ -3,8 +3,10 @@ const subjectContactDetailsContent = {
   textOnPage1: "Please enter your contact details to use for this case.",
   subHeading1: "Email address",
   subHeading2: "Contact number",
-  emailHint: "Enter an email address in the correct format, like name@example.com",
-  numberHint: "Enter a telephone number in the correct format, like 01632 960 001 or 07700 900 982",
+  emailHint:
+    "Enter an email address in the correct format, like name@example.com",
+  numberHint:
+    "Enter a telephone number in the correct format, like 01632 960 001 or 07700 900 982",
   textOnPage2:
     "I agree to be contacted about this case using the details I have provided",
   emailAddress: "AutoTestSubject@mail.com",
@@ -13,8 +15,7 @@ const subjectContactDetailsContent = {
   errorBanner: "There is a problem",
   validEmailError: "Enter an email address",
   partEmailEntry: "test@test",
-  partEmailError:
-    "Enter an email address in the correct format",
+  partEmailError: "Enter an email address in the correct format",
   validContactNumberError: "Please enter a valid contact number",
   agreeError:
     "You must agree to be contacted using the details provided to continue",
