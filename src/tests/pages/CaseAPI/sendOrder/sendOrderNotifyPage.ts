@@ -20,7 +20,7 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toHaveText(
+      expect(page.locator(".govuk-heading-l")).toHaveText(
         sendOrderNotifyPage_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
