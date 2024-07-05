@@ -117,9 +117,8 @@ const commonHelpers: CommonHelpers = {
       month: "2-digit",
       day: "numeric",
     });
-    const [month, day, year] = dateString
-      .split("/")
-      
+    const [month, day, year] = dateString.split("/");
+
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
   },
 
