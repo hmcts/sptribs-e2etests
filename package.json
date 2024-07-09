@@ -48,7 +48,7 @@
     "ts-node": "^10.9.2"
   },
   "resolutions": {
-    "jackspeak": "2.1.1"
+    "jackspeak": "4.0.1"
   },
   "packageManager": "yarn@3.8.3"
 }
