@@ -41,7 +41,7 @@ const submitPage: SubmitPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),
-      expect(page.locator("form > h2")).toHaveText(submitContent.subTitle1),
+      expect(page.locator("form > div > h2")).toHaveText(submitContent.subTitle1),
       expect(page.locator("span.text-16").nth(0)).toHaveText(
         submitContent.textOnPage1,
       ),
