@@ -33,6 +33,7 @@ interface CommonHelpers {
   readonly months: string[];
   shortMonths(index: number): Promise<string>;
   todayDate(): Promise<string>;
+  todayDateDoc(): Promise<string>;
   padZero(value: number): string;
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
@@ -114,11 +115,24 @@ const commonHelpers: CommonHelpers = {
     const dateString = now.toLocaleDateString("en-US", {
       year: "numeric",
       month: "2-digit",
+      day: "numeric",
+    });
+    const [month, day, year] = dateString.split("/");
+
+    return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
+  },
+
+  async todayDateDoc(): Promise<string> {
+    const now = new Date();
+    const dateString = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
       day: "2-digit",
     });
     const [month, day, year] = dateString
       .split("/")
       .map((part) => part.padStart(2, "0"));
+
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
   },
 
@@ -501,13 +515,13 @@ const commonHelpers: CommonHelpers = {
           1,
         ),
         this.checkVisibleAndPresent(
-          newPage.locator(`span:text-is("${await this.todayDate()}")`),
+          newPage.locator(`span:text-is("${await this.todayDateDoc()}")`),
           1,
         ),
       ]);
     } else {
       await this.checkVisibleAndPresent(
-        newPage.locator(`span:text-is("Dated ${await this.todayDate()}")`),
+        newPage.locator(`span:text-is("Dated ${await this.todayDateDoc()}")`),
         1,
       );
     }
