@@ -13,10 +13,12 @@ const subjectContactDetailsContent = {
   contactNumber: "01234567891",
   button: "Continue",
   errorBanner: "There is a problem",
-  validEmailError: "Enter an email address",
+  emailError: "Enter an email address",
+  validEmailError: "Enter an email address in the correct format",
   partEmailEntry: "test@test",
-  partEmailError: "Enter an email address in the correct format",
-  validContactNumberError: "Please enter a valid contact number",
+  contactNumberError: "Enter a contact number",
+  validContactNumberError: "Enter a contact number in the correct format",
+  partContactNumberEntry: "012345",
   agreeError:
     "You must agree to be contacted using the details provided to continue",
 

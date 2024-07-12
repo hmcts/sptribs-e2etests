@@ -143,19 +143,19 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
             subjectContactDetailsContent.errorBanner,
           ),
           expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.validEmailError,
+            subjectContactDetailsContent.emailError,
           ),
           expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
-            subjectContactDetailsContent.validContactNumberError,
+            subjectContactDetailsContent.contactNumberError,
           ),
           expect(page.locator("[href='#subjectAgreeContact']")).toHaveText(
             subjectContactDetailsContent.agreeError,
           ),
           expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.validEmailError,
+            subjectContactDetailsContent.emailError,
           ),
           expect(page.locator("#subjectContactNumber-error")).toContainText(
-            subjectContactDetailsContent.validContactNumberError,
+            subjectContactDetailsContent.contactNumberError,
           ),
           expect(page.locator("#subjectAgreeContact-error")).toContainText(
             subjectContactDetailsContent.agreeError,
@@ -165,16 +165,28 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           this.fields.email,
           subjectContactDetailsContent.partEmailEntry,
         );
+        await page.fill(
+          this.fields.mobileNumber,
+          subjectContactDetailsContent.partContactNumberEntry,
+        );
         await page.click(this.continueButton);
         await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectContactDetailsContent.errorBanner,
+          ),
           expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.partEmailError,
+            subjectContactDetailsContent.validEmailError,
+          ),
+          expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
+            subjectContactDetailsContent.validContactNumberError,
           ),
           expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.partEmailError,
+            subjectContactDetailsContent.validEmailError,
+          ),
+          expect(page.locator("#subjectContactNumber-error")).toContainText(
+            subjectContactDetailsContent.validContactNumberError,
           ),
         ]);
-        await page.fill(this.fields.email, "");
         break;
     }
   },
