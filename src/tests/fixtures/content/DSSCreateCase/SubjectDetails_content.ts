@@ -14,8 +14,15 @@ const subjectDetailsContent = {
   yearOfBirth: "2000",
   button: "Continue",
   errorBanner: "There is a problem",
-  fullNameError: "Please enter full name",
-  dateOfBirthError: "Please enter date of birth",
+  fullNameError: "Enter full name",
+  dateOfBirthError: "Date of birth must include a day, month and year",
+  invalidDOBError: "Date of birth must be a real date",
+  incompleteDOBError:
+    "Date of birth must be a real date and must include a day, month and year",
+  pastDOBError: "Date of birth must be after 31/12/1899",
+  futureDOBError: "Date of birth must be in the past",
+  htmlError: "Full name must not include HTML",
+
   pageTitleCy: "Pwy yw testun yr achos hwn?",
   hintTextCy1:
     "Gall testun yr achos fod yn chi, neu’r unigolyn rydych yn cyflwyno’r ffurflen tribiwnlys hon ar ei ran.",
