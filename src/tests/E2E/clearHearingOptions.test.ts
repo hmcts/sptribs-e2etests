@@ -2,13 +2,13 @@ import { test } from "@playwright/test";
 import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
 
 test.describe("Case-API clear hearing options tests. @CaseAPI", () => {
-  test("Caseworker clearing hearing options", async ({
+  test("Caseworker clearing hearing options @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await clearHearingOptions.clearHearingOptions(page, "caseWorker", false);
   });
 
-  test("Senior caseworker clearing hearing options", async ({
+  test("Senior caseworker clearing hearing options @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await clearHearingOptions.clearHearingOptions(
@@ -28,7 +28,7 @@ test.describe("Case-API clear hearing options tests. @CaseAPI", () => {
     );
   });
 
-  test("Hearing centre team lead clearing hearing options", async ({
+  test("Hearing centre team lead clearing hearing options @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await clearHearingOptions.clearHearingOptions(
@@ -39,7 +39,7 @@ test.describe("Case-API clear hearing options tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility tests - Clear hearing options @accessibilityCaseAPI", async ({
+test("Accessibility tests - Clear hearing options @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await clearHearingOptions.clearHearingOptions(

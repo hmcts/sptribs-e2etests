@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
 test.describe("Create hearing options tests @CaseAPI", (): void => {
-  test("Create hearing options in the 'Case management' state.", async ({
+  test("Create hearing options in the 'Case management' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await hearingOptions.hearingOptions(
@@ -53,7 +53,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing options with a region but venue not listed in the 'Case management' state.", async ({
+  test("Create hearing options with a region but venue not listed in the 'Case management' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await hearingOptions.hearingOptions(
@@ -70,7 +70,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing options in the 'Ready to list' state.", async ({
+  test("Edit hearing options in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await hearingOptions.hearingOptions(
@@ -88,7 +88,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test @accessibilityCaseAPI", async ({
+test("Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await hearingOptions.hearingOptions(

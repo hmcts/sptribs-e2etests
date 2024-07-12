@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import editListing from "../journeys/CaseAPI/editListing.ts";
 
 test.describe("Edit hearing listing tests @CaseAPI", (): void => {
-  test("Edit hearing listing as a caseworker.", async ({
+  test("Edit hearing listing as a caseworker. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editListing.editListing(
@@ -38,7 +38,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing listing as a hearing centre admin.", async ({
+  test("Edit hearing listing as a hearing centre admin. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editListing.editListing(
@@ -128,7 +128,9 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await editListing.editListing(
       page,
       "caseWorker",
@@ -145,7 +147,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - edit listing @accessibilityCaseAPI", async ({
+test("Accessibility test - edit listing @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editListing.editListing(

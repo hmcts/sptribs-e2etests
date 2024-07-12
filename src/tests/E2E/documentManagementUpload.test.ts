@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import documentManagementUpload from "../journeys/CaseAPI/documentManagementUpload.ts";
 
 test.describe("Case-API Upload document tests. @CaseAPI", () => {
-  test("Upload a document to a submitted case as a caseworker.", async ({
+  test("Upload a document to a submitted case as a caseworker. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await documentManagementUpload.documentManagementUpload(
@@ -80,7 +80,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
     );
   });
 
-  test("Upload a document to a stayed case as a caseworker.", async ({
+  test("Upload a document to a stayed case as a caseworker. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await documentManagementUpload.documentManagementUpload(
@@ -93,7 +93,9 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await documentManagementUpload.documentManagementUpload(
       page,
       "caseWorker",
@@ -105,7 +107,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility tests - Document management: Upload @accessibilityCaseAPI", async ({
+test("Accessibility tests - Document management: Upload @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await documentManagementUpload.documentManagementUpload(

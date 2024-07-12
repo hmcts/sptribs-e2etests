@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import issueFinalDecision from "../journeys/CaseAPI/issueFinalDecision.ts";
 
 test.describe("Issue a final decision tests @CaseAPI", () => {
-  test("As a caseworker issue a final decision which is uploaded", async ({
+  test("As a caseworker issue a final decision which is uploaded @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await issueFinalDecision.issueFinalDecision(
@@ -142,7 +142,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
     );
   });
 
-  test("As a caseworker issue a final decision which is a generated ME Dmi Reports", async ({
+  test("As a caseworker issue a final decision which is a generated ME Dmi Reports @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await issueFinalDecision.issueFinalDecision(
@@ -212,7 +212,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
     );
   });
 
-  test("Error Messaging - Issue a final decision", async ({
+  test("Error Messaging - Issue a final decision @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await issueFinalDecision.issueFinalDecision(
@@ -227,7 +227,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Issue a final decision @accessibilityCaseAPI", async ({
+test("Accessibility test - Issue a final decision @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await issueFinalDecision.issueFinalDecision(

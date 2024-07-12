@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import editDraft from "../journeys/CaseAPI/editDraft.ts";
 
 test.describe("Case-API Edit draft tests. @CaseAPI", () => {
-  test("As a Caseworker edit a CIC3 draft in the Case Management state.", async ({
+  test("As a Caseworker edit a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
     page,
   }) => {
     await editDraft.editDraft(
@@ -54,7 +54,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a Senior Judge edit a CIC10 draft in the Case closed state.", async ({
+  test("As a Senior Judge edit a CIC10 draft in the Case closed state. @crossbrowserCaseAPI", async ({
     page,
   }) => {
     await editDraft.editDraft(
@@ -93,7 +93,9 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Edit draft", async ({ page }) => {
+  test("Error messaging - Edit draft @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     await editDraft.editDraft(
       page,
       "caseWorker",
@@ -105,7 +107,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Edit draft @accessibilityCaseAPI", async ({
+test("Accessibility test - Edit draft @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editDraft.editDraft(

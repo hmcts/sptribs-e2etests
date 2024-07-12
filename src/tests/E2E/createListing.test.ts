@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
 test.describe("Create hearing listing tests @CaseAPI", (): void => {
-  test("Create hearing listing as a caseworker in the 'Case management' state.", async ({
+  test("Create hearing listing as a caseworker in the 'Case management' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -154,7 +154,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing listing in the 'Ready to list' state.", async ({
+  test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await createListing.createListing(
@@ -230,7 +230,9 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await createListing.createListing(
       page,
       "caseWorker",
@@ -248,7 +250,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - create listing @accessibilityCaseAPI", async ({
+test("Accessibility test - create listing @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await createListing.createListing(
