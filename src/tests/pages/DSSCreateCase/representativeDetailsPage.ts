@@ -82,6 +82,12 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
               textOnPage,
             );
           }),
+          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+            representativeDetailsContent.numberHint,
+          ),
+          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+            representativeDetailsContent.emailHint,
+          ),
         ]);
         break;
     }
@@ -174,10 +180,10 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           ).toHaveText(representativeDetailsContent.organisationNameError),
           expect(
             page.locator("[href='#representativeContactNumber']"),
-          ).toHaveText(representativeDetailsContent.validContactNumberError),
+          ).toHaveText(representativeDetailsContent.contactNumberError),
           expect(
             page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.validEmailError),
+          ).toHaveText(representativeDetailsContent.emailError),
           expect(page.locator("#representativeFullName-error")).toContainText(
             representativeDetailsContent.fullNameError,
           ),
@@ -186,25 +192,37 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           ).toContainText(representativeDetailsContent.organisationNameError),
           expect(
             page.locator("#representativeContactNumber-error"),
-          ).toContainText(representativeDetailsContent.validContactNumberError),
+          ).toContainText(representativeDetailsContent.contactNumberError),
           expect(
             page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.validEmailError),
+          ).toContainText(representativeDetailsContent.emailError),
         ]);
         await page.fill(
           this.fields.representativeEmailAddress,
           representativeDetailsContent.partEmailEntry,
         );
+        await page.fill(
+          this.fields.representativeContactNumber,
+          representativeDetailsContent.partContactNumberEntry,
+        );
         await page.click(this.continueButton);
         await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            representativeDetailsContent.errorBanner,
+          ),
           expect(
             page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.partEmailError),
+          ).toHaveText(representativeDetailsContent.validEmailError),
+          expect(
+            page.locator("[href='#representativeContactNumber']"),
+          ).toHaveText(representativeDetailsContent.validContactNumberError),
           expect(
             page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.partEmailError),
+          ).toContainText(representativeDetailsContent.validEmailError),
+          expect(
+            page.locator("#representativeContactNumber-error"),
+          ).toContainText(representativeDetailsContent.validContactNumberError),
         ]);
-        await page.fill(this.fields.representativeEmailAddress, "");
         break;
     }
   },

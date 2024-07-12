@@ -8,19 +8,25 @@ const representativeDetailsContent = {
   subHeading2: "Organisation or business name",
   subHeading3: "Contact number",
   subHeading4: "Email address",
+  numberHint:
+    "Enter a contact number in the correct format, like 01632 960 001 or 07700 900 982",
+  emailHint:
+    "Enter an email address in the correct format, like name@example.com",
   fullName: "Representative AutoTesting",
   Organisation: "Representative Organisation",
   contactNumber: "01234567891",
   emailAddress: "AutoTestRepresentative@mail.com",
   button: "Continue",
   errorBanner: "There is a problem",
-  fullNameError: "Please enter full name",
-  organisationNameError: "Please enter organisation or business name",
-  validEmailError: "Enter an email address",
+  fullNameError: "Enter full name of the representative",
+  organisationNameError:
+    "Enter organisation or business name of the representative",
+  emailError: "Enter an email address of the representative",
+  contactNumberError: "Enter a contact number of the representative",
+  validContactNumberError: "Enter a contact number in the correct format",
+  validEmailError: "Enter an email address in the correct format",
   partEmailEntry: "test@test",
-  partEmailError:
-    "Every email address consists of 3 elements: local-part, @ symbol (pronounced as “at”), and a domain name",
-  validContactNumberError: "Please enter a valid contact number",
+  partContactNumberEntry: "012345",
 
   pageTitleCy: "Manylion y cynrychiolydd",
   textOnPageCy1:
