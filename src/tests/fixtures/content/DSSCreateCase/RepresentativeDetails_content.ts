@@ -25,8 +25,11 @@ const representativeDetailsContent = {
   contactNumberError: "Enter a contact number of the representative",
   validContactNumberError: "Enter a contact number in the correct format",
   validEmailError: "Enter an email address in the correct format",
+  fullNameHTMLError: "Full name must not include HTML",
+  organisationHTMLError: "Organisation or business name must not include HTML",
   partEmailEntry: "test@test",
   partContactNumberEntry: "012345",
+  link: "<a>https://www.google.com</a>",
 
   pageTitleCy: "Manylion y cynrychiolydd",
   textOnPageCy1:

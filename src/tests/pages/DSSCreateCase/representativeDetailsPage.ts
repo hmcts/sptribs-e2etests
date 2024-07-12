@@ -198,6 +198,14 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           ).toContainText(representativeDetailsContent.emailError),
         ]);
         await page.fill(
+          this.fields.fullName,
+          representativeDetailsContent.link,
+        );
+        await page.fill(
+          this.fields.representativeOrgName,
+          representativeDetailsContent.link,
+        );
+        await page.fill(
           this.fields.representativeEmailAddress,
           representativeDetailsContent.partEmailEntry,
         );
@@ -210,12 +218,24 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             representativeDetailsContent.errorBanner,
           ),
+          expect(page.locator("[href='#representativeFullName']")).toHaveText(
+            representativeDetailsContent.fullNameHTMLError,
+          ),
+          expect(
+            page.locator("[href='#representativeOrganisationName']"),
+          ).toHaveText(representativeDetailsContent.organisationHTMLError),
           expect(
             page.locator("[href='#representativeEmailAddress']"),
           ).toHaveText(representativeDetailsContent.validEmailError),
           expect(
             page.locator("[href='#representativeContactNumber']"),
           ).toHaveText(representativeDetailsContent.validContactNumberError),
+          expect(page.locator("#representativeFullName-error")).toContainText(
+            representativeDetailsContent.fullNameHTMLError,
+          ),
+          expect(
+            page.locator("#representativeOrganisationName-error"),
+          ).toContainText(representativeDetailsContent.organisationHTMLError),
           expect(
             page.locator("#representativeEmailAddress-error"),
           ).toContainText(representativeDetailsContent.validEmailError),
