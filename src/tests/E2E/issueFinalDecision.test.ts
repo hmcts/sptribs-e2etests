@@ -227,7 +227,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Issue a final decision @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Issue a final decision @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await issueFinalDecision.issueFinalDecision(

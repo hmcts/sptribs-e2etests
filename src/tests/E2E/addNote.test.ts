@@ -53,7 +53,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility tests - Add note @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility tests - Add note @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await addNote.addNote(page, "caseWorker", "Case Stayed", true);

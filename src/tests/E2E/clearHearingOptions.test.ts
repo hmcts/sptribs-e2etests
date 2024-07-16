@@ -39,7 +39,7 @@ test.describe("Case-API clear hearing options tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility tests - Clear hearing options @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility tests - Clear hearing options @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await clearHearingOptions.clearHearingOptions(

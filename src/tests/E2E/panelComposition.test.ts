@@ -88,7 +88,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Panel composition @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Panel composition @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await panelComposition.panelComposition(

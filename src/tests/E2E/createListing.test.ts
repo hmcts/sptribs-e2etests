@@ -250,7 +250,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - create listing @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - create listing @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await createListing.createListing(

@@ -107,7 +107,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Reinstate case. @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Reinstate case. @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await reinstateCase.reinstateCase(

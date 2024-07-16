@@ -88,7 +88,7 @@ test.describe("Create hearing options tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await hearingOptions.hearingOptions(

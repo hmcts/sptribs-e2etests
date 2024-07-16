@@ -270,7 +270,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
   }
 });
 
-test("Accessibility test every page. @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test every page. @accessibilityCaseAPI", async ({
   page,
 }) => {
   await editCase.editCase(

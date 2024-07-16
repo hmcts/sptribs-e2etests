@@ -57,7 +57,7 @@ test.describe("Case-API Build case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - build case @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - build case @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   let previousEvents: allEvents[] = [];

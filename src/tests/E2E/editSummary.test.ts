@@ -123,7 +123,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - edit summary @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - edit summary @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editSummary.editSummary(

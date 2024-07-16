@@ -588,7 +588,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - refer case to judge @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - refer case to judge @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await referCaseToJudge.referCaseToJudge(

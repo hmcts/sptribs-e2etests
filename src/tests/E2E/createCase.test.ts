@@ -476,7 +476,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test every page. @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test every page. @accessibilityCaseAPI", async ({
   page,
 }) => {
   await createCase.createCase(

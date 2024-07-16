@@ -55,7 +55,7 @@ test.describe("Edit Panel Composition tests @CaseAPI", () => {
   });
 });
 
-test("Edit a panel composition - Accessibility test. @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Edit a panel composition - Accessibility test. @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editPanelComposition.editPanelComposition(

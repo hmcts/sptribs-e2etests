@@ -147,7 +147,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - edit listing @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - edit listing @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editListing.editListing(

@@ -404,7 +404,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Close case @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Close case @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await closeCase.closeCase(

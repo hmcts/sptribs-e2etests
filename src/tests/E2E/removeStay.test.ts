@@ -120,7 +120,7 @@ test.describe("Case-API remove stay tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Remove stay @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Remove stay @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await removeStay.removeStay(page, true, "caseWorker", "Other", false, false);

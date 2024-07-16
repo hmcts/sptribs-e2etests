@@ -107,7 +107,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility tests - Document management: Upload @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility tests - Document management: Upload @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await documentManagementUpload.documentManagementUpload(

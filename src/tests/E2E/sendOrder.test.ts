@@ -211,7 +211,7 @@ test.describe("Send order tests @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Send order @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Send order @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await sendOrder.sendOrder(

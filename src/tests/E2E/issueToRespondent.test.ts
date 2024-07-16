@@ -99,7 +99,7 @@ test.describe("Issue to respondent tests @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Issue to respondent @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Issue to respondent @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await issueToRespondent.issueToRespondent(page, "caseWorker", true, false, [

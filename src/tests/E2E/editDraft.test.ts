@@ -107,7 +107,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Edit draft @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Edit draft @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editDraft.editDraft(

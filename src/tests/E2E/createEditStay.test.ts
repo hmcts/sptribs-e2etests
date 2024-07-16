@@ -212,7 +212,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Create/Edit stay @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await createEditStay.createEditStay(

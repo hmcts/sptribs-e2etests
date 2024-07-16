@@ -107,7 +107,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Create draft @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Accessibility test - Create draft @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   await createDraft.createDraft(
