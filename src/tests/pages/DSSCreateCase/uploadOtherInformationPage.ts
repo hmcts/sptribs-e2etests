@@ -269,7 +269,6 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
     switch (cy) {
       case true:
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -287,7 +286,18 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         ]);
         break;
       default:
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
+        await page.click(this.fields.fileUploadedOption);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadOtherInformationContent.errorBanner,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadOtherInformationContent.chooseFileError,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadOtherInformationContent.chooseFileError,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -303,9 +313,34 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
             uploadOtherInformationContent.fileTypeError,
           ),
         ]);
+        await page.fill(
+          this.fields.documentRelevance,
+          uploadOtherInformationContent.html,
+        );
+        await page.fill(
+          this.fields.additionalInfo,
+          uploadOtherInformationContent.html,
+        );
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadOtherInformationContent.errorBanner,
+          ),
+          expect(page.locator("[href='#documentRelevance']")).toHaveText(
+            uploadOtherInformationContent.docRelevanceError,
+          ),
+          expect(page.locator("[href='#additionalInformation']")).toHaveText(
+            uploadOtherInformationContent.addInfoError,
+          ),
+          expect(page.locator(".govuk-error-message").nth(0)).toContainText(
+            uploadOtherInformationContent.docRelevanceError,
+          ),
+          expect(page.locator(".govuk-error-message").nth(1)).toContainText(
+            uploadOtherInformationContent.addInfoError,
+          ),
+        ]);
         break;
     }
-    await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
   },
 
   async pressBackButton(page: Page): Promise<void> {

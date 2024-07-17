@@ -201,7 +201,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
             uploadSupportingDocumentsContent.noUploadErrorCy,
           ),
         ]);
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -230,7 +229,18 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
             uploadSupportingDocumentsContent.noUploadError,
           ),
         ]);
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
+        await page.click(this.fields.fileUploadedOption);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadSupportingDocumentsContent.errorBanner,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadSupportingDocumentsContent.chooseFileError,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadSupportingDocumentsContent.chooseFileError,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -248,7 +258,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         ]);
         break;
     }
-    await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
   },
 
   async pressBackButton(page: Page): Promise<void> {

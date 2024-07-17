@@ -35,8 +35,12 @@ const uploadOtherInformation_content = {
   button2: "Continue",
   deleteButton: "Delete",
   errorBanner: "There is a problem",
+  chooseFileError: "Choose a file to upload",
+  html: "<a>https://www.google.com</a>",
   fileTypeError:
-    "This service only accepts files in the formats - Ms Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
+    "This service only accepts files in the formats - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
+  docRelevanceError: "Document relevance must not include HTML",
+  addInfoError: "Additional information must not include HTML",
 
   pageTitleCy: "Ychwanegu gwybodaeth at achos",
   subTitleCy1: "Dogfennau ychwanegol",

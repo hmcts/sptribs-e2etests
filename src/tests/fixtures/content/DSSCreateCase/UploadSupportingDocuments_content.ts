@@ -16,7 +16,8 @@ const uploadSupportingDocuments_content = {
   deleteButton: "Delete",
   errorBanner: "There is a problem",
   noUploadError:
-    "You cannot continue without uploading supporting documentation",
+    "You must upload supporting documentation before you can proceed further",
+  chooseFileError: "Choose a file to upload",
   fileTypeError:
     "This service only accepts files in the formats - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
 

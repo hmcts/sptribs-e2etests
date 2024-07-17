@@ -29,7 +29,7 @@ const representativeDetailsContent = {
   organisationHTMLError: "Organisation or business name must not include HTML",
   partEmailEntry: "test@test",
   partContactNumberEntry: "012345",
-  link: "<a>https://www.google.com</a>",
+  html: "<a>https://www.google.com</a>",
 
   pageTitleCy: "Manylion y cynrychiolydd",
   textOnPageCy1:

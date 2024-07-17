@@ -199,11 +199,11 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         ]);
         await page.fill(
           this.fields.fullName,
-          representativeDetailsContent.link,
+          representativeDetailsContent.html,
         );
         await page.fill(
           this.fields.representativeOrgName,
-          representativeDetailsContent.link,
+          representativeDetailsContent.html,
         );
         await page.fill(
           this.fields.representativeEmailAddress,

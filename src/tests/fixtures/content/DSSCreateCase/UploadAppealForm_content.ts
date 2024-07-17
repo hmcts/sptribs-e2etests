@@ -19,8 +19,9 @@ const uploadAppealForm_content = {
   errorBanner: "There is a problem",
   noUploadError:
     "You must upload the application before you can proceed further",
+  chooseFileError: "Choose a file to upload",
   fileTypeError:
-    "This service only accepts files in the formats - Ms Word, PDF",
+    "This service only accepts files in the formats - MS Word, PDF",
 
   pageTitleCy: "Llwytho ffurflen y tribiwnlys",
   textOnPageCy1:
