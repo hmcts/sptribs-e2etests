@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 
 test.describe("Send order tests @CaseAPI", () => {
-  test("Send a draft order in the Case Management state as a caseworker", async ({
+  test("Send a draft order in the Case Management state as a caseworker @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await sendOrder.sendOrder(
@@ -98,7 +98,7 @@ test.describe("Send order tests @CaseAPI", () => {
     );
   });
 
-  test("Send a upload order in the case management state as a caseworker", async ({
+  test("Send a upload order in the case management state as a caseworker @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await sendOrder.sendOrder(
@@ -194,7 +194,9 @@ test.describe("Send order tests @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Send order", async ({ page }): Promise<void> => {
+  test("Error messaging - Send order @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await sendOrder.sendOrder(
       page,
       "caseWorker",

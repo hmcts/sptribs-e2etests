@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
 
 test.describe("Case-API Create draft tests. @CaseAPI", () => {
-  test("As a Caseworker create a CIC3 draft in the Case Management state.", async ({
+  test("As a Caseworker create a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
     page,
   }) => {
     await createDraft.createDraft(
@@ -15,7 +15,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("As a Senior Caseworker create a CIC6 draft in the Ready to list state.", async ({
+  test("As a Senior Caseworker create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
     page,
   }) => {
     await createDraft.createDraft(
@@ -93,7 +93,9 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Create draft", async ({ page }) => {
+  test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     await createDraft.createDraft(
       page,
       "caseWorker",
