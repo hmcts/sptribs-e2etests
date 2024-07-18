@@ -908,6 +908,7 @@ export type allEvents =
   | "Case: Edit case"
   | "Case: Reinstate case"
   | "Case: Edit case details"
+  | "Case: Contact parties"
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"
@@ -1047,4 +1048,9 @@ export type State =
   | "Awaiting Hearing"
   | "Awaiting Outcome"
   | "Case closed"
-  | "Case Stayed";
+  | "Case Stayed"
+  | "Draft"
+  | "Withdrawn"
+  | "Rejected"
+  | "Submitted"
+  | "New case received";
