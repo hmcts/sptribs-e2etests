@@ -1,30 +1,33 @@
 import { test } from "@playwright/test";
 import editCase from "../journeys/CaseAPI/editCase.ts";
+import config from "../config.ts";
 
 test.describe("Case-API Edit case tests. @CaseAPI", () => {
-  test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
+  if (!config.skipDSSCreateTests) {
+    test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact", async ({
       page,
-      "caseWorker",
-      false,
-      "DSS Submitted",
-      "Assessment",
-      "Fatal",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
+    }) => {
+      await editCase.editCase(
+        page,
+        "caseWorker",
+        false,
+        "DSS Submitted",
+        "Assessment",
+        "Fatal",
+        true,
+        true,
+        "Email",
+        true,
+        "1996",
+        "Scotland",
+        true,
+        false,
+        true,
+        false,
+        false,
+      );
+    });
+  }
 
   test("Caseworker - Submitted - Assessment - Medical Re-opening Category, Email Contact", async ({
     page,
@@ -242,27 +245,29 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging.", async ({ page }) => {
-    await editCase.editCase(
-      page,
-      "caseWorker",
-      false,
-      "DSS Submitted",
-      "Assessment",
-      "Medical Re-opening",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      true,
-    );
-  });
+  if (!config.skipDSSCreateTests) {
+    test("Error messaging.", async ({ page }) => {
+      await editCase.editCase(
+        page,
+        "caseWorker",
+        false,
+        "DSS Submitted",
+        "Assessment",
+        "Medical Re-opening",
+        true,
+        true,
+        "Email",
+        true,
+        "1996",
+        "Scotland",
+        true,
+        false,
+        true,
+        false,
+        true,
+      );
+    });
+  }
 });
 
 test("Accessibility test every page. @accessibilityCaseAPI", async ({

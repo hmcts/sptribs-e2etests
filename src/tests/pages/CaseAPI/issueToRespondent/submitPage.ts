@@ -37,7 +37,7 @@ const submitPage: SubmitPage = {
         submit_content.caseReference + caseNumber,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`form > span:text-is("${submit_content.textOnPage1}")`),
+        page.locator(`div > span:text-is("${submit_content.textOnPage1}")`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(

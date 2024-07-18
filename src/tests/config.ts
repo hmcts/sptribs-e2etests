@@ -17,7 +17,7 @@ export type UserRole =
   | "superUser";
 
 interface Config {
-  [key: string]: UserCredentials | string;
+  [key: string]: UserCredentials | string | boolean;
 }
 
 const config: Config = {
@@ -69,6 +69,7 @@ const config: Config = {
   FEBaseURL: process.env.DSS_BASE_URL || "FEBaseURL",
   CaseAPIBaseURL: process.env.CASEAPI_BASE_URL || "CaseAPIBaseURL",
   UpdateCaseBaseURL: process.env.UC_BASE_URL || "UpdateCaseBaseURL",
+  skipDSSCreateTests: process.env.skipDSSCreateTests || false,
 
   testFile: path.resolve(__dirname, "../tests/fixtures/testFiles/mockFile.txt"),
   testPdfFile: path.resolve(
@@ -100,4 +101,5 @@ export default config as {
   testWordFile: string;
   testOdtFile: string;
   testMP3File: string;
+  skipDSSCreateTests: boolean;
 };
