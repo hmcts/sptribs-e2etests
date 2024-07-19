@@ -33,6 +33,7 @@ interface CommonHelpers {
   readonly months: string[];
   shortMonths(index: number): Promise<string>;
   todayDate(): Promise<string>;
+  todayDateDoc(): Promise<string>;
   padZero(value: number): string;
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
@@ -110,6 +111,18 @@ const commonHelpers: CommonHelpers = {
   },
 
   async todayDate(): Promise<string> {
+    const now = new Date();
+    const dateString = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+    });
+    const [month, day, year] = dateString.split("/");
+
+    return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
+  },
+
+  async todayDateDoc(): Promise<string> {
     const now = new Date();
     const dateString = now.toLocaleDateString("en-US", {
       year: "numeric",
@@ -260,6 +273,7 @@ const commonHelpers: CommonHelpers = {
     chosenEvent: string,
   ): Promise<void> {
     await page.selectOption("#next-step", chosenEvent);
+    await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click();
   },
 
@@ -440,7 +454,10 @@ const commonHelpers: CommonHelpers = {
     baseURL: string,
     caseNumber: string,
   ): Promise<void> {
-    await page.getByText("Sign out").click();
+    //    await page.getByText("Sign out").waitFor({ state: 'visible'})
+    await page.getByText("Sign out").click({ force: true });
+    await page.waitForLoadState("domcontentloaded");
+    //    await page.locator("a.hmcts-header__navigation-link").click({force: true});
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.goto(await this.generateUrl(baseURL, caseNumber));
   },
@@ -501,13 +518,13 @@ const commonHelpers: CommonHelpers = {
           1,
         ),
         this.checkVisibleAndPresent(
-          newPage.locator(`span:text-is("${await this.todayDate()}")`),
+          newPage.locator(`span:text-is("${await this.todayDateDoc()}")`),
           1,
         ),
       ]);
     } else {
       await this.checkVisibleAndPresent(
-        newPage.locator(`span:text-is("Dated ${await this.todayDate()}")`),
+        newPage.locator(`span:text-is("Dated ${await this.todayDateDoc()}")`),
         1,
       );
     }
@@ -903,6 +920,7 @@ export type allEvents =
   | "Orders: Create draft"
   | "Orders: Send order"
   | "Orders: Edit draft"
+  | "Orders: Manage due date"
   | "Document management: Upload";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
