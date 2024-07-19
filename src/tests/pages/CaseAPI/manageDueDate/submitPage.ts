@@ -19,7 +19,11 @@ type SubmitPage = {
   ): Promise<void>;
   checkValidInfo(page: Page, completedCheckboxChecked: boolean): Promise<void>;
   saveAndContinue(page: Page): Promise<void>;
-  checkChangeLink(page: Page, caseNumber: string, accessibilityTest: boolean): Promise<void>;
+  checkChangeLink(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void>;
 };
 
 const submitPage: SubmitPage = {
