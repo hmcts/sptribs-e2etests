@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import panelComposition from "../journeys/CaseAPI/panelComposition.ts";
 
 test.describe("Panel Composition tests @CaseAPI", () => {
-  test("As a caseworker make a panel composition only one panel member and no specialism information.", async ({
+  test("As a caseworker make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await panelComposition.panelComposition(
@@ -50,7 +50,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
     );
   });
-  test("As a senior caseworker make a panel composition with all information.", async ({
+  test("As a senior caseworker make a panel composition with all information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await panelComposition.panelComposition(
@@ -74,7 +74,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
     );
   });
-  test("As a hearing centre team lead make a panel composition with all information.", async ({
+  test("As a hearing centre team lead make a panel composition with all information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await panelComposition.panelComposition(

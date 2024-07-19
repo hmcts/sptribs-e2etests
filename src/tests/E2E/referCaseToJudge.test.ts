@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 
 test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
-  test("Refer case to judge as a caseworker - case management, listing directions", async ({
+  test("Refer case to judge as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await referCaseToJudge.referCaseToJudge(
@@ -327,7 +327,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a hearing centre team lead - awaiting outcome, rule 27 request", async ({
+  test("Refer case to judge as a hearing centre team lead - awaiting outcome, rule 27 request @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await referCaseToJudge.referCaseToJudge(
@@ -574,7 +574,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await referCaseToJudge.referCaseToJudge(
       page,
       "caseWorker",

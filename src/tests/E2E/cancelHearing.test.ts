@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import cancelHearing from "../journeys/CaseAPI/cancelHearing.ts";
 
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
-  test("Cancel hearing as a caseworker - case rejected.", async ({
+  test("Cancel hearing as a caseworker - case rejected. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await cancelHearing.cancelHearing(
@@ -74,7 +74,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Cancel hearing as a caseworker - other reason.", async ({
+  test("Cancel hearing as a caseworker - other reason. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await cancelHearing.cancelHearing(
@@ -86,7 +86,9 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await cancelHearing.cancelHearing(
       page,
       "caseWorker",
@@ -97,7 +99,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - cancel hearing @accessibilityCaseAPI.", async ({
+test("Accessibility test - cancel hearing @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await cancelHearing.cancelHearing(

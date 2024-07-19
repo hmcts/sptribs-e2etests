@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import editPanelComposition from "../journeys/CaseAPI/editPanelComposition.ts";
 
 test.describe("Edit Panel Composition tests @CaseAPI", () => {
-  test("As a caseworker edit a panel composition.", async ({
+  test("As a caseworker edit a panel composition. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editPanelComposition.editPanelComposition(
@@ -28,7 +28,7 @@ test.describe("Edit Panel Composition tests @CaseAPI", () => {
     );
   });
 
-  test("As a hearing centre admin edit a panel composition.", async ({
+  test("As a hearing centre admin edit a panel composition. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editPanelComposition.editPanelComposition(

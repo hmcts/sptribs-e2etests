@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 
 test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
-  test("Stay a case management case for reason waitingOutcomeOfCivilCase as a caseworker with optional text.", async ({
+  test("Stay a case management case for reason waitingOutcomeOfCivilCase as a caseworker with optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await createEditStay.createEditStay(
@@ -142,7 +142,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
   });
 
-  test("Stay a Ready to list case for reason unableToProgressDueToSubject as a hearingCentreTeamLead with no optional text.", async ({
+  test("Stay a Ready to list case for reason unableToProgressDueToSubject as a hearingCentreTeamLead with no optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await createEditStay.createEditStay(
@@ -197,7 +197,9 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
     );
   });
-  test("Error messages - Create/Edit stay", async ({ page }): Promise<void> => {
+  test("Error messages - Create/Edit stay @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await createEditStay.createEditStay(
       page,
       false,

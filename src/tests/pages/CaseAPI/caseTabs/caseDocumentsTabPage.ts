@@ -456,7 +456,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     const dateString = now.toLocaleDateString("en-US", {
       year: "numeric",
       month: "2-digit",
-      day: "2-digit",
+      day: "numeric",
     });
     const [month, day, year] = dateString.split("/");
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;

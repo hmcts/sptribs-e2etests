@@ -132,6 +132,7 @@ const commonHelpers: CommonHelpers = {
     const [month, day, year] = dateString
       .split("/")
       .map((part) => part.padStart(2, "0"));
+
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
   },
 
