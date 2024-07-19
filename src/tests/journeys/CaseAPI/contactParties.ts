@@ -155,8 +155,10 @@ const contactParties: ContactParties = {
         );
         break;
     }
-    if (typeof(caseNumber) !== "string"){
-      throw new Error("Initial state creation failed: caseNumber cannot be null.")
+    if (typeof caseNumber !== "string") {
+      throw new Error(
+        "Initial state creation failed: caseNumber cannot be null.",
+      );
     }
     await commonHelpers.signOutAndGoToCase(
       page,

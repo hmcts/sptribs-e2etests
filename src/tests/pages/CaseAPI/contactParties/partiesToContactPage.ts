@@ -8,7 +8,11 @@ import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCas
 type PartiesToContactPage = {
   continue: string;
   message: string;
-  checkPageLoads(page: Page, caseNumber: string, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void>;
   tickCheckBoxes(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
@@ -17,7 +21,11 @@ const partiesToContactPage: PartiesToContactPage = {
   continue: '[type="submit"]',
   message: "#cicCaseNotifyPartyMessage",
 
-  async checkPageLoads(page: Page, caseNumber: string, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -38,8 +46,10 @@ const partiesToContactPage: PartiesToContactPage = {
         partiesToContact_content.caseReference + caseNumber,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`xpath=//markdown//p[text()="${partiesToContact_content.textOnPage}"]`),
-        1
+        page.locator(
+          `xpath=//markdown//p[text()="${partiesToContact_content.textOnPage}"]`,
+        ),
+        1,
       ),
       ...Array.from({ length: 4 }, (_, index) => {
         return expect(
@@ -93,7 +103,7 @@ const partiesToContactPage: PartiesToContactPage = {
       // expect(
       //   page.locator("error-summary-list.ng-star-inserted"),
       // ).toContainText(partiesToContact_content.partyRequiredError),
-  ]);
+    ]);
   },
 
   async tickCheckBoxes(page: Page): Promise<void> {
