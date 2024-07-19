@@ -36,7 +36,7 @@ const submitPage: SubmitPage = {
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        submit_content.caseReference + caseNumber,
+        partiesToContact_content.caseReference + caseNumber,
       ),
       expect(page.locator(".heading-h2").nth(0)).toHaveText(
         submit_content.subTitle,

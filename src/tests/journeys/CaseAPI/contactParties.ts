@@ -10,6 +10,10 @@ import buildCase from "./buildCase.ts";
 import selectDocumentsPage from "../../pages/CaseAPI/contactParties/selectDocumentsPage.ts";
 import partiesToContactPage from "../../pages/CaseAPI/contactParties/partiesToContactPage.ts";
 import submitPage from "../../pages/CaseAPI/contactParties/submitPage.ts";
+import hearingOptions from "./hearingOptions.ts";
+import createListing from "./createListing.ts";
+import createSummary from "./createSummary.ts";
+import createEditStay from "./createEditStay.ts";
 
 type ContactParties = {
   contactParties(
@@ -27,7 +31,7 @@ const contactParties: ContactParties = {
     accessibilityTest: boolean,
     initialState: State,
   ): Promise<void> {
-    let caseNumber: string = "";
+    let caseNumber: string | void = "";
     switch (initialState) {
       default: // Defaults to Case Management
         let previousEvents: allEvents[] = [];
@@ -39,6 +43,7 @@ const contactParties: ContactParties = {
           true,
           "caseWorker",
         );
+        break;
       case "Draft":
         caseNumber = await createDraft.createDraft(
           page,
@@ -78,33 +83,99 @@ const contactParties: ContactParties = {
       case "New case received":
         break;
       case "Ready to list":
+        caseNumber = await hearingOptions.hearingOptions(
+          page,
+          "caseWorker",
+          false,
+          true,
+          "1-London",
+          true,
+          false,
+          "Face to Face",
+          false,
+          false,
+        );
         break;
       case "Awaiting Hearing":
+        caseNumber = await createListing.createListing(
+          page,
+          "caseWorker",
+          false,
+          true,
+          "1-London",
+          "Case management",
+          "Face to Face",
+          "Morning",
+          false,
+          false,
+          "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+          false,
+        );
         break;
       case "Awaiting Outcome":
+        caseNumber = await createSummary.createSummary(
+          page,
+          "caseWorker",
+          false,
+          "Case management",
+          "Hybrid",
+          "Morning",
+          false,
+          "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
+          "Fox Court",
+          "Allowed",
+          null,
+          true,
+          false,
+          false,
+        );
         break;
       case "Case closed":
+        caseNumber = await closeCase.closeCase(
+          page,
+          "caseWorker",
+          false,
+          "Case Management",
+          false,
+          "caseWithdrawn",
+          true,
+          null,
+          null,
+        );
         break;
       case "Case Stayed":
+        caseNumber = await createEditStay.createEditStay(
+          page,
+          false,
+          "Case Management",
+          "caseWorker",
+          false,
+          "waitingOutcomeOfCivilCase",
+          true,
+        );
         break;
     }
-    // await commonHelpers.signOutAndGoToCase(
-    //   page,
-    //   user,
-    //   config.CaseAPIBaseURL,
-    //   caseNumber,
-    // );
+    if (typeof(caseNumber) !== "string"){
+      throw new Error("Initial state creation failed: caseNumber cannot be null.")
+    }
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      user,
+      config.CaseAPIBaseURL,
+      caseNumber,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
     await selectDocumentsPage.checkPageLoads(page, caseNumber, false);
     await selectDocumentsPage.tickCheckbox(page);
     await selectDocumentsPage.continueOn(page);
 
-    await partiesToContactPage.checkPageLoads(page, false);
+    await partiesToContactPage.checkPageLoads(page, caseNumber, false);
+    await partiesToContactPage.triggerErrorMessages(page);
     await partiesToContactPage.tickCheckBoxes(page);
-    await partiesToContactPage.fillInFields(page);
 
     await submitPage.checkPageLoads(page, caseNumber, false);
     await submitPage.checkValidInfo(page);
+    await submitPage.continueOn(page);
   },
 };
 export default contactParties;

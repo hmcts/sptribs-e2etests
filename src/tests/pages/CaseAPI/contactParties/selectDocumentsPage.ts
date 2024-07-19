@@ -3,6 +3,7 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 
 type SelectDocumentsPage = {
   continue: string;
@@ -38,6 +39,9 @@ const selectDocumentsPage: SelectDocumentsPage = {
           `.govuk-heading-l:text-is("${selectDocument_content.pageTitle}")`,
         ),
         1,
+      ),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        partiesToContact_content.caseReference + caseNumber,
       ),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
         caseSubjectDetailsObject_content.name,

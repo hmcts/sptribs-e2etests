@@ -1,6 +1,7 @@
 const partiesToContact_content = {
   pageHint: "Case: Contact parties",
   pageTitle: "Contact Parties",
+  caseReference: "Case number: ",
 
   textOnPage: "Which parties do you want to contact?", // P
 
@@ -12,8 +13,10 @@ const partiesToContact_content = {
   textOnPage6: "Message",
   message: "Lorem ipsum message",
 
-  errorBanner: "There is a problem",
-  messageRequiredError: "Message is required",
+  errorBanner1: "There is a problem",
+  errorBanner2: "Errors",
+  messageRequiredError1: "Message is required",
+  partyRequiredError: "Please select at least one party to contact",
 } as const;
 
 export default partiesToContact_content;

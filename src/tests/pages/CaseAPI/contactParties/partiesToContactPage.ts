@@ -3,13 +3,13 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 
 type PartiesToContactPage = {
   continue: string;
   message: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(page: Page, caseNumber: string, accessibilityTest: boolean): Promise<void>;
   tickCheckBoxes(page: Page): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -17,7 +17,7 @@ const partiesToContactPage: PartiesToContactPage = {
   continue: '[type="submit"]',
   message: "#cicCaseNotifyPartyMessage",
 
-  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(page: Page, caseNumber: string, accessibilityTest: boolean): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -35,8 +35,12 @@ const partiesToContactPage: PartiesToContactPage = {
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        partiesToContact_content.textOnPage,
-      ), // update
+        partiesToContact_content.caseReference + caseNumber,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`xpath=//markdown//p[text()="${partiesToContact_content.textOnPage}"]`),
+        1
+      ),
       ...Array.from({ length: 4 }, (_, index) => {
         return expect(
           page
@@ -65,24 +69,31 @@ const partiesToContactPage: PartiesToContactPage = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {
-    await page.fill(this.message, partiesToContact_content.message);
-    await page.click(this.continue);
-  },
-
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
-        partiesToContact_content.errorBanner,
+        partiesToContact_content.errorBanner1,
       ),
       expect(page.locator(".validation-error")).toHaveText(
-        partiesToContact_content.messageRequiredError,
+        partiesToContact_content.messageRequiredError1,
       ),
       expect(page.locator(".error-message")).toHaveText(
-        partiesToContact_content.messageRequiredError,
+        partiesToContact_content.messageRequiredError1,
       ),
-    ]);
+      page.fill(this.message, partiesToContact_content.message),
+      page.click(this.continue),
+      // expect(
+      //   page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
+      // ).toContainText(partiesToContact_content.errorBanner2),
+      // commonHelpers.checkVisibleAndPresent(
+      //   page.locator(`.heading-h3.error-summary-heading.ng-star-inserted:text-is("${partiesToContact_content.errorBanner2}")`),
+      //   1,
+      //   ),
+      // expect(
+      //   page.locator("error-summary-list.ng-star-inserted"),
+      // ).toContainText(partiesToContact_content.partyRequiredError),
+  ]);
   },
 
   async tickCheckBoxes(page: Page): Promise<void> {
@@ -92,7 +103,6 @@ const partiesToContactPage: PartiesToContactPage = {
       "cicCaseNotifyPartyRepresentative",
       "cicCaseNotifyPartyRespondent",
     ];
-
     await Promise.all(
       Array.from({ length: checkboxNames.length }, (_, index: number) => {
         const name = checkboxNames[index];
@@ -109,6 +119,7 @@ const partiesToContactPage: PartiesToContactPage = {
         });
       }),
     );
+    await page.click(this.continue);
   },
 };
 export default partiesToContactPage;
