@@ -44,16 +44,20 @@ const submitPage: SubmitPage = {
       expect(page.locator("span.text-16").nth(0)).toHaveText(
         submit_content.textOnPage1,
       ),
-      ...Array.from({ length: 4 }, (_, index) => {
-        return expect(
-          page.locator(`text="${submit_content.textOnPage2}"`).nth(index),
-        ).toBeVisible();
-      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `span.text-16:text-is("${submit_content.textOnPage2}")`,
+        ),
+        4,
+      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `span.text-16:text-is("${partiesToContact_content.textOnPage6}")`,
         ),
         1,
+      ),
+      expect(page.locator("span.text-16").nth(1)).toHaveText(
+        submit_content.textOnPage4,
       ),
       commonHelpers.checkForButtons(
         page,

@@ -172,8 +172,9 @@ const contactParties: ContactParties = {
     await selectDocumentsPage.continueOn(page);
 
     await partiesToContactPage.checkPageLoads(page, caseNumber, false);
+    await partiesToContactPage.tickCheckBoxes(page, false);
     await partiesToContactPage.triggerErrorMessages(page);
-    await partiesToContactPage.tickCheckBoxes(page);
+    await partiesToContactPage.tickCheckBoxes(page, true);
 
     await submitPage.checkPageLoads(page, caseNumber, false);
     await submitPage.checkValidInfo(page);

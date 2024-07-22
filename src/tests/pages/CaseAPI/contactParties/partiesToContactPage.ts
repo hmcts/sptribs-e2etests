@@ -14,7 +14,7 @@ type PartiesToContactPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  tickCheckBoxes(page: Page): Promise<void>;
+  tickCheckBoxes(page: Page, checkBoxes: boolean): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -97,7 +97,7 @@ const partiesToContactPage: PartiesToContactPage = {
     ]);
   },
 
-  async tickCheckBoxes(page: Page): Promise<void> {
+  async tickCheckBoxes(page: Page, checkBoxes: boolean): Promise<void> {
     const checkboxNames = [
       "cicCaseNotifyPartySubject",
       "cicCaseNotifyPartyApplicant",
@@ -113,8 +113,13 @@ const partiesToContactPage: PartiesToContactPage = {
       await checkboxLocator.waitFor({ state: "visible" });
       const isPresent = await checkboxLocator.count();
       if (isPresent > 0) {
-        await checkboxLocator.check();
-        await checkboxLocator.isChecked();
+        if (checkBoxes){
+          await checkboxLocator.check();
+          await checkboxLocator.isChecked();
+        }
+        else{
+          await checkboxLocator.uncheck();
+        }
       }
     }
 
