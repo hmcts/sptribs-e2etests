@@ -45,9 +45,7 @@ const submitPage: SubmitPage = {
         submit_content.textOnPage1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `span.text-16:text-is("${submit_content.textOnPage2}")`,
-        ),
+        page.locator(`span.text-16:text-is("${submit_content.textOnPage2}")`),
         4,
       ),
       commonHelpers.checkVisibleAndPresent(

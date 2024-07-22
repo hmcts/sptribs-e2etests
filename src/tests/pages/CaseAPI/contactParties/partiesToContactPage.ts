@@ -113,11 +113,10 @@ const partiesToContactPage: PartiesToContactPage = {
       await checkboxLocator.waitFor({ state: "visible" });
       const isPresent = await checkboxLocator.count();
       if (isPresent > 0) {
-        if (checkBoxes){
+        if (checkBoxes) {
           await checkboxLocator.check();
           await checkboxLocator.isChecked();
-        }
-        else{
+        } else {
           await checkboxLocator.uncheck();
         }
       }

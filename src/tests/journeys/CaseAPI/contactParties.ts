@@ -14,6 +14,7 @@ import hearingOptions from "./hearingOptions.ts";
 import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
+import confirmPage from "../../pages/CaseAPI/contactParties/confirmPage.ts";
 
 type ContactParties = {
   contactParties(
@@ -79,8 +80,6 @@ const contactParties: ContactParties = {
           "createdInError",
           null,
         );
-        break;
-      case "New case received":
         break;
       case "Ready to list":
         caseNumber = await hearingOptions.hearingOptions(
@@ -179,6 +178,9 @@ const contactParties: ContactParties = {
     await submitPage.checkPageLoads(page, caseNumber, false);
     await submitPage.checkValidInfo(page);
     await submitPage.continueOn(page);
+
+    await confirmPage.checkPageLoads(page, caseNumber, false);
+    await confirmPage.continueOn(page);
   },
 };
 export default contactParties;
