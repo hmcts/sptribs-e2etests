@@ -32,10 +32,10 @@ const submitPage: SubmitPage = {
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(submit_content.title),
-      expect(page.locator("markdown > h3")).toContainText(
+      expect(page.locator("markdown > h3")).toHaveText(
         caseSubjectDetailsObject_content.name,
       ),
-      expect(page.locator("markdown > p").nth(0)).toContainText(
+      expect(page.locator("markdown > p").nth(0)).toHaveText(
         partiesToContact_content.caseReference + caseNumber,
       ),
       expect(page.locator(".heading-h2").nth(0)).toHaveText(
@@ -49,12 +49,10 @@ const submitPage: SubmitPage = {
           page.locator(`text="${submit_content.textOnPage2}"`).nth(index),
         ).toBeVisible();
       }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `xpath=//tr[contains(@class, 'ng-touched ng-dirty ng-valid ng-star-inserted')]//th[contains(@class, 'valign-top case-field-label ng-star-inserted')]//span[@class='text-16' and text()="${partiesToContact_content.textOnPage6}"]`,
-        ),
-        1,
-      ),
+    commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${partiesToContact_content.textOnPage6}")`),
+      1,
+    ),
       commonHelpers.checkForButtons(
         page,
         this.saveAndContinue,

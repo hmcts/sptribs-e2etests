@@ -28,23 +28,13 @@ const selectDocumentsPage: SelectDocumentsPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-caption-l:text-is("${selectDocument_content.pageHint}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-heading-l:text-is("${selectDocument_content.pageTitle}")`,
-        ),
-        1,
+      expect(page.locator(".govuk-caption-l")).toContainText(selectDocument_content.pageHint),
+      expect(page.locator(".govuk-heading-l")).toContainText(selectDocument_content.pageTitle),
+      expect(page.locator("markdown > h3").nth(0)).toContainText(
+        caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         partiesToContact_content.caseReference + caseNumber,
-      ),
-      expect(page.locator("markdown > h3").nth(0)).toContainText(
-        caseSubjectDetailsObject_content.name,
       ),
       ...Array.from({ length: 2 }, (_, index: number) => {
         const textOnPage = (selectDocument_content as any)[
@@ -55,12 +45,7 @@ const selectDocumentsPage: SelectDocumentsPage = {
           1,
         );
       }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${selectDocument_content.textOnPage3}")`,
-        ),
-        1,
-      ),
+      expect(page.locator(".form-label").nth(0)).toContainText(selectDocument_content.textOnPage3),
       // TEMP FIX FOR DUPLICATE CHECKBOX
       commonHelpers.checkVisibleAndPresent(
         page
@@ -70,7 +55,7 @@ const selectDocumentsPage: SelectDocumentsPage = {
           .first(),
         1,
       ),
-      await commonHelpers.checkForButtons(
+      commonHelpers.checkForButtons(
         page,
         this.continue,
         this.previous,

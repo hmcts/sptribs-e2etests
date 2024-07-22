@@ -7,6 +7,8 @@ import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactP
 type PartiesToContactPage = {
   continue: string;
   message: string;
+  previous: string,
+  cancel: string,
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -19,44 +21,30 @@ type PartiesToContactPage = {
 const partiesToContactPage: PartiesToContactPage = {
   continue: '[type="submit"]',
   message: "#cicCaseNotifyPartyMessage",
-
+  previous: ".button-secondary[disabled]",
+  cancel: ".cancel",
   async checkPageLoads(
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-caption-l:text-is("${partiesToContact_content.pageHint}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-heading-l:text-is("${partiesToContact_content.pageTitle}")`,
-        ),
-        1,
-      ),
+      expect(page.locator(".govuk-caption-l")).toContainText(partiesToContact_content.pageHint),
+      expect(page.locator(".govuk-heading-l")).toContainText(partiesToContact_content.pageTitle),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         partiesToContact_content.caseReference + caseNumber,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `xpath=//markdown//p[text()="${partiesToContact_content.textOnPage}"]`,
-        ),
-        1,
+      expect(page.locator("markdown > p").nth(1)).toContainText(
+        partiesToContact_content.textOnPage,
       ),
-      ...Array.from({ length: 4 }, (_, index) => {
-        return expect(
-          page
-            .locator(`text="${partiesToContact_content.textOnPage5}"`)
-            .nth(index),
-        ).toBeVisible();
-      }),
+      //expect(page.locator(`xpath=//markdown//p[text()]`)).toContainText(partiesToContact_content.textOnPage),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`text="${partiesToContact_content.textOnPage5}"`),
+        4,
+      ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (partiesToContact_content as any)[
           `textOnPage${index + 1}`
@@ -66,11 +54,12 @@ const partiesToContactPage: PartiesToContactPage = {
           1,
         );
       }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${partiesToContact_content.textOnPage6}")`,
-        ),
-        1,
+      expect(page.locator('label[for="cicCaseNotifyPartyMessage"] .form-label')).toContainText(partiesToContact_content.textOnPage6),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
       ),
     ]);
     if (accessibilityTest) {
@@ -92,16 +81,10 @@ const partiesToContactPage: PartiesToContactPage = {
       ),
       page.fill(this.message, partiesToContact_content.message),
       page.click(this.continue),
-      // expect(
-      //   page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
-      // ).toContainText(partiesToContact_content.errorBanner2),
-      // commonHelpers.checkVisibleAndPresent(
-      //   page.locator(`.heading-h3.error-summary-heading.ng-star-inserted:text-is("${partiesToContact_content.errorBanner2}")`),
-      //   1,
-      //   ),
-      // expect(
-      //   page.locator("error-summary-list.ng-star-inserted"),
-      // ).toContainText(partiesToContact_content.partyRequiredError),
+      expect(
+        page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
+      ).toContainText(partiesToContact_content.errorBanner2),
+      expect(page.locator('div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted')).toContainText(partiesToContact_content.partyRequiredError),
     ]);
   },
 
@@ -114,7 +97,9 @@ const partiesToContactPage: PartiesToContactPage = {
     ];
 
     for (const name of checkboxNames) {
-      const checkboxLocator = page.locator(`input[type="checkbox"][name="${name}"]`);
+      const checkboxLocator = page.locator(
+        `input[type="checkbox"][name="${name}"]`,
+      );
 
       await checkboxLocator.waitFor({ state: "visible" });
       const isPresent = await checkboxLocator.count();
@@ -125,6 +110,6 @@ const partiesToContactPage: PartiesToContactPage = {
     }
 
     await page.click(this.continue);
-  }
+  },
 };
 export default partiesToContactPage;
