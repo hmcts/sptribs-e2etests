@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
-  test("Caseworker - Assessment - Fatal Category, Email Contact, multiple documents", async ({
+  test("Caseworker - Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
     page,
   }) => {
     await createCase.createCase(
@@ -227,7 +227,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Minor Category, Post Contact", async ({
+  test("Caseworker - Eligibility - Minor Category, Post Contact @crossbrowserCaseAPI", async ({
     page,
   }) => {
     await createCase.createCase(
@@ -452,7 +452,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging.", async ({ page }) => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
     await createCase.createCase(
       page,
       "caseWorker",
