@@ -3,7 +3,6 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
-import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 
 type PartiesToContactPage = {
   continue: string;
@@ -113,23 +112,19 @@ const partiesToContactPage: PartiesToContactPage = {
       "cicCaseNotifyPartyRepresentative",
       "cicCaseNotifyPartyRespondent",
     ];
-    await Promise.all(
-      Array.from({ length: checkboxNames.length }, (_, index: number) => {
-        const name = checkboxNames[index];
-        const checkboxLocator = page.locator(
-          `input[type="checkbox"][name="${name}"]`,
-        );
 
-        return checkboxLocator.waitFor({ state: "visible" }).then(async () => {
-          const isPresent = await checkboxLocator.count();
-          if (isPresent > 0) {
-            await checkboxLocator.check();
-            await checkboxLocator.isChecked();
-          }
-        });
-      }),
-    );
+    for (const name of checkboxNames) {
+      const checkboxLocator = page.locator(`input[type="checkbox"][name="${name}"]`);
+
+      await checkboxLocator.waitFor({ state: "visible" });
+      const isPresent = await checkboxLocator.count();
+      if (isPresent > 0) {
+        await checkboxLocator.check();
+        await checkboxLocator.isChecked();
+      }
+    }
+
     await page.click(this.continue);
-  },
+  }
 };
 export default partiesToContactPage;

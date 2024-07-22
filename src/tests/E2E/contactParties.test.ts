@@ -5,6 +5,6 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
   test("Contact all case related parties as a caseworker.", async ({
     page,
   }): Promise<void> => {
-    await contactParties.contactParties(page, "caseWorker", false, "Withdrawn");
+    await contactParties.contactParties(page, "caseWorker", false, "Draft");
   });
 });
