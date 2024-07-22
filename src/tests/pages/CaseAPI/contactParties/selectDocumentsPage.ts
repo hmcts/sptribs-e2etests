@@ -28,8 +28,12 @@ const selectDocumentsPage: SelectDocumentsPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toContainText(selectDocument_content.pageHint),
-      expect(page.locator(".govuk-heading-l")).toContainText(selectDocument_content.pageTitle),
+      expect(page.locator(".govuk-caption-l")).toContainText(
+        selectDocument_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toContainText(
+        selectDocument_content.pageTitle,
+      ),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
@@ -45,7 +49,9 @@ const selectDocumentsPage: SelectDocumentsPage = {
           1,
         );
       }),
-      expect(page.locator(".form-label").nth(0)).toContainText(selectDocument_content.textOnPage3),
+      expect(page.locator(".form-label").nth(0)).toContainText(
+        selectDocument_content.textOnPage3,
+      ),
       // TEMP FIX FOR DUPLICATE CHECKBOX
       commonHelpers.checkVisibleAndPresent(
         page

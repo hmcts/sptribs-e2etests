@@ -7,8 +7,8 @@ import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactP
 type PartiesToContactPage = {
   continue: string;
   message: string;
-  previous: string,
-  cancel: string,
+  previous: string;
+  cancel: string;
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -29,8 +29,12 @@ const partiesToContactPage: PartiesToContactPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toContainText(partiesToContact_content.pageHint),
-      expect(page.locator(".govuk-heading-l")).toContainText(partiesToContact_content.pageTitle),
+      expect(page.locator(".govuk-caption-l")).toContainText(
+        partiesToContact_content.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toContainText(
+        partiesToContact_content.pageTitle,
+      ),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
@@ -40,7 +44,6 @@ const partiesToContactPage: PartiesToContactPage = {
       expect(page.locator("markdown > p").nth(1)).toContainText(
         partiesToContact_content.textOnPage,
       ),
-      //expect(page.locator(`xpath=//markdown//p[text()]`)).toContainText(partiesToContact_content.textOnPage),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`text="${partiesToContact_content.textOnPage5}"`),
         4,
@@ -54,7 +57,9 @@ const partiesToContactPage: PartiesToContactPage = {
           1,
         );
       }),
-      expect(page.locator('label[for="cicCaseNotifyPartyMessage"] .form-label')).toContainText(partiesToContact_content.textOnPage6),
+      expect(
+        page.locator('label[for="cicCaseNotifyPartyMessage"] .form-label'),
+      ).toContainText(partiesToContact_content.textOnPage6),
       commonHelpers.checkForButtons(
         page,
         this.continue,
@@ -84,7 +89,11 @@ const partiesToContactPage: PartiesToContactPage = {
       expect(
         page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
       ).toContainText(partiesToContact_content.errorBanner2),
-      expect(page.locator('div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted')).toContainText(partiesToContact_content.partyRequiredError),
+      expect(
+        page.locator(
+          'div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted',
+        ),
+      ).toContainText(partiesToContact_content.partyRequiredError),
     ]);
   },
 

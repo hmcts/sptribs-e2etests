@@ -49,10 +49,12 @@ const submitPage: SubmitPage = {
           page.locator(`text="${submit_content.textOnPage2}"`).nth(index),
         ).toBeVisible();
       }),
-    commonHelpers.checkVisibleAndPresent(
-      page.locator(`span.text-16:text-is("${partiesToContact_content.textOnPage6}")`),
-      1,
-    ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `span.text-16:text-is("${partiesToContact_content.textOnPage6}")`,
+        ),
+        1,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.saveAndContinue,
