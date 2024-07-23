@@ -165,18 +165,23 @@ const contactParties: ContactParties = {
       config.CaseAPIBaseURL,
       caseNumber,
     );
-    await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
+    if (user == "respondent"){
+      await commonHelpers.chooseEventFromDropdown(page, "Case: CICA Contact parties");
+    }
+    else{
+      await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
+    }
     await selectDocumentsPage.checkPageLoads(page, caseNumber, false);
     await selectDocumentsPage.tickCheckbox(page);
     await selectDocumentsPage.continueOn(page);
 
     await partiesToContactPage.checkPageLoads(page, caseNumber, false);
-    await partiesToContactPage.tickCheckBoxes(page, false);
+    await partiesToContactPage.tickCheckBoxes(page, false, user);
     await partiesToContactPage.triggerErrorMessages(page);
-    await partiesToContactPage.tickCheckBoxes(page, true);
+    await partiesToContactPage.tickCheckBoxes(page, true, user);
 
     await submitPage.checkPageLoads(page, caseNumber, false);
-    await submitPage.checkValidInfo(page);
+    await submitPage.checkValidInfo(page, user);
     await submitPage.continueOn(page);
 
     await confirmPage.checkPageLoads(page, caseNumber, false);

@@ -3,6 +3,7 @@ import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactP
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/contactParties/confirm_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 
 type ConfirmPage = {
   continue: string;
@@ -21,9 +22,11 @@ const confirmPage: ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    const pageHintRegex = new RegExp(`${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`);
+    const headingRegex = new RegExp(`${confirm_content.textOnPage2}|${confirm_content.textOnPage3}`);
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(
-        partiesToContact_content.pageHint,
+        pageHintRegex,
       ),
       expect(page.locator("markdown > h3").nth(0)).toHaveText(
         caseSubjectDetailsObject_content.name,
@@ -35,7 +38,7 @@ const confirmPage: ConfirmPage = {
         confirm_content.textOnPage1,
       ),
       expect(page.locator("markdown > h2")).toHaveText(
-        confirm_content.textOnPage2,
+        headingRegex,
       ),
     ]);
     if (accessibilityTest) {

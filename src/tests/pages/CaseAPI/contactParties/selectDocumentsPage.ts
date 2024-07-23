@@ -27,9 +27,13 @@ const selectDocumentsPage: SelectDocumentsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    const pageHintRegex = new RegExp(`${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`);
     await Promise.all([
+      // expect(page.locator(".govuk-caption-l")).toHaveText(
+      //   selectDocument_content.pageHint,
+      // ),
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        selectDocument_content.pageHint,
+        pageHintRegex,
       ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
         selectDocument_content.pageTitle,

@@ -4,6 +4,7 @@ import submit_content from "../../../fixtures/content/CaseAPI/contactParties/sub
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -15,7 +16,7 @@ type SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  checkValidInfo(page: Page): Promise<void>;
+  checkValidInfo(page: Page, user: string): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -30,8 +31,9 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    const pageHintRegex = new RegExp(`${submit_content.title}|${partiesToContact_content.pageHintCICA}`);
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(submit_content.title),
+      expect(page.locator(".govuk-heading-l")).toHaveText(pageHintRegex),
       expect(page.locator("markdown > h3")).toHaveText(
         caseSubjectDetailsObject_content.name,
       ),
@@ -69,9 +71,9 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async checkValidInfo(page: Page): Promise<void> {
+  async checkValidInfo(page: Page, user: string): Promise<void> {
     await Promise.all([
-      ...Array.from({ length: 4 }, (_, index) => {
+      ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (partiesToContact_content as any)[
           `textOnPage${index + 1}`
         ];
@@ -81,6 +83,16 @@ const submitPage: SubmitPage = {
         );
       }),
     ]);
+    if (user == "respondent"){
+      await expect(page.locator(`span.text-16:text-is("${partiesToContact_content.textOnPage7}")`)).toHaveText(
+        partiesToContact_content.textOnPage7,
+      )
+    }
+    else{
+      await expect(page.locator(`span.text-16:text-is("${partiesToContact_content.textOnPage4}")`)).toHaveText(
+        partiesToContact_content.textOnPage4,
+      )
+    }
   },
 
   async continueOn(page: Page): Promise<void> {

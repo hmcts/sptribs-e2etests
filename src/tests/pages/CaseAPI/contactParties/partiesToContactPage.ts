@@ -3,6 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 
 type PartiesToContactPage = {
   continue: string;
@@ -14,7 +15,7 @@ type PartiesToContactPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  tickCheckBoxes(page: Page, checkBoxes: boolean): Promise<void>;
+  tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -28,9 +29,11 @@ const partiesToContactPage: PartiesToContactPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    const pageHintRegex = new RegExp(`${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`);
+    const respondentOrTribRegex = new RegExp(`${partiesToContact_content.textOnPage4}|${partiesToContact_content.textOnPage7}`);
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(
-        partiesToContact_content.pageHint,
+        pageHintRegex,
       ),
       expect(page.locator(".govuk-heading-l")).toContainText(
         partiesToContact_content.pageTitle,
@@ -48,7 +51,7 @@ const partiesToContactPage: PartiesToContactPage = {
         page.locator(`text="${partiesToContact_content.textOnPage5}"`),
         4,
       ),
-      ...Array.from({ length: 4 }, (_, index) => {
+      ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (partiesToContact_content as any)[
           `textOnPage${index + 1}`
         ];
@@ -57,9 +60,9 @@ const partiesToContactPage: PartiesToContactPage = {
           1,
         );
       }),
-      expect(
-        page.locator('label[for="cicCaseNotifyPartyMessage"] .form-label'),
-      ).toContainText(partiesToContact_content.textOnPage6),
+      expect(page.locator("markdown > p").nth(1)).toContainText(
+        partiesToContact_content.textOnPage,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,
@@ -97,14 +100,23 @@ const partiesToContactPage: PartiesToContactPage = {
     ]);
   },
 
-  async tickCheckBoxes(page: Page, checkBoxes: boolean): Promise<void> {
-    const checkboxNames = [
-      "cicCaseNotifyPartySubject",
-      "cicCaseNotifyPartyApplicant",
-      "cicCaseNotifyPartyRepresentative",
-      "cicCaseNotifyPartyRespondent",
-    ];
-
+  async tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void> {
+    let checkboxNames: string[] = [];
+    if (user == "respondent") {
+      checkboxNames = [
+        "contactParties_subjectContactParties",
+        "contactParties_applicantContactParties",
+        "contactParties_representativeContactParties",
+        "contactParties_tribunal",
+      ];
+    } else {
+      checkboxNames = [
+        "cicCaseNotifyPartySubject",
+        "cicCaseNotifyPartyApplicant",
+        "cicCaseNotifyPartyRepresentative",
+        "cicCaseNotifyPartyRespondent",
+      ];
+    }
     for (const name of checkboxNames) {
       const checkboxLocator = page.locator(
         `input[type="checkbox"][name="${name}"]`,

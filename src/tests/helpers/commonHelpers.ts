@@ -909,6 +909,7 @@ export type allEvents =
   | "Case: Reinstate case"
   | "Case: Edit case details"
   | "Case: Contact parties"
+  | "Case: CICA Contact parties"
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"

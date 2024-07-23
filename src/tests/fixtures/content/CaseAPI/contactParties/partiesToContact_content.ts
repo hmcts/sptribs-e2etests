@@ -1,5 +1,6 @@
 const partiesToContact_content = {
   pageHint: "Case: Contact parties",
+  pageHintCICA: "Case: CICA Contact parties",
   pageTitle: "Contact Parties",
   caseReference: "Case number: ",
 
@@ -11,6 +12,7 @@ const partiesToContact_content = {
   textOnPage4: "Respondent",
   textOnPage5: "Contact parties recipient (Optional)",
   textOnPage6: "Message",
+  textOnPage7: "Tribunal",
   message: "Lorem ipsum message",
 
   errorBanner1: "There is a problem",
