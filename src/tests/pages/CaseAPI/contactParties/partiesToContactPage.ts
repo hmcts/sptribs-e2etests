@@ -29,12 +29,14 @@ const partiesToContactPage: PartiesToContactPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const pageHintRegex = new RegExp(`${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`);
-    const respondentOrTribRegex = new RegExp(`${partiesToContact_content.textOnPage4}|${partiesToContact_content.textOnPage7}`);
+    const pageHintRegex = new RegExp(
+      `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
+    );
+    const respondentOrTribRegex = new RegExp(
+      `${partiesToContact_content.textOnPage4}|${partiesToContact_content.textOnPage7}`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toContainText(
-        pageHintRegex,
-      ),
+      expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
       expect(page.locator(".govuk-heading-l")).toContainText(
         partiesToContact_content.pageTitle,
       ),
@@ -100,7 +102,11 @@ const partiesToContactPage: PartiesToContactPage = {
     ]);
   },
 
-  async tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void> {
+  async tickCheckBoxes(
+    page: Page,
+    checkBoxes: boolean,
+    user: string,
+  ): Promise<void> {
     let checkboxNames: string[] = [];
     if (user == "respondent") {
       checkboxNames = [

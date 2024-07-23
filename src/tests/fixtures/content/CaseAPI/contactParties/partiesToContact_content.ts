@@ -4,7 +4,7 @@ const partiesToContact_content = {
   pageTitle: "Contact Parties",
   caseReference: "Case number: ",
 
-  textOnPage: "Which parties do you want to contact?", // P
+  textOnPage: "Which parties do you want to contact?",
 
   textOnPage1: "Subject",
   textOnPage2: "Applicant (if different from subject)",

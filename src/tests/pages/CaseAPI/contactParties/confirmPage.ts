@@ -22,12 +22,14 @@ const confirmPage: ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const pageHintRegex = new RegExp(`${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`);
-    const headingRegex = new RegExp(`${confirm_content.textOnPage2}|${confirm_content.textOnPage3}`);
+    const pageHintRegex = new RegExp(
+      `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
+    );
+    const headingRegex = new RegExp(
+      `${confirm_content.textOnPage2}|${confirm_content.textOnPage3}`,
+    );
     await Promise.all([
-      expect(page.locator(".heading-h1")).toHaveText(
-        pageHintRegex,
-      ),
+      expect(page.locator(".heading-h1")).toHaveText(pageHintRegex),
       expect(page.locator("markdown > h3").nth(0)).toHaveText(
         caseSubjectDetailsObject_content.name,
       ),
@@ -37,9 +39,7 @@ const confirmPage: ConfirmPage = {
       expect(page.locator("markdown > h1").nth(0)).toHaveText(
         confirm_content.textOnPage1,
       ),
-      expect(page.locator("markdown > h2")).toHaveText(
-        headingRegex,
-      ),
+      expect(page.locator("markdown > h2")).toHaveText(headingRegex),
     ]);
     if (accessibilityTest) {
       await axeTest(page);

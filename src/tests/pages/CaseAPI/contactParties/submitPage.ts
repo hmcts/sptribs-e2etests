@@ -31,7 +31,9 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const pageHintRegex = new RegExp(`${submit_content.title}|${partiesToContact_content.pageHintCICA}`);
+    const pageHintRegex = new RegExp(
+      `${submit_content.title}|${partiesToContact_content.pageHintCICA}`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(pageHintRegex),
       expect(page.locator("markdown > h3")).toHaveText(
@@ -83,15 +85,18 @@ const submitPage: SubmitPage = {
         );
       }),
     ]);
-    if (user == "respondent"){
-      await expect(page.locator(`span.text-16:text-is("${partiesToContact_content.textOnPage7}")`)).toHaveText(
-        partiesToContact_content.textOnPage7,
-      )
-    }
-    else{
-      await expect(page.locator(`span.text-16:text-is("${partiesToContact_content.textOnPage4}")`)).toHaveText(
-        partiesToContact_content.textOnPage4,
-      )
+    if (user == "respondent") {
+      await expect(
+        page.locator(
+          `span.text-16:text-is("${partiesToContact_content.textOnPage7}")`,
+        ),
+      ).toHaveText(partiesToContact_content.textOnPage7);
+    } else {
+      await expect(
+        page.locator(
+          `span.text-16:text-is("${partiesToContact_content.textOnPage4}")`,
+        ),
+      ).toHaveText(partiesToContact_content.textOnPage4);
     }
   },
 

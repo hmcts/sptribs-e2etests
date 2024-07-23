@@ -10,17 +10,32 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
   test("As a caseworker send a message to all parties related to a withdrawn case.", async ({
     page,
   }): Promise<void> => {
-    await contactParties.contactParties(page, "seniorCaseworker", false, "Withdrawn");
+    await contactParties.contactParties(
+      page,
+      "seniorCaseworker",
+      false,
+      "Withdrawn",
+    );
   });
   test("As a caseworker send a message to all parties related to a rejected case.", async ({
     page,
   }): Promise<void> => {
-    await contactParties.contactParties(page, "hearingCentreAdmin", false, "Rejected");
+    await contactParties.contactParties(
+      page,
+      "hearingCentreAdmin",
+      false,
+      "Rejected",
+    );
   });
   test("As a caseworker send a message to all parties related to a submitted case.", async ({
     page,
   }): Promise<void> => {
-    await contactParties.contactParties(page, "hearingCentreTeamLead", false, "Submitted");
+    await contactParties.contactParties(
+      page,
+      "hearingCentreTeamLead",
+      false,
+      "Submitted",
+    );
   });
   test("As a caseworker send a message to all parties related to a case.", async ({
     page,
