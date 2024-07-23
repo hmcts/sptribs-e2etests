@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 
 test.describe("Case-API Contact parties tests. @CaseAPI", () => {
-  test("Contact all case related parties as a caseworker.", async ({
+  test("As a caseworker send a message to all parties related to a draft case.", async ({
     page,
   }): Promise<void> => {
     await contactParties.contactParties(page, "caseWorker", false, "Draft");
