@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import editCICACaseDetails from "../journeys/CaseAPI/editCICACaseDetails.ts";
 
-test.describe("Edit CICA case details tests @CaseAPI", (): void => {
+test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): void => {
   test("Edit CICA case details as a respondent - case management.", async ({
     page,
   }): Promise<void> => {
@@ -24,7 +24,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit CICA case details as a respondent - awaiting outcome.", async ({
+  test("Edit CICA case details as a respondent - awaiting outcome. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editCICACaseDetails.editCICACaseDetails(
@@ -46,7 +46,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit CICA case details as a respondent - case closed.", async ({
+  test("Edit CICA case details as a respondent - case closed. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editCICACaseDetails.editCICACaseDetails(
@@ -58,7 +58,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - edit CICA case details @accessibilityCaseAPI.", async ({
+test("Accessibility test - edit CICA case details @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await editCICACaseDetails.editCICACaseDetails(
