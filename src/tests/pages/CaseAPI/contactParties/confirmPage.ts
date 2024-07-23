@@ -1,13 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
-import caseSubjectDetailsObject_content
-  from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/contactParties/confirm_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
-
 type ConfirmPage = {
-  continue: string,
+  continue: string;
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -37,7 +35,7 @@ const confirmPage: ConfirmPage = {
         confirm_content.textOnPage1,
       ),
       expect(page.locator("markdown > h2")).toHaveText(
-       confirm_content.textOnPage2
+        confirm_content.textOnPage2,
       ),
     ]);
     if (accessibilityTest) {
@@ -47,6 +45,6 @@ const confirmPage: ConfirmPage = {
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continue);
   },
-}
+};
 
 export default confirmPage;

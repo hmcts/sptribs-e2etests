@@ -1052,5 +1052,4 @@ export type State =
   | "Draft"
   | "Withdrawn"
   | "Rejected"
-  | "Submitted"
-  | "New case received";
+  | "Submitted";
