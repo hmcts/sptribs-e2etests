@@ -180,7 +180,7 @@ const contactParties: ContactParties = {
     await selectDocumentsPage.tickCheckbox(page);
     await selectDocumentsPage.continueOn(page);
 
-    await partiesToContactPage.checkPageLoads(page, caseNumber, false);
+    await partiesToContactPage.checkPageLoads(page, caseNumber, user, false);
     await partiesToContactPage.tickCheckBoxes(page, false, user);
     await partiesToContactPage.triggerErrorMessages(page);
     await partiesToContactPage.tickCheckBoxes(page, true, user);

@@ -31,9 +31,6 @@ const selectDocumentsPage: SelectDocumentsPage = {
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
     );
     await Promise.all([
-      // expect(page.locator(".govuk-caption-l")).toHaveText(
-      //   selectDocument_content.pageHint,
-      // ),
       expect(page.locator(".govuk-caption-l")).toHaveText(pageHintRegex),
       expect(page.locator(".govuk-heading-l")).toHaveText(
         selectDocument_content.pageTitle,
