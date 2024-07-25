@@ -36,7 +36,7 @@ const contactParties: ContactParties = {
   ): Promise<void> {
     let caseNumber: string | void = "";
     switch (initialState) {
-      default: // Defaults to Case Management
+      default: // Case Management
         let previousEvents: allEvents[] = [];
         let eventTimes: string[] = [];
         caseNumber = await buildCase.buildCase(
