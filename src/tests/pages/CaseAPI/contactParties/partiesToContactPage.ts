@@ -4,8 +4,6 @@ import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
-import editListingSelectHearing_content
-  from "../../../fixtures/content/CaseAPI/editListing/editListingSelectHearing_content.ts";
 
 type PartiesToContactPage = {
   continue: string;
@@ -20,6 +18,8 @@ type PartiesToContactPage = {
   ): Promise<void>;
   tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
+  continueOn(page: Page): Promise<void>;
 };
 
 const partiesToContactPage: PartiesToContactPage = {
@@ -76,15 +76,18 @@ const partiesToContactPage: PartiesToContactPage = {
         this.cancel,
       ),
     ]);
-    if (user == "respondent"){
-      await expect(page.locator(`.form-label:text-is("${partiesToContact_content.textOnPage7}")`)).toContainText(
-        partiesToContact_content.textOnPage7,
-      )
-    }
-    else{
-      await expect(page.locator(`.form-label:text-is("${partiesToContact_content.textOnPage4}")`)).toContainText(
-        partiesToContact_content.textOnPage4,
-      )
+    if (user == "respondent") {
+      await expect(
+        page.locator(
+          `.form-label:text-is("${partiesToContact_content.textOnPage7}")`,
+        ),
+      ).toContainText(partiesToContact_content.textOnPage7);
+    } else {
+      await expect(
+        page.locator(
+          `.form-label:text-is("${partiesToContact_content.textOnPage4}")`,
+        ),
+      ).toContainText(partiesToContact_content.textOnPage4);
     }
     if (accessibilityTest) {
       await axeTest(page);
@@ -114,6 +117,14 @@ const partiesToContactPage: PartiesToContactPage = {
         ),
       ).toContainText(partiesToContact_content.partyRequiredError),
     ]);
+  },
+
+  async fillInFields(page) {
+    page.fill(this.message, partiesToContact_content.message);
+  },
+
+  async continueOn(page: Page): Promise<void> {
+    await page.click(this.continue);
   },
 
   async tickCheckBoxes(
@@ -152,8 +163,6 @@ const partiesToContactPage: PartiesToContactPage = {
         }
       }
     }
-
-    await page.click(this.continue);
   },
 };
 export default partiesToContactPage;

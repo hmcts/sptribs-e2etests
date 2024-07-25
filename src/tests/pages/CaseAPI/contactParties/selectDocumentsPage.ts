@@ -53,7 +53,6 @@ const selectDocumentsPage: SelectDocumentsPage = {
       expect(page.locator(".form-label").nth(0)).toHaveText(
         selectDocument_content.textOnPage3,
       ),
-      // TEMP FIX FOR DUPLICATE CHECKBOX
       commonHelpers.checkVisibleAndPresent(
         page
           .locator(
@@ -77,7 +76,6 @@ const selectDocumentsPage: SelectDocumentsPage = {
     await page.click(this.continue);
   },
   async tickCheckbox(page: Page): Promise<void> {
-    // TEMP FIX FOR DUPLICATE CHECKBOX
     await page
       .locator(
         'input[type="checkbox"][name="contactPartiesDocumentsDocumentList"][id^="contactPartiesDocumentsDocumentList_"]',

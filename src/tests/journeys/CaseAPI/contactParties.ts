@@ -22,6 +22,7 @@ type ContactParties = {
     user: UserRole,
     accessibilityTest: boolean,
     initialState: State,
+    errorMessaging: boolean,
   ): Promise<void>;
 };
 
@@ -31,6 +32,7 @@ const contactParties: ContactParties = {
     user: UserRole,
     accessibilityTest: boolean,
     initialState: State,
+    errorMessaging,
   ): Promise<void> {
     let caseNumber: string | void = "";
     switch (initialState) {
@@ -176,21 +178,61 @@ const contactParties: ContactParties = {
         "Case: Contact parties",
       );
     }
-    await selectDocumentsPage.checkPageLoads(page, caseNumber, false);
-    await selectDocumentsPage.tickCheckbox(page);
-    await selectDocumentsPage.continueOn(page);
+    switch (errorMessaging) {
+      default:
+        await selectDocumentsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await selectDocumentsPage.tickCheckbox(page);
+        await selectDocumentsPage.continueOn(page);
 
-    await partiesToContactPage.checkPageLoads(page, caseNumber, user, false);
-    await partiesToContactPage.tickCheckBoxes(page, false, user);
-    await partiesToContactPage.triggerErrorMessages(page);
-    await partiesToContactPage.tickCheckBoxes(page, true, user);
+        await partiesToContactPage.checkPageLoads(
+          page,
+          caseNumber,
+          user,
+          accessibilityTest,
+        );
+        await partiesToContactPage.tickCheckBoxes(page, true, user);
+        await partiesToContactPage.fillInFields(page);
+        await partiesToContactPage.continueOn(page);
 
-    await submitPage.checkPageLoads(page, caseNumber, false);
-    await submitPage.checkValidInfo(page, user);
-    await submitPage.continueOn(page);
+        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.checkValidInfo(page, user);
+        await submitPage.continueOn(page);
 
-    await confirmPage.checkPageLoads(page, caseNumber, false);
-    await confirmPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.continueOn(page);
+        break;
+
+      case true:
+        await selectDocumentsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await selectDocumentsPage.tickCheckbox(page);
+        await selectDocumentsPage.continueOn(page);
+
+        await partiesToContactPage.checkPageLoads(
+          page,
+          caseNumber,
+          user,
+          accessibilityTest,
+        );
+        await partiesToContactPage.tickCheckBoxes(page, false, user);
+        await partiesToContactPage.triggerErrorMessages(page);
+        await partiesToContactPage.tickCheckBoxes(page, true, user);
+        await partiesToContactPage.continueOn(page),
+          await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.checkValidInfo(page, user);
+        await submitPage.continueOn(page);
+
+        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.continueOn(page);
+        break;
+    }
   },
 };
 export default contactParties;

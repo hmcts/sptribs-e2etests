@@ -2,10 +2,16 @@ import { test } from "@playwright/test";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 
 test.describe("Case-API Contact parties tests. @CaseAPI", () => {
-  test("As a Caseworker send a message to all parties related to a draft case.", async ({
+  test("As a Caseworker send a message to all parties related to a draft case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    await contactParties.contactParties(page, "caseWorker", false, "Draft");
+    await contactParties.contactParties(
+      page,
+      "caseWorker",
+      false,
+      "Draft",
+      false,
+    );
   });
   test("As a Senior Caseworker send a message to all parties related to a withdrawn case.", async ({
     page,
@@ -15,6 +21,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "seniorCaseworker",
       false,
       "Withdrawn",
+      false,
     );
   });
   test("As a Hearing Centre Admin send a message to all parties related to a rejected case.", async ({
@@ -25,6 +32,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "hearingCentreAdmin",
       false,
       "Rejected",
+      false,
     );
   });
   test("As a Hearing Centre Team Lead send a message to all parties related to a submitted case.", async ({
@@ -35,6 +43,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "hearingCentreTeamLead",
       false,
       "Submitted",
+      false,
     );
   });
   test("As a Senior Judge send a message to all parties related to a case in Case Management.", async ({
@@ -45,6 +54,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "seniorJudge",
       false,
       "Case Management",
+      false,
     );
   });
   test("As a Respondent send a message to all parties related to a case in Ready to list.", async ({
@@ -55,6 +65,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "respondent",
       false,
       "Ready to list",
+      false,
     );
   });
   test("As a Caseworker send a message to all parties related to a case that is awaiting a hearing.", async ({
@@ -65,9 +76,10 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "caseWorker",
       false,
       "Awaiting Hearing",
+      false,
     );
   });
-  test("As a Caseworker send a message to all parties related to a case that is awaiting an outcome decision.", async ({
+  test("As a Caseworker send a message to all parties related to a case that is awaiting an outcome decision. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await contactParties.contactParties(
@@ -75,6 +87,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "caseWorker",
       false,
       "Awaiting Outcome",
+      false,
     );
   });
   test("As a Caseworker send a message to all parties related to a closed case.", async ({
@@ -85,6 +98,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "caseWorker",
       false,
       "Case closed",
+      false,
     );
   });
   test("As a Caseworker send a message to all parties related to a case that is stayed.", async ({
@@ -95,6 +109,30 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       "caseWorker",
       false,
       "Case Stayed",
+      false,
     );
   });
+  test("Error messaging - Contact parties @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    await contactParties.contactParties(
+      page,
+      "caseWorker",
+      false,
+      "Case Stayed",
+      true,
+    );
+  });
+});
+
+test("Accessibility Test – Contact parties @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await contactParties.contactParties(
+    page,
+    "caseWorker",
+    true,
+    "Case closed",
+    false,
+  );
 });

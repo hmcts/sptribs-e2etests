@@ -20,7 +20,8 @@ const partiesToContact_content = {
   messageRequiredError1: "Message is required",
   partyRequiredError: "Please select at least one party to contact",
 
-  ariaLabel: "Cannot continue because the service reported one or more errors or warnings"
+  ariaLabel:
+    "Cannot continue because the service reported one or more errors or warnings",
 } as const;
 
 export default partiesToContact_content;
