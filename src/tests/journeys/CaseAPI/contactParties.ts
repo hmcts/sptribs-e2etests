@@ -178,59 +178,33 @@ const contactParties: ContactParties = {
         "Case: Contact parties",
       );
     }
+    await selectDocumentsPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+    );
+    await selectDocumentsPage.tickCheckbox(page);
+    await selectDocumentsPage.continueOn(page);
+    await partiesToContactPage.checkPageLoads(
+      page,
+      caseNumber,
+      user,
+      accessibilityTest,
+    );
+    await partiesToContactPage.tickCheckBoxes(page, false, user);
     switch (errorMessaging) {
       default:
-        await selectDocumentsPage.checkPageLoads(
-          page,
-          caseNumber,
-          accessibilityTest,
-        );
-        await selectDocumentsPage.tickCheckbox(page);
-        await selectDocumentsPage.continueOn(page);
-
-        await partiesToContactPage.checkPageLoads(
-          page,
-          caseNumber,
-          user,
-          accessibilityTest,
-        );
         await partiesToContactPage.tickCheckBoxes(page, true, user);
         await partiesToContactPage.fillInFields(page);
         await partiesToContactPage.continueOn(page);
-
         await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
         await submitPage.checkValidInfo(page, user);
         await submitPage.continueOn(page);
-
         await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
         await confirmPage.continueOn(page);
         break;
-
       case true:
-        await selectDocumentsPage.checkPageLoads(
-          page,
-          caseNumber,
-          accessibilityTest,
-        );
-        await selectDocumentsPage.tickCheckbox(page);
-        await selectDocumentsPage.continueOn(page);
-
-        await partiesToContactPage.checkPageLoads(
-          page,
-          caseNumber,
-          user,
-          accessibilityTest,
-        );
-        await partiesToContactPage.tickCheckBoxes(page, false, user);
         await partiesToContactPage.triggerErrorMessages(page);
-        await partiesToContactPage.tickCheckBoxes(page, true, user);
-        await partiesToContactPage.continueOn(page),
-          await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
-        await submitPage.checkValidInfo(page, user);
-        await submitPage.continueOn(page);
-
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
-        await confirmPage.continueOn(page);
         break;
     }
   },

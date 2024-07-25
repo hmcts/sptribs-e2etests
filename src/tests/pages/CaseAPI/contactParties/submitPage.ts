@@ -74,6 +74,7 @@ const submitPage: SubmitPage = {
   },
 
   async checkValidInfo(page: Page, user: string): Promise<void> {
+    const textToCheck = user === "respondent" ? partiesToContact_content.textOnPage7 : partiesToContact_content.textOnPage4;
     await Promise.all([
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (partiesToContact_content as any)[
@@ -85,19 +86,10 @@ const submitPage: SubmitPage = {
         );
       }),
     ]);
-    if (user == "respondent") {
-      await expect(
-        page.locator(
-          `span.text-16:text-is("${partiesToContact_content.textOnPage7}")`,
-        ),
-      ).toHaveText(partiesToContact_content.textOnPage7);
-    } else {
-      await expect(
-        page.locator(
-          `span.text-16:text-is("${partiesToContact_content.textOnPage4}")`,
-        ),
-      ).toHaveText(partiesToContact_content.textOnPage4);
-    }
+    commonHelpers.checkVisibleAndPresent(
+      page.locator(`span.text-16:text-is("${textToCheck}")`),
+      1
+    );
   },
 
   async continueOn(page: Page): Promise<void> {
