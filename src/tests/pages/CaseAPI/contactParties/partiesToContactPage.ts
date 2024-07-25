@@ -39,7 +39,10 @@ const partiesToContactPage: PartiesToContactPage = {
     const respondentOrTribRegex = new RegExp(
       `${partiesToContact_content.textOnPage4}|${partiesToContact_content.textOnPage7}`,
     );
-    const textToCheck = user === "respondent" ? partiesToContact_content.textOnPage7 : partiesToContact_content.textOnPage4;
+    const textToCheck =
+      user === "respondent"
+        ? partiesToContact_content.textOnPage7
+        : partiesToContact_content.textOnPage4;
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
       expect(page.locator(".govuk-heading-l")).toContainText(
@@ -79,7 +82,7 @@ const partiesToContactPage: PartiesToContactPage = {
     ]);
     await commonHelpers.checkVisibleAndPresent(
       page.locator(`.form-label:text-is("${textToCheck}")`),
-      1
+      1,
     );
     if (accessibilityTest) {
       await axeTest(page);

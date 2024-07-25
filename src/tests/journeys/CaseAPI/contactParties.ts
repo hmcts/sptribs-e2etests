@@ -191,7 +191,6 @@ const contactParties: ContactParties = {
       user,
       accessibilityTest,
     );
-    await partiesToContactPage.tickCheckBoxes(page, false, user);
     switch (errorMessaging) {
       default:
         await partiesToContactPage.tickCheckBoxes(page, true, user);
@@ -204,6 +203,7 @@ const contactParties: ContactParties = {
         await confirmPage.continueOn(page);
         break;
       case true:
+        await partiesToContactPage.tickCheckBoxes(page, false, user);
         await partiesToContactPage.triggerErrorMessages(page);
         break;
     }
