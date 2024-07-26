@@ -4,6 +4,8 @@ import selectDocument_content from "../../../fixtures/content/CaseAPI/contactPar
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import path from "path";
+import config from "../../../config.ts";
 
 type SelectDocumentsPage = {
   continue: string;
@@ -56,7 +58,7 @@ const selectDocumentsPage: SelectDocumentsPage = {
       commonHelpers.checkVisibleAndPresent(
         page
           .locator(
-            `markdown > p:text-is("${selectDocument_content.mockFileName}")`,
+            `markdown > p:text-is("${path.basename(config.testPdfFile)} ${selectDocument_content.category}")`,
           )
           .first(),
         1,
