@@ -72,8 +72,6 @@ const createCaseConfirmPage: ConfirmPage = {
 
   async closeAndReturnToCase(page: Page): Promise<string> {
     await page.locator(this.closeAndReturn).click();
-    //
-
     return await commonHelpers.getTimestamp();
   },
 };
