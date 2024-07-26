@@ -2,18 +2,7 @@ import { test } from "@playwright/test";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 
 test.describe("Case-API Contact parties tests. @CaseAPI", () => {
-  test("As a Hearing Centre Team Lead send a message to all parties related to a submitted case. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await contactParties.contactParties(
-      page,
-      "hearingCentreTeamLead",
-      false,
-      "Submitted",
-      false,
-    );
-  });
-  test("As a Hearing Centre Admin send a message to all parties related to a closed case.", async ({
+  test("As a Hearing Centre Admin send a message to all parties related to a closed case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await contactParties.contactParties(
@@ -25,13 +14,24 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
   });
   test("As a Caseworker send a message to all parties related to a case that is stayed.", async ({
-                                                                                                   page,
-                                                                                                 }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await contactParties.contactParties(
       page,
       "caseWorker",
       false,
       "Case Stayed",
+      false,
+    );
+  });
+  test("As a Hearing Centre Team Lead send a message to all parties related to a submitted case. ", async ({
+                                                                                                                                 page,
+                                                                                                                               }): Promise<void> => {
+    await contactParties.contactParties(
+      page,
+      "hearingCentreTeamLead",
+      false,
+      "Submitted",
       false,
     );
   });
