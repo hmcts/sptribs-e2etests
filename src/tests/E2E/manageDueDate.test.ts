@@ -72,7 +72,7 @@ test.describe("Manage due date of an order @CaseAPI", () => {
     );
   });
 
-  test.only("Error Messaging - Orders: Manage Due Date. @crossbrowserCaseAPI", async ({
+  test("Error Messaging - Orders: Manage Due Date. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await manageDueDate.manageDueDate(
