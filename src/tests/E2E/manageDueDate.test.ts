@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import manageDueDate from "../journeys/CaseAPI/manageDueDate.ts";
 
 test.describe("Manage due date of an order @CaseAPI", () => {
-  test("Manage due date of an order in 'Case Management' State as a Caseworker", async ({
+  test("Manage due date of an order in 'Case Management' State as a Caseworker. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await manageDueDate.manageDueDate(
@@ -58,7 +58,7 @@ test.describe("Manage due date of an order @CaseAPI", () => {
     );
   });
 
-  test("Manage due date of an order in 'Case Closed' State as a Senior Judge", async ({
+  test("Manage due date of an order in 'Case Closed' State as a Senior Judge. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await manageDueDate.manageDueDate(
@@ -72,7 +72,7 @@ test.describe("Manage due date of an order @CaseAPI", () => {
     );
   });
 
-  test("Error Messaging - Orders: Manage Due Date", async ({
+  test.only("Error Messaging - Orders: Manage Due Date. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await manageDueDate.manageDueDate(
@@ -85,18 +85,18 @@ test.describe("Manage due date of an order @CaseAPI", () => {
       false,
     );
   });
+});
 
-  test("Accessibility test - Orders: Manage Due Date @accessibilityCaseAPI", async ({
+test("Accessibility test - Orders: Manage Due Date @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await manageDueDate.manageDueDate(
     page,
-  }): Promise<void> => {
-    await manageDueDate.manageDueDate(
-      page,
-      "caseWorker",
-      "Awaiting Hearing",
-      true,
-      false,
-      true,
-      true,
-    );
-  });
+    "caseWorker",
+    "Awaiting Hearing",
+    true,
+    false,
+    true,
+    true,
+  );
 });

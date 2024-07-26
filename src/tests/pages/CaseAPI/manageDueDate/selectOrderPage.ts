@@ -50,13 +50,8 @@ const selectOrderPage: SelectOrderPage = {
     }
   },
   async selectDropdownOption(page): Promise<void> {
-    try {
-      await page.selectOption("#cicCaseOrderDynamicList", { index: 1 });
-      await page.click(this.continue);
-    } catch (error) {
-      console.error("Error occurred with selecting order template.");
-      throw error;
-    }
+    await page.selectOption("#cicCaseOrderDynamicList", { index: 1 });
+    await page.click(this.continue);
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {

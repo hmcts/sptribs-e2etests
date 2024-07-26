@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
@@ -149,26 +149,20 @@ const editDueDatePage: EditDueDatePage = {
 
     if (completed) {
       if (completedCheckboxChecked) {
-        // completed: true, completedCheckBoxChecked: true
         await page.getByRole("checkbox").check();
       } else {
-        //completed: true, completedCheckBoxChecked: false
         await page.getByRole("checkbox").uncheck();
       }
     } else {
       if (!completed) {
         if (completedCheckboxChecked) {
-          // completed: false, completedCheckboxChecked: true
           await page.getByRole("checkbox").check();
         } else {
-          // completed: false, completedCheckboxChecked: false
           await page.getByRole("checkbox").uncheck();
         }
       }
     }
     await page.click(this.continue);
-    //
-    
   },
 
   async triggerErrorMessages(
@@ -176,41 +170,23 @@ const editDueDatePage: EditDueDatePage = {
     completed: boolean,
     completedCheckboxChecked: boolean,
   ): Promise<void> {
+    const dateFieldError: Locator = page.locator(
+      `.error-message:has-text("${editDueDate_content.errorBlank2}")`,
+    );
 
-    const clearField = async (
-      page: Page,
-      locator: any,
-      error: string,
-      value: string,
-    ) :Promise<void> => {
-      await page.locator(locator).click({ clickCount: 3 });
-      await page.locator(locator).press("Backspace");
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.error-message:has-text("${error}")`),
-        1,
-      );
-      await page.locator(locator).fill(value);
-    };
+    expect(dateFieldError).not.toBeVisible();
 
-    await clearField(
-      page,
-      this.dayField,
-      editDueDate_content.errorBlank2,
-      editDueDate_content.day,
-    );
-    await clearField(
-      page,
-      this.monthField,
-      editDueDate_content.errorBlank2,
-      editDueDate_content.month,
-    );
-    await clearField(
-      page,
-      this.yearField,
-      editDueDate_content.errorBlank2,
-      " ",
-    );
-    
+    await page.locator(this.dayField).fill("");
+    expect(dateFieldError).toBeVisible();
+
+    await page.locator(this.dayField).fill(editDueDate_content.day);
+    await page.locator(this.monthField).fill("");
+    expect(dateFieldError).toBeVisible();
+
+    await page.locator(this.monthField).fill(editDueDate_content.month);
+    await page.locator(this.yearField).fill("");
+    expect(dateFieldError).toBeVisible();
+
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
