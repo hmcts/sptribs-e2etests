@@ -14,8 +14,8 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
   });
   test("As a Hearing Centre Admin send a message to all parties related to a closed case.", async ({
-                                                                                                     page,
-                                                                                                   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await contactParties.contactParties(
       page,
       "hearingCentreAdmin",

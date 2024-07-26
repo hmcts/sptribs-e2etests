@@ -1049,4 +1049,4 @@ export type State =
   | "Awaiting Hearing"
   | "Awaiting Outcome"
   | "Case closed"
-  | "Case Stayed"
+  | "Case Stayed";

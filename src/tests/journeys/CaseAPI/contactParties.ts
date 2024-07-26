@@ -61,6 +61,17 @@ const contactParties: ContactParties = {
           null,
         );
         break;
+      case "Case Stayed":
+        caseNumber = await createEditStay.createEditStay(
+          page,
+          false,
+          "Case Management",
+          "caseWorker",
+          false,
+          "waitingOutcomeOfCivilCase",
+          true,
+        );
+        break;
       case "Submitted":
         caseNumber = await createCase.createCase(
           page,
@@ -129,17 +140,6 @@ const contactParties: ContactParties = {
           true,
           false,
           false,
-        );
-        break;
-      case "Case Stayed":
-        caseNumber = await createEditStay.createEditStay(
-          page,
-          false,
-          "Case Management",
-          "caseWorker",
-          false,
-          "waitingOutcomeOfCivilCase",
-          true,
         );
         break;
     }
