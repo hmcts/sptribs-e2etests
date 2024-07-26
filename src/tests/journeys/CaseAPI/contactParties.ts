@@ -15,6 +15,7 @@ import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
 import confirmPage from "../../pages/CaseAPI/contactParties/confirmPage.ts";
+import createCase from "./createCase.ts";
 
 type ContactParties = {
   contactParties(
@@ -45,6 +46,41 @@ const contactParties: ContactParties = {
           eventTimes,
           true,
           "caseWorker",
+        );
+        break;
+      case "Case closed":
+        caseNumber = await closeCase.closeCase(
+          page,
+          "caseWorker",
+          false,
+          "Case Management",
+          false,
+          "caseWithdrawn",
+          true,
+          null,
+          null,
+        );
+        break;
+      case "Submitted":
+        caseNumber = await createCase.createCase(
+          page,
+          "caseWorker",
+          false,
+          "Assessment",
+          "Other",
+          true,
+          true,
+          "Email",
+          true,
+          false,
+          "1996",
+          "Scotland",
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
         );
         break;
       case "Ready to list":
@@ -93,19 +129,6 @@ const contactParties: ContactParties = {
           true,
           false,
           false,
-        );
-        break;
-      case "Case closed":
-        caseNumber = await closeCase.closeCase(
-          page,
-          "caseWorker",
-          false,
-          "Case Management",
-          false,
-          "caseWithdrawn",
-          true,
-          null,
-          null,
         );
         break;
       case "Case Stayed":

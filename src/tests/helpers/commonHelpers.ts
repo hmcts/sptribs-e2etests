@@ -1050,7 +1050,3 @@ export type State =
   | "Awaiting Outcome"
   | "Case closed"
   | "Case Stayed"
-  | "Draft"
-  | "Withdrawn"
-  | "Rejected"
-  | "Submitted";

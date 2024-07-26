@@ -13,6 +13,17 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       false,
     );
   });
+  test("As a Hearing Centre Admin send a message to all parties related to a closed case.", async ({
+                                                                                                     page,
+                                                                                                   }): Promise<void> => {
+    await contactParties.contactParties(
+      page,
+      "hearingCentreAdmin",
+      false,
+      "Case closed",
+      false,
+    );
+  });
   test("As a Senior Judge send a message to all parties related to a case in Case Management.", async ({
     page,
   }): Promise<void> => {
@@ -57,17 +68,6 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       false,
     );
   });
-  test("As a Hearing Centre Admin send a message to all parties related to a closed case.", async ({
-    page,
-  }): Promise<void> => {
-    await contactParties.contactParties(
-      page,
-      "hearingCentreAdmin",
-      false,
-      "Case closed",
-      false,
-    );
-  });
   test("As a Caseworker send a message to all parties related to a case that is stayed.", async ({
     page,
   }): Promise<void> => {
@@ -86,7 +86,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       page,
       "caseWorker",
       false,
-      "Case Stayed",
+      "Case Management",
       true,
     );
   });
@@ -99,7 +99,7 @@ test("Accessibility Test – Contact parties @accessibilityCaseAPI", async ({
     page,
     "caseWorker",
     true,
-    "Case closed",
+    "Case Management",
     false,
   );
 });
