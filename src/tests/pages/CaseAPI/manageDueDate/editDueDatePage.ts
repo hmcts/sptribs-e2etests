@@ -167,6 +167,8 @@ const editDueDatePage: EditDueDatePage = {
       }
     }
     await page.click(this.continue);
+    //
+    
   },
 
   async triggerErrorMessages(
@@ -174,48 +176,20 @@ const editDueDatePage: EditDueDatePage = {
     completed: boolean,
     completedCheckboxChecked: boolean,
   ): Promise<void> {
-    // await page.locator(this.dayField).click({ clickCount: 3 });
-    // await page.locator(this.dayField).press('Backspace');
-    // commonHelpers.checkVisibleAndPresent(
-    //     page.locator(
-    //       `.error-message:has-text("${editDueDate_content.errorBlank2}")`,
-    //     ),
-    //     1,
-    //   ),
-
-    //   await page.locator(this.dayField).fill(editDueDate_content.day);
-    //   await page.locator(this.monthField).click({ clickCount: 3 });
-    //   await page.locator(this.monthField).press('Backspace');
-    //   commonHelpers.checkVisibleAndPresent(
-    //     page.locator(
-    //       `.error-message:has-text("${editDueDate_content.errorBlank2}")`,
-    //     ),
-    //     1,
-    //   ),
-
-    //   await page.locator(this.monthField).fill(editDueDate_content.month);
-    //   await page.locator(this.yearField).click({ clickCount: 3 });
-    //   await page.locator(this.yearField).press('Backspace');
-    //   commonHelpers.checkVisibleAndPresent(
-    //     page.locator(
-    //       `.error-message:has-text("${editDueDate_content.errorBlank2}")`,
-    //     ),
-    //     1,
-    //   ),
 
     const clearField = async (
       page: Page,
       locator: any,
       error: string,
       value: string,
-    ) => {
+    ) :Promise<void> => {
       await page.locator(locator).click({ clickCount: 3 });
       await page.locator(locator).press("Backspace");
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.error-message:has-text("${error}")`),
         1,
       );
-      await locator(locator).fill(value);
+      await page.locator(locator).fill(value);
     };
 
     await clearField(
@@ -236,8 +210,7 @@ const editDueDatePage: EditDueDatePage = {
       editDueDate_content.errorBlank2,
       " ",
     );
-    //});
-
+    
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

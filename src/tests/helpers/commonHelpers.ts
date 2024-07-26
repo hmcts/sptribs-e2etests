@@ -273,6 +273,8 @@ const commonHelpers: CommonHelpers = {
     page: Page,
     chosenEvent: string,
   ): Promise<void> {
+    await page.waitForLoadState("domcontentloaded")
+    await  page.waitForSelector("#next-step", { state: 'visible'});
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click();
@@ -455,10 +457,8 @@ const commonHelpers: CommonHelpers = {
     baseURL: string,
     caseNumber: string,
   ): Promise<void> {
-    //    await page.getByText("Sign out").waitFor({ state: 'visible'})
-    await page.getByText("Sign out").click({ force: true });
+    await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
-    //    await page.locator("a.hmcts-header__navigation-link").click({force: true});
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.goto(await this.generateUrl(baseURL, caseNumber));
   },

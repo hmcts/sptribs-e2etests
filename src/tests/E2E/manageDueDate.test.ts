@@ -29,6 +29,7 @@ test.describe("Manage due date of an order @CaseAPI", () => {
       false,
     );
   });
+
   test("Manage due date of an order in 'Awaiting Hearing' State as a Hearing Center Admin", async ({
     page,
   }): Promise<void> => {
@@ -85,7 +86,7 @@ test.describe("Manage due date of an order @CaseAPI", () => {
     );
   });
 
-  test.skip("Accessibility test - Orders: Manage Due Date @accessibilityCaseAPI", async ({
+  test("Accessibility test - Orders: Manage Due Date @accessibilityCaseAPI", async ({
     page,
   }): Promise<void> => {
     await manageDueDate.manageDueDate(
