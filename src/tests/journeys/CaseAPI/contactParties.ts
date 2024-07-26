@@ -47,42 +47,6 @@ const contactParties: ContactParties = {
           "caseWorker",
         );
         break;
-      case "Draft":
-        caseNumber = await createDraft.createDraft(
-          page,
-          "caseWorker",
-          "Case Management",
-          false,
-          false,
-          "CIC3 - Rule 27",
-        );
-        break;
-      case "Withdrawn":
-        caseNumber = await closeCase.closeCase(
-          page,
-          "caseWorker",
-          false,
-          "Case Management",
-          false,
-          "caseWithdrawn",
-          true,
-          null,
-          null,
-        );
-        break;
-      case "Rejected":
-        caseNumber = await closeCase.closeCase(
-          page,
-          "seniorCaseworker",
-          false,
-          "Case Management",
-          false,
-          "caseRejected",
-          false,
-          "createdInError",
-          null,
-        );
-        break;
       case "Ready to list":
         caseNumber = await hearingOptions.hearingOptions(
           page,

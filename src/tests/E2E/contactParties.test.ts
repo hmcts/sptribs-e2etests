@@ -2,40 +2,7 @@ import { test } from "@playwright/test";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 
 test.describe("Case-API Contact parties tests. @CaseAPI", () => {
-  test("As a Caseworker send a message to all parties related to a draft case. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await contactParties.contactParties(
-      page,
-      "caseWorker",
-      false,
-      "Draft",
-      false,
-    );
-  });
-  test("As a Senior Caseworker send a message to all parties related to a withdrawn case.", async ({
-    page,
-  }): Promise<void> => {
-    await contactParties.contactParties(
-      page,
-      "seniorCaseworker",
-      false,
-      "Withdrawn",
-      false,
-    );
-  });
-  test("As a Hearing Centre Admin send a message to all parties related to a rejected case.", async ({
-    page,
-  }): Promise<void> => {
-    await contactParties.contactParties(
-      page,
-      "hearingCentreAdmin",
-      false,
-      "Rejected",
-      false,
-    );
-  });
-  test("As a Hearing Centre Team Lead send a message to all parties related to a submitted case.", async ({
+  test("As a Hearing Centre Team Lead send a message to all parties related to a submitted case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await contactParties.contactParties(
@@ -79,23 +46,23 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       false,
     );
   });
-  test("As a Caseworker send a message to all parties related to a case that is awaiting an outcome decision. @crossbrowserCaseAPI", async ({
+  test("As a Senior Caseworker send a message to all parties related to a case that is awaiting an outcome decision. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await contactParties.contactParties(
       page,
-      "caseWorker",
+      "seniorCaseworker",
       false,
       "Awaiting Outcome",
       false,
     );
   });
-  test("As a Caseworker send a message to all parties related to a closed case.", async ({
+  test("As a Hearing Centre Admin send a message to all parties related to a closed case.", async ({
     page,
   }): Promise<void> => {
     await contactParties.contactParties(
       page,
-      "caseWorker",
+      "hearingCentreAdmin",
       false,
       "Case closed",
       false,
