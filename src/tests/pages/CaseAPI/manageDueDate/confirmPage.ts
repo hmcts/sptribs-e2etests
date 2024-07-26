@@ -18,7 +18,6 @@ const managageDueDateConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page, accessibilityTest, caseNumber): Promise<void> {
-    //await page.waitForURL(/.*\/confirm$/);
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
