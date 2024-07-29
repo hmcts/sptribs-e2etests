@@ -3,7 +3,7 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import { allEvents } from "../helpers/commonHelpers.ts";
 
 test.describe("Case-API Build case tests. @CaseAPI", () => {
-  test("Create and build case as a caseworker", async ({
+  test("Create and build case as a caseworker @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     let previousEvents: allEvents[] = [];
@@ -29,7 +29,7 @@ test.describe("Case-API Build case tests. @CaseAPI", () => {
       "seniorCaseworker",
     );
   });
-  test("Create and build case as a hearing centre admin", async ({
+  test("Create and build case as a hearing centre admin @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     let previousEvents: allEvents[] = [];
@@ -42,7 +42,7 @@ test.describe("Case-API Build case tests. @CaseAPI", () => {
       "hearingCentreAdmin",
     );
   });
-  test("Create and build case as a hearing centre team lead", async ({
+  test("Create and build case as a hearing centre team lead @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     let previousEvents: allEvents[] = [];

@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import postponeHearing from "../journeys/CaseAPI/postponeHearing.ts";
 
 test.describe("Postpone hearing tests @CaseAPI", (): void => {
-  test("Postpone hearing as a caseworker - Appellant is out of country.", async ({
+  test("Postpone hearing as a caseworker - Appellant is out of country. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await postponeHearing.postponeHearing(
@@ -218,7 +218,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Postpone hearing as a caseworker - other reason.", async ({
+  test("Postpone hearing as a caseworker - other reason. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await postponeHearing.postponeHearing(
@@ -230,7 +230,9 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await postponeHearing.postponeHearing(
       page,
       "caseWorker",
@@ -241,7 +243,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - postpone hearing @accessibilityCaseAPI.", async ({
+test("Accessibility test - postpone hearing @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   await postponeHearing.postponeHearing(

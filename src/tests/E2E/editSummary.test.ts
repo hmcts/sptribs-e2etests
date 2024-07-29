@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import editSummary from "../journeys/CaseAPI/editSummary.ts";
 
 test.describe("Edit hearing summary tests @CaseAPI", (): void => {
-  test("Edit hearing summary as a caseworker.", async ({
+  test("Edit hearing summary as a caseworker. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await editSummary.editSummary(
@@ -102,7 +102,9 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await editSummary.editSummary(
       page,
       "caseWorker",

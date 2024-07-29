@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import issueToRespondent from "../journeys/CaseAPI/issueToRespondent.ts";
 
 test.describe("Issue to respondent tests @CaseAPI", () => {
-  test("As a caseworker Issue a case to all parties.", async ({
+  test("As a caseworker Issue a case to all parties. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -35,7 +35,7 @@ test.describe("Issue to respondent tests @CaseAPI", () => {
       ["Representative"],
     );
   });
-  test("As a caseworker Issue a case to a respondent.", async ({
+  test("As a caseworker Issue a case to a respondent. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(
@@ -90,7 +90,7 @@ test.describe("Issue to respondent tests @CaseAPI", () => {
       ["Subject", "Representative", "Respondent", "Applicant"],
     );
   });
-  test("Error messaging - Issue to respondent.", async ({
+  test("Error messaging - Issue to respondent. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await issueToRespondent.issueToRespondent(page, "caseWorker", false, true, [

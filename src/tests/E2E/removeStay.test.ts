@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import removeStay from "../journeys/CaseAPI/removeStay.ts";
 
 test.describe("Case-API remove stay tests. @CaseAPI", () => {
-  test("Remove a stay from a case for reason receivedOutcomeOfCivilCase as a caseworker with optional text.", async ({
+  test("Remove a stay from a case for reason receivedOutcomeOfCivilCase as a caseworker with optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await removeStay.removeStay(
@@ -80,7 +80,7 @@ test.describe("Case-API remove stay tests. @CaseAPI", () => {
     );
   });
 
-  test("Remove a stay from a case for reason receivedOutcomeOfLinkedCase as a caseworker with optional text.", async ({
+  test("Remove a stay from a case for reason receivedOutcomeOfLinkedCase as a caseworker with optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await removeStay.removeStay(
@@ -106,7 +106,9 @@ test.describe("Case-API remove stay tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messages - Remove stay", async ({ page }): Promise<void> => {
+  test("Error messages - Remove stay @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await removeStay.removeStay(
       page,
       false,
