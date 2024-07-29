@@ -24,7 +24,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
     );
   });
 
-  test("Edit CICA case details as a respondent - awaiting outcome. @crossbrowserCaseAPI", async ({
+  test("Edit CICA case details as a respondent - awaiting outcome.", async ({
     page,
   }): Promise<void> => {
     await editCICACaseDetails.editCICACaseDetails(

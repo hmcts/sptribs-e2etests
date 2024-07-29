@@ -142,7 +142,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
     );
   });
 
-  test("As a caseworker issue a final decision which is a generated ME Dmi Reports @crossbrowserCaseAPI", async ({
+  test("As a caseworker issue a final decision which is a generated ME Dmi Reports", async ({
     page,
   }): Promise<void> => {
     await issueFinalDecision.issueFinalDecision(
@@ -212,7 +212,7 @@ test.describe("Issue a final decision tests @CaseAPI", () => {
     );
   });
 
-  test("Error Messaging - Issue a final decision @crossbrowserCaseAPI", async ({
+  test("Error Messaging - Issue a final decision", async ({
     page,
   }): Promise<void> => {
     await issueFinalDecision.issueFinalDecision(

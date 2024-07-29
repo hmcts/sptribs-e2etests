@@ -46,7 +46,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, "caseWorker", "Awaiting Outcome", false);
   });
 
-  test("Add a note to a case closed case as a caseworker. @crossbrowserCaseAPI", async ({
+  test("Add a note to a case closed case as a caseworker.", async ({
     page,
   }): Promise<void> => {
     await addNote.addNote(page, "caseWorker", "Case closed", false);
