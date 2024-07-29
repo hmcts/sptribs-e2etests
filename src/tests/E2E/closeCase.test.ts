@@ -3,7 +3,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 
 test.describe("Case-API Close case tests. @CaseAPI", () => {
   // Case Management initial state tests
-  test("Close a case management case as it is withdrawn as a caseworker with optional information.", async ({
+  test("Close a case management case as it is withdrawn as a caseworker with optional information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await closeCase.closeCase(
@@ -355,7 +355,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a ready to list case as it is a rule 27 as a caseworker with no optional information.", async ({
+  test("Close a ready to list case as it is a rule 27 as a caseworker with no optional information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await closeCase.closeCase(
@@ -387,7 +387,9 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Close Case.", async ({ page }): Promise<void> => {
+  test("Error messaging - Close Case. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await closeCase.closeCase(
       page,
       "caseWorker",

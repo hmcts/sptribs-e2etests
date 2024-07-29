@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import reinstateCase from "../journeys/CaseAPI/reinstateCase.ts";
 
 test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
-  test("Reinstate a case as a caseworker which has been closed in error with no optional text.", async ({
+  test("Reinstate a case as a caseworker which has been closed in error with no optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await reinstateCase.reinstateCase(
@@ -67,7 +67,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     );
   });
 
-  test("Reinstate a case as a caseworker which has a strikeout decision with no optional text.", async ({
+  test("Reinstate a case as a caseworker which has a strikeout decision with no optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await reinstateCase.reinstateCase(
@@ -93,7 +93,9 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Reinstate case.", async ({ page }): Promise<void> => {
+  test("Error messaging - Reinstate case. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await reinstateCase.reinstateCase(
       page,
       "caseWorker",

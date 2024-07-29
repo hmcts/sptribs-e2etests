@@ -16,8 +16,8 @@
     "test:CrossDeviceDSS": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project MobileSafari --project MobileChrome --grep @DSSCreate",
     "test:AccessibilityDSS": "yarn playwright install && npx playwright test --project chromium --grep @DSSAccessibility",
     "test:ChromeCaseAPI": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI",
-    "test:FirefoxCaseAPI": "yarn playwright install firefox && echo 'Install successful' && npx playwright test --project firefox --grep @CaseAPI",
-    "test:WebkitCaseAPI": "yarn playwright install webkit && echo 'Install successful' && npx playwright test --project webkit --grep @CaseAPI",
+    "test:FirefoxCaseAPI": "yarn playwright install firefox && echo 'Install successful' && npx playwright test --project firefox --grep @crossbrowserCaseAPI",
+    "test:WebkitCaseAPI": "yarn playwright install webkit && echo 'Install successful' && npx playwright test --project webkit --grep @crossbrowserCaseAPI",
     "test:CrossDeviceCaseAPI": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && echo 'Install successful' && npx playwright test --project MobileSafari --project MobileChrome --grep @CaseAPI",
     "test:AccessibilityCaseAPI": "yarn playwright install && npx playwright test --project chromium --grep @accessibilityCaseAPI",
     "test:ChromeUC": "yarn playwright install && npx playwright test --project chromium --grep @DSSUpdate",
@@ -44,11 +44,11 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.10.0",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "ts-node": "^10.9.2"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
   },
-  "packageManager": "yarn@3.8.3"
+  "packageManager": "yarn@4.3.1"
 }

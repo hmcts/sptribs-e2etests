@@ -4,7 +4,7 @@ import config from "../config.ts";
 
 test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
-    test("Add a note to a DSS-submitted case as a caseworker.", async ({
+    test("Add a note to a DSS-submitted case as a caseworker. @crossbrowserCaseAPI", async ({
       page,
     }): Promise<void> => {
       await addNote.addNote(page, "caseWorker", "DSS-Submitted", false);
@@ -40,7 +40,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, "seniorJudge", "Awaiting Hearing", false);
   });
 
-  test("Add a note to a awaiting outcome case as a caseworker.", async ({
+  test("Add a note to a awaiting outcome case as a caseworker. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await addNote.addNote(page, "caseWorker", "Awaiting Outcome", false);

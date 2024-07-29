@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 
 test.describe("Create hearing summary tests @CaseAPI", (): void => {
-  test("Create hearing summary as a caseworker - hearing outcome is allowed.", async ({
+  test("Create hearing summary as a caseworker - hearing outcome is allowed. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await createSummary.createSummary(
@@ -191,7 +191,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary as a caseworker - hearing outcome is adjourned as appellant did not have bundle.", async ({
+  test("Create hearing summary as a caseworker - hearing outcome is adjourned as appellant did not have bundle. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     await createSummary.createSummary(
@@ -674,7 +674,9 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
     await createSummary.createSummary(
       page,
       "caseWorker",

@@ -4,7 +4,7 @@ import config from "../config.ts";
 
 test.describe("Case-API Edit case tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
-    test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact", async ({
+    test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact @crossbrowserCaseAPI", async ({
       page,
     }) => {
       await editCase.editCase(
@@ -246,7 +246,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
   });
 
   if (!config.skipDSSCreateTests) {
-    test("Error messaging.", async ({ page }) => {
+    test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
       await editCase.editCase(
         page,
         "caseWorker",
