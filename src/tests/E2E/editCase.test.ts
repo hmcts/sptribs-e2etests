@@ -125,7 +125,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Awaiting outcome - Assessment - Special Jurisdiction Category, Email Contact @crossbrowserCaseAPI", async ({
+  test("Caseworker - Awaiting outcome - Assessment - Special Jurisdiction Category, Email Contact", async ({
     page,
   }) => {
     await editCase.editCase(

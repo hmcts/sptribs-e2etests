@@ -82,7 +82,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary as a senior judge. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary as a senior judge.", async ({
     page,
   }): Promise<void> => {
     await editSummary.editSummary(

@@ -696,7 +696,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - create summary @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
+test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
   page,
 }): Promise<void> => {
   await createSummary.createSummary(
