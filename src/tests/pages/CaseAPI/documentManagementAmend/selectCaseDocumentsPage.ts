@@ -16,7 +16,6 @@ type SelectCaseDocumentsPage = {
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
-  // triggerErrorMessages(page: Page): Promise<void>;
 };
 
 const selectDocumentsPage: SelectCaseDocumentsPage = {

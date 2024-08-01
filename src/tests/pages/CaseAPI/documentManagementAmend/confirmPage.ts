@@ -1,6 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import confirm_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/confirm_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
 type ConfirmPage = {
   continue: string;
@@ -33,6 +34,9 @@ const confirmPage: ConfirmPage = {
         confirm_content.textOnPage1,
       ),
     ]);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continue);
