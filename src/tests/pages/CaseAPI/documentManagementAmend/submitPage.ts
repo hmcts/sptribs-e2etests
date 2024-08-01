@@ -3,6 +3,8 @@ import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/
 import submit_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import config from "../../../config.ts";
+import path from "path";
 
 type SubmitPage = {
   continue: string;
@@ -48,7 +50,7 @@ const submitPage: SubmitPage = {
         2,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`text="${submit_content.textOnPage6}"`),
+        page.locator(`text="DOC-MGMT--${path.basename(config.testPdfFile)}--${submit_content.category}"`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(

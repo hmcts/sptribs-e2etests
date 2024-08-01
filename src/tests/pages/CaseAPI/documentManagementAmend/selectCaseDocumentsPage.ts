@@ -3,6 +3,8 @@ import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/docum
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import config from "../../../config.ts";
+import path from "path";
 
 type SelectCaseDocumentsPage = {
   continue: string;
@@ -59,7 +61,7 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
   async fillFields(page: Page): Promise<void> {
     await page.selectOption(
       this.dropdown,
-      "DOC-MGMT--mockFile.pdf--TG - Other",
+      `DOC-MGMT--${path.basename(config.testPdfFile)}--${selectCaseDocuments_content.category}`,
     );
   },
 

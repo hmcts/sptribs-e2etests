@@ -8,7 +8,7 @@ const submit_content = {
   textOnPage3: "Document Category",
   textOnPage4: "TG - Other",
   textOnPage5: "Documents",
-  textOnPage6: "DOC-MGMT--mockFile.pdf--TG - Other",
+  category: "TG - Other",
   textOnPage7: "Change",
 };
 
