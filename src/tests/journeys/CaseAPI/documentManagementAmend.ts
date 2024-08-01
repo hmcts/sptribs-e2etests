@@ -19,12 +19,7 @@ type DocumentManagementAmend = {
 };
 
 const documentManagementAmend: DocumentManagementAmend = {
-  async documentManagementAmend(
-    page,
-    user,
-    accessibilityTest,
-    initialState,
-  ) {
+  async documentManagementAmend(page, user, accessibilityTest, initialState) {
     let caseNumber: string | void;
     switch (initialState) {
       default: // Defaults to Submitted
@@ -109,11 +104,19 @@ const documentManagementAmend: DocumentManagementAmend = {
         page,
         "Document management: Amend",
       );
-      await selectCaseDocumentsPage.checkPageLoads(page, caseNumber, accessibilityTest);
+      await selectCaseDocumentsPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+      );
       await selectCaseDocumentsPage.fillFields(page);
       await selectCaseDocumentsPage.continueOn(page);
 
-      await amendDocumentsPage.checkPageLoads(page, caseNumber, accessibilityTest);
+      await amendDocumentsPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+      );
       await amendDocumentsPage.fillFields(page);
       await amendDocumentsPage.continueOn(page);
 

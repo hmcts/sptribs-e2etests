@@ -9,7 +9,7 @@ const submit_content = {
   textOnPage4: "TG - Other",
   textOnPage5: "Documents",
   textOnPage6: "DOC-MGMT--mockFile.pdf--TG - Other",
-  textOnPage7: "Change"
-}
+  textOnPage7: "Change",
+};
 
 export default submit_content;

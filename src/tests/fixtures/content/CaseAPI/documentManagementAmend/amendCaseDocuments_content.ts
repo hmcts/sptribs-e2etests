@@ -8,8 +8,7 @@ const amendCaseDocuments_content = {
   textOnPage2: "Document Category",
   textOnPage3: "Description",
 
-  message: "Lorem ipsum amend documents message"
-
-}
+  message: "Lorem ipsum amend documents message",
+};
 
 export default amendCaseDocuments_content;

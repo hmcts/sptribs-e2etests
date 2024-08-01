@@ -3,6 +3,6 @@ const selectCaseDocuments_content = {
   pageTitle: "Select documents",
   caseReference: "Case number: ",
   textOnPage1: "Select an option from the dropdown",
-}
+};
 
 export default selectCaseDocuments_content;
