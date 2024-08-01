@@ -30,7 +30,7 @@ type DocumentManagementUpload = {
     initialState: initialState,
     multipleDocuments: boolean,
     errorMessaging: boolean,
-  ): Promise<void>;
+  ): Promise<void | string>;
 };
 
 const documentManagementUpload: DocumentManagementUpload = {
@@ -41,7 +41,7 @@ const documentManagementUpload: DocumentManagementUpload = {
     initialState: initialState,
     multipleDocuments: boolean,
     errorMessaging: boolean,
-  ): Promise<void> {
+  ): Promise<void | string> {
     let caseNumber: string | void;
     switch (initialState) {
       default: // Defaults to Submitted
@@ -201,6 +201,7 @@ const documentManagementUpload: DocumentManagementUpload = {
           break;
       }
     }
+    return caseNumber;
   },
 };
 

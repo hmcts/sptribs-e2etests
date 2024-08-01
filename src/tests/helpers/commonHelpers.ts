@@ -919,7 +919,8 @@ export type allEvents =
   | "Orders: Create draft"
   | "Orders: Send order"
   | "Orders: Edit draft"
-  | "Document management: Upload";
+  | "Document management: Upload"
+  | "Document management: Amend";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
