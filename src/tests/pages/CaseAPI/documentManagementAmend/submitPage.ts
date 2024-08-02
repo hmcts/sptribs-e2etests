@@ -50,7 +50,9 @@ const submitPage: SubmitPage = {
         2,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`text="DOC-MGMT--${path.basename(config.testPdfFile)}--${submit_content.category}"`),
+        page.locator(
+          `text="DOC-MGMT--${path.basename(config.testPdfFile)}--${submit_content.category}"`,
+        ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
