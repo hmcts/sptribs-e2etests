@@ -35,7 +35,13 @@ const subjectDetailsContent = {
   buttonCy: "Parhau",
   errorBannerCy: "Mae yna broblem",
   fullNameErrorCy: "Nodwch enw llawn",
-  dateOfBirthErrorCy: "Nodwch ddyddiad geni",
+  dateOfBirthErrorCy: "Rhaid i'r dyddiad geni gynnwys diwrnod, mis a blwyddyn",
+  invalidDOBErrorCy: "Rhaid i'r dyddiad geni fod yn ddyddiad go iawn",
+  incompleteDOBErrorCy:
+    "Rhaid i'r dyddiad geni fod yn ddyddiad go iawn a rhaid iddo gynnwys diwrnod, mis a blwyddyn",
+  pastDOBErrorCy: "Rhaid i'r dyddiad geni fod ar ôl 31/12/1899",
+  futureDOBErrorCy: "Rhaid i'r dyddiad geni fod yn y gorffennol",
+  htmlErrorCy: "Ni ddylai'r enw llawn gynnwys HTML",
 } as const;
 
 export default subjectDetailsContent;
