@@ -1,0 +1,148 @@
+import { expect, Page } from "@playwright/test";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/manageDueDate/submit_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
+import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editDueDatePage from "./editDueDatePage.ts";
+
+type SubmitPage = {
+  previous: string;
+  continue: string;
+  cancel: string;
+  checkPageLoads(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+    completed: boolean,
+    completedCheckboxChecked: boolean,
+  ): Promise<void>;
+  checkValidInfo(page: Page, completedCheckboxChecked: boolean): Promise<void>;
+  saveAndContinue(page: Page): Promise<void>;
+  checkChangeLink(
+    page: Page,
+    caseNumber: string,
+    accessibilityTest: boolean,
+  ): Promise<void>;
+};
+
+const submitPage: SubmitPage = {
+  previous: `.button-secondary:text-is("Previous")`,
+  continue: '[type="submit"]',
+  cancel: ".cancel",
+
+  async checkPageLoads(
+    page,
+    caseNumber,
+    accessibilityTest,
+    completed,
+    completedCheckboxChecked,
+  ): Promise<void> {
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`.govuk-heading-l:text-is("${submit_content.pageHint}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`h2:text-is("${submit_content.pageTitle}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span:text-is("${submit_content.textOnPage1}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span:text-is("${submit_content.draft}")`),
+        1,
+      ),
+      expect(page.locator("markdown > h3")).toContainText(
+        caseSubjectDetailsObject_content.name,
+      ),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        submit_content.caseReference + caseNumber,
+      ),
+      ...Array.from({ length: 3 }, (_, index: number) => {
+        const dueDate: ArrayConstructor = (submit_content as any)[
+          `dueDate${index + 1}`
+        ];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`span.text-16:text-is("${dueDate}")`),
+          1,
+        );
+      }),
+      commonHelpers.checkForButtons(
+        page,
+        this.continue,
+        this.previous,
+        this.cancel,
+      ),
+    ]);
+
+    if (completed) {
+      if (completedCheckboxChecked) {
+        await expect(
+          page.locator(`.text-16:text-is("${submit_content.dueDate4}")`),
+        ).toBeVisible();
+      } else {
+        await expect(
+          page.locator(`.text-16:text-is("${submit_content.dueDate4}")`),
+        ).not.toBeVisible();
+      }
+    } else {
+      if (!completed) {
+        if (completedCheckboxChecked) {
+          await expect(
+            page.locator(`.text-16:text-is("${submit_content.dueDate4}")`),
+          ).toBeVisible();
+        } else {
+          await expect(
+            page.locator(`.text-16:text-is("${submit_content.dueDate4}")`),
+          ).not.toBeVisible();
+        }
+      }
+    }
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
+  },
+
+  async checkValidInfo(
+    page: Page,
+    completedCheckboxChecked: boolean,
+  ): Promise<void> {
+    await Promise.all([
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.text-16:text-is("${editDueDate_content.day} ${await commonHelpers.shortMonths(parseInt(editDueDate_content.month))} ${editDueDate_content.year}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span:text-is("${editDueDate_content.information}")`),
+        1,
+      ),
+    ]);
+    if (completedCheckboxChecked) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`.text-16:text-is("Yes")`),
+        1,
+      );
+    }
+  },
+
+  async checkChangeLink(page, caseNumber, accessibilityTest): Promise<void> {
+    await page.locator(`[aria-label="Change Due Date"]`).click();
+    await page.waitForURL(
+      /.*\/caseworker-amend-due-datecaseworkerAmendDueDateEditDueDate$/,
+    );
+    await editDueDatePage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await page.click(this.continue);
+    await page.waitForURL(/.*\/submit$/);
+  },
+
+  async saveAndContinue(page: Page): Promise<void> {
+    await page.click(this.continue);
+  },
+};
+
+export default submitPage;
