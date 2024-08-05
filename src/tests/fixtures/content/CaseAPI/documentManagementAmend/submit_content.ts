@@ -6,10 +6,8 @@ const submit_content = {
   textOnPage1: "Check the information below carefully.",
   textOnPage2: "Description",
   textOnPage3: "Document Category",
-  textOnPage4: "TG - Other",
-  textOnPage5: "Documents",
-  category: "TG - Other",
-  textOnPage7: "Change",
+  textOnPage4: "Documents",
+  textOnPage5: "Change",
 };
 
 export default submit_content;

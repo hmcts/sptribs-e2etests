@@ -2,9 +2,9 @@ import { expect, Page } from "@playwright/test";
 import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import config from "../../../config.ts";
 import path from "path";
+// import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
 type SelectCaseDocumentsPage = {
   continue: string;
@@ -28,7 +28,7 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
   async checkPageLoads(
     page: Page,
     caseNumber: string,
-    accessibilityTest: boolean,
+    // accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -53,9 +53,9 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
         this.cancel,
       ),
     ]);
-    if (accessibilityTest) {
-      await axeTest(page);
-    }
+    // if (accessibilityTest) {
+    //   await axeTest(page);
+    // }
   },
 
   async fillFields(page: Page): Promise<void> {

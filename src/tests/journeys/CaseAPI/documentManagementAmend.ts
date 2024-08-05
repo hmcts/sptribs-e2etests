@@ -13,8 +13,6 @@ type DocumentManagementAmend = {
     user: UserRole,
     accessibilityTest: boolean,
     initialState: State,
-    multipleDocuments: boolean,
-    errorMessaging: boolean,
   ): Promise<void>;
 };
 
@@ -119,10 +117,8 @@ const documentManagementAmend: DocumentManagementAmend = {
       );
       await amendDocumentsPage.fillFields(page);
       await amendDocumentsPage.continueOn(page);
-
       await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
       await submitPage.continueOn(page);
-
       await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
       await confirmPage.continueOn(page);
     }

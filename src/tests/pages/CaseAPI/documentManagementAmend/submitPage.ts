@@ -5,6 +5,10 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import config from "../../../config.ts";
 import path from "path";
+import selectCaseDocuments_content
+  from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
+import amendCaseDocuments_content
+  from "../../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
 
 type SubmitPage = {
   continue: string;
@@ -38,7 +42,7 @@ const submitPage: SubmitPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 4 }, (_, index) => {
+      ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (submit_content as any)[`textOnPage${index + 1}`];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`span.text-16:text-is("${textOnPage}")`),
@@ -46,18 +50,22 @@ const submitPage: SubmitPage = {
         );
       }),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`text="${submit_content.textOnPage5}"`),
+        page.locator(`text="${submit_content.textOnPage4}"`),
         2,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `text="DOC-MGMT--${path.basename(config.testPdfFile)}--${submit_content.category}"`,
+          `text="DOC-MGMT--${path.basename(config.testPdfFile)}--${selectCaseDocuments_content.category}"`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`text="${submit_content.textOnPage7}"`),
+        page.locator(`text="${submit_content.textOnPage5}"`),
         2,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`text="${amendCaseDocuments_content.category}"`),
+        1,
       ),
     ]);
     if (accessibilityTest) {

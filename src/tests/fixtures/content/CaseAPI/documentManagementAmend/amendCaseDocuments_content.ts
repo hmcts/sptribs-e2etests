@@ -8,6 +8,7 @@ const amendCaseDocuments_content = {
   textOnPage2: "Document Category",
   textOnPage3: "Description",
 
+  category: "A - Application Form",
   message: "Lorem ipsum amend documents message",
 };
 

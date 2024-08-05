@@ -88,15 +88,15 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
   });
 });
 
-// test("Accessibility tests - Document Management: Amend @accessibilityCaseAPI", async ({
-//   page,
-// }): Promise<void> => {
-//   await documentManagementAmend.documentManagementAmend(
-//     page,
-//     "caseWorker",
-//     true,
-//     "Submitted",
-//     false,
-//     false,
-//   );
-// });
+test("Accessibility tests - Document Management: Amend @accessibilityCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await documentManagementAmend.documentManagementAmend(
+    page,
+    "caseWorker",
+    true,
+    "Submitted",
+    false,
+    false,
+  );
+});
