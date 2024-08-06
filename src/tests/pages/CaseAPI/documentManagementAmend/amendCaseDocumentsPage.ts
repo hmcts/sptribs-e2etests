@@ -5,8 +5,7 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import path from "path";
 import config from "../../../config.ts";
-import selectCaseDocuments_content
-  from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
+import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
 
 type AmendCaseDocumentsPage = {
   continue: string;
@@ -75,10 +74,7 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
     }
   },
   async fillFields(page: Page): Promise<void> {
-    await page.selectOption(
-      this.dropdown,
-      amendCaseDocuments_content.category,
-    );
+    await page.selectOption(this.dropdown, amendCaseDocuments_content.category);
     await page.fill(this.message, amendCaseDocuments_content.message);
   },
   async continueOn(page: Page): Promise<void> {

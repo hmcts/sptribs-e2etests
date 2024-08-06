@@ -5,10 +5,8 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import config from "../../../config.ts";
 import path from "path";
-import selectCaseDocuments_content
-  from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
-import amendCaseDocuments_content
-  from "../../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
+import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
+import amendCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
 
 type SubmitPage = {
   continue: string;
