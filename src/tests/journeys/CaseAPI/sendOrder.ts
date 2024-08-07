@@ -34,7 +34,7 @@ type SendOrder = {
     completed: boolean,
     reminder: boolean,
     reminderDays: ReminderDays,
-  ): Promise<void>;
+  ): Promise<string>;
 };
 
 const sendOrder: SendOrder = {
@@ -48,7 +48,7 @@ const sendOrder: SendOrder = {
     completed: boolean,
     reminder: boolean,
     reminderDays: ReminderDays,
-  ): Promise<void> {
+  ): Promise<string> {
     let caseNumber: string | void = "";
     let previousEvents: allEvents[] = [];
     let eventTimes: string[] = [];
@@ -244,6 +244,7 @@ const sendOrder: SendOrder = {
         );
         await sendReminderPage.triggerErrorMessages(page);
     }
+    return caseNumber;
   },
 };
 
