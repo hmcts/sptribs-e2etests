@@ -41,7 +41,6 @@ const manageDueDate: ManageDueDate = {
       true,
       "1",
     );
-    console.log(caseNumber);
     await commonHelpers.signOutAndGoToCase(
       page,
       user,
