@@ -95,8 +95,40 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectContactDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
+            subjectContactDetailsContent.emailErrorCy,
+          ),
+          expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
+            subjectContactDetailsContent.contactNumberErrorCy,
+          ),
+          expect(page.locator("[href='#subjectAgreeContact']")).toHaveText(
+            subjectContactDetailsContent.agreeErrorCy,
+          ),
+          expect(page.locator("#subjectEmailAddress-error")).toContainText(
+            subjectContactDetailsContent.emailErrorCy,
+          ),
+          expect(page.locator("#subjectContactNumber-error")).toContainText(
+            subjectContactDetailsContent.contactNumberErrorCy,
+          ),
+          expect(page.locator("#subjectAgreeContact-error")).toContainText(
+            subjectContactDetailsContent.agreeErrorCy,
+          ),
+        ]);
+        await page.fill(
+          this.fields.email,
+          subjectContactDetailsContent.partEmailEntry,
+        );
+        await page.fill(
+          this.fields.mobileNumber,
+          subjectContactDetailsContent.partContactNumberEntry,
+        );
         await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
@@ -108,36 +140,15 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
             subjectContactDetailsContent.validContactNumberErrorCy,
           ),
-          expect(page.locator("[href='#subjectAgreeContact']")).toHaveText(
-            subjectContactDetailsContent.agreeErrorCy,
-          ),
           expect(page.locator("#subjectEmailAddress-error")).toContainText(
             subjectContactDetailsContent.validEmailErrorCy,
           ),
           expect(page.locator("#subjectContactNumber-error")).toContainText(
             subjectContactDetailsContent.validContactNumberErrorCy,
           ),
-          expect(page.locator("#subjectAgreeContact-error")).toContainText(
-            subjectContactDetailsContent.agreeErrorCy,
-          ),
         ]);
-        await page.fill(
-          this.fields.email,
-          subjectContactDetailsContent.partEmailEntry,
-        );
-        await page.click(this.continueButton);
-        await Promise.all([
-          expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.partEmailErrorCy,
-          ),
-          expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.partEmailErrorCy,
-          ),
-        ]);
-        await page.fill(this.fields.email, "");
         break;
       default:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             subjectContactDetailsContent.errorBanner,
