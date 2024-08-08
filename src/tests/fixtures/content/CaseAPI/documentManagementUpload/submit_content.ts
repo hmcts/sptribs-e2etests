@@ -8,7 +8,7 @@ const submit_content = {
   textOnPage4: "Description",
   textOnPage5: "File",
   category: "TG - Other",
-  message: "Lorem ipsum text TG - Other"
+  message: "Lorem ipsum text TG - Other",
 };
 
 export default submit_content;

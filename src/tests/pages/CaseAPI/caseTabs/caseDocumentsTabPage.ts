@@ -518,11 +518,11 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     } else {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("${category}")`).nth(0),
+          page.locator(`.text-16:text-is("${category}")`),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${message})"`).nth(0),
+          page.locator(`span:text-is("${message}")`),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(

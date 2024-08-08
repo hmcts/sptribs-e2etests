@@ -7,8 +7,7 @@ import amendDocumentsPage from "../../pages/CaseAPI/documentManagementAmend/amen
 import submitPage from "../../pages/CaseAPI/documentManagementAmend/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/documentManagementAmend/confirmPage.ts";
 import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
-import amendCaseDocuments_content
-  from "../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
+import amendCaseDocuments_content from "../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
 
 type DocumentManagementAmend = {
   documentManagementAmend(
@@ -140,7 +139,7 @@ const documentManagementAmend: DocumentManagementAmend = {
         false,
         user,
         amendCaseDocuments_content.category,
-        amendCaseDocuments_content.message
+        amendCaseDocuments_content.message,
       );
     }
   },
