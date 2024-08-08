@@ -466,7 +466,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `.govuk-summary-list__value:text-is("${representativeDetailsContent.Organisation}")`,
+            `.govuk-summary-list__value:text-is("${representativeDetailsContent.contactNumber}")`,
           ),
           1,
         ),
