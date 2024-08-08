@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
@@ -7,6 +7,7 @@ import CheckYourAnswersContent from "../../fixtures/content/DSSCreateCase/CheckY
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
 import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
+import uploadOtherInformation_content from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 
 type CheckYourAnswersPage = {
@@ -16,6 +17,8 @@ type CheckYourAnswersPage = {
     page: Page,
     cy: boolean,
     representationPresent: boolean,
+    uploadOtherInfo: boolean,
+    multipleDocuments: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
   checkValidInfoAllFields(
@@ -38,154 +41,336 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     page: Page,
     cy: boolean,
     representationPresent: boolean,
+    uploadOtherInfo: boolean,
+    multipleDocuments: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(
-            CheckYourAnswersContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${CheckYourAnswersContent.pageTitleCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (CheckYourAnswersContent as any)[
               `subTitleCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-heading-m").nth(index + 1),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-heading-m:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          ...Array.from({ length: 5 }, (_, index) => {
+          ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (CheckYourAnswersContent as any)[
-              `textOnPageCy${index + 1}`
+              `subTitleCy${index + 4}`
             ];
-            return expect(
-              page.locator(".govuk-summary-list__key").nth(index),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-heading-m:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-        ]);
-        if (representationPresent) {
-          await Promise.all([
-            ...Array.from({ length: 4 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `subTitleCy${index + 3}`
-              ];
-              return expect(
-                page.locator(".govuk-heading-m").nth(index + 3),
-              ).toHaveText(textOnPage);
-            }),
-            ...Array.from({ length: 10 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `textOnPageCy${index + 6}`
-              ];
-              return expect(
-                page.locator(".govuk-summary-list__key").nth(index + 5),
-              ).toHaveText(textOnPage);
-            }),
-          ]);
-        } else {
-          await Promise.all([
-            ...Array.from({ length: 3 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `subTitleCy${index + 4}`
-              ];
-              return expect(
-                page.locator(".govuk-heading-m").nth(index + 3),
-              ).toHaveText(textOnPage);
-            }),
-            ...Array.from({ length: 5 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `textOnPageCy${index + 11}`
-              ];
-              return expect(
-                page.locator(".govuk-summary-list__key").nth(index + 5),
-              ).toHaveText(textOnPage);
-            }),
-          ]);
-        }
-        await Promise.all([
+          // Subject details heading
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitleCy7}")`,
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy2}")`,
             ),
             1,
           ),
-          expect(page.locator(".govuk-body-l")).toHaveText(
-            CheckYourAnswersContent.textOnPageCy16,
+          // Representation heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy5}")`,
+            ),
+            1,
+          ),
+          // Appeal forms heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy11}")`,
+            ),
+            1,
+          ),
+          // Supporting documents heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy12}")`,
+            ),
+            1,
+          ),
+          // Additional information heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy13}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-body-l:text-is("${CheckYourAnswersContent.textOnPageCy16}")`,
+            ),
+            1,
           ),
         ]);
+        if (representationPresent) {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy4}")`,
+              ),
+              2,
+            ),
+            // Representation heading
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy6}")`,
+              ),
+              1,
+            ),
+            // Representative details heading
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-heading-m:text-is("${CheckYourAnswersContent.subTitleCy3}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy1}")`,
+              ),
+              2,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy8}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy3}")`,
+              ),
+              2,
+            ),
+          ]);
+        } else {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy4}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy1}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPageCy3}")`,
+              ),
+              1,
+            ),
+          ]);
+        }
+        if (uploadOtherInfo) {
+          if (multipleDocuments) {
+            await Promise.all([
+              ...Array.from({ length: 2 }, (_, index) => {
+                const textOnPage = (CheckYourAnswersContent as any)[
+                  `textOnPageCy${index + 14}`
+                ];
+                return commonHelpers.checkVisibleAndPresent(
+                  page.locator(
+                    `.govuk-summary-list__key:text-is("${textOnPage}")`,
+                  ),
+                  4,
+                );
+              }),
+            ]);
+          } else {
+            await Promise.all([
+              ...Array.from({ length: 2 }, (_, index) => {
+                const textOnPage = (CheckYourAnswersContent as any)[
+                  `textOnPageCy${index + 14}`
+                ];
+                return commonHelpers.checkVisibleAndPresent(
+                  page.locator(
+                    `.govuk-summary-list__key:text-is("${textOnPage}")`,
+                  ),
+                  1,
+                );
+              }),
+            ]);
+          }
+        }
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(
-            CheckYourAnswersContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${CheckYourAnswersContent.pageTitle}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (CheckYourAnswersContent as any)[
               `subTitle${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-heading-m").nth(index + 1),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-heading-m:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          ...Array.from({ length: 5 }, (_, index) => {
+          ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (CheckYourAnswersContent as any)[
-              `textOnPage${index + 1}`
+              `subTitle${index + 4}`
             ];
-            return expect(
-              page.locator(".govuk-summary-list__key").nth(index),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-heading-m:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-        ]);
-        if (representationPresent) {
-          await Promise.all([
-            ...Array.from({ length: 4 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `subTitle${index + 3}`
-              ];
-              return expect(
-                page.locator(".govuk-heading-m").nth(index + 3),
-              ).toHaveText(textOnPage);
-            }),
-            ...Array.from({ length: 10 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `textOnPage${index + 6}`
-              ];
-              return expect(
-                page.locator(".govuk-summary-list__key").nth(index + 5),
-              ).toHaveText(textOnPage);
-            }),
-          ]);
-        } else {
-          await Promise.all([
-            ...Array.from({ length: 3 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `subTitle${index + 4}`
-              ];
-              return expect(
-                page.locator(".govuk-heading-m").nth(index + 3),
-              ).toHaveText(textOnPage);
-            }),
-            ...Array.from({ length: 5 }, (_, index) => {
-              const textOnPage = (CheckYourAnswersContent as any)[
-                `textOnPage${index + 11}`
-              ];
-              return expect(
-                page.locator(".govuk-summary-list__key").nth(index + 5),
-              ).toHaveText(textOnPage);
-            }),
-          ]);
-        }
-        await Promise.all([
+          // Subject details heading
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-m:has-text("${CheckYourAnswersContent.subTitle7}")`,
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage2}")`,
             ),
             1,
           ),
-          expect(page.locator(".govuk-body-l")).toHaveText(
-            CheckYourAnswersContent.textOnPage16,
+          // Representation heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage5}")`,
+            ),
+            1,
+          ),
+          // Appeal forms heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage11}")`,
+            ),
+            1,
+          ),
+          // Supporting documents heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage12}")`,
+            ),
+            1,
+          ),
+          // Additional information heading
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage13}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-body-l:text-is("${CheckYourAnswersContent.textOnPage16}")`,
+            ),
+            1,
           ),
         ]);
+        if (representationPresent) {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage4}")`,
+              ),
+              2,
+            ),
+            // Representation heading
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage6}")`,
+              ),
+              1,
+            ),
+            // Representative details heading
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-heading-m:text-is("${CheckYourAnswersContent.subTitle3}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage1}")`,
+              ),
+              2,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage8}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage3}")`,
+              ),
+              2,
+            ),
+          ]);
+        } else {
+          await Promise.all([
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage4}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage1}")`,
+              ),
+              1,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `.govuk-summary-list__key:text-is("${CheckYourAnswersContent.textOnPage3}")`,
+              ),
+              1,
+            ),
+          ]);
+        }
+        if (uploadOtherInfo) {
+          if (multipleDocuments) {
+            await Promise.all([
+              ...Array.from({ length: 2 }, (_, index) => {
+                const textOnPage = (CheckYourAnswersContent as any)[
+                  `textOnPage${index + 14}`
+                ];
+                return commonHelpers.checkVisibleAndPresent(
+                  page.locator(
+                    `.govuk-summary-list__key:text-is("${textOnPage}")`,
+                  ),
+                  4,
+                );
+              }),
+            ]);
+          } else {
+            await Promise.all([
+              ...Array.from({ length: 2 }, (_, index) => {
+                const textOnPage = (CheckYourAnswersContent as any)[
+                  `textOnPage${index + 14}`
+                ];
+                return commonHelpers.checkVisibleAndPresent(
+                  page.locator(
+                    `.govuk-summary-list__key:text-is("${textOnPage}")`,
+                  ),
+                  1,
+                );
+              }),
+            ]);
+          }
+        }
         break;
     }
     if (accessibilityTest) {
@@ -205,149 +390,177 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     const no = "No";
     const yesCy = "Ydy";
     const noCy = "Nac ydy";
+
     await Promise.all([
-      expect(page.locator(".govuk-summary-list__value").nth(0)).toHaveText(
-        subjectDetailsContent.name,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-summary-list__value:text-is("${subjectDetailsContent.name}")`,
+        ),
+        1,
       ),
-      expect(page.locator(".govuk-summary-list__value").nth(1)).toHaveText(
-        await commonHelpers.convertDate(false),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-summary-list__value:text-is("${await commonHelpers.convertDate(false)}")`,
+        ),
+        1,
       ),
-      expect(page.locator(".govuk-summary-list__value").nth(2)).toHaveText(
-        subjectContactDetailsContent.emailAddress,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-summary-list__value:text-is("${subjectContactDetailsContent.emailAddress}")`,
+        ),
+        1,
       ),
-      expect(page.locator(".govuk-summary-list__value").nth(3)).toHaveText(
-        subjectContactDetailsContent.contactNumber,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.govuk-summary-list__value:text-is("${subjectContactDetailsContent.contactNumber}")`,
+        ),
+        1,
       ),
     ]);
     if (representationPresent) {
       if (cy) {
-        await expect(
-          page.locator(".govuk-summary-list__value").nth(4),
-        ).toHaveText(yesCy);
         if (representationQualified) {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(5),
-          ).toHaveText(yesCy);
-        } else if (!representationQualified) {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(5),
-          ).toHaveText(noCy);
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-summary-list__value:text-is("${yesCy}")`),
+            2,
+          );
+        } else {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-summary-list__value:text-is("${yesCy}")`),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-summary-list__value:text-is("${noCy}")`),
+            1,
+          );
         }
       } else {
-        await expect(
-          page.locator(".govuk-summary-list__value").nth(4),
-        ).toHaveText(yes);
         if (representationQualified) {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(5),
-          ).toHaveText(yes);
-        } else if (!representationQualified) {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(5),
-          ).toHaveText(no);
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-summary-list__value:text-is("${yes}")`),
+            2,
+          );
+        } else {
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-summary-list__value:text-is("${yes}")`),
+            1,
+          );
+          await commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-summary-list__value:text-is("${no}")`),
+            1,
+          );
         }
       }
       await Promise.all([
-        expect(page.locator(".govuk-summary-list__value").nth(6)).toHaveText(
-          representativeDetailsContent.fullName,
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${representativeDetailsContent.fullName}")`,
+          ),
+          1,
         ),
-        expect(page.locator(".govuk-summary-list__value").nth(7)).toHaveText(
-          representativeDetailsContent.Organisation,
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${representativeDetailsContent.Organisation}")`,
+          ),
+          1,
         ),
-        expect(page.locator(".govuk-summary-list__value").nth(8)).toHaveText(
-          representativeDetailsContent.contactNumber,
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${representativeDetailsContent.Organisation}")`,
+          ),
+          1,
         ),
-        expect(page.locator(".govuk-summary-list__value").nth(9)).toHaveText(
-          representativeDetailsContent.emailAddress,
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${representativeDetailsContent.emailAddress}")`,
+          ),
+          1,
         ),
       ]);
-      if (multipleDocuments) {
-        await Promise.all([
-          expect(page.locator(".govuk-summary-list__value").nth(10)).toHaveText(
-            `${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}`,
-          ),
-          expect(page.locator(".govuk-summary-list__value").nth(11)).toHaveText(
-            `${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`,
-          ),
-        ]);
+    } else {
+      if (cy) {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`.govuk-summary-list__value:text-is("${noCy}")`),
+          1,
+        );
       } else {
-        await Promise.all([
-          expect(page.locator(".govuk-summary-list__value").nth(10)).toHaveText(
-            path.basename(config.testPdfFile),
-          ),
-          expect(page.locator(".govuk-summary-list__value").nth(11)).toHaveText(
-            path.basename(config.testFile),
-          ),
-        ]);
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`.govuk-summary-list__value:text-is("${no}")`),
+          1,
+        );
       }
-      if (uploadOtherInfo) {
-        if (multipleDocuments) {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(12),
-          ).toHaveText(
-            `${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`,
-          );
-        } else {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(12),
-          ).toHaveText(path.basename(config.testWordFile));
-        }
-        await Promise.all([
-          expect(page.locator(".govuk-summary-list__value").nth(13)).toHaveText(
-            path.basename(uploadOtherInformationContent.documentRelevance),
+    }
+    if (multipleDocuments) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}")`,
           ),
-          expect(page.locator(".govuk-summary-list__value").nth(14)).toHaveText(
-            path.basename(uploadOtherInformationContent.additionalInfo),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}")`,
+          ),
+          1,
+        ),
+      ]);
+      if (uploadOtherInfo) {
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__value:text-is("${uploadOtherInformation_content.additionalInfo}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__value:text-is("${path.basename(config.testWordFile)}")`,
+            ),
+            4,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__value:text-is("${uploadOtherInformationContent.documentRelevance}")`,
+            ),
+            4,
           ),
         ]);
       }
     } else {
-      if (cy) {
-        await expect(
-          page.locator(".govuk-summary-list__value").nth(4),
-        ).toHaveText(noCy);
-      } else {
-        await expect(
-          page.locator(".govuk-summary-list__value").nth(4),
-        ).toHaveText(no);
-      }
-      if (multipleDocuments) {
-        await Promise.all([
-          expect(page.locator(".govuk-summary-list__value").nth(5)).toHaveText(
-            `${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)} ${path.basename(config.testPdfFile)}`,
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${path.basename(config.testPdfFile)}")`,
           ),
-          expect(page.locator(".govuk-summary-list__value").nth(6)).toHaveText(
-            `${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)} ${path.basename(config.testFile)}`,
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.govuk-summary-list__value:text-is("${path.basename(config.testFile)}")`,
           ),
-        ]);
-      } else {
-        await Promise.all([
-          expect(page.locator(".govuk-summary-list__value").nth(5)).toHaveText(
-            path.basename(config.testPdfFile),
-          ),
-          expect(page.locator(".govuk-summary-list__value").nth(6)).toHaveText(
-            path.basename(config.testFile),
-          ),
-        ]);
-      }
+          1,
+        ),
+      ]);
       if (uploadOtherInfo) {
-        if (multipleDocuments) {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(7),
-          ).toHaveText(
-            `${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)} ${path.basename(config.testWordFile)}`,
-          );
-        } else {
-          await expect(
-            page.locator(".govuk-summary-list__value").nth(7),
-          ).toHaveText(path.basename(config.testWordFile));
-        }
         await Promise.all([
-          expect(page.locator(".govuk-summary-list__value").nth(8)).toHaveText(
-            path.basename(uploadOtherInformationContent.documentRelevance),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__value:text-is("${uploadOtherInformation_content.additionalInfo}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-summary-list__value").nth(9)).toHaveText(
-            path.basename(uploadOtherInformationContent.additionalInfo),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__value:text-is("${path.basename(config.testWordFile)}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-summary-list__value:text-is("${uploadOtherInformationContent.documentRelevance}")`,
+            ),
+            1,
           ),
         ]);
       }

@@ -6,7 +6,7 @@ const subjectContactDetailsContent = {
   textOnPage2:
     "I agree to be contacted about this case using the details I have provided",
   emailAddress: "AutoTestSubject@mail.com",
-  contactNumber: "01234567891",
+  contactNumber: "01234567892",
   button: "Continue",
   errorBanner: "There is a problem",
   validEmailError: "Please enter a valid email address",
