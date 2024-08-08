@@ -117,6 +117,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
+    const currentDate = new Date();
     switch (cy) {
       case true:
         await expect(page.locator(".govuk-link.language")).toHaveText(
@@ -140,6 +141,84 @@ const subjectDetailsPage: SubjectDetailsPage = {
             subjectDetailsContent.dateOfBirthErrorCy,
           ),
         ]);
+        await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#subjectFullName']")).toHaveText(
+            subjectDetailsContent.htmlErrorCy,
+          ),
+          expect(page.locator("#subjectFullName-error")).toContainText(
+            subjectDetailsContent.htmlErrorCy,
+          ),
+        ]);
+        await page.locator(this.fields.fullName).clear();
+        await page.fill(this.fields.dayOfBirth, "32");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.incompleteDOBErrorCy,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.incompleteDOBErrorCy,
+          ),
+        ]);
+        await page.fill(this.fields.dayOfBirth, "a");
+        await page.fill(this.fields.monthOfBirth, "a");
+        await page.fill(this.fields.yearOfBirth, "a");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.invalidDOBErrorCy,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.invalidDOBErrorCy,
+          ),
+        ]);
+        await page.fill(this.fields.dayOfBirth, "1");
+        await page.fill(this.fields.monthOfBirth, "1");
+        await page.fill(this.fields.yearOfBirth, "1899");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.pastDOBErrorCy,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.pastDOBErrorCy,
+          ),
+        ]);
+        await page.fill(this.fields.dayOfBirth, `${currentDate.getDate()}`);
+        await page.fill(
+          this.fields.monthOfBirth,
+          `${currentDate.getMonth() + 1}`,
+        );
+        await page.fill(
+          this.fields.yearOfBirth,
+          `${currentDate.getFullYear() + 1}`,
+        );
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.futureDOBErrorCy,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.futureDOBErrorCy,
+          ),
+        ]);
         break;
       default:
         await page.click(this.continueButton);
@@ -158,6 +237,84 @@ const subjectDetailsPage: SubjectDetailsPage = {
           ),
           expect(page.locator("#subjectDateOfBirth-error")).toContainText(
             subjectDetailsContent.dateOfBirthError,
+          ),
+        ]);
+        await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBanner,
+          ),
+          expect(page.locator("[href='#subjectFullName']")).toHaveText(
+            subjectDetailsContent.htmlError,
+          ),
+          expect(page.locator("#subjectFullName-error")).toContainText(
+            subjectDetailsContent.htmlError,
+          ),
+        ]);
+        await page.locator(this.fields.fullName).clear();
+        await page.fill(this.fields.dayOfBirth, "32");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBanner,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.incompleteDOBError,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.incompleteDOBError,
+          ),
+        ]);
+        await page.fill(this.fields.dayOfBirth, "a");
+        await page.fill(this.fields.monthOfBirth, "a");
+        await page.fill(this.fields.yearOfBirth, "a");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBanner,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.invalidDOBError,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.invalidDOBError,
+          ),
+        ]);
+        await page.fill(this.fields.dayOfBirth, "1");
+        await page.fill(this.fields.monthOfBirth, "1");
+        await page.fill(this.fields.yearOfBirth, "1899");
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBanner,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.pastDOBError,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.pastDOBError,
+          ),
+        ]);
+        await page.fill(this.fields.dayOfBirth, `${currentDate.getDate()}`);
+        await page.fill(
+          this.fields.monthOfBirth,
+          `${currentDate.getMonth() + 1}`,
+        );
+        await page.fill(
+          this.fields.yearOfBirth,
+          `${currentDate.getFullYear() + 1}`,
+        );
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            subjectDetailsContent.errorBanner,
+          ),
+          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
+            subjectDetailsContent.futureDOBError,
+          ),
+          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
+            subjectDetailsContent.futureDOBError,
           ),
         ]);
         break;
