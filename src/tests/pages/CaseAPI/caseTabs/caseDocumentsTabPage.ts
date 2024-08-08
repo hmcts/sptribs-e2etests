@@ -32,6 +32,8 @@ type CaseDocumentsTabPage = {
     page: Page,
     multipleDocuments: boolean,
     user: UserRole,
+    category: string,
+    message: string,
   ): Promise<void>;
 };
 
@@ -466,6 +468,8 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     page: Page,
     multipleDocuments: boolean,
     user: UserRole,
+    category: string,
+    message: string,
   ): Promise<void> {
     await commonHelpers.checkVisibleAndPresent(
       page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
@@ -503,22 +507,22 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     if (!multipleDocuments) {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("TG - Other")`),
+          page.locator(`.text-16:text-is("${category}")`).nth(0),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("Lorem ipsum text TG - Other")`),
+          page.locator(`span:text-is("${message}")`).nth(0),
           1,
         ),
       ]);
     } else {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("TG - Other")`),
+          page.locator(`.text-16:text-is("${category}")`).nth(0),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("Lorem ipsum text TG - Other")`),
+          page.locator(`span:text-is("${message})"`).nth(0),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(

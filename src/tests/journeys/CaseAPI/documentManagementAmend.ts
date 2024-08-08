@@ -6,6 +6,9 @@ import selectCaseDocumentsPage from "../../pages/CaseAPI/documentManagementAmend
 import amendDocumentsPage from "../../pages/CaseAPI/documentManagementAmend/amendCaseDocumentsPage.ts";
 import submitPage from "../../pages/CaseAPI/documentManagementAmend/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/documentManagementAmend/confirmPage.ts";
+import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import amendCaseDocuments_content
+  from "../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
 
 type DocumentManagementAmend = {
   documentManagementAmend(
@@ -121,6 +124,24 @@ const documentManagementAmend: DocumentManagementAmend = {
       await submitPage.continueOn(page);
       await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
       await confirmPage.continueOn(page);
+
+      await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
+      await caseDocumentsTabPage.checkPageLoads(
+        page,
+        accessibilityTest,
+        caseNumber,
+        false,
+        false,
+        true,
+        user,
+      );
+      await caseDocumentsTabPage.docManagementUploadCheckInfo(
+        page,
+        false,
+        user,
+        amendCaseDocuments_content.category,
+        amendCaseDocuments_content.message
+      );
     }
   },
 };

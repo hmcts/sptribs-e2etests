@@ -12,6 +12,7 @@ import uploadCaseDocumentsPage from "../../pages/CaseAPI/documentManagementUploa
 import submitPage from "../../pages/CaseAPI/documentManagementUpload/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/documentManagementUpload/confirmPage.ts";
 import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import submit_content from "../../fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
 
 type initialState =
   | "Submitted"
@@ -194,6 +195,8 @@ const documentManagementUpload: DocumentManagementUpload = {
             page,
             multipleDocuments,
             user,
+            submit_content.category,
+            submit_content.message
           );
           break;
         case true:
