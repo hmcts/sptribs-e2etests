@@ -6,7 +6,7 @@ const subjectContactDetailsContent = {
   emailHint:
     "Enter an email address in the correct format, like name@example.com",
   numberHint:
-    "Enter a telephone number in the correct format, like 01632 960 001 or 07700 900 982",
+    "Enter a contact number in the correct format, like 01632 960 001 or 07700 900 982",
   textOnPage2:
     "I agree to be contacted about this case using the details I have provided",
   emailAddress: "AutoTestSubject@mail.com",

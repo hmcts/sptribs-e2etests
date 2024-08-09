@@ -59,6 +59,12 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
               textOnPage,
             );
           }),
+          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+            representativeDetailsContent.numberHintCy,
+          ),
+          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+            representativeDetailsContent.emailHintCy,
+          ),
         ]);
         break;
       default:
@@ -117,9 +123,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             representativeDetailsContent.errorBannerCy,
@@ -132,10 +138,10 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           ).toHaveText(representativeDetailsContent.organisationNameErrorCy),
           expect(
             page.locator("[href='#representativeContactNumber']"),
-          ).toHaveText(representativeDetailsContent.validContactNumberErrorCy),
+          ).toHaveText(representativeDetailsContent.contactNumberErrorCy),
           expect(
             page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.validEmailErrorCy),
+          ).toHaveText(representativeDetailsContent.emailErrorCy),
           expect(page.locator("#representativeFullName-error")).toContainText(
             representativeDetailsContent.fullNameErrorCy,
           ),
@@ -144,30 +150,61 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
           ).toContainText(representativeDetailsContent.organisationNameErrorCy),
           expect(
             page.locator("#representativeContactNumber-error"),
-          ).toContainText(
-            representativeDetailsContent.validContactNumberErrorCy,
-          ),
+          ).toContainText(representativeDetailsContent.contactNumberErrorCy),
           expect(
             page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.validEmailErrorCy),
+          ).toContainText(representativeDetailsContent.emailErrorCy),
         ]);
         await page.fill(
+          this.fields.fullName,
+          representativeDetailsContent.html,
+        );
+        await page.fill(
+          this.fields.representativeOrgName,
+          representativeDetailsContent.html,
+        );
+        await page.fill(
           this.fields.representativeEmailAddress,
-          representativeDetailsContent.partEmailErrorCy,
+          representativeDetailsContent.partEmailEntry,
+        );
+        await page.fill(
+          this.fields.representativeContactNumber,
+          representativeDetailsContent.partContactNumberEntry,
         );
         await page.click(this.continueButton);
         await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            representativeDetailsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#representativeFullName']")).toHaveText(
+            representativeDetailsContent.fullNameHTMLErrorCy,
+          ),
+          expect(
+            page.locator("[href='#representativeOrganisationName']"),
+          ).toHaveText(representativeDetailsContent.organisationHTMLErrorCy),
           expect(
             page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.partEmailErrorCy),
+          ).toHaveText(representativeDetailsContent.validEmailErrorCy),
+          expect(
+            page.locator("[href='#representativeContactNumber']"),
+          ).toHaveText(representativeDetailsContent.validContactNumberErrorCy),
+          expect(page.locator("#representativeFullName-error")).toContainText(
+            representativeDetailsContent.fullNameHTMLErrorCy,
+          ),
+          expect(
+            page.locator("#representativeOrganisationName-error"),
+          ).toContainText(representativeDetailsContent.organisationHTMLErrorCy),
           expect(
             page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.partEmailErrorCy),
+          ).toContainText(representativeDetailsContent.validEmailErrorCy),
+          expect(
+            page.locator("#representativeContactNumber-error"),
+          ).toContainText(
+            representativeDetailsContent.validContactNumberErrorCy,
+          ),
         ]);
-        await page.fill(this.fields.representativeEmailAddress, "");
         break;
       default:
-        await page.click(this.continueButton);
         await Promise.all([
           expect(page.locator(".govuk-error-summary__title")).toHaveText(
             representativeDetailsContent.errorBanner,

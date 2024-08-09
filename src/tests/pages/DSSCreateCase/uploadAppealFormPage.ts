@@ -204,7 +204,18 @@ const uploadAppealFormPage: UploadAppealFormPage = {
             uploadAppealFormContent.noUploadErrorCy,
           ),
         ]);
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // Handle EXUI file rate limiting.
+        await page.click(this.fields.fileUploadedOption);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadAppealFormContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadAppealFormContent.chooseFileErrorCy,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadAppealFormContent.chooseFileErrorCy,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);

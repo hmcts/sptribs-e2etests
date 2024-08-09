@@ -76,8 +76,11 @@ const uploadOtherInformation_content = {
   buttonCy2: "Parhau",
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",
+  chooseFileErrorCy: "Dewiswch ffeil i’w llwytho",
   fileTypeErrorCy:
     "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
+  docRelevanceErrorCy: "Ni ddylai perthnasedd dogfen gynnwys HTML",
+  addInfoErrorCy: "Ni ddylai’r wybodaeth ychwanegol gynnwys HTML",
 } as const;
 
 export default uploadOtherInformation_content;

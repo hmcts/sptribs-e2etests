@@ -52,6 +52,12 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(
             subjectContactDetailsContent.textOnPageCy2,
           ),
+          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+            subjectContactDetailsContent.emailHintCy,
+          ),
+          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+            subjectContactDetailsContent.numberHintCy,
+          ),
         ]);
         break;
       default:
@@ -72,6 +78,12 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
           }),
           expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(
             subjectContactDetailsContent.textOnPage2,
+          ),
+          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
+            subjectContactDetailsContent.emailHint,
+          ),
+          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
+            subjectContactDetailsContent.numberHint,
           ),
         ]);
         break;

@@ -269,6 +269,18 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
     switch (cy) {
       case true:
+        await page.click(this.fields.fileUploadedOption);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadOtherInformationContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadOtherInformationContent.chooseFileErrorCy,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadOtherInformationContent.chooseFileErrorCy,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
@@ -282,6 +294,32 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           ),
           expect(page.locator(".govuk-error-message")).toContainText(
             uploadOtherInformationContent.fileTypeErrorCy,
+          ),
+        ]);
+        await page.fill(
+          this.fields.documentRelevance,
+          uploadOtherInformationContent.html,
+        );
+        await page.fill(
+          this.fields.additionalInfo,
+          uploadOtherInformationContent.html,
+        );
+        await page.click(this.continueButton);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadOtherInformationContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#documentRelevance']")).toHaveText(
+            uploadOtherInformationContent.docRelevanceErrorCy,
+          ),
+          expect(page.locator("[href='#additionalInformation']")).toHaveText(
+            uploadOtherInformationContent.addInfoErrorCy,
+          ),
+          expect(page.locator(".govuk-error-message").nth(0)).toContainText(
+            uploadOtherInformationContent.docRelevanceErrorCy,
+          ),
+          expect(page.locator(".govuk-error-message").nth(1)).toContainText(
+            uploadOtherInformationContent.addInfoErrorCy,
           ),
         ]);
         break;

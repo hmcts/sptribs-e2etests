@@ -41,9 +41,10 @@ const uploadAppealForm_content = {
   buttonCy2: "Parhau",
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",
-  noUploadErrorCy: "Ni allwch barhau heb lwytho’r cais",
+  noUploadErrorCy: "Rhaid i chi lwytho'r cais cyn y gallwch symud ymlaen",
+  chooseFileErrorCy: "Dewiswch ffeil i’w llwytho",
   fileTypeErrorCy:
-    "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - Ms Word, PDF",
+    "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - MS Word, PDF",
 } as const;
 
 export default uploadAppealForm_content;

@@ -40,14 +40,20 @@ const representativeDetailsContent = {
   subHeadingCy2: "Enw’r sefydliad neu’r busnes",
   subHeadingCy3: "Rhif cyswllt",
   subHeadingCy4: "Cyfeiriad e-bost",
+  numberHintCy:
+    "Rhowch rif cyswllt yn y fformat cywir, fel 01632 960 001 neu 07700 900 982",
+  emailHintCy:
+    "Rhowch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
   buttonCy: "Parhau",
   errorBannerCy: "Mae yna broblem",
-  fullNameErrorCy: "Nodwch enw llawn",
-  organisationNameErrorCy: "Nodwch enw’r sefydliad neu fusnes",
-  validEmailErrorCy: "Nodwch gyfeiriad e-bost dilys",
-  partEmailErrorCy:
-    "Mae pob cyfeiriad e-bost yn cynnwys tair elfen: rhan lleol, symbol @ (a ynganir fel “at”), ac enw parth",
-  validContactNumberErrorCy: "Nodwch rif cyswllt dilys",
+  fullNameErrorCy: "Rhowch enw llawn y cynrychiolydd",
+  organisationNameErrorCy: "Rhowch enw busnes neu sefydliad y cynrychiolydd",
+  emailErrorCy: "Rhowch gyfeiriad e-bost y cynrychiolydd",
+  contactNumberErrorCy: "Rhowch rif cyswllt y cynrychiolydd",
+  validContactNumberErrorCy: "Nodwch rif cyswllt yn y fformat cywir",
+  validEmailErrorCy: "Rhowch gyfeiriad e-bost yn y fformat cywir",
+  fullNameHTMLErrorCy: "Ni ddylai'r enw llawn gynnwys HTML",
+  organisationHTMLErrorCy: "Ni ddylai’r enw busnes neu sefydliad gynnwys HTML",
 } as const;
 
 export default representativeDetailsContent;

@@ -201,6 +201,18 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
             uploadSupportingDocumentsContent.noUploadErrorCy,
           ),
         ]);
+        await page.click(this.fields.fileUploadedOption);
+        await Promise.all([
+          expect(page.locator(".govuk-error-summary__title")).toHaveText(
+            uploadSupportingDocumentsContent.errorBannerCy,
+          ),
+          expect(page.locator("[href='#file-upload-1']")).toHaveText(
+            uploadSupportingDocumentsContent.chooseFileErrorCy,
+          ),
+          expect(page.locator(".govuk-error-message")).toContainText(
+            uploadSupportingDocumentsContent.chooseFileErrorCy,
+          ),
+        ]);
         await page
           .locator(this.fields.uploadFileButton)
           .setInputFiles(config.testOdtFile);
