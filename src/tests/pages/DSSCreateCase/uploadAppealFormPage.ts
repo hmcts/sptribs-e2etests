@@ -3,6 +3,7 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadAppealFormContent from "../../fixtures/content/DSSCreateCase/UploadAppealForm_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadAppealFormPage = {
   fields: {
@@ -45,35 +46,49 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            uploadAppealFormContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${uploadAppealFormContent.pageTitleCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (uploadAppealFormContent as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body").nth(index + 4),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-body:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__summary-text")).toHaveText(
-            uploadAppealFormContent.dropdownLinkCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__summary-text:text-is("${uploadAppealFormContent.dropdownLinkCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadAppealFormContent as any)[
               `textOnPageCy${index + 3}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+                `details[class='govuk-details'] li:text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__text")).toContainText(
-            uploadAppealFormContent.textOnPageCy6,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__text:has-text("${uploadAppealFormContent.textOnPageCy6}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            uploadAppealFormContent.textOnPageCy7,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${uploadAppealFormContent.textOnPageCy7}")`,
+            ),
+            1,
           ),
           expect(
             page.locator("form[class='formRow'] p[class='govuk-body']"),
@@ -82,35 +97,49 @@ const uploadAppealFormPage: UploadAppealFormPage = {
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            uploadAppealFormContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${uploadAppealFormContent.pageTitle}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (uploadAppealFormContent as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body").nth(index + 4),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-body:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__summary-text")).toHaveText(
-            uploadAppealFormContent.dropdownLink,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__summary-text:text-is("${uploadAppealFormContent.dropdownLink}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadAppealFormContent as any)[
               `textOnPage${index + 3}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+                `details[class='govuk-details'] li:text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__text")).toContainText(
-            uploadAppealFormContent.textOnPage6,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__text:has-text("${uploadAppealFormContent.textOnPage6}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            uploadAppealFormContent.textOnPage7,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${uploadAppealFormContent.textOnPage7}")`,
+            ),
+            1,
           ),
           expect(
             page.locator("form[class='formRow'] p[class='govuk-body']"),
@@ -194,26 +223,44 @@ const uploadAppealFormPage: UploadAppealFormPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadAppealFormContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadAppealFormContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadAppealFormContent.noUploadErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadAppealFormContent.noUploadErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadAppealFormContent.noUploadErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadAppealFormContent.noUploadErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadAppealFormContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadAppealFormContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadAppealFormContent.chooseFileErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadAppealFormContent.chooseFileErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadAppealFormContent.chooseFileErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadAppealFormContent.chooseFileErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page
@@ -221,39 +268,66 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadAppealFormContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadAppealFormContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadAppealFormContent.fileTypeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadAppealFormContent.fileTypeErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadAppealFormContent.fileTypeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadAppealFormContent.fileTypeErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadAppealFormContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadAppealFormContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadAppealFormContent.noUploadError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadAppealFormContent.noUploadError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadAppealFormContent.noUploadError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadAppealFormContent.noUploadError}")`,
+            ),
+            1,
           ),
         ]);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadAppealFormContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadAppealFormContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadAppealFormContent.chooseFileError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadAppealFormContent.chooseFileError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadAppealFormContent.chooseFileError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadAppealFormContent.chooseFileError}")`,
+            ),
+            1,
           ),
         ]);
         await page
@@ -261,14 +335,23 @@ const uploadAppealFormPage: UploadAppealFormPage = {
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadAppealFormContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadAppealFormContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadAppealFormContent.fileTypeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadAppealFormContent.fileTypeError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadAppealFormContent.fileTypeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadAppealFormContent.fileTypeError}")`,
+            ),
+            1,
           ),
         ]);
         break;

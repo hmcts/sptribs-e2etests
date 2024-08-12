@@ -3,6 +3,7 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadSupportingDocumentsContent from "../../fixtures/content/DSSCreateCase/UploadSupportingDocuments_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadSupportingDocumentsPage = {
   fields: {
@@ -46,30 +47,46 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            uploadSupportingDocumentsContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${uploadSupportingDocumentsContent.pageTitleCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-body").nth(4)).toHaveText(
-            uploadSupportingDocumentsContent.textOnPageCy1,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-body:text-is("${uploadSupportingDocumentsContent.textOnPageCy1}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-details__summary-text")).toHaveText(
-            uploadSupportingDocumentsContent.dropdownLinkCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__summary-text:text-is("${uploadSupportingDocumentsContent.dropdownLinkCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadSupportingDocumentsContent as any)[
               `textOnPageCy${index + 2}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+                `details[class='govuk-details'] li:nth-child(${index + 1}):text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__text")).toContainText(
-            uploadSupportingDocumentsContent.textOnPageCy5,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__text:has-text("${uploadSupportingDocumentsContent.textOnPageCy5}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            uploadSupportingDocumentsContent.textOnPageCy6,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${uploadSupportingDocumentsContent.textOnPageCy6}")`,
+            ),
+            1,
           ),
           expect(
             page.locator("form[class='formRow'] p[class='govuk-body']"),
@@ -78,30 +95,46 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            uploadSupportingDocumentsContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${uploadSupportingDocumentsContent.pageTitle}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-body").nth(4)).toHaveText(
-            uploadSupportingDocumentsContent.textOnPage1,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-body:text-is("${uploadSupportingDocumentsContent.textOnPage1}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-details__summary-text")).toHaveText(
-            uploadSupportingDocumentsContent.dropdownLink,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__summary-text:text-is("${uploadSupportingDocumentsContent.dropdownLink}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadSupportingDocumentsContent as any)[
               `textOnPage${index + 2}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+                `details[class='govuk-details'] li:nth-child(${index + 1}):text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__text")).toContainText(
-            uploadSupportingDocumentsContent.textOnPage5,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__text:has-text("${uploadSupportingDocumentsContent.textOnPage5}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            uploadSupportingDocumentsContent.textOnPage6,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${uploadSupportingDocumentsContent.textOnPage6}")`,
+            ),
+            1,
           ),
           expect(
             page.locator("form[class='formRow'] p[class='govuk-body']"),
@@ -191,26 +224,44 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadSupportingDocumentsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadSupportingDocumentsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadSupportingDocumentsContent.noUploadErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadSupportingDocumentsContent.noUploadErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadSupportingDocumentsContent.noUploadErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadSupportingDocumentsContent.noUploadErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadSupportingDocumentsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadSupportingDocumentsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadSupportingDocumentsContent.chooseFileErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadSupportingDocumentsContent.chooseFileErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadSupportingDocumentsContent.chooseFileErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadSupportingDocumentsContent.chooseFileErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page
@@ -218,39 +269,66 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadSupportingDocumentsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadSupportingDocumentsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadSupportingDocumentsContent.fileTypeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadSupportingDocumentsContent.fileTypeErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadSupportingDocumentsContent.fileTypeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadSupportingDocumentsContent.fileTypeErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadSupportingDocumentsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadSupportingDocumentsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadSupportingDocumentsContent.noUploadError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadSupportingDocumentsContent.noUploadError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadSupportingDocumentsContent.noUploadError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadSupportingDocumentsContent.noUploadError}")`,
+            ),
+            1,
           ),
         ]);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadSupportingDocumentsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadSupportingDocumentsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadSupportingDocumentsContent.chooseFileError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadSupportingDocumentsContent.chooseFileError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadSupportingDocumentsContent.chooseFileError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadSupportingDocumentsContent.chooseFileError}")`,
+            ),
+            1,
           ),
         ]);
         await page
@@ -258,14 +336,23 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadSupportingDocumentsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadSupportingDocumentsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadSupportingDocumentsContent.fileTypeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadSupportingDocumentsContent.fileTypeError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadSupportingDocumentsContent.fileTypeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadSupportingDocumentsContent.fileTypeError}")`,
+            ),
+            1,
           ),
         ]);
         break;

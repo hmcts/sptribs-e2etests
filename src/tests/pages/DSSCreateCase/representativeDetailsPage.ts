@@ -1,6 +1,7 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentativeDetailsPage = {
   fields: {
@@ -40,59 +41,81 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            representativeDetailsContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${representativeDetailsContent.pageTitleCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representativeDetailsContent as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body").nth(index + 4),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-body:text-is("${textOnPage}")`),
+              1,
+            );
           }),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (representativeDetailsContent as any)[
               `subHeadingCy${index + 1}`
             ];
-            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
             );
           }),
-          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
-            representativeDetailsContent.numberHintCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${representativeDetailsContent.numberHintCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
-            representativeDetailsContent.emailHintCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${representativeDetailsContent.emailHintCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            representativeDetailsContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${representativeDetailsContent.pageTitle}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representativeDetailsContent as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body").nth(index + 4),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-body:text-is("${textOnPage}")`),
+              1,
+            );
           }),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (representativeDetailsContent as any)[
               `subHeading${index + 1}`
             ];
-            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
             );
           }),
-          expect(page.locator(".govuk-hint").nth(0)).toHaveText(
-            representativeDetailsContent.numberHint,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${representativeDetailsContent.numberHint}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-hint").nth(1)).toHaveText(
-            representativeDetailsContent.emailHint,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${representativeDetailsContent.emailHint}")`,
+            ),
+            1,
           ),
         ]);
         break;
@@ -127,33 +150,60 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representativeDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representativeDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representativeFullName']")).toHaveText(
-            representativeDetailsContent.fullNameErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameErrorCy}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("[href='#representativeOrganisationName']"),
-          ).toHaveText(representativeDetailsContent.organisationNameErrorCy),
-          expect(
-            page.locator("[href='#representativeContactNumber']"),
-          ).toHaveText(representativeDetailsContent.contactNumberErrorCy),
-          expect(
-            page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.emailErrorCy),
-          expect(page.locator("#representativeFullName-error")).toContainText(
-            representativeDetailsContent.fullNameErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationNameErrorCy}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("#representativeOrganisationName-error"),
-          ).toContainText(representativeDetailsContent.organisationNameErrorCy),
-          expect(
-            page.locator("#representativeContactNumber-error"),
-          ).toContainText(representativeDetailsContent.contactNumberErrorCy),
-          expect(
-            page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.emailErrorCy),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeContactNumber']:text-is("${representativeDetailsContent.contactNumberErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeEmailAddress']:text-is("${representativeDetailsContent.emailErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationNameErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeContactNumber-error:text-is("${representativeDetailsContent.contactNumberErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeEmailAddress-error:text-is("${representativeDetailsContent.emailErrorCy}")`,
+            ),
+            1,
+          ),
         ]);
         await page.fill(
           this.fields.fullName,
@@ -173,66 +223,118 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representativeDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representativeDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representativeFullName']")).toHaveText(
-            representativeDetailsContent.fullNameHTMLErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameHTMLErrorCy}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("[href='#representativeOrganisationName']"),
-          ).toHaveText(representativeDetailsContent.organisationHTMLErrorCy),
-          expect(
-            page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.validEmailErrorCy),
-          expect(
-            page.locator("[href='#representativeContactNumber']"),
-          ).toHaveText(representativeDetailsContent.validContactNumberErrorCy),
-          expect(page.locator("#representativeFullName-error")).toContainText(
-            representativeDetailsContent.fullNameHTMLErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationHTMLErrorCy}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("#representativeOrganisationName-error"),
-          ).toContainText(representativeDetailsContent.organisationHTMLErrorCy),
-          expect(
-            page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.validEmailErrorCy),
-          expect(
-            page.locator("#representativeContactNumber-error"),
-          ).toContainText(
-            representativeDetailsContent.validContactNumberErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeContactNumber']:text-is("${representativeDetailsContent.validContactNumberErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeEmailAddress']:text-is("${representativeDetailsContent.validEmailErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameHTMLErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationHTMLErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeContactNumber-error:text-is("${representativeDetailsContent.validContactNumberErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeEmailAddress-error:text-is("${representativeDetailsContent.validEmailErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representativeDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representativeDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representativeFullName']")).toHaveText(
-            representativeDetailsContent.fullNameError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameError}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("[href='#representativeOrganisationName']"),
-          ).toHaveText(representativeDetailsContent.organisationNameError),
-          expect(
-            page.locator("[href='#representativeContactNumber']"),
-          ).toHaveText(representativeDetailsContent.contactNumberError),
-          expect(
-            page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.emailError),
-          expect(page.locator("#representativeFullName-error")).toContainText(
-            representativeDetailsContent.fullNameError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationNameError}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("#representativeOrganisationName-error"),
-          ).toContainText(representativeDetailsContent.organisationNameError),
-          expect(
-            page.locator("#representativeContactNumber-error"),
-          ).toContainText(representativeDetailsContent.contactNumberError),
-          expect(
-            page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.emailError),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeContactNumber']:text-is("${representativeDetailsContent.contactNumberError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeEmailAddress']:text-is("${representativeDetailsContent.emailError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationNameError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeContactNumber-error:text-is("${representativeDetailsContent.contactNumberError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeEmailAddress-error:text-is("${representativeDetailsContent.emailError}")`,
+            ),
+            1,
+          ),
         ]);
         await page.fill(
           this.fields.fullName,
@@ -252,33 +354,60 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representativeDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representativeDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representativeFullName']")).toHaveText(
-            representativeDetailsContent.fullNameHTMLError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameHTMLError}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("[href='#representativeOrganisationName']"),
-          ).toHaveText(representativeDetailsContent.organisationHTMLError),
-          expect(
-            page.locator("[href='#representativeEmailAddress']"),
-          ).toHaveText(representativeDetailsContent.validEmailError),
-          expect(
-            page.locator("[href='#representativeContactNumber']"),
-          ).toHaveText(representativeDetailsContent.validContactNumberError),
-          expect(page.locator("#representativeFullName-error")).toContainText(
-            representativeDetailsContent.fullNameHTMLError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationHTMLError}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("#representativeOrganisationName-error"),
-          ).toContainText(representativeDetailsContent.organisationHTMLError),
-          expect(
-            page.locator("#representativeEmailAddress-error"),
-          ).toContainText(representativeDetailsContent.validEmailError),
-          expect(
-            page.locator("#representativeContactNumber-error"),
-          ).toContainText(representativeDetailsContent.validContactNumberError),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeContactNumber']:text-is("${representativeDetailsContent.validContactNumberError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representativeEmailAddress']:text-is("${representativeDetailsContent.validEmailError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameHTMLError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationHTMLError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeContactNumber-error:text-is("${representativeDetailsContent.validContactNumberError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representativeEmailAddress-error:text-is("${representativeDetailsContent.validEmailError}")`,
+            ),
+            1,
+          ),
         ]);
         break;
     }

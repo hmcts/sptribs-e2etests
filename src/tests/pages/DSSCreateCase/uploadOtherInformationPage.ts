@@ -3,6 +3,7 @@ import path from "path";
 import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type UploadOtherInformationPage = {
   fields: {
@@ -50,51 +51,72 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            uploadOtherInformationContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${uploadOtherInformationContent.pageTitleCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
-            uploadOtherInformationContent.subTitleCy1,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-m:text-is("${uploadOtherInformationContent.subTitleCy1}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadOtherInformationContent as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body").nth(index + 4),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-body:text-is("${textOnPage}")`),
+              1,
+            );
           }),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (uploadOtherInformationContent as any)[
               `textOnPageCy${index + 4}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `div[class='govuk-body-m'] li:nth-child(${index + 1})`,
+                `div[class='govuk-body-m'] li:nth-child(${index + 1}):text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-body").nth(7)).toHaveText(
-            uploadOtherInformationContent.textOnPageCy8,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-body:text-is("${uploadOtherInformationContent.textOnPageCy8}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-details__summary-text")).toHaveText(
-            uploadOtherInformationContent.dropdownLinkCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__summary-text:text-is("${uploadOtherInformationContent.dropdownLinkCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (uploadOtherInformationContent as any)[
               `textOnPageCy${index + 9}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+                `details[class='govuk-details'] li:nth-child(${index + 1}):text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__text")).toContainText(
-            uploadOtherInformationContent.textOnPageCy13,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__text:has-text("${uploadOtherInformationContent.textOnPageCy13}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            uploadOtherInformationContent.textOnPageCy14,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${uploadOtherInformationContent.textOnPageCy14}")`,
+            ),
+            1,
           ),
           expect(
             page.locator("form[class='formRow'] p[class='govuk-body']"),
@@ -103,65 +125,93 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
             const textOnPage = (uploadOtherInformationContent as any)[
               `subTitleCy${index + 2}`
             ];
-            return expect(
-              page.locator(".govuk-label").nth(index + 1),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          expect(page.locator("#documentRelevance-hint")).toHaveText(
-            uploadOtherInformationContent.textOnPageCy16,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#documentRelevance-hint:text-is("${uploadOtherInformationContent.textOnPageCy16}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#additionalInformation-hint")).toHaveText(
-            uploadOtherInformationContent.textOnPageCy17,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#additionalInformation-hint:text-is("${uploadOtherInformationContent.textOnPageCy17}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            uploadOtherInformationContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${uploadOtherInformationContent.pageTitle}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-heading-m").nth(1)).toHaveText(
-            uploadOtherInformationContent.subTitle1,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-m:text-is("${uploadOtherInformationContent.subTitle1}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (uploadOtherInformationContent as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-body").nth(index + 4),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-body:text-is("${textOnPage}")`),
+              1,
+            );
           }),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (uploadOtherInformationContent as any)[
               `textOnPage${index + 4}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `div[class='govuk-body-m'] li:nth-child(${index + 1})`,
+                `div[class='govuk-body-m'] li:nth-child(${index + 1}):text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-body").nth(7)).toHaveText(
-            uploadOtherInformationContent.textOnPage8,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-body:text-is("${uploadOtherInformationContent.textOnPage8}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-details__summary-text")).toHaveText(
-            uploadOtherInformationContent.dropdownLink,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__summary-text:text-is("${uploadOtherInformationContent.dropdownLink}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 4 }, (_, index) => {
             const textOnPage = (uploadOtherInformationContent as any)[
               `textOnPage${index + 9}`
             ];
-            return expect(
+            return commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `details[class='govuk-details'] li:nth-child(${index + 1})`,
+                `details[class='govuk-details'] li:nth-child(${index + 1}):text-is("${textOnPage}")`,
               ),
-            ).toHaveText(textOnPage);
+              1,
+            );
           }),
-          expect(page.locator(".govuk-details__text")).toContainText(
-            uploadOtherInformationContent.textOnPage13,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-details__text:has-text("${uploadOtherInformationContent.textOnPage13}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            uploadOtherInformationContent.textOnPage14,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${uploadOtherInformationContent.textOnPage14}")`,
+            ),
+            1,
           ),
           expect(
             page.locator("form[class='formRow'] p[class='govuk-body']"),
@@ -170,15 +220,22 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
             const textOnPage = (uploadOtherInformationContent as any)[
               `subTitle${index + 2}`
             ];
-            return expect(
-              page.locator(".govuk-label").nth(index + 1),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          expect(page.locator("#documentRelevance-hint")).toHaveText(
-            uploadOtherInformationContent.textOnPage16,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#documentRelevance-hint:text-is("${uploadOtherInformationContent.textOnPage16}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#additionalInformation-hint")).toHaveText(
-            uploadOtherInformationContent.textOnPage17,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#additionalInformation-hint:text-is("${uploadOtherInformationContent.textOnPage17}")`,
+            ),
+            1,
           ),
         ]);
         break;
@@ -267,18 +324,27 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean): Promise<void> {
+    await page.click(this.fields.fileUploadedOption);
     switch (cy) {
       case true:
-        await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadOtherInformationContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadOtherInformationContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadOtherInformationContent.chooseFileErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadOtherInformationContent.chooseFileErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadOtherInformationContent.chooseFileErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.chooseFileErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page
@@ -286,14 +352,23 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadOtherInformationContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadOtherInformationContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadOtherInformationContent.fileTypeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadOtherInformationContent.fileTypeErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadOtherInformationContent.fileTypeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.fileTypeErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(
@@ -306,34 +381,57 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadOtherInformationContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadOtherInformationContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#documentRelevance']")).toHaveText(
-            uploadOtherInformationContent.docRelevanceErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#documentRelevance']:text-is("${uploadOtherInformationContent.docRelevanceErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#additionalInformation']")).toHaveText(
-            uploadOtherInformationContent.addInfoErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#additionalInformation']:text-is("${uploadOtherInformationContent.addInfoErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message").nth(0)).toContainText(
-            uploadOtherInformationContent.docRelevanceErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.docRelevanceErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message").nth(1)).toContainText(
-            uploadOtherInformationContent.addInfoErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.addInfoErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
-        await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadOtherInformationContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadOtherInformationContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadOtherInformationContent.chooseFileError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadOtherInformationContent.chooseFileError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadOtherInformationContent.chooseFileError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.chooseFileError}")`,
+            ),
+            1,
           ),
         ]);
         await page
@@ -341,14 +439,23 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
           .setInputFiles(config.testOdtFile);
         await page.click(this.fields.fileUploadedOption);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadOtherInformationContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadOtherInformationContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#file-upload-1']")).toHaveText(
-            uploadOtherInformationContent.fileTypeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#file-upload-1']:text-is("${uploadOtherInformationContent.fileTypeError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message")).toContainText(
-            uploadOtherInformationContent.fileTypeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.fileTypeError}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(
@@ -361,20 +468,35 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            uploadOtherInformationContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${uploadOtherInformationContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#documentRelevance']")).toHaveText(
-            uploadOtherInformationContent.docRelevanceError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#documentRelevance']:text-is("${uploadOtherInformationContent.docRelevanceError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#additionalInformation']")).toHaveText(
-            uploadOtherInformationContent.addInfoError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#additionalInformation']:text-is("${uploadOtherInformationContent.addInfoError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message").nth(0)).toContainText(
-            uploadOtherInformationContent.docRelevanceError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.docRelevanceError}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-error-message").nth(1)).toContainText(
-            uploadOtherInformationContent.addInfoError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-message:text-is("${uploadOtherInformationContent.addInfoError}")`,
+            ),
+            1,
           ),
         ]);
         break;
