@@ -15,80 +15,81 @@ type DocumentManagementAmend = {
     user: UserRole,
     accessibilityTest: boolean,
     initialState: State,
+    multipleDocuments: boolean,
   ): Promise<void>;
 };
 
 const documentManagementAmend: DocumentManagementAmend = {
-  async documentManagementAmend(page, user, accessibilityTest, initialState) {
+  async documentManagementAmend(page: Page, user: UserRole, accessibilityTest: boolean, initialState: State, multipleDocuments: boolean): Promise<void> {
     let caseNumber: string | void;
     switch (initialState) {
       default: // Defaults to Submitted
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "caseWorker",
+          user,
           false,
           "Submitted",
-          false,
+          multipleDocuments,
           false,
         );
         break;
       case "Case Management":
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "seniorCaseworker",
+          user,
           false,
           "Case Management",
-          true,
+          multipleDocuments,
           false,
         );
         break;
       case "Ready to list":
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "hearingCentreAdmin",
+          user,
           false,
           "Ready to list",
-          false,
+          multipleDocuments,
           false,
         );
         break;
       case "Awaiting Hearing":
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "hearingCentreTeamLead",
+          user,
           false,
           "Awaiting hearing",
-          true,
+          multipleDocuments,
           false,
         );
         break;
       case "Awaiting Outcome":
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "seniorJudge",
+          user,
           false,
           "Awaiting outcome",
-          false,
+          multipleDocuments,
           false,
         );
         break;
       case "Case closed":
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "respondent",
+          user,
           false,
           "Case closed",
-          true,
+          multipleDocuments,
           false,
         );
         break;
       case "Case Stayed":
         caseNumber = await documentManagementUpload.documentManagementUpload(
           page,
-          "caseWorker",
+          user,
           false,
           "Case stayed",
-          false,
+          multipleDocuments,
           false,
         );
         break;
@@ -129,17 +130,18 @@ const documentManagementAmend: DocumentManagementAmend = {
         page,
         accessibilityTest,
         caseNumber,
-        false,
+        multipleDocuments,
         false,
         true,
         user,
       );
       await caseDocumentsTabPage.docManagementUploadCheckInfo(
         page,
-        false,
+        multipleDocuments,
         user,
         amendCaseDocuments_content.category,
         amendCaseDocuments_content.message,
+        true,
       );
     }
   },

@@ -197,6 +197,7 @@ const documentManagementUpload: DocumentManagementUpload = {
             user,
             submit_content.category,
             submit_content.message,
+            false,
           );
           break;
         case true:

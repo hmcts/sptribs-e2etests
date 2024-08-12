@@ -10,6 +10,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "caseWorker",
       false,
       "Submitted",
+      false,
     );
   });
   test("As a Senior Caseworker, amend documents uploaded to a case in Case Management. @crossbrowserCaseAPI", async ({
@@ -20,6 +21,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "seniorCaseworker",
       false,
       "Case Management",
+      true,
     );
   });
   test("As a Hearing Centre Admin, amend documents uploaded to a case in Ready to List. @crossbrowserCaseAPI", async ({
@@ -30,6 +32,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "hearingCentreAdmin",
       false,
       "Ready to list",
+      false,
     );
   });
   test("As a Hearing Centre Team Leader, amend documents uploaded to a case awaiting a hearing. @crossbrowserCaseAPI", async ({
@@ -40,6 +43,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "hearingCentreTeamLead",
       false,
       "Awaiting Hearing",
+      true,
     );
   });
   test("As a Senior Judge, amend documents uploaded to a case awaiting an outcome. @crossbrowserCaseAPI", async ({
@@ -50,6 +54,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "seniorJudge",
       false,
       "Awaiting Outcome",
+      false,
     );
   });
   test("As a Caseworker, amend documents uploaded to a closed case. @crossbrowserCaseAPI", async ({
@@ -60,6 +65,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "caseWorker",
       false,
       "Case closed",
+      true,
     );
   });
   test("As a Senior Caseworker, amend documents uploaded to a Stayed case. @crossbrowserCaseAPI", async ({
@@ -70,6 +76,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       "seniorCaseworker",
       false,
       "Case Stayed",
+      false,
     );
   });
 });
@@ -82,5 +89,6 @@ test("Accessibility tests - Document Management: Amend @accessibilityCaseAPI", a
     "caseWorker",
     true,
     "Submitted",
+    false,
   );
 });
