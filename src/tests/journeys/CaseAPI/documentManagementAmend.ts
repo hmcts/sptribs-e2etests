@@ -20,7 +20,13 @@ type DocumentManagementAmend = {
 };
 
 const documentManagementAmend: DocumentManagementAmend = {
-  async documentManagementAmend(page: Page, user: UserRole, accessibilityTest: boolean, initialState: State, multipleDocuments: boolean): Promise<void> {
+  async documentManagementAmend(
+    page: Page,
+    user: UserRole,
+    accessibilityTest: boolean,
+    initialState: State,
+    multipleDocuments: boolean,
+  ): Promise<void> {
     let caseNumber: string | void;
     switch (initialState) {
       default: // Defaults to Submitted

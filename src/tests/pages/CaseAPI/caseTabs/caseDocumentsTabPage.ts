@@ -34,7 +34,7 @@ type CaseDocumentsTabPage = {
     user: UserRole,
     category: string,
     message: string,
-    documentManagementAmendJourney: boolean
+    documentManagementAmendJourney: boolean,
   ): Promise<void>;
 };
 
@@ -471,7 +471,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     user: UserRole,
     category: string,
     message: string,
-    documentManagementAmendJourney: boolean
+    documentManagementAmendJourney: boolean,
   ): Promise<void> {
     await commonHelpers.checkVisibleAndPresent(
       page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
