@@ -41,12 +41,12 @@ const addStayPage: AddStayPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${addStay_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         addStay_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        addStay_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(

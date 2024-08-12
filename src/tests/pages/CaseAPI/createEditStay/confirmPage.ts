@@ -13,12 +13,11 @@ const createCaseConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `markdown > h1:text-is("${confirm_content.subTitle1}")`,
+    );
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h1:text-is("${confirm_content.subTitle1}")`),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `markdown > h2:has-text("${confirm_content.textOnPage1}")`,

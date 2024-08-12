@@ -34,12 +34,12 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
   selectPost: "#cicCaseContactPreferenceType-Post",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${caseSubjectDetailsObject_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         caseSubjectDetailsObject_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseSubjectDetailsObject_content.pageTitle,
       ),
       ...Array.from({ length: 7 }, (_, index) => {
         const textOnPage = (caseSubjectDetailsObject_content as any)[

@@ -92,6 +92,9 @@ const submitPage: SubmitPage = {
     multipleFiles: boolean,
     tribunalFormsInTime: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submit_content.title}")`,
+    );
     await this.handleStandardLabels(page, tribunalFormsInTime);
     await this.handleContactLabels(
       page,
