@@ -12,6 +12,7 @@ import uploadCaseDocumentsPage from "../../pages/CaseAPI/documentManagementUploa
 import submitPage from "../../pages/CaseAPI/documentManagementUpload/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/documentManagementUpload/confirmPage.ts";
 import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import submit_content from "../../fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
 
 type initialState =
   | "Submitted"
@@ -30,7 +31,7 @@ type DocumentManagementUpload = {
     initialState: initialState,
     multipleDocuments: boolean,
     errorMessaging: boolean,
-  ): Promise<void>;
+  ): Promise<void | string>;
 };
 
 const documentManagementUpload: DocumentManagementUpload = {
@@ -41,7 +42,7 @@ const documentManagementUpload: DocumentManagementUpload = {
     initialState: initialState,
     multipleDocuments: boolean,
     errorMessaging: boolean,
-  ): Promise<void> {
+  ): Promise<void | string> {
     let caseNumber: string | void;
     switch (initialState) {
       default: // Defaults to Submitted
@@ -194,6 +195,9 @@ const documentManagementUpload: DocumentManagementUpload = {
             page,
             multipleDocuments,
             user,
+            submit_content.category,
+            submit_content.message,
+            false,
           );
           break;
         case true:
@@ -201,6 +205,7 @@ const documentManagementUpload: DocumentManagementUpload = {
           break;
       }
     }
+    return caseNumber;
   },
 };
 
