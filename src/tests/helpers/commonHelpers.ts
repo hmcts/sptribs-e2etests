@@ -273,8 +273,8 @@ const commonHelpers: CommonHelpers = {
     page: Page,
     chosenEvent: string,
   ): Promise<void> {
-    await page.waitForLoadState("domcontentloaded")
-    await  page.waitForSelector("#next-step", { state: 'visible'});
+    await page.waitForLoadState("domcontentloaded");
+    await page.waitForSelector("#next-step", { state: "visible" });
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click();
@@ -923,8 +923,9 @@ export type allEvents =
   | "Orders: Create draft"
   | "Orders: Send order"
   | "Orders: Edit draft"
-  | "Orders: Manage due date"
-  | "Document management: Upload";
+  | "Document management: Upload"
+  | "Document management: Amend"
+  | "Orders: Manage due date";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 

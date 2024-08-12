@@ -32,6 +32,9 @@ type CaseDocumentsTabPage = {
     page: Page,
     multipleDocuments: boolean,
     user: UserRole,
+    category: string,
+    message: string,
+    documentManagementAmendJourney: boolean,
   ): Promise<void>;
 };
 
@@ -466,6 +469,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     page: Page,
     multipleDocuments: boolean,
     user: UserRole,
+    category: string,
+    message: string,
+    documentManagementAmendJourney: boolean,
   ): Promise<void> {
     await commonHelpers.checkVisibleAndPresent(
       page.locator(`a:text-is("${path.basename(config.testPdfFile)}")`),
@@ -503,33 +509,54 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     if (!multipleDocuments) {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("TG - Other")`),
+          page.locator(`.text-16:text-is("${category}")`).nth(0),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("Lorem ipsum text TG - Other")`),
+          page.locator(`span:text-is("${message}")`).nth(0),
           1,
         ),
       ]);
     } else {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("TG - Other")`),
-          3,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("Lorem ipsum text TG - Other")`),
-          3,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`a:text-is("${path.basename(config.testWordFile)}")`),
-          1,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`a:text-is("${path.basename(config.testFile)}")`),
-          1,
-        ),
-      ]);
+      if (!documentManagementAmendJourney) {
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${category}")`),
+            3,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${message}")`),
+            3,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`a:text-is("${path.basename(config.testWordFile)}")`),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`a:text-is("${path.basename(config.testFile)}")`),
+            1,
+          ),
+        ]);
+      } else {
+        await Promise.all([
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${category}")`),
+            2,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`span:text-is("${message}")`),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`a:text-is("${path.basename(config.testWordFile)}")`),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`a:text-is("${path.basename(config.testFile)}")`),
+            1,
+          ),
+        ]);
+      }
     }
   },
 };
