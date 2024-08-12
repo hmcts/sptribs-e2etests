@@ -161,7 +161,6 @@ const uploadAppealFormPage: UploadAppealFormPage = {
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testPdfFile);
     await page.click(this.fields.fileUploadedOption);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
     await expect(page.locator(".uploadedFile").first()).toContainText(
       path.basename(config.testPdfFile),
     );
