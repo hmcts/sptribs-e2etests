@@ -16,9 +16,6 @@ const casesPage: CasesPage = {
   caseType: "#wb-case-type",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
-    await page.waitForSelector(
-      `.govuk-heading-xl:text-is("${casesContent.pageTitle}")`,
-    );
     await Promise.all([
       expect(page.locator(".govuk-heading-xl")).toHaveText(
         casesContent.pageTitle,

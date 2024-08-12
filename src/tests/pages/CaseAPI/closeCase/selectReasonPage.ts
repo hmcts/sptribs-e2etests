@@ -41,9 +41,6 @@ const selectReasonPage: SelectReasonPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.waitForSelector(
-      `.govuk-heading-l:text-is("${selectReason_content.pageTitle}")`,
-    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

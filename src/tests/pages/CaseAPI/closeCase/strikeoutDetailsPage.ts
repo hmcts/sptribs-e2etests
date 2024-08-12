@@ -35,9 +35,6 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
     if (!errorMessaging) {
       await page.click(`#closeStrikeOutReason-other`);
     }
-    await page.waitForSelector(
-      `.govuk-heading-l:text-is("${strikeoutDetails_content.pageTitle}")`,
-    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

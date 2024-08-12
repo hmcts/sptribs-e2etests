@@ -28,12 +28,12 @@ const cancelHearingSelectHearingPage: CancelHearingSelectHearingPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.waitForSelector(
-      `.govuk-heading-l:text-is("${cancelHearingSelectHearingContent.pageTitle}")`,
-    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         cancelHearingSelectHearingContent.pageHint,
+      ),
+      expect(page.locator(".govuk-heading-l")).toHaveText(
+        cancelHearingSelectHearingContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

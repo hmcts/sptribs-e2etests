@@ -4,6 +4,7 @@ import submit_content from "../../../fixtures/content/CaseAPI/contactParties/sub
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -32,9 +33,6 @@ const submitPage: SubmitPage = {
   ): Promise<void> {
     const pageHintRegex = new RegExp(
       `${submit_content.title}|${partiesToContact_content.pageHintCICA}`,
-    );
-    await page.waitForSelector(
-      `.govuk-heading-l:text-is("${caseSubjectDetailsObject_content.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(pageHintRegex),
