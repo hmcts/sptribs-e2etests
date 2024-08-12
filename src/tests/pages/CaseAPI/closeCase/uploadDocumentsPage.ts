@@ -31,6 +31,9 @@ const uploadDocumentsPage: UploadDocumentsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${uploadDocuments_content.pageTitle}")`,
+    );
     await page.click(this.addNew);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

@@ -28,6 +28,9 @@ const rule27Page: Rule27Page = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${rule27_content.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.govuk-caption-l:text-is("${rule27_content.pageHint}")`),

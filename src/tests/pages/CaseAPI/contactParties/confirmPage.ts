@@ -28,8 +28,8 @@ const confirmPage: ConfirmPage = {
     const headingRegex = new RegExp(
       `${confirm_content.textOnPage2}|${confirm_content.textOnPage3}`,
     );
+    await page.waitForSelector(`.heading-h1:text-is("${pageHintRegex}")`);
     await Promise.all([
-      expect(page.locator(".heading-h1")).toHaveText(pageHintRegex),
       expect(page.locator("markdown > h3").nth(0)).toHaveText(
         caseSubjectDetailsObject_content.name,
       ),

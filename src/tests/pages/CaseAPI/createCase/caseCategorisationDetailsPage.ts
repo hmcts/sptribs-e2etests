@@ -25,12 +25,12 @@ const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
   subCategory: "#cicCaseCaseSubcategory",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${caseCategorisationDetails_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         caseCategorisationDetails_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseCategorisationDetails_content.pageTitle,
       ),
       ...Array.from({ length: 2 }, (_, index) => {
         const textOnPage = (caseCategorisationDetails_content as any)[

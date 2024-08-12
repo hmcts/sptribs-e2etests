@@ -36,18 +36,15 @@ const partiesToContactPage: PartiesToContactPage = {
     const pageHintRegex = new RegExp(
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
     );
-    const respondentOrTribRegex = new RegExp(
-      `${partiesToContact_content.textOnPage4}|${partiesToContact_content.textOnPage7}`,
-    );
     const textToCheck =
       user === "respondent"
         ? partiesToContact_content.textOnPage7
         : partiesToContact_content.textOnPage4;
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${partiesToContact_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
-      expect(page.locator(".govuk-heading-l")).toContainText(
-        partiesToContact_content.pageTitle,
-      ),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
         caseSubjectDetailsObject_content.name,
       ),
