@@ -26,11 +26,10 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submit_content.pageTitle}")`,
+    );
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`h1:text-is("${submit_content.pageTitle}")`),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h3:text-is("${caseSubjectDetailsObject_content.name}")`),
         1,
