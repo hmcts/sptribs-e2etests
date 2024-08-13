@@ -34,11 +34,11 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${hearingOptionsRegionDataContent.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkNumberAndSubject(page, caseNumber),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        hearingOptionsRegionDataContent.pageTitle,
-      ),
       await expect(page.locator(".form-label")).toHaveText(
         hearingOptionsRegionDataContent.textOnPage,
       ),

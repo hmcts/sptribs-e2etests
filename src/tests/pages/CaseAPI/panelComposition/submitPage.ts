@@ -26,6 +26,7 @@ const submitPage: SubmitPage = {
     panel3: Panel3,
     specialisms: boolean,
   ): Promise<void> {
+    await page.waitForSelector(`h1:text-is("${submit_content.pageTitle}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h1:text-is("${submit_content.pageTitle}")`),

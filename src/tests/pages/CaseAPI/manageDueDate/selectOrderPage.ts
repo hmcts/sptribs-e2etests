@@ -23,6 +23,9 @@ const selectOrderPage: SelectOrderPage = {
   cancel: ".cancel",
 
   async checkPageLoads(page, caseNumber, accessibilityTest): Promise<void> {
+    await page.waitForSelector(
+      `.form-label:text-is("${selectOrder_content.textOnPage1}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         `${selectOrder_content.pageHint}`,
@@ -32,9 +35,6 @@ const selectOrderPage: SelectOrderPage = {
       ),
       expect(page.locator("markdown > p")).toContainText(
         selectOrder_content.caseReference + caseNumber,
-      ),
-      expect(page.locator(".form-label")).toContainText(
-        selectOrder_content.textOnPage1,
       ),
       expect(page.locator("#cicCaseOrderDynamicList")).toBeVisible(),
       commonHelpers.checkForButtons(

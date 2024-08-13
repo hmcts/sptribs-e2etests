@@ -23,6 +23,9 @@ const confirmPage: ConfirmPage = {
     caseNumber: string,
     recipients: parties[],
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h1:text-is("${submit_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(submit_content.pageTitle),
       expect(page.locator("markdown > h3")).toContainText(

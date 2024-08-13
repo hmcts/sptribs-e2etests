@@ -27,12 +27,12 @@ const editDraftOrderMainContentPage: EditDraftOrderMainContentPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editDraftOrderMainContentContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editDraftOrderMainContentContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        editDraftOrderMainContentContent.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(

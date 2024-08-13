@@ -3,9 +3,6 @@ import amendCaseDocuments_content from "../../../fixtures/content/CaseAPI/docume
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import path from "path";
-import config from "../../../config.ts";
-import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
 
 type AmendCaseDocumentsPage = {
   continue: string;
@@ -33,12 +30,12 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${amendCaseDocuments_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         amendCaseDocuments_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        amendCaseDocuments_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

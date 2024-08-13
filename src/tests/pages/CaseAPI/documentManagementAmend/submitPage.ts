@@ -29,6 +29,9 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h2:text-is("${submit_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,

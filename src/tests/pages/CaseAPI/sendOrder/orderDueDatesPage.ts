@@ -28,6 +28,9 @@ const orderDueDatesPage: OrderDueDatesPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `h2:text-is("${orderDueDates_content.subTitle1}")`,
+    );
     await page.click(this.addNew);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -41,10 +44,6 @@ const orderDueDatesPage: OrderDueDatesPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         orderDueDates_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`h2:text-is("${orderDueDates_content.subTitle1}")`),
-        1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h3:text-is("${orderDueDates_content.subTitle2}")`),

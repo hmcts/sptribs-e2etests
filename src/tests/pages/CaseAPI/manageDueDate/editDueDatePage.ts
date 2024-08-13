@@ -45,6 +45,9 @@ const editDueDatePage: EditDueDatePage = {
   informationField: "#cicCaseOrderDueDates_0_information",
 
   async checkPageLoads(page, caseNumber, accessibilityTest): Promise<void> {
+    await page.waitForSelector(
+      `h2:text-is("${editDueDate_content.subTitle1}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         `${editDueDate_content.pageHint}`,
@@ -55,9 +58,6 @@ const editDueDatePage: EditDueDatePage = {
       expect(page.locator("markdown > p").first()).toContainText(
         editDueDate_content.caseReference + caseNumber,
       ),
-      expect(
-        page.locator(`h2:text-is("${editDueDate_content.subTitle1}")`),
-      ).toBeVisible(),
       expect(page.locator(this.addNew)).toBeVisible(),
       expect(page.locator(this.remove)).toBeDisabled(),
 

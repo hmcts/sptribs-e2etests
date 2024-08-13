@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   hearingFormat,
@@ -34,10 +34,10 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
   cancel: ".cancel",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${hearingOptionsHearingDetailsContent.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        hearingOptionsHearingDetailsContent.pageTitle,
-      ),
       ...Array.from({ length: 11 }, (_, index) => {
         const textOnPage = (hearingOptionsHearingDetailsContent as any)[
           `textOnPage${index + 1}`

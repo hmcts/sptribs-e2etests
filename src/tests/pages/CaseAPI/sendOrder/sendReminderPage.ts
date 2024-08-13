@@ -33,6 +33,9 @@ const sendReminderPage: SendReminderPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.form-label:text-is("${caseSubjectDetailsObject_content.textOnPage1}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

@@ -22,12 +22,12 @@ const selectAdditionalDocuments: SelectAdditionalDocumentsPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${selectAdditionalDocuments_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         selectAdditionalDocuments_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        selectAdditionalDocuments_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
