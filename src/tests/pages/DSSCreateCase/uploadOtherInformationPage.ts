@@ -39,7 +39,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
     additionalInfo: "#additionalInformation",
   },
 
-  continueButton: "#main-form-submit",
+  continueButton: 'button[name="saveAndContinue"]',
   backButton: ".govuk-back-link",
 
   async checkPageLoads(
@@ -255,10 +255,19 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
       await page
         .locator(this.fields.uploadFileButton)
         .setInputFiles(config.testWordFile);
-      await page.click(this.fields.fileUploadedOption);
-      await expect(page.locator(".uploadedFile").first()).toContainText(
-        path.basename(config.testWordFile),
+      await page.fill(
+        this.fields.documentRelevance,
+        uploadOtherInformationContent.documentRelevance,
       );
+      await page.click(this.fields.fileUploadedOption);
+      await Promise.all([
+        expect(page.locator(".uploadedFile").first()).toContainText(
+          path.basename(config.testWordFile),
+        ),
+        expect(page.locator(".uploadedFile").first()).toContainText(
+          uploadOtherInformationContent.documentRelevance,
+        ),
+      ]);
       if (cy) {
         await expect(
           page.locator(
@@ -273,47 +282,28 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         ).toContainText(uploadOtherInformationContent.deleteButton);
       }
       if (multipleDocuments) {
-        await page
-          .locator(this.fields.uploadFileButton)
-          .setInputFiles(config.testWordFile);
-        await page.click(this.fields.fileUploadedOption);
-        await Promise.all([
-          expect(page.locator(".uploadedFile").nth(1)).toContainText(
-            path.basename(config.testWordFile),
-          ),
-          expect(page.locator(".uploadedFile").nth(1)).toContainText(
-            uploadOtherInformationContent.deleteButton,
-          ),
-        ]);
-        await page
-          .locator(this.fields.uploadFileButton)
-          .setInputFiles(config.testWordFile);
-        await page.click(this.fields.fileUploadedOption);
-        await Promise.all([
-          expect(page.locator(".uploadedFile").nth(2)).toContainText(
-            path.basename(config.testWordFile),
-          ),
-          expect(page.locator(".uploadedFile").nth(2)).toContainText(
-            uploadOtherInformationContent.deleteButton,
-          ),
-        ]);
-        await page
-          .locator(this.fields.uploadFileButton)
-          .setInputFiles(config.testWordFile);
-        await page.click(this.fields.fileUploadedOption);
-        await Promise.all([
-          expect(page.locator(".uploadedFile").nth(3)).toContainText(
-            path.basename(config.testWordFile),
-          ),
-          expect(page.locator(".uploadedFile").nth(3)).toContainText(
-            uploadOtherInformationContent.deleteButton,
-          ),
-        ]);
+        for (let i = 1; i <= 3; i++) {
+          await page
+            .locator(this.fields.uploadFileButton)
+            .setInputFiles(config.testWordFile);
+          await page.fill(
+            this.fields.documentRelevance,
+            uploadOtherInformationContent.documentRelevance,
+          );
+          await page.click(this.fields.fileUploadedOption);
+          await Promise.all([
+            expect(page.locator(".uploadedFile").nth(i)).toContainText(
+              path.basename(config.testWordFile),
+            ),
+            expect(page.locator(".uploadedFile").nth(i)).toContainText(
+              uploadOtherInformationContent.documentRelevance,
+            ),
+            expect(page.locator(".uploadedFile").nth(i)).toContainText(
+              uploadOtherInformationContent.deleteButton,
+            ),
+          ]);
+        }
       }
-      await page.fill(
-        this.fields.documentRelevance,
-        uploadOtherInformationContent.documentRelevance,
-      );
       await page.fill(
         this.fields.additionalInfo,
         uploadOtherInformationContent.additionalInfo,

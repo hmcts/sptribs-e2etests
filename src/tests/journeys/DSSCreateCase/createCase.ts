@@ -207,6 +207,8 @@ const createFEApplication: CreateFeApplication = {
       page,
       cy,
       representationPresent,
+      uploadOtherInfo,
+      multipleDocuments,
       accessibilityTest,
     );
     await checkYourAnswersPage.checkValidInfoAllFields(
