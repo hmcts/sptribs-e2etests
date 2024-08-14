@@ -1,6 +1,7 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type SubjectDetailsPage = {
   fields: {
@@ -35,66 +36,97 @@ const subjectDetailsPage: SubjectDetailsPage = {
       case true:
         await page.locator(".govuk-link.language").click();
         await Promise.all([
-          expect(page.locator(".govuk-link.language")).toHaveText("English"),
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            subjectDetailsContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-link.language:text-is("English")`),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            subjectDetailsContent.subHeadingCy1,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitleCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-fieldset__legend")).toHaveText(
-            subjectDetailsContent.subHeadingCy2,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${subjectDetailsContent.subHeadingCy1}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-hint")).toHaveText(
-            subjectDetailsContent.hintTextCy2,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-fieldset__legend:text-is("${subjectDetailsContent.subHeadingCy2}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-hint:text-is("${subjectDetailsContent.hintTextCy2}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (subjectDetailsContent as any)[
               `hintTextCy${index + 1}`
             ];
-            return expect(page.locator(".govuk-hint").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-hint:text-is("${textOnPage}")`),
+              1,
             );
           }),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (subjectDetailsContent as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-label").nth(index + 1),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
+            );
           }),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            subjectDetailsContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitle}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-label").nth(0)).toHaveText(
-            subjectDetailsContent.subHeading1,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${subjectDetailsContent.subHeading1}")`,
+            ),
+            1,
           ),
-          expect(page.locator(".govuk-fieldset__legend")).toHaveText(
-            subjectDetailsContent.subHeading2,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-fieldset__legend:text-is("${subjectDetailsContent.subHeading2}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-hint")).toHaveText(
-            subjectDetailsContent.hintText2,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-hint:text-is("${subjectDetailsContent.hintText2}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (subjectDetailsContent as any)[
               `hintText${index + 1}`
             ];
-            return expect(page.locator(".govuk-hint").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-hint:text-is("${textOnPage}")`),
+              1,
             );
           }),
           ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (subjectDetailsContent as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-label").nth(index + 1),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
+            );
           }),
         ]);
         break;
@@ -120,52 +152,86 @@ const subjectDetailsPage: SubjectDetailsPage = {
     const currentDate = new Date();
     switch (cy) {
       case true:
-        await expect(page.locator(".govuk-link.language")).toHaveText(
-          "English",
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`.govuk-link.language:text-is("English")`),
+          1,
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectFullName']")).toHaveText(
-            subjectDetailsContent.fullNameErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectFullName']:text-is("${subjectDetailsContent.fullNameErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.dateOfBirthErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.dateOfBirthErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectFullName-error")).toContainText(
-            subjectDetailsContent.fullNameErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectFullName-error:text-is("${subjectDetailsContent.fullNameErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.dateOfBirthErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.dateOfBirthErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectFullName']")).toHaveText(
-            subjectDetailsContent.htmlErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectFullName']:text-is("${subjectDetailsContent.htmlErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectFullName-error")).toContainText(
-            subjectDetailsContent.htmlErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectFullName-error:text-is("${subjectDetailsContent.htmlErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.locator(this.fields.fullName).clear();
         await page.fill(this.fields.dayOfBirth, "32");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.incompleteDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.incompleteDOBErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.incompleteDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.incompleteDOBErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.dayOfBirth, "a");
@@ -173,14 +239,23 @@ const subjectDetailsPage: SubjectDetailsPage = {
         await page.fill(this.fields.yearOfBirth, "a");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.invalidDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.invalidDOBErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.invalidDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.invalidDOBErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.dayOfBirth, "1");
@@ -188,14 +263,23 @@ const subjectDetailsPage: SubjectDetailsPage = {
         await page.fill(this.fields.yearOfBirth, "1899");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.pastDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.pastDOBErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.pastDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.pastDOBErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.dayOfBirth, `${currentDate.getDate()}`);
@@ -209,61 +293,103 @@ const subjectDetailsPage: SubjectDetailsPage = {
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.futureDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.futureDOBErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.futureDOBErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.futureDOBErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectFullName']")).toHaveText(
-            subjectDetailsContent.fullNameError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectFullName']:text-is("${subjectDetailsContent.fullNameError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.dateOfBirthError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.dateOfBirthError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectFullName-error")).toContainText(
-            subjectDetailsContent.fullNameError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectFullName-error:text-is("${subjectDetailsContent.fullNameError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.dateOfBirthError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.dateOfBirthError}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectFullName']")).toHaveText(
-            subjectDetailsContent.htmlError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectFullName']:text-is("${subjectDetailsContent.htmlError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectFullName-error")).toContainText(
-            subjectDetailsContent.htmlError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectFullName-error:text-is("${subjectDetailsContent.htmlError}")`,
+            ),
+            1,
           ),
         ]);
         await page.locator(this.fields.fullName).clear();
         await page.fill(this.fields.dayOfBirth, "32");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.incompleteDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.incompleteDOBError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.incompleteDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.incompleteDOBError}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.dayOfBirth, "a");
@@ -271,14 +397,23 @@ const subjectDetailsPage: SubjectDetailsPage = {
         await page.fill(this.fields.yearOfBirth, "a");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.invalidDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.invalidDOBError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.invalidDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.invalidDOBError}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.dayOfBirth, "1");
@@ -286,14 +421,23 @@ const subjectDetailsPage: SubjectDetailsPage = {
         await page.fill(this.fields.yearOfBirth, "1899");
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.pastDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.pastDOBError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.pastDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.pastDOBError}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(this.fields.dayOfBirth, `${currentDate.getDate()}`);
@@ -307,14 +451,23 @@ const subjectDetailsPage: SubjectDetailsPage = {
         );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectDateOfBirth']")).toHaveText(
-            subjectDetailsContent.futureDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectDateOfBirth']:text-is("${subjectDetailsContent.futureDOBError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectDateOfBirth-error")).toContainText(
-            subjectDetailsContent.futureDOBError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectDateOfBirth-error:text-is("${subjectDetailsContent.futureDOBError}")`,
+            ),
+            1,
           ),
         ]);
         break;

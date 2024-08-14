@@ -4,7 +4,7 @@ const representationContent = {
   textOnPage2: "No",
   button: "Continue",
   errorBanner: "There is a problem",
-  selectionError: "Please select an answer before you can proceed further",
+  selectionError: "You must select an answer before you can proceed further",
   pageTitleCy:
     "A oes cynrychiolydd wedi’i enwi ar y ffurflen tribiwnlys sydd wedi’i llenwi?",
   textOnPageCy1: "Oes",

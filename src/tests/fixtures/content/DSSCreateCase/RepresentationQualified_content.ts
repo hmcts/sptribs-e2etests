@@ -6,7 +6,7 @@ const representationQualifiedContent = {
   textOnPage2: "No",
   button: "Continue",
   errorBanner: "There is a problem",
-  selectionError: "Please select an answer before you can proceed further",
+  selectionError: "You must select an answer before you can proceed further",
 
   pageTitleCy: "A yw’r cynrychiolydd a enwyd wedi cymhwyso yn y gyfraith?",
   hintMessageCy:
