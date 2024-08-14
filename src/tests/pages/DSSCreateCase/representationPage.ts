@@ -1,6 +1,7 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representationContent from "../../fixtures/content/DSSCreateCase/Representation_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentationPage = {
   representationYes: string;
@@ -31,30 +32,38 @@ const representationPage: RepresentationPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            representationContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${representationContent.pageTitleCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationContent as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
             );
           }),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            representationContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${representationContent.pageTitle}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationContent as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
             );
           }),
         ]);
@@ -78,32 +87,49 @@ const representationPage: RepresentationPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representationContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representationContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representation']")).toHaveText(
-            representationContent.selectionErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representation']:text-is("${representationContent.selectionErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#representation-error")).toContainText(
-            representationContent.selectionErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representation-error:text-is("${representationContent.selectionErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
-        await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representationContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representationContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representation']")).toHaveText(
-            representationContent.selectionError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representation']:text-is("${representationContent.selectionError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#representation-error")).toContainText(
-            representationContent.selectionError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representation-error:text-is("${representationContent.selectionError}")`,
+            ),
+            1,
           ),
         ]);
         break;

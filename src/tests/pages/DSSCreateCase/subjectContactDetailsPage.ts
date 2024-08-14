@@ -1,6 +1,7 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type SubjectContactDetailsPage = {
   fields: {
@@ -34,44 +35,91 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-link.language")).toHaveText("English"),
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            subjectContactDetailsContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(`.govuk-link.language:text-is("English")`),
+            1,
           ),
-          expect(
-            page.locator("main[id='main-content'] p[class='govuk-body']"),
-          ).toHaveText(subjectContactDetailsContent.textOnPageCy1),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${subjectContactDetailsContent.pageTitleCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `main[id='main-content'] p[class='govuk-body']:text-is("${subjectContactDetailsContent.textOnPageCy1}")`,
+            ),
+            1,
+          ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (subjectContactDetailsContent as any)[
               `subHeadingCy${index + 1}`
             ];
-            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
             );
           }),
-          expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(
-            subjectContactDetailsContent.textOnPageCy2,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `label[for='subjectAgreeContact']:text-is("${subjectContactDetailsContent.textOnPageCy2}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${subjectContactDetailsContent.emailHintCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${subjectContactDetailsContent.numberHintCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            subjectContactDetailsContent.pageTitle,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${subjectContactDetailsContent.pageTitle}")`,
+            ),
+            1,
           ),
-          expect(
-            page.locator("main[id='main-content'] p[class='govuk-body']"),
-          ).toHaveText(subjectContactDetailsContent.textOnPage1),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `main[id='main-content'] p[class='govuk-body']:text-is("${subjectContactDetailsContent.textOnPage1}")`,
+            ),
+            1,
+          ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (subjectContactDetailsContent as any)[
               `subHeading${index + 1}`
             ];
-            return expect(page.locator(".govuk-label").nth(index)).toHaveText(
-              textOnPage,
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-label:text-is("${textOnPage}")`),
+              1,
             );
           }),
-          expect(page.locator("label[for='subjectAgreeContact']")).toHaveText(
-            subjectContactDetailsContent.textOnPage2,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `label[for='subjectAgreeContact']:text-is("${subjectContactDetailsContent.textOnPage2}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${subjectContactDetailsContent.emailHint}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${subjectContactDetailsContent.numberHint}")`,
+            ),
+            1,
           ),
         ]);
         break;
@@ -95,86 +143,181 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectContactDetailsContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectContactDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.validEmailErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectEmailAddress']:text-is("${subjectContactDetailsContent.emailErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
-            subjectContactDetailsContent.validContactNumberErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectContactNumber']:text-is("${subjectContactDetailsContent.contactNumberErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectAgreeContact']")).toHaveText(
-            subjectContactDetailsContent.agreeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectAgreeContact']:text-is("${subjectContactDetailsContent.agreeErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.validEmailErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectEmailAddress-error:text-is("${subjectContactDetailsContent.emailErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectContactNumber-error")).toContainText(
-            subjectContactDetailsContent.validContactNumberErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectContactNumber-error:text-is("${subjectContactDetailsContent.contactNumberErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectAgreeContact-error")).toContainText(
-            subjectContactDetailsContent.agreeErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectAgreeContact-error:text-is("${subjectContactDetailsContent.agreeErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(
           this.fields.email,
           subjectContactDetailsContent.partEmailEntry,
         );
+        await page.fill(
+          this.fields.mobileNumber,
+          subjectContactDetailsContent.partContactNumberEntry,
+        );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.partEmailErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectContactDetailsContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.partEmailErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectEmailAddress']:text-is("${subjectContactDetailsContent.validEmailErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectContactNumber']:text-is("${subjectContactDetailsContent.validContactNumberErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectEmailAddress-error:text-is("${subjectContactDetailsContent.validEmailErrorCy}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectContactNumber-error:text-is("${subjectContactDetailsContent.validContactNumberErrorCy}")`,
+            ),
+            1,
           ),
         ]);
-        await page.fill(this.fields.email, "");
         break;
       default:
-        await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            subjectContactDetailsContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectContactDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.validEmailError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectEmailAddress']:text-is("${subjectContactDetailsContent.emailError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectContactNumber']")).toHaveText(
-            subjectContactDetailsContent.validContactNumberError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectContactNumber']:text-is("${subjectContactDetailsContent.contactNumberError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#subjectAgreeContact']")).toHaveText(
-            subjectContactDetailsContent.agreeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectAgreeContact']:text-is("${subjectContactDetailsContent.agreeError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.validEmailError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectEmailAddress-error:text-is("${subjectContactDetailsContent.emailError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectContactNumber-error")).toContainText(
-            subjectContactDetailsContent.validContactNumberError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectContactNumber-error:text-is("${subjectContactDetailsContent.contactNumberError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectAgreeContact-error")).toContainText(
-            subjectContactDetailsContent.agreeError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectAgreeContact-error:text-is("${subjectContactDetailsContent.agreeError}")`,
+            ),
+            1,
           ),
         ]);
         await page.fill(
           this.fields.email,
           subjectContactDetailsContent.partEmailEntry,
         );
+        await page.fill(
+          this.fields.mobileNumber,
+          subjectContactDetailsContent.partContactNumberEntry,
+        );
         await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator("[href='#subjectEmailAddress']")).toHaveText(
-            subjectContactDetailsContent.partEmailError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${subjectContactDetailsContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#subjectEmailAddress-error")).toContainText(
-            subjectContactDetailsContent.partEmailError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectEmailAddress']:text-is("${subjectContactDetailsContent.validEmailError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#subjectContactNumber']:text-is("${subjectContactDetailsContent.validContactNumberError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectEmailAddress-error:text-is("${subjectContactDetailsContent.validEmailError}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#subjectContactNumber-error:text-is("${subjectContactDetailsContent.validContactNumberError}")`,
+            ),
+            1,
           ),
         ]);
-        await page.fill(this.fields.email, "");
         break;
     }
   },

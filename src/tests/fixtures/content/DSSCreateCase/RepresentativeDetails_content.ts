@@ -8,21 +8,28 @@ const representativeDetailsContent = {
   subHeading2: "Organisation or business name",
   subHeading3: "Contact number",
   subHeading4: "Email address",
+  numberHint:
+    "Enter a contact number in the correct format, like 01632 960 001 or 07700 900 982",
+  emailHint:
+    "Enter an email address in the correct format, like name@example.com",
   fullName: "Representative AutoTesting",
   Organisation: "Representative Organisation",
   contactNumber: "01234567891",
   emailAddress: "AutoTestRepresentative@mail.com",
   button: "Continue",
   errorBanner: "There is a problem",
-  fullNameError: "Please enter full name",
-  organisationNameError: "Please enter organisation or business name",
-  validEmailError: "Please enter a valid email address",
+  fullNameError: "Enter full name of the representative",
+  organisationNameError:
+    "Enter organisation or business name of the representative",
+  emailError: "Enter an email address of the representative",
+  contactNumberError: "Enter a contact number of the representative",
+  validContactNumberError: "Enter a contact number in the correct format",
+  validEmailError: "Enter an email address in the correct format",
+  fullNameHTMLError: "Full name must not include HTML",
+  organisationHTMLError: "Organisation or business name must not include HTML",
   partEmailEntry: "test@test",
-  partEmailError:
-    "Every email address consists of 3 elements: local-part, @ symbol (pronounced as “at”), and a domain name",
-  validContactNumberError: "Please enter a valid contact number",
-  agreeError:
-    "Please agree to be contacted using the details provided to continue",
+  partContactNumberEntry: "012345",
+  html: "<a>https://www.google.com</a>",
 
   pageTitleCy: "Manylion y cynrychiolydd",
   textOnPageCy1:
@@ -33,16 +40,20 @@ const representativeDetailsContent = {
   subHeadingCy2: "Enw’r sefydliad neu’r busnes",
   subHeadingCy3: "Rhif cyswllt",
   subHeadingCy4: "Cyfeiriad e-bost",
+  numberHintCy:
+    "Rhowch rif cyswllt yn y fformat cywir, fel 01632 960 001 neu 07700 900 982",
+  emailHintCy:
+    "Rhowch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
   buttonCy: "Parhau",
   errorBannerCy: "Mae yna broblem",
-  fullNameErrorCy: "Nodwch enw llawn",
-  organisationNameErrorCy: "Nodwch enw’r sefydliad neu fusnes",
-  validEmailErrorCy: "Nodwch gyfeiriad e-bost dilys",
-  partEmailErrorCy:
-    "Mae pob cyfeiriad e-bost yn cynnwys tair elfen: rhan lleol, symbol @ (a ynganir fel “at”), ac enw parth",
-  validContactNumberErrorCy: "Nodwch rif cyswllt dilys",
-  agreeErrorCy:
-    "Dylech gytuno i’r llys gysylltu â chi gan ddefnyddio’r manylion a ddarparwyd cyn y gallwch barhau",
+  fullNameErrorCy: "Rhowch enw llawn y cynrychiolydd",
+  organisationNameErrorCy: "Rhowch enw busnes neu sefydliad y cynrychiolydd",
+  emailErrorCy: "Rhowch gyfeiriad e-bost y cynrychiolydd",
+  contactNumberErrorCy: "Rhowch rif cyswllt y cynrychiolydd",
+  validContactNumberErrorCy: "Nodwch rif cyswllt yn y fformat cywir",
+  validEmailErrorCy: "Rhowch gyfeiriad e-bost yn y fformat cywir",
+  fullNameHTMLErrorCy: "Ni ddylai'r enw llawn gynnwys HTML",
+  organisationHTMLErrorCy: "Ni ddylai’r enw busnes neu sefydliad gynnwys HTML",
 } as const;
 
 export default representativeDetailsContent;

@@ -16,7 +16,8 @@ const uploadSupportingDocuments_content = {
   deleteButton: "Delete",
   errorBanner: "There is a problem",
   noUploadError:
-    "You cannot continue without uploading supporting documentation",
+    "You must upload supporting documentation before you can proceed further",
+  chooseFileError: "Choose a file to upload",
   fileTypeError:
     "This service only accepts files in the formats - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
 
@@ -37,7 +38,9 @@ const uploadSupportingDocuments_content = {
   buttonCy2: "Parhau",
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",
-  noUploadErrorCy: "Ni allwch barhau heb lwytho’r dogfennau ategol",
+  noUploadErrorCy:
+    "Mae'n rhaid i chi lwytho dogfennau ategol cyn y gallwch symud ymlaen",
+  chooseFileErrorCy: "Dewiswch ffeil i’w llwytho",
   fileTypeErrorCy:
     "Dim ond ffeiliau yn y fformatau canlynol y gall y gwasanaeth hwn dderbyn - MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF",
 } as const;
