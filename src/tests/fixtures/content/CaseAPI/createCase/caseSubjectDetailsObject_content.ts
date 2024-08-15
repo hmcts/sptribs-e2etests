@@ -1,7 +1,7 @@
 const caseSubjectDetailsObject_content = {
   pageHint: "Create Case",
   pageTitle: "Who is the subject of this case?",
-  textOnPage1: "Subject's full name",
+  textOnPage1: `Subject's full name`,
   textOnPage2: "Subject's phone number (Optional)",
   textOnPage3: "Subject's date of birth",
   textOnPage4: "Day",

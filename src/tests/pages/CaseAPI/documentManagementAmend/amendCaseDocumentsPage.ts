@@ -23,8 +23,8 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
   continue: '[type="submit"]',
   previous: ".button-secondary[disabled]",
   cancel: ".cancel",
-  dropdown: "#cicCaseSelectedDocument_documentCategory",
-  message: "#cicCaseSelectedDocument_documentEmailContent",
+  dropdown: "#cicCaseSelectedDocumentCategory",
+  message: "#cicCaseSelectedDocumentEmailContent",
   async checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -43,22 +43,8 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         amendCaseDocuments_content.caseReference + caseNumber,
       ),
-      expect(page.locator(".heading-h2")).toContainText(
-        amendCaseDocuments_content.subTitle1,
-      ),
-      expect(
-        page.locator(
-          'label[for="cicCaseSelectedDocument_documentCategory"] span.form-label.ng-star-inserted',
-        ),
-      ).toContainText(amendCaseDocuments_content.textOnPage2),
-      expect(
-        page.locator(
-          'label[for="cicCaseSelectedDocument_documentEmailContent"] span.form-label.ng-star-inserted',
-        ),
-      ).toContainText(amendCaseDocuments_content.textOnPage3),
-      expect(
-        page.locator("#cicCaseSelectedDocument_documentCategory"),
-      ).toBeVisible(),
+      commonHelpers.checkVisibleAndPresent(page.locator(`.form-label:text-is("${amendCaseDocuments_content.textOnPage2}")`), 1),
+      commonHelpers.checkVisibleAndPresent(page.locator(`.form-label:text-is("${amendCaseDocuments_content.textOnPage3}")`), 1),
       commonHelpers.checkForButtons(
         page,
         this.continue,

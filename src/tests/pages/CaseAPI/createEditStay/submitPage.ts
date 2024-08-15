@@ -6,7 +6,6 @@ import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/cr
 import submit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import addStay_content from "../../../fixtures/content/CaseAPI/createEditStay/addStay_content.ts";
-import consentOrder_content from "../../../fixtures/content/CaseAPI/closeCase/consentOrder_content.ts";
 
 type SubmitPage = {
   continue: string;
@@ -40,7 +39,7 @@ const submitPage: SubmitPage = {
     optionalText: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${consentOrder_content.pageHint}")`,
+      `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
     );
     await Promise.all([
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),

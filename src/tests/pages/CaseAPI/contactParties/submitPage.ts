@@ -34,7 +34,7 @@ const submitPage: SubmitPage = {
       `${submit_content.title}|${partiesToContact_content.pageHintCICA}`,
     );
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${caseSubjectDetailsObject_content.pageTitle}")`,
+      `.govuk-heading-l:text-is("${submit_content.title}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(pageHintRegex),

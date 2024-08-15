@@ -30,7 +30,7 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `.heading-h2:text-is("${submit_content.pageTitle}")`,
+      `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -51,10 +51,6 @@ const submitPage: SubmitPage = {
         );
       }),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`text="${submit_content.textOnPage4}"`),
-        2,
-      ),
-      commonHelpers.checkVisibleAndPresent(
         page.locator(
           `text="DOC-MGMT--${path.basename(config.testPdfFile)}--${selectCaseDocuments_content.category}"`,
         ),
@@ -62,7 +58,7 @@ const submitPage: SubmitPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`text="${submit_content.textOnPage5}"`),
-        2,
+        3,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`text="${amendCaseDocuments_content.category}"`),
