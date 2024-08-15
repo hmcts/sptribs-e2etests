@@ -1,6 +1,7 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import representationQualifiedContent from "../../fixtures/content/DSSCreateCase/RepresentationQualified_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type RepresentationQualifiedPage = {
   qualifiedYes: string;
@@ -27,38 +28,52 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
     switch (cy) {
       case true:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            representationQualifiedContent.pageTitleCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${representationQualifiedContent.pageTitleCy}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationQualifiedContent as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-radios__label").nth(index),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-radios__label:text-is("${textOnPage}")`),
+              1,
+            );
           }),
-          expect(page.locator(".govuk-hint")).toHaveText(
-            representationQualifiedContent.hintMessageCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${representationQualifiedContent.hintMessageCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
-            representationQualifiedContent.pageTitle,
-          ),
-          expect(page.locator(".govuk-hint")).toHaveText(
-            representationQualifiedContent.hintMessage,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-heading-l:text-is("${representationQualifiedContent.pageTitle}")`,
+            ),
+            1,
           ),
           ...Array.from({ length: 2 }, (_, index) => {
             const textOnPage = (representationQualifiedContent as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(
-              page.locator(".govuk-radios__label").nth(index),
-            ).toHaveText(textOnPage);
+            return commonHelpers.checkVisibleAndPresent(
+              page.locator(`.govuk-radios__label:text-is("${textOnPage}")`),
+              1,
+            );
           }),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-hint:text-is("${representationQualifiedContent.hintMessage}")`,
+            ),
+            1,
+          ),
         ]);
         break;
     }
@@ -77,32 +92,49 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
   },
 
   async triggerErrorMessages(page: Page, cy: boolean) {
+    await page.click(this.continueButton);
     switch (cy) {
       case true:
-        await page.click(this.continueButton);
         await Promise.all([
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representationQualifiedContent.errorBannerCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representationQualifiedContent.errorBannerCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representationQualified']")).toHaveText(
-            representationQualifiedContent.selectionErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representationQualified']:text-is("${representationQualifiedContent.selectionErrorCy}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#representationQualified-error")).toContainText(
-            representationQualifiedContent.selectionErrorCy,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representationQualified-error:text-is("${representationQualifiedContent.selectionErrorCy}")`,
+            ),
+            1,
           ),
         ]);
         break;
       default:
         await Promise.all([
-          page.click(this.continueButton),
-          expect(page.locator(".govuk-error-summary__title")).toHaveText(
-            representationQualifiedContent.errorBanner,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-error-summary__title:text-is("${representationQualifiedContent.errorBanner}")`,
+            ),
+            1,
           ),
-          expect(page.locator("[href='#representationQualified']")).toHaveText(
-            representationQualifiedContent.selectionError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `[href='#representationQualified']:text-is("${representationQualifiedContent.selectionError}")`,
+            ),
+            1,
           ),
-          expect(page.locator("#representationQualified-error")).toContainText(
-            representationQualifiedContent.selectionError,
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#representationQualified-error:text-is("${representationQualifiedContent.selectionError}")`,
+            ),
+            1,
           ),
         ]);
         break;
