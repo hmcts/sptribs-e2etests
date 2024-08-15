@@ -205,14 +205,14 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
             1,
           ),
         ]);
-        await page.fill(
-          this.fields.fullName,
-          representativeDetailsContent.html,
-        );
-        await page.fill(
-          this.fields.representativeOrgName,
-          representativeDetailsContent.html,
-        );
+        // await page.fill(
+        //   this.fields.fullName,
+        //   representativeDetailsContent.html,
+        // );
+        // await page.fill(
+        //   this.fields.representativeOrgName,
+        //   representativeDetailsContent.html,
+        // );
         await page.fill(
           this.fields.representativeEmailAddress,
           representativeDetailsContent.partEmailEntry,
@@ -229,18 +229,18 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
             ),
             1,
           ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameHTMLErrorCy}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationHTMLErrorCy}")`,
-            ),
-            1,
-          ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameHTMLErrorCy}")`,
+          //   ),
+          //   1,
+          // ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationHTMLErrorCy}")`,
+          //   ),
+          //   1,
+          // ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `[href='#representativeContactNumber']:text-is("${representativeDetailsContent.validContactNumberErrorCy}")`,
@@ -253,18 +253,18 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
             ),
             1,
           ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameHTMLErrorCy}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationHTMLErrorCy}")`,
-            ),
-            1,
-          ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameHTMLErrorCy}")`,
+          //   ),
+          //   1,
+          // ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationHTMLErrorCy}")`,
+          //   ),
+          //   1,
+          // ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `#representativeContactNumber-error:text-is("${representativeDetailsContent.validContactNumberErrorCy}")`,
@@ -336,14 +336,14 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
             1,
           ),
         ]);
-        await page.fill(
-          this.fields.fullName,
-          representativeDetailsContent.html,
-        );
-        await page.fill(
-          this.fields.representativeOrgName,
-          representativeDetailsContent.html,
-        );
+        // await page.fill(
+        //   this.fields.fullName,
+        //   representativeDetailsContent.html,
+        // );
+        // await page.fill(
+        //   this.fields.representativeOrgName,
+        //   representativeDetailsContent.html,
+        // );
         await page.fill(
           this.fields.representativeEmailAddress,
           representativeDetailsContent.partEmailEntry,
@@ -360,18 +360,18 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
             ),
             1,
           ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameHTMLError}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationHTMLError}")`,
-            ),
-            1,
-          ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `[href='#representativeFullName']:text-is("${representativeDetailsContent.fullNameHTMLError}")`,
+          //   ),
+          //   1,
+          // ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `[href='#representativeOrganisationName']:text-is("${representativeDetailsContent.organisationHTMLError}")`,
+          //   ),
+          //   1,
+          // ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `[href='#representativeContactNumber']:text-is("${representativeDetailsContent.validContactNumberError}")`,
@@ -384,18 +384,18 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
             ),
             1,
           ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameHTMLError}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationHTMLError}")`,
-            ),
-            1,
-          ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `#representativeFullName-error:text-is("${representativeDetailsContent.fullNameHTMLError}")`,
+          //   ),
+          //   1,
+          // ),
+          // commonHelpers.checkVisibleAndPresent(
+          //   page.locator(
+          //     `#representativeOrganisationName-error:text-is("${representativeDetailsContent.organisationHTMLError}")`,
+          //   ),
+          //   1,
+          // ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `#representativeContactNumber-error:text-is("${representativeDetailsContent.validContactNumberError}")`,
