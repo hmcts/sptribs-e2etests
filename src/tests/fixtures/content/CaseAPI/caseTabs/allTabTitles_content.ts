@@ -11,7 +11,6 @@ const allTabTitles_content = {
   tab9: "Hearings",
   tab10: "CICA Details",
   tab11: "Case file view",
-  tab12: "Messages",
   tab13: "Case Flags",
   tab14: "Case Referrals",
   tab15: "Linked cases",
