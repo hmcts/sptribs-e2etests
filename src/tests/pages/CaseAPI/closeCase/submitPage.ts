@@ -48,7 +48,7 @@ const submitPage: SubmitPage = {
 
   async checkCommon(page: Page, caseNumber: string): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${submit_content.pageTitle}")`,
+      `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
     );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

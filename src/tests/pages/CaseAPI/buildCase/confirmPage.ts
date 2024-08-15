@@ -21,7 +21,7 @@ const buildCaseConfirmPage: ConfirmPage = {
     caseNumber: string,
   ): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${confirm_content.pageTitle}")`,
+      `.heading-h1:text-is("${confirm_content.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator("markdown > h1")).toContainText(

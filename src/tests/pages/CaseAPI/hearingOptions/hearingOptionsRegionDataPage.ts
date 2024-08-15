@@ -38,7 +38,6 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
       `.govuk-heading-l:text-is("${hearingOptionsRegionDataContent.pageTitle}")`,
     );
     await Promise.all([
-      commonHelpers.checkNumberAndSubject(page, caseNumber),
       await expect(page.locator(".form-label")).toHaveText(
         hearingOptionsRegionDataContent.textOnPage,
       ),

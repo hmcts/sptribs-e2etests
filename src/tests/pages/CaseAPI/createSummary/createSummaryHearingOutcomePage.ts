@@ -38,7 +38,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
     errorMessaging: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${caseSubjectDetailsObject_content.pageTitle}")`,
+      `.govuk-heading-l:text-is("${createSummaryHearingOutcomeContent.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
