@@ -138,13 +138,13 @@ const createFEApplication: CreateFeApplication = {
           cy,
           multipleDocuments,
         );
-        // Awaiting fix for inline error messaging
-        // await uploadOtherInformationPage.checkPageLoads(
-        //   page,
-        //   cy,
-        //   accessibilityTest,
-        // );
-        // await uploadOtherInformationPage.triggerErrorMessages(page, cy);
+      // Awaiting fix for inline error messaging
+      // await uploadOtherInformationPage.checkPageLoads(
+      //   page,
+      //   cy,
+      //   accessibilityTest,
+      // );
+      // await uploadOtherInformationPage.triggerErrorMessages(page, cy);
     }
   },
 
