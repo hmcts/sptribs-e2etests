@@ -43,8 +43,18 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         amendCaseDocuments_content.caseReference + caseNumber,
       ),
-      commonHelpers.checkVisibleAndPresent(page.locator(`.form-label:text-is("${amendCaseDocuments_content.textOnPage2}")`), 1),
-      commonHelpers.checkVisibleAndPresent(page.locator(`.form-label:text-is("${amendCaseDocuments_content.textOnPage3}")`), 1),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.form-label:text-is("${amendCaseDocuments_content.textOnPage2}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.form-label:text-is("${amendCaseDocuments_content.textOnPage3}")`,
+        ),
+        1,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,
