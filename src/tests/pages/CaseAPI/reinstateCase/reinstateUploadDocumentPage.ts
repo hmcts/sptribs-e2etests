@@ -32,17 +32,14 @@ const reinstateUploadDocumentPage: ReinstateUploadDocumentPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${reinstateUploadDocument_content.pageTitle}")`,
+    );
     await page.click(this.addNew);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.govuk-caption-l:text-is("${reinstateUploadDocument_content.pageHint}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-heading-l:text-is("${reinstateUploadDocument_content.pageTitle}")`,
         ),
         1,
       ),

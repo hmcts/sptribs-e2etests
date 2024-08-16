@@ -21,6 +21,9 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${closeCaseNotifyPage_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         closeCaseNotifyPage_content.pageHint,

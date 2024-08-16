@@ -45,6 +45,9 @@ const submitPage: SubmitPage = {
     completed: boolean,
     reminder: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h2:text-is("${submit_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,
@@ -54,10 +57,6 @@ const submitPage: SubmitPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.heading-h2:text-is("${submit_content.pageTitle}")`),
-        1,
       ),
       ...Array.from({ length: 2 }, (_, index: number) => {
         const textOnPage: ArrayConstructor = (submit_content as any)[

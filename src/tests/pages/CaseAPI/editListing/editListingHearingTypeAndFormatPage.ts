@@ -35,12 +35,12 @@ const editListingHearingTypeAndFormatPage: EditListingHearingTypeAndFormatPage =
       caseNumber: string,
       accessibilityTest: boolean,
     ): Promise<void> {
+      await page.waitForSelector(
+        `.govuk-heading-l:text-is("${editListingHearingTypeAndFormatContent.pageTitle}")`,
+      );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
           editListingHearingTypeAndFormatContent.pageHint,
-        ),
-        expect(page.locator(".govuk-heading-l")).toHaveText(
-          editListingHearingTypeAndFormatContent.pageTitle,
         ),
         expect(page.locator("markdown > h3")).toContainText(
           caseSubjectDetailsObject_content.name,

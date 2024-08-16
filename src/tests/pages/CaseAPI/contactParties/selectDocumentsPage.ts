@@ -32,11 +32,11 @@ const selectDocumentsPage: SelectDocumentsPage = {
     const pageHintRegex = new RegExp(
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
     );
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${selectDocument_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(pageHintRegex),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        selectDocument_content.pageTitle,
-      ),
       expect(page.locator("markdown > h3").nth(0)).toHaveText(
         caseSubjectDetailsObject_content.name,
       ),

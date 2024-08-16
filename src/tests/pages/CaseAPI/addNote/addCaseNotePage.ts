@@ -26,12 +26,12 @@ const addCaseNotePage: AddCaseNotePage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${addCaseNotes_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         addCaseNotes_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        addCaseNotes_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         subjectDetailsContent.name,

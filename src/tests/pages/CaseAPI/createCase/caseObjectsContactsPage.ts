@@ -25,12 +25,12 @@ const caseObjectsContactsPage: CaseObjectsContactsPage = {
   representativeSelectBox: "#cicCaseRepresentativeCIC-RepresentativeCIC",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${caseObjectsContacts_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         caseObjectsContacts_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseObjectsContacts_content.pageTitle,
       ),
       ...Array.from({ length: 6 }, (_, index) => {
         const textOnPage = (caseObjectsContacts_content as any)[

@@ -41,16 +41,13 @@ const reinstateReasonPage: ReinstateReasonPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${reinstateReason_content.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `.govuk-caption-l:text-is("${reinstateReason_content.pageHint}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-heading-l:text-is("${reinstateReason_content.pageTitle}")`,
         ),
         1,
       ),

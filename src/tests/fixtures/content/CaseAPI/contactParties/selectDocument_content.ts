@@ -1,5 +1,6 @@
 const selectDocument_content = {
   pageHint: "Case: Contact parties",
+  pageHintRespondent: "Case: CICA Contact parties",
   pageTitle: "Documents to include",
 
   textOnPage1: "Select a case document to include with this message(Optional)",

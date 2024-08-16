@@ -27,6 +27,9 @@ const selectDraftOrderPage: SelectDraftOrderPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.form-label:text-is("${selectDraftOrder_content.textOnPage1}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -39,12 +42,6 @@ const selectDraftOrderPage: SelectDraftOrderPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         selectDraftOrder_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${selectDraftOrder_content.textOnPage1}")`,
-        ),
-        1,
       ),
       commonHelpers.checkForButtons(
         page,

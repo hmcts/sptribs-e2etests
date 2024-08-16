@@ -37,6 +37,7 @@ const submitPage: SubmitPage = {
   cancel: ".cancel",
 
   async checkCommon(page: Page, caseNumber: string): Promise<void> {
+    await page.waitForSelector(`span:text-is("${submit_content.textOnPage1}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.govuk-heading-l:text-is("${submit_content.pageHint}")`),
@@ -47,10 +48,6 @@ const submitPage: SubmitPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`span:text-is("${submit_content.textOnPage1}")`),
-        1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`span:text-is("${submit_content.textOnPage2}")`),

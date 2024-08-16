@@ -28,12 +28,12 @@ const decisionUploadPage: DecisionUploadPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${decisionUpload_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         decisionUpload_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        decisionUpload_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

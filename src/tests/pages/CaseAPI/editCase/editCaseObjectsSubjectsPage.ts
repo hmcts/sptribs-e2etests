@@ -40,6 +40,9 @@ const editCaseObjectsSubjectsPage: EditCaseObjectsSubjectsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editCaseObjectsSubjectsContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editCaseObjectsSubjectsContent.pageHint,

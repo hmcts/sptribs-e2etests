@@ -28,11 +28,11 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLinkPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-xl:text-is("${createCaseLinkCreateCaseLink_content.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkNumberAndSubject(page, caseNumber),
-      expect(page.locator(".govuk-heading-xl")).toHaveText(
-        createCaseLinkCreateCaseLink_content.pageTitle,
-      ),
       expect(page.locator(".govuk-body").nth(0)).toHaveText(
         createCaseLinkCreateCaseLink_content.textOnPage1,
       ),

@@ -30,12 +30,12 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editSummaryHearingAttendeesContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editSummaryHearingAttendeesContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        editSummaryHearingAttendeesContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

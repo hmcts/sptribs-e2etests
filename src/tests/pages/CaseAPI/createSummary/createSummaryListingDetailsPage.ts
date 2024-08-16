@@ -59,6 +59,9 @@ const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${createSummaryListingDetailsContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createSummaryListingDetailsContent.pageHint,

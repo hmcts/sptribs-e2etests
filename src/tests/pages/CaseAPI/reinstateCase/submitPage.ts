@@ -39,6 +39,9 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
     optionalText: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h2:text-is("${submit_content.pageTitle}")`,
+    );
     if (optionalText) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(`.text-16:text-is("${submit_content.textOnPage3}")`),
@@ -49,7 +52,6 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,
       ),
-      expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,

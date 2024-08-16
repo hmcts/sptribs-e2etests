@@ -44,6 +44,9 @@ const caseRepresentativeDetailsObjectPage: CaseRepresentativeDetailsObjectPage =
       page: Page,
       accessibilityTest: boolean,
     ): Promise<void> {
+      await page.waitForSelector(
+        `.govuk-heading-l:text-is("${caseRepresentativeDetailsObject_content.pageTitle}")`,
+      );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
           caseRepresentativeDetailsObject_content.pageHint,

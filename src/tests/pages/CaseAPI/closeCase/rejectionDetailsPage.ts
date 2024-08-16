@@ -40,6 +40,9 @@ const rejectionDetailsPage: RejectionDetailsPage = {
     if (!errorMessaging) {
       await page.click(`#closeRejectionReason-other`);
     }
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${rejectionDetails_content.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

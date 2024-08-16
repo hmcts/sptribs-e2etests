@@ -58,6 +58,9 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${createListingListingDetailsContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createListingListingDetailsContent.pageHint,

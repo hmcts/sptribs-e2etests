@@ -28,12 +28,12 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${createSummarySelectHearingContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createSummarySelectHearingContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        createSummarySelectHearingContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

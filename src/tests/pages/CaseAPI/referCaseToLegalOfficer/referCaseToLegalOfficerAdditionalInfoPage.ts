@@ -32,11 +32,8 @@ const referCaseToLegalOfficerAdditionalInfoPage: ReferCaseToLegalOfficerAddition
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-legal-officer/refer-to-legal-officerreferToLegalOfficerAdditionalInfo`,
       );
       await Promise.all([
-        expect(page.locator(".govuk-caption-l")).toHaveText(
-          referCaseToLegalOfficerAdditionalInfoContent.pageHint,
-        ),
         expect(page.locator(".govuk-heading-l")).toHaveText(
-          referCaseToLegalOfficerAdditionalInfoContent.pageTitle,
+          referCaseToLegalOfficerAdditionalInfoContent.pageHint,
         ),
         expect(page.locator("markdown > h3")).toContainText(
           caseSubjectDetailsObject_content.name,

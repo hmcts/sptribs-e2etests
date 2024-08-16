@@ -31,11 +31,8 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-judge/refer-to-judgereferToJudgeAdditionalInfo`,
     );
     await Promise.all([
-      expect(page.locator(".govuk-caption-l")).toHaveText(
-        referCaseToJudgeAdditionalInfoContent.pageHint,
-      ),
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        referCaseToJudgeAdditionalInfoContent.pageTitle,
+        referCaseToJudgeAdditionalInfoContent.pageHint,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

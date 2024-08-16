@@ -23,10 +23,10 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     recipients: parties[],
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submit_content.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        submit_content.pageTitle,
-      ),
       expect(page.locator(".heading-h2")).toHaveText(
         submit_content.pageSubtitle,
       ),

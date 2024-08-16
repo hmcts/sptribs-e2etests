@@ -13,6 +13,9 @@ const createCaseConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h1:text-is("${confirm_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(

@@ -34,6 +34,9 @@ const previewTemplatePage: PreviewTemplatePage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${previewTemplate_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         previewTemplate_content.pageHint,

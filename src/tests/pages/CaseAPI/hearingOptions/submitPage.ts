@@ -40,10 +40,10 @@ const submitPage: SubmitPage = {
     venue: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        submitContent.pageTitle,
-      ),
       expect(page.locator(".text-16").nth(0)).toHaveText(
         submitContent.textOnPage1,
       ),

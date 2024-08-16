@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseFilter_content from "../../../fixtures/content/CaseAPI/createCase/caseFilter_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
@@ -19,10 +19,10 @@ const caseFilterPage: CaseFilterPage = {
   event: "#cc-event",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-xl:text-is("${caseFilter_content.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-xl")).toHaveText(
-        caseFilter_content.pageTitle,
-      ),
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (caseFilter_content as any)[
           `textOnPage${index + 1}`

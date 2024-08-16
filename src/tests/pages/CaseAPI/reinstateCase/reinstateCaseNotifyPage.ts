@@ -21,12 +21,12 @@ const reinstateCaseNotifyPage: ReinstateCaseNotifyPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${reinstateCaseNotifyPage_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         reinstateCaseNotifyPage_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        reinstateCaseNotifyPage_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
