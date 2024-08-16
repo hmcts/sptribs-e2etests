@@ -33,9 +33,6 @@ const submitPage: SubmitPage = {
       `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
     );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        submit_content.pageHint,
-      ),
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

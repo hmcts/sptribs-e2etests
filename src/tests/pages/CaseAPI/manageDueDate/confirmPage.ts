@@ -14,7 +14,7 @@ type ConfirmPage = {
   closeAndReturnToCase(page: Page): Promise<void>;
 };
 
-const managageDueDateConfirmPage: ConfirmPage = {
+const manageDueDateConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page, accessibilityTest, caseNumber): Promise<void> {
@@ -22,7 +22,6 @@ const managageDueDateConfirmPage: ConfirmPage = {
       `.heading-h1:text-is("${confirm_content.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h1:text-is("${confirm_content.subTitle1}")`),
         1,
@@ -46,4 +45,4 @@ const managageDueDateConfirmPage: ConfirmPage = {
   },
 };
 
-export default managageDueDateConfirmPage;
+export default manageDueDateConfirmPage;

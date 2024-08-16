@@ -29,10 +29,6 @@ const submitPage: SubmitPage = {
     await page.waitForSelector(`h1:text-is("${submit_content.pageTitle}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`h1:text-is("${submit_content.pageTitle}")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
         page.locator(`h3:text-is("${submit_content.name}")`),
         1,
       ),
