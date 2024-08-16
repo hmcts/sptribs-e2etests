@@ -155,7 +155,7 @@ const updateCaseJourney: UpdateCaseJourney = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`span:text-is("Lorem ipsum relevance")`),
-            1,
+            2,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
@@ -172,7 +172,7 @@ const updateCaseJourney: UpdateCaseJourney = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`span:text-is("Lorem ipsum relevance")`),
-            10,
+            11,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
@@ -203,22 +203,9 @@ const updateCaseJourney: UpdateCaseJourney = {
     }
     await page.locator(`.mat-tab-label:has-text("Messages")`).click();
     if (uploadDocument) {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("Lorem ipsum additional information")`,
-          ),
-          2,
-        ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("Lorem ipsum relevance")`),
-          1,
-        ),
-      ]);
-    } else {
       await commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("Lorem ipsum relevance")`),
-        1,
+        page.locator(`.text-16:text-is("Lorem ipsum additional information")`),
+        2,
       );
     }
   },
