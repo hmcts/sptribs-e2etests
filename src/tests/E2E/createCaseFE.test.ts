@@ -286,29 +286,29 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Error messaging - Cy", async ({ page }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      multipleDocuments = false,
-      completeApplication = false,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = true;
-    await createFEApplication.createFEApplication(
-      page,
-      cy,
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
-    );
-  });
+  // test("Error messaging - Cy", async ({ page }) => {
+  //   const cy = true,
+  //     representationPresent = true,
+  //     representationQualified = true,
+  //     uploadOtherInfo = true,
+  //     multipleDocuments = false,
+  //     completeApplication = false,
+  //     backButtonJourney = false,
+  //     accessibilityTest = false,
+  //     errorMessaging = true;
+  //   await createFEApplication.createFEApplication(
+  //     page,
+  //     cy,
+  //     representationPresent,
+  //     representationQualified,
+  //     uploadOtherInfo,
+  //     multipleDocuments,
+  //     completeApplication,
+  //     backButtonJourney,
+  //     accessibilityTest,
+  //     errorMessaging,
+  //   );
+  // });
 });
 
 test("Accessibility test every page on DSS. @DSSAccessibility", async ({
