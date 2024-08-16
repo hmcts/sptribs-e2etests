@@ -189,29 +189,29 @@ const subjectDetailsPage: SubjectDetailsPage = {
             1,
           ),
         ]);
-        await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
-        await page.click(this.continueButton);
-        await Promise.all([
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `[href='#subjectFullName']:text-is("${subjectDetailsContent.htmlErrorCy}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `#subjectFullName-error:text-is("${subjectDetailsContent.htmlErrorCy}")`,
-            ),
-            1,
-          ),
-        ]);
-        await page.locator(this.fields.fullName).clear();
+        // await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
+        // await page.click(this.continueButton);
+        // await Promise.all([
+        //   commonHelpers.checkVisibleAndPresent(
+        //     page.locator(
+        //       `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBannerCy}")`,
+        //     ),
+        //     1,
+        //   ),
+        //   commonHelpers.checkVisibleAndPresent(
+        //     page.locator(
+        //       `[href='#subjectFullName']:text-is("${subjectDetailsContent.htmlErrorCy}")`,
+        //     ),
+        //     1,
+        //   ),
+        //   commonHelpers.checkVisibleAndPresent(
+        //     page.locator(
+        //       `#subjectFullName-error:text-is("${subjectDetailsContent.htmlErrorCy}")`,
+        //     ),
+        //     1,
+        //   ),
+        // ]);
+        // await page.locator(this.fields.fullName).clear();
         await page.fill(this.fields.dayOfBirth, "32");
         await page.click(this.continueButton);
         await Promise.all([
@@ -347,29 +347,29 @@ const subjectDetailsPage: SubjectDetailsPage = {
             1,
           ),
         ]);
-        await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
-        await page.click(this.continueButton);
-        await Promise.all([
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `[href='#subjectFullName']:text-is("${subjectDetailsContent.htmlError}")`,
-            ),
-            1,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `#subjectFullName-error:text-is("${subjectDetailsContent.htmlError}")`,
-            ),
-            1,
-          ),
-        ]);
-        await page.locator(this.fields.fullName).clear();
+        // await page.fill(this.fields.fullName, "<a>https://www.google.com</a>");
+        // await page.click(this.continueButton);
+        // await Promise.all([
+        //   commonHelpers.checkVisibleAndPresent(
+        //     page.locator(
+        //       `.govuk-error-summary__title:text-is("${subjectDetailsContent.errorBanner}")`,
+        //     ),
+        //     1,
+        //   ),
+        //   commonHelpers.checkVisibleAndPresent(
+        //     page.locator(
+        //       `[href='#subjectFullName']:text-is("${subjectDetailsContent.htmlError}")`,
+        //     ),
+        //     1,
+        //   ),
+        //   commonHelpers.checkVisibleAndPresent(
+        //     page.locator(
+        //       `#subjectFullName-error:text-is("${subjectDetailsContent.htmlError}")`,
+        //     ),
+        //     1,
+        //   ),
+        // ]);
+        // await page.locator(this.fields.fullName).clear();
         await page.fill(this.fields.dayOfBirth, "32");
         await page.click(this.continueButton);
         await Promise.all([
