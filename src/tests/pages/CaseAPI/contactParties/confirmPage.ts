@@ -4,6 +4,7 @@ import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/
 import confirm_content from "../../../fixtures/content/CaseAPI/contactParties/confirm_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
+import { UserRole } from "../../../config.ts";
 
 type ConfirmPage = {
   continue: string;
@@ -11,6 +12,7 @@ type ConfirmPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    user: UserRole,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -21,13 +23,20 @@ const confirmPage: ConfirmPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    user: UserRole,
   ): Promise<void> {
     const headingRegex = new RegExp(
       `${confirm_content.textOnPage2}|${confirm_content.textOnPage3}`,
     );
-    await page.waitForSelector(
-      `.heading-h1:text-is("${selectDocument_content.pageHint}")`,
-    );
+    if (user === "respondent") {
+      await page.waitForSelector(
+        `.heading-h1:text-is("${selectDocument_content.pageHintRespondent}")`,
+      );
+    } else {
+      await page.waitForSelector(
+        `.heading-h1:text-is("${selectDocument_content.pageHint}")`,
+      );
+    }
     await Promise.all([
       expect(page.locator("markdown > h3").nth(0)).toHaveText(
         caseSubjectDetailsObject_content.name,
