@@ -275,23 +275,24 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-      stage('Case-API Application E2E tests - Webkit') {
-        try {
-          yarnBuilder.yarn('test:WebkitCaseAPI')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Case-API Application Webkit E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
-        }
-      }
+//      stage('Case-API Application E2E tests - Webkit') {
+//        try {
+//          yarnBuilder.yarn('test:WebkitCaseAPI')
+//        } catch (Error) {
+//          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+//        } finally {
+//          publishHTML([
+//                  allowMissing: true,
+//                  alwaysLinkToLastBuild: true,
+//                  keepAll: true,
+//                  reportDir: "playwright-report",
+//                  reportFiles: 'index.html',
+//                  reportName: 'Case-API Application Webkit E2E Test Report'
+//          ])
+//          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+//        }
+//      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
+//        and then these will be turned back on.
       stage('Case-API Application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityCaseAPI')
