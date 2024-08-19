@@ -34,12 +34,12 @@ const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editDraftPreviewTemplateContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editDraftPreviewTemplateContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        editDraftPreviewTemplateContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

@@ -54,6 +54,9 @@ const submitPage: SubmitPage = {
     venue: hearingVenues | null,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h2:text-is("${submitContent.subTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
@@ -64,7 +67,6 @@ const submitPage: SubmitPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),
-      expect(page.locator(".heading-h2")).toHaveText(submitContent.subTitle),
       expect(page.locator("span.text-16").nth(0)).toHaveText(
         submitContent.textOnPage1,
       ),

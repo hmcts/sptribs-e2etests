@@ -47,11 +47,10 @@ const submitPage: SubmitPage = {
   cancel: ".cancel",
 
   async checkCommon(page: Page, caseNumber: string): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
+    );
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.govuk-heading-l:text-is("${submit_content.pageHint}")`),
-        1,
-      ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),

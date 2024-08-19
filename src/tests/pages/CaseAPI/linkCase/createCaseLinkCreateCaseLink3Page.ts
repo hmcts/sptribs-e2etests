@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createCaseLinkcreateCaseLink3_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink3_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
@@ -18,15 +18,15 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3Page = {
   cancel: ".cancel",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-xl:text-is("${createCaseLinkcreateCaseLink3_content.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkForButtons(
         page,
         this.submit,
         this.previous,
         this.cancel,
-      ),
-      expect(page.locator(".govuk-heading-xl")).toHaveText(
-        createCaseLinkcreateCaseLink3_content.pageTitle,
       ),
     ]);
     await Promise.all([

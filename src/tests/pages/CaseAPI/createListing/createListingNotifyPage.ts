@@ -20,12 +20,12 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${createListingNotifyPageContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createListingNotifyPageContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        createListingNotifyPageContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

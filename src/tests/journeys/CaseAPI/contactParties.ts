@@ -4,7 +4,6 @@ import commonHelpers, {
   allEvents,
   State,
 } from "../../helpers/commonHelpers.ts";
-import createDraft from "./createDraft.ts";
 import closeCase from "./closeCase.ts";
 import buildCase from "./buildCase.ts";
 import selectDocumentsPage from "../../pages/CaseAPI/contactParties/selectDocumentsPage.ts";
@@ -186,7 +185,12 @@ const contactParties: ContactParties = {
         await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
         await submitPage.checkValidInfo(page, user);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          user,
+        );
         await confirmPage.continueOn(page);
         break;
       case true:

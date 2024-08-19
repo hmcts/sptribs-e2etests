@@ -38,13 +38,10 @@ const submitPage: SubmitPage = {
     completed,
     completedCheckboxChecked,
   ): Promise<void> {
+    await page.waitForSelector(`h2:text-is("${submit_content.pageTitle}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.govuk-heading-l:text-is("${submit_content.pageHint}")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`h2:text-is("${submit_content.pageTitle}")`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(

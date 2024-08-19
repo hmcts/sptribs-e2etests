@@ -30,12 +30,12 @@ const editListingChangeReasonPage: EditListingChangeReasonPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editListingChangeReasonContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingChangeReasonContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        editListingChangeReasonContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

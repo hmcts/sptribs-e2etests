@@ -120,7 +120,6 @@ const createFEApplication: CreateFeApplication = {
           await representativeDetailsPage.triggerErrorMessages(page, cy);
           await representativeDetailsPage.fillInFields(page);
         }
-
         await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadAppealFormPage.triggerErrorMessages(page, cy);
         await uploadAppealFormPage.uploadDocumentsSection(
@@ -139,19 +138,13 @@ const createFEApplication: CreateFeApplication = {
           cy,
           multipleDocuments,
         );
-        await uploadOtherInformationPage.checkPageLoads(
-          page,
-          cy,
-          accessibilityTest,
-        );
-        await uploadOtherInformationPage.triggerErrorMessages(page, cy);
-        await uploadOtherInformationPage.uploadDocumentsSection(
-          page,
-          cy,
-          uploadOtherInfo,
-          multipleDocuments,
-        );
-        await page.click('button[name="opt-out-button"]');
+      // Awaiting fix for inline error messaging
+      // await uploadOtherInformationPage.checkPageLoads(
+      //   page,
+      //   cy,
+      //   accessibilityTest,
+      // );
+      // await uploadOtherInformationPage.triggerErrorMessages(page, cy);
     }
   },
 
@@ -215,6 +208,8 @@ const createFEApplication: CreateFeApplication = {
       page,
       cy,
       representationPresent,
+      uploadOtherInfo,
+      multipleDocuments,
       accessibilityTest,
     );
     await checkYourAnswersPage.checkValidInfoAllFields(

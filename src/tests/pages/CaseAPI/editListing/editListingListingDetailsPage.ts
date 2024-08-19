@@ -59,12 +59,12 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     accessibilityTest: boolean,
     venue: hearingVenues | null,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editListingListingDetailsContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingListingDetailsContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        editListingListingDetailsContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

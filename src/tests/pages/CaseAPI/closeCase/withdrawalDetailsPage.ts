@@ -28,6 +28,9 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${withdrawalDetails_content.pageTitle}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

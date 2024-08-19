@@ -26,6 +26,9 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
   cancel: ".cancel",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-xl:text-is("${createCaseLinkcreateCaseLink2_content.pageTitle}")`,
+    );
     await Promise.all([
       page.locator(this.next).isVisible(),
       commonHelpers.checkForButtons(
@@ -33,9 +36,6 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
         this.submit,
         this.previous,
         this.cancel,
-      ),
-      expect(page.locator(".govuk-heading-xl")).toHaveText(
-        createCaseLinkcreateCaseLink2_content.pageTitle,
       ),
       expect(page.locator(".govuk-heading-s").nth(0)).toHaveText(
         createCaseLinkcreateCaseLink2_content.textOnPage1,

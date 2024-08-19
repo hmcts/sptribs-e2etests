@@ -25,12 +25,12 @@ const caseDocumentsUploadObjectPage: caseDocumentsUploadObjectPage = {
   cancelRemove: "button-secondary",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${caseDocumentsUploadObject_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         caseDocumentsUploadObject_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseDocumentsUploadObject_content.pageTitle,
       ),
       expect(page.locator("[class='markdown'] p")).toHaveText(
         caseDocumentsUploadObject_content.textOnPage1,

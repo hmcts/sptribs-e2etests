@@ -118,8 +118,10 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     tribunalFormsInTime: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submit_content.title}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(submit_content.title),
       expect(page.locator(".heading-h2")).toHaveText(submit_content.subTitle1),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

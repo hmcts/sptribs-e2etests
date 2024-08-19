@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/createCase/confirm_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
@@ -14,8 +14,10 @@ const createCaseConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page, accessibilityTest): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h1:text-is("${confirm_content.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h1:text-is("${confirm_content.subTitle1}")`),
         1,

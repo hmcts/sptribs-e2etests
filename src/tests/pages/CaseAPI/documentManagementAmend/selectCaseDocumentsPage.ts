@@ -30,12 +30,12 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
     caseNumber: string,
     // accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${selectCaseDocuments_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         selectCaseDocuments_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        selectCaseDocuments_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

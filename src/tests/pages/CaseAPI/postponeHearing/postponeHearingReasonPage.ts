@@ -33,12 +33,12 @@ const postponeHearingReasonPage: PostponeHearingReasonPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${postponeHearingReasonContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         postponeHearingReasonContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        postponeHearingReasonContent.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

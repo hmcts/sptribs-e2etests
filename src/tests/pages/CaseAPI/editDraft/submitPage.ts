@@ -29,6 +29,9 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.text-16:text-is("${submit_content.textOnPage1}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.govuk-heading-l:text-is("${submit_content.pageHint}")`),
@@ -39,10 +42,6 @@ const submitPage: SubmitPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${submit_content.textOnPage1}")`),
-        1,
       ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (submit_content as any)[`textOnPage${index + 2}`];

@@ -3,9 +3,6 @@ import amendCaseDocuments_content from "../../../fixtures/content/CaseAPI/docume
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import path from "path";
-import config from "../../../config.ts";
-import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
 
 type AmendCaseDocumentsPage = {
   continue: string;
@@ -26,19 +23,19 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
   continue: '[type="submit"]',
   previous: ".button-secondary[disabled]",
   cancel: ".cancel",
-  dropdown: "#cicCaseSelectedDocument_documentCategory",
-  message: "#cicCaseSelectedDocument_documentEmailContent",
+  dropdown: "#cicCaseSelectedDocumentCategory",
+  message: "#cicCaseSelectedDocumentEmailContent",
   async checkPageLoads(
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${amendCaseDocuments_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         amendCaseDocuments_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        amendCaseDocuments_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
@@ -46,22 +43,18 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         amendCaseDocuments_content.caseReference + caseNumber,
       ),
-      expect(page.locator(".heading-h2")).toContainText(
-        amendCaseDocuments_content.subTitle1,
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `.form-label:text-is("${amendCaseDocuments_content.textOnPage2}")`,
+        ),
+        1,
       ),
-      expect(
+      commonHelpers.checkVisibleAndPresent(
         page.locator(
-          'label[for="cicCaseSelectedDocument_documentCategory"] span.form-label.ng-star-inserted',
+          `.form-label:text-is("${amendCaseDocuments_content.textOnPage3}")`,
         ),
-      ).toContainText(amendCaseDocuments_content.textOnPage2),
-      expect(
-        page.locator(
-          'label[for="cicCaseSelectedDocument_documentEmailContent"] span.form-label.ng-star-inserted',
-        ),
-      ).toContainText(amendCaseDocuments_content.textOnPage3),
-      expect(
-        page.locator("#cicCaseSelectedDocument_documentCategory"),
-      ).toBeVisible(),
+        1,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,

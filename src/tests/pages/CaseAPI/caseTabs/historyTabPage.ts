@@ -33,50 +33,36 @@ const historyTabPage: HistoryTabPage = {
     state: string,
   ): Promise<void> {
     await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
-    if (state == stateTabContent.DSSSubmittedState) {
-      await Promise.all([
-        ...Array.from({ length: 4 }, (_, index) => {
-          const textOnPage = (allTabTitles_content as any)[`tab${index + 12}`];
+    await Promise.all([
+      ...Array.from({ length: 3 }, (_, index) => {
+        const textOnPage = (allTabTitles_content as any)[`tab${index + 13}`];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+      Array.from({ length: 2 }, (_, index) => {
+        const textOnPage = (historyTabContent as any)[`heading${index + 1}`];
+        return commonHelpers.checkVisibleAndPresent(
+          page.locator(`.heading-h2:text-is("${textOnPage}")`),
+          1,
+        );
+      }),
+      Array.from({ length: 6 }, (_, index) => {
+        const textOnPage = (historyTabContent as any)[`textOnPage${index + 1}`];
+        if (index !== 2 && index !== 4 && index !== 5) {
           return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            page.locator(`span.text-16:text-is("${textOnPage}")`),
+            2,
+          );
+        } else {
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`span.text-16:text-is("${textOnPage}")`),
             1,
           );
-        }),
-      ]);
-    } else {
-      await Promise.all([
-        ...Array.from({ length: 3 }, (_, index) => {
-          const textOnPage = (allTabTitles_content as any)[`tab${index + 13}`];
-          return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
-            1,
-          );
-        }),
-        Array.from({ length: 2 }, (_, index) => {
-          const textOnPage = (historyTabContent as any)[`heading${index + 1}`];
-          return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.heading-h2:text-is("${textOnPage}")`),
-            1,
-          );
-        }),
-        Array.from({ length: 6 }, (_, index) => {
-          const textOnPage = (historyTabContent as any)[
-            `textOnPage${index + 1}`
-          ];
-          if (index !== 2 && index !== 4 && index !== 5) {
-            return commonHelpers.checkVisibleAndPresent(
-              page.locator(`span.text-16:text-is("${textOnPage}")`),
-              2,
-            );
-          } else {
-            return commonHelpers.checkVisibleAndPresent(
-              page.locator(`span.text-16:text-is("${textOnPage}")`),
-              1,
-            );
-          }
-        }).filter(Boolean),
-      ]);
-    }
+        }
+      }).filter(Boolean),
+    ]);
     if (accessibilityTest) await axeTest(page);
   },
 

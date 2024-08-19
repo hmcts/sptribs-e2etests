@@ -20,12 +20,12 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${notifyOtherParties_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         notifyOtherParties_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        notifyOtherParties_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

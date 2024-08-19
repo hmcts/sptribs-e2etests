@@ -20,12 +20,12 @@ const caseDateObjectsPage: CaseDateObjectsPage = {
   year: "#cicCaseCaseReceivedDate-year",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${caseDateObjects_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         caseDateObjects_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseDateObjects_content.pageTitle,
       ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (caseDateObjects_content as any)[

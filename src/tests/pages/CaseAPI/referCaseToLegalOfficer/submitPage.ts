@@ -31,10 +31,10 @@ const submitPage: SubmitPage = {
     referralReason: referralReason,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        submitContent.pageTitle,
-      ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,
       ),

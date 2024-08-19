@@ -5,7 +5,7 @@ import sendOrder from "./sendOrder.ts";
 import selectOrderPage from "../../pages/CaseAPI/manageDueDate/selectOrderPage.ts";
 import editDueDatePage from "../../pages/CaseAPI/manageDueDate/editDueDatePage.ts";
 import submitPage from "../../pages/CaseAPI/manageDueDate/submitPage.ts";
-import managageDueDateConfirmPage from "../../pages/CaseAPI/manageDueDate/confirmPage.ts";
+import manageDueDateConfirmPage from "../../pages/CaseAPI/manageDueDate/confirmPage.ts";
 
 type ManageDueDate = {
   manageDueDate(
@@ -77,12 +77,12 @@ const manageDueDate: ManageDueDate = {
         await submitPage.checkValidInfo(page, completedCheckboxChecked);
         await submitPage.checkChangeLink(page, caseNumber, accessibilityTest);
         await submitPage.saveAndContinue(page);
-        await managageDueDateConfirmPage.checkPageLoads(
+        await manageDueDateConfirmPage.checkPageLoads(
           page,
           accessibilityTest,
           caseNumber,
         );
-        await managageDueDateConfirmPage.closeAndReturnToCase(page);
+        await manageDueDateConfirmPage.closeAndReturnToCase(page);
         expect(page.locator(".alert-message")).toHaveText(
           ` Case #${caseNumber} has been updated with event: Orders: Manage due date `,
         );

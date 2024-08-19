@@ -1,6 +1,6 @@
 const selectReason_content = {
   pageHint: "Case: Close case",
-  pageTitle: "Are you sure you want to close this case?",
+  pageTitle: "Close this case",
   textOnPage1: "Why is this case being closed?",
   textOnPage2: "Case Withdrawn",
   textOnPage3: "Case Rejected",

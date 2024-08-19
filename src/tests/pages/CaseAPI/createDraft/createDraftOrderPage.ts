@@ -28,12 +28,12 @@ const createDraftOrderPage: CreateDraftOrderPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${createDraftOrder_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createDraftOrder_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        createDraftOrder_content.pageTitle,
       ),
       expect(page.locator("markdown > h3")).toContainText(
         caseSubjectDetailsObject_content.name,

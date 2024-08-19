@@ -44,12 +44,12 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
   explainedNo: "#cicCaseMissedTheDeadLineCic_No",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${caseFurtherDetailsObject_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         caseFurtherDetailsObject_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        caseFurtherDetailsObject_content.pageTitle,
       ),
       expect(page.locator(".form-label").nth(0)).toHaveText(
         caseFurtherDetailsObject_content.textOnPage1,

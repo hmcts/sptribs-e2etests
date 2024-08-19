@@ -38,11 +38,13 @@ const submitPage: SubmitPage = {
     removeReason: RemoveReason,
     optionalText: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h2:text-is("${submit_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,
       ),
-      expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,

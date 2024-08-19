@@ -30,6 +30,9 @@ const uploadOrderPage: UploadOrderPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `p:text-is("${uploadOrder_Content.textOnPage1}")`,
+    );
     await page.click(this.addNew);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -43,10 +46,6 @@ const uploadOrderPage: UploadOrderPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         uploadOrder_Content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`p:text-is("${uploadOrder_Content.textOnPage1}")`),
-        1,
       ),
       ...Array.from({ length: 2 }, (_, index: number) => {
         const textOnPage: ArrayConstructor = (uploadOrder_Content as any)[

@@ -19,6 +19,9 @@ const confirmPage: ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.markdown > h1:text-is("${confirmContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(confirmContent.pageHint),
       expect(page.locator("markdown > h3")).toContainText(
@@ -26,10 +29,6 @@ const confirmPage: ConfirmPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         confirmContent.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h1:text-is("${confirmContent.pageTitle}")`),
-        1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h2:has-text("${confirmContent.textOnPage}")`),

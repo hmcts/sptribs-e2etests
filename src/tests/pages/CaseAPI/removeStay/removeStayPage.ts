@@ -41,12 +41,12 @@ const removeStayPage: RemoveStayPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${removeStay_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         removeStay_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        removeStay_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(

@@ -38,10 +38,10 @@ const submitPage: SubmitPage = {
     stayReason: StayReason,
     optionalText: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
+    );
     await Promise.all([
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        submit_content.pageHint,
-      ),
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
         page.locator(

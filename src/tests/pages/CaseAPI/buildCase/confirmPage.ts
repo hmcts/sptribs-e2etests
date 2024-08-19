@@ -20,8 +20,10 @@ const buildCaseConfirmPage: ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.heading-h1:text-is("${confirm_content.pageTitle}")`,
+    );
     await Promise.all([
-      expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
       expect(page.locator("markdown > h1")).toContainText(
         confirm_content.subTitle1,
       ),

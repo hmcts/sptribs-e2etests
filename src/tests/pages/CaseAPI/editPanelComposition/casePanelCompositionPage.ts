@@ -29,13 +29,10 @@ const casePanelCompositionPage: CasePanelCompositionPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `h1:text-is("${caseEditPanelComposition_content.pageTitle}")`,
+    );
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `h1:text-is("${caseEditPanelComposition_content.pageTitle}")`,
-        ),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h3:text-is("${caseSubjectDetailsObject_content.name}")`),
         1,

@@ -19,6 +19,9 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `dt > ccd-markdown > div > markdown > p:text-is("${sendOrderNotifyPage_content.textOnPage1}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
         sendOrderNotifyPage_content.pageHint,
@@ -31,12 +34,6 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         sendOrderNotifyPage_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `dt > ccd-markdown > div > markdown > p:text-is("${sendOrderNotifyPage_content.textOnPage1}")`,
-        ),
-        1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(

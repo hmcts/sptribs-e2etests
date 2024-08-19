@@ -30,12 +30,12 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     accessibilityTest: boolean,
     template: Template,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${finalDecisionMain_content.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         finalDecisionMain_content.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        finalDecisionMain_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(

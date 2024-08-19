@@ -28,12 +28,12 @@ const editDraftAddDocumentFooterPage: EditDraftAddDocumentFooterPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `.govuk-heading-l:text-is("${editDraftAddDocumentFooterContent.pageTitle}")`,
+    );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editDraftAddDocumentFooterContent.pageHint,
-      ),
-      expect(page.locator(".govuk-heading-l")).toHaveText(
-        editDraftAddDocumentFooterContent.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
