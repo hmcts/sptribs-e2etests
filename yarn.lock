@@ -285,7 +285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.4":
+"axios@npm:^1.7.1":
   version: 1.7.4
   resolution: "axios@npm:1.7.4"
   dependencies:
@@ -1686,7 +1686,7 @@ __metadata:
     "@axe-core/playwright": "npm:^4.9.1"
     "@playwright/test": "npm:^1.40.0"
     "@types/node": "npm:^20.10.0"
-    axios: "npm:^1.7.4"
+    axios: "npm:^1.7.1"
     dependency-check: "npm:^4.1.0"
     playwright-core: "npm:^1.42.0"
     pre-commit: "npm:^1.2.2"
