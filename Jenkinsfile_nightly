@@ -80,6 +80,26 @@ def secrets = [
                 secret('citizen-password', 'CITIZEN_PASSWORD'),
                 secret('superUser-user', 'SUPER_USER_USERNAME'),
                 secret('superUser-password', 'SUPER_USER_PASSWORD'),
+                secret('demoCitizen-user', 'DEMO_CITIZEN_USERNAME'),
+                secret('demoCitizen-password', 'DEMO_CITIZEN_PASSWORD'),
+                secret('wa-caseworker-username', 'WA_CASEWORKER_USERNAME'),
+                secret('wa-caseworker-password', 'WA_CASEWORKER_PASSWORD'),
+                secret('wa-seniorCaseworker-username', 'WA_SENIOR_CASEWORKER_USERNAME'),
+                secret('wa-seniorCaseworker-password', 'WA_SENIOR_CASEWORKER_PASSWORD'),
+                secret('wa-hearingCentreAdmin-username', 'WA_HEARING_CENTRE_ADMIN_USERNAME'),
+                secret('wa-hearingCentreAdmin-password', 'WA_HEARING_CENTRE_ADMIN_PASSWORD'),
+                secret('wa-hearingCentreTeamLead-username', 'WA_HEARING_CENTRE_TEAM_LEAD_USERNAME'),
+                secret('wa-hearingCentreTeamLead-password', 'WA_HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
+                secret('wa-regionalHearingCentreAdmin-username', 'WA_REGIONAL_HEARING_CENTRE_ADMIN_USERNAME'),
+                secret('wa-regionalHearingCentreAdmin-password', 'WA_REGIONAL_HEARING_CENTRE_ADMIN_PASSWORD'),
+                secret('wa-regionalHearingCentreTeamLead-username', 'WA_REGIONAL_HEARING_CENTRE_TEAM_LEAD_USERNAME'),
+                secret('wa-regionalHearingCentreTeamLead-password', 'WA_REGIONAL_HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
+                secret('wa-ctscAdmin-username', 'WA_CTSC_ADMIN_USERNAME'),
+                secret('wa-ctscAdmin-password', 'WA_CTSC_ADMIN_PASSWORD'),
+                secret('wa-ctscTeamLead-username', 'WA_CTSC_TEAM_LEAD_USERNAME'),
+                secret('wa-ctscTeamLead-password', 'WA_CTSC_TEAM_LEAD_PASSWORD'),
+                secret('wa-respondent-user', 'WA_RESPONDENT_USERNAME'),
+                secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD')
         ]
 ]
 

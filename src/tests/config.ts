@@ -14,7 +14,17 @@ export type UserRole =
   | "seniorJudge"
   | "respondent"
   | "citizen"
-  | "superUser";
+  | "superUser"
+  | "demoCitizen"
+  | "waCaseWorker"
+  | "waSeniorCaseworker"
+  | "waHearingCentreAdmin"
+  | "waHearingCentreTeamLead"
+  | "waRegionalHearingCentreAdmin"
+  | "waRegionalHearingCentreTeamLead"
+  | "waCTSCAdmin"
+  | "waCTSCTeamLead"
+  | "waRespondent";
 
 interface Config {
   [key: string]: UserCredentials | string | boolean;
@@ -64,6 +74,67 @@ const config: Config = {
   superUser: {
     email: process.env.SUPER_USER_USERNAME || "superUser-user",
     password: process.env.SUPER_USER_PASSWORD || "superUser-password",
+  },
+  demoCitizen: {
+    email: process.env.DEMO_CITIZEN_USERNAME || "demoCitizen-user",
+    password: process.env.DEMO_CITIZEN_PASSWORD || "demoCitizen-password",
+  },
+  waCaseWorker: {
+    email: process.env.WA_CASEWORKER_USERNAME || "wa-caseworker-username",
+    password: process.env.WA_CASEWORKER_PASSWORD || "wa-caseworker-password",
+  },
+  waSeniorCaseworker: {
+    email:
+      process.env.WA_SENIOR_CASEWORKER_USERNAME ||
+      "wa-seniorCaseworker-username",
+    password:
+      process.env.WA_SENIOR_CASEWORKER_PASSWORD ||
+      "wa-seniorCaseworker-password",
+  },
+  waHearingCentreAdmin: {
+    email:
+      process.env.WA_HEARING_CENTRE_ADMIN_USERNAME ||
+      "wa-hearingCentreAdmin-username",
+    password:
+      process.env.WA_HEARING_CENTRE_ADMIN_PASSWORD ||
+      "wa-hearingCentreAdmin-password",
+  },
+  waHearingCentreTeamLead: {
+    email:
+      process.env.WA_HEARING_CENTRE_TEAM_LEAD_USERNAME ||
+      "wa-hearingCentreTeamLead-username",
+    password:
+      process.env.WA_HEARING_CENTRE_TEAM_LEAD_PASSWORD ||
+      "wa-hearingCentreTeamLead-password",
+  },
+  waRegionalHearingCentreAdmin: {
+    email:
+      process.env.WA_REGIONAL_HEARING_CENTRE_ADMIN_USERNAME ||
+      "wa-regionalHearingCentreAdmin-username",
+    password:
+      process.env.WA_REGIONAL_HEARING_CENTRE_ADMIN_PASSWORD ||
+      "wa-regionalHearingCentreAdmin-password",
+  },
+  waRegionalHearingCentreTeamLead: {
+    email:
+      process.env.WA_REGIONAL_HEARING_CENTRE_TEAM_LEAD_USERNAME ||
+      "wa-regionalHearingCentreTeamLead-username",
+    password:
+      process.env.WA_REGIONAL_HEARING_CENTRE_TEAM_LEAD_PASSWORD ||
+      "wa-regionalHearingCentreTeamLead-password",
+  },
+  waCTSCAdmin: {
+    email: process.env.WA_CTSC_ADMIN_USERNAME || "wa-ctscAdmin-username",
+    password: process.env.WA_CTSC_ADMIN_PASSWORD || "wa-ctscAdmin-password",
+  },
+  waCTSCTeamLead: {
+    email: process.env.WA_CTSC_TEAM_LEAD_USERNAME || "wa-ctscTeamLead-username",
+    password:
+      process.env.WA_CTSC_TEAM_LEAD_PASSWORD || "wa-ctscTeamLead-password",
+  },
+  waRespondent: {
+    email: process.env.WA_RESPONDENT_USERNAME || "wa-respondent-username",
+    password: process.env.WA_RESPONDENT_PASSWORD || "wa-respondent-password",
   },
 
   FEBaseURL: process.env.DSS_BASE_URL || "FEBaseURL",
