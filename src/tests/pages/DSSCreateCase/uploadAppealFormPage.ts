@@ -161,9 +161,12 @@ const uploadAppealFormPage: UploadAppealFormPage = {
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testPdfFile);
     await page.click(this.fields.fileUploadedOption);
-    await expect(page.locator(".uploadedFile").first()).toContainText(
-      path.basename(config.testPdfFile),
+    await page.waitForSelector(
+      `.uploadedFile:text-is("${path.basename(config.testPdfFile)}")`,
     );
+    // await expect(page.locator(".uploadedFile").first()).toContainText(
+    //   path.basename(config.testPdfFile),
+    // );
     if (cy) {
       await expect(
         page.locator(
