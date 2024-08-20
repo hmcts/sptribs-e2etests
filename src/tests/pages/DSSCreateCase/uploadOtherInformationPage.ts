@@ -266,14 +266,6 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
       await expect(page.locator(".uploadedFile").first()).toContainText(
         uploadOtherInformationContent.documentRelevance,
       );
-      // await Promise.all([
-      //   expect(page.locator(".uploadedFile").first()).toContainText(
-      //     path.basename(config.testWordFile),
-      //   ),
-      //   expect(page.locator(".uploadedFile").first()).toContainText(
-      //     uploadOtherInformationContent.documentRelevance,
-      //   ),
-      // ]);
       if (cy) {
         await expect(
           page.locator(

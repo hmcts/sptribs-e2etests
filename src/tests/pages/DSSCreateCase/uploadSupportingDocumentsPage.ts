@@ -159,9 +159,6 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
     await page.waitForSelector(
       `.uploadedFile:text-is("${path.basename(config.testFile)}")`,
     );
-    // await expect(page.locator(".uploadedFile").first()).toContainText(
-    //   path.basename(config.testFile),
-    // );
     if (cy) {
       await expect(
         page.locator(
