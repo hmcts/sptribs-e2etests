@@ -140,6 +140,7 @@ const editCase: EditCase = {
         caseNumber = await DSSCreateCase.createFEApplication(
           page,
           false,
+          "citizen",
           true,
           true,
           true,

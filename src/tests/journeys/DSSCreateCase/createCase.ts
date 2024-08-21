@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { UserRole } from "../../config.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
 import verifyCaseDetails from "./DSSVerifyDetails.ts";
@@ -20,6 +21,7 @@ type CreateFeApplication = {
   createFEApplication(
     page: Page,
     cy: boolean,
+    user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
@@ -32,6 +34,7 @@ type CreateFeApplication = {
   normalFEFlow(
     page: Page,
     cy: boolean,
+    user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
@@ -62,6 +65,7 @@ const createFEApplication: CreateFeApplication = {
   async createFEApplication(
     page: Page,
     cy: boolean,
+    user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
@@ -76,6 +80,7 @@ const createFEApplication: CreateFeApplication = {
         return await createFEApplication.normalFEFlow(
           page,
           cy,
+          user,
           representationPresent,
           representationQualified,
           uploadOtherInfo,
@@ -87,7 +92,7 @@ const createFEApplication: CreateFeApplication = {
       case true:
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
-        await loginPage.SignInUser(page);
+        await loginPage.SignInUser(page, user);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.triggerErrorMessages(page, cy);
         await subjectDetailsPage.fillInFields(page);
@@ -151,6 +156,7 @@ const createFEApplication: CreateFeApplication = {
   async normalFEFlow(
     page: Page,
     cy: boolean,
+    user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
     uploadOtherInfo: boolean,
@@ -161,7 +167,7 @@ const createFEApplication: CreateFeApplication = {
   ): Promise<string | void> {
     await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
     await landingPage.continueOn(page);
-    await loginPage.SignInUser(page);
+    await loginPage.SignInUser(page, user);
     await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
     await subjectDetailsPage.fillInFields(page);
     await subjectContactDetailsPage.checkPageLoads(page, cy, accessibilityTest);
