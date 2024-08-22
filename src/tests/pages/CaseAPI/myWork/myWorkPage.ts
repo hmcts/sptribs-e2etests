@@ -55,15 +55,11 @@ const myWorkPage: MyWorkPage = {
     }
   },
 
-  async selectAvailableTasks(
-    page: Page,
-  ): Promise<void> {
+  async selectAvailableTasks(page: Page): Promise<void> {
     await page.locator(this.availableTasksTab).click();
   },
 
-  async seeTask(
-    page: Page, taskName: string
-  ): Promise<void> {
+  async seeTask(page: Page, taskName: string): Promise<void> {
     await commonHelpers.checkVisibleAndPresent(
       page.locator(`td.cdk-column-task_title:has-text("${taskName}")`),
       1,
