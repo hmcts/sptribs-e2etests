@@ -40,7 +40,6 @@ const registerNewCase: RegisterNewCase = {
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await caseAPILoginPage.SignInUser(page, user);
-    await page.pause();
     await myWorkPage.checkPageLoads(page, accessibilityTest);
   },
 

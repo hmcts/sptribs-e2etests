@@ -63,7 +63,9 @@ const historyTabPage: HistoryTabPage = {
         }
       }).filter(Boolean),
     ]);
-    if (accessibilityTest) await axeTest(page);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async checkPageInfo(
