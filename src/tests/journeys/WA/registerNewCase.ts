@@ -41,6 +41,8 @@ const registerNewCase: RegisterNewCase = {
     await page.waitForLoadState("domcontentloaded");
     await caseAPILoginPage.SignInUser(page, user);
     await myWorkPage.checkPageLoads(page, accessibilityTest);
+    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.seeTask(page, "Register new case");
   },
 
   async completeTask(

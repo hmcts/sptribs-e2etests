@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import registerNewCase from "../../journeys/WA/registerNewCase.ts";
 
 test.describe("Register new case task tests @CaseAPI", (): void => {
-  test.only("AC1: New task created", async ({ page }) => {
+  test("AC1: New task created", async ({ page }) => {
     await registerNewCase.seeTask(page, "waRegionalHearingCentreAdmin", false);
   });
 
