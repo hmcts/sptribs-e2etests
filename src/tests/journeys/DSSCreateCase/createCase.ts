@@ -52,6 +52,7 @@ type CreateFeApplication = {
   handleCompleteApplication(
     page: Page,
     cy: boolean,
+    user: UserRole,
     accessibilityTest: boolean,
     representationPresent: boolean,
     representationQualified: boolean,
@@ -209,7 +210,9 @@ const createFEApplication: CreateFeApplication = {
       uploadOtherInfo,
       multipleDocuments,
     );
-    await page.click('button[name="opt-out-button"]');
+    if (user == "citizen") {
+      await page.click('button[name="opt-out-button"]');
+    }
     await checkYourAnswersPage.checkPageLoads(
       page,
       cy,
@@ -230,6 +233,7 @@ const createFEApplication: CreateFeApplication = {
       return await createFEApplication.handleCompleteApplication(
         page,
         cy,
+        user,
         accessibilityTest,
         representationPresent,
         representationQualified,
@@ -264,6 +268,7 @@ const createFEApplication: CreateFeApplication = {
   async handleCompleteApplication(
     page: Page,
     cy: boolean,
+    user: UserRole,
     accessibilityTest: boolean,
     representationPresent: boolean,
     representationQualified: boolean,
@@ -288,7 +293,7 @@ const createFEApplication: CreateFeApplication = {
       time,
       uploadOtherInfo,
       multipleDocuments,
-      "citizen",
+      user,
     );
     return caseNumber;
   },

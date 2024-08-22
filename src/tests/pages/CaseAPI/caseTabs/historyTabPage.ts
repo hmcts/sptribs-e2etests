@@ -124,6 +124,11 @@ const historyTabPage: HistoryTabPage = {
           ),
           allEvents.length + 1,
         );
+      } else if (user === "demoCitizen") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
+          allEvents.length + 1,
+        );
       }
       await commonHelpers.checkVisibleAndPresent(
         page.locator(`span.text-16:text-is("${state}")`),

@@ -83,7 +83,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test.only("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
+  test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
     page,
   }) => {
     const cy = true,
