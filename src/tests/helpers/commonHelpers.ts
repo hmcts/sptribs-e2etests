@@ -273,11 +273,13 @@ const commonHelpers: CommonHelpers = {
     page: Page,
     chosenEvent: string,
   ): Promise<void> {
-    await page.waitForLoadState("domcontentloaded")
-    await  page.waitForSelector("#next-step", { state: 'visible'});
+    await page.waitForLoadState("domcontentloaded");
+    await page.waitForSelector("#next-step", { state: "visible" });
     await page.selectOption("#next-step", chosenEvent);
-    await expect(page.locator("#next-step")).not.toHaveClass(/EventTrigger-empty/)
-    await expect(page.locator("#next-step")).not.toHaveClass 
+    await expect(page.locator("#next-step")).not.toHaveClass(
+      /EventTrigger-empty/,
+    );
+    await expect(page.locator("#next-step")).not.toHaveClass;
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click();
   },

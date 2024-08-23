@@ -3,18 +3,16 @@ import caseRepresentativeDetailsObject_content from "../createCase/caseRepresent
 import caseApplicantDetailsObject_content from "../createCase/caseApplicantDetailsObject_content";
 
 const createFlags1_content = {
-    pageTitle: "Create Flag",
-    caseReference: "Case number: ",
-    subTitle1: "Where should this flag be added?",
-    textOnPage1: `${caseApplicantDetailsObject_content.name} (applicant)`,
-    textOnPage2: "Case level",
-    textOnPage3: `${caseRepresentativeDetailsObject_content.name} (Representative)`,
-    textOnPage4: `${caseSubjectDetailsObject_content.name} (subject)`,
+  pageTitle: "Create Flag",
+  caseReference: "Case number: ",
+  subTitle1: "Where should this flag be added?",
+  textOnPage1: `${caseApplicantDetailsObject_content.name} (applicant)`,
+  textOnPage2: "Case level",
+  textOnPage3: `${caseRepresentativeDetailsObject_content.name} (Representative)`,
+  textOnPage4: `${caseSubjectDetailsObject_content.name} (subject)`,
 
-  
-    errorBanner: " There is a problem ",
-    errorMessage: " Please make a selection ",
+  errorBanner: " There is a problem ",
+  errorMessage: " Please make a selection ",
+} as const;
 
-  } as const;
-  
-  export default createFlags1_content;
+export default createFlags1_content;
