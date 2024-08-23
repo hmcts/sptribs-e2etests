@@ -105,7 +105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.46.1":
+"@playwright/test@npm:^1.40.0":
   version: 1.46.1
   resolution: "@playwright/test@npm:1.46.1"
   dependencies:
@@ -1357,7 +1357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.46.1, playwright-core@npm:^1.46.1":
+"playwright-core@npm:1.46.1, playwright-core@npm:^1.42.0":
   version: 1.46.1
   resolution: "playwright-core@npm:1.46.1"
   bin:
@@ -1684,11 +1684,11 @@ __metadata:
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
     "@axe-core/playwright": "npm:^4.9.1"
-    "@playwright/test": "npm:^1.46.1"
+    "@playwright/test": "npm:^1.40.0"
     "@types/node": "npm:^20.10.0"
     axios: "npm:^1.7.1"
     dependency-check: "npm:^4.1.0"
-    playwright-core: "npm:^1.46.1"
+    playwright-core: "npm:^1.42.0"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.3.3"
     ts-node: "npm:^10.9.2"
