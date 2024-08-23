@@ -47,8 +47,5 @@
     "prettier": "3.3.3",
     "ts-node": "^10.9.2"
   },
-  "resolutions": {
-    "jackspeak": "2.3.6"
-  },
   "packageManager": "yarn@4.4.0"
 }
