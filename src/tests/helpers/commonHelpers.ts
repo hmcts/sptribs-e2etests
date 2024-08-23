@@ -276,6 +276,8 @@ const commonHelpers: CommonHelpers = {
     await page.waitForLoadState("domcontentloaded")
     await  page.waitForSelector("#next-step", { state: 'visible'});
     await page.selectOption("#next-step", chosenEvent);
+    await expect(page.locator("#next-step")).not.toHaveClass(/EventTrigger-empty/)
+    await expect(page.locator("#next-step")).not.toHaveClass 
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click();
   },
@@ -914,6 +916,7 @@ export type allEvents =
   | "Case: Edit case details"
   | "Case: Contact parties"
   | "Case: CICA Contact parties"
+  | "Create Flag"
   | "Stays: Create/edit stay"
   | "Stays: Remove stay"
   | "Refer case to judge"

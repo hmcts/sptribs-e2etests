@@ -18,6 +18,7 @@ const builtCasePage: BuildCasePage = {
     accessibilityTest: boolean,
     caseNumber: string,
   ): Promise<void> {
+    await page.waitForSelector(`.govuk-caption-l:text-is("${buildCase_content.pageHint}")`)
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
         buildCase_content.pageHint,
