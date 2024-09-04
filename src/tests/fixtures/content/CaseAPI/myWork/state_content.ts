@@ -1,6 +1,5 @@
 const state_content = {
-    caseReference: "Case number: ",
+  caseReference: "Case number: ",
+} as const;
 
-  } as const;
-  
-  export default state_content;
+export default state_content;

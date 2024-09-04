@@ -79,245 +79,226 @@ const editCase: EditCase = {
   ): Promise<void> {
     //let caseNumber: string | void;
 
+    await page.locator(`a:text-is("Case: Edit Case")`).click();
 
-await page.locator(`a:text-is("Case: Edit Case")`).click();
+    // handle selecting event from dropdown whether or not it completes a task
 
-// handle selecting event from dropdown whether or not it completes a task 
-    
-    
-switch (errorMessaging) {
-  default:
-    await editCaseCategorisationDetailsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseCategorisationDetailsPage.checkAndFillInFields(
-      page,
-      initialState,
-      category,
-      subCategory,
-    );
-    await editCaseDateObjectsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseDateObjectsPage.checkAndFillInFields(
-      page,
-      initialState,
-    );
-    await editCaseObjectsSubjectsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseObjectsSubjectsPage.checkAndFillInFields(
-      page,
-      initialState,
-      representative,
-      applicant,
-      subCategory,
-    );
-    await editCaseSubjectDetailsObjectPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseSubjectDetailsObjectPage.checkFields(
-      page,
-      initialState,
-    );
-    await editCaseSubjectDetailsObjectPage.fillInFields(
-      page,
-      contactPreference,
-      initialState,
-    );
-    if (applicant) {
-      await editCaseApplicantDetailsObjectPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await editCaseApplicantDetailsObjectPage.checkFields(
-        page,
-        initialState,
-      );
-      await editCaseApplicantDetailsObjectPage.fillInFields(
-        page,
-        contactPreference,
-      );
+    switch (errorMessaging) {
+      default:
+        await editCaseCategorisationDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseCategorisationDetailsPage.checkAndFillInFields(
+          page,
+          initialState,
+          category,
+          subCategory,
+        );
+        await editCaseDateObjectsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseDateObjectsPage.checkAndFillInFields(page, initialState);
+        await editCaseObjectsSubjectsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseObjectsSubjectsPage.checkAndFillInFields(
+          page,
+          initialState,
+          representative,
+          applicant,
+          subCategory,
+        );
+        await editCaseSubjectDetailsObjectPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseSubjectDetailsObjectPage.checkFields(page, initialState);
+        await editCaseSubjectDetailsObjectPage.fillInFields(
+          page,
+          contactPreference,
+          initialState,
+        );
+        if (applicant) {
+          await editCaseApplicantDetailsObjectPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editCaseApplicantDetailsObjectPage.checkFields(
+            page,
+            initialState,
+          );
+          await editCaseApplicantDetailsObjectPage.fillInFields(
+            page,
+            contactPreference,
+          );
+        }
+        if (representative) {
+          await editCaseRepresentativeDetailsObjectPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+          );
+          await editCaseRepresentativeDetailsObjectPage.checkFields(
+            page,
+            initialState,
+          );
+          await editCaseRepresentativeDetailsObjectPage.fillInFields(
+            page,
+            contactPreference,
+            representativeQualified,
+          );
+        }
+        await editCaseObjectsContactsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseObjectsContactsPage.checkAndFillInFields(
+          page,
+          initialState,
+          subCategory,
+          representative,
+          applicant,
+        );
+        await editCaseFurtherDetailsObjectPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseFurtherDetailsObjectPage.checkFields(page, initialState);
+        await editCaseFurtherDetailsObjectPage.fillInFields(
+          page,
+          schemeSelection,
+          caseRegionSelection,
+          claimsLinked,
+          compensationLinked,
+          tribunalFormsInTime,
+          applicantExplained,
+        );
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          contactPreference,
+          applicant,
+          representative,
+          tribunalFormsInTime,
+        );
+        await submitPage.checkValidInfo(
+          page,
+          contactPreference,
+          applicant,
+          representative,
+          category,
+          subCategory,
+          schemeSelection,
+          caseRegionSelection,
+          representativeQualified,
+          claimsLinked,
+          compensationLinked,
+          tribunalFormsInTime,
+          applicantExplained,
+        );
+        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.continueOn(page);
+        break;
+      case true:
+        await editCaseCategorisationDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseCategorisationDetailsPage.triggerErrorMessages(page);
+        await editCaseCategorisationDetailsPage.checkAndFillInFields(
+          page,
+          initialState,
+          category,
+          subCategory,
+        );
+        await editCaseDateObjectsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseDateObjectsPage.triggerErrorMessages(page);
+        await editCaseDateObjectsPage.checkAndFillInFields(page, initialState);
+        await editCaseObjectsSubjectsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseObjectsSubjectsPage.triggerErrorMessages(page);
+        await editCaseObjectsSubjectsPage.checkAndFillInFields(
+          page,
+          initialState,
+          representative,
+          applicant,
+          subCategory,
+        );
+        await editCaseSubjectDetailsObjectPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseSubjectDetailsObjectPage.triggerErrorMessages(page);
+        await editCaseSubjectDetailsObjectPage.fillInFields(
+          page,
+          contactPreference,
+          initialState,
+        );
+        await editCaseApplicantDetailsObjectPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseApplicantDetailsObjectPage.triggerErrorMessages(page);
+        await editCaseApplicantDetailsObjectPage.fillInFields(
+          page,
+          contactPreference,
+        );
+        await editCaseRepresentativeDetailsObjectPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseRepresentativeDetailsObjectPage.triggerErrorMessages(
+          page,
+        );
+        await editCaseRepresentativeDetailsObjectPage.fillInFields(
+          page,
+          contactPreference,
+          representativeQualified,
+        );
+        await editCaseObjectsContactsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseObjectsContactsPage.triggerErrorMessages(page);
+        await editCaseObjectsContactsPage.checkAndFillInFields(
+          page,
+          initialState,
+          subCategory,
+          representative,
+          applicant,
+        );
+        await editCaseFurtherDetailsObjectPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await editCaseFurtherDetailsObjectPage.triggerErrorMessages(page);
+        break;
     }
-    if (representative) {
-      await editCaseRepresentativeDetailsObjectPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-      );
-      await editCaseRepresentativeDetailsObjectPage.checkFields(
-        page,
-        initialState,
-      );
-      await editCaseRepresentativeDetailsObjectPage.fillInFields(
-        page,
-        contactPreference,
-        representativeQualified,
-      );
-    }
-    await editCaseObjectsContactsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseObjectsContactsPage.checkAndFillInFields(
-      page,
-      initialState,
-      subCategory,
-      representative,
-      applicant,
-    );
-    await editCaseFurtherDetailsObjectPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseFurtherDetailsObjectPage.checkFields(
-      page,
-      initialState,
-    );
-    await editCaseFurtherDetailsObjectPage.fillInFields(
-      page,
-      schemeSelection,
-      caseRegionSelection,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
-    );
-    await submitPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-      contactPreference,
-      applicant,
-      representative,
-      tribunalFormsInTime,
-    );
-    await submitPage.checkValidInfo(
-      page,
-      contactPreference,
-      applicant,
-      representative,
-      category,
-      subCategory,
-      schemeSelection,
-      caseRegionSelection,
-      representativeQualified,
-      claimsLinked,
-      compensationLinked,
-      tribunalFormsInTime,
-      applicantExplained,
-    );
-    await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
-    await confirmPage.continueOn(page);
-    break;
-  case true:
-    await editCaseCategorisationDetailsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseCategorisationDetailsPage.triggerErrorMessages(page);
-    await editCaseCategorisationDetailsPage.checkAndFillInFields(
-      page,
-      initialState,
-      category,
-      subCategory,
-    );
-    await editCaseDateObjectsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseDateObjectsPage.triggerErrorMessages(page);
-    await editCaseDateObjectsPage.checkAndFillInFields(
-      page,
-      initialState,
-    );
-    await editCaseObjectsSubjectsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseObjectsSubjectsPage.triggerErrorMessages(page);
-    await editCaseObjectsSubjectsPage.checkAndFillInFields(
-      page,
-      initialState,
-      representative,
-      applicant,
-      subCategory,
-    );
-    await editCaseSubjectDetailsObjectPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseSubjectDetailsObjectPage.triggerErrorMessages(page);
-    await editCaseSubjectDetailsObjectPage.fillInFields(
-      page,
-      contactPreference,
-      initialState,
-    );
-    await editCaseApplicantDetailsObjectPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseApplicantDetailsObjectPage.triggerErrorMessages(page);
-    await editCaseApplicantDetailsObjectPage.fillInFields(
-      page,
-      contactPreference,
-    );
-    await editCaseRepresentativeDetailsObjectPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseRepresentativeDetailsObjectPage.triggerErrorMessages(
-      page,
-    );
-    await editCaseRepresentativeDetailsObjectPage.fillInFields(
-      page,
-      contactPreference,
-      representativeQualified,
-    );
-    await editCaseObjectsContactsPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseObjectsContactsPage.triggerErrorMessages(page);
-    await editCaseObjectsContactsPage.checkAndFillInFields(
-      page,
-      initialState,
-      subCategory,
-      representative,
-      applicant,
-    );
-    await editCaseFurtherDetailsObjectPage.checkPageLoads(
-      page,
-      caseNumber,
-      accessibilityTest,
-    );
-    await editCaseFurtherDetailsObjectPage.triggerErrorMessages(page);
-    break;
-
-}
-
-},
+  },
 };
-
-
-
 
 export default editCase;

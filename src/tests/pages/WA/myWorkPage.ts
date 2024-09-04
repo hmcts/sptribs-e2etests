@@ -31,7 +31,10 @@ const myWorkPage: MyWorkPage = {
       `.govuk-heading-xl:text-is("${myWorkContent.pageTitle}")`,
     );
     await expect(page.locator("xuilib-generic-filter")).toBeHidden();
-    await page.getByRole("button").filter({ hasText: " Show work filter "}).dispatchEvent("click");
+    await page
+      .getByRole("button")
+      .filter({ hasText: " Show work filter " })
+      .dispatchEvent("click");
     await expect(page.locator("xuilib-generic-filter > form")).toBeVisible();
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -68,90 +71,114 @@ const myWorkPage: MyWorkPage = {
 
   async seeTask(page: Page, taskName: string): Promise<any> {
     const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
-    const locatorVisible = await page.locator(`td:has-text("${subjectDetailsContent.name}")`).isVisible();
+    const locatorVisible = await page
+      .locator(`td:has-text("${subjectDetailsContent.name}")`)
+      .isVisible();
 
     while (true) {
       let locatorFound = false;
-      const locatorVisible = await page.locator(`td:has-text("${subjectDetailsContent.name}")`).isVisible();
+      const locatorVisible = await page
+        .locator(`td:has-text("${subjectDetailsContent.name}")`)
+        .isVisible();
 
-             if (locatorVisible) {
-                 console.log('Task visible!');
-                 break;
-             }
+      if (locatorVisible) {
+        console.log("Task visible!");
+        break;
+      }
 
-        const paginationExists = await page.locator(paginationLocator).count() > 0;
-          if (!paginationExists) {
-            console.log('No pagination, reloading page for Cron Job');
-            await page.reload();
-            await page.waitForTimeout(10000); // // waiting for cron job before rechecking
-          } else {
-          const paginationCount = await page.locator(paginationLocator).count();
-            for (let i = 0; i < paginationCount; i++) {
-                const nextPage = page.locator(paginationLocator).nth(i);
-                const nextPageNumber = await nextPage.textContent();
-                
-                if (nextPageNumber) {
-                  console.log(`Navigating to page ${nextPageNumber}`);
-                    await page.waitForSelector(paginationLocator)
-                    await nextPage.click();
-                    await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-                    await page.waitForTimeout(10000); // waiting for cron job before rechecking
-                    const locatorVisible = await page.locator(`td:has-text("${subjectDetailsContent.name}")`).isVisible();
+      const paginationExists =
+        (await page.locator(paginationLocator).count()) > 0;
+      if (!paginationExists) {
+        console.log("No pagination, reloading page for Cron Job");
+        await page.reload();
+        await page.waitForTimeout(10000); // // waiting for cron job before rechecking
+      } else {
+        const paginationCount = await page.locator(paginationLocator).count();
+        for (let i = 0; i < paginationCount; i++) {
+          const nextPage = page.locator(paginationLocator).nth(i);
+          const nextPageNumber = await nextPage.textContent();
 
-                          if (locatorVisible) {
-
-                              console.log('Task visible!');
-                              locatorFound = true;
-                              break;
-                          }
-                }
-            }
-            if (locatorFound) {
-              break;
-          } else {
-            console.log('No more pages left to check. Restarting from the first page...');
-            await page.locator('a > span:text-is("1")').click();
-            await page.waitForSelector(`li > span:text("1")`);
+          if (nextPageNumber) {
+            console.log(`Navigating to page ${nextPageNumber}`);
+            await page.waitForSelector(paginationLocator);
+            await nextPage.click();
+            await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
             await page.waitForTimeout(10000); // waiting for cron job before rechecking
+            const locatorVisible = await page
+              .locator(`td:has-text("${subjectDetailsContent.name}")`)
+              .isVisible();
+
+            if (locatorVisible) {
+              console.log("Task visible!");
+              locatorFound = true;
+              break;
+            }
+          }
+        }
+        if (locatorFound) {
+          break;
+        } else {
+          console.log(
+            "No more pages left to check. Restarting from the first page...",
+          );
+          await page.locator('a > span:text-is("1")').click();
+          await page.waitForSelector(`li > span:text("1")`);
+          await page.waitForTimeout(10000); // waiting for cron job before rechecking
         }
       }
     }
-    expect(page.locator('tr')
-      .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-      .locator(`exui-task-field:text-is("${taskName}")`))
-      .toBeVisible();
+    expect(
+      page
+        .locator("tr")
+        .filter({
+          has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+        })
+        .locator(`exui-task-field:text-is("${taskName}")`),
+    ).toBeVisible();
   },
 
   async clickAssignAndGoToTask(page: Page): Promise<void> {
-    await page.locator('tr')
-    .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-    .locator(`div > button:text-is("Manage ")`)
-    .click();
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
+      .locator(`div > button:text-is("Manage ")`)
+      .click();
     await page.waitForSelector(this.assignToMeAndGoToTask);
     await page.locator(this.assignToMeAndGoToTask).click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);
-
   },
 
   async clickAssignToMe(page: Page): Promise<void> {
-    await page.locator('tr')
-    .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-    .locator(`div > button:text-is("Manage ")`)
-    .click();
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
+      .locator(`div > button:text-is("Manage ")`)
+      .click();
     await page.waitForSelector(this.assignToMeLink);
     await page.locator(this.assignToMeLink).click();
-    await page.locator(`td:has-text("${subjectDetailsContent.name}")`).waitFor({ state : "detached"})
+    await page
+      .locator(`td:has-text("${subjectDetailsContent.name}")`)
+      .waitFor({ state: "detached" });
   },
 
   async navigateToTaskPage(page: Page, taskName: string): Promise<void> {
     await page.locator(this.myTasksTab).click();
     await page.waitForSelector(`td:has-text("${subjectDetailsContent.name}")`);
 
-    await page.locator('tr')
-    .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-    .locator(`exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`)
-    .click();  
-  }
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
+      .locator(
+        `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,
+      )
+      .click();
+  },
 };
 
 export default myWorkPage;

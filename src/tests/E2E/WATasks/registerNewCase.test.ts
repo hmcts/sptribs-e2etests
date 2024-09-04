@@ -3,13 +3,12 @@ import registerNewCase from "../../journeys/WA/registerNewCase.ts";
 
 test.describe("Register new case task tests @CaseAPI", (): void => {
   test("AC1: New task created", async ({ page }) => {
-    await registerNewCase.seeTask(
-      page, 
-      "waRegionalHearingCentreAdmin", 
-      false);
+    await registerNewCase.seeTask(page, "waRegionalHearingCentreAdmin", false);
   });
 
-  test("AC2: Task is completable via next steps link - assign to me and go to task", async ({ page }) => {
+  test("AC2: Task is completable via next steps link - assign to me and go to task", async ({
+    page,
+  }) => {
     await registerNewCase.completeTask(
       page,
       "waRegionalHearingCentreAdmin",
@@ -18,7 +17,9 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     );
   });
 
-  test("AC2: Task is completable via next steps link - assign to me", async ({ page }) => {
+  test("AC2: Task is completable via next steps link - assign to me", async ({
+    page,
+  }) => {
     await registerNewCase.completeTask(
       page,
       "waRegionalHearingCentreAdmin",
@@ -27,16 +28,15 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     );
   });
 
-    test("Task is completed via event dropdown", async ({ page }) => {
-      await registerNewCase.completeTask(
-        page,
-        "waRegionalHearingCentreAdmin",
-        "Event DropDown",
-        false,
-      );
-    });
+  test("Task is completed via event dropdown", async ({ page }) => {
+    await registerNewCase.completeTask(
+      page,
+      "waRegionalHearingCentreAdmin",
+      "Event DropDown",
+      false,
+    );
+  });
 
-   // accessibility test for WA ?? configured by EXUI 
-   // error messaging 
-
+  // accessibility test for WA ?? configured by EXUI
+  // error messaging
 });

@@ -35,17 +35,18 @@ const myWorkPage: MyWorkPage = {
     //await expect(page.locator("xuilib-generic-filter")).toBeVisible();
     //await page.waitForSelector(".govuk-!-padding-3")
     await expect(page.locator("xuilib-generic-filter")).toBeHidden();
-    await page.getByRole("button").filter({ hasText: " Show work filter "}).dispatchEvent("click");
+    await page
+      .getByRole("button")
+      .filter({ hasText: " Show work filter " })
+      .dispatchEvent("click");
     //await expect(page.locator("xuilib-generic-filter > form > .contain-classes")).toBeVisible();
     await expect(page.locator("xuilib-generic-filter > form")).toBeVisible();
-    
-//     const sectionText = await page.locator("xuilib-generic-filter > form").evaluate(el => el.textContent);
-//     expect(sectionText).toContain(`${myWorkContent.filterSubtitle1}`);
-    
-    
+
+    //     const sectionText = await page.locator("xuilib-generic-filter > form").evaluate(el => el.textContent);
+    //     expect(sectionText).toContain(`${myWorkContent.filterSubtitle1}`);
+
     //expect(page.locator("xuilib-generic-filter > form").innerText()).toContain(`${myWorkContent.filterSubtitle1}`)
     //await page.waitForSelector(`.govuk-heading-s:text-is("${myWorkContent.filterSubtitle1}")`);
-
 
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -86,61 +87,72 @@ const myWorkPage: MyWorkPage = {
   },
 
   async seeTask(page: Page, taskName: string): Promise<void> {
-
     while (true) {
-      const locatorVisible = await page.locator(`td:has-text("${subjectDetailsContent.name}")`).isVisible();
-            if (locatorVisible) {
-                console.log('Task visible!');
-                break;
-            }
-        await page.reload();
-        await page.waitForTimeout(10000);
-    } 
+      const locatorVisible = await page
+        .locator(`td:has-text("${subjectDetailsContent.name}")`)
+        .isVisible();
+      if (locatorVisible) {
+        console.log("Task visible!");
+        break;
+      }
+      await page.reload();
+      await page.waitForTimeout(10000);
+    }
 
-    expect(page.locator('tr')
-      .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-      .locator(`exui-task-field:text-is("${taskName}")`))
-      .toBeVisible();
-
+    expect(
+      page
+        .locator("tr")
+        .filter({
+          has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+        })
+        .locator(`exui-task-field:text-is("${taskName}")`),
+    ).toBeVisible();
   },
 
   async clickAssignAndGoToTask(page: Page): Promise<void> {
-    await page.locator('tr')
-    .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-    .locator(`div > button:text-is("Manage ")`)
-    .click();
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
+      .locator(`div > button:text-is("Manage ")`)
+      .click();
     await page.waitForSelector(this.assignToMeAndGoToTask);
     await page.locator(this.assignToMeAndGoToTask).click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);
-
   },
 
   async clickAssignToMe(page: Page): Promise<void> {
-    await page.locator('tr')
-    .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-    .locator(`div > button:text-is("Manage ")`)
-    .click();
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
+      .locator(`div > button:text-is("Manage ")`)
+      .click();
     await page.waitForSelector(this.assignToMeLink);
     await page.locator(this.assignToMeLink).click();
-    await page.locator(`td:has-text("${subjectDetailsContent.name}")`).waitFor({ state : "detached"})
+    await page
+      .locator(`td:has-text("${subjectDetailsContent.name}")`)
+      .waitFor({ state: "detached" });
   },
 
   async navigateToTaskPage(page: Page, taskName: string): Promise<void> {
     await page.locator(this.myTasksTab).click();
     await page.waitForSelector(`td:has-text("${subjectDetailsContent.name}")`);
 
-    await page.locator('tr')
-    .filter({ has: page.locator(`td:has-text("${subjectDetailsContent.name}")`) })
-    .locator(`exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`)
-    .click();
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
+      .locator(
+        `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,
+      )
+      .click();
     // await page.waitForSelector(`h2:text-is("Active tasks")`);
     // await page.waitForLoadState("domcontentloaded");
-
-    
-
-  }
-
-
+  },
 };
 
 export default myWorkPage;

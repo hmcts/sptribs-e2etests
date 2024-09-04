@@ -88,7 +88,6 @@ interface CommonHelpers {
     noticeType: CaseNoticeType,
     editDraftJourney: boolean,
   ): Promise<void>;
-
 }
 
 const commonHelpers: CommonHelpers = {
@@ -145,12 +144,12 @@ const commonHelpers: CommonHelpers = {
       today.setDate(today.getDate() + 1);
 
       const dayOfWeek = today.getDay();
-      if (dayOfWeek !== 0 && dayOfWeek !== 6) { 
-          workingDaysCount++;
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+        workingDaysCount++;
       }
-  }
+    }
     const day = today.getDate();
-    const month = today.toLocaleString('en-US', { month: 'long' });
+    const month = today.toLocaleString("en-US", { month: "long" });
     const year = today.getFullYear();
 
     return `${day} ${month} ${year}`;
@@ -1077,10 +1076,7 @@ export type State =
   | "Case closed"
   | "Case Stayed";
 
-export type taskCompletionMethod = 
+export type taskCompletionMethod =
   | "Link: Assign Task to Me and Go To Task"
   | "Link: Assign Task to Me"
   | "Event DropDown";
-
-
-
