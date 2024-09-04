@@ -14,7 +14,7 @@ const representativeDetailsContent = {
     "Enter an email address in the correct format, like name@example.com",
   fullName: "Representative AutoTesting",
   Organisation: "Representative Organisation",
-  contactNumber: "01234567891",
+  contactNumber: "01234567893",
   emailAddress: "AutoTestRepresentative@mail.com",
   button: "Continue",
   errorBanner: "There is a problem",

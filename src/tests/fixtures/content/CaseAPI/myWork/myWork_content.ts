@@ -1,4 +1,4 @@
-const myWork_content = {
+const tasksContent = {
   pageTitle: "My work",
   hintText:
     "Use the work filter to show tasks and cases based on service, work type and location",
@@ -21,4 +21,4 @@ const myWork_content = {
   column7: "Priority",
 } as const;
 
-export default myWork_content;
+export default tasksContent;

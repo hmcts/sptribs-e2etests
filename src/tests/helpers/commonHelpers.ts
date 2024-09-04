@@ -34,6 +34,7 @@ interface CommonHelpers {
   shortMonths(index: number): Promise<string>;
   todayDate(): Promise<string>;
   todayDateDoc(): Promise<string>;
+  futureDate(numberOfdays: number): Promise<string>;
   padZero(value: number): string;
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
@@ -87,6 +88,7 @@ interface CommonHelpers {
     noticeType: CaseNoticeType,
     editDraftJourney: boolean,
   ): Promise<void>;
+
 }
 
 const commonHelpers: CommonHelpers = {
@@ -134,6 +136,24 @@ const commonHelpers: CommonHelpers = {
       .map((part) => part.padStart(2, "0"));
 
     return `${day} ${await commonHelpers.shortMonths(parseInt(month))} ${year}`;
+  },
+
+  async futureDate(numberOfDays: number): Promise<string> {
+    const today = new Date();
+    let workingDaysCount = 0;
+    while (workingDaysCount < numberOfDays) {
+      today.setDate(today.getDate() + 1);
+
+      const dayOfWeek = today.getDay();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) { 
+          workingDaysCount++;
+      }
+  }
+    const day = today.getDate();
+    const month = today.toLocaleString('en-US', { month: 'long' });
+    const year = today.getFullYear();
+
+    return `${day} ${month} ${year}`;
   },
 
   padZero(value: number): string {
@@ -1056,3 +1076,11 @@ export type State =
   | "Awaiting Outcome"
   | "Case closed"
   | "Case Stayed";
+
+export type taskCompletionMethod = 
+  | "Link: Assign Task to Me and Go To Task"
+  | "Link: Assign Task to Me"
+  | "Event DropDown";
+
+
+
