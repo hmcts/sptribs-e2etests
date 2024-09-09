@@ -3,7 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   ContactPreference,
 } from "../../../helpers/commonHelpers.ts";
-import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
+import { initialState } from "../../../journeys/WA/editCase.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import editCaseSubjectDetailsObjectContent from "../../../fixtures/content/CaseAPI/editCase/editCaseSubjectDetailsObject_content.ts";
 import authors_content from "../../../fixtures/content/authors_content.ts";

@@ -29,8 +29,7 @@ const statePage: StatePage = {
     stateBeforeCompletion: string,
   ): Promise<void> {
     await page.locator(this.caseStateTab).click();
-    await page.waitForURL(/.*\#State$/);
-
+    await page.waitForSelector(`h4:has-text("${stateBeforeCompletion}")`);
     await Promise.all([
       await commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       commonHelpers.checkVisibleAndPresent(
@@ -53,7 +52,7 @@ const statePage: StatePage = {
     stateAfterCompletion: string,
   ): Promise<void> {
     await page.locator(this.caseStateTab).click();
-    await page.waitForURL(/.*\#State$/);
+    await page.waitForSelector(`h4:has-text("${stateAfterCompletion}")`);
     expect(page.locator("h4")).toHaveText(stateAfterCompletion);
   },
 };

@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, { SubCategory } from "../../../helpers/commonHelpers.ts";
-import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
+import { initialState } from "../../../journeys/WA/editCase.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import editCaseObjectsContactsContent from "../../../fixtures/content/CaseAPI/editCase/editCaseObjectsContacts_content.ts";
 

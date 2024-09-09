@@ -4,7 +4,7 @@ import commonHelpers, {
   Category,
   SubCategory,
 } from "../../../helpers/commonHelpers.ts";
-import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
+import { initialState } from "../../../journeys/WA/editCase.ts";
 import editCaseCategorisationDetailsContent from "../../../fixtures/content/CaseAPI/editCase/editCaseCategorisationDetails_content.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
