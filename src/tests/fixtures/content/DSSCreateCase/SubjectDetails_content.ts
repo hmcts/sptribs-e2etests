@@ -1,3 +1,5 @@
+const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
+
 const subjectDetailsContent = {
   pageTitle: "Who is the subject of this case?",
   hintText1:
@@ -8,7 +10,7 @@ const subjectDetailsContent = {
   textOnPage1: "Day",
   textOnPage2: "Month",
   textOnPage3: "Year",
-  name: "Subject AutoTesting",
+  name: `Subject AutoTesting${randomNumber}`,
   dayOfBirth: "1",
   monthOfBirth: "1",
   yearOfBirth: "2000",

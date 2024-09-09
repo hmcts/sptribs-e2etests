@@ -63,7 +63,9 @@ const historyTabPage: HistoryTabPage = {
         }
       }).filter(Boolean),
     ]);
-    if (accessibilityTest) await axeTest(page);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async checkPageInfo(
@@ -122,6 +124,11 @@ const historyTabPage: HistoryTabPage = {
           page.locator(
             `span.text-16:text-is("${authorsContent.automatedHearingCentreTeamLead}")`,
           ),
+          allEvents.length + 1,
+        );
+      } else if (user === "demoCitizen") {
+        await commonHelpers.checkVisibleAndPresent(
+          page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
           allEvents.length + 1,
         );
       }

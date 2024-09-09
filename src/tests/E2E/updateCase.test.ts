@@ -10,6 +10,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -40,6 +41,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -70,6 +72,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -99,6 +102,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -128,6 +132,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -157,6 +162,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -184,6 +190,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -211,6 +218,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       await createFEApplication.createFEApplication(
         page,
         false,
+        "citizen",
         false,
         false,
         true,
@@ -241,6 +249,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     await createFEApplication.createFEApplication(
       page,
       false,
+      "citizen",
       false,
       false,
       true,

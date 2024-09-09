@@ -17,6 +17,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -43,6 +44,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -69,6 +71,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -95,6 +98,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -121,6 +125,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -147,6 +152,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -173,6 +179,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -199,6 +206,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -225,6 +233,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -251,6 +260,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       cy,
+      "citizen",
       representationPresent,
       representationQualified,
       uploadOtherInfo,
@@ -275,6 +285,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   //   await createFEApplication.createFEApplication(
   //     page,
   //     cy,
+  //     "citizen",
   //     representationPresent,
   //     representationQualified,
   //     uploadOtherInfo,
@@ -299,6 +310,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   //   await createFEApplication.createFEApplication(
   //     page,
   //     cy,
+  //     "citizen",
   //     representationPresent,
   //     representationQualified,
   //     uploadOtherInfo,
@@ -326,6 +338,7 @@ test("Accessibility test every page on DSS. @DSSAccessibility", async ({
   await createFEApplication.createFEApplication(
     page,
     cy,
+    "citizen",
     representationPresent,
     representationQualified,
     uploadOtherInfo,

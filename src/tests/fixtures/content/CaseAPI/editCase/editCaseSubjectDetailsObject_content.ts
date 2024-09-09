@@ -1,3 +1,5 @@
+import subjectDetailsContent from "../../DSSCreateCase/SubjectDetails_content";
+
 const editCaseSubjectDetailsObject_content = {
   pageHint: "Case: Edit case",
   pageTitle: "Who is the subject of this case?",
@@ -15,7 +17,7 @@ const editCaseSubjectDetailsObject_content = {
   textOnPage9: "Email",
   textOnPage10: "Post",
   textOnPage11: "Subject's email address",
-  name: "Subject AutoTesting",
+  name: subjectDetailsContent.name,
   dayOfBirth: "1",
   monthOfBirth: "2",
   yearOfBirth: "2000",

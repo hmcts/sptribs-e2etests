@@ -40,7 +40,8 @@ const addNote: AddNote = {
       case "DSS-Submitted":
         caseNumber = await createFEApplication.createFEApplication(
           page,
-          true,
+          false,
+          "citizen",
           true,
           true,
           true,

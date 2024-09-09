@@ -4,6 +4,7 @@ const authors_content = {
   automatedSeniorCaseWorker: "Automated SENIORCASEWORKER",
   automatedHearingCentreAdmin: "Automated HEARINGCENTREADMIN",
   automatedHearingCentreTeamLead: "Automated HEARINGCENTRETEAMLEAD",
+  demoCitizen: "Dss CITIZEN1",
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",
   buildingAndStreet: "Buckingham Palace",

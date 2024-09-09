@@ -1,21 +1,21 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
-import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
-import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
+import { UserRole } from "../../../config.ts";
+import caseAPILoginPage from "../../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
+import casesPage from "../../../pages/CaseAPI/caseList/casesPage.ts";
 import verifyCaseDetails from "./DSSVerifyDetails.ts";
-import landingPage from "../../pages/DSSCreateCase/landingPage.ts";
-import loginPage from "../../pages/DSSCreateCase/loginPage.ts";
-import subjectDetailsPage from "../../pages/DSSCreateCase/subjectDetailsPage.ts";
-import subjectContactDetailsPage from "../../pages/DSSCreateCase/subjectContactDetailsPage.ts";
-import representationPage from "../../pages/DSSCreateCase/representationPage.ts";
-import representationQualifiedPage from "../../pages/DSSCreateCase/representationQualifiedPage.ts";
-import representativeDetailsPage from "../../pages/DSSCreateCase/representativeDetailsPage.ts";
-import uploadAppealFormPage from "../../pages/DSSCreateCase/uploadAppealFormPage.ts";
-import uploadSupportingDocumentsPage from "../../pages/DSSCreateCase/uploadSupportingDocumentsPage.ts";
-import uploadOtherInformationPage from "../../pages/DSSCreateCase/uploadOtherInformationPage.ts";
-import checkYourAnswersPage from "../../pages/DSSCreateCase/checkYourAnswersPage.ts";
-import applicationSubmittedPage from "../../pages/DSSCreateCase/applicationSubmittedPage.ts";
-import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
+import landingPage from "../../../pages/DSSCreateCase/landingPage.ts";
+import loginPage from "../../../pages/DSSCreateCase/loginPage.ts";
+import subjectDetailsPage from "../../../pages/DSSCreateCase/subjectDetailsPage.ts";
+import subjectContactDetailsPage from "../../../pages/DSSCreateCase/subjectContactDetailsPage.ts";
+import representationPage from "../../../pages/DSSCreateCase/representationPage.ts";
+import representationQualifiedPage from "../../../pages/DSSCreateCase/representationQualifiedPage.ts";
+import representativeDetailsPage from "../../../pages/DSSCreateCase/representativeDetailsPage.ts";
+import uploadAppealFormPage from "../../../pages/DSSCreateCase/uploadAppealFormPage.ts";
+import uploadSupportingDocumentsPage from "../../../pages/DSSCreateCase/uploadSupportingDocumentsPage.ts";
+import uploadOtherInformationPage from "../../../pages/DSSCreateCase/uploadOtherInformationPage.ts";
+import checkYourAnswersPage from "../../../pages/DSSCreateCase/checkYourAnswersPage.ts";
+import applicationSubmittedPage from "../../../pages/DSSCreateCase/applicationSubmittedPage.ts";
+import stateTab_content from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 
 type CreateFeApplication = {
   createFEApplication(
