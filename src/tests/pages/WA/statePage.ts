@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
-import state_content from "../../fixtures/content/CaseAPI/myWork/state_content.ts";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 
 type StatePage = {
@@ -33,18 +32,16 @@ const statePage: StatePage = {
     await page.waitForURL(/.*\#State$/);
 
     await Promise.all([
+      await commonHelpers.checkAllCaseTabs(page, caseNumber, false),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h3:text-is("${subjectDetailsContent.name}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        state_content.caseReference + caseNumber,
+        `Case number: ${caseNumber}`,
       ),
     ]);
-
     expect(page.locator("h4")).toHaveText(stateBeforeCompletion);
-    await page.locator(this.caseTasksTab).click();
-    await page.waitForURL(/.*\/tasks$/);
 
     if (accessibilityTest) {
       await axeTest(page);

@@ -16,13 +16,17 @@ type TasksPage = {
     numberOfDays: number,
     taskPriority: string,
     assignedUser: string,
-    completedByEvent: string,
+    event: any,
   ): Promise<void>;
   completedTaskNotVisible(
     page: Page,
     caseNumber: string,
     taskName: string,
   ): Promise<void>;
+  clickTaskLink(page: Page, event: any): Promise<void>;
+  markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
+  navigateToTaskTab(page: Page, event: any): Promise<void>;
+  chooseEventFromDropdown(page: Page, event: any): Promise<void>;
 };
 
 const tasksPage: TasksPage = {
@@ -37,7 +41,7 @@ const tasksPage: TasksPage = {
     numberOfDays: number,
     taskPriority: string,
     assignedUser: string,
-    completedByEvent: string,
+    event: any,
   ): Promise<void> {
     const dueDate = await commonHelpers.futureDate(numberOfDays);
 
@@ -76,7 +80,7 @@ const tasksPage: TasksPage = {
       ).toBeVisible(),
       expect(page.locator("#action_complete")).toHaveText(tasks_content.link1),
       expect(page.locator("#action_unclaim")).toHaveText(tasks_content.link2),
-      expect(page.locator(`a:text-is("${completedByEvent}")`)).toBeVisible(),
+      expect(page.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
 
     if (accessibilityTest) {
@@ -108,6 +112,35 @@ const tasksPage: TasksPage = {
     expect(
       page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
     ).not.toBeVisible();
+  },
+
+  async navigateToTaskTab(page: Page, event: any): Promise<void> {
+    await page.locator(this.caseTasksTab).click();
+    await page.waitForSelector(`a:text-is("${event}")`, { state: "attached" });
+  },
+
+  async clickTaskLink(page: Page, event: any): Promise<void> {
+    await page.locator(`a:text-is("${event}")`).click();
+  },
+
+  async chooseEventFromDropdown(page: Page, event: any): Promise<void> {
+    await page.selectOption("#next-step", event);
+    await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
+    await page.getByRole("button", { name: "Go" }).click();
+  },
+
+  async markAsDone(page, nextTriggeredTaskCleanUp): Promise<void> {
+    await page.waitForSelector(
+      `p strong:text-is("${nextTriggeredTaskCleanUp}")`,
+    );
+    await page.locator("#action_complete").click();
+    await page.waitForSelector(`h1:text-is("Mark the task as done")`);
+    await page.locator("#submit-button").click();
+    await page.waitForSelector(`h2:text-is("Active tasks")`);
+    expect(
+      page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
+    ).not.toBeVisible();
+    console.log("test data cleaned up");
   },
 };
 

@@ -10,12 +10,14 @@ type MyWorkPage = {
   filterButton: string;
   assignToMeAndGoToTask: string;
   assignToMeLink: string;
+  myWorkLink: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   selectAvailableTasks(page: Page): Promise<void>;
   seeTask(page: Page, taskName: string): Promise<void>;
   clickAssignAndGoToTask(page: Page): Promise<void>;
   clickAssignToMe(page: Page): Promise<void>;
   navigateToTaskPage(page: Page, taskName: string): Promise<void>;
+  navigateToMyWorkPage(page: Page): Promise<void>;
 };
 
 const myWorkPage: MyWorkPage = {
@@ -24,6 +26,7 @@ const myWorkPage: MyWorkPage = {
   filterButton: ".hmcts-button--secondary",
   assignToMeAndGoToTask: "#action_claim-and-go",
   assignToMeLink: "#action_claim",
+  myWorkLink: `nav a:text-is(" My work ")`,
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await page.locator(".hmcts-primary-navigation__link").first().click();
@@ -178,6 +181,10 @@ const myWorkPage: MyWorkPage = {
         `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,
       )
       .click();
+  },
+  async navigateToMyWorkPage(page: Page): Promise<void> {
+    await page.locator(this.myWorkLink).click();
+    await page.waitForSelector(`h3:text-is("My work")`);
   },
 };
 

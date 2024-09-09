@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
-import createFEApplication from "../DSSCreateCase/createCase.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import commonHelpers, {
@@ -8,69 +7,70 @@ import commonHelpers, {
 } from "../../helpers/commonHelpers.ts";
 import tasksPage from "../../pages/WA/tasksPage.ts";
 import statePage from "../../pages/WA/statePage.ts";
-import editCase from "./editCase.ts";
 
-type RegisterNewCase = {
+type Task = {
   seeTask(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-  ): Promise<void>;
-  completeTask(
+    taskName: string,
+  ): Promise<any>;
+  initiateTask(
     page: Page,
     user: UserRole,
     taskCompletionMethod: taskCompletionMethod,
     accessibilityTest: boolean,
+    caseNumber: string,
+    taskName: string,
+    priority: string,
+    assignedUser: string,
+    numberOfDays: number,
+    event: any,
+    stateBeforeCompletion: string,
+  ): Promise<void>;
+  checkCompletedTask(
+    page: Page,
+    accessibilityTest: boolean,
+    taskName: string,
+    caseNumber: string,
+    stateAfterCompletion: string,
+  ): Promise<any>;
+  cleanUpTestData(
+    page: Page,
+    tabName: string,
+    nextTriggeredTaskToCleanUp: string,
+    taskName: string,
   ): Promise<void>;
 };
-const taskName = "Register New Case";
-const priority = " low ";
-const assignedUser = "sptribswa regionalhearingcentreadmin";
-const numberOfDays = 5;
-const completedByEvent = "Case: Edit Case";
-const stateBeforeCompletion = "Case Status:  DSS-Submitted";
-const stateAfterCompletion = "Case Status:  Submitted";
 
-const registerNewCase: RegisterNewCase = {
+const task: Task = {
   async seeTask(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-  ): Promise<void> {
-    let caseNumber: any;
-    caseNumber = await createFEApplication.createFEApplication(
-      page,
-      false,
-      "demoCitizen",
-      true,
-      true,
-      false,
-      false,
-      true,
-      false,
-      false,
-      false,
-    );
-    console.log(`Case Number : ${caseNumber}`);
+    taskName: string,
+  ): Promise<any> {
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await caseAPILoginPage.SignInUser(page, user);
     await myWorkPage.checkPageLoads(page, accessibilityTest);
     await myWorkPage.selectAvailableTasks(page);
     await myWorkPage.seeTask(page, taskName);
-    //handle task if task list spills over onto page 2
-    return caseNumber;
   },
 
-  async completeTask(
+  async initiateTask(
     page: Page,
     user: UserRole,
     taskCompletionMethod: taskCompletionMethod,
     accessibilityTest: boolean,
+    caseNumber: string,
+    taskName: string,
+    priority: string,
+    assignedUser: string,
+    numberOfDays: number,
+    event: any,
+    stateBeforeCompletion: string,
   ): Promise<void> {
-    let caseNumber: any;
-    caseNumber = await this.seeTask(page, user, accessibilityTest);
-
     switch (taskCompletionMethod) {
       default: //"Link: Assign Task to Me and Go To Task"
         await myWorkPage.clickAssignAndGoToTask(page);
@@ -82,7 +82,7 @@ const registerNewCase: RegisterNewCase = {
           numberOfDays,
           priority,
           assignedUser,
-          completedByEvent,
+          event,
         );
         await statePage.checkStateBeforeTaskCompletion(
           page,
@@ -90,7 +90,8 @@ const registerNewCase: RegisterNewCase = {
           caseNumber,
           stateBeforeCompletion,
         );
-
+        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.clickTaskLink(page, event);
         break;
       case "Link: Assign Task to Me":
         await myWorkPage.clickAssignToMe(page);
@@ -103,7 +104,7 @@ const registerNewCase: RegisterNewCase = {
           numberOfDays,
           priority,
           assignedUser,
-          completedByEvent,
+          event,
         );
         await statePage.checkStateBeforeTaskCompletion(
           page,
@@ -111,7 +112,8 @@ const registerNewCase: RegisterNewCase = {
           caseNumber,
           stateBeforeCompletion,
         );
-
+        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.clickTaskLink(page, event);
         break;
       case "Event DropDown":
         await myWorkPage.clickAssignAndGoToTask(page);
@@ -123,7 +125,7 @@ const registerNewCase: RegisterNewCase = {
           numberOfDays,
           priority,
           assignedUser,
-          completedByEvent,
+          event,
         );
         await statePage.checkStateBeforeTaskCompletion(
           page,
@@ -131,34 +133,45 @@ const registerNewCase: RegisterNewCase = {
           caseNumber,
           stateBeforeCompletion,
         );
-        await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
+        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.chooseEventFromDropdown(page, event);
         break;
     }
-
-    await editCase.editCase(
-      page,
-      //user,
-      false,
-      "DSS Submitted",
-      "Assessment",
-      "Fatal",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber,
-    );
+  },
+  async checkCompletedTask(
+    page: Page,
+    accessibilityTest: boolean,
+    taskName: string,
+    caseNumber: string,
+    stateAfterCompletion: string,
+  ): Promise<any> {
     await statePage.checkStateAfterTaskCompletion(page, stateAfterCompletion);
     await tasksPage.completedTaskNotVisible(page, caseNumber, taskName);
     console.log("task completion successful");
   },
+
+  async cleanUpTestData(
+    page,
+    tabName,
+    nextTriggeredTaskToCleanUp,
+    taskName,
+  ): Promise<void> {
+    type tabName = "Available tasks" | "My tasks";
+    switch (tabName) {
+      default: //available tasks
+        await myWorkPage.navigateToMyWorkPage(page);
+        await myWorkPage.selectAvailableTasks(page);
+        await myWorkPage.seeTask(page, nextTriggeredTaskToCleanUp);
+        await myWorkPage.clickAssignAndGoToTask(page);
+        await tasksPage.markAsDone(page, nextTriggeredTaskToCleanUp);
+        break;
+      case "My tasks":
+        await myWorkPage.navigateToMyWorkPage(page);
+        await myWorkPage.navigateToTaskPage(page, taskName);
+        await tasksPage.markAsDone(page, taskName);
+        break;
+    }
+  },
 };
 
-export default registerNewCase;
+export default task;

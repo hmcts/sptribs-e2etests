@@ -1,5 +1,3 @@
-//import { title } from "process";
-
 const tasks_content = {
   title: "Active tasks",
   caseReference: "Case number: ",

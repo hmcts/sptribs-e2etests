@@ -1,19 +1,12 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import commonHelpers, {
-  allEvents,
   caseRegion,
   Category,
   ContactPreference,
   Scheme,
   SubCategory,
 } from "../../helpers/commonHelpers.ts";
-//import buildCase from "./buildCase.ts";
-//import hearingOptions from "./hearingOptions.ts";
-//import createListing from "./createListing.ts";
-//import createSummary from "./createSummary.ts";
-//import DSSCreateCase from "../DSSCreateCase/createCase.ts";
-//import createCase from "./createCase.ts";
 import editCaseCategorisationDetailsPage from "../../pages/CaseAPI/editCase/editCaseCategorisationDetailsPage.ts";
 import editCaseDateObjectsPage from "../../pages/CaseAPI/editCase/editCaseDateObjectsPage.ts";
 import editCaseObjectsSubjectsPage from "../../pages/CaseAPI/editCase/editCaseObjectsSubjectsPage.ts";
@@ -36,7 +29,6 @@ export type initialState =
 type EditCase = {
   editCase(
     page: Page,
-    //user: UserRole,
     accessibilityTest: boolean,
     initialState: initialState,
     category: Category,
@@ -59,7 +51,6 @@ type EditCase = {
 const editCase: EditCase = {
   async editCase(
     page: Page,
-    //user: UserRole,
     accessibilityTest: boolean,
     initialState: initialState,
     category: Category,
@@ -77,12 +68,6 @@ const editCase: EditCase = {
     errorMessaging: boolean,
     caseNumber: string,
   ): Promise<void> {
-    //let caseNumber: string | void;
-
-    await page.locator(`a:text-is("Case: Edit Case")`).click();
-
-    // handle selecting event from dropdown whether or not it completes a task
-
     switch (errorMessaging) {
       default:
         await editCaseCategorisationDetailsPage.checkPageLoads(
