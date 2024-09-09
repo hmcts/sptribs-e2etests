@@ -119,7 +119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.47.0":
+"@playwright/test@npm:^1.46.1":
   version: 1.47.0
   resolution: "@playwright/test@npm:1.47.0"
   dependencies:
@@ -175,12 +175,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.10.0":
-  version: 20.16.3
-  resolution: "@types/node@npm:20.16.3"
+"@types/node@npm:*":
+  version: 22.5.4
+  resolution: "@types/node@npm:22.5.4"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/3b14b8b3cb92adc7db69f8cf351e7b6b5001e5c7cdb07470943215afeafc2952ae588c918543784e8f8e975d43d609ce0c7bced91f1b8745f1669d6137adaabc
+  checksum: 10/d46e0abf437b36bdf89011287aa43873d68ea6f2521a11b5c9a033056fd0d07af36daf51439010e8d41c62c55d0b00e9b5e09ed00bb2617723f73f28a873903a
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.16.5":
+  version: 20.16.5
+  resolution: "@types/node@npm:20.16.5"
+  dependencies:
+    undici-types: "npm:~6.19.2"
+  checksum: 10/39a8457149dc17cdea57afc90d4da53182fdb8b958d5bb065a15d123d81d4efa6b51a0de92428d05ead2e63ce07195586f71083401b99cdbcd04662344fbf7a1
   languageName: node
   linkType: hard
 
@@ -646,12 +655,12 @@ __metadata:
   linkType: hard
 
 "follow-redirects@npm:^1.15.6":
-  version: 1.15.8
-  resolution: "follow-redirects@npm:1.15.8"
+  version: 1.15.9
+  resolution: "follow-redirects@npm:1.15.9"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10/7b804d27de4e0e5774b0cb4e09fa104f3db841856a10180e83fe7dbdc8d01625da0a3684b9ec99fc84f9ecf9cb9236a9872044fab1ea6944a95c29ec4552fec4
+  checksum: 10/e3ab42d1097e90d28b913903841e6779eb969b62a64706a3eb983e894a5db000fbd89296f45f08885a0e54cd558ef62e81be1165da9be25a6c44920da10f424c
   languageName: node
   linkType: hard
 
@@ -1388,7 +1397,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.47.0, playwright-core@npm:^1.47.0":
+"playwright-core@npm:1.47.0, playwright-core@npm:^1.46.1":
   version: 1.47.0
   resolution: "playwright-core@npm:1.47.0"
   bin:
@@ -1715,11 +1724,11 @@ __metadata:
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
-    "@playwright/test": "npm:^1.47.0"
-    "@types/node": "npm:^20.10.0"
+    "@playwright/test": "npm:^1.46.1"
+    "@types/node": "npm:^20.16.5"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
-    playwright-core: "npm:^1.47.0"
+    playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.3.3"
     ts-node: "npm:^10.9.2"
