@@ -92,7 +92,7 @@ const myWorkPage: MyWorkPage = {
       const paginationExists =
         (await page.locator(paginationLocator).count()) > 0;
       if (!paginationExists) {
-        console.log("No pagination, reloading page for Cron Job");
+        // console.log("No pagination, reloading page for Cron Job");
         await page.reload();
         await page.waitForTimeout(10000); // // waiting for cron job before rechecking
       } else {
@@ -130,7 +130,7 @@ const myWorkPage: MyWorkPage = {
         }
       }
     }
-    expect(
+    await expect(
       page
         .locator("tr")
         .filter({
