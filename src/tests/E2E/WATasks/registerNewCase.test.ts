@@ -461,70 +461,70 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     );
     await task.cleanUpTestData(page, "My tasks", taskName, taskName);
   });
+});
 
-  test("Task completion: Accessibility test / Edit Case : Accessibility test", async ({
+test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibilityCaseAPI", async ({
+  page,
+}) => {
+  let caseNumber08: any;
+  caseNumber08 = await createFEApplication.createFEApplication(
     page,
-  }) => {
-    let caseNumber08: any;
-    caseNumber08 = await createFEApplication.createFEApplication(
-      page,
-      false,
-      "demoCitizen",
-      true,
-      true,
-      false,
-      false,
-      true,
-      false,
-      true,
-      false,
-    );
-    console.log(`Case Number : ${caseNumber08}`);
-    await task.seeTask(page, userRole, true, taskName);
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      true,
-      caseNumber08,
-      taskName,
-      priority,
-      assignedUser,
-      numberOfDays,
-      event,
-      stateBeforeCompletion,
-    );
-    await editCase.editCase(
-      page,
-      true,
-      "DSS Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      true,
-      false,
-      caseNumber08,
-    );
-    await task.checkCompletedTask(
-      page,
-      true,
-      taskName,
-      caseNumber08,
-      stateAfterCompletion,
-    );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
-  });
+    false,
+    "demoCitizen",
+    true,
+    true,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+  );
+  console.log(`Case Number : ${caseNumber08}`);
+  await task.seeTask(page, userRole, true, taskName);
+  await task.initiateTask(
+    page,
+    userRole,
+    "Link: Assign Task to Me and Go To Task",
+    true,
+    caseNumber08,
+    taskName,
+    priority,
+    assignedUser,
+    numberOfDays,
+    event,
+    stateBeforeCompletion,
+  );
+  await editCase.editCase(
+    page,
+    true,
+    "DSS Submitted",
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    true,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    true,
+    false,
+    caseNumber08,
+  );
+  await task.checkCompletedTask(
+    page,
+    true,
+    taskName,
+    caseNumber08,
+    stateAfterCompletion,
+  );
+  await task.cleanUpTestData(
+    page,
+    "Available tasks",
+    nextTriggeredTaskToCleanUp,
+    taskName,
+  );
 });

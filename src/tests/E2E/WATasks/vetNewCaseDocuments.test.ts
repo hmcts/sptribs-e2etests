@@ -245,7 +245,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   });
 });
 
-test("Task completion: Accessibility test / Build Case : Accessibility test", async ({
+test("Task completion: Accessibility test / Build Case : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
   let caseNumber04: any;
