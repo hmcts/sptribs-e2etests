@@ -5,7 +5,7 @@ import commonHelpers, {
   State,
 } from "../../helpers/commonHelpers.ts";
 import closeCase from "./closeCase.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import selectDocumentsPage from "../../pages/CaseAPI/contactParties/selectDocumentsPage.ts";
 import partiesToContactPage from "../../pages/CaseAPI/contactParties/partiesToContactPage.ts";
 import submitPage from "../../pages/CaseAPI/contactParties/submitPage.ts";

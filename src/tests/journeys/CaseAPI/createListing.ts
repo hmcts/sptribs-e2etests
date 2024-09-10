@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import commonHelpers, {
   allEvents,
   caseRegionCode,
