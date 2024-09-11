@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import hearingOptions from "./hearingOptions.ts";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import config, { UserRole } from "../../config.ts";
 import addStayPage, {
   StayReason,

@@ -4,7 +4,7 @@ import commonHelpers, {
   allEvents,
   parties,
 } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import selectAdditionalDocuments from "../../pages/CaseAPI/issueToRespondent/selectAdditionalDocumentsPage.ts";
 import notifyOtherPartiesPage from "../../pages/CaseAPI/issueToRespondent/notifyOtherPartiesPage.ts";
 import submitPage from "../../pages/CaseAPI/issueToRespondent/submitPage.ts";

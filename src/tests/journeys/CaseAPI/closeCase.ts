@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import hearingOptions from "./hearingOptions.ts";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import caseWarningPage from "../../pages/CaseAPI/closeCase/caseWarningPage.ts";
 import selectReasonPage, {

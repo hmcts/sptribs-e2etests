@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import hearingOptions from "./hearingOptions.ts";
 import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
 import closeCase from "./closeCase.ts";
-import createCase from "./createCase.ts";
+import createCase from "../WA/createCase.ts";
 import uploadCaseDocumentsPage from "../../pages/CaseAPI/documentManagementUpload/uploadCaseDocumentsPage.ts";
 import submitPage from "../../pages/CaseAPI/documentManagementUpload/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/documentManagementUpload/confirmPage.ts";

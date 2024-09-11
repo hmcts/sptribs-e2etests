@@ -5,8 +5,8 @@ import commonHelpers, {
   State,
 } from "../../helpers/commonHelpers.ts";
 import createFEApplication from "../DSSCreateCase/createCase.ts";
-import createCase from "./createCase.ts";
-import buildCase from "./buildCase.ts";
+import createCase from "../WA/createCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import createListing from "./createListing.ts";
 import hearingOptions from "./hearingOptions.ts";
 import createSummary from "./createSummary.ts";

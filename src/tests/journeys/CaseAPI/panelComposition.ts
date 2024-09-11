@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import casePanelCompositionPage, {
   Panel2,
   Panel3,

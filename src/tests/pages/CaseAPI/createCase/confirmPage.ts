@@ -7,7 +7,7 @@ type ConfirmPage = {
   closeAndReturn: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
   returnCaseNumber(page: Page): Promise<string>;
-  closeAndReturnToCase(page: Page): Promise<string>;
+  closeAndReturnToCase(page: Page): Promise<void>;
 };
 
 const createCaseConfirmPage: ConfirmPage = {
@@ -72,9 +72,8 @@ const createCaseConfirmPage: ConfirmPage = {
     }
   },
 
-  async closeAndReturnToCase(page: Page): Promise<string> {
+  async closeAndReturnToCase(page: Page): Promise<void> {
     await page.locator(this.closeAndReturn).click();
-    return await commonHelpers.getTimestamp();
   },
 };
 

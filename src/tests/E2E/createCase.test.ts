@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import createCase from "../journeys/CaseAPI/createCase.ts";
+import createCase from "../journeys/WA/createCase.ts";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Caseworker - Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({

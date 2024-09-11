@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import hearingOptions from "./hearingOptions.ts";
 import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 import closeCase from "./closeCase.ts";
 import createEditStay from "./createEditStay.ts";
 import createListing from "./createListing.ts";

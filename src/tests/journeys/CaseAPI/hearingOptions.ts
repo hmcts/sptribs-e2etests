@@ -9,7 +9,7 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
 import submitPage from "../../pages/CaseAPI/hearingOptions/submitPage.ts";
-import buildCase from "./buildCase.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
 
 type HearingOptions = {
   hearingOptions(
