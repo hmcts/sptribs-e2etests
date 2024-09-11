@@ -18,7 +18,7 @@ const stateAfterCompletion = "Case Status:  Case management";
 const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
-  test.only("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     let caseNumber01: any;
