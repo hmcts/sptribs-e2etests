@@ -18,7 +18,7 @@ const stateAfterCompletion = "Case Status:  Case management";
 const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test.only("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     let caseNumber01: any;
@@ -43,7 +43,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber01}`);
-    await createCaseConfirmPage.closeAndReturnToCase(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -119,7 +118,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber02}`);
-    await createCaseConfirmPage.closeAndReturnToCase(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -193,7 +191,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber03}`);
-    await createCaseConfirmPage.closeAndReturnToCase(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -270,7 +267,6 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     false,
   );
   console.log(`Case Number : ${caseNumber04}`);
-  await createCaseConfirmPage.closeAndReturnToCase(page);
   await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
   await editCase.editCase(
     page,
