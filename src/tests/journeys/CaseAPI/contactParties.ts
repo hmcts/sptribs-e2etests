@@ -14,7 +14,7 @@ import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
 import confirmPage from "../../pages/CaseAPI/contactParties/confirmPage.ts";
-import createCase from "./createCase.ts";
+import createCase from "../WA/createCase.ts";
 
 type ContactParties = {
   contactParties(

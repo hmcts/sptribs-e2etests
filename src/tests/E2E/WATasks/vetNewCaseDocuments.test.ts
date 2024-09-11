@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import createCase from "../../journeys/CaseAPI/createCase.ts";
+import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
 import editCase from "../../journeys/WA/editCase.ts";
