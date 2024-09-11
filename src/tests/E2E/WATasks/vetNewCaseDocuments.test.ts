@@ -5,7 +5,6 @@ import task from "../../journeys/WA/task.ts";
 import editCase from "../../journeys/WA/editCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import createCaseConfirmPage from "../../pages/CaseAPI/createCase/confirmPage.ts";
 
 const taskName = "Vet New Case Documents";
 const priority = " low ";
