@@ -19,7 +19,6 @@ const numberOfDays = 2;
 const event = "Case: Issue to respondent";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
-// const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
 
 test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -769,6 +768,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       stateAfterCompletion,
     );
   });
+
   test("Issue to respondent : Error messaging", async ({ page }) => {
     let caseNumber09: any;
     caseNumber09 = await createCase.createCase(
