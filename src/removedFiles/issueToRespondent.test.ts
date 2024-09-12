@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import issueToRespondent from "../journeys/CaseAPI/issueToRespondent.ts";
+import issueToRespondent from "./issueToRespondent.ts";
 
 test.describe("Issue to respondent tests @CaseAPI", () => {
   test("As a caseworker Issue a case to all parties. @crossbrowserCaseAPI", async ({

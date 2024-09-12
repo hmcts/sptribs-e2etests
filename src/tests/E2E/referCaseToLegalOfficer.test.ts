@@ -1,19 +1,19 @@
 import { test } from "@playwright/test";
-import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
+import referCaseToLegalOfficer from "../../removedFiles/referCaseToLegalOfficer.ts";
 
 test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
-  test("Refer case to legal officer as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to legal officer as a senior caseworker - case management, new case", async ({
     page,

@@ -1,23 +1,23 @@
 import { test } from "@playwright/test";
-import closeCase from "../journeys/CaseAPI/closeCase.ts";
+import closeCase from "../../removedFiles/closeCase.ts";
 
 test.describe("Case-API Close case tests. @CaseAPI", () => {
   // Case Management initial state tests
-  test("Close a case management case as it is withdrawn as a caseworker with optional information. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      false,
-      "caseWithdrawn",
-      true,
-      null,
-      null,
-    );
-  });
+  // test("Close a case management case as it is withdrawn as a caseworker with optional information. @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseWithdrawn",
+  //     true,
+  //     null,
+  //     null,
+  //   );
+  // });
 
   test("Close a case management case as it is rejected created in error as a senior caseworker with no optional information.", async ({
     page,

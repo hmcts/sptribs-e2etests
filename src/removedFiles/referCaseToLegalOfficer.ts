@@ -1,20 +1,20 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import hearingOptions from "./hearingOptions.ts";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "../../../removedFiles/buildCase.ts";
+import config, { UserRole } from "../tests/config.ts";
+import hearingOptions from "../tests/journeys/CaseAPI/hearingOptions.ts";
+import commonHelpers, { allEvents } from "../tests/helpers/commonHelpers.ts";
+import buildCase from "./buildCase.ts";
 import closeCase from "./closeCase.ts";
-import createEditStay from "./createEditStay.ts";
-import createListing from "./createListing.ts";
-import createSummary from "./createSummary.ts";
+import createEditStay from "../tests/journeys/CaseAPI/createEditStay.ts";
+import createListing from "../tests/journeys/CaseAPI/createListing.ts";
+import createSummary from "../tests/journeys/CaseAPI/createSummary.ts";
 import { initialState } from "./referCaseToJudge.ts";
-import { referralReason } from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
-import referCaseToLegalOfficerReasonPage from "../../pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReasonPage.ts";
-import referCaseToLegalOfficerAdditionalInfoPage from "../../pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerAdditionalInfoPage.ts";
-import submitPage from "../../pages/CaseAPI/referCaseToLegalOfficer/submitPage.ts";
-import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
-import caseReferralsTabPage from "../../pages/CaseAPI/caseTabs/caseReferralsTabPage.ts";
-import confirmPage from "../../pages/CaseAPI/referCaseToLegalOfficer/confirmPage.ts";
+import { referralReason } from "../tests/pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
+import referCaseToLegalOfficerReasonPage from "../tests/pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReasonPage.ts";
+import referCaseToLegalOfficerAdditionalInfoPage from "../tests/pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerAdditionalInfoPage.ts";
+import submitPage from "../tests/pages/CaseAPI/referCaseToLegalOfficer/submitPage.ts";
+import historyTabPage from "../tests/pages/CaseAPI/caseTabs/historyTabPage.ts";
+import caseReferralsTabPage from "../tests/pages/CaseAPI/caseTabs/caseReferralsTabPage.ts";
+import confirmPage from "../tests/pages/CaseAPI/referCaseToLegalOfficer/confirmPage.ts";
 
 type ReferCaseToLegalOfficer = {
   referCaseToLegalOfficer(

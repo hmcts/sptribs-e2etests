@@ -47,7 +47,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       page,
       false,
       "Submitted",
-      "Assessment",
+      "Eligibility",
       "Fatal",
       true,
       true,

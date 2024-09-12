@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
-import closeCase from "./closeCase.ts";
+import closeCase from "../../../removedFiles/closeCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import reinstateWarningPage from "../../pages/CaseAPI/reinstateCase/reinstateWarningPage.ts";

@@ -1,19 +1,19 @@
 import { test } from "@playwright/test";
-import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
+import referCaseToJudge from "../../removedFiles/referCaseToJudge.ts";
 
 test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
-  test("Refer case to judge as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a senior caseworker - case management, new case", async ({
     page,

@@ -6,7 +6,7 @@ import hearingOptions from "./hearingOptions.ts";
 import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
-import closeCase from "./closeCase.ts";
+import closeCase from "../../../removedFiles/closeCase.ts";
 import createCase from "../WA/createCase.ts";
 import uploadCaseDocumentsPage from "../../pages/CaseAPI/documentManagementUpload/uploadCaseDocumentsPage.ts";
 import submitPage from "../../pages/CaseAPI/documentManagementUpload/submitPage.ts";

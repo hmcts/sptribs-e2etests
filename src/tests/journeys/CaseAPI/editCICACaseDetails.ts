@@ -5,7 +5,7 @@ import buildCase from "../../../removedFiles/buildCase.ts";
 import createListing from "./createListing.ts";
 import createSummary from "./createSummary.ts";
 import createEditStay from "./createEditStay.ts";
-import closeCase from "./closeCase.ts";
+import closeCase from "../../../removedFiles/closeCase.ts";
 import editCICACaseDetailsEditCaseDetailsPage from "../../pages/CaseAPI/editCICACaseDetails/editCICACaseDetailsEditCaseDetailsPage.ts";
 import submitPage from "../../pages/CaseAPI/editCICACaseDetails/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/editCICACaseDetails/confirmPage.ts";
