@@ -2,7 +2,6 @@ import { test } from "@playwright/test";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
-import editCase from "../../journeys/WA/editCase.ts";
 import issueToRespondent from "../../journeys/WA/issueToRespondent.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
@@ -21,7 +20,7 @@ const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
 test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
     page,
   }) => {
     let caseNumber01: any;
@@ -46,48 +45,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber01}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber01,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber01,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber01,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -119,7 +78,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completable via next steps link - assign to me", async ({
+  test("Task is completable via next steps link - assign to me - Issue case to a subject", async ({
     page,
   }) => {
     let caseNumber02: any;
@@ -144,48 +103,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber02}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber02,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber02,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber02,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -217,7 +136,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown - Issue a case to a representative", async ({
+    page,
+  }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -240,48 +161,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber03}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber03,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber03,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber03,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -338,48 +219,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber04}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber04,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber04,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber04,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -436,48 +277,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber05}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber05,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber05,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber05,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -532,48 +333,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber06}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber06,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber06,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber06);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber06,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await myWorkPage.clickAssignAndGoToTask(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -619,48 +380,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber07}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber07,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber07,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber07);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber07,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await myWorkPage.clickAssignAndGoToTask(page);
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
@@ -705,48 +426,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber08}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber08,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber08,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber08);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber08,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await myWorkPage.clickAssignAndGoToTask(page);
     await commonHelpers.chooseEventFromDropdown(
@@ -792,48 +473,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber09}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-    await editCase.editCase(
-      page,
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber09,
-    );
-    await task.seeTask(page, userRole, false, "Vet New Case Documents");
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber09,
-      "Vet New Case Documents",
-      " low ",
-      assignedUser,
-      5,
-      "Case: Build case",
-      "Case Status:  Submitted",
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber09);
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber09,
-      "Case Status:  Case management",
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -891,48 +532,8 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
     false,
   );
   console.log(`Case Number : ${caseNumber010}`);
-  await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
-  await editCase.editCase(
-    page,
-    false,
-    "Submitted",
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    true,
-    "1996",
-    "Scotland",
-    true,
-    false,
-    true,
-    false,
-    false,
-    caseNumber010,
-  );
-  await task.seeTask(page, userRole, false, "Vet New Case Documents");
-  await task.initiateTask(
-    page,
-    userRole,
-    "Link: Assign Task to Me and Go To Task",
-    false,
-    caseNumber010,
-    "Vet New Case Documents",
-    " low ",
-    assignedUser,
-    5,
-    "Case: Build case",
-    "Case Status:  Submitted",
-  );
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber010);
-  await task.checkCompletedTask(
-    page,
-    false,
-    taskName,
-    caseNumber010,
-    "Case Status:  Case management",
-  );
   await task.seeTask(page, userRole, true, taskName);
   await task.initiateTask(
     page,
