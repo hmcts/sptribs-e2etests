@@ -296,7 +296,7 @@ const commonHelpers: CommonHelpers = {
     await page.waitForSelector("#next-step", { state: "visible" });
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
-    await page.getByRole("button", { name: "Go" }).click();
+    await page.getByRole("button", { name: "Go" }).click( { force : true});
   },
 
   async checkNumberAndSubject(page: Page, caseNumber: string): Promise<void> {
