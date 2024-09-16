@@ -39,6 +39,7 @@ const caseFilterPage: CaseFilterPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
+    await page.waitForSelector("#cc-jurisdiction");
     await page.selectOption(this.jurisdiction, caseFilter_content.dropdown1);
     await page.selectOption(this.caseType, caseFilter_content.dropdown2);
     await page.selectOption(this.event, caseFilter_content.dropdown3);

@@ -278,7 +278,7 @@ const commonHelpers: CommonHelpers = {
     );
     let fileUploadLocator = `#${selector}_${docNumber}_documentLink`;
     await page.locator(fileUploadLocator).setInputFiles(file);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await page.waitForSelector(".error-message", {state: "detached"});
   },
 
   async checkVisibleAndPresent(locator: Locator, count: number): Promise<void> {
@@ -297,6 +297,10 @@ const commonHelpers: CommonHelpers = {
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click({ force: true });
+    while (await page.isVisible("#next-step")) {
+      await page.getByRole("button", { name: "Go" }).click();
+      await page.waitForTimeout(1000);
+    }
   },
 
   async checkNumberAndSubject(page: Page, caseNumber: string): Promise<void> {
