@@ -30,8 +30,6 @@ export type UserRole =
   | "waTribunalJudgeSalaried"
   | "waTribunalJudgeFeePaid";
 
-
-
 interface Config {
   [key: string]: UserCredentials | string | boolean;
 }
