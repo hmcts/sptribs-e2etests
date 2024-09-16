@@ -24,7 +24,11 @@ export type UserRole =
   | "waRegionalHearingCentreTeamLead"
   | "waCTSCAdmin"
   | "waCTSCTeamLead"
-  | "waRespondent";
+  | "waRespondent"
+  | "waPresidentOfTribunal"
+  | "waPrincipalJudge"
+  | "waTribunalJudgeSalaried"
+  | "waTribunalJudgeFeePaid";
 
 interface Config {
   [key: string]: UserCredentials | string | boolean;
@@ -135,6 +139,36 @@ const config: Config = {
   waRespondent: {
     email: process.env.WA_RESPONDENT_USERNAME || "wa-respondent-username",
     password: process.env.WA_RESPONDENT_PASSWORD || "wa-respondent-password",
+  },
+  waPresidentOfTribunal: {
+    email:
+      process.env.WA_PRESIDENT_OF_TRIBUNAL_USERNAME ||
+      "wa-presidentOfTribunal-username",
+    password:
+      process.env.WA_PRESIDENT_OF_TRIBUNAL_PASSWORD ||
+      "wa-presidentOfTribunal-password",
+  },
+  waPrincipalJudge: {
+    email:
+      process.env.WA_PRINCIPAL_JUDGE_USERNAME || "wa-principalJudge-username",
+    password:
+      process.env.WA_PRINCIPAL_JUDGE_PASSWORD || "wa-principalJudge-password",
+  },
+  waTribunalJudgeSalaried: {
+    email:
+      process.env.WA_TRIBUNAL_JUDGE_SALARIED_USERNAME ||
+      "wa-tribunalJudgeSalaried-username",
+    password:
+      process.env.WA_TRIBUNAL_JUDGE_SALARIED_PASSWORD ||
+      "wa-tribunalJudgeSalaried-password",
+  },
+  waTribunalJudgeFeePaid: {
+    email:
+      process.env.WA_TRIBUNAL_JUDGE_FEE_PAID_USERNAME ||
+      "wa-tribunalJudgeFeePaid-username",
+    password:
+      process.env.WA_TRIBUNAL_JUDGE_FEE_PAID_PASSWORD ||
+      "wa-tribunalJudgeFeePaid-password",
   },
 
   FEBaseURL: process.env.DSS_BASE_URL || "FEBaseURL",

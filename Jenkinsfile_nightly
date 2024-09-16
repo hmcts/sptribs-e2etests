@@ -99,7 +99,15 @@ def secrets = [
                 secret('wa-ctscTeamLead-username', 'WA_CTSC_TEAM_LEAD_USERNAME'),
                 secret('wa-ctscTeamLead-password', 'WA_CTSC_TEAM_LEAD_PASSWORD'),
                 secret('wa-respondent-user', 'WA_RESPONDENT_USERNAME'),
-                secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD')
+                secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD'),
+                secret('wa-presidentOfTribunal-username', 'WA_PRESIDENT_OF_TRIBUNAL_USERNAME'),
+                secret('wa-presidentOfTribunal-password', 'WA_PRESIDENT_OF_TRIBUNAL_PASSWORD'),
+                secret('wa-principalJudge-username', 'WA_PRINCIPAL_JUDGE_USERNAME'),
+                secret('wa-principalJudge-password', 'WA_PRINCIPAL_JUDGE_PASSWORD'),
+                secret('wa-tribunalJudgeSalaried-username', 'WA_TRIBUNAL_JUDGE_SALARIED_USERNAME'),
+                secret('wa-tribunalJudgeSalaried-password', 'WA_TRIBUNAL_JUDGE_SALARIED_PASSWORD'),
+                secret('wa-tribunalJudgeFeePaid-username', 'WA_TRIBUNAL_JUDGE_FEE_PAID_USERNAME'),
+                secret('wa-tribunalJudgeFeePaid-password', 'WA_TRIBUNAL_JUDGE_FEE_PAID_PASSWORD'),
         ]
 ]
 
