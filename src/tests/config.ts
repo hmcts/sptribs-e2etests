@@ -24,7 +24,13 @@ export type UserRole =
   | "waRegionalHearingCentreTeamLead"
   | "waCTSCAdmin"
   | "waCTSCTeamLead"
-  | "waRespondent";
+  | "waRespondent"
+  | "waPresidentOfTribunal"
+  | "waPrincipalJudge"
+  | "waTribunalJudgeSalaried"
+  | "waTribunalJudgeFeePaid";
+
+
 
 interface Config {
   [key: string]: UserCredentials | string | boolean;
