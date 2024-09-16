@@ -38,7 +38,7 @@ const myWorkPage: MyWorkPage = {
       .getByRole("button")
       .filter({ hasText: " Show work filter " })
       .dispatchEvent("click");
-    await expect(page.locator("xuilib-generic-filter > form")).toBeVisible();
+    await page.waitForSelector("xuilib-generic-filter > form");
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`p:text-is("${myWorkContent.hintText}")`),
@@ -94,7 +94,7 @@ const myWorkPage: MyWorkPage = {
       if (!paginationExists) {
         // console.log("No pagination, reloading page for Cron Job");
         await page.reload();
-        await page.waitForTimeout(10000); // // waiting for cron job before rechecking
+        await page.waitForTimeout(15000); // // waiting for cron job before rechecking
       } else {
         const paginationCount = await page.locator(paginationLocator).count();
         for (let i = 0; i < paginationCount; i++) {
@@ -106,7 +106,7 @@ const myWorkPage: MyWorkPage = {
             await page.waitForSelector(paginationLocator);
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(10000); // waiting for cron job before rechecking
+            await page.waitForTimeout(15000); // waiting for cron job before rechecking
             const locatorVisible = await page
               .locator(`td:has-text("${subjectDetailsContent.name}")`)
               .isVisible();
@@ -126,7 +126,7 @@ const myWorkPage: MyWorkPage = {
           );
           await page.locator('a > span:text-is("1")').click();
           await page.waitForSelector(`li > span:text("1")`);
-          await page.waitForTimeout(10000); // waiting for cron job before rechecking
+          await page.waitForTimeout(15000); // waiting for cron job before rechecking
         }
       }
     }

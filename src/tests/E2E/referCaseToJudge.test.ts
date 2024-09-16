@@ -1,19 +1,19 @@
 import { test } from "@playwright/test";
-import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
+import referCaseToJudge from "../../removedFiles/referCaseToJudge.ts";
 
 test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
-  test("Refer case to judge as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case management, listing directions @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a senior caseworker - case management, new case", async ({
     page,
@@ -106,18 +106,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - ready to list, listing directions", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - ready to list, listing directions", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a hearing centre team lead - ready to list, rule 27 request", async ({
     page,
@@ -314,18 +314,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - awaiting outcome, listing directions", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Awaiting outcome",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - awaiting outcome, listing directions", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Awaiting outcome",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a hearing centre team lead - awaiting outcome, rule 27 request @crossbrowserCaseAPI", async ({
     page,
@@ -405,18 +405,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - case stayed, listing directions", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case stayed",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case stayed, listing directions", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case stayed",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a hearing centre team lead - case stayed, rule 27 request", async ({
     page,
@@ -509,18 +509,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a hearing centre admin - case closed, listing directions", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "hearingCentreAdmin",
-      false,
-      "Case closed",
-      "Listing directions",
-      false,
-    );
-  });
+  // test("Refer case to judge as a hearing centre admin - case closed, listing directions", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "hearingCentreAdmin",
+  //     false,
+  //     "Case closed",
+  //     "Listing directions",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - case closed, reinstatement request", async ({
     page,

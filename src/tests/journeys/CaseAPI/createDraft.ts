@@ -9,7 +9,7 @@ import buildCase from "../../../removedFiles/buildCase.ts";
 import hearingOptions from "./hearingOptions.ts";
 import createListing from "./createListing.ts";
 import createEditStay from "./createEditStay.ts";
-import closeCase from "./closeCase.ts";
+import closeCase from "../../../removedFiles/closeCase.ts";
 import createDraftOrderPage from "../../pages/CaseAPI/createDraft/createDraftOrderPage.ts";
 import orderMainContentPage from "../../pages/CaseAPI/createDraft/orderMainContentPage.ts";
 import addDocumentFooterPage from "../../pages/CaseAPI/createDraft/addDocumentFooterPage.ts";

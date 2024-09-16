@@ -80,6 +80,9 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.getByRole("button", { name: "Continue" }).click();
+    await page.waitForSelector(
+      `.error-summary-heading:has-text("${notifyOtherParties_content.errorTitle}")`,
+    );
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
         `.error-summary-heading:has-text("${notifyOtherParties_content.errorTitle}")`,
