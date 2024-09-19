@@ -44,7 +44,7 @@ const tasksPage: TasksPage = {
     taskPriority: string,
     assignedUser: string,
     event: any,
-    user: string, 
+    user: string,
   ): Promise<void> {
     const dueDate = await commonHelpers.futureDate(numberOfDays);
 
@@ -73,7 +73,7 @@ const tasksPage: TasksPage = {
           page.locator(`span.row-padding:text-is("${textOnPage}")`),
           1,
         );
-      }), 
+      }),
       expect(
         page.locator(`.govuk-summary-list__value:text-is("${assignedUser}")`),
       ).toBeVisible(),
@@ -82,16 +82,30 @@ const tasksPage: TasksPage = {
       expect(page.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
     if (user !== "waPrincipalJudge") {
-    expect(page.locator(`span.row-padding:text-is("${tasks_content.priority}")`));
-    expect(page.locator("exui-priority-field > strong")).toHaveText(taskPriority);
-    expect(page.locator(`span.row-padding:text-is("${tasks_content.dueDate}")`));
-    expect(page.locator(`dd > span:text-is("${dueDate}")`)).toBeVisible();
-  } else {
-    expect(page.locator(`span.row-padding:text-is("${tasks_content.taskCreated}")`));
-    expect(page.locator(`dd > span:text-is("${await commonHelpers.todayDateFull()}")`)).toBeVisible();
-    expect(page.locator("#action_cancel")).toHaveText(tasks_content.link3);
-    expect(page.locator("#action_reassign")).toHaveText(tasks_content.link4);
-  }
+      expect(
+        page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
+      );
+      expect(page.locator("exui-priority-field > strong")).toHaveText(
+        taskPriority,
+      );
+      expect(
+        page.locator(`span.row-padding:text-is("${tasks_content.dueDate}")`),
+      );
+      expect(page.locator(`dd > span:text-is("${dueDate}")`)).toBeVisible();
+    } else {
+      expect(
+        page.locator(
+          `span.row-padding:text-is("${tasks_content.taskCreated}")`,
+        ),
+      );
+      expect(
+        page.locator(
+          `dd > span:text-is("${await commonHelpers.todayDateFull()}")`,
+        ),
+      ).toBeVisible();
+      expect(page.locator("#action_cancel")).toHaveText(tasks_content.link3);
+      expect(page.locator("#action_reassign")).toHaveText(tasks_content.link4);
+    }
 
     if (accessibilityTest) {
       await axeTest(page);
@@ -103,8 +117,10 @@ const tasksPage: TasksPage = {
     caseNumber: string,
     taskName: string,
   ): Promise<void> {
-   const caseNumberDigits = caseNumber.replace(/\D/g, "");
-   await page.goto(`${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`);
+    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    await page.goto(
+      `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+    );
     await page.waitForURL(/.*\/tasks$/);
 
     await Promise.all([

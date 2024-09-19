@@ -158,11 +158,11 @@ const commonHelpers: CommonHelpers = {
 
   async todayDateFull(): Promise<string> {
     const now = new Date();
-    
-    const day = now.getDate();                
-    const month = now.toLocaleString("en-US", { month: "long" }); 
+
+    const day = now.getDate();
+    const month = now.toLocaleString("en-US", { month: "long" });
     const year = now.getFullYear();
-  
+
     return `${day} ${month} ${year}`;
   },
 

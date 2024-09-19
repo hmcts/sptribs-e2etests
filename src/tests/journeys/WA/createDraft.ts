@@ -1,12 +1,12 @@
- import { Page } from "@playwright/test";
- import { Template } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
- import createDraftOrderPage from "../../pages/CaseAPI/createDraft/createDraftOrderPage.ts";
- import orderMainContentPage from "../../pages/CaseAPI/createDraft/orderMainContentPage.ts";
- import addDocumentFooterPage from "../../pages/CaseAPI/createDraft/addDocumentFooterPage.ts";
- import previewTemplatePage from "../../pages/CaseAPI/createDraft/previewTemplatePage.ts";
- import submitPage from "../../pages/CaseAPI/createDraft/submitPage.ts";
- import confirmPage from "../../pages/CaseAPI/createDraft/confirmPage.ts";
- import ordersAndDecisionsTabPage from "../../pages/CaseAPI/caseTabs/ordersAndDecisionsTabPage.ts";
+import { Page } from "@playwright/test";
+import { Template } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
+import createDraftOrderPage from "../../pages/CaseAPI/createDraft/createDraftOrderPage.ts";
+import orderMainContentPage from "../../pages/CaseAPI/createDraft/orderMainContentPage.ts";
+import addDocumentFooterPage from "../../pages/CaseAPI/createDraft/addDocumentFooterPage.ts";
+import previewTemplatePage from "../../pages/CaseAPI/createDraft/previewTemplatePage.ts";
+import submitPage from "../../pages/CaseAPI/createDraft/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/createDraft/confirmPage.ts";
+import ordersAndDecisionsTabPage from "../../pages/CaseAPI/caseTabs/ordersAndDecisionsTabPage.ts";
 
 type CreateDraft = {
   createDraft(
@@ -26,7 +26,6 @@ const createDraft: CreateDraft = {
     template: Template,
     caseNumber: string,
   ): Promise<void> {
-
     const invalidTemplates: Template[] = [
       "CIC1 - Eligibility",
       "CIC2 - Quantum",
@@ -101,6 +100,3 @@ const createDraft: CreateDraft = {
 };
 
 export default createDraft;
-
-
-

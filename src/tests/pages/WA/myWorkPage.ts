@@ -12,7 +12,11 @@ type MyWorkPage = {
   assignToMeLink: string;
   myWorkLink: string;
   reloadUrl: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean, user: any): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    user: any,
+  ): Promise<void>;
   selectAvailableTasks(page: Page): Promise<void>;
   seeTask(page: Page, taskName: string): Promise<void>;
   clickAssignAndGoToTask(page: Page): Promise<void>;
@@ -28,7 +32,8 @@ const myWorkPage: MyWorkPage = {
   assignToMeAndGoToTask: "#action_claim-and-go",
   assignToMeLink: "#action_claim",
   myWorkLink: `nav a:text-is(" My work ")`,
-  reloadUrl: "https://manage-case.demo.platform.hmcts.net/work/my-work/available",
+  reloadUrl:
+    "https://manage-case.demo.platform.hmcts.net/work/my-work/available",
 
   async checkPageLoads(page, accessibilityTest, user): Promise<void> {
     await page.locator(".hmcts-primary-navigation__link").first().click();
@@ -58,14 +63,20 @@ const myWorkPage: MyWorkPage = {
     if (user === "waPrincipalJudge") {
       await Promise.all([
         ...Array.from({ length: 6 }, (_, index) => {
-          const judicialColumn = (myWork_content as any)[`judicialColumn${index + 1}`];
+          const judicialColumn = (myWork_content as any)[
+            `judicialColumn${index + 1}`
+          ];
           return commonHelpers.checkVisibleAndPresent(
-            page.locator(`th.cdk-header-cell > button:text-is("${judicialColumn}")`),
+            page.locator(
+              `th.cdk-header-cell > button:text-is("${judicialColumn}")`,
+            ),
             1,
           );
         }),
       ]);
-      expect(page.locator(`button > h1:text-is("${myWork_content.priorityColumn}")`));
+      expect(
+        page.locator(`button > h1:text-is("${myWork_content.priorityColumn}")`),
+      );
     } else {
       await Promise.all([
         ...Array.from({ length: 7 }, (_, index) => {
@@ -91,8 +102,11 @@ const myWorkPage: MyWorkPage = {
   },
 
   async seeTask(page: Page, taskName: string): Promise<any> {
-    const subjectTask  =  page.locator("tr")
-      .filter({has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),})
+    const subjectTask = page
+      .locator("tr")
+      .filter({
+        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+      })
       .locator(`exui-task-field:text-is("${taskName}")`);
     const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
 
@@ -138,7 +152,10 @@ const myWorkPage: MyWorkPage = {
           await page.waitForSelector(`li > span:text("1")`);
           await page.waitForTimeout(15000); // waiting for cron job before rechecking
         }
-        if(page.url() === "https://manage-case.demo.platform.hmcts.net/service-down") {
+        if (
+          page.url() ===
+          "https://manage-case.demo.platform.hmcts.net/service-down"
+        ) {
           await page.goto(this.reloadUrl);
         }
       }

@@ -26,9 +26,8 @@ const myWork_content = {
   judicialColumn4: "Task",
   judicialColumn5: "Task created",
   judicialColumn6: "Hearing date",
-  
-  priorityColumn: "Priority",
 
-  } as const;
+  priorityColumn: "Priority",
+} as const;
 
 export default myWork_content;

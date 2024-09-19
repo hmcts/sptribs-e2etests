@@ -18,7 +18,7 @@ const tasks_content = {
   link1: "Mark as done",
   link2: "Unassign task",
   link3: "Cancel task",
-  link4: "Reassign task"
+  link4: "Reassign task",
 } as const;
 
 export default tasks_content;
