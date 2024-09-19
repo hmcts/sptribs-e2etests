@@ -71,7 +71,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await expect(page.locator(`input`)).toBeEmpty();
+    await expect(page.locator(`input#orderContentOrderSignature`)).toBeEmpty();
     await page.fill(
       `#orderContentOrderSignature`,
       addDocumentFooter_content.signature,
@@ -80,7 +80,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await expect(page.locator(`input`)).toBeEmpty();
+    await expect(page.locator(`input#orderContentOrderSignature`)).toBeEmpty();
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

@@ -58,6 +58,25 @@ const referCaseToJudge: ReferCaseToJudge = {
           accessibilityTest,
         );
         await referCaseToJudgeReasonPage.triggerErrorMessages(page);
+        await referCaseToJudgeReasonPage.fillFields(page, referralReason);
+        await referCaseToJudgeReasonPage.continueOn(page);
+        await referCaseToJudgeAdditionalInfoPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await referCaseToJudgeAdditionalInfoPage.fillFields(page);
+        await referCaseToJudgeAdditionalInfoPage.continueOn(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          referralReason,
+          accessibilityTest,
+        );
+        await submitPage.checkAndFillInfo(page, referralReason);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.continueOn(page);
         break;
     }
   },

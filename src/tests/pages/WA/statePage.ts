@@ -51,9 +51,10 @@ const statePage: StatePage = {
     page: Page,
     stateAfterCompletion: string,
   ): Promise<void> {
+    const state = page.getByRole('heading', { name: `${stateAfterCompletion}` })
     await page.locator(this.caseStateTab).click();
     await page.waitForSelector(`h4:has-text("${stateAfterCompletion}")`);
-    expect(page.locator("h4")).toHaveText(stateAfterCompletion);
+    expect(state).toHaveText(stateAfterCompletion)
   },
 };
 

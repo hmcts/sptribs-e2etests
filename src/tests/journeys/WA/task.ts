@@ -22,7 +22,7 @@ type Task = {
     accessibilityTest: boolean,
     caseNumber: string,
     taskName: string,
-    priority: string,
+    priority: any,
     assignedUser: string,
     numberOfDays: number,
     event: any,
@@ -53,7 +53,7 @@ const task: Task = {
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await caseAPILoginPage.SignInUser(page, user);
-    await myWorkPage.checkPageLoads(page, accessibilityTest);
+    await myWorkPage.checkPageLoads(page, accessibilityTest, user);
     await myWorkPage.selectAvailableTasks(page);
     await myWorkPage.seeTask(page, taskName);
   },
@@ -65,7 +65,7 @@ const task: Task = {
     accessibilityTest: boolean,
     caseNumber: string,
     taskName: string,
-    priority: string,
+    priority: any,
     assignedUser: string,
     numberOfDays: number,
     event: any,
@@ -83,6 +83,7 @@ const task: Task = {
           priority,
           assignedUser,
           event,
+          user,
         );
         await statePage.checkStateBeforeTaskCompletion(
           page,
@@ -105,6 +106,7 @@ const task: Task = {
           priority,
           assignedUser,
           event,
+          user,
         );
         await statePage.checkStateBeforeTaskCompletion(
           page,
@@ -126,6 +128,7 @@ const task: Task = {
           priority,
           assignedUser,
           event,
+          user,
         );
         await statePage.checkStateBeforeTaskCompletion(
           page,

@@ -39,6 +39,7 @@ const confirmPage: ConfirmPage = {
     await page
       .getByRole("button", { name: "Close and Return to case details" })
       .click();
+      await page.waitForSelector(`h2:text-is("History")`);
   },
 };
 

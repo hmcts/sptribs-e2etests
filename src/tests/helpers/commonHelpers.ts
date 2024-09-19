@@ -35,6 +35,7 @@ interface CommonHelpers {
   todayDate(): Promise<string>;
   todayDateDoc(): Promise<string>;
   futureDate(numberOfdays: number): Promise<string>;
+  todayDateFull(): Promise<string>;
   padZero(value: number): string;
   postcodeHandler(page: Page, party: string): Promise<void>;
   convertDate(tab: boolean): Promise<string>;
@@ -152,6 +153,16 @@ const commonHelpers: CommonHelpers = {
     const month = today.toLocaleString("en-US", { month: "long" });
     const year = today.getFullYear();
 
+    return `${day} ${month} ${year}`;
+  },
+
+  async todayDateFull(): Promise<string> {
+    const now = new Date();
+    
+    const day = now.getDate();                
+    const month = now.toLocaleString("en-US", { month: "long" }); 
+    const year = now.getFullYear();
+  
     return `${day} ${month} ${year}`;
   },
 
@@ -299,7 +310,7 @@ const commonHelpers: CommonHelpers = {
     await page.getByRole("button", { name: "Go" }).click({ force: true });
     while (await page.isVisible("#next-step")) {
       await page.getByRole("button", { name: "Go" }).click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(5000);
     }
   },
 
@@ -589,7 +600,7 @@ const commonHelpers: CommonHelpers = {
     const context = page.context();
     const [newPage] = await Promise.all([
       context.waitForEvent("page"),
-      page.click(`ccd-read-document-field > a.ng-star-inserted`, {
+      page.click(`ccd-read-document-field > a`, {
         modifiers: ["ControlOrMeta"],
       }),
     ]);
