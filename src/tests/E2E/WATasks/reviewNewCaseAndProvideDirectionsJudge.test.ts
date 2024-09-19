@@ -290,7 +290,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
   });
 
-  test.only("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
     page,
   }) => {
     let caseNumber05: any;
