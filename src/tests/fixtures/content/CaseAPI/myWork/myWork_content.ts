@@ -18,7 +18,6 @@ const myWork_content = {
   column4: "Task",
   column5: "Due date",
   column6: "Hearing date",
-  column7: "Priority",
 
   judicialColumn1: "Case name",
   judicialColumn2: "Case category",

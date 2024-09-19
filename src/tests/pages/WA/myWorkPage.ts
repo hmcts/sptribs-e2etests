@@ -1,4 +1,5 @@
 import { expect, Page } from "@playwright/test";
+import config from "../../config.ts";
 import myWork_content from "../../fixtures/content/CaseAPI/myWork/myWork_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
@@ -32,8 +33,7 @@ const myWorkPage: MyWorkPage = {
   assignToMeAndGoToTask: "#action_claim-and-go",
   assignToMeLink: "#action_claim",
   myWorkLink: `nav a:text-is(" My work ")`,
-  reloadUrl:
-    "https://manage-case.demo.platform.hmcts.net/work/my-work/available",
+  reloadUrl: `${config.CaseAPIBaseURL}/work/my-work/available`,
 
   async checkPageLoads(page, accessibilityTest, user): Promise<void> {
     await page.locator(".hmcts-primary-navigation__link").first().click();
@@ -74,12 +74,9 @@ const myWorkPage: MyWorkPage = {
           );
         }),
       ]);
-      expect(
-        page.locator(`button > h1:text-is("${myWork_content.priorityColumn}")`),
-      );
     } else {
       await Promise.all([
-        ...Array.from({ length: 7 }, (_, index) => {
+        ...Array.from({ length: 6 }, (_, index) => {
           const column = (myWork_content as any)[`column${index + 1}`];
           return commonHelpers.checkVisibleAndPresent(
             page.locator(`th.cdk-header-cell > button:text-is("${column}")`),
@@ -87,6 +84,9 @@ const myWorkPage: MyWorkPage = {
           );
         }),
       ]);
+      expect(
+        page.locator(`button > h1:text-is("${myWork_content.priorityColumn}")`),
+      );
     }
     await page.click(this.filterButton);
 
@@ -152,10 +152,7 @@ const myWorkPage: MyWorkPage = {
           await page.waitForSelector(`li > span:text("1")`);
           await page.waitForTimeout(15000); // waiting for cron job before rechecking
         }
-        if (
-          page.url() ===
-          "https://manage-case.demo.platform.hmcts.net/service-down"
-        ) {
+        if (page.url() === `${config.CaseAPIBaseURL}/service-down`) {
           await page.goto(this.reloadUrl);
         }
       }
