@@ -10,7 +10,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 
-const taskName = "Review Strike out request - Judge";
+const taskName = "Review withdrawal request - Judge";
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
 const userRoleCreate = "waRegionalHearingCentreAdmin";
@@ -21,8 +21,8 @@ const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
+test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     let caseNumber01: any;
@@ -53,7 +53,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Strike out request",
+      "Withdrawal request",
       false,
       caseNumber01,
     );
@@ -87,7 +87,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completable via next steps link - assign to me - CIC10 - Strike Out Warning", async ({
+  test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
     let caseNumber02: any;
@@ -118,7 +118,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Strike out request",
+      "Withdrawal request",
       false,
       caseNumber02,
     );
@@ -158,9 +158,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown - CIC13 - Pro Forma Summons", async ({
-    page,
-  }) => {
+  test("Task is completed via event dropdown", async ({ page }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -189,7 +187,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Strike out request",
+      "Withdrawal request",
       false,
       caseNumber03,
     );
@@ -258,7 +256,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Strike out request",
+      "Withdrawal request",
       false,
       caseNumber04,
     );
@@ -277,7 +275,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       false,
       "caseRejected",
       true,
-      "deadlineMissed",
+      "vexatiousLitigant",
       null,
       caseNumber04,
     );
