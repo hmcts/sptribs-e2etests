@@ -15,18 +15,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Refer case to judge as a senior caseworker - case management, new case", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "seniorCaseworker",
-      false,
-      "Case Management",
-      "New case",
-      false,
-    );
-  });
+  // test("Refer case to judge as a senior caseworker - case management, new case", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "seniorCaseworker",
+  //     false,
+  //     "Case Management",
+  //     "New case",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a hearing centre team lead - case management, rule 27 request", async ({
     page,

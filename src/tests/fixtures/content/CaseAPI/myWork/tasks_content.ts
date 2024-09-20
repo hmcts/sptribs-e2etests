@@ -7,14 +7,18 @@ const tasks_content = {
   tab3: "My cases",
   tab4: "My access",
 
-  textOnPage1: "Priority",
-  textOnPage2: "Due date",
-  textOnPage3: "Assigned to",
-  textOnPage4: "Manage",
-  textOnPage5: "Next steps",
+  priority: "Priority",
+  dueDate: "Due date",
+  taskCreated: "Task created",
+
+  textOnPage1: "Assigned to",
+  textOnPage2: "Manage",
+  textOnPage3: "Next steps",
 
   link1: "Mark as done",
   link2: "Unassign task",
+  link3: "Cancel task",
+  link4: "Reassign task",
 } as const;
 
 export default tasks_content;

@@ -9,7 +9,7 @@ import hearingOptions from "./hearingOptions.ts";
 import createListing from "./createListing.ts";
 import createEditStay from "./createEditStay.ts";
 import closeCase from "../../../removedFiles/closeCase.ts";
-import createDraft from "./createDraft.ts";
+import createDraft from "../../../removedFiles/createDraft.ts";
 import selectOrderIssuingTypePage, {
   OrderType,
 } from "../../pages/CaseAPI/sendOrder/selectOrderIssuingTypePage.ts";

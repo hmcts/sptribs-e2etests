@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import commonHelpers, { State } from "../../helpers/commonHelpers.ts";
 import config, { UserRole } from "../../config.ts";
 import { Template } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
-import createDraft from "./createDraft.ts";
+import createDraft from "../../../removedFiles/createDraft.ts";
 import editDraftOrderPage from "../../pages/CaseAPI/editDraft/editDraftOrderPage.ts";
 import editDraftOrderMainContentPage from "../../pages/CaseAPI/editDraft/editDraftOrderMainContentPage.ts";
 import editDraftAddDocumentFooterPage from "../../pages/CaseAPI/editDraft/editDraftAddDocumentFooterPage.ts";
