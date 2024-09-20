@@ -10,7 +10,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 
-const taskName = "Review new case and provide directions - Judge";
+const taskName = "Review Strike out request - Judge";
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
 const userRoleCreate = "waRegionalHearingCentreAdmin";
@@ -21,8 +21,8 @@ const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27  ", async ({
+test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
+  test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
     page,
   }) => {
     let caseNumber01: any;
@@ -53,7 +53,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "New case",
+      "Strike out request",
       false,
       caseNumber01,
     );
@@ -75,7 +75,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       page,
       false,
       false,
-      "CIC3 - Rule 27",
+      "CIC8 - ME Joint Instruction",
       caseNumber01,
     );
     await task.checkCompletedTask(
@@ -87,7 +87,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
   });
 
-  test("Task is completable via next steps link - assign to me / Create Draft order CIC6 - General Directions", async ({
+  test("Task is completable via next steps link - assign to me - CIC10 - Strike Out Warning", async ({
     page,
   }) => {
     let caseNumber02: any;
@@ -118,7 +118,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "New case",
+      "Strike out request",
       false,
       caseNumber02,
     );
@@ -146,7 +146,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       page,
       false,
       false,
-      "CIC6 - General Directions",
+      "CIC10 - Strike Out Warning",
       caseNumber02,
     );
     await task.checkCompletedTask(
@@ -158,7 +158,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
   });
 
-  test("Task is completed via event dropdown / Create Draft order CIC7 - ME Dmi Reports ", async ({
+  test("Task is completed via event dropdown - CIC13 - Pro Forma Summons", async ({
     page,
   }) => {
     let caseNumber03: any;
@@ -189,7 +189,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "New case",
+      "Strike out request",
       false,
       caseNumber03,
     );
@@ -217,7 +217,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       page,
       false,
       false,
-      "CIC7 - ME Dmi Reports",
+      "CIC13 - Pro Forma Summons",
       caseNumber03,
     );
     await task.checkCompletedTask(
@@ -258,7 +258,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "New case",
+      "Strike out request",
       false,
       caseNumber04,
     );
@@ -277,7 +277,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       "caseRejected",
       false,
-      "createdInError",
+      "deadlineMissed",
       null,
       caseNumber04,
     );
@@ -289,128 +289,4 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       "Case Status:  Case closed",
     );
   });
-
-  test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
-    page,
-  }) => {
-    let caseNumber05: any;
-    caseNumber05 = await createCase.createCase(
-      page,
-      userRoleCreate,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
-    console.log(`Case Number : ${caseNumber05}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber05);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      false,
-      "New case",
-      true,
-      caseNumber05,
-    );
-
-    await task.seeTask(page, userRole, false, taskName);
-    await task.initiateTask(
-      page,
-      userRole,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber05,
-      taskName,
-      priority,
-      assignedUser,
-      numberOfDays,
-      eventOrders,
-      stateBeforeCompletion,
-    );
-    await createDraft.createDraft(
-      page,
-      false,
-      true,
-      "CIC6 - General Directions",
-      caseNumber05,
-    );
-  });
-});
-
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI", async ({
-  page,
-}) => {
-  let caseNumber06: any;
-  caseNumber06 = await createCase.createCase(
-    page,
-    userRoleCreate,
-    false,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
-  console.log(`Case Number : ${caseNumber06}`);
-  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber06);
-  await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-  await referCaseToJudge.referCaseToJudge(
-    page,
-    true,
-    "New case",
-    false,
-    caseNumber06,
-  );
-  await task.seeTask(page, userRole, true, taskName);
-  await task.initiateTask(
-    page,
-    userRole,
-    "Link: Assign Task to Me and Go To Task",
-    true,
-    caseNumber06,
-    taskName,
-    priority,
-    assignedUser,
-    numberOfDays,
-    eventOrders,
-    stateBeforeCompletion,
-  );
-  await createDraft.createDraft(
-    page,
-    true,
-    false,
-    "CIC3 - Rule 27",
-    caseNumber06,
-  );
-  await task.checkCompletedTask(
-    page,
-    true,
-    taskName,
-    caseNumber06,
-    stateAfterCompletion,
-  );
 });
