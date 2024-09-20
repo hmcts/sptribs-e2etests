@@ -134,6 +134,14 @@ const myWorkPage: MyWorkPage = {
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
             await page.waitForTimeout(15000); // waiting for cron job before rechecking
+            const subjectTask = page
+              .locator("tr")
+              .filter({
+                has: page.locator(
+                  `td:has-text("${subjectDetailsContent.name}")`,
+                ),
+              })
+              .locator(`exui-task-field:text-is("${taskName}")`);
 
             if (await subjectTask.isVisible()) {
               console.log("Task visible!");
@@ -151,9 +159,6 @@ const myWorkPage: MyWorkPage = {
           await page.locator('a > span:text-is("1")').click();
           await page.waitForSelector(`li > span:text("1")`);
           await page.waitForTimeout(15000); // waiting for cron job before rechecking
-        }
-        if (page.url() === `${config.CaseAPIBaseURL}/service-down`) {
-          await page.goto(this.reloadUrl);
         }
       }
     }
