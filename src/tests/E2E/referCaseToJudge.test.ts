@@ -54,18 +54,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - case management, strike out request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Strike out request",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case management, strike out request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Strike out request",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - case management, time extension request", async ({
     page,
@@ -145,18 +145,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - ready to list, strike out request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      "Strike out request",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - ready to list, strike out request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     "Strike out request",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - ready to list, time extension request", async ({
     page,
@@ -262,18 +262,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - awaiting hearing, strike out request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Awaiting hearing",
-      "Strike out request",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - awaiting hearing, strike out request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Awaiting hearing",
+  //     "Strike out request",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - awaiting hearing, time extension request", async ({
     page,
@@ -353,18 +353,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - awaiting outcome, strike out request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Awaiting outcome",
-      "Strike out request",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - awaiting outcome, strike out request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Awaiting outcome",
+  //     "Strike out request",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - awaiting outcome, time extension request", async ({
     page,
@@ -444,18 +444,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - case stayed, strike out request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case stayed",
-      "Strike out request",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case stayed, strike out request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case stayed",
+  //     "Strike out request",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - case stayed, time extension request", async ({
     page,

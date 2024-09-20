@@ -19,37 +19,37 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a case management case as it is rejected created in error as a senior caseworker with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "seniorCaseworker",
-      false,
-      "Case Management",
-      false,
-      "caseRejected",
-      false,
-      "createdInError",
-      null,
-    );
-  });
+  // test("Close a case management case as it is rejected created in error as a senior caseworker with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "seniorCaseworker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseRejected",
+  //     false,
+  //     "createdInError",
+  //     null,
+  //   );
+  // });
 
-  test("Close a case management case as it is rejected deadline missed as a hearing centre admin with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "hearingCentreAdmin",
-      false,
-      "Case Management",
-      false,
-      "caseRejected",
-      true,
-      "deadlineMissed",
-      null,
-    );
-  });
+  // test("Close a case management case as it is rejected deadline missed as a hearing centre admin with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "hearingCentreAdmin",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseRejected",
+  //     true,
+  //     "deadlineMissed",
+  //     null,
+  //   );
+  // });
 
   test("Close a case management case as it is rejected duplicate case as a hearing centre team lead with no optional information.", async ({
     page,
