@@ -21,7 +21,7 @@ const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
+test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
     page,
   }) => {
