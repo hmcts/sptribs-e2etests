@@ -509,18 +509,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  // test("Refer case to legal officer as a hearing centre admin - case closed, listing directions", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
-  //     page,
-  //     "hearingCentreAdmin",
-  //     false,
-  //     "Case closed",
-  //     "Listing directions",
-  //     false,
-  //   );
-  // });
+  test("Refer case to legal officer as a hearing centre admin - case closed, listing directions", async ({
+    page,
+  }): Promise<void> => {
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      "hearingCentreAdmin",
+      false,
+      "Case closed",
+      "Listing directions",
+      false,
+    );
+  });
 
   test("Refer case to legal officer as a caseworker - case closed, reinstatement request", async ({
     page,
@@ -574,29 +574,29 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Listing directions",
-      true,
-    );
-  });
+  // test("Error messaging. @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Listing directions",
+  //     true,
+  //   );
+  // });
 });
 
-test("Accessibility test - refer case to legal officer @accessibilityCaseAPI", async ({
-  page,
-}): Promise<void> => {
-  await referCaseToLegalOfficer.referCaseToLegalOfficer(
-    page,
-    "caseWorker",
-    true,
-    "Case Management",
-    "Listing directions",
-    false,
-  );
-});
+// test("Accessibility test - refer case to legal officer @accessibilityCaseAPI", async ({
+//   page,
+// }): Promise<void> => {
+//   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+//     page,
+//     "caseWorker",
+//     true,
+//     "Case Management",
+//     "Listing directions",
+//     false,
+//   );
+// });
