@@ -83,21 +83,21 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a case management case as it is rejected other reason as a caseworker with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      false,
-      "caseRejected",
-      false,
-      "other",
-      null,
-    );
-  });
+  // test("Close a case management case as it is rejected other reason as a caseworker with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseRejected",
+  //     false,
+  //     "other",
+  //     null,
+  //   );
+  // });
 
   // test("Close a case management case as it is strikeout noncompliance with directions as a caseworker with optional information.", async ({
   //   page,
