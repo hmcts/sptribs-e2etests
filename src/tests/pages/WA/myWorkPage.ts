@@ -33,7 +33,7 @@ const myWorkPage: MyWorkPage = {
   assignToMeAndGoToTask: "#action_claim-and-go",
   assignToMeLink: "#action_claim",
   myWorkLink: `nav a:text-is(" My work ")`,
-  reloadUrl: `${config.CaseAPIBaseURL}/work/my-work/available`,
+  reloadUrl: `${config.CaseAPIBaseURL.replace(/\/cases$/, "")}/work/my-work/available`,
 
   async checkPageLoads(page, accessibilityTest, user): Promise<void> {
     await page.locator(".hmcts-primary-navigation__link").first().click();
