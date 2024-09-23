@@ -21,7 +21,7 @@ const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
+test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -158,9 +158,7 @@ test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown", async ({
-    page,
-  }) => {
+  test("Task is completed via event dropdown", async ({ page }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
