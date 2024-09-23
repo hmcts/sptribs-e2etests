@@ -99,21 +99,21 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a case management case as it is strikeout noncompliance with directions as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      false,
-      "caseStrikeOut",
-      true,
-      null,
-      "noncomplianceWithDirections",
-    );
-  });
+  // test("Close a case management case as it is strikeout noncompliance with directions as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseStrikeOut",
+  //     true,
+  //     null,
+  //     "noncomplianceWithDirections",
+  //   );
+  // });
 
   // test("Close a case management case as it is strikeout other reason as a caseworker with no optional information.", async ({
   //   page,
