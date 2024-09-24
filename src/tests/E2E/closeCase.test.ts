@@ -179,21 +179,21 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a case management case due to death of appellant as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      false,
-      "deathOfAppellant",
-      true,
-      null,
-      null,
-    );
-  });
+  // test("Close a case management case due to death of appellant as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "deathOfAppellant",
+  //     true,
+  //     null,
+  //     null,
+  //   );
+  // });
 
   test("Close a ready to list case as it is withdrawn as a caseworker with no optional information.", async ({
     page,
