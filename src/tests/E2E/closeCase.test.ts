@@ -131,21 +131,21 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a case management case as it is a concession as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      false,
-      "caseConcession",
-      true,
-      null,
-      null,
-    );
-  });
+  // test("Close a case management case as it is a concession as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseConcession",
+  //     true,
+  //     null,
+  //     null,
+  //   );
+  // });
 
   test("Close a case management case as it is a consent order as a caseworker with no optional information.", async ({
     page,

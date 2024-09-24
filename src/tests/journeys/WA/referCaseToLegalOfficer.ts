@@ -61,6 +61,28 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           accessibilityTest,
         );
         await referCaseToLegalOfficerReasonPage.triggerErrorMessages(page);
+        await referCaseToLegalOfficerReasonPage.fillFields(
+          page,
+          referralReason,
+        );
+        await referCaseToLegalOfficerReasonPage.continueOn(page);
+        await referCaseToLegalOfficerAdditionalInfoPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
+        await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          referralReason,
+          accessibilityTest,
+        );
+        await submitPage.checkAndFillInfo(page, referralReason);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.continueOn(page);
         break;
     }
   },
