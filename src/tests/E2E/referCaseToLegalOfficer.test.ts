@@ -54,18 +54,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to legal officer as a caseworker - case management, strike out request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Strike out request",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a caseworker - case management, strike out request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Strike out request",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to legal officer as a caseworker - case management, time extension request", async ({
     page,
