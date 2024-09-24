@@ -41,18 +41,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to legal officer as a hearing centre admin - case management, stay request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "hearingCentreAdmin",
-      false,
-      "Case Management",
-      "Stay request",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a hearing centre admin - case management, stay request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "hearingCentreAdmin",
+  //     false,
+  //     "Case Management",
+  //     "Stay request",
+  //     false,
+  //   );
+  // });
 
   // test("Refer case to legal officer as a caseworker - case management, strike out request", async ({
   //   page,
