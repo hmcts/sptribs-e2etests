@@ -67,18 +67,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Refer case to judge as a caseworker - case management, time extension request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Time extension request",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case management, time extension request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Time extension request",
+  //     false,
+  //   );
+  // });
 
   // test("Refer case to judge as a caseworker - case management, withdrawal request", async ({
   //   page,

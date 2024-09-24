@@ -51,21 +51,21 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a case management case as it is rejected duplicate case as a hearing centre team lead with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "hearingCentreTeamLead",
-      false,
-      "Case Management",
-      false,
-      "caseRejected",
-      false,
-      "duplicateCase",
-      null,
-    );
-  });
+  // test("Close a case management case as it is rejected duplicate case as a hearing centre team lead with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "hearingCentreTeamLead",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "caseRejected",
+  //     false,
+  //     "duplicateCase",
+  //     null,
+  //   );
+  // });
 
   // test("Close a case management case as it is rejected vexatious litigant as a Senior Judge with optional information.", async ({
   //   page,

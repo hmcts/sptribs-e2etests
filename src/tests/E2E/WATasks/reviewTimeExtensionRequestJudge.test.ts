@@ -1,0 +1,293 @@
+import { test } from "@playwright/test";
+import config from "../../config.ts";
+import createCase from "../../journeys/WA/createCase.ts";
+import buildCase from "../../journeys/WA/buildCase.ts";
+import createDraft from "../../journeys/WA/createDraft.ts";
+import task from "../../journeys/WA/task.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
+import closeCase from "../../journeys/WA/closeCase.ts";
+import myWorkPage from "../../pages/WA/myWorkPage.ts";
+import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
+
+const taskName = "Review Time extention request - Judge";
+// Awaiting fix for spelling mistake in "extention"
+const priority = null;
+const assignedUser = "Ms Kayla Adams";
+const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRole = "waPrincipalJudge";
+const numberOfDays = 5;
+const eventRefer = "Refer case to judge";
+const eventOrders = "Orders: Create draft";
+const stateBeforeCompletion = "Case Status:  Case management";
+const stateAfterCompletion = "Case Status:  Case management";
+
+test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 – LO General Directions", async ({
+    page,
+  }) => {
+    let caseNumber01: any;
+    caseNumber01 = await createCase.createCase(
+      page,
+      userRoleCreate,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber01}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber01);
+    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Time extension request",
+      false,
+      caseNumber01,
+    );
+    await task.seeTask(page, userRole, false, taskName);
+    await task.initiateTask(
+      page,
+      userRole,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskName,
+      priority,
+      assignedUser,
+      numberOfDays,
+      eventOrders,
+      stateBeforeCompletion,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC14 – LO General Directions",
+      caseNumber01,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskName,
+      caseNumber01,
+      stateAfterCompletion,
+    );
+  });
+
+  test("Task is completable via next steps link - assign to me - CIC10 - Strike Out Warning", async ({
+    page,
+  }) => {
+    let caseNumber02: any;
+    caseNumber02 = await createCase.createCase(
+      page,
+      userRoleCreate,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber02}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber02);
+    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Time extension request",
+      false,
+      caseNumber02,
+    );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRole,
+      config.CaseAPIBaseURL,
+      caseNumber02,
+    );
+    await task.seeTask(page, userRole, false, taskName);
+    await task.initiateTask(
+      page,
+      userRole,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber02,
+      taskName,
+      priority,
+      assignedUser,
+      numberOfDays,
+      eventOrders,
+      stateBeforeCompletion,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC10 - Strike Out Warning",
+      caseNumber02,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskName,
+      caseNumber02,
+      stateAfterCompletion,
+    );
+  });
+
+  test("Task is completed via event dropdown - CIC13 - Pro Forma Summons", async ({
+    page,
+  }) => {
+    let caseNumber03: any;
+    caseNumber03 = await createCase.createCase(
+      page,
+      userRoleCreate,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber03}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber03);
+    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Time extension request",
+      false,
+      caseNumber03,
+    );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRole,
+      config.CaseAPIBaseURL,
+      caseNumber03,
+    );
+    await task.seeTask(page, userRole, false, taskName);
+    await task.initiateTask(
+      page,
+      userRole,
+      "Event DropDown",
+      false,
+      caseNumber03,
+      taskName,
+      priority,
+      assignedUser,
+      numberOfDays,
+      eventOrders,
+      stateBeforeCompletion,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC13 - Pro Forma Summons",
+      caseNumber03,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskName,
+      caseNumber03,
+      stateAfterCompletion,
+    );
+  });
+
+  test("Task is cancellable through close case", async ({ page }) => {
+    let caseNumber04: any;
+    caseNumber04 = await createCase.createCase(
+      page,
+      userRoleCreate,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber04}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber04);
+    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Time extension request",
+      false,
+      caseNumber04,
+    );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRole,
+      config.CaseAPIBaseURL,
+      caseNumber04,
+    );
+    await task.seeTask(page, userRole, false, taskName);
+    await myWorkPage.clickAssignAndGoToTask(page);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseRejected",
+      true,
+      "duplicateCase",
+      null,
+      caseNumber04,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskName,
+      caseNumber04,
+      "Case Status:  Case closed",
+    );
+  });
+});
