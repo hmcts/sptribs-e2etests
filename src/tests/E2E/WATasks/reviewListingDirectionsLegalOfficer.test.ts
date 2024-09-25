@@ -8,20 +8,20 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
-import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
+import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 
-const taskName = "Review listing directions - Judge";
-const priority = null;
-const assignedUser = "Ms Kayla Adams";
+const taskName = "Review listing directions - Legal Officer";
+const priority = " medium ";
+const assignedUser = "sptribswa seniorcaseworker";
 const userRoleCreate = "waRegionalHearingCentreAdmin";
-const userRole = "waPrincipalJudge";
+const userRole = "waSeniorCaseworker";
 const numberOfDays = 5;
-const eventRefer = "Refer case to judge";
+const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe("Review Listing Directions - Judge @CaseAPI", (): void => {
+test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -50,7 +50,7 @@ test.describe("Review Listing Directions - Judge @CaseAPI", (): void => {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Listing directions",
@@ -115,7 +115,7 @@ test.describe("Review Listing Directions - Judge @CaseAPI", (): void => {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Listing directions",
@@ -184,7 +184,7 @@ test.describe("Review Listing Directions - Judge @CaseAPI", (): void => {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Listing directions",
@@ -253,7 +253,7 @@ test.describe("Review Listing Directions - Judge @CaseAPI", (): void => {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Listing directions",

@@ -15,18 +15,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Refer case to legal officer as a senior caseworker - case management, new case", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "seniorCaseworker",
-      false,
-      "Case Management",
-      "New case",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a senior caseworker - case management, new case", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "seniorCaseworker",
+  //     false,
+  //     "Case Management",
+  //     "New case",
+  //     false,
+  //   );
+  // });
 
   // test("Refer case to legal officer as a hearing centre team lead - case management, rule 27 request", async ({
   //   page,
@@ -106,18 +106,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  // test("Refer case to legal officer as a caseworker - ready to list, listing directions", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     "Listing directions",
-  //     false,
-  //   );
-  // });
+  test("Refer case to legal officer as a caseworker - ready to list, listing directions", async ({
+    page,
+  }): Promise<void> => {
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      "caseWorker",
+      false,
+      "Ready to list",
+      "Listing directions",
+      false,
+    );
+  });
 
   test("Refer case to legal officer as a hearing centre team lead - ready to list, rule 27 request", async ({
     page,
@@ -314,18 +314,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  // test("Refer case to legal officer as a caseworker - awaiting outcome, listing directions", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Awaiting outcome",
-  //     "Listing directions",
-  //     false,
-  //   );
-  // });
+  test("Refer case to legal officer as a caseworker - awaiting outcome, listing directions", async ({
+    page,
+  }): Promise<void> => {
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      "caseWorker",
+      false,
+      "Awaiting outcome",
+      "Listing directions",
+      false,
+    );
+  });
 
   test("Refer case to legal officer as a hearing centre team lead - awaiting outcome, rule 27 request", async ({
     page,
@@ -405,18 +405,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  // test("Refer case to legal officer as a caseworker - case stayed, listing directions", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case stayed",
-  //     "Listing directions",
-  //     false,
-  //   );
-  // });
+  test("Refer case to legal officer as a caseworker - case stayed, listing directions", async ({
+    page,
+  }): Promise<void> => {
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      "caseWorker",
+      false,
+      "Case stayed",
+      "Listing directions",
+      false,
+    );
+  });
 
   test("Refer case to legal officer as a hearing centre team lead - case stayed, rule 27 request", async ({
     page,
