@@ -259,7 +259,7 @@ const commonHelpers: CommonHelpers = {
     );
     let fileUploadLocator = `#${selector}_${docNumber}_documentLink`;
     await page.locator(fileUploadLocator).setInputFiles(file);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await page.waitForSelector(".error-message", { state: "detached" });
   },
 
   async checkVisibleAndPresent(locator: Locator, count: number): Promise<void> {
@@ -277,7 +277,11 @@ const commonHelpers: CommonHelpers = {
     await page.waitForSelector("#next-step", { state: "visible" });
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
-    await page.getByRole("button", { name: "Go" }).click();
+    await page.getByRole("button", { name: "Go" }).click({ force: true });
+    while (await page.isVisible("#next-step")) {
+      await page.getByRole("button", { name: "Go" }).click();
+      await page.waitForTimeout(5000);
+    }
   },
 
   async checkNumberAndSubject(page: Page, caseNumber: string): Promise<void> {
@@ -566,7 +570,7 @@ const commonHelpers: CommonHelpers = {
     const context = page.context();
     const [newPage] = await Promise.all([
       context.waitForEvent("page"),
-      page.click(`ccd-read-document-field > a.ng-star-inserted`, {
+      page.click(`ccd-read-document-field > a`, {
         modifiers: ["ControlOrMeta"],
       }),
     ]);
