@@ -153,6 +153,9 @@ const submitPage: SubmitPage = {
         ]);
         break;
       case "UploadOrder":
+        await page.waitForSelector(
+          `ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.upload}")`),
@@ -164,7 +167,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testPdfFile)}")`,
+              `ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
             ),
             1,
           ),

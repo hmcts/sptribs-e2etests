@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import commonHelpers, { State } from "../../helpers/commonHelpers.ts";
-import sendOrder from "./sendOrder.ts";
+import sendOrder from "../../../removedFiles/sendOrder.ts";
 import selectOrderPage from "../../pages/CaseAPI/manageDueDate/selectOrderPage.ts";
 import editDueDatePage from "../../pages/CaseAPI/manageDueDate/editDueDatePage.ts";
 import submitPage from "../../pages/CaseAPI/manageDueDate/submitPage.ts";
