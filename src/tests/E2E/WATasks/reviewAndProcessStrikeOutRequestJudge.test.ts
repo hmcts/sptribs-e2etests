@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -12,7 +11,7 @@ import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 
 const taskName = "Review Strike out request - Judge";
-const taskNameProcess = "";
+const taskNameProcess = "Process strike out directions returned";
 const priorityReview = null;
 const priorityProcess = " low ";
 const assignedUserAdmin = "sptribswa regionalhearingcentreadmin";
@@ -29,7 +28,7 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
+test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
     page,
   }) => {
@@ -161,12 +160,6 @@ test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
-      caseNumber02,
-    );
     await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
@@ -263,12 +256,6 @@ test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
@@ -361,12 +348,6 @@ test.describe.only("Review Strike Out Request - Judge @CaseAPI", (): void => {
       false,
       "Strike out request",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRoleJudge, false, taskName);
