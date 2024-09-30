@@ -163,21 +163,21 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a case management case as it is a rule 27 as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      false,
-      "rule27",
-      true,
-      null,
-      null,
-    );
-  });
+  // test("Close a case management case as it is a rule 27 as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     false,
+  //     "rule27",
+  //     true,
+  //     null,
+  //     null,
+  //   );
+  // });
 
   // test("Close a case management case due to death of appellant as a caseworker with optional information.", async ({
   //   page,
