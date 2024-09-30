@@ -19,7 +19,7 @@ type TasksPage = {
     assignedUser: string,
     event: any,
     user: string,
-  ): Promise<void>;
+  ): Promise<any>;
   completedTaskNotVisible(
     page: Page,
     caseNumber: string,
@@ -45,10 +45,21 @@ const tasksPage: TasksPage = {
     assignedUser: string,
     event: any,
     user: string,
-  ): Promise<void> {
+  ): Promise<any> {
     const dueDate = await commonHelpers.futureDate(numberOfDays);
-
     await page.waitForSelector(`p.govuk-body > strong:text-is("${taskName}")`);
+
+    //check for more than one task if cron job hasn't cleared previous task
+    const assignedToElements = await page.locator(`span:text-is("Assigned to")`).count();
+    while (assignedToElements > 1) {
+      console.log(`Found more than 1 task. Reloading page...`);
+      await page.reload();
+      const assignedToElements = await page.locator(`span:text-is("Assigned to")`).count();
+      if (assignedToElements <=1) {
+        break;
+      }
+    }
+
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h2:text-is("${tasks_content.title}")`),
