@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -161,12 +160,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
-      caseNumber02,
-    );
     await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
@@ -263,12 +256,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
@@ -361,12 +348,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       "New case",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRoleJudge, false, taskName);
@@ -509,7 +490,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       caseNumber06,
     );
-
     await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,

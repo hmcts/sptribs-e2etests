@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -124,12 +123,6 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
-      caseNumber02,
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -193,12 +186,6 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -260,12 +247,6 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       false,
       "Listing directions",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRole, false, taskName);
