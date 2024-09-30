@@ -50,12 +50,16 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(`p.govuk-body > strong:text-is("${taskName}")`);
 
     //check for more than one task if cron job hasn't cleared previous task
-    const assignedToElements = await page.locator(`span:text-is("Assigned to")`).count();
+    const assignedToElements = await page
+      .locator(`span:text-is("Assigned to")`)
+      .count();
     while (assignedToElements > 1) {
       console.log(`Found more than 1 task. Reloading page...`);
       await page.reload();
-      const assignedToElements = await page.locator(`span:text-is("Assigned to")`).count();
-      if (assignedToElements <=1) {
+      const assignedToElements = await page
+        .locator(`span:text-is("Assigned to")`)
+        .count();
+      if (assignedToElements <= 1) {
         break;
       }
     }

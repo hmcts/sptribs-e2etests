@@ -595,5 +595,3 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     stateAfterCompletion,
   );
 });
-
-
