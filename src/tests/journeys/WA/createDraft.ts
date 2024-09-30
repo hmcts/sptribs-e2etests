@@ -94,6 +94,16 @@ const createDraft: CreateDraft = {
           accessibilityTest,
         );
         await addDocumentFooterPage.triggerErrorMessages(page);
+        await previewTemplatePage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+        );
+        await page.click('[type="submit"]');
+        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.closeAndReturnToCase(page);
         break;
     }
   },
