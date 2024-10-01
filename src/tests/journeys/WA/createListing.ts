@@ -162,14 +162,14 @@ const createListing: CreateListing = {
           caseNumber,
           accessibilityTest,
         );
-        await createListingRemoteHearingInformationPage.fillInFields(page)
+        await createListingRemoteHearingInformationPage.fillInFields(page);
         await createListingRemoteHearingInformationPage.continueOn(page);
         await createListingOtherInformationPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
         );
-        await createListingOtherInformationPage.fillInFields(page)
+        await createListingOtherInformationPage.fillInFields(page);
         await createListingOtherInformationPage.continueOn(page);
         await createListingNotifyPage.checkPageLoads(
           page,
