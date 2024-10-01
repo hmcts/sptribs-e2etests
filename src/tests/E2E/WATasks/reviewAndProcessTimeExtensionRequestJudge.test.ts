@@ -30,8 +30,8 @@ const stateAfterCompletion = "Case Status:  Case management";
 
 test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
-                                                                                                                       page,
-                                                                                                                     }) => {
+    page,
+  }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -126,8 +126,8 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
   });
 
   test("Task is completable via next steps link - assign to me - CIC10 - Strike Out Warning", async ({
-                                                                                                       page,
-                                                                                                     }) => {
+    page,
+  }) => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
@@ -222,8 +222,8 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
   });
 
   test("Task is completed via event dropdown - CIC13 - Pro Forma Summons", async ({
-                                                                                    page,
-                                                                                  }) => {
+    page,
+  }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
