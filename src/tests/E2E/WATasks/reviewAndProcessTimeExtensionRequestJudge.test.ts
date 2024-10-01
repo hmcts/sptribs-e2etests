@@ -11,7 +11,7 @@ import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 
 const taskName = "Review Time extension request - Judge";
-const taskNameProcess = "Process strike out directions returned";
+const taskNameProcess = "Process time extension directions returned";
 const priorityReview = null;
 const priorityProcess = " medium ";
 const assignedUserAdmin = "sptribswa regionalhearingcentreadmin";
@@ -359,7 +359,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       false,
       "caseRejected",
       true,
-      "deadlineMissed",
+      "duplicateCase",
       null,
       caseNumber04,
     );
@@ -442,7 +442,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       false,
       "caseRejected",
       false,
-      "createdInError",
+      "duplicateCase",
       null,
       caseNumber05,
     );
