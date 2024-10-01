@@ -29,7 +29,7 @@ const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
 test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
-  test.only("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     let caseNumber01: any;
