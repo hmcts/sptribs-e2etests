@@ -20,10 +20,10 @@ const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
-test.describe("Review Time extension request - Legal Officer @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
-    page,
-  }) => {
+test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void => {
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 – LO General Directions", async ({
+                                                                                                                         page,
+                                                                                                                       }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -86,9 +86,9 @@ test.describe("Review Time extension request - Legal Officer @CaseAPI", (): void
     );
   });
 
-  test("Task is completable via next steps link - assign to me", async ({
-    page,
-  }) => {
+  test("Task is completable via next steps link - assign to me - CIC10 - Strike Out Warning", async ({
+                                                                                                       page,
+                                                                                                     }) => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
@@ -151,7 +151,9 @@ test.describe("Review Time extension request - Legal Officer @CaseAPI", (): void
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown - CIC13 - Pro Forma Summons", async ({
+                                                                                    page,
+                                                                                  }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -254,9 +256,9 @@ test.describe("Review Time extension request - Legal Officer @CaseAPI", (): void
       page,
       false,
       false,
-      "rule27",
-      false,
-      null,
+      "caseRejected",
+      true,
+      "duplicateCase",
       null,
       caseNumber04,
     );

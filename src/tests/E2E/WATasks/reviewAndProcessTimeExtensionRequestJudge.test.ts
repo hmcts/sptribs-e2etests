@@ -9,8 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 
-const taskName = "Review Time extention request - Judge";
-// Awaiting fix for spelling mistake in "extention"
+const taskName = "Review Time extension request - Judge";
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
 const userRoleCreate = "waRegionalHearingCentreAdmin";
