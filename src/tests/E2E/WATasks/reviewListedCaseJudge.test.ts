@@ -338,7 +338,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     );
   });
 
-  test.only("Error Messaging", async ({ page }) => {
+  test("Error Messaging", async ({ page }) => {
     let caseNumber05: any;
     caseNumber05 = await createCase.createCase(
       page,
