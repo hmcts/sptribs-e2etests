@@ -18,9 +18,7 @@ const assignedUserAdmin = "sptribswa regionalhearingcentreadmin";
 const assignedUserJudge = "Ms Kayla Adams";
 const userRoleAdmin = "waRegionalHearingCentreAdmin";
 const userRoleJudge = "waPrincipalJudge";
-const numberOfDaysReview = 1;
-// const numberOfDaysProcess = 7;
-// Awaiting bug fix
+const numberOfDaysReview = 2;
 const numberOfDaysProcess = 1;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
@@ -29,7 +27,7 @@ const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
 test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {
     let caseNumber01: any;
@@ -82,7 +80,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       page,
       false,
       false,
-      "CIC8 - ME Joint Instruction",
+      "CIC14 – LO General Directions",
       caseNumber01,
     );
     await task.checkCompletedTask(

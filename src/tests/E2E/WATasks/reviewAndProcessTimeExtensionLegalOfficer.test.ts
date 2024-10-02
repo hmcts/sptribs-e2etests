@@ -19,8 +19,6 @@ const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waRegionalHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 1;
-//const numberOfDaysProcess = 7;
-// awaiting bug fix
 const numberOfDaysProcess = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
@@ -29,7 +27,7 @@ const stateBeforeCompletion = "Case Status:  Case management";
 const stateAfterCompletion = "Case Status:  Case management";
 
 test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {
     let caseNumber01: any;
@@ -82,7 +80,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       page,
       false,
       false,
-      "CIC8 - ME Joint Instruction",
+      "CIC14 – LO General Directions",
       caseNumber01,
     );
     await task.checkCompletedTask(
@@ -440,7 +438,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       false,
       "rule27",
       false,
-      "createdInError",
+      null,
       null,
       caseNumber05,
     );

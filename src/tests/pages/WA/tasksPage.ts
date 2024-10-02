@@ -58,7 +58,6 @@ const tasksPage: TasksPage = {
       console.log(`Found more than 1 task. Reloading page...`);
       await page.reload();
       await page.waitForTimeout(1000);
-
       assignedToElements = await page
         .locator(`span:text-is("Assigned to")`)
         .count();
@@ -68,6 +67,7 @@ const tasksPage: TasksPage = {
         break;
       }
     }
+
 
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
