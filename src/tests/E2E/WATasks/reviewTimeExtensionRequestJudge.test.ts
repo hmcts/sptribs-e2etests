@@ -13,7 +13,7 @@ const taskName = "Review Time extention request - Judge";
 // Awaiting fix for spelling mistake in "extention"
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
-const userRoleCreate = "waHearingCentreAdmin";
+const userRoleCreate = "waRegionalHearingCentreAdmin";
 const userRole = "waPrincipalJudge";
 const numberOfDays = 5;
 const eventRefer = "Refer case to judge";
