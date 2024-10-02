@@ -26,8 +26,9 @@ const numberOfDaysProcess = 10;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case Status:  Case management";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Case management";
+const stateAfterCompletion = "Case management";
+const caseClosedState = "Case closed";
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27  ", async ({
@@ -387,7 +388,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       taskName,
       caseNumber04,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
@@ -470,7 +471,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       taskName,
       caseNumber05,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 

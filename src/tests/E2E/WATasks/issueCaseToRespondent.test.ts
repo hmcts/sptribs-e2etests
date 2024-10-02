@@ -16,8 +16,9 @@ const assignedUser = "sptribswa regionalhearingcentreadmin";
 const userRole = "waRegionalHearingCentreAdmin";
 const numberOfDays = 2;
 const event = "Case: Issue to respondent";
-const stateBeforeCompletion = "Case Status:  Case management";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Case management";
+const stateAfterCompletion = "Case management";
+const caseClosedState = "Case closed";
 
 test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
@@ -353,7 +354,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       taskName,
       caseNumber06,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
