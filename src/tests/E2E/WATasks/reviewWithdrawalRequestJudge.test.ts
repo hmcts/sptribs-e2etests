@@ -12,7 +12,7 @@ import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 const taskName = "Review withdrawal request - Judge";
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
-const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRoleCreate = "waHearingCentreAdmin";
 const userRole = "waPrincipalJudge";
 const numberOfDays = 5;
 const eventRefer = "Refer case to judge";
