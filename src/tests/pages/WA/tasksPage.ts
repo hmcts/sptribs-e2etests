@@ -68,7 +68,6 @@ const tasksPage: TasksPage = {
       }
     }
 
-
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h2:text-is("${tasks_content.title}")`),
