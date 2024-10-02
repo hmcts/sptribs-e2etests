@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -10,6 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import config from "../../config.ts";
 
 const taskName = "Review stay request - Legal Officer";
 const taskNameProcess = "Process stay directions";
@@ -162,12 +162,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleLO,
-      config.CaseAPIBaseURL,
-      caseNumber02,
-    );
     await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
@@ -262,12 +256,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleLO,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
@@ -360,12 +348,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       false,
       "Stay request",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleLO,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRoleLO, false, taskName);

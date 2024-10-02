@@ -5,8 +5,8 @@ import editCase from "../../journeys/WA/editCase.ts";
 
 const taskName = "Register New Case";
 const priority = " low ";
-const assignedUser = "sptribswa regionalhearingcentreadmin";
-const userRole = "waRegionalHearingCentreAdmin";
+const assignedUser = "sptribswa hearingcentreadmin";
+const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
 const event = "Case: Edit case";
 const stateBeforeCompletion = "DSS-Submitted";

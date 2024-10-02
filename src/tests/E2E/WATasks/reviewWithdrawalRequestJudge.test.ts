@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -13,7 +12,7 @@ import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 const taskName = "Review withdrawal request - Judge";
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
-const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRoleCreate = "waHearingCentreAdmin";
 const userRole = "waPrincipalJudge";
 const numberOfDays = 5;
 const eventRefer = "Refer case to judge";
@@ -123,12 +122,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
-      caseNumber02,
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -192,12 +185,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -259,12 +246,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       false,
       "Withdrawal request",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRole, false, taskName);

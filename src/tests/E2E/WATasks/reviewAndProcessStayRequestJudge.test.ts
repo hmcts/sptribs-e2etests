@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -10,6 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import config from "../../config.ts";
 
 const taskName = "Review stay request - Judge";
 const taskNameProcess = "Process stay directions";

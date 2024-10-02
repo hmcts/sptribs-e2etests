@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import config from "../../config.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
@@ -13,7 +12,7 @@ import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.t
 const taskName = "Review Rule 27 request - Legal Officer";
 const priority = " low ";
 const assignedUser = "sptribswa seniorcaseworker";
-const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRoleCreate = "waHearingCentreAdmin";
 const userRole = "waSeniorCaseworker";
 const numberOfDays = 5;
 const eventRefer = "Refer case to legal officer";
@@ -123,12 +122,6 @@ test.describe("Review Rule 27 Request - Legal Officer @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
-      caseNumber02,
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -192,12 +185,6 @@ test.describe("Review Rule 27 Request - Legal Officer @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRole, false, taskName);
     await task.initiateTask(
       page,
@@ -259,12 +246,6 @@ test.describe("Review Rule 27 Request - Legal Officer @CaseAPI", (): void => {
       false,
       "Rule 27 request",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRole,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRole, false, taskName);

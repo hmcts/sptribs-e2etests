@@ -12,8 +12,8 @@ import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.t
 
 const taskName = "Issue Case To Respondent";
 const priority = " low ";
-const assignedUser = "sptribswa regionalhearingcentreadmin";
-const userRole = "waRegionalHearingCentreAdmin";
+const assignedUser = "sptribswa hearingcentreadmin";
+const userRole = "waHearingCentreAdmin";
 const numberOfDays = 2;
 const event = "Case: Issue to respondent";
 const stateBeforeCompletion = "Case management";
