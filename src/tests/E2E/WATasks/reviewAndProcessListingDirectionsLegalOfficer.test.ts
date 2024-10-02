@@ -32,8 +32,7 @@ const stateAfterCompletion = "Case Status:  Case management";
 
 // Awaiting fix to SLA and possibly priority
 
-test.describe
-  .only("Review Listing Directions - Legal Officer @CaseAPI", (): void => {
+test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
