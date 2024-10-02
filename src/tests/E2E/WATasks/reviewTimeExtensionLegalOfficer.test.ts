@@ -12,7 +12,7 @@ import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.t
 const taskName = "Review Time extension request - Legal Officer";
 const priority = " medium ";
 const assignedUser = "sptribswa seniorcaseworker";
-const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRoleCreate = "waHearingCentreAdmin";
 const userRole = "waSeniorCaseworker";
 const numberOfDays = 1;
 const eventRefer = "Refer case to legal officer";

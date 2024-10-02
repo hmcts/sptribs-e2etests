@@ -8,8 +8,8 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 
 const taskName = "Vet New Case Documents";
 const priority = " low ";
-const assignedUser = "sptribswa regionalhearingcentreadmin";
-const userRole = "waRegionalHearingCentreAdmin";
+const assignedUser = "sptribswa hearingcentreadmin";
+const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
 const event = "Case: Build case";
 const stateBeforeCompletion = "Case Status:  Submitted";

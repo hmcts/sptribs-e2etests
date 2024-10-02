@@ -12,7 +12,7 @@ import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.t
 const taskName = "Review withdrawal request - Legal Officer";
 const priority = " low ";
 const assignedUser = "sptribswa seniorcaseworker";
-const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRoleCreate = "waHearingCentreAdmin";
 const userRole = "waSeniorCaseworker";
 const numberOfDays = 5;
 const eventRefer = "Refer case to legal officer";
