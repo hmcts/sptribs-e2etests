@@ -27,8 +27,9 @@ const numberOfDaysProcess = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case Status:  Case management";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Case management";
+const stateAfterCompletion = "Case management";
+const caseClosedState = "Case closed";
 
 // Awaiting fix to SLA and possibly priority
 
@@ -370,7 +371,7 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       false,
       taskName,
       caseNumber04,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
@@ -453,7 +454,7 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       false,
       taskName,
       caseNumber05,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 });

@@ -135,6 +135,7 @@ const closeCase: CloseCase = {
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(page, accessibilityTest);
         await confirmPage.closeAndReturnToCase(page);
+        await page.waitForSelector(`h2:text-is("History")`);
         await page.waitForTimeout(60001); //wait for cronjob to run
         break;
       case true:

@@ -27,7 +27,7 @@ type TasksPage = {
   ): Promise<void>;
   clickTaskLink(page: Page, event: any): Promise<void>;
   markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
-  navigateToTaskTab(page: Page, event: any): Promise<void>;
+  navigateToTaskTab(page: Page, event: any, caseNumber: string): Promise<void>;
   chooseEventFromDropdown(page: Page, event: any): Promise<void>;
 };
 
@@ -160,8 +160,15 @@ const tasksPage: TasksPage = {
     ).not.toBeVisible();
   },
 
-  async navigateToTaskTab(page: Page, event: any): Promise<void> {
-    await page.locator(this.caseTasksTab).click();
+  async navigateToTaskTab(
+    page: Page,
+    event: any,
+    caseNumber: string,
+  ): Promise<void> {
+    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    await page.goto(
+      `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+    );
     await page.waitForSelector(`a:text-is("${event}")`, { state: "attached" });
   },
 

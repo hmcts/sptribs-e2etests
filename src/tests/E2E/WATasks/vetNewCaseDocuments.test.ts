@@ -12,8 +12,8 @@ const assignedUser = "sptribswa hearingcentreadmin";
 const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
 const event = "Case: Build case";
-const stateBeforeCompletion = "Case Status:  Submitted";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Submitted";
+const stateAfterCompletion = "Case management";
 const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
