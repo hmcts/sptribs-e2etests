@@ -100,6 +100,7 @@ const sendOrder: SendOrder = {
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(page, accessibilityTest);
         await confirmPage.closeAndReturnToCase(page);
+        await page.waitForSelector(`h2:text-is("History")`);
         break;
       case true:
         await selectOrderIssuingTypePage.triggerErrorMessages(page);

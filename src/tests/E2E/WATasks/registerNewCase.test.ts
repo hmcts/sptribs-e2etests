@@ -9,8 +9,8 @@ const assignedUser = "sptribswa hearingcentreadmin";
 const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
 const event = "Case: Edit case";
-const stateBeforeCompletion = "Case Status:  DSS-Submitted";
-const stateAfterCompletion = "Case Status:  Submitted";
+const stateBeforeCompletion = "DSS-Submitted";
+const stateAfterCompletion = "Submitted";
 const nextTriggeredTaskToCleanUp = "Vet New Case Documents";
 
 test.describe("Register new case task tests @CaseAPI", (): void => {

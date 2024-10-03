@@ -25,8 +25,9 @@ const numberOfDaysProcess = 10;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case Status:  Case management";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Case management";
+const stateAfterCompletion = "Case management";
+const caseClosedState = "Case closed";
 
 test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -366,7 +367,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       false,
       taskName,
       caseNumber04,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
@@ -449,7 +450,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       false,
       taskName,
       caseNumber05,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 });

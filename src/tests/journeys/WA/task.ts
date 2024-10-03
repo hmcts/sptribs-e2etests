@@ -6,7 +6,7 @@ import commonHelpers, {
   taskCompletionMethod,
 } from "../../helpers/commonHelpers.ts";
 import tasksPage from "../../pages/WA/tasksPage.ts";
-import statePage from "../../pages/WA/statePage.ts";
+import historyPage from "../../pages/WA/historyPage.ts";
 
 type Task = {
   seeTask(
@@ -85,13 +85,13 @@ const task: Task = {
           event,
           user,
         );
-        await statePage.checkStateBeforeTaskCompletion(
+        await historyPage.navigateToHistoryTab(page);
+        await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
-          caseNumber,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.navigateToTaskTab(page, event, caseNumber);
         await tasksPage.clickTaskLink(page, event);
         break;
       case "Link: Assign Task to Me":
@@ -108,13 +108,13 @@ const task: Task = {
           event,
           user,
         );
-        await statePage.checkStateBeforeTaskCompletion(
+        await historyPage.navigateToHistoryTab(page);
+        await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
-          caseNumber,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.navigateToTaskTab(page, event, caseNumber);
         await tasksPage.clickTaskLink(page, event);
         break;
       case "Event DropDown":
@@ -130,13 +130,13 @@ const task: Task = {
           event,
           user,
         );
-        await statePage.checkStateBeforeTaskCompletion(
+        await historyPage.navigateToHistoryTab(page);
+        await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
-          caseNumber,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.navigateToTaskTab(page, event, caseNumber);
         await tasksPage.chooseEventFromDropdown(page, event);
         break;
     }
@@ -148,7 +148,8 @@ const task: Task = {
     caseNumber: string,
     stateAfterCompletion: string,
   ): Promise<any> {
-    await statePage.checkStateAfterTaskCompletion(page, stateAfterCompletion);
+    await historyPage.navigateToHistoryTab(page);
+    await historyPage.checkStateAfterTaskCompletion(page, stateAfterCompletion);
     await tasksPage.completedTaskNotVisible(page, caseNumber, taskName);
     console.log("task completion successful");
   },
