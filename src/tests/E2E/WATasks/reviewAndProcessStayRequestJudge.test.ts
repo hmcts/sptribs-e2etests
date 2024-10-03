@@ -256,12 +256,6 @@ test.describe("Review Stay Request - Judge @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
     await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
@@ -354,12 +348,6 @@ test.describe("Review Stay Request - Judge @CaseAPI", (): void => {
       false,
       "Stay request",
       false,
-      caseNumber04,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleJudge,
-      config.CaseAPIBaseURL,
       caseNumber04,
     );
     await task.seeTask(page, userRoleJudge, false, taskName);
