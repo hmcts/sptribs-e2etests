@@ -9,18 +9,23 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 
 const taskName = "Review Time extension request - Legal Officer";
 const taskNameProcess = "Process time extension directions returned";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = " medium ";
 const priorityProcess = " medium ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
+const eventReferToJudge = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case management";
@@ -119,6 +124,34 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       page,
       false,
       taskNameProcess,
+      caseNumber01,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventRefer,
+      stateBeforeCompletion,
+    );
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Withdrawal request",
+      false,
+      caseNumber01,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
       caseNumber01,
       stateAfterCompletion,
     );
@@ -309,6 +342,34 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       page,
       false,
       taskNameProcess,
+      caseNumber03,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber03,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventReferToJudge,
+      stateBeforeCompletion,
+    );
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Withdrawal request",
+      false,
+      caseNumber03,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
       caseNumber03,
       stateAfterCompletion,
     );

@@ -149,7 +149,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       false,
       false,
       true,
-      caseNumber01
+      caseNumber01,
     );
     await task.checkCompletedTask(
       page,
@@ -368,7 +368,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       false,
       false,
       false,
-      caseNumber03
+      caseNumber03,
     );
     await task.checkCompletedTask(
       page,

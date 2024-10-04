@@ -149,7 +149,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       false,
       true,
       true,
-      caseNumber01
+      caseNumber01,
     );
     await task.checkCompletedTask(
       page,
@@ -368,7 +368,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       false,
       true,
       false,
-      caseNumber03
+      caseNumber03,
     );
     await task.checkCompletedTask(
       page,
