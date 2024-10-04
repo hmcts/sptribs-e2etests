@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import manageDueDate from "../journeys/CaseAPI/manageDueDate.ts";
+import manageDueDate from "../../removedFiles/manageDueDate.ts";
 
 test.describe("Manage due date of an order @CaseAPI", () => {
   test("Manage due date of an order in 'Case Management' State as a Caseworker. @crossbrowserCaseAPI", async ({

@@ -1,18 +1,18 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "../../../removedFiles/buildCase.ts";
-import hearingOptions from "./hearingOptions.ts";
-import createListing from "./createListing.ts";
-import createSummary from "./createSummary.ts";
-import createEditStay from "./createEditStay.ts";
-import closeCase from "../../../removedFiles/closeCase.ts";
-import createCase from "../WA/createCase.ts";
-import uploadCaseDocumentsPage from "../../pages/CaseAPI/documentManagementUpload/uploadCaseDocumentsPage.ts";
-import submitPage from "../../pages/CaseAPI/documentManagementUpload/submitPage.ts";
-import confirmPage from "../../pages/CaseAPI/documentManagementUpload/confirmPage.ts";
-import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
-import submit_content from "../../fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
+import config, { UserRole } from "../tests/config.ts";
+import commonHelpers, { allEvents } from "../tests/helpers/commonHelpers.ts";
+import buildCase from "./buildCase.ts";
+import hearingOptions from "../tests/journeys/CaseAPI/hearingOptions.ts";
+import createListing from "../tests/journeys/CaseAPI/createListing.ts";
+import createSummary from "../tests/journeys/CaseAPI/createSummary.ts";
+import createEditStay from "../tests/journeys/CaseAPI/createEditStay.ts";
+import closeCase from "./closeCase.ts";
+import createCase from "../tests/journeys/WA/createCase.ts";
+import uploadCaseDocumentsPage from "../tests/pages/CaseAPI/documentManagementUpload/uploadCaseDocumentsPage.ts";
+import submitPage from "../tests/pages/CaseAPI/documentManagementUpload/submitPage.ts";
+import confirmPage from "../tests/pages/CaseAPI/documentManagementUpload/confirmPage.ts";
+import caseDocumentsTabPage from "../tests/pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import submit_content from "../tests/fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
 
 type initialState =
   | "Submitted"
