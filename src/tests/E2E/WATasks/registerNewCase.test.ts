@@ -433,7 +433,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   });
 });
 
-
 test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
@@ -494,4 +493,3 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
   );
   await task.removeTask(page, nextTriggeredTaskToCleanUp);
 });
-
