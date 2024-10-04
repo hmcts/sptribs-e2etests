@@ -19,9 +19,7 @@ const assignedUserJudge = "Ms Kayla Adams";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleJudge = "waPrincipalJudge";
 const numberOfDaysReview = 5;
-// const numberOfDaysProcess = 3;
-// awaiting bug fix
-const numberOfDaysProcess = 1;
+const numberOfDaysProcess = 3;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
