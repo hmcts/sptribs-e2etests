@@ -50,7 +50,6 @@ const referCaseToJudge: ReferCaseToJudge = {
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
         await confirmPage.continueOn(page);
-        await page.waitForTimeout(60001); //waiting for Cronjob to cancel previous task
         break;
       case true:
         await referCaseToJudgeReasonPage.checkPageLoads(

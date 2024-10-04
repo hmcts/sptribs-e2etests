@@ -57,6 +57,9 @@ const tasksPage: TasksPage = {
     while (assignedToElements > 1) {
       console.log(`Found more than 1 task. Reloading page...`);
       await page.reload();
+      await page.waitForSelector(
+        `p.govuk-body > strong:text-is("${taskName}")`,
+      );
       await page.waitForTimeout(1000);
       assignedToElements = await page
         .locator(`span:text-is("Assigned to")`)
@@ -193,7 +196,6 @@ const tasksPage: TasksPage = {
     expect(
       page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
     ).not.toBeVisible();
-    console.log("test data cleaned up");
   },
 };
 

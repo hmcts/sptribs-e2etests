@@ -28,6 +28,7 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
+const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -57,6 +58,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -153,6 +155,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -247,6 +250,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -341,6 +345,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -396,6 +401,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     console.log(`Case Number : ${caseNumber05}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -481,6 +487,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     console.log(`Case Number : ${caseNumber06}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber06);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -540,6 +547,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   console.log(`Case Number : ${caseNumber07}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber07);
+  await task.removeTask(page, taskRemoved);
   await commonHelpers.chooseEventFromDropdown(page, eventRefer);
   await referCaseToLegalOfficer.referCaseToLegalOfficer(
     page,
