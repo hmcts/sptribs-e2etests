@@ -28,6 +28,7 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
+const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
@@ -57,6 +58,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -153,6 +155,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -249,6 +252,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -343,6 +347,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -398,6 +403,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber05}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,

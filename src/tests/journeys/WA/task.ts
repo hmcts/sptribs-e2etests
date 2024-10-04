@@ -35,12 +35,8 @@ type Task = {
     caseNumber: string,
     stateAfterCompletion: string,
   ): Promise<any>;
-  cleanUpTestData(
-    page: Page,
-    tabName: string,
-    nextTriggeredTaskToCleanUp: string,
-    taskName: string,
-  ): Promise<void>;
+
+  removeTask(page: Page, taskRemoved: string): Promise<void>;
 };
 
 const task: Task = {
@@ -154,27 +150,12 @@ const task: Task = {
     console.log("task completion successful");
   },
 
-  async cleanUpTestData(
-    page,
-    tabName,
-    nextTriggeredTaskToCleanUp,
-    taskName,
-  ): Promise<void> {
-    type tabName = "Available tasks" | "My tasks";
-    switch (tabName) {
-      default: //available tasks
-        await myWorkPage.navigateToMyWorkPage(page);
-        await myWorkPage.selectAvailableTasks(page);
-        await myWorkPage.seeTask(page, nextTriggeredTaskToCleanUp);
-        await myWorkPage.clickAssignAndGoToTask(page);
-        await tasksPage.markAsDone(page, nextTriggeredTaskToCleanUp);
-        break;
-      case "My tasks":
-        await myWorkPage.navigateToMyWorkPage(page);
-        await myWorkPage.navigateToTaskPage(page, taskName);
-        await tasksPage.markAsDone(page, taskName);
-        break;
-    }
+  async removeTask(page, taskRemoved): Promise<void> {
+    await myWorkPage.navigateToMyWorkPage(page);
+    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.seeTask(page, taskRemoved);
+    await myWorkPage.clickAssignAndGoToTask(page);
+    await tasksPage.markAsDone(page, taskRemoved);
   },
 };
 

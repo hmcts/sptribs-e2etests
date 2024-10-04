@@ -72,12 +72,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       caseNumber01,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completable via next steps link - assign to me / Edit Case : Assessment - Medical Re-opening Category, Email Contact, 2001, London", async ({
@@ -138,12 +133,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       caseNumber02,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completed via event dropdown / Edit Case : Assessment - Minor Category, Post Contact, 2008, Midlands", async ({
@@ -204,12 +194,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       caseNumber03,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completable via next steps link / Edit Case : Assessment - Paragraph 26 Category, Post Contact, 2012, North East", async ({
@@ -270,12 +255,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       caseNumber04,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completable via next steps link / Edit Case : Assessment - Special Jurisdiction Category, Wales & South West", async ({
@@ -336,12 +316,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       caseNumber05,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completable via next steps link / Edit Case : Eligibility - Other Category", async ({
@@ -402,12 +377,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       caseNumber06,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Edit Case : Error Messaging", async ({ page }) => {
@@ -459,7 +429,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       true,
       caseNumber07,
     );
-    await task.cleanUpTestData(page, "My tasks", taskName, taskName);
+    await task.removeTask(page, taskName);
   });
 });
 
@@ -521,10 +491,5 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     caseNumber08,
     stateAfterCompletion,
   );
-  await task.cleanUpTestData(
-    page,
-    "Available tasks",
-    nextTriggeredTaskToCleanUp,
-    taskName,
-  );
+  await task.removeTask(page, nextTriggeredTaskToCleanUp);
 });
