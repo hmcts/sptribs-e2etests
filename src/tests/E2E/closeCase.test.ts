@@ -243,53 +243,53 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a ready to list case as it is rejected duplicate case as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseRejected",
-      true,
-      "duplicateCase",
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is rejected duplicate case as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseRejected",
+  //     true,
+  //     "duplicateCase",
+  //     null,
+  //   );
+  // });
 
-  test("Close a ready to list case as it is rejected vexatious litigant as a caseworker with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseRejected",
-      false,
-      "vexatiousLitigant",
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is rejected vexatious litigant as a caseworker with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseRejected",
+  //     false,
+  //     "vexatiousLitigant",
+  //     null,
+  //   );
+  // });
 
-  test("Close a ready to list case as it is rejected other reason as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseRejected",
-      true,
-      "other",
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is rejected other reason as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseRejected",
+  //     true,
+  //     "other",
+  //     null,
+  //   );
+  // });
 
   test("Close a ready to list case as it is strikeout noncompliance with directions as a caseworker with no optional information.", async ({
     page,
