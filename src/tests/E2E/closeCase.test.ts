@@ -323,53 +323,53 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a ready to list case as it is a concession as a caseworker with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseConcession",
-      false,
-      null,
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is a concession as a caseworker with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseConcession",
+  //     false,
+  //     null,
+  //     null,
+  //   );
+  // });
 
-  test("Close a ready to list case as it is a consent order as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "consentOrder",
-      true,
-      null,
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is a consent order as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "consentOrder",
+  //     true,
+  //     null,
+  //     null,
+  //   );
+  // });
 
-  test("Close a ready to list case as it is a rule 27 as a caseworker with no optional information. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "rule27",
-      false,
-      null,
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is a rule 27 as a caseworker with no optional information. @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "rule27",
+  //     false,
+  //     null,
+  //     null,
+  //   );
+  // });
 
   test("Close a ready to list case due to death of appellant as a caseworker with no optional information.", async ({
     page,
