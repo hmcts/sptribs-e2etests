@@ -19,9 +19,7 @@ const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
-//const numberOfDaysProcess = 7;
-// awaiting bug fix
-const numberOfDaysProcess = 10;
+const numberOfDaysProcess = 7;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
