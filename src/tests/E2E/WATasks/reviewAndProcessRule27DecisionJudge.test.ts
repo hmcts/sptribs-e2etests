@@ -30,8 +30,8 @@ const caseClosedState = "Case closed";
 
 test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
-                                                                                                                               page,
-                                                                                                                             }) => {
+    page,
+  }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -126,8 +126,8 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
   });
 
   test("Task is completable via next steps link - assign to me / Create Draft order CIC6 - General Directions", async ({
-                                                                                                                         page,
-                                                                                                                       }) => {
+    page,
+  }) => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
@@ -222,8 +222,8 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
   });
 
   test("Task is completed via event dropdown / Create Draft order CIC7 - ME Dmi Reports ", async ({
-                                                                                                    page,
-                                                                                                  }) => {
+    page,
+  }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -456,8 +456,8 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
   });
 
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
-                                                                                                             page,
-                                                                                                           }) => {
+    page,
+  }) => {
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,
@@ -546,8 +546,8 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
 });
 
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI", async ({
-                                                                                                                                                 page,
-                                                                                                                                               }) => {
+  page,
+}) => {
   let caseNumber07: any;
   caseNumber07 = await createCase.createCase(
     page,
