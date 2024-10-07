@@ -220,9 +220,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
     );
   });
 
-  test("Task is completed via event dropdown", async ({
-    page,
-  }) => {
+  test("Task is completed via event dropdown", async ({ page }) => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -358,7 +356,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       false,
       "caseRejected",
       false,
-      "other",
+      "createdInError",
       null,
       caseNumber04,
     );

@@ -439,7 +439,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       false,
       "caseRejected",
       false,
-      "createdInError",
+      "deadlineMissed",
       null,
       caseNumber05,
     );

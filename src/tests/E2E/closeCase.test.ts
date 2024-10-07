@@ -211,37 +211,37 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a ready to list case as it is rejected created in error as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseRejected",
-      true,
-      "createdInError",
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is rejected created in error as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseRejected",
+  //     true,
+  //     "createdInError",
+  //     null,
+  //   );
+  // });
 
-  test("Close a ready to list case as it is rejected deadline missed as a caseworker with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseRejected",
-      false,
-      "deadlineMissed",
-      null,
-    );
-  });
+  // test("Close a ready to list case as it is rejected deadline missed as a caseworker with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseRejected",
+  //     false,
+  //     "deadlineMissed",
+  //     null,
+  //   );
+  // });
 
   test("Close a ready to list case as it is rejected duplicate case as a caseworker with optional information.", async ({
     page,
