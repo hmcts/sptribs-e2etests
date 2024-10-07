@@ -601,7 +601,7 @@ const commonHelpers: CommonHelpers = {
     const [newPage] = await Promise.all([
       context.waitForEvent("page"),
       page.click(`ccd-read-document-field > a`, {
-        modifiers: ["ControlOrMeta"],
+        modifiers: ["Control"],
       }),
     ]);
     await newPage.waitForLoadState("domcontentloaded");
