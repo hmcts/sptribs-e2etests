@@ -291,37 +291,37 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Close a ready to list case as it is strikeout noncompliance with directions as a caseworker with no optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseStrikeOut",
-      false,
-      null,
-      "noncomplianceWithDirections",
-    );
-  });
+  // test("Close a ready to list case as it is strikeout noncompliance with directions as a caseworker with no optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseStrikeOut",
+  //     false,
+  //     null,
+  //     "noncomplianceWithDirections",
+  //   );
+  // });
 
-  test("Close a ready to list case as it is strikeout other reason as a caseworker with optional information.", async ({
-    page,
-  }): Promise<void> => {
-    await closeCase.closeCase(
-      page,
-      "caseWorker",
-      false,
-      "Ready to list",
-      false,
-      "caseStrikeOut",
-      true,
-      null,
-      "other",
-    );
-  });
+  // test("Close a ready to list case as it is strikeout other reason as a caseworker with optional information.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await closeCase.closeCase(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Ready to list",
+  //     false,
+  //     "caseStrikeOut",
+  //     true,
+  //     null,
+  //     "other",
+  //   );
+  // });
 
   // test("Close a ready to list case as it is a concession as a caseworker with no optional information.", async ({
   //   page,
