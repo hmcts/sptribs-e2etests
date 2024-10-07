@@ -404,7 +404,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "New case",
+      "Rule 27 request",
       false,
       caseNumber05,
     );

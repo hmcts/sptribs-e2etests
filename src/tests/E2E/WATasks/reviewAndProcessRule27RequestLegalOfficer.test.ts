@@ -9,7 +9,6 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
-import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 
 const taskName = "Review Rule 27 request - Legal Officer";
 const taskNameProcess = "Process Rule 27 decision";
