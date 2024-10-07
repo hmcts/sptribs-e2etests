@@ -9,10 +9,9 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
-import config from "../../config.ts";
 
-const taskName = "Review stay request - Legal Officer";
-const taskNameProcess = "Process stay directions";
+const taskName = "Review Rule 27 request - Legal Officer";
+const taskNameProcess = "Process Rule 27 decision";
 const priorityReview = " low ";
 const priorityProcess = " low ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
@@ -355,10 +354,10 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       page,
       false,
       false,
-      "caseStrikeOut",
+      "deathOfAppellant",
       true,
       null,
-      "noncomplianceWithDirections",
+      null,
       caseNumber04,
     );
     await task.checkCompletedTask(

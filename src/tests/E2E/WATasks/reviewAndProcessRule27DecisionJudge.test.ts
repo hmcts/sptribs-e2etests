@@ -18,9 +18,8 @@ const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserJudge = "Ms Kayla Adams";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleJudge = "waPrincipalJudge";
-const numberOfDaysReview = 2;
-const numberOfDaysProcess = 5;
-// awaiting merge of 1157
+const numberOfDaysReview = 5;
+const numberOfDaysProcess = 7;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
@@ -125,7 +124,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
     );
   });
 
-  test("Task is completable via next steps link - assign to me / Create Draft order CIC6 - General Directions", async ({
+  test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
     let caseNumber02: any;
@@ -178,7 +177,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       page,
       false,
       false,
-      "CIC6 - General Directions",
+      "CIC10 - Strike Out Warning",
       caseNumber02,
     );
     await task.checkCompletedTask(
@@ -221,7 +220,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
     );
   });
 
-  test("Task is completed via event dropdown / Create Draft order CIC7 - ME Dmi Reports ", async ({
+  test("Task is completed via event dropdown", async ({
     page,
   }) => {
     let caseNumber03: any;
@@ -274,7 +273,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       page,
       false,
       false,
-      "CIC7 - ME Dmi Reports",
+      "CIC13 - Pro Forma Summons",
       caseNumber03,
     );
     await task.checkCompletedTask(
@@ -359,7 +358,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       false,
       "caseRejected",
       false,
-      "createdInError",
+      "other",
       null,
       caseNumber04,
     );
