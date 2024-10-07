@@ -31,8 +31,8 @@ const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Rule 27 request and Process decision - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
-                                                                                         page,
-                                                                                       }) => {
+    page,
+  }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -128,8 +128,8 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
   });
 
   test("Task is completable via next steps link - assign to me", async ({
-                                                                          page,
-                                                                        }) => {
+    page,
+  }) => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
@@ -460,8 +460,8 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
   });
 
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
-                                                                                                             page,
-                                                                                                           }) => {
+    page,
+  }) => {
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,
@@ -551,8 +551,8 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
 });
 
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI", async ({
-                                                                                                                                                 page,
-                                                                                                                                               }) => {
+  page,
+}) => {
   let caseNumber07: any;
   caseNumber07 = await createCase.createCase(
     page,
