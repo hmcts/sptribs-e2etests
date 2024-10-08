@@ -5,7 +5,7 @@ import commonHelpers, { allEvents } from "../tests/helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import closeCase from "./closeCase.ts";
 import createEditStay from "../tests/journeys/CaseAPI/createEditStay.ts";
-import createListing from "../tests/journeys/CaseAPI/createListing.ts";
+import createListing from "./createListing.ts";
 import createSummary from "../tests/journeys/CaseAPI/createSummary.ts";
 import { initialState } from "./referCaseToJudge.ts";
 import { referralReason } from "../tests/pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";

@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import buildCase from "../../../removedFiles/buildCase.ts";
+import config, { UserRole } from "../tests/config.ts";
+import buildCase from "./buildCase.ts";
 import commonHelpers, {
   allEvents,
   caseRegionCode,
@@ -8,18 +8,18 @@ import commonHelpers, {
   hearingSession,
   hearingType,
   hearingVenues,
-} from "../../helpers/commonHelpers.ts";
-import hearingOptions from "./hearingOptions.ts";
-import createListingHearingTypeAndFormatPage from "../../pages/CaseAPI/createListing/createListingHearingTypeAndFormatPage.ts";
-import createListingRegionInfoPage from "../../pages/CaseAPI/createListing/createListingRegionInfoPage.ts";
-import createListingListingDetailsPage from "../../pages/CaseAPI/createListing/createListingListingDetailsPage.ts";
-import createListingRemoteHearingInformationPage from "../../pages/CaseAPI/createListing/createListingRemoteHearingInformationPage.ts";
-import createListingOtherInformationPage from "../../pages/CaseAPI/createListing/createListingOtherInformationPage.ts";
-import createListingNotifyPage from "../../pages/CaseAPI/createListing/createListingNotifyPage.ts";
-import submitPage from "../../pages/CaseAPI/createListing/submitPage.ts";
-import confirmPage from "../../pages/CaseAPI/createListing/confirmPage.ts";
-import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
-import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
+} from "../tests/helpers/commonHelpers.ts";
+import hearingOptions from "../tests/journeys/CaseAPI/hearingOptions.ts";
+import createListingHearingTypeAndFormatPage from "../tests/pages/CaseAPI/createListing/createListingHearingTypeAndFormatPage.ts";
+import createListingRegionInfoPage from "../tests/pages/CaseAPI/createListing/createListingRegionInfoPage.ts";
+import createListingListingDetailsPage from "../tests/pages/CaseAPI/createListing/createListingListingDetailsPage.ts";
+import createListingRemoteHearingInformationPage from "../tests/pages/CaseAPI/createListing/createListingRemoteHearingInformationPage.ts";
+import createListingOtherInformationPage from "../tests/pages/CaseAPI/createListing/createListingOtherInformationPage.ts";
+import createListingNotifyPage from "../tests/pages/CaseAPI/createListing/createListingNotifyPage.ts";
+import submitPage from "../tests/pages/CaseAPI/createListing/submitPage.ts";
+import confirmPage from "../tests/pages/CaseAPI/createListing/confirmPage.ts";
+import hearingsTabPage from "../tests/pages/CaseAPI/caseTabs/hearingsTabPage.ts";
+import hearingTabPage from "../tests/pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type CreateListing = {
   createListing(
