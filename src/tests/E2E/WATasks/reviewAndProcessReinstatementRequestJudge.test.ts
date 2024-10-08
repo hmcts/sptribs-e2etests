@@ -26,7 +26,7 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case closed";
 const stateAfterCompletion = "Case closed";
 
-test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
