@@ -5,20 +5,20 @@ import createDraft from "../../journeys/WA/createDraft.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
-import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import task from "../../journeys/WA/task.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 
-const taskName = "Review Reinstatement request - Judge";
+const taskName = "Review Reinstatement request - Legal Officer";
 const taskNameProcess = "Process Reinstatement decision notice";
-const priorityReview = null;
+const priorityReview = " low ";
 const priorityProcess = " low ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
+const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
+const userRoleLO = "waSeniorCaseworker";
 const userRoleCaseWorker = "waCaseWorker";
-const eventRefer = "Refer case to judge";
+const eventRefer = "Refer case to legal officer";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 5;
 const eventOrders = "Orders: Create draft";
@@ -26,7 +26,7 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case closed";
 const stateAfterCompletion = "Case closed";
 
-test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -59,30 +59,30 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       page,
       false,
       false,
-      "deathOfAppellant",
+      "caseRejected",
       false,
-      null,
+      "deadlineMissed",
       null,
       caseNumber01,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Reinstatement request",
       false,
       caseNumber01,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
-      userRoleJudge,
+      userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber01,
       taskName,
       priorityReview,
-      assignedUserJudge,
+      assignedUserLO,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
@@ -166,23 +166,23 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber02,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Reinstatement request",
       false,
       caseNumber02,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
-      userRoleJudge,
+      userRoleLO,
       "Link: Assign Task to Me",
       false,
       caseNumber02,
       taskName,
       priorityReview,
-      assignedUserJudge,
+      assignedUserLO,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
@@ -259,28 +259,28 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       false,
       "caseRejected",
       false,
-      "deadlineMissed",
+      "vexatiousLitigant",
       null,
       caseNumber03,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Reinstatement request",
       false,
       caseNumber03,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
-      userRoleJudge,
+      userRoleLO,
       "Event DropDown",
       false,
       caseNumber03,
       taskName,
       priorityReview,
-      assignedUserJudge,
+      assignedUserLO,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
