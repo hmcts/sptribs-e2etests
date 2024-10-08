@@ -11,13 +11,14 @@ import createListing from "../../journeys/WA/createListing.ts";
 const taskName = "Review List Case - Judge";
 const priority = null;
 const assignedUser = "Ms Kayla Adams";
-const userRoleCreate = "waRegionalHearingCentreAdmin";
+const userRoleCreate = "waHearingCentreAdmin";
 const userRole = "waPrincipalJudge";
 const numberOfDays = 1;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
+const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -47,6 +48,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -129,6 +131,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -209,6 +212,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -289,6 +293,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     console.log(`Case Number : ${caseNumber05}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -372,6 +377,7 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
   console.log(`Case Number : ${caseNumber06}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber06);
+  await task.removeTask(page, taskRemoved);
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
   await createListing.createListing(
     page,
