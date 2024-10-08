@@ -5,8 +5,6 @@ import createDraft from "../../journeys/WA/createDraft.ts";
 import task from "../../journeys/WA/task.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import closeCase from "../../journeys/WA/closeCase.ts";
-import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 
@@ -18,8 +16,8 @@ const userRole = "waPrincipalJudge";
 const numberOfDays = 1;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
-const stateBeforeCompletion = "Case Status:  Awaiting hearing";
-const stateAfterCompletion = "Case Status:  Awaiting hearing";
+const stateBeforeCompletion = "Awaiting hearing";
+const stateAfterCompletion = "Awaiting hearing";
 
 test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
