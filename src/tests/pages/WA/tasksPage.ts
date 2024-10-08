@@ -27,7 +27,7 @@ type TasksPage = {
   ): Promise<void>;
   clickTaskLink(page: Page, event: any): Promise<void>;
   markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
-  navigateToTaskTab(page: Page, event: any): Promise<void>;
+  navigateToTaskTab(page: Page, event: any, caseNumber: string): Promise<void>;
   chooseEventFromDropdown(page: Page, event: any): Promise<void>;
 };
 
@@ -50,15 +50,22 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(`p.govuk-body > strong:text-is("${taskName}")`);
 
     //check for more than one task if cron job hasn't cleared previous task
-    const assignedToElements = await page
+    let assignedToElements = await page
       .locator(`span:text-is("Assigned to")`)
       .count();
+
     while (assignedToElements > 1) {
       console.log(`Found more than 1 task. Reloading page...`);
       await page.reload();
-      const assignedToElements = await page
+      await page.waitForSelector(
+        `p.govuk-body > strong:text-is("${taskName}")`,
+      );
+      await page.waitForTimeout(1000);
+      assignedToElements = await page
         .locator(`span:text-is("Assigned to")`)
         .count();
+
+      // Break if there's only 1 task left
       if (assignedToElements <= 1) {
         break;
       }
@@ -156,8 +163,15 @@ const tasksPage: TasksPage = {
     ).not.toBeVisible();
   },
 
-  async navigateToTaskTab(page: Page, event: any): Promise<void> {
-    await page.locator(this.caseTasksTab).click();
+  async navigateToTaskTab(
+    page: Page,
+    event: any,
+    caseNumber: string,
+  ): Promise<void> {
+    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    await page.goto(
+      `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+    );
     await page.waitForSelector(`a:text-is("${event}")`, { state: "attached" });
   },
 
@@ -182,7 +196,6 @@ const tasksPage: TasksPage = {
     expect(
       page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
     ).not.toBeVisible();
-    console.log("test data cleaned up");
   },
 };
 

@@ -9,9 +9,10 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import config from "../../config.ts";
 
-const taskName = "Review new case and provide directions - Legal Officer";
-const taskNameProcess = "Process directions returned";
+const taskName = "Review stay request - Legal Officer";
+const taskNameProcess = "Process stay directions";
 const priorityReview = " low ";
 const priorityProcess = " low ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
@@ -28,7 +29,7 @@ const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
+test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -61,7 +62,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
-      "New case",
+      "Stay request",
       false,
       caseNumber01,
     );
@@ -83,7 +84,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       false,
-      "CIC3 - Rule 27",
+      "CIC8 - ME Joint Instruction",
       caseNumber01,
     );
     await task.checkCompletedTask(
@@ -115,7 +116,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       false,
       true,
       true,
-      "7",
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -158,7 +159,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
-      "New case",
+      "Stay request",
       false,
       caseNumber02,
     );
@@ -180,7 +181,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       false,
-      "CIC6 - General Directions",
+      "CIC10 - Strike Out Warning",
       caseNumber02,
     );
     await task.checkCompletedTask(
@@ -207,11 +208,11 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await sendOrder.sendOrder(
       page,
       caseNumber02,
-      "UploadOrder",
+      "DraftOrder",
       false,
       false,
-      false,
-      false,
+      true,
+      true,
       "1",
     );
     await task.checkCompletedTask(
@@ -253,7 +254,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
-      "New case",
+      "Stay request",
       false,
       caseNumber03,
     );
@@ -275,7 +276,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       false,
-      "CIC7 - ME Dmi Reports",
+      "CIC13 - Pro Forma Summons",
       caseNumber03,
     );
     await task.checkCompletedTask(
@@ -307,7 +308,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       false,
       true,
       true,
-      "5",
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -318,7 +319,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
   });
 
-  test("Review task is cancellable through close case", async ({ page }) => {
+  test("Review is cancellable through close case", async ({ page }) => {
     let caseNumber04: any;
     caseNumber04 = await createCase.createCase(
       page,
@@ -348,7 +349,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
-      "New case",
+      "Stay request",
       false,
       caseNumber04,
     );
@@ -359,10 +360,10 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       false,
-      "caseConcession",
+      "caseStrikeOut",
       true,
       null,
-      null,
+      "noncomplianceWithDirections",
       caseNumber04,
     );
     await task.checkCompletedTask(
@@ -404,7 +405,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
-      "New case",
+      "Stay request",
       false,
       caseNumber05,
     );
@@ -426,7 +427,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       false,
-      "CIC3 - Rule 27",
+      "CIC8 - ME Joint Instruction",
       caseNumber05,
     );
     await task.checkCompletedTask(
@@ -452,134 +453,9 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNameProcess,
       caseNumber05,
       caseClosedState,
     );
   });
-
-  test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
-    page,
-  }) => {
-    let caseNumber06: any;
-    caseNumber06 = await createCase.createCase(
-      page,
-      userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
-    console.log(`Case Number : ${caseNumber06}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber06);
-    await task.removeTask(page, taskRemoved);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      false,
-      "New case",
-      true,
-      caseNumber06,
-    );
-    await task.seeTask(page, userRoleLO, false, taskName);
-    await task.initiateTask(
-      page,
-      userRoleLO,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber06,
-      taskName,
-      priorityReview,
-      assignedUserLO,
-      numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
-    );
-    await createDraft.createDraft(
-      page,
-      false,
-      false,
-      "CIC6 - General Directions",
-      caseNumber06,
-    );
-  });
-});
-
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI", async ({
-  page,
-}) => {
-  let caseNumber07: any;
-  caseNumber07 = await createCase.createCase(
-    page,
-    userRoleAdmin,
-    false,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
-  console.log(`Case Number : ${caseNumber07}`);
-  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber07);
-  await task.removeTask(page, taskRemoved);
-  await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-  await referCaseToLegalOfficer.referCaseToLegalOfficer(
-    page,
-    true,
-    "New case",
-    false,
-    caseNumber07,
-  );
-  await task.seeTask(page, userRoleLO, true, taskName);
-  await task.initiateTask(
-    page,
-    userRoleLO,
-    "Link: Assign Task to Me and Go To Task",
-    true,
-    caseNumber07,
-    taskName,
-    priorityReview,
-    assignedUserLO,
-    numberOfDaysReview,
-    eventOrders,
-    stateBeforeCompletion,
-  );
-  await createDraft.createDraft(
-    page,
-    false,
-    false,
-    "CIC3 - Rule 27",
-    caseNumber07,
-  );
-  await task.checkCompletedTask(
-    page,
-    true,
-    taskName,
-    caseNumber07,
-    stateAfterCompletion,
-  );
 });

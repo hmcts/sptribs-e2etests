@@ -8,12 +8,12 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 
 const taskName = "Vet New Case Documents";
 const priority = " low ";
-const assignedUser = "sptribswa regionalhearingcentreadmin";
-const userRole = "waRegionalHearingCentreAdmin";
+const assignedUser = "sptribswa hearingcentreadmin";
+const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
 const event = "Case: Build case";
-const stateBeforeCompletion = "Case Status:  Submitted";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Submitted";
+const stateAfterCompletion = "Case management";
 const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
@@ -84,12 +84,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber01,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completable via next steps link - assign to me", async ({
@@ -159,12 +154,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber02,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
@@ -232,12 +222,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber03,
       stateAfterCompletion,
     );
-    await task.cleanUpTestData(
-      page,
-      "Available tasks",
-      nextTriggeredTaskToCleanUp,
-      taskName,
-    );
+    await task.removeTask(page, nextTriggeredTaskToCleanUp);
   });
 });
 
@@ -308,10 +293,5 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     caseNumber04,
     stateAfterCompletion,
   );
-  await task.cleanUpTestData(
-    page,
-    "Available tasks",
-    nextTriggeredTaskToCleanUp,
-    taskName,
-  );
+  await task.removeTask(page, nextTriggeredTaskToCleanUp);
 });

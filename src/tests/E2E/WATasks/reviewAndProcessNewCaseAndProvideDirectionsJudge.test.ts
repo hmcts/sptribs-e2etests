@@ -14,19 +14,19 @@ const taskName = "Review new case and provide directions - Judge";
 const taskNameProcess = "Process directions returned";
 const priorityReview = null;
 const priorityProcess = " low ";
-const assignedUserAdmin = "sptribswa regionalhearingcentreadmin";
+const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserJudge = "Ms Kayla Adams";
-const userRoleAdmin = "waRegionalHearingCentreAdmin";
+const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleJudge = "waPrincipalJudge";
 const numberOfDaysReview = 5;
-//const numberOfDaysProcess = 7;
-// awaiting bug fix
-const numberOfDaysProcess = 10;
+const numberOfDaysProcess = 7;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case Status:  Case management";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Case management";
+const stateAfterCompletion = "Case management";
+const caseClosedState = "Case closed";
+const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27  ", async ({
@@ -56,6 +56,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -152,6 +153,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -248,6 +250,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -342,6 +345,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -368,7 +372,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       taskName,
       caseNumber04,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
@@ -397,6 +401,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     console.log(`Case Number : ${caseNumber05}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -451,7 +456,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       false,
       taskName,
       caseNumber05,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
@@ -482,6 +487,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     console.log(`Case Number : ${caseNumber06}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber06);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -572,6 +578,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   console.log(`Case Number : ${caseNumber07}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber07);
+  await task.removeTask(page, taskRemoved);
   await commonHelpers.chooseEventFromDropdown(page, eventRefer);
   await referCaseToJudge.referCaseToJudge(
     page,

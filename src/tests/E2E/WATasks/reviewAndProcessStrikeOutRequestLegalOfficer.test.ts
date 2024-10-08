@@ -14,19 +14,19 @@ const taskName = "Review Strike out request - Legal Officer";
 const taskNameProcess = "Process strike out directions returned";
 const priorityReview = " low ";
 const priorityProcess = " low ";
-const assignedUserAdmin = "sptribswa regionalhearingcentreadmin";
+const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
-const userRoleAdmin = "waRegionalHearingCentreAdmin";
+const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
-//const numberOfDaysProcess = 7;
-// awaiting bug fix
-const numberOfDaysProcess = 10;
+const numberOfDaysProcess = 7;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case Status:  Case management";
-const stateAfterCompletion = "Case Status:  Case management";
+const stateBeforeCompletion = "Case management";
+const stateAfterCompletion = "Case management";
+const caseClosedState = "Case closed";
+const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -56,6 +56,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
     console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -152,6 +153,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
     console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -246,6 +248,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
     console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -340,6 +343,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
     console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -366,7 +370,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       false,
       taskName,
       caseNumber04,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 
@@ -395,6 +399,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
     console.log(`Case Number : ${caseNumber05}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
+    await task.removeTask(page, taskRemoved);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
@@ -449,7 +454,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       false,
       taskName,
       caseNumber05,
-      "Case Status:  Case closed",
+      caseClosedState,
     );
   });
 });

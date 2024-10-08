@@ -6,7 +6,7 @@ import commonHelpers, {
   taskCompletionMethod,
 } from "../../helpers/commonHelpers.ts";
 import tasksPage from "../../pages/WA/tasksPage.ts";
-import statePage from "../../pages/WA/statePage.ts";
+import historyPage from "../../pages/WA/historyPage.ts";
 
 type Task = {
   seeTask(
@@ -35,12 +35,8 @@ type Task = {
     caseNumber: string,
     stateAfterCompletion: string,
   ): Promise<any>;
-  cleanUpTestData(
-    page: Page,
-    tabName: string,
-    nextTriggeredTaskToCleanUp: string,
-    taskName: string,
-  ): Promise<void>;
+
+  removeTask(page: Page, taskRemoved: string): Promise<void>;
 };
 
 const task: Task = {
@@ -85,13 +81,13 @@ const task: Task = {
           event,
           user,
         );
-        await statePage.checkStateBeforeTaskCompletion(
+        await historyPage.navigateToHistoryTab(page);
+        await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
-          caseNumber,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.navigateToTaskTab(page, event, caseNumber);
         await tasksPage.clickTaskLink(page, event);
         break;
       case "Link: Assign Task to Me":
@@ -108,13 +104,13 @@ const task: Task = {
           event,
           user,
         );
-        await statePage.checkStateBeforeTaskCompletion(
+        await historyPage.navigateToHistoryTab(page);
+        await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
-          caseNumber,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.navigateToTaskTab(page, event, caseNumber);
         await tasksPage.clickTaskLink(page, event);
         break;
       case "Event DropDown":
@@ -130,13 +126,13 @@ const task: Task = {
           event,
           user,
         );
-        await statePage.checkStateBeforeTaskCompletion(
+        await historyPage.navigateToHistoryTab(page);
+        await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
-          caseNumber,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event);
+        await tasksPage.navigateToTaskTab(page, event, caseNumber);
         await tasksPage.chooseEventFromDropdown(page, event);
         break;
     }
@@ -148,32 +144,18 @@ const task: Task = {
     caseNumber: string,
     stateAfterCompletion: string,
   ): Promise<any> {
-    await statePage.checkStateAfterTaskCompletion(page, stateAfterCompletion);
+    await historyPage.navigateToHistoryTab(page);
+    await historyPage.checkStateAfterTaskCompletion(page, stateAfterCompletion);
     await tasksPage.completedTaskNotVisible(page, caseNumber, taskName);
     console.log("task completion successful");
   },
 
-  async cleanUpTestData(
-    page,
-    tabName,
-    nextTriggeredTaskToCleanUp,
-    taskName,
-  ): Promise<void> {
-    type tabName = "Available tasks" | "My tasks";
-    switch (tabName) {
-      default: //available tasks
-        await myWorkPage.navigateToMyWorkPage(page);
-        await myWorkPage.selectAvailableTasks(page);
-        await myWorkPage.seeTask(page, nextTriggeredTaskToCleanUp);
-        await myWorkPage.clickAssignAndGoToTask(page);
-        await tasksPage.markAsDone(page, nextTriggeredTaskToCleanUp);
-        break;
-      case "My tasks":
-        await myWorkPage.navigateToMyWorkPage(page);
-        await myWorkPage.navigateToTaskPage(page, taskName);
-        await tasksPage.markAsDone(page, taskName);
-        break;
-    }
+  async removeTask(page, taskRemoved): Promise<void> {
+    await myWorkPage.navigateToMyWorkPage(page);
+    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.seeTask(page, taskRemoved);
+    await myWorkPage.clickAssignAndGoToTask(page);
+    await tasksPage.markAsDone(page, taskRemoved);
   },
 };
 
