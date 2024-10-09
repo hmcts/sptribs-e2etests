@@ -9,20 +9,25 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import manageDueDate from "../../journeys/WA/manageDueDate.ts";
 
 const taskName = "Review Strike out request - Legal Officer";
 const taskNameProcess = "Process strike out directions returned";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = " low ";
 const priorityProcess = " low ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
+const eventManageDueDate = "Orders: Manage due date";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
@@ -121,6 +126,35 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       page,
       false,
       taskNameProcess,
+      caseNumber01,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventManageDueDate,
+      stateBeforeCompletion,
+    );
+    await manageDueDate.manageDueDate(
+      page,
+      false,
+      false,
+      false,
+      true,
+      caseNumber01,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
       caseNumber01,
       stateAfterCompletion,
     );
@@ -313,6 +347,35 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       page,
       false,
       taskNameProcess,
+      caseNumber03,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber03,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventManageDueDate,
+      stateBeforeCompletion,
+    );
+    await manageDueDate.manageDueDate(
+      page,
+      false,
+      false,
+      false,
+      false,
+      caseNumber03,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
       caseNumber03,
       stateAfterCompletion,
     );

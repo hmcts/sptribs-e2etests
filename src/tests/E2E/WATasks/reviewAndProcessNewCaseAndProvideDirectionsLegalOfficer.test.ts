@@ -9,20 +9,27 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import contactParties from "../../journeys/WA/contactParties.ts";
+import documentManagementUpload from "../../journeys/WA/documentManagementUpload.ts";
 
 const taskName = "Review new case and provide directions - Legal Officer";
 const taskNameProcess = "Process directions returned";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = " low ";
 const priorityProcess = " low ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
+const eventContactParties = "Case: Contact parties";
+const eventUploadDoc = "Document management: Upload";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
@@ -121,6 +128,34 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       taskNameProcess,
+      caseNumber01,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventUploadDoc,
+      stateBeforeCompletion,
+    );
+    await documentManagementUpload.documentManagementUpload(
+      page,
+      false,
+      false,
+      false,
+      caseNumber01,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
       caseNumber01,
       stateAfterCompletion,
     );
@@ -316,6 +351,34 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       caseNumber03,
       stateAfterCompletion,
     );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber03,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventUploadDoc,
+      stateBeforeCompletion,
+    );
+    await documentManagementUpload.documentManagementUpload(
+      page,
+      false,
+      true,
+      false,
+      caseNumber03,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
+      caseNumber03,
+      stateAfterCompletion,
+    );
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
@@ -458,7 +521,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
   });
 
-  test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Error Messaging - Refer to LO, contact parties ", async ({
     page,
   }) => {
     let caseNumber06: any;
@@ -514,6 +577,72 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       false,
       "CIC6 - General Directions",
       caseNumber06,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskName,
+      caseNumber06,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber06,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber06,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "5",
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameProcess,
+      caseNumber06,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber06,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventContactParties,
+      stateBeforeCompletion,
+    );
+    await contactParties.contactParties(
+      page,
+      userRoleAdmin,
+      false,
+      true,
+      caseNumber06,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
+      caseNumber06,
+      stateAfterCompletion,
     );
   });
 });
@@ -579,6 +708,65 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     page,
     true,
     taskName,
+    caseNumber07,
+    stateAfterCompletion,
+  );
+  await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+  await task.initiateTask(
+    page,
+    userRoleAdmin,
+    "Event DropDown",
+    false,
+    caseNumber07,
+    taskNameProcess,
+    priorityProcess,
+    assignedUserAdmin,
+    numberOfDaysProcess,
+    eventSendOrder,
+    stateBeforeCompletion,
+  );
+  await sendOrder.sendOrder(
+    page,
+    caseNumber07,
+    "DraftOrder",
+    false,
+    false,
+    true,
+    true,
+    "5",
+  );
+  await task.checkCompletedTask(
+    page,
+    false,
+    taskNameProcess,
+    caseNumber07,
+    stateAfterCompletion,
+  );
+  await task.seeTask(page, userRoleAdmin, true, taskNameNonCompliance);
+  await task.initiateTask(
+    page,
+    userRoleAdmin,
+    "Link: Assign Task to Me and Go To Task",
+    true,
+    caseNumber07,
+    taskNameNonCompliance,
+    priorityNonCompliance,
+    assignedUserAdmin,
+    numberOfDaysNonCompliance,
+    eventContactParties,
+    stateBeforeCompletion,
+  );
+  await contactParties.contactParties(
+    page,
+    userRoleAdmin,
+    true,
+    false,
+    caseNumber07,
+  );
+  await task.checkCompletedTask(
+    page,
+    true,
+    taskNameNonCompliance,
     caseNumber07,
     stateAfterCompletion,
   );
