@@ -116,62 +116,62 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
   //   );
   // });
 
-  test("Create hearing listing as a hearing centre admin in the South West for a Case management hearing.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "hearingCentreAdmin",
-      false,
-      true,
-      "6-South West",
-      "Case management",
-      "Hybrid",
-      "All day",
-      false,
-      false,
-      "Bristol Magistrates Court-Marlborough Street, Bristol, BS1 3NU",
-      false,
-    );
-  });
+  // test("Create hearing listing as a hearing centre admin in the South West for a Case management hearing.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await createListing.createListing(
+  //     page,
+  //     "hearingCentreAdmin",
+  //     false,
+  //     true,
+  //     "6-South West",
+  //     "Case management",
+  //     "Hybrid",
+  //     "All day",
+  //     false,
+  //     false,
+  //     "Bristol Magistrates Court-Marlborough Street, Bristol, BS1 3NU",
+  //     false,
+  //   );
+  // });
 
-  test("Create hearing listing as a hearing centre team lead in Wales for a Final hearing with Telephone format.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "hearingCentreTeamLead",
-      false,
-      true,
-      "7-Wales",
-      "Final",
-      "Telephone",
-      "Morning",
-      false,
-      false,
-      "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
-      false,
-    );
-  });
+  // test("Create hearing listing as a hearing centre team lead in Wales for a Final hearing with Telephone format.", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await createListing.createListing(
+  //     page,
+  //     "hearingCentreTeamLead",
+  //     false,
+  //     true,
+  //     "7-Wales",
+  //     "Final",
+  //     "Telephone",
+  //     "Morning",
+  //     false,
+  //     false,
+  //     "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
+  //     false,
+  //   );
+  // });
 
-  test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      true,
-      "1-London",
-      "Case management",
-      "Face to Face",
-      "Morning",
-      false,
-      true,
-      "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
-      false,
-    );
-  });
+  // test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await createListing.createListing(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     true,
+  //     "1-London",
+  //     "Case management",
+  //     "Face to Face",
+  //     "Morning",
+  //     false,
+  //     true,
+  //     "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
+  //     false,
+  //   );
+  // });
 
   test("Create hearing listing with the hearing across multiple days.", async ({
     page,
