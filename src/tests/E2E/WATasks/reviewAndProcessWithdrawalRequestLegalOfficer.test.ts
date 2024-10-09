@@ -9,20 +9,25 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import manageDueDate from "../../journeys/WA/manageDueDate.ts";
 
 const taskName = "Review withdrawal request - Legal Officer";
 const taskNameProcess = "Process Case Withdrawal Directions";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = " low ";
 const priorityProcess = " low ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
+const eventManageDueDate = "Orders: Manage due date";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
@@ -455,6 +460,130 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       taskName,
       caseNumber05,
       caseClosedState,
+    );
+  });
+
+  test("Error Messaging - Manage due date", async ({ page }) => {
+    let caseNumber06: any;
+    caseNumber06 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber06}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber06);
+    await task.removeTask(page, taskRemoved);
+    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Withdrawal request",
+      false,
+      caseNumber06,
+    );
+    await task.seeTask(page, userRoleLO, false, taskName);
+    await task.initiateTask(
+      page,
+      userRoleLO,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber06,
+      taskName,
+      priorityReview,
+      assignedUserLO,
+      numberOfDaysReview,
+      eventOrders,
+      stateBeforeCompletion,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC8 - ME Joint Instruction",
+      caseNumber06,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskName,
+      caseNumber06,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber06,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber06,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "7",
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameProcess,
+      caseNumber06,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber06,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventManageDueDate,
+      stateBeforeCompletion,
+    );
+    await manageDueDate.manageDueDate(
+      page,
+      false,
+      true,
+      false,
+      false,
+      caseNumber06,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
+      caseNumber06,
+      stateAfterCompletion,
     );
   });
 });
