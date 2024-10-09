@@ -28,7 +28,7 @@ const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
