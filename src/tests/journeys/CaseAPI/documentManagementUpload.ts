@@ -1,22 +1,21 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../tests/config.ts";
-import hearingOptions from "../tests/journeys/CaseAPI/hearingOptions.ts";
-import commonHelpers, { allEvents } from "../tests/helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
-import closeCase from "./closeCase.ts";
-import createEditStay from "../tests/journeys/CaseAPI/createEditStay.ts";
-import createListing from "./createListing.ts";
-import createSummary from "../tests/journeys/CaseAPI/createSummary.ts";
-import referCaseToJudgeReasonPage, {
-  referralReason,
-} from "../tests/pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
-import referCaseToJudgeAdditionalInfoPage from "../tests/pages/CaseAPI/referCaseToJudge/referCaseToJudgeAdditionalInfoPage.ts";
-import submitPage from "../tests/pages/CaseAPI/referCaseToJudge/submitPage.ts";
-import historyTabPage from "../tests/pages/CaseAPI/caseTabs/historyTabPage.ts";
-import caseReferralsTabPage from "../tests/pages/CaseAPI/caseTabs/caseReferralsTabPage.ts";
-import confirmPage from "../tests/pages/CaseAPI/referCaseToJudge/confirmPage.ts";
+import config, { UserRole } from "../../config.ts";
+import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
+import buildCase from "../../../removedFiles/buildCase.ts";
+import hearingOptions from "./hearingOptions.ts";
+import createListing from "../../../removedFiles/createListing.ts";
+import createSummary from "./createSummary.ts";
+import createEditStay from "./createEditStay.ts";
+import closeCase from "../../../removedFiles/closeCase.ts";
+import createCase from "../WA/createCase.ts";
+import uploadCaseDocumentsPage from "../../pages/CaseAPI/documentManagementUpload/uploadCaseDocumentsPage.ts";
+import submitPage from "../../pages/CaseAPI/documentManagementUpload/submitPage.ts";
+import confirmPage from "../../pages/CaseAPI/documentManagementUpload/confirmPage.ts";
+import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import submit_content from "../../fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
 
-export type initialState =
+type initialState =
+  | "Submitted"
   | "Case Management"
   | "Ready to list"
   | "Awaiting hearing"
@@ -24,29 +23,51 @@ export type initialState =
   | "Case stayed"
   | "Case closed";
 
-type ReferCaseToJudge = {
-  referCaseToJudge(
+type DocumentManagementUpload = {
+  documentManagementUpload(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
     initialState: initialState,
-    referralReason: referralReason,
+    multipleDocuments: boolean,
     errorMessaging: boolean,
-  ): Promise<void>;
+  ): Promise<void | string>;
 };
 
-const referCaseToJudge: ReferCaseToJudge = {
-  async referCaseToJudge(
+const documentManagementUpload: DocumentManagementUpload = {
+  async documentManagementUpload(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
     initialState: initialState,
-    referralReason: referralReason,
+    multipleDocuments: boolean,
     errorMessaging: boolean,
-  ): Promise<void> {
+  ): Promise<void | string> {
     let caseNumber: string | void;
     switch (initialState) {
-      default: // Defaults to Case management
+      default: // Defaults to Submitted
+        caseNumber = await createCase.createCase(
+          page,
+          user,
+          false,
+          "Assessment",
+          "Other",
+          true,
+          true,
+          "Email",
+          true,
+          false,
+          "1996",
+          "Scotland",
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+        );
+        break;
+      case "Case Management":
         let previousEvents: allEvents[] = [];
         let eventTimes: string[] = [];
         caseNumber = await buildCase.buildCase(
@@ -137,62 +158,55 @@ const referCaseToJudge: ReferCaseToJudge = {
         config.CaseAPIBaseURL,
         caseNumber,
       );
-      await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
+      await commonHelpers.chooseEventFromDropdown(
+        page,
+        "Document management: Upload",
+      );
+      await uploadCaseDocumentsPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+      );
       switch (errorMessaging) {
         default:
-          await referCaseToJudgeReasonPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await referCaseToJudgeReasonPage.fillFields(page, referralReason);
-          await referCaseToJudgeReasonPage.continueOn(page);
-          await referCaseToJudgeAdditionalInfoPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await referCaseToJudgeAdditionalInfoPage.fillFields(page);
-          await referCaseToJudgeAdditionalInfoPage.continueOn(page);
+          await uploadCaseDocumentsPage.fillFields(page, multipleDocuments);
+          await uploadCaseDocumentsPage.continueOn(page);
           await submitPage.checkPageLoads(
             page,
             caseNumber,
-            referralReason,
+            multipleDocuments,
             accessibilityTest,
           );
-          await submitPage.checkAndFillInfo(page, referralReason);
+          await submitPage.checkValidInfo(page, multipleDocuments);
           await submitPage.continueOn(page);
           await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
           await confirmPage.continueOn(page);
-          await historyTabPage.checkPageLoads(
+          await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
+          await caseDocumentsTabPage.checkPageLoads(
             page,
             accessibilityTest,
             caseNumber,
-            initialState,
+            multipleDocuments,
+            false,
+            true,
+            user,
           );
-          await historyTabPage.checkReferral(page);
-          await caseReferralsTabPage.changeToCaseReferralsTab(page);
-          await caseReferralsTabPage.checkPageLoads(
+          await caseDocumentsTabPage.docManagementUploadCheckInfo(
             page,
-            accessibilityTest,
-            caseNumber,
-            referralReason,
+            multipleDocuments,
+            user,
+            submit_content.category,
+            submit_content.message,
+            false,
           );
-          await caseReferralsTabPage.checkValidInfo(page, referralReason);
           break;
         case true:
-          await referCaseToJudgeReasonPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await referCaseToJudgeReasonPage.triggerErrorMessages(page);
+          await uploadCaseDocumentsPage.triggerErrorMessages(page);
           break;
       }
-    } else {
-      throw new Error("Case number is undefined.");
     }
+    return caseNumber;
   },
 };
 
-export default referCaseToJudge;
+export default documentManagementUpload;

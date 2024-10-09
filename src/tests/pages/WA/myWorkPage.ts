@@ -12,7 +12,7 @@ type MyWorkPage = {
   assignToMeAndGoToTask: string;
   assignToMeLink: string;
   myWorkLink: string;
-  reloadUrl: string;
+  availableTasksUrl: string;
   checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -32,8 +32,8 @@ const myWorkPage: MyWorkPage = {
   filterButton: ".hmcts-button--secondary",
   assignToMeAndGoToTask: "#action_claim-and-go",
   assignToMeLink: "#action_claim",
-  myWorkLink: `nav a:text-is(" My work ")`,
-  reloadUrl: `${config.CaseAPIBaseURL.replace(/\/cases$/, "")}/work/my-work/available`,
+  myWorkLink: `a.hmcts-primary-navigation__link:text-is(" My work ")`,
+  availableTasksUrl: `${config.CaseAPIBaseURL.replace(/\/cases$/, "")}/work/my-work/available`,
 
   async checkPageLoads(page, accessibilityTest, user): Promise<void> {
     await page.locator(".hmcts-primary-navigation__link").first().click();
@@ -120,7 +120,7 @@ const myWorkPage: MyWorkPage = {
       const paginationExists =
         (await page.locator(paginationLocator).count()) > 0;
       if (!paginationExists) {
-        await page.goto(this.reloadUrl);
+        await page.goto(this.availableTasksUrl);
         await page.waitForTimeout(15000); // // waiting for cron job before rechecking
       } else {
         const paginationCount = await page.locator(paginationLocator).count();
@@ -207,7 +207,7 @@ const myWorkPage: MyWorkPage = {
       .click();
   },
   async navigateToMyWorkPage(page: Page): Promise<void> {
-    await page.locator(this.myWorkLink).click();
+    await page.goto(this.availableTasksUrl);
     await page.waitForSelector(`h3:text-is("My work")`);
   },
 };
