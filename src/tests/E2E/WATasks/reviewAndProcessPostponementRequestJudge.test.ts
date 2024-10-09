@@ -10,6 +10,7 @@ import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 import createListing from "../../journeys/WA/createListing.ts";
+import config from "../../config.ts";
 
 const taskName = "Review Postponement request - Judge";
 const taskNameProcess = "Process postponement directions";
@@ -19,6 +20,7 @@ const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserJudge = "Ms Kayla Adams";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleJudge = "waPrincipalJudge";
+const userRoleCaseWorker = "waCaseWorker";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 const eventRefer = "Refer case to judge";
@@ -74,6 +76,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       caseNumber01,
     );
+    await commonHelpers.signOutAndGoToCase(page, userRoleCaseWorker, config.CaseAPIBaseURL, caseNumber01);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -188,6 +191,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       caseNumber02,
     );
+    await commonHelpers.signOutAndGoToCase(page, userRoleCaseWorker, config.CaseAPIBaseURL, caseNumber02);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -300,6 +304,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       caseNumber03,
     );
+    await commonHelpers.signOutAndGoToCase(page, userRoleCaseWorker, config.CaseAPIBaseURL, caseNumber03);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
