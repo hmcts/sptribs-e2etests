@@ -8,21 +8,27 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import config from "../../config.ts";
+import sendOrder from "../../journeys/WA/sendOrder.ts";
 
 const taskName = "Review List Case - Legal Officer";
+const taskNameProcess = "Process directions re. listed case";
 const priorityReview = " medium ";
+const priorityProcess = " medium ";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const userRoleCaseWorker = "waCaseWorker";
+const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
-const numberOfDays = 1;
+const numberofDaysReview = 1;
+const numberOfDaysProcess = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
+const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -92,7 +98,7 @@ test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
       taskName,
       priorityReview,
       assignedUserLO,
-      numberOfDays,
+      numberofDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -102,6 +108,30 @@ test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber01,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber01,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -181,7 +211,7 @@ test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
       taskName,
       priorityReview,
       assignedUserLO,
-      numberOfDays,
+      numberofDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -191,6 +221,30 @@ test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
       false,
       "CIC10 - Strike Out Warning",
       caseNumber02,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber02,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber02,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -268,7 +322,7 @@ test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
       taskName,
       priorityReview,
       assignedUserLO,
-      numberOfDays,
+      numberofDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -278,6 +332,30 @@ test.describe("Review Listed Case - Legal Officer @CaseAPI", (): void => {
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber03,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber03,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber03,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
