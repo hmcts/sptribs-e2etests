@@ -76,7 +76,12 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       caseNumber01,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleCaseWorker, config.CaseAPIBaseURL, caseNumber01);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber01,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -191,7 +196,12 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       caseNumber02,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleCaseWorker, config.CaseAPIBaseURL, caseNumber02);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber02,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -304,7 +314,12 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       caseNumber03,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleCaseWorker, config.CaseAPIBaseURL, caseNumber03);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber03,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
