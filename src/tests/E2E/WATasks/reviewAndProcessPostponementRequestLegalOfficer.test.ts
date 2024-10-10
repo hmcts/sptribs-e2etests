@@ -1,14 +1,14 @@
 import { test } from "@playwright/test";
-import createCase from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/createCase.ts";
-import buildCase from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/buildCase.ts";
-import createDraft from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/createDraft.ts";
-import task from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/task.ts";
-import commonHelpers from "../../../../../../1053/sptribs-e2etests/src/tests/helpers/commonHelpers.ts";
-import events_content from "../../../../../../1053/sptribs-e2etests/src/tests/fixtures/content/CaseAPI/events_content.ts";
-import sendOrder from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/sendOrder.ts";
-import createListing from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/createListing.ts";
-import config from "../../../../../../1053/sptribs-e2etests/src/tests/config.ts";
-import referCaseToLegalOfficer from "../../../../../../1053/sptribs-e2etests/src/tests/journeys/WA/referCaseToLegalOfficer.ts";
+import createCase from "../../journeys/WA/createCase.ts";
+import buildCase from "../../journeys/WA/buildCase.ts";
+import createDraft from "../../journeys/WA/createDraft.ts";
+import task from "../../journeys/WA/task.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
+import sendOrder from "../../journeys/WA/sendOrder.ts";
+import createListing from "../../journeys/WA/createListing.ts";
+import config from "../../config.ts";
+import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 
 const taskName = "Review Postponement request - Legal Officer";
 const taskNameProcess = "Process postponement directions";
@@ -30,8 +30,8 @@ const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
-    page,
-  }) => {
+                                                                                         page,
+                                                                                       }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -150,8 +150,8 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
   });
 
   test("Task is completable via next steps link - assign to me", async ({
-    page,
-  }) => {
+                                                                          page,
+                                                                        }) => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,

@@ -5,8 +5,6 @@ import createDraft from "../../journeys/WA/createDraft.ts";
 import task from "../../journeys/WA/task.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import closeCase from "../../journeys/WA/closeCase.ts";
-import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 import createListing from "../../journeys/WA/createListing.ts";
