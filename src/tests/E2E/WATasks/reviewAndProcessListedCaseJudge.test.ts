@@ -7,27 +7,35 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import createListing from "../../journeys/WA/createListing.ts";
+import config from "../../config.ts";
+import sendOrder from "../../journeys/WA/sendOrder.ts";
 
 const taskName = "Review List Case - Judge";
-const priority = null;
-const assignedUser = "Ms Kayla Adams";
-const userRoleCreate = "waHearingCentreAdmin";
-const userRole = "waPrincipalJudge";
-const numberOfDays = 1;
+const taskNameProcess = "Process directions re. listed case";
+const priorityReview = null;
+const priorityProcess = " medium ";
+const assignedUserAdmin = "sptribswa hearingcentreadmin";
+const assignedUserJudge = "Ms Kayla Adams";
+const userRoleAdmin = "waHearingCentreAdmin";
+const userRoleJudge = "waPrincipalJudge";
+const userRoleCaseWorker = "waCaseWorker";
+const numberOfDaysReview = 1;
+const numberOfDaysProcess = 1;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
+const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
-      userRoleCreate,
+      userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -66,6 +74,12 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber01,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber01,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -74,17 +88,17 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber01,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
-      userRole,
+      userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber01,
       taskName,
-      priority,
-      assignedUser,
-      numberOfDays,
+      priorityReview,
+      assignedUserJudge,
+      numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -94,6 +108,30 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber01,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber01,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -110,7 +148,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
-      userRoleCreate,
+      userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -149,6 +187,12 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber02,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -157,17 +201,17 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
-      userRole,
+      userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber02,
       taskName,
-      priority,
-      assignedUser,
-      numberOfDays,
+      priorityReview,
+      assignedUserJudge,
+      numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -177,6 +221,30 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       "CIC10 - Strike Out Warning",
       caseNumber02,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber02,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber02,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -191,7 +259,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
-      userRoleCreate,
+      userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -230,6 +298,12 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber03,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -238,17 +312,17 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber03,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
-      userRole,
+      userRoleJudge,
       "Event DropDown",
       false,
       caseNumber03,
       taskName,
-      priority,
-      assignedUser,
-      numberOfDays,
+      priorityReview,
+      assignedUserJudge,
+      numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -258,6 +332,30 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber03,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Event DropDown",
+      false,
+      caseNumber03,
+      taskNameProcess,
+      priorityProcess,
+      assignedUserAdmin,
+      numberOfDaysProcess,
+      eventSendOrder,
+      stateBeforeCompletion,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber03,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
@@ -272,7 +370,7 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
     let caseNumber05: any;
     caseNumber05 = await createCase.createCase(
       page,
-      userRoleCreate,
+      userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -311,6 +409,12 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       true,
       caseNumber05,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleCaseWorker,
+      config.CaseAPIBaseURL,
+      caseNumber05,
+    );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -319,17 +423,17 @@ test.describe("Review Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber05,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName);
     await task.initiateTask(
       page,
-      userRole,
+      userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber05,
       taskName,
-      priority,
-      assignedUser,
-      numberOfDays,
+      priorityReview,
+      assignedUserJudge,
+      numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
     );
@@ -356,7 +460,7 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
   let caseNumber06: any;
   caseNumber06 = await createCase.createCase(
     page,
-    userRoleCreate,
+    userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -392,6 +496,12 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
     false,
     caseNumber06,
   );
+  await commonHelpers.signOutAndGoToCase(
+    page,
+    userRoleCaseWorker,
+    config.CaseAPIBaseURL,
+    caseNumber06,
+  );
   await commonHelpers.chooseEventFromDropdown(page, eventRefer);
   await referCaseToJudge.referCaseToJudge(
     page,
@@ -400,17 +510,17 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
     false,
     caseNumber06,
   );
-  await task.seeTask(page, userRole, false, taskName);
+  await task.seeTask(page, userRoleJudge, false, taskName);
   await task.initiateTask(
     page,
-    userRole,
+    userRoleJudge,
     "Link: Assign Task to Me",
     false,
     caseNumber06,
     taskName,
-    priority,
-    assignedUser,
-    numberOfDays,
+    priorityReview,
+    assignedUserJudge,
+    numberOfDaysReview,
     eventOrders,
     stateBeforeCompletion,
   );
