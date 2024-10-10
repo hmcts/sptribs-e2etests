@@ -33,8 +33,6 @@ const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
-// Awaiting fix to SLA and possibly priority
-
 test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,

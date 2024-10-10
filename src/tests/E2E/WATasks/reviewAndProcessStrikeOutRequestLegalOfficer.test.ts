@@ -118,7 +118,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       "DraftOrder",
       false,
       false,
-      true,
+      false,
       true,
       "7",
     );
@@ -339,7 +339,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       "DraftOrder",
       false,
       false,
-      true,
+      false,
       true,
       "5",
     );
@@ -381,7 +381,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
     );
   });
 
-  test("Task is cancellable through close case", async ({ page }) => {
+  test("Review task is cancellable through close case", async ({ page }) => {
     let caseNumber04: any;
     caseNumber04 = await createCase.createCase(
       page,

@@ -496,7 +496,7 @@ test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
   await referCaseToLegalOfficer.referCaseToLegalOfficer(
     page,
     false,
-    "Withdrawal request",
+    "Rule 27 request",
     false,
     caseNumber06,
   );
