@@ -30,8 +30,8 @@ const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
-                                                                                         page,
-                                                                                       }) => {
+    page,
+  }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -150,8 +150,8 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
   });
 
   test("Task is completable via next steps link - assign to me", async ({
-                                                                          page,
-                                                                        }) => {
+    page,
+  }) => {
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
