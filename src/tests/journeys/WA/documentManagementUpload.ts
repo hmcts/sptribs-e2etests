@@ -29,7 +29,11 @@ const documentManagementUpload: DocumentManagementUpload = {
     if (errorMessaging) {
       await uploadCaseDocumentsPage.triggerErrorMessages(page);
     }
-    await uploadCaseDocumentsPage.fillFields(page, multipleDocuments);
+    await uploadCaseDocumentsPage.fillFields(
+      page,
+      multipleDocuments,
+      errorMessaging,
+    );
     await uploadCaseDocumentsPage.continueOn(page);
     await submitPage.checkPageLoads(
       page,

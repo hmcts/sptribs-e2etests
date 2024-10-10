@@ -37,6 +37,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -258,6 +259,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,

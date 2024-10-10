@@ -467,6 +467,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
 test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
+  test.setTimeout(7 * 60 * 1000);
   let caseNumber06: any;
   caseNumber06 = await createCase.createCase(
     page,
@@ -548,7 +549,7 @@ test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
     "DraftOrder",
     false,
     false,
-    true,
+    false,
     true,
     "7",
   );

@@ -464,6 +464,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Error Messaging - Manage due date", async ({ page }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,

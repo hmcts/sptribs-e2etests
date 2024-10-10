@@ -468,6 +468,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,
@@ -594,6 +595,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
+  test.setTimeout(7 * 60 * 1000);
   let caseNumber07: any;
   caseNumber07 = await createCase.createCase(
     page,

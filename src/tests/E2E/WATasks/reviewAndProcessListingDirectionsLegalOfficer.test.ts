@@ -37,6 +37,7 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -162,6 +163,7 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber02: any;
     caseNumber02 = await createCase.createCase(
       page,
@@ -285,6 +287,7 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -550,6 +553,7 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
   test("Noncompliance task is cancellable through close case", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,

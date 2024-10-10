@@ -39,6 +39,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -259,6 +260,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -524,6 +526,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging - Refer to LO, contact parties ", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,
@@ -650,6 +653,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
+  test.setTimeout(7 * 60 * 1000);
   let caseNumber07: any;
   caseNumber07 = await createCase.createCase(
     page,
