@@ -6,12 +6,12 @@ import task from "../../journeys/WA/task.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
-import sendOrder from "../../journeys/WA/sendOrder.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import config from "../../config.ts";
+import sendOrder from "../../journeys/WA/sendOrder.ts";
 
-const taskName = "Review Postponement request - Judge";
-const taskNameProcess = "Process postponement directions";
+const taskName = " Review list case (within 5 days) - Judge ";
+const taskNameProcess = "Process directions re. listed case (within 5 days)";
 const priorityReview = null;
 const priorityProcess = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
@@ -28,7 +28,7 @@ const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review and Process Postponement Directions - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -69,7 +69,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       "Case management",
       "Face to Face",
       "Morning",
-      false,
+      true,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
       caseNumber01,
@@ -84,7 +84,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Postponement request",
+      "Listed case (within 5 days)",
       false,
       caseNumber01,
     );
@@ -143,7 +143,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskName,
       caseNumber01,
       stateAfterCompletion,
     );
@@ -184,13 +184,13 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await createListing.createListing(
       page,
       false,
-      true,
-      "1-London",
+      false,
+      null,
       "Case management",
       "Face to Face",
       "Morning",
       false,
-      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      null,
       false,
       caseNumber02,
     );
@@ -204,7 +204,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Postponement request",
+      "Listed case (within 5 days)",
       false,
       caseNumber02,
     );
@@ -229,13 +229,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       "CIC10 - Strike Out Warning",
       caseNumber02,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber02,
-      stateAfterCompletion,
-    );
     await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
     await task.initiateTask(
       page,
@@ -253,17 +246,17 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await sendOrder.sendOrder(
       page,
       caseNumber02,
-      "UploadOrder",
-      false,
+      "DraftOrder",
       false,
       false,
       true,
-      "3",
+      true,
+      "1",
     );
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskName,
       caseNumber02,
       stateAfterCompletion,
     );
@@ -303,12 +296,12 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       page,
       false,
       true,
-      "1-London",
+      "2-Midlands",
       "Case management",
       "Face to Face",
       "Morning",
       false,
-      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      null,
       false,
       caseNumber03,
     );
@@ -322,7 +315,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Postponement request",
+      "Listed case (within 5 days)",
       false,
       caseNumber03,
     );
@@ -347,13 +340,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       "CIC13 - Pro Forma Summons",
       caseNumber03,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber03,
-      stateAfterCompletion,
-    );
     await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
     await task.initiateTask(
       page,
@@ -376,12 +362,12 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       false,
       true,
       true,
-      "5",
+      "1",
     );
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskName,
       caseNumber03,
       stateAfterCompletion,
     );

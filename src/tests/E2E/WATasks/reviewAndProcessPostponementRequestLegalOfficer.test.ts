@@ -5,30 +5,30 @@ import createDraft from "../../journeys/WA/createDraft.ts";
 import task from "../../journeys/WA/task.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import config from "../../config.ts";
+import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 
-const taskName = "Review Postponement request - Judge";
+const taskName = "Review Postponement request - Legal Officer";
 const taskNameProcess = "Process postponement directions";
-const priorityReview = null;
+const priorityReview = " medium ";
 const priorityProcess = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
+const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
+const userRoleLO = "waSeniorCaseworker";
 const userRoleCaseWorker = "waCaseWorker";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
-const eventRefer = "Refer case to judge";
+const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review and Process Postponement Directions - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -81,23 +81,23 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       caseNumber01,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Postponement request",
       false,
       caseNumber01,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
-      userRoleJudge,
+      userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber01,
       taskName,
       priorityReview,
-      assignedUserJudge,
+      assignedUserLO,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
@@ -201,23 +201,23 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       caseNumber02,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Postponement request",
       false,
       caseNumber02,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
-      userRoleJudge,
+      userRoleLO,
       "Link: Assign Task to Me",
       false,
       caseNumber02,
       taskName,
       priorityReview,
-      assignedUserJudge,
+      assignedUserLO,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
@@ -319,23 +319,23 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       caseNumber03,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Postponement request",
       false,
       caseNumber03,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName);
     await task.initiateTask(
       page,
-      userRoleJudge,
+      userRoleLO,
       "Event DropDown",
       false,
       caseNumber03,
       taskName,
       priorityReview,
-      assignedUserJudge,
+      assignedUserLO,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
