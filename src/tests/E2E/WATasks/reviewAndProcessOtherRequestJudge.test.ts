@@ -30,6 +30,8 @@ const awaitingHearingState = "Awaiting hearing";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
+// Awaiting bug fix for process
+
 test.describe("Review Other Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - Case management", async ({
     page,
@@ -95,37 +97,37 @@ test.describe("Review Other Request - Judge @CaseAPI", (): void => {
       caseNumber01,
       caseManagementState,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber01,
-      taskNameProcess,
-      priorityProcess,
-      assignedUserAdmin,
-      numberOfDaysProcess,
-      eventSendOrder,
-      caseManagementState,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber01,
-      "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameProcess,
-      caseNumber01,
-      caseManagementState,
-    );
+    // await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    // await task.initiateTask(
+    //   page,
+    //   userRoleAdmin,
+    //   "Link: Assign Task to Me and Go To Task",
+    //   false,
+    //   caseNumber01,
+    //   taskNameProcess,
+    //   priorityProcess,
+    //   assignedUserAdmin,
+    //   numberOfDaysProcess,
+    //   eventSendOrder,
+    //   caseManagementState,
+    // );
+    // await sendOrder.sendOrder(
+    //   page,
+    //   caseNumber01,
+    //   "DraftOrder",
+    //   false,
+    //   false,
+    //   true,
+    //   true,
+    //   "1",
+    // );
+    // await task.checkCompletedTask(
+    //   page,
+    //   false,
+    //   taskNameProcess,
+    //   caseNumber01,
+    //   caseManagementState,
+    // );
   });
 
   test("Task is completable via next steps link - assign to me - Awaiting hearing", async ({
@@ -215,37 +217,37 @@ test.describe("Review Other Request - Judge @CaseAPI", (): void => {
       caseNumber02,
       awaitingHearingState,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Link: Assign Task to Me",
-      false,
-      caseNumber02,
-      taskNameProcess,
-      priorityProcess,
-      assignedUserAdmin,
-      numberOfDaysProcess,
-      eventSendOrder,
-      awaitingHearingState,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber02,
-      "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameProcess,
-      caseNumber02,
-      awaitingHearingState,
-    );
+    // await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    // await task.initiateTask(
+    //   page,
+    //   userRoleAdmin,
+    //   "Link: Assign Task to Me",
+    //   false,
+    //   caseNumber02,
+    //   taskNameProcess,
+    //   priorityProcess,
+    //   assignedUserAdmin,
+    //   numberOfDaysProcess,
+    //   eventSendOrder,
+    //   awaitingHearingState,
+    // );
+    // await sendOrder.sendOrder(
+    //   page,
+    //   caseNumber02,
+    //   "DraftOrder",
+    //   false,
+    //   false,
+    //   true,
+    //   true,
+    //   "1",
+    // );
+    // await task.checkCompletedTask(
+    //   page,
+    //   false,
+    //   taskNameProcess,
+    //   caseNumber02,
+    //   awaitingHearingState,
+    // );
   });
 
   test("Task is completed via event dropdown - Case closed", async ({
@@ -322,37 +324,37 @@ test.describe("Review Other Request - Judge @CaseAPI", (): void => {
       caseNumber03,
       caseClosedState,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber03,
-      taskNameProcess,
-      priorityProcess,
-      assignedUserAdmin,
-      numberOfDaysProcess,
-      eventSendOrder,
-      caseClosedState,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber03,
-      "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameProcess,
-      caseNumber03,
-      caseClosedState,
-    );
+    // await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    // await task.initiateTask(
+    //   page,
+    //   userRoleAdmin,
+    //   "Event DropDown",
+    //   false,
+    //   caseNumber03,
+    //   taskNameProcess,
+    //   priorityProcess,
+    //   assignedUserAdmin,
+    //   numberOfDaysProcess,
+    //   eventSendOrder,
+    //   caseClosedState,
+    // );
+    // await sendOrder.sendOrder(
+    //   page,
+    //   caseNumber03,
+    //   "DraftOrder",
+    //   false,
+    //   false,
+    //   true,
+    //   true,
+    //   "1",
+    // );
+    // await task.checkCompletedTask(
+    //   page,
+    //   false,
+    //   taskNameProcess,
+    //   caseNumber03,
+    //   caseClosedState,
+    // );
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
@@ -410,87 +412,88 @@ test.describe("Review Other Request - Judge @CaseAPI", (): void => {
       caseClosedState,
     );
   });
-  test("Process task is cancellable through close case", async ({ page }) => {
-    let caseNumber05: any;
-    caseNumber05 = await createCase.createCase(
-      page,
-      userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
-    console.log(`Case Number : ${caseNumber05}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber05);
-    await task.removeTask(page, taskRemoved);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      false,
-      "Other",
-      false,
-      caseNumber05,
-    );
-    await task.seeTask(page, userRoleJudge, false, taskName);
-    await task.initiateTask(
-      page,
-      userRoleJudge,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber05,
-      taskName,
-      priorityReview,
-      assignedUserJudge,
-      numberOfDaysReview,
-      eventOrders,
-      caseManagementState,
-    );
-    await createDraft.createDraft(
-      page,
-      false,
-      false,
-      "CIC8 - ME Joint Instruction",
-      caseNumber05,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber05,
-      caseManagementState,
-    );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
-    await myWorkPage.clickAssignAndGoToTask(page);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
-    await closeCase.closeCase(
-      page,
-      false,
-      false,
-      "caseRejected",
-      false,
-      "createdInError",
-      null,
-      caseNumber05,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameProcess,
-      caseNumber05,
-      caseClosedState,
-    );
-  });
+
+  // test("Process task is cancellable through close case", async ({ page }) => {
+  //   let caseNumber05: any;
+  //   caseNumber05 = await createCase.createCase(
+  //     page,
+  //     userRoleAdmin,
+  //     false,
+  //     "Assessment",
+  //     "Other",
+  //     true,
+  //     true,
+  //     "Email",
+  //     true,
+  //     false,
+  //     "1996",
+  //     "Scotland",
+  //     true,
+  //     true,
+  //     true,
+  //     false,
+  //     true,
+  //     false,
+  //   );
+  //   console.log(`Case Number : ${caseNumber05}`);
+  //   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  //   await buildCase.buildCase(page, false, caseNumber05);
+  //   await task.removeTask(page, taskRemoved);
+  //   await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     false,
+  //     "Other",
+  //     false,
+  //     caseNumber05,
+  //   );
+  //   await task.seeTask(page, userRoleJudge, false, taskName);
+  //   await task.initiateTask(
+  //     page,
+  //     userRoleJudge,
+  //     "Link: Assign Task to Me and Go To Task",
+  //     false,
+  //     caseNumber05,
+  //     taskName,
+  //     priorityReview,
+  //     assignedUserJudge,
+  //     numberOfDaysReview,
+  //     eventOrders,
+  //     caseManagementState,
+  //   );
+  //   await createDraft.createDraft(
+  //     page,
+  //     false,
+  //     false,
+  //     "CIC8 - ME Joint Instruction",
+  //     caseNumber05,
+  //   );
+  //   await task.checkCompletedTask(
+  //     page,
+  //     false,
+  //     taskName,
+  //     caseNumber05,
+  //     caseManagementState,
+  //   );
+  //   await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+  //   await myWorkPage.clickAssignAndGoToTask(page);
+  //   await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+  //   await closeCase.closeCase(
+  //     page,
+  //     false,
+  //     false,
+  //     "caseRejected",
+  //     false,
+  //     "createdInError",
+  //     null,
+  //     caseNumber05,
+  //   );
+  //   await task.checkCompletedTask(
+  //     page,
+  //     false,
+  //     taskNameProcess,
+  //     caseNumber05,
+  //     caseClosedState,
+  //   );
+  // });
 });

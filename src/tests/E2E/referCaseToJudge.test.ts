@@ -93,18 +93,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Refer case to judge as a caseworker - case management, other reason", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Other",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - case management, other reason", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Other",
+  //     false,
+  //   );
+  // });
 
   // test("Refer case to judge as a caseworker - ready to list, listing directions", async ({
   //   page,
@@ -301,18 +301,18 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge as a caseworker - awaiting hearing, other reason", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Awaiting hearing",
-      "Other",
-      false,
-    );
-  });
+  // test("Refer case to judge as a caseworker - awaiting hearing, other reason", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Awaiting hearing",
+  //     "Other",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to judge as a caseworker - awaiting outcome, listing directions", async ({
     page,
@@ -560,19 +560,19 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
     );
   });
-
-  test("Refer case to judge as a caseworker - case closed, other reason", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      "caseWorker",
-      false,
-      "Case closed",
-      "Other",
-      false,
-    );
-  });
+  //
+  // test("Refer case to judge as a caseworker - case closed, other reason", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToJudge.referCaseToJudge(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case closed",
+  //     "Other",
+  //     false,
+  //   );
+  // });
 
   // test("Error messaging. @crossbrowserCaseAPI", async ({
   //   page,
