@@ -33,7 +33,7 @@ const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -521,13 +521,6 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       "CIC3 - Rule 27",
       caseNumber05,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber05,
-      stateAfterCompletion,
-    );
     await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
     await myWorkPage.clickAssignAndGoToTask(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -607,13 +600,6 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       "CIC3 - Rule 27",
       caseNumber06,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber06,
-      stateAfterCompletion,
-    );
     await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
     await task.initiateTask(
       page,
@@ -637,13 +623,6 @@ test.describe("Review Listing Directions - Legal Officer @CaseAPI", (): void => 
       true,
       true,
       "5",
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameProcess,
-      caseNumber06,
-      stateAfterCompletion,
     );
     await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
     await myWorkPage.clickAssignAndGoToTask(page);

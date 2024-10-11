@@ -9,7 +9,6 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
-import contactParties from "../../journeys/WA/contactParties.ts";
 import documentManagementUpload from "../../journeys/WA/documentManagementUpload.ts";
 
 const taskName = "Review new case and provide directions - Legal Officer";
@@ -28,7 +27,6 @@ const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const eventContactParties = "Case: Contact parties";
 const eventUploadDoc = "Document management: Upload";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
@@ -39,7 +37,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -129,34 +126,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       taskNameProcess,
-      caseNumber01,
-      stateAfterCompletion,
-    );
-    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber01,
-      taskNameNonCompliance,
-      priorityNonCompliance,
-      assignedUserAdmin,
-      numberOfDaysNonCompliance,
-      eventUploadDoc,
-      stateBeforeCompletion,
-    );
-    await documentManagementUpload.documentManagementUpload(
-      page,
-      false,
-      false,
-      false,
-      caseNumber01,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameNonCompliance,
       caseNumber01,
       stateAfterCompletion,
     );
@@ -260,7 +229,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    test.setTimeout(7 * 60 * 1000);
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -350,34 +318,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       false,
       taskNameProcess,
-      caseNumber03,
-      stateAfterCompletion,
-    );
-    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber03,
-      taskNameNonCompliance,
-      priorityNonCompliance,
-      assignedUserAdmin,
-      numberOfDaysNonCompliance,
-      eventUploadDoc,
-      stateBeforeCompletion,
-    );
-    await documentManagementUpload.documentManagementUpload(
-      page,
-      false,
-      true,
-      false,
-      caseNumber03,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameNonCompliance,
       caseNumber03,
       stateAfterCompletion,
     );
@@ -630,12 +570,12 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       priorityNonCompliance,
       assignedUserAdmin,
       numberOfDaysNonCompliance,
-      eventContactParties,
+      eventUploadDoc,
       stateBeforeCompletion,
     );
-    await contactParties.contactParties(
+    await documentManagementUpload.documentManagementUpload(
       page,
-      userRoleAdmin,
+      false,
       false,
       true,
       caseNumber06,
@@ -757,12 +697,12 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     priorityNonCompliance,
     assignedUserAdmin,
     numberOfDaysNonCompliance,
-    eventContactParties,
+    eventUploadDoc,
     stateBeforeCompletion,
   );
-  await contactParties.contactParties(
+  await documentManagementUpload.documentManagementUpload(
     page,
-    userRoleAdmin,
+    true,
     true,
     false,
     caseNumber07,

@@ -575,8 +575,8 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       page,
       false,
       true,
-      false,
-      false,
+      true,
+      true,
       caseNumber06,
     );
     await task.checkCompletedTask(

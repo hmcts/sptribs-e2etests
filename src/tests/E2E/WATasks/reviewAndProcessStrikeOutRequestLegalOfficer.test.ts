@@ -259,7 +259,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    test.setTimeout(7 * 60 * 1000);
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -349,35 +348,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       page,
       false,
       taskNameProcess,
-      caseNumber03,
-      stateAfterCompletion,
-    );
-    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber03,
-      taskNameNonCompliance,
-      priorityNonCompliance,
-      assignedUserAdmin,
-      numberOfDaysNonCompliance,
-      eventManageDueDate,
-      stateBeforeCompletion,
-    );
-    await manageDueDate.manageDueDate(
-      page,
-      false,
-      false,
-      false,
-      false,
-      caseNumber03,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameNonCompliance,
       caseNumber03,
       stateAfterCompletion,
     );

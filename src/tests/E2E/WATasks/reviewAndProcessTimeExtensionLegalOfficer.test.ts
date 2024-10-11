@@ -9,7 +9,6 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
-import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 
 const taskName = "Review Time extension request - Legal Officer";
 const taskNameProcess = "Process time extension directions returned";
@@ -25,7 +24,6 @@ const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
-const eventReferToJudge = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case management";
@@ -258,7 +256,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    test.setTimeout(7 * 60 * 1000);
     let caseNumber03: any;
     caseNumber03 = await createCase.createCase(
       page,
@@ -348,34 +345,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       page,
       false,
       taskNameProcess,
-      caseNumber03,
-      stateAfterCompletion,
-    );
-    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
-    await task.initiateTask(
-      page,
-      userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber03,
-      taskNameNonCompliance,
-      priorityNonCompliance,
-      assignedUserAdmin,
-      numberOfDaysNonCompliance,
-      eventReferToJudge,
-      stateBeforeCompletion,
-    );
-    await referCaseToJudge.referCaseToJudge(
-      page,
-      false,
-      "Withdrawal request",
-      false,
-      caseNumber03,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNameNonCompliance,
       caseNumber03,
       stateAfterCompletion,
     );

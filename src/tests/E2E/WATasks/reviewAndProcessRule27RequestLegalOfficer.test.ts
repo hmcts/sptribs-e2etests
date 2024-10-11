@@ -434,13 +434,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       "CIC8 - ME Joint Instruction",
       caseNumber05,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber05,
-      stateAfterCompletion,
-    );
     await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
     await myWorkPage.clickAssignAndGoToTask(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

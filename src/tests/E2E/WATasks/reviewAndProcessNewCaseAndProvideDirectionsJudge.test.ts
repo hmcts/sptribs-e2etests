@@ -9,7 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
-import documentManagementUpload from "../../journeys/WA/documentManagementUpload.ts";
+import contactParties from "../../journeys/WA/contactParties.ts";
 
 const taskName = "Review new case and provide directions - Judge";
 const taskNameProcess = "Process directions returned";
@@ -27,7 +27,7 @@ const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
-const eventUploadDoc = "Document management: Upload";
+const eventContactParties = "Case: Contact parties";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
@@ -572,12 +572,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       priorityNonCompliance,
       assignedUserAdmin,
       numberOfDaysNonCompliance,
-      eventUploadDoc,
+      eventContactParties,
       stateBeforeCompletion,
     );
-    await documentManagementUpload.documentManagementUpload(
+    await contactParties.contactParties(
       page,
-      false,
+      userRoleAdmin,
       false,
       true,
       caseNumber06,
@@ -699,13 +699,13 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     priorityNonCompliance,
     assignedUserAdmin,
     numberOfDaysNonCompliance,
-    eventUploadDoc,
+    eventContactParties,
     stateBeforeCompletion,
   );
-  await documentManagementUpload.documentManagementUpload(
+  await contactParties.contactParties(
     page,
+    userRoleAdmin,
     true,
-    false,
     false,
     caseNumber07,
   );

@@ -28,7 +28,7 @@ const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
-test.describe("Review Listing Directions - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
