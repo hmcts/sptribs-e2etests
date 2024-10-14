@@ -18,8 +18,8 @@ const caseClosedState = "Case closed";
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
-                                                                                                                       page,
-                                                                                                                     }) => {
+    page,
+  }) => {
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -74,4 +74,4 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       stateAfterCompletion,
     );
   });
-})
+});
