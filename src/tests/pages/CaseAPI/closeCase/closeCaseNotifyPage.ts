@@ -68,13 +68,24 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
-    await page
-      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
-    await page.getByRole("button", { name: "Continue" }).click();
+    if (
+      (await page
+        .locator(`#cicCaseNotifyPartySubject-SubjectCIC`)
+        .isChecked()) ||
+      (await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .isChecked())
+    ) {
+      await page.getByRole("button", { name: "Continue" }).click();
+    } else {
+      await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
+      await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .click();
+      await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
+      await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+      await page.getByRole("button", { name: "Continue" }).click();
+    }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {

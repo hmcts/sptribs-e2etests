@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../../config.ts";
 import commonHelpers, { State } from "../../helpers/commonHelpers.ts";
-import documentManagementUpload from "./documentManagementUpload.ts";
+import documentManagementUpload from "../../../removedFiles/documentManagementUpload.ts";
 import selectCaseDocumentsPage from "../../pages/CaseAPI/documentManagementAmend/selectCaseDocumentsPage.ts";
 import amendDocumentsPage from "../../pages/CaseAPI/documentManagementAmend/amendCaseDocumentsPage.ts";
 import submitPage from "../../pages/CaseAPI/documentManagementAmend/submitPage.ts";

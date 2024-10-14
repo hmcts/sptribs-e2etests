@@ -82,13 +82,13 @@ const selectDocumentsPage: SelectDocumentsPage = {
       .locator(
         'input[type="checkbox"][name="contactPartiesDocumentsDocumentList"][id^="contactPartiesDocumentsDocumentList_"]',
       )
-      .first()
+      .nth(1)
       .check();
     const isChecked = await page
       .locator(
         'input[type="checkbox"][id^="contactPartiesDocumentsDocumentList_"]',
       )
-      .first()
+      .nth(1)
       .isChecked();
   },
 };

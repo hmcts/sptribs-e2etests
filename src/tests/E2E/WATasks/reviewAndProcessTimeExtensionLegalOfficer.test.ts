@@ -12,14 +12,17 @@ import sendOrder from "../../journeys/WA/sendOrder.ts";
 
 const taskName = "Review Time extension request - Legal Officer";
 const taskNameProcess = "Process time extension directions returned";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = " medium ";
 const priorityProcess = " medium ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
@@ -32,6 +35,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
   test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber01: any;
     caseNumber01 = await createCase.createCase(
       page,
@@ -121,6 +125,34 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       page,
       false,
       taskNameProcess,
+      caseNumber01,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, false, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber01,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventRefer,
+      stateBeforeCompletion,
+    );
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Withdrawal request",
+      false,
+      caseNumber01,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
       caseNumber01,
       stateAfterCompletion,
     );
