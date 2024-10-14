@@ -1,4 +1,4 @@
-let randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
+const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
 
 const subjectDetailsContent = {
   pageTitle: "Who is the subject of this case?",
