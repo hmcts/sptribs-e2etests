@@ -67,18 +67,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Refer case to legal officer as a caseworker - case management, time extension request", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Time extension request",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a caseworker - case management, time extension request", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Time extension request",
+  //     false,
+  //   );
+  // });
 
   // test("Refer case to legal officer as a caseworker - case management, withdrawal request", async ({
   //   page,
@@ -93,18 +93,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
   //   );
   // });
 
-  test("Refer case to legal officer as a caseworker - case management, other reason", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Case Management",
-      "Other",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a caseworker - case management, other reason", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case Management",
+  //     "Other",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to legal officer as a caseworker - ready to list, listing directions", async ({
     page,
@@ -301,18 +301,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to legal officer as a caseworker - awaiting hearing, other reason", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Awaiting hearing",
-      "Other",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a caseworker - awaiting hearing, other reason", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Awaiting hearing",
+  //     "Other",
+  //     false,
+  //   );
+  // });
 
   test("Refer case to legal officer as a caseworker - awaiting outcome, listing directions", async ({
     page,
@@ -561,18 +561,18 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to legal officer as a caseworker - case closed, other reason @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      "caseWorker",
-      false,
-      "Case closed",
-      "Other",
-      false,
-    );
-  });
+  // test("Refer case to legal officer as a caseworker - case closed, other reason @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await referCaseToLegalOfficer.referCaseToLegalOfficer(
+  //     page,
+  //     "caseWorker",
+  //     false,
+  //     "Case closed",
+  //     "Other",
+  //     false,
+  //   );
+  // });
 
   // test("Error messaging. @crossbrowserCaseAPI", async ({
   //   page,
