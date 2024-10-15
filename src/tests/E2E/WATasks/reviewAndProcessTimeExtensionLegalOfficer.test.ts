@@ -350,7 +350,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
     );
   });
 
-  test("Task is cancellable through close case", async ({ page }) => {
+  test("Review task is cancellable through close case", async ({ page }) => {
     let caseNumber04: any;
     caseNumber04 = await createCase.createCase(
       page,
