@@ -9,20 +9,25 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import manageDueDate from "../../journeys/WA/manageDueDate.ts";
 
 const taskName = "Review Rule 27 request - Legal Officer";
 const taskNameProcess = "Process Rule 27 decision";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = " low ";
 const priorityProcess = " low ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to legal officer";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
+const eventManageDueDate = "Orders: Manage due date";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
@@ -429,13 +434,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       "CIC8 - ME Joint Instruction",
       caseNumber05,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskName,
-      caseNumber05,
-      stateAfterCompletion,
-    );
     await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
     await myWorkPage.clickAssignAndGoToTask(page);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -457,4 +455,131 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       caseClosedState,
     );
   });
+});
+
+test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
+  page,
+}) => {
+  test.setTimeout(7 * 60 * 1000);
+  let caseNumber06: any;
+  caseNumber06 = await createCase.createCase(
+    page,
+    userRoleAdmin,
+    false,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+  );
+  console.log(`Case Number : ${caseNumber06}`);
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  await buildCase.buildCase(page, false, caseNumber06);
+  await task.removeTask(page, taskRemoved);
+  await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+  await referCaseToLegalOfficer.referCaseToLegalOfficer(
+    page,
+    false,
+    "Rule 27 request",
+    false,
+    caseNumber06,
+  );
+  await task.seeTask(page, userRoleLO, false, taskName);
+  await task.initiateTask(
+    page,
+    userRoleLO,
+    "Link: Assign Task to Me and Go To Task",
+    false,
+    caseNumber06,
+    taskName,
+    priorityReview,
+    assignedUserLO,
+    numberOfDaysReview,
+    eventOrders,
+    stateBeforeCompletion,
+  );
+  await createDraft.createDraft(
+    page,
+    false,
+    false,
+    "CIC8 - ME Joint Instruction",
+    caseNumber06,
+  );
+  await task.checkCompletedTask(
+    page,
+    false,
+    taskName,
+    caseNumber06,
+    stateAfterCompletion,
+  );
+  await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+  await task.initiateTask(
+    page,
+    userRoleAdmin,
+    "Link: Assign Task to Me and Go To Task",
+    false,
+    caseNumber06,
+    taskNameProcess,
+    priorityProcess,
+    assignedUserAdmin,
+    numberOfDaysProcess,
+    eventSendOrder,
+    stateBeforeCompletion,
+  );
+  await sendOrder.sendOrder(
+    page,
+    caseNumber06,
+    "DraftOrder",
+    false,
+    false,
+    false,
+    true,
+    "7",
+  );
+  await task.checkCompletedTask(
+    page,
+    false,
+    taskNameProcess,
+    caseNumber06,
+    stateAfterCompletion,
+  );
+  await task.seeTask(page, userRoleAdmin, true, taskNameNonCompliance);
+  await task.initiateTask(
+    page,
+    userRoleAdmin,
+    "Event DropDown",
+    true,
+    caseNumber06,
+    taskNameNonCompliance,
+    priorityNonCompliance,
+    assignedUserAdmin,
+    numberOfDaysNonCompliance,
+    eventManageDueDate,
+    stateBeforeCompletion,
+  );
+  await manageDueDate.manageDueDate(
+    page,
+    true,
+    false,
+    false,
+    false,
+    caseNumber06,
+  );
+  await task.checkCompletedTask(
+    page,
+    true,
+    taskNameNonCompliance,
+    caseNumber06,
+    stateAfterCompletion,
+  );
 });

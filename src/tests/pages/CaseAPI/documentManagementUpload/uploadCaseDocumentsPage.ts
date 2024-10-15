@@ -16,7 +16,11 @@ type UploadCaseDocumentsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillFields(page: Page, multipleDocuments: boolean): Promise<void>;
+  fillFields(
+    page: Page,
+    multipleDocuments: boolean,
+    errorMessaging: boolean,
+  ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
@@ -82,8 +86,14 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
     }
   },
 
-  async fillFields(page: Page, multipleDocuments: boolean): Promise<void> {
-    await page.click(this.addNew);
+  async fillFields(
+    page: Page,
+    multipleDocuments: boolean,
+    errorMessaging: boolean,
+  ): Promise<void> {
+    if (!errorMessaging) {
+      await page.click(this.addNew);
+    }
     await commonHelpers.uploadFileController(
       page,
       "newCaseworkerCICDocumentUpload",

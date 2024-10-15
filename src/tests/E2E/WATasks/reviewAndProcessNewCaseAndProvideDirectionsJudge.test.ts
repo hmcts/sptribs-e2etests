@@ -9,20 +9,25 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import contactParties from "../../journeys/WA/contactParties.ts";
 
 const taskName = "Review new case and provide directions - Judge";
 const taskNameProcess = "Process directions returned";
+const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = null;
 const priorityProcess = " low ";
+const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserJudge = "Ms Kayla Adams";
 const userRoleAdmin = "waHearingCentreAdmin";
 const userRoleJudge = "waPrincipalJudge";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
+const numberOfDaysNonCompliance = 1;
 const eventRefer = "Refer case to judge";
 const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
+const eventContactParties = "Case: Contact parties";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
@@ -463,6 +468,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
     page,
   }) => {
+    test.setTimeout(7 * 60 * 1000);
     let caseNumber06: any;
     caseNumber06 = await createCase.createCase(
       page,
@@ -548,12 +554,48 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       "1",
     );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameProcess,
+      caseNumber06,
+      stateAfterCompletion,
+    );
+    await task.seeTask(page, userRoleAdmin, true, taskNameNonCompliance);
+    await task.initiateTask(
+      page,
+      userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber06,
+      taskNameNonCompliance,
+      priorityNonCompliance,
+      assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      eventContactParties,
+      stateBeforeCompletion,
+    );
+    await contactParties.contactParties(
+      page,
+      userRoleAdmin,
+      false,
+      true,
+      caseNumber06,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNameNonCompliance,
+      caseNumber06,
+      stateAfterCompletion,
+    );
   });
 });
 
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
+  test.setTimeout(7 * 60 * 1000);
   let caseNumber07: any;
   caseNumber07 = await createCase.createCase(
     page,
@@ -643,6 +685,34 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     page,
     true,
     taskNameProcess,
+    caseNumber07,
+    stateAfterCompletion,
+  );
+  await task.seeTask(page, userRoleAdmin, true, taskNameNonCompliance);
+  await task.initiateTask(
+    page,
+    userRoleAdmin,
+    "Link: Assign Task to Me and Go To Task",
+    true,
+    caseNumber07,
+    taskNameNonCompliance,
+    priorityNonCompliance,
+    assignedUserAdmin,
+    numberOfDaysNonCompliance,
+    eventContactParties,
+    stateBeforeCompletion,
+  );
+  await contactParties.contactParties(
+    page,
+    userRoleAdmin,
+    true,
+    false,
+    caseNumber07,
+  );
+  await task.checkCompletedTask(
+    page,
+    true,
+    taskNameNonCompliance,
     caseNumber07,
     stateAfterCompletion,
   );

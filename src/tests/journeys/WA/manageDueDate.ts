@@ -1,7 +1,4 @@
 import { Page, expect } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import commonHelpers, { State } from "../../helpers/commonHelpers.ts";
-import sendOrder from "../../../removedFiles/sendOrder.ts";
 import selectOrderPage from "../../pages/CaseAPI/manageDueDate/selectOrderPage.ts";
 import editDueDatePage from "../../pages/CaseAPI/manageDueDate/editDueDatePage.ts";
 import submitPage from "../../pages/CaseAPI/manageDueDate/submitPage.ts";
@@ -10,49 +7,24 @@ import manageDueDateConfirmPage from "../../pages/CaseAPI/manageDueDate/confirmP
 type ManageDueDate = {
   manageDueDate(
     page: Page,
-    user: UserRole,
-    initialState: State,
     accessibilityTest: boolean,
     errorMessaging: boolean,
     completed: boolean,
     completedCheckboxChecked: boolean,
+    caseNumber: string,
   ): Promise<any>;
 };
 
 const manageDueDate: ManageDueDate = {
   async manageDueDate(
     page: Page,
-    user: UserRole,
-    initialState: State,
     accessibilityTest: boolean,
     errorMessaging: boolean,
     completed: boolean,
     completedCheckboxChecked: boolean,
+    caseNumber: string,
   ): Promise<any> {
-    let caseNumber: string;
-    caseNumber = await sendOrder.sendOrder(
-      page,
-      "caseWorker",
-      initialState,
-      "UploadOrder",
-      false,
-      false,
-      completed,
-      true,
-      "1",
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      user,
-      config.CaseAPIBaseURL,
-      caseNumber,
-    );
-    await commonHelpers.chooseEventFromDropdown(
-      page,
-      "Orders: Manage due date",
-    );
     await selectOrderPage.checkPageLoads(page, caseNumber, accessibilityTest);
-
     switch (errorMessaging) {
       default: // false
         await selectOrderPage.selectDropdownOption(page);
@@ -67,25 +39,6 @@ const manageDueDate: ManageDueDate = {
           completed,
           completedCheckboxChecked,
         );
-        await submitPage.checkPageLoads(
-          page,
-          caseNumber,
-          accessibilityTest,
-          completed,
-          completedCheckboxChecked,
-        );
-        await submitPage.checkValidInfo(page, completedCheckboxChecked);
-        await submitPage.checkChangeLink(page, caseNumber, accessibilityTest);
-        await submitPage.saveAndContinue(page);
-        await manageDueDateConfirmPage.checkPageLoads(
-          page,
-          accessibilityTest,
-          caseNumber,
-        );
-        await manageDueDateConfirmPage.closeAndReturnToCase(page);
-        expect(page.locator(".alert-message")).toHaveText(
-          ` Case #${caseNumber} has been updated with event: Orders: Manage due date `,
-        );
         break;
       case true:
         await selectOrderPage.triggerErrorMessages(page);
@@ -99,14 +52,26 @@ const manageDueDate: ManageDueDate = {
           completed,
           completedCheckboxChecked,
         );
-        await submitPage.checkPageLoads(
-          page,
-          caseNumber,
-          accessibilityTest,
-          completed,
-          completedCheckboxChecked,
-        );
     }
+    await submitPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      completed,
+      completedCheckboxChecked,
+    );
+    await submitPage.checkValidInfo(page, completedCheckboxChecked);
+    await submitPage.checkChangeLink(page, caseNumber, accessibilityTest);
+    await submitPage.saveAndContinue(page);
+    await manageDueDateConfirmPage.checkPageLoads(
+      page,
+      accessibilityTest,
+      caseNumber,
+    );
+    await manageDueDateConfirmPage.closeAndReturnToCase(page);
+    expect(page.locator(".alert-message")).toHaveText(
+      ` Case #${caseNumber} has been updated with event: Orders: Manage due date `,
+    );
   },
 };
 export default manageDueDate;
