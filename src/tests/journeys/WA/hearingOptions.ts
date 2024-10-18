@@ -38,9 +38,6 @@ const hearingOptions: HearingOptions = {
     editJourney: boolean,
     caseNumber: string,
   ): Promise<any> {
-    let previousEvents: allEvents[] = [];
-    let eventTimes: string[] = [];
-
     await commonHelpers.chooseEventFromDropdown(
       page,
       events_content.hearingOptions,

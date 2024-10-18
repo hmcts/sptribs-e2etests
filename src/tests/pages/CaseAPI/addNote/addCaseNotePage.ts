@@ -67,6 +67,7 @@ const addCaseNotePage: AddCaseNotePage = {
   async fillInFields(page: Page): Promise<void> {
     await page.fill(`.form-control`, `${addCaseNotes_content.textContent}`);
     await page.click(this.continue);
+    await page.waitForSelector(`h2:text-is("History")`);
   },
 };
 

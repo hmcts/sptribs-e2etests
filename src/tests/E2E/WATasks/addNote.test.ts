@@ -16,6 +16,7 @@ import createEditStay from "../../journeys/WA/createEditStay.ts";
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedNewCase = "Register New Case";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
+const userRoleCaseWorker = "waCaseWorker";
 
 test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
@@ -107,7 +108,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber03);
   });
 
-  test.only("Add a note to a Ready to list case case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a Ready to list case case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     let casenumber04: any;
@@ -134,11 +135,10 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     console.log(`Case Number : ${casenumber04}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, casenumber04);
-    await task.removeTask(page, taskRemovedIssueCase);
     await hearingOptions.hearingOptions(
       page,
       false,
-      true,
+      false,
       null,
       false,
       false,
@@ -148,6 +148,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       casenumber04,
     );
     await addNote.addNote(page, false, casenumber04);
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
   test("Add a note to a awaiting hearing case case. @crossbrowserCaseAPI", async ({
@@ -197,7 +198,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber05);
   });
 
-  test.skip("Add a note to a awaiting outcome case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a awaiting outcome case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const caseNumber06 = await createCase.createCase(
