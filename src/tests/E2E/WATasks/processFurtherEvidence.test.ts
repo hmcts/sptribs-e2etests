@@ -15,6 +15,7 @@ import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import documentManagementAmend from "../../journeys/WA/documentManagementAmend.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
+import tasksPage from "../../pages/WA/tasksPage.ts";
 
 const taskName = "Process further evidence";
 const priority = " low ";
@@ -27,8 +28,6 @@ const eventUploadDoc = "Document management: Upload";
 const eventRefer = "Refer case to judge";
 const eventReferLO = "Refer case to legal officer";
 const eventAmendDoc = "Document management: Amend";
-const DSSSubmittedState = "DSS-Submitted";
-const submittedState = "Submitted";
 const caseManagementState = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
@@ -58,10 +57,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       config.CaseAPIBaseURL,
       caseNumber01,
     );
-    await task.removeTask(page, "Register New Case");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber01),
-    );
     await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
     await editCase.editCase(
       page,
@@ -82,13 +77,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       caseNumber01,
     );
-    await task.removeTask(page, "Vet New Case Documents");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber01),
-    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01);
-    await task.removeTask(page, " Issue Case To Respondent ");
+    await tasksPage.markTasksAsDone(page, caseNumber01, 3, [
+      "Register New Case",
+      "Vet New Case Documents",
+      "Issue Case To Respondent",
+    ]);
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -97,7 +92,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       caseNumber01,
       true,
-      false,
+      true,
       false,
       false,
       false,
@@ -113,13 +108,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       priority,
       assignedUserAdmin,
       numberOfDays,
-      eventContactParties,
+      eventReferLO,
       caseManagementState,
     );
-    await contactParties.contactParties(
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
-      userRoleAdmin,
       false,
+      "Other",
       false,
       caseNumber01,
     );
@@ -132,7 +127,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
   });
 
-  test.only("Task is completable via next steps link - assign to me", async ({
+  test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
     let caseNumber02: any;
@@ -156,10 +151,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       config.CaseAPIBaseURL,
       caseNumber02,
     );
-    // await task.removeTask(page, "Register New Case");
-    // await page.goto(
-    //   await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber02),
-    // );
     await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
     await editCase.editCase(
       page,
@@ -180,42 +171,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       caseNumber02,
     );
-    // await task.removeTask(page, "Vet New Case Documents");
-    // await page.goto(
-    //   await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber02),
-    // );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02);
-    // await task.removeTask(page, " Issue Case To Respondent ");
-    await page.pause();
-    const caseNumberDigits = caseNumber02.replace(/\D/g, "");
-    await page.goto(
-      `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
-    );
-    while (true) {
-      const assignToMe = page.locator(`a:text-is("Assign to me")`);
-      let visibleCount = 0;
-      for (let i = 0; i < (await assignToMe.count()); i++) {
-        if (await assignToMe.nth(i).isVisible()) {
-          visibleCount++;
-        }
-      }
-      if (visibleCount === 3) {
-        break;
-      }
-      await page.waitForTimeout(5000);
-      await page.goto(
-        `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
-      );
-    }
-    while (await page.locator(`a:text-is("Assign to me")`).isVisible()) {
-      await page.locator(`a:text-is("Assign to me")`).first().click();
-      await page.waitForSelector(`a:text-is("Mark as done")`);
-      await page.locator(`a:text-is("Mark as done")`).first().click();
-      await page.waitForSelector(`h1:text-is("Mark the task as done")`);
-      await page.locator("#submit-button").click();
-    }
-
+    await tasksPage.markTasksAsDone(page, caseNumber02, 3, [
+      "Register New Case",
+      "Vet New Case Documents",
+      "Issue Case To Respondent",
+    ]);
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -225,7 +187,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber02,
       true,
       true,
-      false,
+      true,
       false,
       false,
     );
@@ -240,25 +202,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       priority,
       assignedUserAdmin,
       numberOfDays,
-      eventEditCase,
+      eventRefer,
       caseManagementState,
     );
-    await editCase.editCase(
+    await referCaseToJudge.referCaseToJudge(
       page,
       false,
-      "Case Management",
-      "Eligibility",
-      "Paragraph 26",
-      false,
-      false,
-      "Email",
-      false,
-      "1996",
-      "Scotland",
-      false,
-      false,
-      true,
-      false,
+      "Other",
       false,
       caseNumber02,
     );
@@ -273,261 +223,177 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
 
   test("Task is completed via event dropdown", async ({ page }) => {
     let caseNumber03: any;
-    caseNumber03 = await createFEApplication.createFEApplication(
+    caseNumber03 = await createCase.createCase(
       page,
+      userRoleAdmin,
       false,
-      "demoCitizen",
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
       false,
-      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
       true,
       false,
       true,
-      false,
-      false,
       false,
     );
     console.log(`Case Number : ${caseNumber03}`);
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleAdmin,
-      config.CaseAPIBaseURL,
-      caseNumber03,
-    );
-    await task.removeTask(page, "Register New Case");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber03),
-    );
-    await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
-    await editCase.editCase(
-      page,
-      false,
-      "DSS Submitted",
-      "Assessment",
-      "Medical Re-opening",
-      false,
-      false,
-      "Email",
-      true,
-      "2001",
-      "London",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber03,
-    );
-    await task.removeTask(page, "Vet New Case Documents");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber03),
-    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03);
-    await task.removeTask(page, " Issue Case To Respondent ");
-    await page.locator(`a:text-is(" Sign out ")`).click();
-    await page.waitForLoadState("domcontentloaded");
-    await updateCaseJourney.updateCase(
+    await task.removeTask(page, taskRemoved);
+    await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+    await documentManagementUpload.documentManagementUpload(
       page,
-      true,
+      false,
+      false,
       false,
       caseNumber03,
-      true,
-      true,
-      false,
-      false,
-      false,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName);
+    await task.seeTask(page, userRoleAdmin, true, taskName);
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Event DropDown",
-      false,
+      true,
       caseNumber03,
       taskName,
       priority,
       assignedUserAdmin,
       numberOfDays,
-      eventRefer,
+      eventEditCase,
       caseManagementState,
     );
-    await referCaseToJudge.referCaseToJudge(
+    await editCase.editCase(
       page,
       false,
-      "Other",
+      "Case Management",
+      "Eligibility",
+      "Fatal",
+      true,
+      true,
+      "Email",
+      true,
+      "1996",
+      "Scotland",
+      true,
+      false,
+      true,
+      false,
       false,
       caseNumber03,
     );
     await task.checkCompletedTask(
       page,
-      false,
+      true,
       taskName,
       caseNumber03,
       caseManagementState,
     );
   });
 
-  test("Update case - Refer to legal officer", async ({ page }) => {
+  test("Document management: Upload - Contact parties", async ({ page }) => {
     let caseNumber04: any;
-    caseNumber04 = await createFEApplication.createFEApplication(
+    caseNumber04 = await createCase.createCase(
       page,
+      userRoleAdmin,
       false,
-      "demoCitizen",
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
       false,
-      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
       true,
       false,
       true,
-      false,
-      false,
       false,
     );
     console.log(`Case Number : ${caseNumber04}`);
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleAdmin,
-      config.CaseAPIBaseURL,
-      caseNumber04,
-    );
-    await task.removeTask(page, "Register New Case");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber04),
-    );
-    await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
-    await editCase.editCase(
-      page,
-      false,
-      "DSS Submitted",
-      "Assessment",
-      "Medical Re-opening",
-      false,
-      false,
-      "Email",
-      true,
-      "2001",
-      "London",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber04,
-    );
-    await task.removeTask(page, "Vet New Case Documents");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber04),
-    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04);
-    await task.removeTask(page, " Issue Case To Respondent ");
-    await page.locator(`a:text-is(" Sign out ")`).click();
-    await page.waitForLoadState("domcontentloaded");
-    await updateCaseJourney.updateCase(
+    await task.removeTask(page, taskRemoved);
+    await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+    await documentManagementUpload.documentManagementUpload(
       page,
       false,
       false,
+      false,
       caseNumber04,
-      true,
-      true,
-      true,
-      false,
-      false,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName);
+    await task.seeTask(page, userRoleAdmin, true, taskName);
     await task.initiateTask(
       page,
       userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
+      "Event DropDown",
+      true,
       caseNumber04,
       taskName,
       priority,
       assignedUserAdmin,
       numberOfDays,
-      eventReferLO,
+      eventContactParties,
       caseManagementState,
     );
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+    await contactParties.contactParties(
       page,
+      userRoleAdmin,
       false,
-      "Other",
       false,
       caseNumber04,
     );
     await task.checkCompletedTask(
       page,
-      false,
+      true,
       taskName,
       caseNumber04,
       caseManagementState,
     );
   });
 
-  test("Task is cancellable through close case ", async ({ page }) => {
+  test("Task is cancellable through close case", async ({ page }) => {
     let caseNumber05: any;
-    caseNumber05 = await createFEApplication.createFEApplication(
+    caseNumber05 = await createCase.createCase(
       page,
+      userRoleAdmin,
       false,
-      "demoCitizen",
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
       false,
-      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
       true,
       false,
       true,
-      false,
-      false,
       false,
     );
     console.log(`Case Number : ${caseNumber05}`);
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      userRoleAdmin,
-      config.CaseAPIBaseURL,
-      caseNumber05,
-    );
-    await task.removeTask(page, "Register New Case");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber05),
-    );
-    await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
-    await editCase.editCase(
-      page,
-      false,
-      "DSS Submitted",
-      "Assessment",
-      "Medical Re-opening",
-      false,
-      false,
-      "Email",
-      true,
-      "2001",
-      "London",
-      true,
-      false,
-      true,
-      false,
-      false,
-      caseNumber05,
-    );
-    await task.removeTask(page, "Vet New Case Documents");
-    await page.goto(
-      await commonHelpers.generateUrl(config.CaseAPIBaseURL, caseNumber05),
-    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05);
-    await task.removeTask(page, " Issue Case To Respondent ");
-    await page.locator(`a:text-is(" Sign out ")`).click();
-    await page.waitForLoadState("domcontentloaded");
-    await updateCaseJourney.updateCase(
+    await task.removeTask(page, taskRemoved);
+    await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+    await documentManagementUpload.documentManagementUpload(
       page,
       false,
       false,
+      false,
       caseNumber05,
-      false,
-      true,
-      false,
-      false,
-      false,
     );
     await task.seeTask(page, userRoleAdmin, false, taskName);
     await myWorkPage.clickAssignAndGoToTask(page);

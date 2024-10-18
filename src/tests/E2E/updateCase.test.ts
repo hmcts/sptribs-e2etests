@@ -23,104 +23,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
   //       false,
   //       false,
   //     );
-  //
   //   await updateCaseJourney.updateCase(
   //     page,
   //     false,
   //     false,
   //     caseNumber,
   //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //   );
-  // });
-  //
-  // test("Check for an existing case to update, upload one document and additional information - CY", async ({
-  //   page,
-  // }) => {
-  //   const caseNumber: string | void =
-  //     await createFEApplication.createFEApplication(
-  //       page,
-  //       false,
-  //       "citizen",
-  //       false,
-  //       false,
-  //       true,
-  //       false,
-  //       true,
-  //       false,
-  //       false,
-  //       false,
-  //     );
-  //
-  //   await updateCaseJourney.updateCase(
-  //     page,
-  //     true,
-  //     false,
-  //     caseNumber,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //   );
-  // });
-  //
-  // test("Check for an existing case to update, upload multiple documents and additional information", async ({
-  //   page,
-  // }) => {
-  //   const caseNumber: string | void =
-  //     await createFEApplication.createFEApplication(
-  //       page,
-  //       false,
-  //       "citizen",
-  //       false,
-  //       false,
-  //       true,
-  //       false,
-  //       true,
-  //       false,
-  //       false,
-  //       false,
-  //     );
-  //   await updateCaseJourney.updateCase(
-  //     page,
-  //     false,
-  //     false,
-  //     caseNumber,
-  //     true,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //   );
-  // });
-  //
-  // test("Check for an existing case to update, upload one document and no additional information", async ({
-  //   page,
-  // }) => {
-  //   const caseNumber: string | void =
-  //     await createFEApplication.createFEApplication(
-  //       page,
-  //       false,
-  //       "citizen",
-  //       false,
-  //       false,
-  //       true,
-  //       false,
-  //       true,
-  //       false,
-  //       false,
-  //       false,
-  //     );
-  //   await updateCaseJourney.updateCase(
-  //     page,
-  //     false,
-  //     false,
-  //     caseNumber,
-  //     false,
   //     true,
   //     false,
   //     false,
@@ -128,37 +36,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
   //   );
   // });
 
-  // test("Check for an existing case to update, upload no documents and additional information", async ({
-  //   page,
-  // }) => {
-  //   const caseNumber: string | void =
-  //     await createFEApplication.createFEApplication(
-  //       page,
-  //       false,
-  //       "citizen",
-  //       false,
-  //       false,
-  //       true,
-  //       false,
-  //       true,
-  //       false,
-  //       false,
-  //       false,
-  //     );
-  //   await updateCaseJourney.updateCase(
-  //     page,
-  //     false,
-  //     false,
-  //     caseNumber,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     false,
-  //   );
-  // });
-
-  test("Test all back buttons on the Update Case application", async ({
+  test("Check for an existing case to update, upload one document and additional information - CY", async ({
     page,
   }) => {
     const caseNumber01: any = await createFEApplication.createFEApplication(
@@ -186,18 +64,49 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
       page,
-      false,
+      true,
       false,
       caseNumber01,
       true,
       true,
       false,
-      true,
+      false,
       false,
     );
   });
 
-  test("Error messaging", async ({ page }) => {
+  // test("Check for an existing case to update, upload multiple documents and additional information", async ({
+  //   page,
+  // }) => {
+  //   const caseNumber: string | void = await createFEApplication.createFEApplication(
+  //     page,
+  //     false,
+  //     "citizen",
+  //     false,
+  //     false,
+  //     true,
+  //     false,
+  //     true,
+  //     false,
+  //     false,
+  //     false,
+  //   );
+  //   await updateCaseJourney.updateCase(
+  //     page,
+  //     false,
+  //     false,
+  //     caseNumber,
+  //     true,
+  //     true,
+  //     true,
+  //     false,
+  //     false,
+  //   );
+  // });
+
+  test("Check for an existing case to update, upload one document and no additional information", async ({
+    page,
+  }) => {
     const caseNumber02: any = await createFEApplication.createFEApplication(
       page,
       false,
@@ -211,6 +120,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
     );
+    console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       "waHearingCentreAdmin",
@@ -225,16 +135,94 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       caseNumber02,
-      true,
+      false,
       true,
       false,
       false,
-      true,
+      false,
     );
   });
 
-  test("Error messaging - CY", async ({ page }) => {
+  test("Check for an existing case to update, upload no documents and additional information", async ({
+    page,
+  }) => {
     const caseNumber03: any = await createFEApplication.createFEApplication(
+      page,
+      false,
+      "citizen",
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber03}`);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      "waHearingCentreAdmin",
+      config.CaseAPIBaseURL,
+      caseNumber03,
+    );
+    await task.removeTask(page, "Register New Case");
+    await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForLoadState("domcontentloaded");
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      false,
+      caseNumber03,
+      true,
+      false,
+      false,
+      false,
+      false,
+    );
+  });
+
+  test("Test all back buttons on the Update Case application", async ({
+    page,
+  }) => {
+    const caseNumber04: any = await createFEApplication.createFEApplication(
+      page,
+      false,
+      "citizen",
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber04}`);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      "waHearingCentreAdmin",
+      config.CaseAPIBaseURL,
+      caseNumber04,
+    );
+    await task.removeTask(page, "Register New Case");
+    await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForLoadState("domcontentloaded");
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      false,
+      caseNumber04,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+  });
+
+  test("Error messaging", async ({ page }) => {
+    const caseNumber05: any = await createFEApplication.createFEApplication(
       page,
       false,
       "citizen",
@@ -251,7 +239,43 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       page,
       "waHearingCentreAdmin",
       config.CaseAPIBaseURL,
-      caseNumber03,
+      caseNumber05,
+    );
+    await task.removeTask(page, "Register New Case");
+    await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForLoadState("domcontentloaded");
+    await updateCaseJourney.updateCase(
+      page,
+      false,
+      false,
+      caseNumber05,
+      true,
+      true,
+      false,
+      false,
+      true,
+    );
+  });
+
+  test("Error messaging - CY", async ({ page }) => {
+    const caseNumber06: any = await createFEApplication.createFEApplication(
+      page,
+      false,
+      "citizen",
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+    );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      "waHearingCentreAdmin",
+      config.CaseAPIBaseURL,
+      caseNumber06,
     );
     await task.removeTask(page, "Register New Case");
     await page.locator(`a:text-is(" Sign out ")`).click();
@@ -260,7 +284,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       page,
       true,
       false,
-      caseNumber03,
+      caseNumber06,
       true,
       true,
       false,
@@ -273,7 +297,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
 test("Check for an existing case to update - aXe test as it proceeds. @UpdateAccessibility", async ({
   page,
 }) => {
-  const caseNumber04: any = await createFEApplication.createFEApplication(
+  const caseNumber07: any = await createFEApplication.createFEApplication(
     page,
     false,
     "citizen",
@@ -290,7 +314,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     page,
     "waHearingCentreAdmin",
     config.CaseAPIBaseURL,
-    caseNumber04,
+    caseNumber07,
   );
   await task.removeTask(page, "Register New Case");
   await page.locator(`a:text-is(" Sign out ")`).click();
@@ -299,7 +323,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     page,
     false,
     true,
-    caseNumber04,
+    caseNumber07,
     true,
     true,
     false,
@@ -310,7 +334,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     page,
     "waHearingCentreAdmin",
     config.CaseAPIBaseURL,
-    caseNumber04,
+    caseNumber07,
   );
   await task.removeTask(page, "Process further evidence");
 });
