@@ -445,8 +445,8 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       false,
       "caseRejected",
       false,
-      null,
       "other",
+      null,
       caseNumber05,
     );
     await task.checkCompletedTask(
