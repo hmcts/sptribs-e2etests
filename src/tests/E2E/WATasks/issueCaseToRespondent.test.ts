@@ -19,13 +19,14 @@ const event = "Case: Issue to respondent";
 const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
-const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
-
+const randomLetters = Array.from({ length: 5 }, () =>
+  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
+).join("");
 test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber24 = await createCase.createCase(
       page,
       userRole,
@@ -87,7 +88,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me - Issue case to a subject", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber25 = await createCase.createCase(
       page,
       userRole,
@@ -149,7 +150,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completed via event dropdown - Issue a case to a representative", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber26 = await createCase.createCase(
       page,
       userRole,
@@ -211,7 +212,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - Issue a case to a respondent", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber27 = await createCase.createCase(
       page,
       userRole,
@@ -273,7 +274,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - Issue a case to an applicant", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber28 = await createCase.createCase(
       page,
       userRole,
@@ -333,7 +334,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   });
 
   test("Task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber29 = await createCase.createCase(
       page,
       userRole,
@@ -383,7 +384,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   });
 
   test("Task is cancellable through refer to judge", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber30 = await createCase.createCase(
       page,
       userRole,
@@ -432,7 +433,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is cancellable through refer to legal officer", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber31 = await createCase.createCase(
       page,
       userRole,
@@ -482,7 +483,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   });
 
   test("Issue to respondent : Error messaging", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber31 = await createCase.createCase(
       page,
       userRole,
@@ -545,7 +546,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
 test("Task completion: Accessibility test / Issue Case to Respondent : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  const subjectName = `Subject AutoTesting${randomNumber}`;
+  const subjectName = `Subject AutoTesting${randomLetters}`;
   const caseNumber33 = await createCase.createCase(
     page,
     userRole,

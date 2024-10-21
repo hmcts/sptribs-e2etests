@@ -17,7 +17,7 @@ type SubjectDetailsPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, subjectName: string): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
@@ -110,8 +110,8 @@ const subjectDetailsPage: SubjectDetailsPage = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {
-    await page.fill(this.fields.fullName, SubjectDetailsContent.name);
+  async fillInFields(page: Page, subjectName: string): Promise<void> {
+    await page.fill(this.fields.fullName, `${subjectName}`);
     await page.fill(this.fields.dayOfBirth, SubjectDetailsContent.dayOfBirth);
     await page.fill(
       this.fields.monthOfBirth,

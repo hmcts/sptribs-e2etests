@@ -12,13 +12,15 @@ const event = "Case: Edit case";
 const stateBeforeCompletion = "DSS-Submitted";
 const stateAfterCompletion = "Submitted";
 const nextTriggeredTaskToCleanUp = "Vet New Case Documents";
-const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
+const randomLetters = Array.from({ length: 5 }, () =>
+  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
+).join("");
 
 test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task / Edit Case : Assessment - Fatal Category, Email Contact, 1996, Scotland", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber34: any = await createFEApplication.createFEApplication(
       page,
       false,
@@ -83,7 +85,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me / Edit Case : Assessment - Medical Re-opening Category, Email Contact, 2001, London", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber35 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -148,7 +150,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completed via event dropdown / Edit Case : Assessment - Minor Category, Post Contact, 2008, Midlands", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber36 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -213,7 +215,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link / Edit Case : Assessment - Paragraph 26 Category, Post Contact, 2012, North East", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber37 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -278,7 +280,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link / Edit Case : Assessment - Special Jurisdiction Category, Wales & South West", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber38 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -343,7 +345,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link / Edit Case : Eligibility - Other Category", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber39 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -406,7 +408,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
   });
 
   test("Edit Case : Error Messaging", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber40 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -463,7 +465,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
 test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  const subjectName = `Subject AutoTesting${randomNumber}`;
+  const subjectName = `Subject AutoTesting${randomLetters}`;
   const caseNumber41 = await createFEApplication.createFEApplication(
     page,
     false,

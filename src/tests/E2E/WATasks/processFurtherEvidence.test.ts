@@ -31,13 +31,16 @@ const eventAmendDoc = "Document management: Amend";
 const caseManagementState = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
+const randomLetters = Array.from({ length: 5 }, () =>
+  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
+).join("");
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    let caseNumber01: any;
-    caseNumber01 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const caseNumber160 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -49,13 +52,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
-    console.log(`Case Number : ${caseNumber01}`);
+    console.log(`Case Number : ${caseNumber160}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleAdmin,
       config.CaseAPIBaseURL,
-      caseNumber01,
+      caseNumber160,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
     await editCase.editCase(
@@ -75,11 +79,12 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
       false,
-      caseNumber01,
+      caseNumber160,
+      subjectName,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber01);
-    await tasksPage.markTasksAsDone(page, caseNumber01, 3, [
+    await buildCase.buildCase(page, false, caseNumber160, subjectName);
+    await tasksPage.markTasksAsDone(page, caseNumber160, 3, [
       "Register New Case",
       "Vet New Case Documents",
       "Issue Case To Respondent",
@@ -90,48 +95,52 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       false,
       false,
-      caseNumber01,
+      caseNumber160,
       true,
       true,
       false,
       false,
       false,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName);
+    await task.seeTask(page, userRoleAdmin, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber160,
       taskName,
       priority,
       assignedUserAdmin,
       numberOfDays,
       eventReferLO,
       caseManagementState,
+      subjectName,
     );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
       "Other",
       false,
-      caseNumber01,
+      caseNumber160,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber01,
+      caseNumber160,
       caseManagementState,
+      subjectName,
     );
   });
 
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    let caseNumber02: any;
-    caseNumber02 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const caseNumber161 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -143,13 +152,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
-    console.log(`Case Number : ${caseNumber02}`);
+    console.log(`Case Number : ${caseNumber161}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleAdmin,
       config.CaseAPIBaseURL,
-      caseNumber02,
+      caseNumber161,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
     await editCase.editCase(
@@ -169,11 +179,12 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
       false,
-      caseNumber02,
+      caseNumber161,
+      subjectName,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber02);
-    await tasksPage.markTasksAsDone(page, caseNumber02, 3, [
+    await buildCase.buildCase(page, false, caseNumber161, subjectName);
+    await tasksPage.markTasksAsDone(page, caseNumber161, 3, [
       "Register New Case",
       "Vet New Case Documents",
       "Issue Case To Respondent",
@@ -184,46 +195,50 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       false,
       false,
-      caseNumber02,
+      caseNumber161,
       true,
       true,
       true,
       false,
       false,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName);
+    await task.seeTask(page, userRoleAdmin, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber161,
       taskName,
       priority,
       assignedUserAdmin,
       numberOfDays,
       eventRefer,
       caseManagementState,
+      subjectName,
     );
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Other",
       false,
-      caseNumber02,
+      caseNumber161,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber02,
+      caseNumber161,
       caseManagementState,
+      subjectName,
     );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    let caseNumber03: any;
-    caseNumber03 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const caseNumber162 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -232,6 +247,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -243,31 +259,33 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber03}`);
+    console.log(`Case Number : ${caseNumber162}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber03);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber162, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
     await documentManagementUpload.documentManagementUpload(
       page,
       false,
       false,
       false,
-      caseNumber03,
+      caseNumber162,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, true, taskName);
+    await task.seeTask(page, userRoleAdmin, true, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Event DropDown",
       true,
-      caseNumber03,
+      caseNumber162,
       taskName,
       priority,
       assignedUserAdmin,
       numberOfDays,
       eventEditCase,
       caseManagementState,
+      subjectName,
     );
     await editCase.editCase(
       page,
@@ -286,20 +304,22 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
       false,
-      caseNumber03,
+      caseNumber162,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       true,
       taskName,
-      caseNumber03,
+      caseNumber162,
       caseManagementState,
+      subjectName,
     );
   });
 
   test("Document management: Upload - Contact parties", async ({ page }) => {
-    let caseNumber04: any;
-    caseNumber04 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const caseNumber163 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -308,6 +328,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -319,51 +340,55 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber04}`);
+    console.log(`Case Number : ${caseNumber163}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber04);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber163, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
     await documentManagementUpload.documentManagementUpload(
       page,
       false,
       false,
       false,
-      caseNumber04,
+      caseNumber163,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, true, taskName);
+    await task.seeTask(page, userRoleAdmin, true, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Event DropDown",
       true,
-      caseNumber04,
+      caseNumber163,
       taskName,
       priority,
       assignedUserAdmin,
       numberOfDays,
       eventContactParties,
       caseManagementState,
+      subjectName,
     );
     await contactParties.contactParties(
       page,
       userRoleAdmin,
       false,
       false,
-      caseNumber04,
+      caseNumber163,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       true,
       taskName,
-      caseNumber04,
+      caseNumber163,
       caseManagementState,
+      subjectName,
     );
   });
 
   test("Task is cancellable through close case", async ({ page }) => {
-    let caseNumber05: any;
-    caseNumber05 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const caseNumber164 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -372,6 +397,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -383,20 +409,21 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber05}`);
+    console.log(`Case Number : ${caseNumber164}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber05);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber164, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
     await documentManagementUpload.documentManagementUpload(
       page,
       false,
       false,
       false,
-      caseNumber05,
+      caseNumber164,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName);
-    await myWorkPage.clickAssignAndGoToTask(page);
+    await task.seeTask(page, userRoleAdmin, false, taskName, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -406,14 +433,16 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       null,
       null,
-      caseNumber05,
+      caseNumber164,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber05,
+      caseNumber164,
       caseClosedState,
+      subjectName,
     );
   });
 });
@@ -421,8 +450,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
 test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  let caseNumber06: any;
-  caseNumber06 = await createCase.createCase(
+  const subjectName = `Subject AutoTesting${randomLetters}`;
+  const caseNumber165 = await createCase.createCase(
     page,
     userRoleAdmin,
     false,
@@ -431,6 +460,7 @@ test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
     true,
     true,
     "Email",
+    subjectName,
     true,
     false,
     "1996",
@@ -442,42 +472,46 @@ test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber06}`);
+  console.log(`Case Number : ${caseNumber165}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber06);
-  await task.removeTask(page, taskRemoved);
+  await buildCase.buildCase(page, false, caseNumber165, subjectName);
+  await task.removeTask(page, taskRemoved, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
   await documentManagementUpload.documentManagementUpload(
     page,
     false,
     false,
     false,
-    caseNumber06,
+    caseNumber165,
+    subjectName,
   );
-  await task.seeTask(page, userRoleAdmin, true, taskName);
+  await task.seeTask(page, userRoleAdmin, true, taskName, subjectName);
   await task.initiateTask(
     page,
     userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
-    caseNumber06,
+    caseNumber165,
     taskName,
     priority,
     assignedUserAdmin,
     numberOfDays,
     eventAmendDoc,
     caseManagementState,
+    subjectName,
   );
   await documentManagementAmend.documentManagementAmend(
     page,
     true,
-    caseNumber06,
+    caseNumber165,
+    subjectName,
   );
   await task.checkCompletedTask(
     page,
     true,
     taskName,
-    caseNumber06,
+    caseNumber165,
     caseManagementState,
+    subjectName,
   );
 });

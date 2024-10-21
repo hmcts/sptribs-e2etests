@@ -25,13 +25,15 @@ const eventOrders = "Orders: Create draft";
 const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Case closed";
 const stateAfterCompletion = "Case closed";
-const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
+const randomLetters = Array.from({ length: 5 }, () =>
+  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
+).join("");
 
 test.describe("Review and Process Written Reasons request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber153 = await createCase.createCase(
       page,
       userRoleCaseWorker,
@@ -145,7 +147,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI", ():
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber154 = await createCase.createCase(
       page,
       userRoleCaseWorker,
@@ -257,7 +259,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI", ():
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const subjectName = `Subject AutoTesting${randomLetters}`;
     const caseNumber155 = await createCase.createCase(
       page,
       userRoleCaseWorker,
