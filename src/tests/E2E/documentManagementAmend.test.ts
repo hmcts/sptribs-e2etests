@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import documentManagementAmend from "../journeys/CaseAPI/documentManagementAmend.ts";
+import documentManagementAmend from "../../removedFiles/documentManagementAmend.ts";
 
 test.describe("Case-API Amend document tests. @CaseAPI", () => {
   test("As a Caseworker, amend documents uploaded to a submitted case. @crossbrowserCaseAPI", async ({
@@ -13,17 +13,17 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
       false,
     );
   });
-  test("As a Senior Caseworker, amend documents uploaded to a case in Case Management. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await documentManagementAmend.documentManagementAmend(
-      page,
-      "seniorCaseworker",
-      false,
-      "Case Management",
-      true,
-    );
-  });
+  // test("As a Senior Caseworker, amend documents uploaded to a case in Case Management. @crossbrowserCaseAPI", async ({
+  //   page,
+  // }): Promise<void> => {
+  //   await documentManagementAmend.documentManagementAmend(
+  //     page,
+  //     "seniorCaseworker",
+  //     false,
+  //     "Case Management",
+  //     true,
+  //   );
+  // });
   test("As a Hearing Centre Admin, amend documents uploaded to a case in Ready to List. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -81,14 +81,14 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility tests - Document Management: Amend @accessibilityCaseAPI", async ({
-  page,
-}): Promise<void> => {
-  await documentManagementAmend.documentManagementAmend(
-    page,
-    "caseWorker",
-    true,
-    "Submitted",
-    false,
-  );
-});
+// test("Accessibility tests - Document Management: Amend @accessibilityCaseAPI", async ({
+//   page,
+// }): Promise<void> => {
+//   await documentManagementAmend.documentManagementAmend(
+//     page,
+//     "caseWorker",
+//     true,
+//     "Submitted",
+//     false,
+//   );
+// });

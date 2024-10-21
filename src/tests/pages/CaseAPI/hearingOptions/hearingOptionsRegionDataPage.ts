@@ -65,6 +65,7 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continue);
+    await page.locator(`h1:text-is("Case: Hearing Options")`);
   },
 };
 

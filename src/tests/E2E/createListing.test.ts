@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import createListing from "./createListing.ts";
+import createListing from "../../removedFiles/createListing.ts";
 
 //test.describe("Create hearing listing tests @CaseAPI", (): void => {
 // test("Create hearing listing as a caseworker in the 'Case management' state. @crossbrowserCaseAPI", async ({
@@ -154,24 +154,24 @@ import createListing from "./createListing.ts";
 //   );
 // });
 
-// test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
-//   page,
-// }): Promise<void> => {
-//   await createListing.createListing(
-//     page,
-//     "caseWorker",
-//     false,
-//     true,
-//     "1-London",
-//     "Case management",
-//     "Face to Face",
-//     "Morning",
-//     false,
-//     true,
-//     "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
-//     false,
-//   );
-// });
+test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
+  page,
+}): Promise<void> => {
+  await createListing.createListing(
+    page,
+    "caseWorker",
+    false,
+    true,
+    "1-London",
+    "Case management",
+    "Face to Face",
+    "Morning",
+    false,
+    true,
+    "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
+    false,
+  );
+});
 
 // test("Create hearing listing with the hearing across multiple days.", async ({
 //   page,

@@ -1,4 +1,6 @@
-const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
+const randomLetters = Array.from({ length: 5 }, () =>
+  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
+).join("");
 
 const subjectDetailsContent = {
   pageTitle: "Who is the subject of this case?",
@@ -10,7 +12,7 @@ const subjectDetailsContent = {
   textOnPage1: "Day",
   textOnPage2: "Month",
   textOnPage3: "Year",
-  name: `Subject AutoTesting${randomNumber}`,
+  name: `Subject AutoTesting${randomLetters}`,
   dayOfBirth: "1",
   monthOfBirth: "1",
   yearOfBirth: "2000",

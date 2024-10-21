@@ -18,21 +18,21 @@
 //     );
 //   });
 
-//   test("Send a draft order in the Ready to list state as a seniorCaseworker", async ({
-//     page,
-//   }): Promise<void> => {
-//     await sendOrder.sendOrder(
-//       page,
-//       "seniorCaseworker",
-//       "Ready to list",
-//       "DraftOrder",
-//       false,
-//       false,
-//       true,
-//       false,
-//       "3",
-//     );
-//   });
+test("Send a draft order in the Ready to list state as a seniorCaseworker", async ({
+  page,
+}): Promise<void> => {
+  await sendOrder.sendOrder(
+    page,
+    "seniorCaseworker",
+    "Ready to list",
+    "DraftOrder",
+    false,
+    false,
+    true,
+    false,
+    "3",
+  );
+});
 
 //   test("Send a draft order in the Awaiting Hearing state as a hearingCentreAdmin", async ({
 //     page,
@@ -50,21 +50,21 @@
 //     );
 //   });
 
-//   test("Send a draft order in the Case Stayed state as a hearingCentreTeamLead", async ({
-//     page,
-//   }): Promise<void> => {
-//     await sendOrder.sendOrder(
-//       page,
-//       "hearingCentreTeamLead",
-//       "Case Stayed",
-//       "DraftOrder",
-//       false,
-//       false,
-//       false,
-//       true,
-//       "7",
-//     );
-//   });
+test("Send a draft order in the Case Stayed state as a hearingCentreTeamLead", async ({
+  page,
+}): Promise<void> => {
+  await sendOrder.sendOrder(
+    page,
+    "hearingCentreTeamLead",
+    "Case Stayed",
+    "DraftOrder",
+    false,
+    false,
+    false,
+    true,
+    "7",
+  );
+});
 
 //   test("Send a draft order in the Case closed state as a seniorJudge", async ({
 //     page,
@@ -114,21 +114,21 @@
 //     );
 //   });
 
-//   test("Send a upload order in the Ready to list state as a seniorCaseworker", async ({
-//     page,
-//   }): Promise<void> => {
-//     await sendOrder.sendOrder(
-//       page,
-//       "seniorCaseworker",
-//       "Ready to list",
-//       "UploadOrder",
-//       false,
-//       false,
-//       true,
-//       false,
-//       "7",
-//     );
-//   });
+test("Send a upload order in the Ready to list state as a seniorCaseworker", async ({
+  page,
+}): Promise<void> => {
+  await sendOrder.sendOrder(
+    page,
+    "seniorCaseworker",
+    "Ready to list",
+    "UploadOrder",
+    false,
+    false,
+    true,
+    false,
+    "7",
+  );
+});
 
 //   test("Send a upload order in the Awaiting Hearing state as a hearingCentreAdmin", async ({
 //     page,
@@ -146,21 +146,21 @@
 //     );
 //   });
 
-//   test("Send a upload order in the Case Stayed state as a hearingCentreTeamLead", async ({
-//     page,
-//   }): Promise<void> => {
-//     await sendOrder.sendOrder(
-//       page,
-//       "hearingCentreTeamLead",
-//       "Case Stayed",
-//       "UploadOrder",
-//       false,
-//       false,
-//       false,
-//       true,
-//       "3",
-//     );
-//   });
+test("Send a upload order in the Case Stayed state as a hearingCentreTeamLead", async ({
+  page,
+}): Promise<void> => {
+  await sendOrder.sendOrder(
+    page,
+    "hearingCentreTeamLead",
+    "Case Stayed",
+    "UploadOrder",
+    false,
+    false,
+    false,
+    true,
+    "3",
+  );
+});
 
 //   test("Send a upload order in the Case closed state as a seniorJudge", async ({
 //     page,
