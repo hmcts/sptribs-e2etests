@@ -1,13 +1,14 @@
 import { test } from "@playwright/test";
-import createCase from "../journeys/WA/createCase.ts";
+import createCase from "../../journeys/WA/createCase.ts";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
-  test("Caseworker - Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
+  test("Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber601: any;
+    caseNumber601 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Fatal",
@@ -27,12 +28,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Medical Re-opening Category, Email Contact", async ({
+  test("Assessment - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber602: any;
+    caseNumber602 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waCaseWorker",
       false,
       "Assessment",
       "Medical Re-opening",
@@ -52,12 +54,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Minor Category, Post Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Assessment - Minor Category, Post Contact", async ({ page }) => {
+    let caseNumber603: any;
+    caseNumber603 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waSeniorCaseworker",
       false,
       "Assessment",
       "Minor",
@@ -77,12 +78,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Paragraph 26 Category, Post Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Assessment - Paragraph 26 Category, Post Contact", async ({ page }) => {
+    let caseNumber604: any;
+    caseNumber604 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreTeamLead",
       false,
       "Assessment",
       "Paragraph 26",
@@ -102,12 +102,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Sexual Abuse Category, Email Contact", async ({
+  test("Assessment - Sexual Abuse Category, Email Contact", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber605: any;
+    caseNumber605 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waRegionalHearingCentreAdmin",
       false,
       "Assessment",
       "Sexual Abuse",
@@ -127,12 +128,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Special Jurisdiction Category, Email Contact", async ({
+  test("Assessment - Special Jurisdiction Category, Email Contact", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber606: any;
+    caseNumber606 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waRegionalHearingCentreTeamLead",
       false,
       "Assessment",
       "Special Jurisdiction",
@@ -152,12 +154,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Other Category, Email Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Eligibility - Other Category, Email Contact", async ({ page }) => {
+    let caseNumber607: any;
+    caseNumber607 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waCTSCAdmin",
       false,
       "Eligibility",
       "Other",
@@ -177,12 +178,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Fatal Category, Post Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Eligibility - Fatal Category, Post Contact", async ({ page }) => {
+    let caseNumber608: any;
+    caseNumber608 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waCTSCTeamLead",
       false,
       "Eligibility",
       "Fatal",
@@ -202,12 +202,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Medical Re-opening Category, Email Contact", async ({
+  test("Eligibility - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber609: any;
+    caseNumber609 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Medical Re-opening",
@@ -227,12 +228,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Minor Category, Post Contact @crossbrowserCaseAPI", async ({
+  test("Eligibility - Minor Category, Post Contact @crossbrowserCaseAPI", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber610: any;
+    caseNumber610 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Minor",
@@ -252,12 +254,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Paragraph 26 Category, Post Contact", async ({
+  test("Eligibility - Paragraph 26 Category, Post Contact", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber611: any;
+    caseNumber611 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Paragraph 26",
@@ -277,12 +280,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Sexual Abuse Category, Email Contact", async ({
+  test("Eligibility - Sexual Abuse Category, Email Contact", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber612: any;
+    caseNumber612 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Sexual Abuse",
@@ -302,12 +306,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Other Category, Email Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Assessment - Other Category, Email Contact", async ({ page }) => {
+    let caseNumber613: any;
+    caseNumber613 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
@@ -327,12 +330,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Other Category, Post Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Eligibility - Other Category, Post Contact", async ({ page }) => {
+    let caseNumber614: any;
+    caseNumber614 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Other",
@@ -352,12 +354,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Other Category, Post Contact", async ({
+  test("Assessment - Other Category, Post Contact, Compensation Linked", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber615: any;
+    caseNumber615 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
@@ -377,12 +380,11 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Senior Caseworker - Assessment - Other Category, Post Contact", async ({
-    page,
-  }) => {
-    await createCase.createCase(
+  test("Assessment - Other Category, Post Contact", async ({ page }) => {
+    let caseNumber616: any;
+    caseNumber616 = await createCase.createCase(
       page,
-      "seniorCaseworker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
@@ -402,12 +404,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Hearing centre admin - Eligibility - Other Category, Email Contact", async ({
+  test("Eligibility - Other Category, Email Contact, Applicant explained", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber617: any;
+    caseNumber617 = await createCase.createCase(
       page,
-      "hearingCentreAdmin",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Other",
@@ -427,12 +430,13 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("hearing Centre Team Lead - Assessment - Other Category, Email Contact", async ({
+  test("Assessment - Other Category, Email Contact, Applicant explained", async ({
     page,
   }) => {
-    await createCase.createCase(
+    let caseNumber618: any;
+    caseNumber618 = await createCase.createCase(
       page,
-      "hearingCentreTeamLead",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
@@ -453,9 +457,10 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
-    await createCase.createCase(
+    let caseNumber619: any;
+    caseNumber619 = await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
@@ -479,9 +484,10 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 test("Accessibility test every page. @accessibilityCaseAPI", async ({
   page,
 }) => {
-  await createCase.createCase(
+  let caseNumber620: any;
+  caseNumber620 = await createCase.createCase(
     page,
-    "caseWorker",
+    "waHearingCentreAdmin",
     true,
     "Assessment",
     "Other",
