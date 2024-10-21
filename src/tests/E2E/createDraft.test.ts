@@ -41,18 +41,18 @@ test("As a Senior Caseworker create a CIC6 draft in the Ready to list state. @cr
 //   );
 // });
 
-  test("As a hearing Centre Team Lead create a CIC8 draft in the Case Stayed state.", async ({
+test("As a hearing Centre Team Lead create a CIC8 draft in the Case Stayed state.", async ({
+  page,
+}) => {
+  await createDraft.createDraft(
     page,
-  }) => {
-    await createDraft.createDraft(
-      page,
-      "hearingCentreTeamLead",
-      "Case Stayed",
-      false,
-      false,
-      "CIC8 - ME Joint Instruction",
-    );
-  });
+    "hearingCentreTeamLead",
+    "Case Stayed",
+    false,
+    false,
+    "CIC8 - ME Joint Instruction",
+  );
+});
 //
 //   test("As a Senior Judge create a CIC10 draft in the Case closed state.", async ({
 //     page,
@@ -93,18 +93,18 @@ test("As a Senior Caseworker create a CIC6 draft in the Ready to list state. @cr
 //     );
 //   });
 //
-  test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
+test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
+  page,
+}) => {
+  await createDraft.createDraft(
     page,
-  }) => {
-    await createDraft.createDraft(
-      page,
-      "caseWorker",
-      "Case Management",
-      false,
-      true,
-      "CIC14 – LO General Directions",
-    );
-  });
+    "caseWorker",
+    "Case Management",
+    false,
+    true,
+    "CIC14 – LO General Directions",
+  );
+});
 // });
 //
 // test("Accessibility test - Create draft @accessibilityCaseAPI", async ({
