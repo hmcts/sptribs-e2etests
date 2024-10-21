@@ -34,16 +34,12 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     multipleDocuments: boolean,
     user: UserRole,
   ): Promise<void> {
-    await historyTabPage.checkPageLoads(
-      page,
-      accessibilityTest,
-      caseNumber,
-    );
+    await historyTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
     await historyTabPage.checkPageInfo(
       page,
       ["Submit case (cic)"],
       user,
-      state
+      state,
     );
     await summaryTabPage.changeToSummaryTab(page);
     await summaryTabPage.checkPageLoads(
