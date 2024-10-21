@@ -133,7 +133,7 @@ const myWorkPage: MyWorkPage = {
             await page.waitForSelector(paginationLocator);
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(15000); // waiting for cron job before rechecking
+            await page.waitForTimeout(5000); // waiting for cron job before rechecking
             const subjectTask = page
               .locator("tr")
               .filter({

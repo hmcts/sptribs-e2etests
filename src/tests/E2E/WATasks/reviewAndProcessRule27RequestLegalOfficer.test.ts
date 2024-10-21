@@ -427,6 +427,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       eventOrders,
       stateBeforeCompletion,
     );
+    console.log("task 1 complete")
     await createDraft.createDraft(
       page,
       false,
@@ -443,8 +444,8 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       false,
       "caseStrikeOut",
       false,
-      "other",
       null,
+      "noncomplianceWithDirections",
       caseNumber05,
     );
     await task.checkCompletedTask(
