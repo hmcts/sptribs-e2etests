@@ -12,6 +12,7 @@ type AddCaseNotePage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
 };
@@ -25,6 +26,7 @@ const addCaseNotePage: AddCaseNotePage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string 
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${addCaseNotes_content.pageTitle}")`,
@@ -34,7 +36,7 @@ const addCaseNotePage: AddCaseNotePage = {
         addCaseNotes_content.pageHint,
       ),
       expect(page.locator("markdown > h3")).toContainText(
-        subjectDetailsContent.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p")).toContainText(
         addCaseNotes_content.caseReference + caseNumber,
