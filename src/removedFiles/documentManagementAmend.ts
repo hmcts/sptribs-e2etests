@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import commonHelpers, { State } from "../../helpers/commonHelpers.ts";
-import documentManagementUpload from "../../../removedFiles/documentManagementUpload.ts";
-import selectCaseDocumentsPage from "../../pages/CaseAPI/documentManagementAmend/selectCaseDocumentsPage.ts";
-import amendDocumentsPage from "../../pages/CaseAPI/documentManagementAmend/amendCaseDocumentsPage.ts";
-import submitPage from "../../pages/CaseAPI/documentManagementAmend/submitPage.ts";
-import confirmPage from "../../pages/CaseAPI/documentManagementAmend/confirmPage.ts";
-import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
-import amendCaseDocuments_content from "../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
+import config, { UserRole } from "../tests/config.ts";
+import commonHelpers, { State } from "../tests/helpers/commonHelpers.ts";
+import documentManagementUpload from "./documentManagementUpload.ts";
+import selectCaseDocumentsPage from "../tests/pages/CaseAPI/documentManagementAmend/selectCaseDocumentsPage.ts";
+import amendDocumentsPage from "../tests/pages/CaseAPI/documentManagementAmend/amendCaseDocumentsPage.ts";
+import submitPage from "../tests/pages/CaseAPI/documentManagementAmend/submitPage.ts";
+import confirmPage from "../tests/pages/CaseAPI/documentManagementAmend/confirmPage.ts";
+import caseDocumentsTabPage from "../tests/pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import amendCaseDocuments_content from "../tests/fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
 
 type DocumentManagementAmend = {
   documentManagementAmend(
