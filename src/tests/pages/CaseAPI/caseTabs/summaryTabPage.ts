@@ -41,7 +41,7 @@ type SummaryTabPage = {
 };
 
 const summaryTabPage: SummaryTabPage = {
-  summaryTab: ".mat-tab-label",
+  summaryTab: `.mat-tab-label-content:text-is("Summary")`,
 
   async checkPageLoads(
     page: Page,
@@ -88,7 +88,7 @@ const summaryTabPage: SummaryTabPage = {
   },
 
   async changeToSummaryTab(page: Page): Promise<void> {
-    await page.locator(this.summaryTab).nth(1).click();
+    await page.locator(this.summaryTab).click();
   },
 
   async checkPageInfo(

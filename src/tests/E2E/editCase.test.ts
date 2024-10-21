@@ -53,101 +53,101 @@
 //     );
 //   });
 
-//   test("Caseworker - Case management - Assessment - Minor Category, Post Contact", async ({
-//     page,
-//   }) => {
-//     await editCase.editCase(
-//       page,
-//       "caseWorker",
-//       false,
-//       "Case Management",
-//       "Assessment",
-//       "Minor",
-//       true,
-//       true,
-//       "Post",
-//       true,
-//       "2008",
-//       "Midlands",
-//       true,
-//       false,
-//       true,
-//       false,
-//       false,
-//     );
-//   });
+test("Caseworker - Case management - Assessment - Minor Category, Post Contact", async ({
+  page,
+}) => {
+  await editCase.editCase(
+    page,
+    "caseWorker",
+    false,
+    "Case Management",
+    "Assessment",
+    "Minor",
+    true,
+    true,
+    "Post",
+    true,
+    "2008",
+    "Midlands",
+    true,
+    false,
+    true,
+    false,
+    false,
+  );
+});
 
-//   test("Caseworker - Ready to list - Assessment - Paragraph 26 Category, Post Contact", async ({
-//     page,
-//   }) => {
-//     await editCase.editCase(
-//       page,
-//       "caseWorker",
-//       false,
-//       "Ready to list",
-//       "Assessment",
-//       "Paragraph 26",
-//       false,
-//       true,
-//       "Post",
-//       true,
-//       "2012",
-//       "North East",
-//       true,
-//       false,
-//       true,
-//       false,
-//       false,
-//     );
-//   });
+test("Caseworker - Ready to list - Assessment - Paragraph 26 Category, Post Contact", async ({
+  page,
+}) => {
+  await editCase.editCase(
+    page,
+    "caseWorker",
+    false,
+    "Ready to list",
+    "Assessment",
+    "Paragraph 26",
+    false,
+    true,
+    "Post",
+    true,
+    "2012",
+    "North East",
+    true,
+    false,
+    true,
+    false,
+    false,
+  );
+});
 
-//   test("Caseworker - Awaiting hearing - Assessment - Sexual Abuse Category, Email Contact", async ({
-//     page,
-//   }) => {
-//     await editCase.editCase(
-//       page,
-//       "caseWorker",
-//       false,
-//       "Awaiting hearing",
-//       "Assessment",
-//       "Sexual Abuse",
-//       true,
-//       true,
-//       "Email",
-//       true,
-//       "1996",
-//       "North West",
-//       true,
-//       false,
-//       true,
-//       false,
-//       false,
-//     );
-//   });
+test("Caseworker - Awaiting hearing - Assessment - Sexual Abuse Category, Email Contact", async ({
+  page,
+}) => {
+  await editCase.editCase(
+    page,
+    "caseWorker",
+    false,
+    "Awaiting hearing",
+    "Assessment",
+    "Sexual Abuse",
+    true,
+    true,
+    "Email",
+    true,
+    "1996",
+    "North West",
+    true,
+    false,
+    true,
+    false,
+    false,
+  );
+});
 
-//   test("Caseworker - Awaiting outcome - Assessment - Special Jurisdiction Category, Email Contact", async ({
-//     page,
-//   }) => {
-//     await editCase.editCase(
-//       page,
-//       "caseWorker",
-//       false,
-//       "Awaiting outcome",
-//       "Assessment",
-//       "Special Jurisdiction",
-//       true,
-//       true,
-//       "Email",
-//       true,
-//       "2001",
-//       "Wales & South West",
-//       true,
-//       false,
-//       true,
-//       false,
-//       false,
-//     );
-//   });
+test("Caseworker - Awaiting outcome - Assessment - Special Jurisdiction Category, Email Contact", async ({
+  page,
+}) => {
+  await editCase.editCase(
+    page,
+    "caseWorker",
+    false,
+    "Awaiting outcome",
+    "Assessment",
+    "Special Jurisdiction",
+    true,
+    true,
+    "Email",
+    true,
+    "2001",
+    "Wales & South West",
+    true,
+    false,
+    true,
+    false,
+    false,
+  );
+});
 
 //   test("Senior Judge - Assessment - Other Category, Post Contact", async ({
 //     page,

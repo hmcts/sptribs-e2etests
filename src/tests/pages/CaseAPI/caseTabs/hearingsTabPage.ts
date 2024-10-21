@@ -105,7 +105,7 @@ type HearingsTabPage = {
 };
 
 const hearingTabPage: HearingsTabPage = {
-  hearingsTab: ".mat-tab-label-content",
+  hearingsTab: `.mat-tab-label-content:text-is("Hearings")`,
   listingTable:
     "table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ",
   hearingAttendees: [
@@ -523,7 +523,7 @@ const hearingTabPage: HearingsTabPage = {
   },
 
   async changeToHearingsTab(page: Page): Promise<void> {
-    await page.locator(this.hearingsTab).nth(8).click();
+    await page.locator(this.hearingsTab).click();
   },
 
   async checkPanelComposition(

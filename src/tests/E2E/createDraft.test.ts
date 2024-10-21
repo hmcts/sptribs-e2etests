@@ -15,18 +15,18 @@
 //   );
 // });
 
-// test("As a Senior Caseworker create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
-//   page,
-// }) => {
-//   await createDraft.createDraft(
-//     page,
-//     "seniorCaseworker",
-//     "Ready to list",
-//     false,
-//     false,
-//     "CIC6 - General Directions",
-//   );
-// });
+test("As a Senior Caseworker create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
+  page,
+}) => {
+  await createDraft.createDraft(
+    page,
+    "seniorCaseworker",
+    "Ready to list",
+    false,
+    false,
+    "CIC6 - General Directions",
+  );
+});
 
 // test("As a hearing centre admin create a CIC7 draft in the Awaiting Hearing state.", async ({
 //   page,
@@ -41,18 +41,18 @@
 //   );
 // });
 
-//   test("As a hearing Centre Team Lead create a CIC8 draft in the Case Stayed state.", async ({
-//     page,
-//   }) => {
-//     await createDraft.createDraft(
-//       page,
-//       "hearingCentreTeamLead",
-//       "Case Stayed",
-//       false,
-//       false,
-//       "CIC8 - ME Joint Instruction",
-//     );
-//   });
+test("As a hearing Centre Team Lead create a CIC8 draft in the Case Stayed state.", async ({
+  page,
+}) => {
+  await createDraft.createDraft(
+    page,
+    "hearingCentreTeamLead",
+    "Case Stayed",
+    false,
+    false,
+    "CIC8 - ME Joint Instruction",
+  );
+});
 //
 //   test("As a Senior Judge create a CIC10 draft in the Case closed state.", async ({
 //     page,
@@ -93,18 +93,18 @@
 //     );
 //   });
 //
-//   test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
-//     page,
-//   }) => {
-//     await createDraft.createDraft(
-//       page,
-//       "caseWorker",
-//       "Case Management",
-//       false,
-//       true,
-//       "CIC14 – LO General Directions",
-//     );
-//   });
+test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
+  page,
+}) => {
+  await createDraft.createDraft(
+    page,
+    "caseWorker",
+    "Case Management",
+    false,
+    true,
+    "CIC14 – LO General Directions",
+  );
+});
 // });
 //
 // test("Accessibility test - Create draft @accessibilityCaseAPI", async ({

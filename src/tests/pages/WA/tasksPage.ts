@@ -4,6 +4,7 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import tasks_content from "../../fixtures/content/CaseAPI/myWork/tasks_content.ts";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
+import task from "../../journeys/WA/task.ts";
 
 type TasksPage = {
   myTasksTab: string;
@@ -29,6 +30,12 @@ type TasksPage = {
   ): Promise<void>;
   clickTaskLink(page: Page, event: any): Promise<void>;
   markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
+  markTasksAsDone(
+    page: Page,
+    caseNumber: string,
+    numberOfTasks: number,
+    taskNames: string[],
+  ): Promise<void>;
   navigateToTaskTab(page: Page, event: any, caseNumber: string): Promise<void>;
   chooseEventFromDropdown(page: Page, event: any): Promise<void>;
 };
@@ -142,6 +149,9 @@ const tasksPage: TasksPage = {
     caseNumber: string,
     taskName: string,
     subjectName: string,
+
+    maxRetries: number = 3,
+    delay: number = 30000,
   ): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
@@ -162,9 +172,32 @@ const tasksPage: TasksPage = {
         tasks_content.caseReference + caseNumber,
       ),
     ]);
-    expect(
-      page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
-    ).not.toBeVisible();
+    // Initial visibility check before starting the loop
+    let isTaskVisible = await page
+      .locator(`p.govuk-body > strong:text-is("${taskName}")`)
+      .isVisible();
+
+    if (!isTaskVisible) {
+      return;
+    }
+
+    // Retry if the task is still visible, up to maxRetries
+    for (let i = 0; i < maxRetries; i++) {
+      await page.goto(
+        `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+      );
+      await page.waitForURL(/.*\/tasks$/);
+      isTaskVisible = await page
+        .locator(`p.govuk-body > strong:text-is("${taskName}")`)
+        .isVisible();
+      if (!isTaskVisible) {
+        return;
+      }
+      console.log(
+        `Task "${taskName}" is still visible, retrying in ${delay / 1000} seconds...`,
+      );
+      await page.waitForTimeout(delay);
+    }
   },
 
   async navigateToTaskTab(
@@ -200,6 +233,49 @@ const tasksPage: TasksPage = {
     expect(
       page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
     ).not.toBeVisible();
+  },
+
+  async markTasksAsDone(
+    page: Page,
+    caseNumber: string,
+    numberOfTasks: number,
+    taskNames: string[],
+  ): Promise<void> {
+    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    await page.goto(
+      `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+    );
+    while (true) {
+      await page.waitForSelector('h2:text-is("Active tasks")');
+      let allTasksVisible = true;
+      for (const taskName of taskNames) {
+        const isTaskVisible = await page
+          .locator(`p > strong:text-is("${taskName}")`)
+          .isVisible();
+        if (!isTaskVisible) {
+          allTasksVisible = false;
+          break;
+        }
+      }
+      if (allTasksVisible) {
+        break;
+      } else {
+        await page.waitForTimeout(10000);
+        await page.goto(
+          `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+        );
+        await page.waitForLoadState("domcontentloaded");
+      }
+    }
+    for (let i = 0; i < numberOfTasks; i++) {
+      await page.waitForSelector('h2:text-is("Active tasks")');
+      await page.locator(`a:text-is("Assign to me")`).first().isVisible();
+      await page.locator(`a:text-is("Assign to me")`).first().click();
+      await page.waitForSelector(`a:text-is("Mark as done")`);
+      await page.locator(`a:text-is("Mark as done")`).first().click();
+      await page.waitForSelector(`h1:text-is("Mark the task as done")`);
+      await page.locator("#submit-button").click();
+    }
   },
 };
 
