@@ -19,11 +19,13 @@ type TasksPage = {
     assignedUser: string,
     event: any,
     user: string,
+    subjectName: string,
   ): Promise<any>;
   completedTaskNotVisible(
     page: Page,
     caseNumber: string,
     taskName: string,
+    subjectName: string,
   ): Promise<void>;
   clickTaskLink(page: Page, event: any): Promise<void>;
   markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
@@ -45,6 +47,7 @@ const tasksPage: TasksPage = {
     assignedUser: string,
     event: any,
     user: string,
+    subjectName: string,
   ): Promise<any> {
     const dueDate = await commonHelpers.futureDate(numberOfDays);
     await page.waitForSelector(`p.govuk-body > strong:text-is("${taskName}")`);
@@ -77,7 +80,7 @@ const tasksPage: TasksPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h3:text-is("${subjectDetailsContent.name}")`),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
@@ -104,9 +107,9 @@ const tasksPage: TasksPage = {
       expect(page.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
     if (user !== "waPrincipalJudge") {
-      expect(
-        page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
-      );
+      //    expect(
+      //      page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
+      //    );
       expect(page.locator("exui-priority-field > strong")).toHaveText(
         taskPriority,
       );
@@ -138,6 +141,7 @@ const tasksPage: TasksPage = {
     page: Page,
     caseNumber: string,
     taskName: string,
+    subjectName: string,
   ): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
@@ -151,7 +155,7 @@ const tasksPage: TasksPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h3:text-is("${subjectDetailsContent.name}")`),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

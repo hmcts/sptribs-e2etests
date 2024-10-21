@@ -15,6 +15,7 @@ type PartiesToContactPage = {
     caseNumber: string,
     user: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -32,6 +33,7 @@ const partiesToContactPage: PartiesToContactPage = {
     caseNumber: string,
     user: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     const pageHintRegex = new RegExp(
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
@@ -46,7 +48,7 @@ const partiesToContactPage: PartiesToContactPage = {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         partiesToContact_content.caseReference + caseNumber,

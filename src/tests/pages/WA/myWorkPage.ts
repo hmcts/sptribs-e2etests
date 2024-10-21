@@ -19,10 +19,14 @@ type MyWorkPage = {
     user: any,
   ): Promise<void>;
   selectAvailableTasks(page: Page): Promise<void>;
-  seeTask(page: Page, taskName: string): Promise<void>;
-  clickAssignAndGoToTask(page: Page): Promise<void>;
-  clickAssignToMe(page: Page): Promise<void>;
-  navigateToTaskPage(page: Page, taskName: string): Promise<void>;
+  seeTask(page: Page, taskName: string, subjectName: string): Promise<void>;
+  clickAssignAndGoToTask(page: Page, subjectName: string): Promise<void>;
+  clickAssignToMe(page: Page, subjectName: string): Promise<void>;
+  navigateToTaskPage(
+    page: Page,
+    taskName: string,
+    subjectName: string,
+  ): Promise<void>;
   navigateToMyWorkPage(page: Page): Promise<void>;
 };
 
@@ -101,11 +105,15 @@ const myWorkPage: MyWorkPage = {
     await page.waitForTimeout(5000);
   },
 
-  async seeTask(page: Page, taskName: string): Promise<any> {
+  async seeTask(
+    page: Page,
+    taskName: string,
+    subjectName: string,
+  ): Promise<any> {
     const subjectTask = page
       .locator("tr")
       .filter({
-        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+        has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(`exui-task-field:text-is("${taskName}")`);
     const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
@@ -121,7 +129,7 @@ const myWorkPage: MyWorkPage = {
         (await page.locator(paginationLocator).count()) > 0;
       if (!paginationExists) {
         await page.goto(this.availableTasksUrl);
-        await page.waitForTimeout(15000); // // waiting for cron job before rechecking
+        await page.waitForTimeout(2000); // // waiting for cron job before rechecking
       } else {
         const paginationCount = await page.locator(paginationLocator).count();
         for (let i = 0; i < paginationCount; i++) {
@@ -133,13 +141,11 @@ const myWorkPage: MyWorkPage = {
             await page.waitForSelector(paginationLocator);
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(15000); // waiting for cron job before rechecking
+            await page.waitForTimeout(2000); // waiting for cron job before rechecking
             const subjectTask = page
               .locator("tr")
               .filter({
-                has: page.locator(
-                  `td:has-text("${subjectDetailsContent.name}")`,
-                ),
+                has: page.locator(`td:has-text("${subjectName}")`),
               })
               .locator(`exui-task-field:text-is("${taskName}")`);
 
@@ -158,17 +164,17 @@ const myWorkPage: MyWorkPage = {
           );
           await page.locator('a > span:text-is("1")').click();
           await page.waitForSelector(`li > span:text("1")`);
-          await page.waitForTimeout(15000); // waiting for cron job before rechecking
+          await page.waitForTimeout(2000); // waiting for cron job before rechecking
         }
       }
     }
   },
 
-  async clickAssignAndGoToTask(page: Page): Promise<void> {
+  async clickAssignAndGoToTask(page: Page, subjectName: string): Promise<void> {
     await page
       .locator("tr")
       .filter({
-        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+        has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(`div > button:has-text("Manage")`)
       .click();
@@ -177,29 +183,33 @@ const myWorkPage: MyWorkPage = {
     await page.waitForSelector(`h2:text-is("Active tasks")`);
   },
 
-  async clickAssignToMe(page: Page): Promise<void> {
+  async clickAssignToMe(page: Page, subjectName: string): Promise<void> {
     await page
       .locator("tr")
       .filter({
-        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+        has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(`div > button:text-is("Manage ")`)
       .click();
     await page.waitForSelector(this.assignToMeLink);
     await page.locator(this.assignToMeLink).click();
     await page
-      .locator(`td:has-text("${subjectDetailsContent.name}")`)
+      .locator(`td:has-text("${subjectName}")`)
       .waitFor({ state: "detached" });
   },
 
-  async navigateToTaskPage(page: Page, taskName: string): Promise<void> {
+  async navigateToTaskPage(
+    page: Page,
+    taskName: string,
+    subjectName: string,
+  ): Promise<void> {
     await page.locator(this.myTasksTab).click();
-    await page.waitForSelector(`td:has-text("${subjectDetailsContent.name}")`);
+    await page.waitForSelector(`td:has-text("${subjectName}")`);
 
     await page
       .locator("tr")
       .filter({
-        has: page.locator(`td:has-text("${subjectDetailsContent.name}")`),
+        has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(
         `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,

@@ -28,6 +28,7 @@ type CheckYourAnswersPage = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<string>;
   pressBackButton(page: Page): Promise<void>;
@@ -385,6 +386,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<void> {
     const yes = "Yes";
     const no = "No";
@@ -393,9 +395,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
 
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-summary-list__value:text-is("${subjectDetailsContent.name}")`,
-        ),
+        page.locator(`.govuk-summary-list__value:text-is("${subjectName}")`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(

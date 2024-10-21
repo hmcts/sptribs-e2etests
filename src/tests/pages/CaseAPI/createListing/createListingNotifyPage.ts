@@ -9,6 +9,7 @@ type CreateListingNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -19,6 +20,7 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createListingNotifyPageContent.pageTitle}")`,
@@ -27,9 +29,7 @@ const createListingNotifyPage: CreateListingNotifyPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createListingNotifyPageContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingNotifyPageContent.caseReference + caseNumber,
       ),

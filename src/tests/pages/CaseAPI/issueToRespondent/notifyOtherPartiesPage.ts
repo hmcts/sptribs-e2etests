@@ -9,6 +9,7 @@ type NotifyOtherPartiesPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page, recipients: parties[]): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -19,6 +20,7 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${notifyOtherParties_content.pageTitle}")`,
@@ -27,9 +29,7 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         notifyOtherParties_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         notifyOtherParties_content.caseReference + caseNumber,
       ),

@@ -12,6 +12,7 @@ type CaseFileViewTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCaseFileViewTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -28,9 +29,10 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator(".govuk-heading-l")).toHaveText(
         caseFileViewTabContent.pageTitle,
       ),

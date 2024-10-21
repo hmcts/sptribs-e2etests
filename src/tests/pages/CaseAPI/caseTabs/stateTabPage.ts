@@ -10,6 +10,7 @@ type StateTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToStateTab(page: Page): Promise<void>;
   checkStateTab(page: Page, state: string): Promise<void>;
@@ -22,8 +23,9 @@ const stateTabPage: StateTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
+    await commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName);
     if (accessibilityTest) {
       await axeTest(page);
     }

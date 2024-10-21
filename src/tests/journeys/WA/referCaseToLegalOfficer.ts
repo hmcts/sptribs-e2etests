@@ -12,6 +12,7 @@ type ReferCaseToLegalOfficer = {
     referralReason: referralReason,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -22,6 +23,7 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
     referralReason: referralReason,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     switch (errorMessaging) {
       default:
@@ -29,6 +31,7 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToLegalOfficerReasonPage.fillFields(
           page,
@@ -39,6 +42,7 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
         await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
@@ -47,10 +51,16 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           caseNumber,
           referralReason,
           accessibilityTest,
+          subjectName,
         );
         await submitPage.checkAndFillInfo(page, referralReason);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
       case true:
@@ -58,6 +68,7 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToLegalOfficerReasonPage.triggerErrorMessages(page);
         await referCaseToLegalOfficerReasonPage.fillFields(
@@ -69,6 +80,7 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
         await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
@@ -77,10 +89,16 @@ const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
           caseNumber,
           referralReason,
           accessibilityTest,
+          subjectName,
         );
         await submitPage.checkAndFillInfo(page, referralReason);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
     }

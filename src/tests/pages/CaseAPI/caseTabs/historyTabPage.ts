@@ -14,6 +14,7 @@ type HistoryTabPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     state: string,
+    subjectName: string,
   ): Promise<void>;
   checkPageInfo(
     page: Page,
@@ -31,8 +32,9 @@ const historyTabPage: HistoryTabPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     state: string,
+    subjectName: string,
   ): Promise<void> {
-    await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
+    await commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName);
     await Promise.all([
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (allTabTitles_content as any)[`tab${index + 13}`];

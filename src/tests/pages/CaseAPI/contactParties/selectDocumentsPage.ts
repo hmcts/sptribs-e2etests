@@ -15,6 +15,7 @@ type SelectDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   tickCheckbox(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -28,6 +29,7 @@ const selectDocumentsPage: SelectDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     const pageHintRegex = new RegExp(
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
@@ -37,9 +39,7 @@ const selectDocumentsPage: SelectDocumentsPage = {
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(pageHintRegex),
-      expect(page.locator("markdown > h3").nth(0)).toHaveText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3").nth(0)).toHaveText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toHaveText(
         partiesToContact_content.caseReference + caseNumber,
       ),

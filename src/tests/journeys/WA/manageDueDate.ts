@@ -12,6 +12,7 @@ type ManageDueDate = {
     completed: boolean,
     completedCheckboxChecked: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<any>;
 };
 
@@ -23,8 +24,14 @@ const manageDueDate: ManageDueDate = {
     completed: boolean,
     completedCheckboxChecked: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<any> {
-    await selectOrderPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await selectOrderPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     switch (errorMessaging) {
       default: // false
         await selectOrderPage.selectDropdownOption(page);
@@ -32,6 +39,7 @@ const manageDueDate: ManageDueDate = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDueDatePage.checkFields(page, completed);
         await editDueDatePage.fillInFields(
@@ -46,6 +54,7 @@ const manageDueDate: ManageDueDate = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDueDatePage.triggerErrorMessages(
           page,
@@ -59,14 +68,21 @@ const manageDueDate: ManageDueDate = {
       accessibilityTest,
       completed,
       completedCheckboxChecked,
+      subjectName,
     );
     await submitPage.checkValidInfo(page, completedCheckboxChecked);
-    await submitPage.checkChangeLink(page, caseNumber, accessibilityTest);
+    await submitPage.checkChangeLink(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     await submitPage.saveAndContinue(page);
     await manageDueDateConfirmPage.checkPageLoads(
       page,
       accessibilityTest,
       caseNumber,
+      subjectName,
     );
     await manageDueDateConfirmPage.closeAndReturnToCase(page);
     expect(page.locator(".alert-message")).toHaveText(

@@ -15,6 +15,7 @@ type CaseDocumentsTabPage = {
     uploadOtherInfo: boolean,
     docManagementUploadJourney: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<void>;
   changeToCaseDocumentsTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -49,11 +50,17 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
     uploadOtherInfo: boolean,
     docManagementUploadJourney: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<void> {
     if (user === "respondent") {
-      await commonHelpers.checkAllCaseTabs(page, caseNumber, true);
+      await commonHelpers.checkAllCaseTabs(page, caseNumber, true, subjectName);
     } else {
-      await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
+      await commonHelpers.checkAllCaseTabs(
+        page,
+        caseNumber,
+        false,
+        subjectName,
+      );
     }
     await Promise.all([
       expect(page.locator("markdown[class='markdown'] h4")).toHaveText(

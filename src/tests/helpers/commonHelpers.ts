@@ -55,11 +55,16 @@ interface CommonHelpers {
     service: string,
   ): Promise<void>;
   chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
-  checkNumberAndSubject(page: Page, caseNumber: string): Promise<void>;
+  checkNumberAndSubject(
+    page: Page,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void>;
   checkAllCaseTabs(
     page: Page,
     caseNumber: string,
     respondent: boolean,
+    subjectName: string,
   ): Promise<void>;
   generateUrl(baseURL: string, caseNumber: string): Promise<string>;
   feedbackBanner(page: Page, cy: boolean, landingPage: boolean): Promise<void>;
@@ -81,6 +86,7 @@ interface CommonHelpers {
     caseNoticeType: CaseNoticeType,
     template: Template,
     editDraftJourney: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkDocument(
     page: Page,
@@ -88,6 +94,7 @@ interface CommonHelpers {
     caseNumber: string,
     noticeType: CaseNoticeType,
     editDraftJourney: boolean,
+    subjectName: string,
   ): Promise<void>;
 }
 
@@ -314,13 +321,17 @@ const commonHelpers: CommonHelpers = {
     }
   },
 
-  async checkNumberAndSubject(page: Page, caseNumber: string): Promise<void> {
+  async checkNumberAndSubject(
+    page: Page,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void> {
     await Promise.all([
       expect(
         page.locator(
           "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
         ),
-      ).toHaveText(SubjectDetails_content.name),
+      ).toHaveText(subjectName),
       expect(page.locator(".case-field").first()).toContainText(
         allTabTitles_content.pageTitle + caseNumber,
       ),
@@ -331,8 +342,9 @@ const commonHelpers: CommonHelpers = {
     page: Page,
     caseNumber: string,
     respondent: boolean,
+    subjectName: string,
   ): Promise<void> {
-    await this.checkNumberAndSubject(page, caseNumber);
+    await this.checkNumberAndSubject(page, caseNumber, subjectName);
     if (respondent) {
       await Promise.all([
         Array.from({ length: 11 }, (_, index) => {
@@ -516,12 +528,11 @@ const commonHelpers: CommonHelpers = {
     caseNoticeType: CaseNoticeType,
     template: Template,
     editDraftJourney: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       this.checkVisibleAndPresent(
-        newPage.locator(
-          `span:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        newPage.locator(`span:text-is("${subjectName}")`),
         1,
       ),
       this.checkVisibleAndPresent(
@@ -596,6 +607,7 @@ const commonHelpers: CommonHelpers = {
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
     editDraftJourney: boolean,
+    subjectName: string,
   ): Promise<void> {
     const context = page.context();
     const [newPage] = await Promise.all([
@@ -623,6 +635,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -641,6 +654,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -659,6 +673,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -677,6 +692,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -697,6 +713,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -715,6 +732,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -733,6 +751,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -751,6 +770,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -771,6 +791,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -791,6 +812,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;
@@ -811,6 +833,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         if (caseNoticeType !== null) {
@@ -845,6 +868,7 @@ const commonHelpers: CommonHelpers = {
             caseNoticeType,
             template,
             editDraftJourney,
+            subjectName,
           ),
         ]);
         break;

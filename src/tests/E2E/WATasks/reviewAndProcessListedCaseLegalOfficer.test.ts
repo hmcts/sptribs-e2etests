@@ -27,13 +27,14 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
+const randomNumber = Math.floor(10000 + Math.random() * 90000).toString();
 
 test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    let caseNumber01: any;
-    caseNumber01 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const caseNumber13 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -42,6 +43,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -53,10 +55,10 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber01}`);
+    console.log(`Case Number : ${caseNumber13}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber01);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber13, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -72,13 +74,14 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       "Bristol Magistrates Court-Marlborough Street, Bristol, BS1 3NU",
       false,
-      caseNumber01,
+      caseNumber13,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleCaseWorker,
       config.CaseAPIBaseURL,
-      caseNumber01,
+      caseNumber13,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
@@ -86,67 +89,79 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       "Listed case",
       false,
-      caseNumber01,
+      caseNumber13,
+      subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber13,
       taskName,
       priorityReview,
       assignedUserLO,
       numberofDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC8 - ME Joint Instruction",
-      caseNumber01,
+      caseNumber13,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber13,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
       numberOfDaysProcess,
       eventSendOrder,
       stateBeforeCompletion,
+      subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber01,
+      caseNumber13,
       "DraftOrder",
       false,
       false,
       true,
       true,
       "1",
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber01,
+      caseNumber13,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    let caseNumber02: any;
-    caseNumber02 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const caseNumber14 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -155,6 +170,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -166,10 +182,10 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber02}`);
+    console.log(`Case Number : ${caseNumber14}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber02);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber14, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -185,13 +201,14 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
       false,
-      caseNumber02,
+      caseNumber14,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleCaseWorker,
       config.CaseAPIBaseURL,
-      caseNumber02,
+      caseNumber14,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
@@ -199,65 +216,77 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       "Listed case",
       false,
-      caseNumber02,
+      caseNumber14,
+      subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleLO,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber14,
       taskName,
       priorityReview,
       assignedUserLO,
       numberofDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC10 - Strike Out Warning",
-      caseNumber02,
+      caseNumber14,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber14,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
       numberOfDaysProcess,
       eventSendOrder,
       stateBeforeCompletion,
+      subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber02,
+      caseNumber14,
       "DraftOrder",
       false,
       false,
       true,
       true,
       "1",
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber02,
+      caseNumber14,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    let caseNumber03: any;
-    caseNumber03 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${randomNumber}`;
+    const caseNumber15 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -266,6 +295,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -277,10 +307,10 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber03}`);
+    console.log(`Case Number : ${caseNumber15}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber03);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber15, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -296,13 +326,14 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
-      caseNumber03,
+      caseNumber15,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleCaseWorker,
       config.CaseAPIBaseURL,
-      caseNumber03,
+      caseNumber15,
     );
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
@@ -310,59 +341,71 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       "Listed case",
       false,
-      caseNumber03,
+      caseNumber15,
+      subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName);
+    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleLO,
       "Event DropDown",
       false,
-      caseNumber03,
+      caseNumber15,
       taskName,
       priorityReview,
       assignedUserLO,
       numberofDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC13 - Pro Forma Summons",
-      caseNumber03,
+      caseNumber15,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Event DropDown",
       false,
-      caseNumber03,
+      caseNumber15,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
       numberOfDaysProcess,
       eventSendOrder,
       stateBeforeCompletion,
+      subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber03,
+      caseNumber15,
       "DraftOrder",
       false,
       false,
       true,
       true,
       "1",
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber03,
+      caseNumber15,
       stateAfterCompletion,
+      subjectName,
     );
   });
 });
