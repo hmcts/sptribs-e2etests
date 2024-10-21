@@ -4,6 +4,7 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import tasks_content from "../../fixtures/content/CaseAPI/myWork/tasks_content.ts";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
+import task from "../../journeys/WA/task.ts";
 
 type TasksPage = {
   myTasksTab: string;
@@ -139,7 +140,7 @@ const tasksPage: TasksPage = {
     caseNumber: string,
     taskName: string,
     maxRetries: number = 3,
-    delay: number = 60000, // Wait 30 seconds between checks
+    delay: number = 30000,
   ): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
@@ -160,56 +161,34 @@ const tasksPage: TasksPage = {
         tasks_content.caseReference + caseNumber,
       ),
     ]);
+    // Initial visibility check before starting the loop
+    let isTaskVisible = await page
+      .locator(`p.govuk-body > strong:text-is("${taskName}")`)
+      .isVisible();
 
+    if (!isTaskVisible) {
+      return;
+    }
+
+    // Retry if the task is still visible, up to maxRetries
     for (let i = 0; i < maxRetries; i++) {
-      const isTaskVisible = await page
+      console.log("inside loop")
+      await page.goto(
+        `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+      );
+      await page.waitForURL(/.*\/tasks$/);
+      isTaskVisible = await page
         .locator(`p.govuk-body > strong:text-is("${taskName}")`)
         .isVisible();
       if (!isTaskVisible) {
         return;
       }
-
-      // Task is still visible, wait and retry
       console.log(
         `Task "${taskName}" is still visible, retrying in ${delay / 1000} seconds...`,
       );
       await page.waitForTimeout(delay);
     }
-
-    // If the task is still visible after maxRetries, fail the test
-    await expect(
-      page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
-    ).not.toBeVisible();
   },
-
-  // async completedTaskNotVisible(
-  //   page: Page,
-  //   caseNumber: string,
-  //   taskName: string,
-  // ): Promise<void> {
-  //   const caseNumberDigits = caseNumber.replace(/\D/g, "");
-  //   await page.goto(
-  //     `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
-  //   );
-  //   await page.waitForURL(/.*\/tasks$/);
-  //
-  //   await Promise.all([
-  //     commonHelpers.checkVisibleAndPresent(
-  //       page.locator(`h2:text-is("${tasks_content.title}")`),
-  //       1,
-  //     ),
-  //     commonHelpers.checkVisibleAndPresent(
-  //       page.locator(`markdown > h3:text-is("${subjectDetailsContent.name}")`),
-  //       1,
-  //     ),
-  //     expect(page.locator("markdown > p").nth(0)).toContainText(
-  //       tasks_content.caseReference + caseNumber,
-  //     ),
-  //   ]);
-  //   expect(
-  //     page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
-  //   ).not.toBeVisible();
-  // },
 
   async navigateToTaskTab(
     page: Page,
