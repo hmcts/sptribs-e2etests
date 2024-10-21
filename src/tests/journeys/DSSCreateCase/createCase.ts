@@ -210,9 +210,9 @@ const createFEApplication: CreateFeApplication = {
       uploadOtherInfo,
       multipleDocuments,
     );
-    if (user == "citizen") {
-      await page.click('button[name="opt-out-button"]');
-    }
+    // if (user == "demoCitizen") {
+    //   await page.click('button[name="opt-out-button"]');
+    // }
     await checkYourAnswersPage.checkPageLoads(
       page,
       cy,
@@ -275,11 +275,11 @@ const createFEApplication: CreateFeApplication = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
   ): Promise<string> {
-    const time = await checkYourAnswersPage.continueOn(page);
+    await checkYourAnswersPage.continueOn(page);
     await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
     await applicationSubmittedPage.checkCICCaseNumber(page);
     const caseNumber = await applicationSubmittedPage.returnCICCaseNumber(page);
-    await caseAPILoginPage.SignInUser(page, "caseWorker");
+    await caseAPILoginPage.SignInUser(page, "waCaseWorker");
     await casesPage.checkPageLoads(page, accessibilityTest);
     await casesPage.changeCaseType(page);
     await casesPage.searchForCaseNumber(page, caseNumber);
@@ -290,7 +290,6 @@ const createFEApplication: CreateFeApplication = {
       stateTab_content.DSSSubmittedState,
       representationPresent,
       representationQualified,
-      time,
       uploadOtherInfo,
       multipleDocuments,
       user,

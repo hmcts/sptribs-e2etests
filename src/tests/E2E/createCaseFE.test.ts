@@ -1,351 +1,312 @@
 import { test } from "@playwright/test";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import config from "../config.ts";
+import task from "../journeys/WA/task.ts";
+
+const userRoleAdmin = "waHearingCentreAdmin";
+const taskRemoved = "Register New Case";
 
 test.describe("DSS Create case tests. @DSSCreate", (): void => {
   test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber701: any;
+    caseNumber701 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      false,
+      "demoCitizen",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber701,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
     page,
   }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber702: any;
+    caseNumber702 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      true,
+      "demoCitizen",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber702,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    const cy = false,
-      representationPresent = false,
-      representationQualified = false,
-      uploadOtherInfo = true,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber703: any;
+    caseNumber703 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      false,
+      "demoCitizen",
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber703,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
     page,
   }) => {
-    const cy = true,
-      representationPresent = false,
-      representationQualified = false,
-      uploadOtherInfo = true,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber704: any;
+    caseNumber704 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      true,
+      "demoCitizen",
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber704,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = false,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber705: any;
+    caseNumber705 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      false,
+      "demoCitizen",
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber705,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
     page,
   }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = false,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber706: any;
+    caseNumber706 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      true,
+      "demoCitizen",
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber706,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = false,
-      uploadOtherInfo = false,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber707: any;
+    caseNumber707 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      false,
+      "demoCitizen",
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber707,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
     page,
   }) => {
-    const cy = false,
-      representationPresent = false,
-      representationQualified = false,
-      uploadOtherInfo = true,
-      multipleDocuments = true,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber708: any;
+    caseNumber708 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      false,
+      "demoCitizen",
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber708,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
     page,
   }) => {
-    const cy = true,
-      representationPresent = true,
-      representationQualified = false,
-      uploadOtherInfo = false,
-      multipleDocuments = false,
-      completeApplication = true,
-      backButtonJourney = false,
-      accessibilityTest = false,
-      errorMessaging = false;
-    await createFEApplication.createFEApplication(
+    let caseNumber709: any;
+    caseNumber709 = await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      true,
+      "demoCitizen",
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber709,
+    );
+    await task.removeTask(page, taskRemoved);
   });
 
   test("Test all back buttons on the Frontend application", async ({
     page,
   }) => {
-    const cy = false,
-      representationPresent = true,
-      representationQualified = true,
-      uploadOtherInfo = true,
-      multipleDocuments = false,
-      completeApplication = false,
-      backButtonJourney = true,
-      accessibilityTest = false,
-      errorMessaging = false;
     await createFEApplication.createFEApplication(
       page,
-      cy,
-      "citizen",
-      representationPresent,
-      representationQualified,
-      uploadOtherInfo,
-      multipleDocuments,
-      completeApplication,
-      backButtonJourney,
-      accessibilityTest,
-      errorMessaging,
+      false,
+      "demoCitizen",
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
     );
   });
 
   // test("Error messaging", async ({ page }) => {
-  //   const cy = false,
-  //     representationPresent = true,
-  //     representationQualified = true,
-  //     uploadOtherInfo = true,
-  //     multipleDocuments = false,
-  //     completeApplication = false,
-  //     backButtonJourney = false,
-  //     accessibilityTest = false,
-  //     errorMessaging = true;
   //   await createFEApplication.createFEApplication(
   //     page,
-  //     cy,
+  //     false,
   //     "citizen",
-  //     representationPresent,
-  //     representationQualified,
-  //     uploadOtherInfo,
-  //     multipleDocuments,
-  //     completeApplication,
-  //     backButtonJourney,
-  //     accessibilityTest,
-  //     errorMessaging,
+  //     true,
+  //     true,
+  //     true,
+  //     false,
+  //     false,
+  //     false,
+  //     false,
+  //     true,
   //   );
   // });
-
+  //
   // test("Error messaging - Cy", async ({ page }) => {
-  //   const cy = true,
-  //     representationPresent = true,
-  //     representationQualified = true,
-  //     uploadOtherInfo = true,
-  //     multipleDocuments = false,
-  //     completeApplication = false,
-  //     backButtonJourney = false,
-  //     accessibilityTest = false,
-  //     errorMessaging = true;
   //   await createFEApplication.createFEApplication(
   //     page,
-  //     cy,
+  //     true,
   //     "citizen",
-  //     representationPresent,
-  //     representationQualified,
-  //     uploadOtherInfo,
-  //     multipleDocuments,
-  //     completeApplication,
-  //     backButtonJourney,
-  //     accessibilityTest,
-  //     errorMessaging,
+  //     true,
+  //     true,
+  //     true,
+  //     false,
+  //     false,
+  //     false,
+  //     false,
+  //     true,
   //   );
   // });
 });
 
-test("Accessibility test every page on DSS. @DSSAccessibility", async ({
+test("Accessibility test every page on DSS submit. @DSSAccessibility", async ({
   page,
 }) => {
-  const cy = false,
-    representationPresent = true,
-    representationQualified = true,
-    uploadOtherInfo = true,
-    multipleDocuments = false,
-    completeApplication = false,
-    backButtonJourney = false,
-    accessibilityTest = true,
-    errorMessaging = false;
   await createFEApplication.createFEApplication(
     page,
-    cy,
-    "citizen",
-    representationPresent,
-    representationQualified,
-    uploadOtherInfo,
-    multipleDocuments,
-    completeApplication,
-    backButtonJourney,
-    accessibilityTest,
-    errorMessaging,
+    false,
+    "demoCitizen",
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    true,
+    false,
   );
 });

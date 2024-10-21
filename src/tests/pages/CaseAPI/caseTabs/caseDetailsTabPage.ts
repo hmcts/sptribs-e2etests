@@ -23,7 +23,7 @@ type CaseDetailsTabPage = {
 };
 
 const caseDetailsTabPage: CaseDetailsTabPage = {
-  caseDetailsTab: ".mat-tab-label",
+  caseDetailsTab: `.mat-tab-label-content:text-is("Case Details")`,
 
   async checkPageLoads(
     page: Page,
@@ -72,7 +72,7 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
   },
 
   async changeToCaseDetailsTab(page: Page): Promise<void> {
-    await page.locator(this.caseDetailsTab).nth(3).click();
+    await page.locator(this.caseDetailsTab).click();
   },
 
   async checkPageInfo(

@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import historyTabContent from "../../../fixtures/content/CaseAPI/caseTabs/historyTab_content.ts";
-import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import authorsContent from "../../../fixtures/content/authors_content.ts";
 import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
 import { UserRole } from "../../../config.ts";
@@ -13,12 +12,10 @@ type HistoryTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
-    state: string,
   ): Promise<void>;
   checkPageInfo(
     page: Page,
     allEvents: allEvents[],
-    eventTimes: string[],
     user: UserRole,
     state: string,
   ): Promise<void>;
@@ -30,7 +27,6 @@ const historyTabPage: HistoryTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
-    state: string,
   ): Promise<void> {
     await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
     await Promise.all([
@@ -71,7 +67,6 @@ const historyTabPage: HistoryTabPage = {
   async checkPageInfo(
     page: Page,
     allEvents: allEvents[],
-    eventTimes: string[],
     user: UserRole,
     state: string,
   ): Promise<void> {

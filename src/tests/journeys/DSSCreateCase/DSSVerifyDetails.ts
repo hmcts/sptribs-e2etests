@@ -16,7 +16,6 @@ type DSSVerifyDetails = {
     state: string,
     representationPresent: boolean,
     representationQualified: boolean,
-    time: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
@@ -31,7 +30,6 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     state: string,
     representationPresent: boolean,
     representationQualified: boolean,
-    time: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
@@ -40,14 +38,12 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       page,
       accessibilityTest,
       caseNumber,
-      state,
     );
     await historyTabPage.checkPageInfo(
       page,
       ["Submit case (cic)"],
-      [time],
       user,
-      state,
+      state
     );
     await summaryTabPage.changeToSummaryTab(page);
     await summaryTabPage.checkPageLoads(
