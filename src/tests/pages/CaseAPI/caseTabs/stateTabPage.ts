@@ -16,7 +16,7 @@ type StateTabPage = {
 };
 
 const stateTabPage: StateTabPage = {
-  caseStateTab: ".mat-tab-label",
+  caseStateTab: `.mat-tab-label-content:text-is("State")`,
 
   async checkPageLoads(
     page: Page,
@@ -30,7 +30,7 @@ const stateTabPage: StateTabPage = {
   },
 
   async changeToStateTab(page: Page): Promise<void> {
-    await page.locator(this.caseStateTab).nth(2).click();
+    await page.locator(this.caseStateTab).click();
   },
 
   async checkStateTab(page: Page, state: string): Promise<void> {
