@@ -27,6 +27,12 @@ type TasksPage = {
   ): Promise<void>;
   clickTaskLink(page: Page, event: any): Promise<void>;
   markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
+  markTasksAsDone(
+    page: Page,
+    caseNumber: string,
+    numberOfTasks: number,
+    taskNames: string[],
+  ): Promise<void>;
   navigateToTaskTab(page: Page, event: any, caseNumber: string): Promise<void>;
   chooseEventFromDropdown(page: Page, event: any): Promise<void>;
 };
@@ -158,7 +164,8 @@ const tasksPage: TasksPage = {
         tasks_content.caseReference + caseNumber,
       ),
     ]);
-    expect(
+
+    await expect(
       page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
     ).not.toBeVisible();
   },
@@ -196,6 +203,49 @@ const tasksPage: TasksPage = {
     expect(
       page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
     ).not.toBeVisible();
+  },
+
+  async markTasksAsDone(
+    page: Page,
+    caseNumber: string,
+    numberOfTasks: number,
+    taskNames: string[],
+  ): Promise<void> {
+    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    await page.goto(
+      `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+    );
+    while (true) {
+      await page.waitForSelector('h2:text-is("Active tasks")');
+      let allTasksVisible = true;
+      for (const taskName of taskNames) {
+        const isTaskVisible = await page
+          .locator(`p > strong:text-is("${taskName}")`)
+          .isVisible();
+        if (!isTaskVisible) {
+          allTasksVisible = false;
+          break;
+        }
+      }
+      if (allTasksVisible) {
+        break;
+      } else {
+        await page.waitForTimeout(10000);
+        await page.goto(
+          `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+        );
+        await page.waitForLoadState("domcontentloaded");
+      }
+    }
+    for (let i = 0; i < numberOfTasks; i++) {
+      await page.waitForSelector('h2:text-is("Active tasks")');
+      await page.locator(`a:text-is("Assign to me")`).first().isVisible();
+      await page.locator(`a:text-is("Assign to me")`).first().click();
+      await page.waitForSelector(`a:text-is("Mark as done")`);
+      await page.locator(`a:text-is("Mark as done")`).first().click();
+      await page.waitForSelector(`h1:text-is("Mark the task as done")`);
+      await page.locator("#submit-button").click();
+    }
   },
 };
 

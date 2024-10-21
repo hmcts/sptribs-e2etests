@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
-import commonHelpers, {
-  taskCompletionMethod,
-} from "../../helpers/commonHelpers.ts";
+import { taskCompletionMethod } from "../../helpers/commonHelpers.ts";
 import tasksPage from "../../pages/WA/tasksPage.ts";
 import historyPage from "../../pages/WA/historyPage.ts";
 
@@ -35,7 +33,6 @@ type Task = {
     caseNumber: string,
     stateAfterCompletion: string,
   ): Promise<any>;
-
   removeTask(page: Page, taskRemoved: string): Promise<void>;
 };
 
