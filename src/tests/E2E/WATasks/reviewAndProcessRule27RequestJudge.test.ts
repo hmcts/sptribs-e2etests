@@ -443,10 +443,10 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       page,
       false,
       false,
-      "caseRejected",
+      "caseStrikeOut",
       false,
-      "other",
       null,
+      "noncomplianceWithDirections",
       caseNumber05,
     );
     await task.checkCompletedTask(
