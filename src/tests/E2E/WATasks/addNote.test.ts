@@ -38,7 +38,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
         false,
         false,
         false,
-        subjectName
+        subjectName,
       );
       console.log(`Case Number : ${caseNumber200}`);
       await commonHelpers.signOutAndGoToCase(
@@ -201,7 +201,8 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
-      caseNumber204,subjectName
+      caseNumber204,
+      subjectName,
     );
     await addNote.addNote(page, false, caseNumber204, subjectName);
   });
@@ -249,7 +250,8 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
-      caseNumber205,subjectName
+      caseNumber205,
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -308,7 +310,8 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       null,
       null,
-      caseNumber206,subjectName
+      caseNumber206,
+      subjectName,
     );
     await addNote.addNote(page, false, caseNumber206, subjectName);
   });

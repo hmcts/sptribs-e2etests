@@ -8,7 +8,7 @@ type AddNote = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
-    subjectName: string
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -17,10 +17,15 @@ const addNote: AddNote = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
-    subjectName: string
+    subjectName: string,
   ): Promise<void> {
     await commonHelpers.chooseEventFromDropdown(page, "Case: Add note");
-    await addCaseNotePage.checkPageLoads(page, accessibilityTest, caseNumber, subjectName);
+    await addCaseNotePage.checkPageLoads(
+      page,
+      accessibilityTest,
+      caseNumber,
+      subjectName,
+    );
     await addCaseNotePage.fillInFields(page);
     await page.click(`.mat-tab-label-content:text-is("Notes")`);
     await notesTabPage.checkAddedNote(page);
