@@ -114,9 +114,9 @@ const tasksPage: TasksPage = {
       expect(page.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
     if (user !== "waPrincipalJudge") {
-      //    expect(
-      //      page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
-      //    );
+      expect(
+        page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
+      );
       expect(page.locator("exui-priority-field > strong")).toHaveText(
         taskPriority,
       );

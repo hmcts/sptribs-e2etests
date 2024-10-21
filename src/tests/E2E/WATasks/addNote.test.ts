@@ -268,6 +268,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       false,
       caseNumber205,
+      subjectName,
     );
     await addNote.addNote(page, false, caseNumber205, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -317,7 +318,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAPI", async ({
+test.only("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${randomLetters}`;
@@ -352,6 +353,7 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
     "awaitingACourtJudgement",
     false,
     caseNumber207,
+    subjectName,
   );
   await addNote.addNote(page, true, caseNumber207, subjectName);
   await task.removeTask(page, taskRemovedIssueCase, subjectName);

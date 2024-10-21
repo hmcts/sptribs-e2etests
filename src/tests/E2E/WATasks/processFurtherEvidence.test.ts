@@ -447,7 +447,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 });
 
-test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
+test.only("Task completion: Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${randomLetters}`;
