@@ -318,7 +318,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   });
 });
 
-test.only("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAPI", async ({
+test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${randomLetters}`;
