@@ -178,7 +178,6 @@ const tasksPage: TasksPage = {
 
     // Retry if the task is still visible, up to maxRetries
     for (let i = 0; i < maxRetries; i++) {
-      console.log("inside loop");
       await page.goto(
         `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
       );
