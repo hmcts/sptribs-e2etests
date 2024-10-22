@@ -41,6 +41,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           const hearing =
             await cancelHearingSelectHearingPage.fillInFields(page);
@@ -49,6 +50,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingReasonPage.fillInFields(page, reasonCancelled);
           await cancelHearingReasonPage.continueOn(page);
@@ -56,12 +58,23 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingNotifyPage.continueOn(page);
-          await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            subjectName,
+          );
           await submitPage.checkValidInfo(page, hearing, reasonCancelled);
           await submitPage.continueOn(page);
-          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await confirmPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            subjectName,
+          );
           await confirmPage.continueOn(page);
           await hearingsTabPage.changeToHearingsTab(page);
           await hearingsTabPage.checkPageLoads(
@@ -95,6 +108,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingSelectHearingPage.triggerErrorMessages(page);
           await cancelHearingSelectHearingPage.fillInFields(page);
@@ -103,6 +117,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingReasonPage.triggerErrorMessages(page);
           await cancelHearingReasonPage.fillInFields(page, reasonCancelled);
@@ -111,6 +126,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingNotifyPage.triggerErrorMessages(page);
           break;
