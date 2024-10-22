@@ -7,7 +7,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber601 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -34,7 +34,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber602: any = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waCaseWorker",
       false,
@@ -59,7 +59,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Assessment - Minor Category, Post Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber603 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waSeniorCaseworker",
       false,
@@ -84,7 +84,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Assessment - Paragraph 26 Category, Post Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber604 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreTeamLead",
       false,
@@ -111,7 +111,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber605 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waRegionalHearingCentreAdmin",
       false,
@@ -138,7 +138,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber606 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waRegionalHearingCentreTeamLead",
       false,
@@ -163,7 +163,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Eligibility - Other Category, Email Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber607 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waCTSCAdmin",
       false,
@@ -188,7 +188,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Eligibility - Fatal Category, Post Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber608 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waCTSCTeamLead",
       false,
@@ -215,7 +215,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber609 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -242,7 +242,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber610 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -269,7 +269,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber611 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -296,7 +296,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber612 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -321,7 +321,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Assessment - Other Category, Email Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber613 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -346,7 +346,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Eligibility - Other Category, Post Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber614 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -373,7 +373,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber615 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -398,7 +398,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Assessment - Other Category, Post Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber616 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -425,7 +425,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber617 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -452,7 +452,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber618 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -477,7 +477,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 
   test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber619 = await createCase.createCase(
+    await createCase.createCase(
       page,
       "waHearingCentreAdmin",
       false,
@@ -505,7 +505,7 @@ test("Accessibility test every page. @accessibilityCaseAPI", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber620 = await createCase.createCase(
+  await createCase.createCase(
     page,
     "waHearingCentreAdmin",
     true,
