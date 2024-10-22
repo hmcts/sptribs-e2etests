@@ -60,6 +60,7 @@ type CreateFeApplication = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<any>;
   handleBackButtonJourney(page: Page): Promise<any>;
 };
@@ -215,9 +216,9 @@ const createFEApplication: CreateFeApplication = {
       uploadOtherInfo,
       multipleDocuments,
     );
-    // if (user == "demoCitizen") {
-    //   await page.click('button[name="opt-out-button"]');
-    // }
+    if (user == "citizen") {
+      await page.click('button[name="opt-out-button"]');
+    }
     await checkYourAnswersPage.checkPageLoads(
       page,
       cy,
@@ -245,6 +246,7 @@ const createFEApplication: CreateFeApplication = {
         representationQualified,
         uploadOtherInfo,
         multipleDocuments,
+        subjectName,
       );
     }
     if (backButtonJourney) {
@@ -280,6 +282,7 @@ const createFEApplication: CreateFeApplication = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<string> {
     await checkYourAnswersPage.continueOn(page);
     await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
@@ -299,6 +302,7 @@ const createFEApplication: CreateFeApplication = {
       uploadOtherInfo,
       multipleDocuments,
       user,
+      subjectName,
     );
     return caseNumber;
   },

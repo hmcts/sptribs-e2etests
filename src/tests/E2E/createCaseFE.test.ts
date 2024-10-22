@@ -8,11 +8,11 @@ const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemoved = "Register New Case";
 
 test.describe("DSS Create case tests. @DSSCreate", (): void => {
-  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
+  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    let caseNumber701: any;
-    caseNumber701 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber701 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -24,6 +24,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -31,14 +32,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber701,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
-  test("As a Citizen, Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
+  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
     page,
   }) => {
-    let caseNumber702: any;
-    caseNumber702 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber702 = await createFEApplication.createFEApplication(
       page,
       true,
       "demoCitizen",
@@ -50,6 +51,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -57,14 +59,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber702,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    let caseNumber703: any;
-    caseNumber703 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber703 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -76,6 +78,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -83,14 +86,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber703,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
     page,
   }) => {
-    let caseNumber704: any;
-    caseNumber704 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber704 = await createFEApplication.createFEApplication(
       page,
       true,
       "demoCitizen",
@@ -102,6 +105,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -109,14 +113,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber704,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    let caseNumber705: any;
-    caseNumber705 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber705 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -128,6 +132,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -135,14 +140,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber705,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
     page,
   }) => {
-    let caseNumber706: any;
-    caseNumber706 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber706 = await createFEApplication.createFEApplication(
       page,
       true,
       "demoCitizen",
@@ -154,6 +159,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -161,14 +167,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber706,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
     page,
   }) => {
-    let caseNumber707: any;
-    caseNumber707 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber707 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -180,6 +186,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -187,14 +194,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber707,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
     page,
   }) => {
-    let caseNumber708: any;
-    caseNumber708 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber708 = await createFEApplication.createFEApplication(
       page,
       false,
       "demoCitizen",
@@ -206,6 +213,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -213,14 +221,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber708,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
     page,
   }) => {
-    let caseNumber709: any;
-    caseNumber709 = await createFEApplication.createFEApplication(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber709 = await createFEApplication.createFEApplication(
       page,
       true,
       "demoCitizen",
@@ -232,6 +240,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       false,
       false,
       false,
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -239,12 +248,13 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber709,
     );
-    await task.removeTask(page, taskRemoved);
+    await task.removeTask(page, taskRemoved, subjectName);
   });
 
   test("Test all back buttons on the Frontend application", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createFEApplication.createFEApplication(
       page,
       false,
@@ -257,10 +267,14 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       true,
       false,
       false,
+      subjectName,
     );
   });
 
+  // Unresolved bug with error messaging
+
   // test("Error messaging", async ({ page }) => {
+  //   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   //   await createFEApplication.createFEApplication(
   //     page,
   //     false,
@@ -273,10 +287,12 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   //     false,
   //     false,
   //     true,
+  //     subjectName
   //   );
   // });
   //
   // test("Error messaging - Cy", async ({ page }) => {
+  //   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   //   await createFEApplication.createFEApplication(
   //     page,
   //     true,
@@ -289,6 +305,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   //     false,
   //     false,
   //     true,
+  //     subjectName
   //   );
   // });
 });
@@ -296,6 +313,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
 test("Accessibility test every page on DSS submit. @DSSAccessibility", async ({
   page,
 }) => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   await createFEApplication.createFEApplication(
     page,
     false,
@@ -308,5 +326,6 @@ test("Accessibility test every page on DSS submit. @DSSAccessibility", async ({
     false,
     true,
     false,
+    subjectName,
   );
 });
