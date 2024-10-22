@@ -22,7 +22,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
     console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.signOutAndGoToCase(
@@ -44,7 +44,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
   });
 
@@ -64,7 +64,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
     console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.signOutAndGoToCase(
@@ -86,7 +86,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
   });
 
@@ -106,7 +106,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
     console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.signOutAndGoToCase(
@@ -128,7 +128,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
   });
 
@@ -148,7 +148,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
     console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.signOutAndGoToCase(
@@ -170,7 +170,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       true,
       false,
-      subjectName
+      subjectName,
     );
   });
 
@@ -188,7 +188,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -209,7 +209,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       true,
-      subjectName
+      subjectName,
     );
   });
 
@@ -227,7 +227,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       false,
-      subjectName
+      subjectName,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -248,7 +248,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       true,
-      subjectName
+      subjectName,
     );
   });
 });
@@ -269,7 +269,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     false,
     true,
     false,
-    subjectName
+    subjectName,
   );
   await commonHelpers.signOutAndGoToCase(
     page,
@@ -290,6 +290,6 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     false,
     false,
     false,
-    subjectName
+    subjectName,
   );
 });
