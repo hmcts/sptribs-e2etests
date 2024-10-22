@@ -353,7 +353,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber308 = await createCase.createCase(
+    const caseNumber307 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -374,9 +374,9 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber308}`);
+    console.log(`Case Number : ${caseNumber307}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber308, subjectName);
+    await buildCase.buildCase(page, false, caseNumber307, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -392,7 +392,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
-      caseNumber308,
+      caseNumber307,
       subjectName,
     );
     await cancelHearing.cancelHearing(
@@ -400,7 +400,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       "Case Rejected",
       true,
-      caseNumber308,
+      caseNumber307,
       subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -411,7 +411,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber309 = await createCase.createCase(
+  const caseNumber308 = await createCase.createCase(
     page,
     userRoleAdmin,
     false,
@@ -432,9 +432,9 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber309}`);
+  console.log(`Case Number : ${caseNumber308}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber309, subjectName);
+  await buildCase.buildCase(page, false, caseNumber308, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
   await createListing.createListing(
     page,
@@ -447,7 +447,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     false,
     "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
     false,
-    caseNumber309,
+    caseNumber308,
     subjectName,
   );
   await cancelHearing.cancelHearing(
@@ -455,7 +455,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     true,
     "Other",
     false,
-    caseNumber309,
+    caseNumber308,
     subjectName,
   );
   await task.removeTask(page, taskRemovedIssueCase, subjectName);
