@@ -162,7 +162,7 @@ const myWorkPage: MyWorkPage = {
           console.log(
             "No more pages left to check. Restarting from the first page...",
           );
-          await page.locator('a > span:text-is("1")').click();
+          await page.getByText("page 1").click();
           await page.waitForSelector(`li > span:text("1")`);
           await page.waitForTimeout(2000); // waiting for cron job before rechecking
         }

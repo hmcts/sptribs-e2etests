@@ -27,15 +27,12 @@ const eventSendOrder = "Orders: Send order";
 const stateBeforeCompletion = "Awaiting hearing";
 const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber04 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -170,7 +167,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber05 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -295,7 +292,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber06 = await createCase.createCase(
       page,
       userRoleAdmin,

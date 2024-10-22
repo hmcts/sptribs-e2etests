@@ -32,13 +32,12 @@ const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Math.floor(10000 + Math.random() * 90000).toString();
 
 test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber69 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -149,7 +148,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber70 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -258,7 +257,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber71 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -367,7 +366,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber72 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -427,7 +426,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 
   test("Process task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber73 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -527,7 +526,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber74 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -677,7 +676,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);
-  const subjectName = `Subject AutoTesting${randomLetters}`;
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber75 = await createCase.createCase(
     page,
     userRoleAdmin,

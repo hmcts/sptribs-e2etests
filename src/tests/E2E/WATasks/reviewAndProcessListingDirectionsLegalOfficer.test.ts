@@ -14,8 +14,8 @@ import contactParties from "../../journeys/WA/contactParties.ts";
 const taskName = "Review listing directions - Legal Officer";
 const taskNameProcess = "Process listing directions";
 const taskNameNonCompliance = "Follow up noncompliance of directions";
-const priorityReview = " medium ";
-const priorityProcess = " medium ";
+const priorityReview = " low ";
+const priorityProcess = " low ";
 const priorityNonCompliance = " medium ";
 const assignedUserAdmin = "sptribswa hearingcentreadmin";
 const assignedUserLO = "sptribswa seniorcaseworker";
@@ -32,16 +32,13 @@ const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber45 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -190,7 +187,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber46 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -337,7 +334,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
 
   test("Task is completed via event dropdown", async ({ page }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber47 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -483,7 +480,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber48 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -543,7 +540,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
   });
 
   test("Process task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber49 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -635,7 +632,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber50 = await createCase.createCase(
       page,
       userRoleAdmin,

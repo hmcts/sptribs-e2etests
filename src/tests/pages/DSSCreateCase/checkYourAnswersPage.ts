@@ -211,6 +211,9 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         }
         break;
       default:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${CheckYourAnswersContent.pageTitle}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(

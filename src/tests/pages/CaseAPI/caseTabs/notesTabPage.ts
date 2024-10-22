@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../config.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import notesTab_content from "../../../fixtures/content/CaseAPI/caseTabs/notesTab_content.ts";
 import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
@@ -10,6 +9,9 @@ type NotesTabPage = {
 
 const notesTabPage: NotesTabPage = {
   async checkAddedNote(page: Page): Promise<void> {
+    await page.waitForSelector(
+      `.case-viewer-label:text-is("${notesTab_content.textOnPage1}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

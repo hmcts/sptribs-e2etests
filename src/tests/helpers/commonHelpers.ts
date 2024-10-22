@@ -1,6 +1,7 @@
 import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import { expect, Locator, Page } from "@playwright/test";
+import { randomBytes } from "crypto";
 import authors_content from "../fixtures/content/authors_content.ts";
 import CookiesContent from "../fixtures/content/cookies_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
@@ -96,6 +97,7 @@ interface CommonHelpers {
     editDraftJourney: boolean,
     subjectName: string,
   ): Promise<void>;
+  randomLetters(length: number): string;
 }
 
 const commonHelpers: CommonHelpers = {
@@ -113,6 +115,12 @@ const commonHelpers: CommonHelpers = {
     "November",
     "December",
   ],
+
+  randomLetters(length: number): string {
+    return Array.from({ length }, () =>
+      String.fromCharCode(65 + (randomBytes(1)[0] % 26)),
+    ).join("");
+  },
 
   async shortMonths(index: number): Promise<string> {
     const monthFullName = this.months[index - 1];

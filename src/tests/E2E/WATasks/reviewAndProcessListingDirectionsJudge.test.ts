@@ -27,15 +27,12 @@ const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber16 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -146,7 +143,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber17 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -255,8 +252,8 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
-    const caseNumber17 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber177 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -277,9 +274,9 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber17}`);
+    console.log(`Case Number : ${caseNumber177}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber17, subjectName);
+    await buildCase.buildCase(page, false, caseNumber177, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
@@ -287,7 +284,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       false,
       "Listing directions",
       false,
-      caseNumber17,
+      caseNumber177,
       subjectName,
     );
     await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
@@ -296,7 +293,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       userRoleJudge,
       "Event DropDown",
       false,
-      caseNumber17,
+      caseNumber177,
       taskName,
       priorityReview,
       assignedUserJudge,
@@ -310,14 +307,14 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       false,
       false,
       "CIC13 - Pro Forma Summons",
-      caseNumber17,
+      caseNumber177,
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber17,
+      caseNumber177,
       stateAfterCompletion,
       subjectName,
     );
@@ -333,7 +330,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       userRoleAdmin,
       "Event DropDown",
       false,
-      caseNumber17,
+      caseNumber177,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
@@ -344,7 +341,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber17,
+      caseNumber177,
       "DraftOrder",
       false,
       false,
@@ -357,14 +354,14 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       page,
       false,
       taskNameProcess,
-      caseNumber17,
+      caseNumber177,
       stateAfterCompletion,
       subjectName,
     );
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber18 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -424,7 +421,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
   });
 
   test("Process task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber19 = await createCase.createCase(
       page,
       userRoleAdmin,

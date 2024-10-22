@@ -15,15 +15,12 @@ const event = "Case: Build case";
 const stateBeforeCompletion = "Submitted";
 const stateAfterCompletion = "Case management";
 const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber156 = await createCase.createCase(
       page,
       userRole,
@@ -97,7 +94,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber157 = await createCase.createCase(
       page,
       userRole,
@@ -169,7 +166,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber158 = await createCase.createCase(
       page,
       userRole,
@@ -244,7 +241,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
 test("Task completion: Accessibility test / Build Case : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  const subjectName = `Subject AutoTesting${randomLetters}`;
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber159 = await createCase.createCase(
     page,
     userRole,

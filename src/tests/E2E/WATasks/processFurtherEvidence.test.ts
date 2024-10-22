@@ -31,15 +31,12 @@ const eventAmendDoc = "Document management: Amend";
 const caseManagementState = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber160 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -139,7 +136,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber161 = await createFEApplication.createFEApplication(
       page,
       false,
@@ -237,7 +234,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber162 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -318,7 +315,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 
   test("Document management: Upload - Contact parties", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber163 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -387,7 +384,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 
   test("Task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber164 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -447,10 +444,10 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 });
 
-test.only("Task completion: Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  const subjectName = `Subject AutoTesting${randomLetters}`;
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber165 = await createCase.createCase(
     page,
     userRoleAdmin,

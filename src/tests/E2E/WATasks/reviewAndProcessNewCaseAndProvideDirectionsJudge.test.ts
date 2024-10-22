@@ -32,15 +32,12 @@ const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27  ", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber62 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -151,7 +148,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
   test("Task is completable via next steps link - assign to me / Create Draft order CIC6 - General Directions", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber63 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -262,7 +259,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
   test("Task is completed via event dropdown / Create Draft order CIC7 - ME Dmi Reports ", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber64 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -371,7 +368,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber65 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -431,7 +428,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
   });
 
   test("Process task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber66 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -531,7 +528,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber67 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -681,7 +678,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);
-  const subjectName = `Subject AutoTesting${randomLetters}`;
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber68 = await createCase.createCase(
     page,
     userRoleAdmin,

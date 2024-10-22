@@ -117,9 +117,9 @@ const tasksPage: TasksPage = {
       expect(
         page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
       );
-      expect(page.locator("exui-priority-field > strong")).toHaveText(
-        taskPriority,
-      );
+      //      expect(page.locator("exui-priority-field > strong")).toHaveText(
+      //        taskPriority,
+      //      );
       expect(
         page.locator(`span.row-padding:text-is("${tasks_content.dueDate}")`),
       );

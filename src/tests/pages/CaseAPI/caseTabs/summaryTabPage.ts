@@ -145,6 +145,9 @@ const summaryTabPage: SummaryTabPage = {
     optionalText: boolean,
   ): Promise<void> {
     const stayReasonText = createEditStaySubmit_content[stayReason];
+    await page.waitForSelector(
+      `.text-16:text-is("${summaryTab_content.textOnPage10}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.text-16:text-is("${summaryTab_content.textOnPage10}")`),

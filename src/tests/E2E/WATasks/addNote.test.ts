@@ -16,16 +16,13 @@ import createEditStay from "../../journeys/WA/createEditStay.ts";
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedNewCase = "Register New Case";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
     test("Add a note to a DSS-submitted case. @crossbrowserCaseAPI", async ({
       page,
     }): Promise<void> => {
-      const subjectName = `Subject AutoTesting${randomLetters}`;
+      const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
       const caseNumber200 = await createFEApplication.createFEApplication(
         page,
         false,
@@ -55,7 +52,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   test("Add a note to a Submitted case case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber201 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -84,7 +81,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   test("Add a note to a Case management case case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber202 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -116,7 +113,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   test("Add a note to a Ready to list case case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber203 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -141,6 +138,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     console.log(`Case Number : ${caseNumber203}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber203, subjectName);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -154,13 +152,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       caseNumber203,
     );
     await addNote.addNote(page, false, caseNumber203, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Add a note to a awaiting hearing case case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber204 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -210,7 +207,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   test("Add a note to a awaiting outcome case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber205 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -235,6 +232,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     console.log(`Case Number : ${caseNumber205}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber205, subjectName);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -271,13 +269,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       subjectName,
     );
     await addNote.addNote(page, false, caseNumber205, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Add a note to a case closed case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber206 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -321,7 +318,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
 test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
-  const subjectName = `Subject AutoTesting${randomLetters}`;
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber207 = await createCase.createCase(
     page,
     userRoleAdmin,
@@ -346,6 +343,7 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
   console.log(`Case Number : ${caseNumber207}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber207, subjectName);
+  await task.removeTask(page, taskRemovedIssueCase, subjectName);
   await createEditStay.createEditStay(
     page,
     true,
@@ -356,5 +354,4 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
     subjectName,
   );
   await addNote.addNote(page, true, caseNumber207, subjectName);
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
 });

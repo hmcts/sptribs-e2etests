@@ -32,16 +32,13 @@ const stateBeforeCompletion = "Case management";
 const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
-const randomLetters = Array.from({ length: 5 }, () =>
-  String.fromCharCode(65 + Math.floor(Math.random() * 26)),
-).join("");
 
 test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber127 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -190,7 +187,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber128 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -299,7 +296,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber129 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -408,7 +405,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber130 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -468,7 +465,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
   });
 
   test("Process task is cancellable through close case", async ({ page }) => {
-    const subjectName = `Subject AutoTesting${randomLetters}`;
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber131 = await createCase.createCase(
       page,
       userRoleAdmin,
