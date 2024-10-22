@@ -16,6 +16,7 @@ type EditCaseObjectsContactsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkAndFillInFields(
     page: Page,
@@ -39,6 +40,7 @@ const editCaseObjectsContactsPage: EditCaseObjectsContactsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editCaseObjectsContactsContent.pageTitle}")`,
@@ -50,9 +52,7 @@ const editCaseObjectsContactsPage: EditCaseObjectsContactsPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editCaseObjectsContactsContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editCaseObjectsContactsContent.caseReference + caseNumber,
       ),

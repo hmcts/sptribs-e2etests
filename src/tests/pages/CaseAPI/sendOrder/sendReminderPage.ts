@@ -14,6 +14,7 @@ type SendReminderPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -32,6 +33,7 @@ const sendReminderPage: SendReminderPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.form-label:text-is("${sendReminder_content.textOnPage1}")`,
@@ -43,9 +45,7 @@ const sendReminderPage: SendReminderPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         sendReminder_content.caseReference + caseNumber,
       ),

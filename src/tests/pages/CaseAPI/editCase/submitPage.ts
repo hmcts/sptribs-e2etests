@@ -27,11 +27,13 @@ type SubmitPage = {
     applicant: boolean,
     representative: boolean,
     tribunalFormsInTime: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleStandardLabels(
     page: Page,
     caseNumber: string,
     tribunalFormsInTime: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleContactLabels(
     page: Page,
@@ -55,6 +57,7 @@ type SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleStandardInfo(
     page: Page,
@@ -67,6 +70,7 @@ type SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleContactInfo(
     page: Page,
@@ -94,8 +98,14 @@ const submitPage: SubmitPage = {
     applicant: boolean,
     representative: boolean,
     tribunalFormsInTime: boolean,
+    subjectName: string,
   ): Promise<void> {
-    await this.handleStandardLabels(page, caseNumber, tribunalFormsInTime);
+    await this.handleStandardLabels(
+      page,
+      caseNumber,
+      tribunalFormsInTime,
+      subjectName,
+    );
     await this.handleContactLabels(
       page,
       applicant,
@@ -117,15 +127,14 @@ const submitPage: SubmitPage = {
     page: Page,
     caseNumber: string,
     tribunalFormsInTime: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.title}")`,
     );
     await Promise.all([
       expect(page.locator(".heading-h2")).toHaveText(submit_content.subTitle1),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),
@@ -557,6 +566,7 @@ const submitPage: SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void> {
     let values = [0, 0]; // Number of [Yes, No] values on a page
     if (representative) {
@@ -577,6 +587,7 @@ const submitPage: SubmitPage = {
       compensationLinked,
       tribunalFormsInTime,
       applicantExplained,
+      subjectName,
     );
     await this.handleContactLabels(
       page,
@@ -601,6 +612,7 @@ const submitPage: SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
@@ -641,7 +653,7 @@ const submitPage: SubmitPage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${editCaseSubjectDetailsObject_content.name}")`,
+          `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${subjectName}")`,
         ),
         1,
       ),

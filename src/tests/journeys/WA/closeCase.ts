@@ -28,6 +28,7 @@ type CloseCase = {
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -41,10 +42,21 @@ const closeCase: CloseCase = {
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    await caseWarningPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await caseWarningPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     await caseWarningPage.continueOn(page);
-    await selectReasonPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await selectReasonPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     switch (errorMessaging) {
       default:
         await selectReasonPage.continueOn(page, closeReason, optionalText);
@@ -57,6 +69,7 @@ const closeCase: CloseCase = {
               caseNumber,
               accessibilityTest,
               errorMessaging,
+              subjectName,
             );
             if (rejectionReason !== null) {
               await rejectionDetailsPage.continueOn(page, rejectionReason);
@@ -68,6 +81,7 @@ const closeCase: CloseCase = {
               caseNumber,
               accessibilityTest,
               errorMessaging,
+              subjectName,
             );
             if (strikeoutReason !== null) {
               await strikeoutDetailsPage.continueOn(page, strikeoutReason);
@@ -78,6 +92,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await concessionDetailsPage.continueOn(page);
             break;
@@ -86,6 +101,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await consentOrderPage.continueOn(page);
             break;
@@ -94,6 +110,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await rule27Page.continueOn(page);
             break;
@@ -102,6 +119,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await withdrawalDetailsPage.continueOn(page);
             break;
@@ -110,12 +128,14 @@ const closeCase: CloseCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await uploadDocumentsPage.continueOn(page);
         await closeCaseNotifyPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await closeCaseNotifyPage.continueOn(page);
         await submitPage.checkPageLoads(
@@ -124,6 +144,7 @@ const closeCase: CloseCase = {
           accessibilityTest,
           closeReason,
           optionalText,
+          subjectName,
         );
         await submitPage.checkAllInfo(
           page,
@@ -143,12 +164,14 @@ const closeCase: CloseCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await withdrawalDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "caseRejected", false);
         await rejectionDetailsPage.checkPageLoads(
@@ -156,12 +179,14 @@ const closeCase: CloseCase = {
           caseNumber,
           accessibilityTest,
           errorMessaging,
+          subjectName,
         );
         await rejectionDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "caseStrikeOut", false);
         await strikeoutDetailsPage.checkPageLoads(
@@ -169,50 +194,63 @@ const closeCase: CloseCase = {
           caseNumber,
           accessibilityTest,
           errorMessaging,
+          subjectName,
         );
         await strikeoutDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "caseConcession", false);
         await concessionDetailsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await concessionDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "consentOrder", false);
         await consentOrderPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await consentOrderPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "rule27", false);
-        await rule27Page.checkPageLoads(page, caseNumber, accessibilityTest);
+        await rule27Page.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await rule27Page.triggerErrorMessages(page);
         await uploadDocumentsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await uploadDocumentsPage.triggerErrorMessages(page);
         await closeCaseNotifyPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await closeCaseNotifyPage.triggerErrorMessages(page);
         await closeCaseNotifyPage.continueOn(page);
@@ -222,6 +260,7 @@ const closeCase: CloseCase = {
           accessibilityTest,
           "rule27",
           false,
+          subjectName,
         );
         break;
     }

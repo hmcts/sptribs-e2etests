@@ -26,6 +26,7 @@ type CreateListingListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -57,6 +58,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createListingListingDetailsContent.pageTitle}")`,
@@ -68,9 +70,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createListingListingDetailsContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),

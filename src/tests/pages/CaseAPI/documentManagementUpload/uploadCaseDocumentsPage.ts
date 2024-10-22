@@ -15,6 +15,7 @@ type UploadCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(
     page: Page,
@@ -36,6 +37,7 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${uploadCaseDocumentsContent.pageTitle}")`,
@@ -44,9 +46,7 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         uploadCaseDocumentsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         uploadCaseDocumentsContent.caseReference + caseNumber,
       ),

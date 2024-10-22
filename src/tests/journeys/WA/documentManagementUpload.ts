@@ -10,6 +10,7 @@ type DocumentManagementUpload = {
     multipleDocuments: boolean,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -20,11 +21,13 @@ const documentManagementUpload: DocumentManagementUpload = {
     multipleDocuments: boolean,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await uploadCaseDocumentsPage.checkPageLoads(
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     if (errorMessaging) {
       await uploadCaseDocumentsPage.triggerErrorMessages(page);
@@ -40,10 +43,16 @@ const documentManagementUpload: DocumentManagementUpload = {
       caseNumber,
       multipleDocuments,
       accessibilityTest,
+      subjectName,
     );
     await submitPage.checkValidInfo(page, multipleDocuments);
     await submitPage.continueOn(page);
-    await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await confirmPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     await confirmPage.continueOn(page);
   },
 };

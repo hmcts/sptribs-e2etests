@@ -28,6 +28,7 @@ type CreateListing = {
     venue: hearingVenues | null,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -44,11 +45,13 @@ const createListing: CreateListing = {
     venue: hearingVenues | null,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await createListingHearingTypeAndFormatPage.checkPageLoads(
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     switch (errorMessaging) {
       default:
@@ -62,6 +65,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingRegionInfoPage.fillInFields(
           page,
@@ -74,6 +78,7 @@ const createListing: CreateListing = {
           caseNumber,
           accessibilityTest,
           errorMessaging,
+          subjectName,
         );
         await createListingListingDetailsPage.fillInFields(
           page,
@@ -86,6 +91,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingRemoteHearingInformationPage.fillInFields(page);
         await createListingRemoteHearingInformationPage.continueOn(page);
@@ -93,6 +99,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingOtherInformationPage.fillInFields(page);
         await createListingOtherInformationPage.continueOn(page);
@@ -100,6 +107,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingNotifyPage.continueOn(page);
         await submitPage.checkPageLoads(
@@ -109,6 +117,7 @@ const createListing: CreateListing = {
           hearingAcrossMultipleDays,
           venue,
           accessibilityTest,
+          subjectName,
         );
         await submitPage.checkValidInfo(
           page,
@@ -121,7 +130,12 @@ const createListing: CreateListing = {
           venue,
         );
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
       case true:
@@ -136,6 +150,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingRegionInfoPage.fillInFields(
           page,
@@ -148,6 +163,7 @@ const createListing: CreateListing = {
           caseNumber,
           accessibilityTest,
           errorMessaging,
+          subjectName,
         );
         await createListingListingDetailsPage.triggerErrorMessages(page);
         await createListingListingDetailsPage.fillInFields(
@@ -161,6 +177,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingRemoteHearingInformationPage.fillInFields(page);
         await createListingRemoteHearingInformationPage.continueOn(page);
@@ -168,6 +185,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingOtherInformationPage.fillInFields(page);
         await createListingOtherInformationPage.continueOn(page);
@@ -175,6 +193,7 @@ const createListing: CreateListing = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await createListingNotifyPage.triggerErrorMessages(page);
         await createListingNotifyPage.continueOn(page);
@@ -185,6 +204,7 @@ const createListing: CreateListing = {
           hearingAcrossMultipleDays,
           venue,
           accessibilityTest,
+          subjectName,
         );
         await submitPage.checkValidInfo(
           page,
@@ -197,7 +217,12 @@ const createListing: CreateListing = {
           venue,
         );
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
     }

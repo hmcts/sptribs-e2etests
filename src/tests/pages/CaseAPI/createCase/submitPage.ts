@@ -53,6 +53,7 @@ type SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleStandardInfo(
     page: Page,
@@ -65,6 +66,7 @@ type SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleContactInfo(
     page: Page,
@@ -622,6 +624,7 @@ const submitPage: SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void> {
     let values = [0, 0]; // Number of [Yes, No] values on a page
     if (representative) {
@@ -642,6 +645,7 @@ const submitPage: SubmitPage = {
       compensationLinked,
       tribunalFormsInTime,
       applicantExplained,
+      subjectName,
     );
     await this.handleContactLabels(
       page,
@@ -667,6 +671,7 @@ const submitPage: SubmitPage = {
     compensationLinked: boolean,
     tribunalFormsInTime: boolean,
     applicantExplained: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -706,7 +711,7 @@ const submitPage: SubmitPage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${caseSubjectDetailsObject_content.name}")`,
+          `ccd-field-read-label > div > ccd-read-text-field > span.text-16:text-is("${subjectName}")`,
         ),
         1,
       ),

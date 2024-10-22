@@ -24,6 +24,7 @@ type SendOrder = {
     completed: boolean,
     reminder: boolean,
     reminderDays: ReminderDays,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -37,11 +38,13 @@ const sendOrder: SendOrder = {
     completed: boolean,
     reminder: boolean,
     reminderDays: ReminderDays,
+    subjectName: string,
   ): Promise<void> {
     await selectOrderIssuingTypePage.checkPageLoads(
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     switch (errorMessaging) {
       default: // false
@@ -52,6 +55,7 @@ const sendOrder: SendOrder = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await selectDraftOrderPage.fillInFields(page);
             break;
@@ -60,6 +64,7 @@ const sendOrder: SendOrder = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await uploadOrderPage.fillInFields(page);
             break;
@@ -68,18 +73,21 @@ const sendOrder: SendOrder = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await orderDueDatesPage.fillInFields(page, completed);
         await sendOrderNotifyPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await sendOrderNotifyPage.continueOn(page);
         await sendReminderPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await sendReminderPage.fillInFields(page, reminder, reminderDays);
         await submitPage.checkPageLoads(
@@ -89,6 +97,7 @@ const sendOrder: SendOrder = {
           orderType,
           completed,
           reminder,
+          subjectName,
         );
         await submitPage.checkValidInfo(
           page,
@@ -108,36 +117,42 @@ const sendOrder: SendOrder = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectDraftOrderPage.triggerErrorMessages(page);
         await selectOrderIssuingTypePage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectOrderIssuingTypePage.fillInFields(page, "UploadOrder");
         await uploadOrderPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await uploadOrderPage.triggerErrorMessages(page);
         await orderDueDatesPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await orderDueDatesPage.fillInFields(page, false);
         await sendOrderNotifyPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await sendOrderNotifyPage.continueOn(page);
         await sendReminderPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await sendReminderPage.triggerErrorMessages(page);
         await sendReminderPage.fillInFields(page, reminder, reminderDays);
