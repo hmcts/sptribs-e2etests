@@ -1,112 +1,424 @@
 import { test } from "@playwright/test";
-import cancelHearing from "../journeys/CaseAPI/cancelHearing.ts";
+import cancelHearing from "../journeys/WA/cancelHearing.ts";
+import createCase from "../journeys/WA/createCase.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../journeys/WA/buildCase.ts";
+import task from "../journeys/WA/task.ts";
+import createListing from "../journeys/WA/createListing.ts";
+
+const userRoleAdmin = "waHearingCentreAdmin";
+const taskRemovedIssueCase = " Issue Case To Respondent ";
 
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
-  test("Cancel hearing as a caseworker - case rejected. @crossbrowserCaseAPI", async ({
+  test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const caseNumber301 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber301}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber301);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber301,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "caseWorker",
       false,
       "Case Rejected",
       false,
+      caseNumber301,
     );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
-  test("Cancel hearing as a senior caseworker - consent order.", async ({
-    page,
-  }): Promise<void> => {
+  test("Cancel hearing - consent order.", async ({ page }): Promise<void> => {
+    const caseNumber302 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber302}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber302);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber302,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "seniorCaseworker",
       false,
       "Consent Order received and no time for infill",
       false,
+      caseNumber302,
     );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
-  test("Cancel hearing as a hearing centre admin - incomplete panel.", async ({
+  test("Cancel hearing - incomplete panel.", async ({
     page,
   }): Promise<void> => {
+    const caseNumber303 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber303}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber303);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber303,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "hearingCentreAdmin",
       false,
       "Incomplete Panel",
       false,
+      caseNumber303,
     );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
-  test("Cancel hearing as a hearing centre team lead - no suitable cases.", async ({
+  test("Cancel hearing - no suitable cases.", async ({
     page,
   }): Promise<void> => {
+    const caseNumber304 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber304}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber304);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber304,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "hearingCentreTeamLead",
       false,
       "No suitable cases that are ready to list",
       false,
+      caseNumber304,
     );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
-  test("Cancel hearing as a senior judge - request for R27.", async ({
-    page,
-  }): Promise<void> => {
+  test("Cancel hearing - request for R27.", async ({ page }): Promise<void> => {
+    const caseNumber305 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber305}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber305);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber305,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "seniorJudge",
       false,
       "Request for R27 decision and no time for infill",
       false,
+      caseNumber305,
     );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
-  test("Cancel hearing as a caseworker - venue unavailable.", async ({
+  test("Cancel hearing - venue unavailable.", async ({
     page,
   }): Promise<void> => {
+    const caseNumber306 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber306}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber306);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber306,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "caseWorker",
       false,
       "Venue Unavailable",
       false,
+      caseNumber306,
     );
-  });
-
-  test("Cancel hearing as a caseworker - other reason. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await cancelHearing.cancelHearing(
-      page,
-      "caseWorker",
-      false,
-      "Other",
-      false,
-    );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const caseNumber308 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber308}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber308);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber308,
+    );
     await cancelHearing.cancelHearing(
       page,
-      "caseWorker",
       false,
       "Case Rejected",
       true,
+      caseNumber308,
     );
+    await task.removeTask(page, taskRemovedIssueCase);
   });
 });
 
-test("Accessibility test - cancel hearing @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
+test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
-  await cancelHearing.cancelHearing(
+  const caseNumber309 = await createCase.createCase(
     page,
-    "caseWorker",
+    userRoleAdmin,
+    false,
+    "Assessment",
+    "Other",
     true,
-    "Case Rejected",
+    true,
+    "Email",
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    false,
+    true,
     false,
   );
+  console.log(`Case Number : ${caseNumber309}`);
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  await buildCase.buildCase(page, false, caseNumber309);
+  await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
+  await createListing.createListing(
+    page,
+    false,
+    true,
+    "2-Midlands",
+    "Final",
+    "Paper",
+    "Morning",
+    false,
+    "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+    false,
+    caseNumber309,
+  );
+  await cancelHearing.cancelHearing(page, true, "Other", false, caseNumber309);
+  await task.removeTask(page, taskRemovedIssueCase);
 });

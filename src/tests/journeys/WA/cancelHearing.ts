@@ -15,36 +15,21 @@ import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type CancelHearing = {
   cancelHearing(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     reasonCancelled: hearingCancelledReasons,
     errorMessaging: boolean,
+    caseNumber: string,
   ): Promise<void>;
 };
 
 const cancelHearing: CancelHearing = {
   async cancelHearing(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     reasonCancelled: hearingCancelledReasons,
     errorMessaging: boolean,
+    caseNumber: string,
   ): Promise<void> {
-    let caseNumber: string | void;
-    caseNumber = await createListing.createListing(
-      page,
-      user,
-      false,
-      true,
-      "2-Midlands",
-      "Final",
-      "Paper",
-      "Morning",
-      false,
-      false,
-      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-      false,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Cancel hearing",
