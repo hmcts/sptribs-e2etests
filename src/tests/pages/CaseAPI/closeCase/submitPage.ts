@@ -22,13 +22,18 @@ type SubmitPage = {
   continue: string;
   previous: string;
   cancel: string;
-  checkCommon(page: Page, caseNumber: string): Promise<void>;
+  checkCommon(
+    page: Page,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void>;
   checkPageLoads(
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkCommonInfo(page: Page): Promise<void>;
   checkAllInfo(
@@ -46,14 +51,16 @@ const submitPage: SubmitPage = {
   previous: ".button-secondary",
   cancel: ".cancel",
 
-  async checkCommon(page: Page, caseNumber: string): Promise<void> {
+  async checkCommon(
+    page: Page,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
@@ -83,11 +90,12 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
+    subjectName: string,
   ): Promise<void> {
     switch (closeReason) {
       default: // Case withdrawn
         await Promise.all([
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
           ...Array.from({ length: 2 }, (_, index: number) => {
             const textOnPage = (submit_content as any)[`withdrawn${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
@@ -105,7 +113,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseRejected":
         await Promise.all([
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.rejected1}")`),
             1,
@@ -120,7 +128,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseStrikeOut":
         await Promise.all([
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.strikeOut1}")`),
             1,
@@ -135,7 +143,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseConcession":
         await Promise.all([
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.conceded}")`),
             1,
@@ -150,7 +158,7 @@ const submitPage: SubmitPage = {
         break;
       case "consentOrder":
         await Promise.all([
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.consentOrder}")`),
             1,
@@ -165,7 +173,7 @@ const submitPage: SubmitPage = {
         break;
       case "rule27":
         await Promise.all([
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.rule27}")`),
             1,

@@ -17,6 +17,7 @@ type SubmitPage = {
     accessibilityTest: boolean,
     stayReason: StayReason,
     optionalText: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -37,6 +38,7 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
     stayReason: StayReason,
     optionalText: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
@@ -44,9 +46,7 @@ const submitPage: SubmitPage = {
     await Promise.all([
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

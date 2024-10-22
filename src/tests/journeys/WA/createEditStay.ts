@@ -16,6 +16,7 @@ type CreateEditStay = {
     stayReason: StayReason,
     optionalText: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<any>;
 };
 
@@ -27,6 +28,7 @@ const createEditStay: CreateEditStay = {
     stayReason: StayReason,
     optionalText: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<any> {
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -34,7 +36,12 @@ const createEditStay: CreateEditStay = {
     );
     switch (errorJourney) {
       default:
-        await addStayPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await addStayPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await addStayPage.continueOn(page, stayReason, optionalText);
         await submitPage.checkPageLoads(
           page,
@@ -42,6 +49,7 @@ const createEditStay: CreateEditStay = {
           accessibilityTest,
           stayReason,
           optionalText,
+          subjectName,
         );
         await submitPage.checkValidInfo(page, stayReason, optionalText);
         await submitPage.continueOn(page);
@@ -53,7 +61,12 @@ const createEditStay: CreateEditStay = {
         await stateTabPage.checkStateTab(page, "Case stayed");
         break;
       case true:
-        await addStayPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await addStayPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await addStayPage.triggerErrorMessages(page);
         break;
     }

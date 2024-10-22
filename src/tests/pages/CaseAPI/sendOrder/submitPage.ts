@@ -21,6 +21,7 @@ type SubmitPage = {
     orderType: OrderType,
     completed: boolean,
     reminder: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -44,6 +45,7 @@ const submitPage: SubmitPage = {
     orderType: OrderType,
     completed: boolean,
     reminder: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h2:text-is("${submit_content.pageTitle}")`,
@@ -52,9 +54,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),

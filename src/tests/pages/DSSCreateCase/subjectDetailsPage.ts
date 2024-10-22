@@ -17,7 +17,7 @@ type SubjectDetailsPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, subjectName: string): Promise<void>;
   triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
 };
 
@@ -136,10 +136,10 @@ const subjectDetailsPage: SubjectDetailsPage = {
     }
   },
 
-  async fillInFields(page: Page) {
+  async fillInFields(page: Page, subjectName: string) {
     await page.click(this.rejectCookiesButton);
-    await page.fill(this.fields.fullName, subjectDetailsContent.name);
-    console.log(`Subject Name: ${subjectDetailsContent.name}`);
+    await page.fill(this.fields.fullName, `${subjectName}`);
+    console.log(`Subject Name: ${subjectName}`);
 
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
     await page.fill(

@@ -20,6 +20,7 @@ type DSSVerifyDetails = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -35,12 +36,14 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<void> {
     await historyTabPage.checkPageLoads(
       page,
       accessibilityTest,
       caseNumber,
       state,
+      subjectName,
     );
     await historyTabPage.checkPageInfo(
       page,
@@ -55,15 +58,22 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       representationPresent,
       caseNumber,
+      subjectName,
     );
     await summaryTabPage.checkPageInfo(
       page,
       caseNumber,
       representationPresent,
       representationQualified,
+      subjectName,
     );
     await stateTabPage.changeToStateTab(page);
-    await stateTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+    await stateTabPage.checkPageLoads(
+      page,
+      accessibilityTest,
+      caseNumber,
+      subjectName,
+    );
     await stateTabPage.checkStateTab(page, state);
     await caseDetailsTabPage.changeToCaseDetailsTab(page);
     await caseDetailsTabPage.checkPageLoads(
@@ -71,11 +81,13 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       representationPresent,
       caseNumber,
+      subjectName,
     );
     await caseDetailsTabPage.checkPageInfo(
       page,
       representationPresent,
       representationQualified,
+      subjectName,
     );
     await casePartiesTabPage.changeToCasePartiesTab(page);
     await casePartiesTabPage.checkPageLoads(
@@ -83,11 +95,13 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       representationPresent,
       caseNumber,
+      subjectName,
     );
     await casePartiesTabPage.checkPageInfo(
       page,
       representationPresent,
       representationQualified,
+      subjectName,
     );
     await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
     await caseDocumentsTabPage.checkPageLoads(
@@ -98,6 +112,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       uploadOtherInfo,
       false,
       user,
+      subjectName,
     );
     await caseDocumentsTabPage.checkPageInfo(
       page,
@@ -109,6 +124,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       page,
       accessibilityTest,
       caseNumber,
+      subjectName,
     );
     await caseFileViewTabPage.checkPageInfo(
       page,

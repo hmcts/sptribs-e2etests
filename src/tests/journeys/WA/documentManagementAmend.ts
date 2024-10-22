@@ -9,6 +9,7 @@ type DocumentManagementAmend = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -17,11 +18,13 @@ const documentManagementAmend: DocumentManagementAmend = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await selectCaseDocumentsPage.checkPageLoads(
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await selectCaseDocumentsPage.fillFields(page);
     await selectCaseDocumentsPage.continueOn(page);
@@ -30,12 +33,23 @@ const documentManagementAmend: DocumentManagementAmend = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await amendDocumentsPage.fillFields(page);
     await amendDocumentsPage.continueOn(page);
-    await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await submitPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     await submitPage.continueOn(page);
-    await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await confirmPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     await confirmPage.continueOn(page);
   },
 };

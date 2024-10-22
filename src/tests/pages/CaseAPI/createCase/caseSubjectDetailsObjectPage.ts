@@ -17,7 +17,11 @@ type CaseSubjectDetailsObjectPage = {
   selectEmail: string;
   selectPost: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(page: Page, contactPreference: ContactPreference): Promise<void>;
+  fillInFields(
+    page: Page,
+    contactPreference: ContactPreference,
+    subjectName: string,
+  ): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -72,8 +76,9 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
   async fillInFields(
     page: Page,
     contactPreference: ContactPreference,
+    subjectName: string,
   ): Promise<void> {
-    await page.fill(this.fullName, caseSubjectDetailsObject_content.name);
+    await page.fill(this.fullName, subjectName);
     await page.fill(
       this.phoneNumber,
       caseSubjectDetailsObject_content.contactNumber,

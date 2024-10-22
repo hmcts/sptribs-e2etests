@@ -15,6 +15,7 @@ type SelectCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -28,7 +29,8 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
   async checkPageLoads(
     page: Page,
     caseNumber: string,
-    // accessibilityTest: boolean,
+    accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${selectCaseDocuments_content.pageTitle}")`,
@@ -37,9 +39,7 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         selectCaseDocuments_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         selectCaseDocuments_content.caseReference + caseNumber,
       ),

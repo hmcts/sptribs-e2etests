@@ -15,6 +15,7 @@ type PartiesToContactPage = {
     caseNumber: string,
     user: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -32,6 +33,7 @@ const partiesToContactPage: PartiesToContactPage = {
     caseNumber: string,
     user: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     const pageHintRegex = new RegExp(
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
@@ -46,7 +48,7 @@ const partiesToContactPage: PartiesToContactPage = {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         partiesToContact_content.caseReference + caseNumber,
@@ -100,6 +102,9 @@ const partiesToContactPage: PartiesToContactPage = {
       ),
       page.fill(this.message, partiesToContact_content.message),
       page.click(this.continue),
+      page.waitForSelector(
+        'div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted',
+      ),
       expect(
         page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
       ).toContainText(partiesToContact_content.errorBanner2),
