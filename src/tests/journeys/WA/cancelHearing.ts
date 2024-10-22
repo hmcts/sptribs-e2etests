@@ -17,7 +17,7 @@ type CancelHearing = {
     reasonCancelled: hearingCancelledReasons,
     errorMessaging: boolean,
     caseNumber: string,
-    subjectName: string
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -28,7 +28,7 @@ const cancelHearing: CancelHearing = {
     reasonCancelled: hearingCancelledReasons,
     errorMessaging: boolean,
     caseNumber: string,
-    subjectName: string
+    subjectName: string,
   ): Promise<void> {
     await commonHelpers.chooseEventFromDropdown(
       page,

@@ -63,8 +63,8 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Case Rejected",
       false,
       caseNumber301,
-      subjectName
-  );
+      subjectName,
+    );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
@@ -110,7 +110,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber302,
-      subjectName
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -118,7 +118,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Consent Order received and no time for infill",
       false,
       caseNumber302,
-      subjectName
+      subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
@@ -167,7 +167,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber303,
-      subjectName
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -175,7 +175,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Incomplete Panel",
       false,
       caseNumber303,
-      subjectName
+      subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
@@ -224,7 +224,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber304,
-      subjectName
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -232,7 +232,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "No suitable cases that are ready to list",
       false,
       caseNumber304,
-      subjectName
+      subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
@@ -279,7 +279,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber305,
-      subjectName
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -287,7 +287,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Request for R27 decision and no time for infill",
       false,
       caseNumber305,
-      subjectName
+      subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
@@ -336,7 +336,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber306,
-      subjectName
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -344,7 +344,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Venue Unavailable",
       false,
       caseNumber306,
-      subjectName
+      subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
@@ -393,7 +393,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber308,
-      subjectName
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -401,7 +401,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Case Rejected",
       true,
       caseNumber308,
-      subjectName
+      subjectName,
     );
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
@@ -448,8 +448,15 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
     false,
     caseNumber309,
-    subjectName
+    subjectName,
   );
-  await cancelHearing.cancelHearing(page, true, "Other", false, caseNumber309, subjectName);
+  await cancelHearing.cancelHearing(
+    page,
+    true,
+    "Other",
+    false,
+    caseNumber309,
+    subjectName,
+  );
   await task.removeTask(page, taskRemovedIssueCase, subjectName);
 });
