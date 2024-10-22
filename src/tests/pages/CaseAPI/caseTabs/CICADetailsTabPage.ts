@@ -16,7 +16,7 @@ type CICADetailsTabPage = {
 };
 
 const cicaDetailsTabPage: CICADetailsTabPage = {
-  CICADetailsTab: ".mat-tab-label",
+  CICADetailsTab: `.mat-tab-label-content:text-is("CICA Details")`,
 
   async checkPageLoads(
     page: Page,
@@ -44,7 +44,7 @@ const cicaDetailsTabPage: CICADetailsTabPage = {
   },
 
   async changeToCICADetailsTab(page: Page): Promise<void> {
-    await page.locator(this.CICADetailsTab).nth(9).click();
+    await page.locator(this.CICADetailsTab).click();
   },
 
   async checkValidInfo(page: Page): Promise<void> {
