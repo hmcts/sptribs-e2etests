@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
-import commonHelpers from "../helpers/commonHelpers.ts";
-import config from "../config.ts";
-import task from "../journeys/WA/task.ts";
+import createFEApplication from "../../journeys/WA/DSSCreateCase/createCase.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import config from "../../config.ts";
+import task from "../../journeys/WA/task.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemoved = "Register New Case";

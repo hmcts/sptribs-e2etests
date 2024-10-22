@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
-import summaryTabPage from "../../pages/CaseAPI/caseTabs/summaryTabPage.ts";
-import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
-import caseDetailsTabPage from "../../pages/CaseAPI/caseTabs/caseDetailsTabPage.ts";
-import casePartiesTabPage from "../../pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
-import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
-import caseFileViewTabPage from "../../pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
-import { UserRole } from "../../config.ts";
+import historyTabPage from "../../tests/pages/CaseAPI/caseTabs/historyTabPage.ts";
+import summaryTabPage from "../../tests/pages/CaseAPI/caseTabs/summaryTabPage.ts";
+import stateTabPage from "../../tests/pages/CaseAPI/caseTabs/stateTabPage.ts";
+import caseDetailsTabPage from "../../tests/pages/CaseAPI/caseTabs/caseDetailsTabPage.ts";
+import casePartiesTabPage from "../../tests/pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
+import caseDocumentsTabPage from "../../tests/pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import caseFileViewTabPage from "../../tests/pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
+import { UserRole } from "../../tests/config.ts";
 
 type DSSVerifyDetails = {
   verifyCaseDetails(

@@ -19,7 +19,7 @@ const editCaseSubjectDetailsObject_content = {
   textOnPage11: "Subject's email address",
   name: subjectDetailsContent.name,
   dayOfBirth: "1",
-  monthOfBirth: "2",
+  monthOfBirth: "1",
   yearOfBirth: "2000",
   button: "Continue",
   emailAddress: "AutoTestSubject@mail.com",

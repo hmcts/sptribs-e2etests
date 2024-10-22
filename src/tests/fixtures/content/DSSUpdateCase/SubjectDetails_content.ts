@@ -12,7 +12,7 @@ const subjectDetailsContent = {
   textOnPage3: "Year",
   name: subjectDetails_content.name,
   dayOfBirth: "1",
-  monthOfBirth: "2",
+  monthOfBirth: "1",
   yearOfBirth: "2000",
   errorBanner: "There is a problem",
   fullNameError:
