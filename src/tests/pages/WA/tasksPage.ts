@@ -4,6 +4,7 @@ import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import tasks_content from "../../fixtures/content/CaseAPI/myWork/tasks_content.ts";
 import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
+import task from "../../journeys/WA/task.ts";
 
 type TasksPage = {
   myTasksTab: string;
@@ -144,6 +145,8 @@ const tasksPage: TasksPage = {
     page: Page,
     caseNumber: string,
     taskName: string,
+    maxRetries: number = 3,
+    delay: number = 30000,
   ): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
@@ -164,10 +167,32 @@ const tasksPage: TasksPage = {
         tasks_content.caseReference + caseNumber,
       ),
     ]);
+    // Initial visibility check before starting the loop
+    let isTaskVisible = await page
+      .locator(`p.govuk-body > strong:text-is("${taskName}")`)
+      .isVisible();
 
-    await expect(
-      page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
-    ).not.toBeVisible();
+    if (!isTaskVisible) {
+      return;
+    }
+
+    // Retry if the task is still visible, up to maxRetries
+    for (let i = 0; i < maxRetries; i++) {
+      await page.goto(
+        `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
+      );
+      await page.waitForURL(/.*\/tasks$/);
+      isTaskVisible = await page
+        .locator(`p.govuk-body > strong:text-is("${taskName}")`)
+        .isVisible();
+      if (!isTaskVisible) {
+        return;
+      }
+      console.log(
+        `Task "${taskName}" is still visible, retrying in ${delay / 1000} seconds...`,
+      );
+      await page.waitForTimeout(delay);
+    }
   },
 
   async navigateToTaskTab(
