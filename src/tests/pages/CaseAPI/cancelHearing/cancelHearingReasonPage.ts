@@ -14,6 +14,7 @@ type CancelHearingReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -32,6 +33,7 @@ const cancelHearingReasonPage: CancelHearingReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${cancelHearingReasonContent.pageTitle}")`,
@@ -40,9 +42,7 @@ const cancelHearingReasonPage: CancelHearingReasonPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         cancelHearingReasonContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         cancelHearingReasonContent.caseReference + caseNumber,
       ),
