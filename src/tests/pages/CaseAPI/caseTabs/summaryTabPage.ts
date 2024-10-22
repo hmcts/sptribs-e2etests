@@ -18,6 +18,7 @@ type SummaryTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToSummaryTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -25,6 +26,7 @@ type SummaryTabPage = {
     caseNumber: string,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkStayDetails(
     page: Page,
@@ -46,9 +48,10 @@ const summaryTabPage: SummaryTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
         summaryTabContent.caseState,
       ),
@@ -93,11 +96,12 @@ const summaryTabPage: SummaryTabPage = {
     caseNumber: string,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-      ).toHaveText(subjectDetailsContent.name),
+      ).toHaveText(subjectName),
       expect(
         page.locator("ccd-read-date-field[class='ng-star-inserted']"),
       ).toHaveText(await commonHelpers.convertDate(true)),
@@ -141,6 +145,9 @@ const summaryTabPage: SummaryTabPage = {
     optionalText: boolean,
   ): Promise<void> {
     const stayReasonText = createEditStaySubmit_content[stayReason];
+    await page.waitForSelector(
+      `.text-16:text-is("${summaryTab_content.textOnPage10}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`.text-16:text-is("${summaryTab_content.textOnPage10}")`),

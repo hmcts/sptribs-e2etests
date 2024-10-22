@@ -13,6 +13,7 @@ type ReferCaseToJudge = {
     referralReason: referralReason,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -23,6 +24,7 @@ const referCaseToJudge: ReferCaseToJudge = {
     referralReason: referralReason,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     switch (errorMessaging) {
       default:
@@ -30,6 +32,7 @@ const referCaseToJudge: ReferCaseToJudge = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToJudgeReasonPage.fillFields(page, referralReason);
         await referCaseToJudgeReasonPage.continueOn(page);
@@ -37,6 +40,7 @@ const referCaseToJudge: ReferCaseToJudge = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToJudgeAdditionalInfoPage.fillFields(page);
         await referCaseToJudgeAdditionalInfoPage.continueOn(page);
@@ -45,10 +49,16 @@ const referCaseToJudge: ReferCaseToJudge = {
           caseNumber,
           referralReason,
           accessibilityTest,
+          subjectName,
         );
         await submitPage.checkAndFillInfo(page, referralReason);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
       case true:
@@ -56,6 +66,7 @@ const referCaseToJudge: ReferCaseToJudge = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToJudgeReasonPage.triggerErrorMessages(page);
         await referCaseToJudgeReasonPage.fillFields(page, referralReason);
@@ -64,6 +75,7 @@ const referCaseToJudge: ReferCaseToJudge = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await referCaseToJudgeAdditionalInfoPage.fillFields(page);
         await referCaseToJudgeAdditionalInfoPage.continueOn(page);
@@ -72,10 +84,16 @@ const referCaseToJudge: ReferCaseToJudge = {
           caseNumber,
           referralReason,
           accessibilityTest,
+          subjectName,
         );
         await submitPage.checkAndFillInfo(page, referralReason);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
     }

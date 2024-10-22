@@ -15,6 +15,7 @@ type SubmitPage = {
     caseNumber: string,
     multipleDocuments: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(page: Page, multipleDocuments: boolean): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -30,13 +31,14 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     multipleDocuments: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator("markdown > h3").first()).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,

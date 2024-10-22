@@ -32,6 +32,7 @@ type CreateCase = {
     representative: boolean,
     applicant: boolean,
     contactPreference: ContactPreference,
+    subjectName: string,
     representativeQualified: boolean,
     multipleFiles: boolean,
     schemeSelection: Scheme,
@@ -55,6 +56,7 @@ const createCase: CreateCase = {
     representative: boolean,
     applicant: boolean,
     contactPreference: ContactPreference,
+    subjectName: string,
     representativeQualified: boolean,
     multipleFiles: boolean,
     schemeSelection: Scheme,
@@ -101,6 +103,7 @@ const createCase: CreateCase = {
         await caseSubjectDetailsObjectPage.fillInFields(
           page,
           contactPreference,
+          subjectName,
         );
         if (applicant) {
           await caseApplicantDetailsObjectPage.checkPageLoads(
@@ -172,6 +175,7 @@ const createCase: CreateCase = {
           compensationLinked,
           tribunalFormsInTime,
           applicantExplained,
+          subjectName,
         );
         break;
       case true:
@@ -204,6 +208,7 @@ const createCase: CreateCase = {
         await caseSubjectDetailsObjectPage.fillInFields(
           page,
           contactPreference,
+          subjectName,
         );
         if (applicant) {
           await caseApplicantDetailsObjectPage.checkPageLoads(
@@ -280,6 +285,7 @@ const createCase: CreateCase = {
           compensationLinked,
           tribunalFormsInTime,
           applicantExplained,
+          subjectName,
         );
         break;
     }

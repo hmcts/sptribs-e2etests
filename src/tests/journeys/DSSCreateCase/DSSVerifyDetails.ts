@@ -20,7 +20,7 @@ type DSSVerifyDetails = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
-  ): Promise<void>;
+  ): Promise<any>;
 };
 
 const DSSVerifyCaseDetails: DSSVerifyDetails = {
@@ -35,7 +35,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
-  ): Promise<void> {
+  ): Promise<any> {
     await historyTabPage.checkPageLoads(
       page,
       accessibilityTest,

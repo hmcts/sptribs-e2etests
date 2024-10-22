@@ -34,6 +34,7 @@ type SubmitPage = {
     venue: hearingVenues | null,
     editJourney: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -87,6 +88,7 @@ const submitPage: SubmitPage = {
     venue: hearingVenues | null,
     editJourney: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/submit`,
@@ -96,7 +98,7 @@ const submitPage: SubmitPage = {
         submitContent.pageTitle,
       ),
       expect(page.locator("markdown > h3").first()).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,

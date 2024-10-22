@@ -24,8 +24,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
     page,
   }) => {
-    let caseNumber01: any;
-    caseNumber01 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber24 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -34,6 +34,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -45,22 +46,23 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber01}`);
+    console.log(`Case Number : ${caseNumber24}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber01);
-    await task.seeTask(page, userRole, false, taskName);
+    await buildCase.buildCase(page, false, caseNumber24, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber24,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
@@ -68,22 +70,24 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       false,
       ["Subject", "Representative", "Respondent", "Applicant"],
-      caseNumber01,
+      caseNumber24,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber01,
+      caseNumber24,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completable via next steps link - assign to me - Issue case to a subject", async ({
     page,
   }) => {
-    let caseNumber02: any;
-    caseNumber02 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber25 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -92,6 +96,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -103,22 +108,23 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber02}`);
+    console.log(`Case Number : ${caseNumber25}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber02);
-    await task.seeTask(page, userRole, false, taskName);
+    await buildCase.buildCase(page, false, caseNumber25, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber25,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
@@ -126,22 +132,24 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       false,
       ["Subject"],
-      caseNumber02,
+      caseNumber25,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber02,
+      caseNumber25,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completed via event dropdown - Issue a case to a representative", async ({
     page,
   }) => {
-    let caseNumber03: any;
-    caseNumber03 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber26 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -150,6 +158,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -161,22 +170,23 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber03}`);
+    console.log(`Case Number : ${caseNumber26}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber03);
-    await task.seeTask(page, userRole, false, taskName);
+    await buildCase.buildCase(page, false, caseNumber26, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Event DropDown",
       false,
-      caseNumber03,
+      caseNumber26,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
@@ -184,22 +194,24 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       false,
       ["Representative"],
-      caseNumber03,
+      caseNumber26,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber03,
+      caseNumber26,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completable via next steps link - Issue a case to a respondent", async ({
     page,
   }) => {
-    let caseNumber04: any;
-    caseNumber04 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber27 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -208,6 +220,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -219,22 +232,23 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber04}`);
+    console.log(`Case Number : ${caseNumber27}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber04);
-    await task.seeTask(page, userRole, false, taskName);
+    await buildCase.buildCase(page, false, caseNumber27, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber04,
+      caseNumber27,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
@@ -242,22 +256,24 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       false,
       ["Respondent"],
-      caseNumber04,
+      caseNumber27,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber04,
+      caseNumber27,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completable via next steps link - Issue a case to an applicant", async ({
     page,
   }) => {
-    let caseNumber05: any;
-    caseNumber05 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber28 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -266,6 +282,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -277,22 +294,23 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber05}`);
+    console.log(`Case Number : ${caseNumber28}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber05);
-    await task.seeTask(page, userRole, false, taskName);
+    await buildCase.buildCase(page, false, caseNumber28, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber05,
+      caseNumber28,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
@@ -300,20 +318,22 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       false,
       ["Applicant"],
-      caseNumber05,
+      caseNumber28,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber05,
+      caseNumber28,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is cancellable through close case", async ({ page }) => {
-    let caseNumber06: any;
-    caseNumber06 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber29 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -322,6 +342,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -333,11 +354,11 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber06}`);
+    console.log(`Case Number : ${caseNumber29}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber06);
-    await task.seeTask(page, userRole, false, taskName);
-    await myWorkPage.clickAssignAndGoToTask(page);
+    await buildCase.buildCase(page, false, caseNumber29, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -347,20 +368,22 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       null,
       null,
-      caseNumber06,
+      caseNumber29,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber06,
+      caseNumber29,
       caseClosedState,
+      subjectName,
     );
   });
 
   test("Task is cancellable through refer to judge", async ({ page }) => {
-    let caseNumber07: any;
-    caseNumber07 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber30 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -369,6 +392,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -380,33 +404,35 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber07}`);
+    console.log(`Case Number : ${caseNumber30}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber07);
-    await task.seeTask(page, userRole, false, taskName);
-    await myWorkPage.clickAssignAndGoToTask(page);
+    await buildCase.buildCase(page, false, caseNumber30, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Listing directions",
       false,
-      caseNumber07,
+      caseNumber30,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber07,
+      caseNumber30,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is cancellable through refer to legal officer", async ({
     page,
   }) => {
-    let caseNumber08: any;
-    caseNumber08 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber31 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -415,6 +441,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -426,11 +453,11 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber08}`);
+    console.log(`Case Number : ${caseNumber31}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber08);
-    await task.seeTask(page, userRole, false, taskName);
-    await myWorkPage.clickAssignAndGoToTask(page);
+    await buildCase.buildCase(page, false, caseNumber31, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -440,20 +467,22 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       "Listing directions",
       false,
-      caseNumber08,
+      caseNumber31,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber08,
+      caseNumber31,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Issue to respondent : Error messaging", async ({ page }) => {
-    let caseNumber09: any;
-    caseNumber09 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber31 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -462,6 +491,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -473,22 +503,23 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber09}`);
+    console.log(`Case Number : ${caseNumber31}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber09);
-    await task.seeTask(page, userRole, false, taskName);
+    await buildCase.buildCase(page, false, caseNumber31, subjectName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber09,
+      caseNumber31,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
@@ -496,14 +527,16 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       false,
       true,
       ["Subject"],
-      caseNumber09,
+      caseNumber31,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber09,
+      caseNumber31,
       stateAfterCompletion,
+      subjectName,
     );
   });
 });
@@ -511,8 +544,8 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
 test("Task completion: Accessibility test / Issue Case to Respondent : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  let caseNumber010: any;
-  caseNumber010 = await createCase.createCase(
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber33 = await createCase.createCase(
     page,
     userRole,
     false,
@@ -521,6 +554,7 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
     true,
     true,
     "Email",
+    subjectName,
     true,
     false,
     "1996",
@@ -532,22 +566,23 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber010}`);
+  console.log(`Case Number : ${caseNumber33}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber010);
-  await task.seeTask(page, userRole, true, taskName);
+  await buildCase.buildCase(page, false, caseNumber33, subjectName);
+  await task.seeTask(page, userRole, true, taskName, subjectName);
   await task.initiateTask(
     page,
     userRole,
     "Link: Assign Task to Me and Go To Task",
     true,
-    caseNumber010,
+    caseNumber33,
     taskName,
     priority,
     assignedUser,
     numberOfDays,
     event,
     stateBeforeCompletion,
+    subjectName,
   );
   await issueToRespondent.issueToRespondent(
     page,
@@ -555,13 +590,15 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
     true,
     false,
     ["Subject", "Representative", "Respondent", "Applicant"],
-    caseNumber010,
+    caseNumber33,
+    subjectName,
   );
   await task.checkCompletedTask(
     page,
     true,
     taskName,
-    caseNumber010,
+    caseNumber33,
     stateAfterCompletion,
+    subjectName,
   );
 });

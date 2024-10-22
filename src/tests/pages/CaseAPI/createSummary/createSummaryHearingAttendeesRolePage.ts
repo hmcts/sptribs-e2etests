@@ -12,6 +12,7 @@ type CreateSummaryHearingAttendeesRolePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -28,6 +29,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingAttendeesRole`,
@@ -39,9 +41,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         expect(page.locator(".govuk-heading-l")).toHaveText(
           createSummaryHearingAttendeesRoleContent.pageTitle,
         ),
-        expect(page.locator("markdown > h3")).toContainText(
-          caseSubjectDetailsObject_content.name,
-        ),
+        expect(page.locator("markdown > h3")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createSummaryHearingAttendeesRoleContent.caseReference + caseNumber,
         ),

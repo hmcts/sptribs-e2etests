@@ -25,12 +25,18 @@ type EditCaseSubjectDetailsObjectPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
-  checkFields(page: Page, initialState: initialState): Promise<void>;
+  checkFields(
+    page: Page,
+    initialState: initialState,
+    subjectName: string,
+  ): Promise<void>;
   fillInFields(
     page: Page,
     contactPreference: ContactPreference,
     initialState: initialState,
+    subjectName: string,
   ): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
@@ -53,6 +59,7 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editCaseSubjectDetailsObjectContent.pageTitle}")`,
@@ -64,9 +71,7 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editCaseSubjectDetailsObjectContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editCaseSubjectDetailsObjectContent.caseReference + caseNumber,
       ),
@@ -101,11 +106,13 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
     }
   },
 
-  async checkFields(page: Page, initialState: initialState): Promise<void> {
+  async checkFields(
+    page: Page,
+    initialState: initialState,
+    subjectName: string,
+  ): Promise<void> {
     await Promise.all([
-      expect(page.locator(this.fullName)).toHaveValue(
-        editCaseSubjectDetailsObjectContent.name,
-      ),
+      expect(page.locator(this.fullName)).toHaveValue(subjectName),
       expect(page.locator(this.phoneNumber)).toHaveValue(
         editCaseSubjectDetailsObjectContent.contactNumber,
       ),
@@ -147,8 +154,9 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
     page: Page,
     contactPreference: ContactPreference,
     initialState: initialState,
+    subjectName: string,
   ): Promise<void> {
-    await page.fill(this.fullName, editCaseSubjectDetailsObjectContent.name);
+    await page.fill(this.fullName, `${subjectName}`);
     await page.fill(
       this.phoneNumber,
       editCaseSubjectDetailsObjectContent.contactNumber,

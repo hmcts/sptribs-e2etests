@@ -26,6 +26,7 @@ type CreateSummaryListingDetailsPage = {
     accessibilityTest: boolean,
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
+    subjectName: string,
   ): Promise<void>;
   checkFields(
     page: Page,
@@ -58,6 +59,7 @@ const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
     accessibilityTest: boolean,
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createSummaryListingDetailsContent.pageTitle}")`,
@@ -69,9 +71,7 @@ const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createSummaryListingDetailsContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createSummaryListingDetailsContent.caseReference + caseNumber,
       ),

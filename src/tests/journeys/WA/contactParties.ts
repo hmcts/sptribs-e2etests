@@ -12,6 +12,7 @@ type ContactParties = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -22,6 +23,7 @@ const contactParties: ContactParties = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     // if (user == "respondent") {
     //   await commonHelpers.chooseEventFromDropdown(
@@ -33,6 +35,7 @@ const contactParties: ContactParties = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await selectDocumentsPage.tickCheckbox(page);
     await selectDocumentsPage.continueOn(page);
@@ -41,13 +44,19 @@ const contactParties: ContactParties = {
       caseNumber,
       user,
       accessibilityTest,
+      subjectName,
     );
     switch (errorMessaging) {
       default:
         await partiesToContactPage.tickCheckBoxes(page, true, user);
         await partiesToContactPage.fillInFields(page);
         await partiesToContactPage.continueOn(page);
-        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await submitPage.checkValidInfo(page, user);
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(
@@ -55,6 +64,7 @@ const contactParties: ContactParties = {
           caseNumber,
           accessibilityTest,
           user,
+          subjectName,
         );
         await confirmPage.continueOn(page);
         break;

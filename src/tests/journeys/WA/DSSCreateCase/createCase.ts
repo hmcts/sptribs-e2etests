@@ -30,7 +30,8 @@ type CreateFeApplication = {
     backButtonJourney: boolean,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-  ): Promise<string | void>;
+    subjectName: string,
+  ): Promise<any>;
   normalFEFlow(
     page: Page,
     cy: boolean,
@@ -42,6 +43,7 @@ type CreateFeApplication = {
     completeApplication: boolean,
     backButtonJourney: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<string | void>;
   handleRepresentationLogic(
     page: Page,
@@ -58,6 +60,7 @@ type CreateFeApplication = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<string>;
   handleBackButtonJourney(page: Page): Promise<void>;
 };
@@ -75,6 +78,7 @@ const createFEApplication: CreateFeApplication = {
     backButtonJourney: boolean,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<string | void> {
     switch (errorMessaging) {
       default:
@@ -89,6 +93,7 @@ const createFEApplication: CreateFeApplication = {
           completeApplication,
           backButtonJourney,
           accessibilityTest,
+          subjectName,
         );
       case true:
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
@@ -96,7 +101,7 @@ const createFEApplication: CreateFeApplication = {
         await loginPage.SignInUser(page, user);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.triggerErrorMessages(page, cy);
-        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.fillInFields(page, subjectName);
         await subjectContactDetailsPage.checkPageLoads(
           page,
           cy,
@@ -165,12 +170,13 @@ const createFEApplication: CreateFeApplication = {
     completeApplication: boolean,
     backButtonJourney: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<string | void> {
     await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
     await landingPage.continueOn(page);
     await loginPage.SignInUser(page, user);
     await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
-    await subjectDetailsPage.fillInFields(page);
+    await subjectDetailsPage.fillInFields(page, subjectName);
     await subjectContactDetailsPage.checkPageLoads(page, cy, accessibilityTest);
     await subjectContactDetailsPage.fillInFields(page);
     await representationPage.checkPageLoads(page, cy, accessibilityTest);
@@ -228,6 +234,7 @@ const createFEApplication: CreateFeApplication = {
       representationQualified,
       uploadOtherInfo,
       multipleDocuments,
+      subjectName,
     );
     if (completeApplication) {
       return await createFEApplication.handleCompleteApplication(
@@ -239,6 +246,7 @@ const createFEApplication: CreateFeApplication = {
         representationQualified,
         uploadOtherInfo,
         multipleDocuments,
+        subjectName,
       );
     }
     if (backButtonJourney) {
@@ -274,6 +282,7 @@ const createFEApplication: CreateFeApplication = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<string> {
     const time = await checkYourAnswersPage.continueOn(page);
     await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
@@ -294,6 +303,7 @@ const createFEApplication: CreateFeApplication = {
       uploadOtherInfo,
       multipleDocuments,
       user,
+      subjectName,
     );
     return caseNumber;
   },
