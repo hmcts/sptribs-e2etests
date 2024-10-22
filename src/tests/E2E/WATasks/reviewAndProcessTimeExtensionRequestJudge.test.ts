@@ -32,8 +32,8 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {
-    let caseNumber01: any;
-    caseNumber01 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber137 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -42,6 +42,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -53,84 +54,97 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber01}`);
+    console.log(`Case Number : ${caseNumber137}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber01);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber137, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Time extension request",
       false,
-      caseNumber01,
+      caseNumber137,
+      subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber137,
       taskName,
       priorityReview,
       assignedUserJudge,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC14 – LO General Directions",
-      caseNumber01,
+      caseNumber137,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber01,
+      caseNumber137,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber137,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
       numberOfDaysProcess,
       eventSendOrder,
       stateBeforeCompletion,
+      subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber01,
+      caseNumber137,
       "DraftOrder",
       false,
       false,
       true,
       true,
       "1",
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNameProcess,
-      caseNumber01,
+      caseNumber137,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completable via next steps link - assign to me - CIC10 - Strike Out Warning", async ({
     page,
   }) => {
-    let caseNumber02: any;
-    caseNumber02 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber138 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -139,6 +153,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -150,84 +165,97 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber02}`);
+    console.log(`Case Number : ${caseNumber138}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber02);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber138, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Time extension request",
       false,
-      caseNumber02,
+      caseNumber138,
+      subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleJudge,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber138,
       taskName,
       priorityReview,
       assignedUserJudge,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC10 - Strike Out Warning",
-      caseNumber02,
+      caseNumber138,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber02,
+      caseNumber138,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber138,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
       numberOfDaysProcess,
       eventSendOrder,
       stateBeforeCompletion,
+      subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber02,
+      caseNumber138,
       "UploadOrder",
       false,
       false,
       false,
       true,
       "3",
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNameProcess,
-      caseNumber02,
+      caseNumber138,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Task is completed via event dropdown - CIC13 - Pro Forma Summons", async ({
     page,
   }) => {
-    let caseNumber03: any;
-    caseNumber03 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber139 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -236,6 +264,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -247,82 +276,95 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber03}`);
+    console.log(`Case Number : ${caseNumber139}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber03);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber139, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Time extension request",
       false,
-      caseNumber03,
+      caseNumber139,
+      subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleJudge,
       "Event DropDown",
       false,
-      caseNumber03,
+      caseNumber139,
       taskName,
       priorityReview,
       assignedUserJudge,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC13 - Pro Forma Summons",
-      caseNumber03,
+      caseNumber139,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber03,
+      caseNumber139,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
     await task.initiateTask(
       page,
       userRoleAdmin,
       "Event DropDown",
       false,
-      caseNumber03,
+      caseNumber139,
       taskNameProcess,
       priorityProcess,
       assignedUserAdmin,
       numberOfDaysProcess,
       eventSendOrder,
       stateBeforeCompletion,
+      subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber03,
+      caseNumber139,
       "DraftOrder",
       false,
       false,
       true,
       true,
       "5",
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNameProcess,
-      caseNumber03,
+      caseNumber139,
       stateAfterCompletion,
+      subjectName,
     );
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
-    let caseNumber04: any;
-    caseNumber04 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber140 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -331,6 +373,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -342,20 +385,21 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber04}`);
+    console.log(`Case Number : ${caseNumber140}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber04);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber140, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Time extension request",
       false,
-      caseNumber04,
+      caseNumber140,
+      subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
-    await myWorkPage.clickAssignAndGoToTask(page);
+    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -365,20 +409,22 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       "duplicateCase",
       null,
-      caseNumber04,
+      caseNumber140,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber04,
+      caseNumber140,
       caseClosedState,
+      subjectName,
     );
   });
 
   test("Process task is cancellable through close case", async ({ page }) => {
-    let caseNumber05: any;
-    caseNumber05 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber141 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -387,6 +433,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -398,48 +445,58 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber05}`);
+    console.log(`Case Number : ${caseNumber141}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber05);
-    await task.removeTask(page, taskRemoved);
+    await buildCase.buildCase(page, false, caseNumber141, subjectName);
+    await task.removeTask(page, taskRemoved, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
       "Time extension request",
       false,
-      caseNumber05,
+      caseNumber141,
+      subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName);
+    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber05,
+      caseNumber141,
       taskName,
       priorityReview,
       assignedUserJudge,
       numberOfDaysReview,
       eventOrders,
       stateBeforeCompletion,
+      subjectName,
     );
     await createDraft.createDraft(
       page,
       false,
       false,
       "CIC3 - Rule 27",
-      caseNumber05,
+      caseNumber141,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber05,
+      caseNumber141,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskNameProcess);
-    await myWorkPage.clickAssignAndGoToTask(page);
+    await task.seeTask(
+      page,
+      userRoleAdmin,
+      false,
+      taskNameProcess,
+      subjectName,
+    );
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -449,14 +506,16 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       false,
       "duplicateCase",
       null,
-      caseNumber05,
+      caseNumber141,
+      subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber05,
+      caseNumber141,
       caseClosedState,
+      subjectName,
     );
   });
 });

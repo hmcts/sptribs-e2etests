@@ -45,6 +45,7 @@ type EditCase = {
     applicantExplained: boolean,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -67,6 +68,7 @@ const editCase: EditCase = {
     applicantExplained: boolean,
     errorMessaging: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     switch (errorMessaging) {
       default:
@@ -74,6 +76,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseCategorisationDetailsPage.checkAndFillInFields(
           page,
@@ -85,12 +88,14 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseDateObjectsPage.checkAndFillInFields(page, initialState);
         await editCaseObjectsSubjectsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseObjectsSubjectsPage.checkAndFillInFields(
           page,
@@ -103,18 +108,25 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
-        await editCaseSubjectDetailsObjectPage.checkFields(page, initialState);
+        await editCaseSubjectDetailsObjectPage.checkFields(
+          page,
+          initialState,
+          subjectName,
+        );
         await editCaseSubjectDetailsObjectPage.fillInFields(
           page,
           contactPreference,
           initialState,
+          subjectName,
         );
         if (applicant) {
           await editCaseApplicantDetailsObjectPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editCaseApplicantDetailsObjectPage.checkFields(
             page,
@@ -130,6 +142,7 @@ const editCase: EditCase = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editCaseRepresentativeDetailsObjectPage.checkFields(
             page,
@@ -145,6 +158,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseObjectsContactsPage.checkAndFillInFields(
           page,
@@ -157,6 +171,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseFurtherDetailsObjectPage.checkFields(page, initialState);
         await editCaseFurtherDetailsObjectPage.fillInFields(
@@ -176,6 +191,7 @@ const editCase: EditCase = {
           applicant,
           representative,
           tribunalFormsInTime,
+          subjectName,
         );
         await submitPage.checkValidInfo(
           page,
@@ -191,8 +207,14 @@ const editCase: EditCase = {
           compensationLinked,
           tribunalFormsInTime,
           applicantExplained,
+          subjectName,
         );
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.continueOn(page);
         break;
       case true:
@@ -200,6 +222,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseCategorisationDetailsPage.triggerErrorMessages(page);
         await editCaseCategorisationDetailsPage.checkAndFillInFields(
@@ -212,6 +235,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseDateObjectsPage.triggerErrorMessages(page);
         await editCaseDateObjectsPage.checkAndFillInFields(page, initialState);
@@ -219,6 +243,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseObjectsSubjectsPage.triggerErrorMessages(page);
         await editCaseObjectsSubjectsPage.checkAndFillInFields(
@@ -232,17 +257,20 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseSubjectDetailsObjectPage.triggerErrorMessages(page);
         await editCaseSubjectDetailsObjectPage.fillInFields(
           page,
           contactPreference,
           initialState,
+          subjectName,
         );
         await editCaseApplicantDetailsObjectPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseApplicantDetailsObjectPage.triggerErrorMessages(page);
         await editCaseApplicantDetailsObjectPage.fillInFields(
@@ -253,6 +281,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseRepresentativeDetailsObjectPage.triggerErrorMessages(
           page,
@@ -266,6 +295,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseObjectsContactsPage.triggerErrorMessages(page);
         await editCaseObjectsContactsPage.checkAndFillInFields(
@@ -279,6 +309,7 @@ const editCase: EditCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editCaseFurtherDetailsObjectPage.triggerErrorMessages(page);
         break;

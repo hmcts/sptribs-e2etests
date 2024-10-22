@@ -14,6 +14,7 @@ type CreateListingRemoteHearingInformationPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -31,6 +32,7 @@ const createListingRemoteHearingInformationPage: CreateListingRemoteHearingInfor
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-record-listing/caseworker-record-listingremoteHearingInformation`,
@@ -42,9 +44,7 @@ const createListingRemoteHearingInformationPage: CreateListingRemoteHearingInfor
         expect(page.locator(".govuk-heading-l")).toHaveText(
           createListingRemoteHearingInformationContent.pageTitle,
         ),
-        expect(page.locator("markdown > h3")).toContainText(
-          caseSubjectDetailsObject_content.name,
-        ),
+        expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createListingRemoteHearingInformationContent.caseReference +
             caseNumber,

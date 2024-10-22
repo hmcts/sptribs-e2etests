@@ -9,6 +9,7 @@ type ConfirmPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -18,6 +19,7 @@ const buildCaseConfirmPage: ConfirmPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${confirm_content.pageTitle}")`,
@@ -26,9 +28,7 @@ const buildCaseConfirmPage: ConfirmPage = {
       expect(page.locator("markdown > h1")).toContainText(
         confirm_content.subTitle1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        subjectDetailsContent.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p")).toContainText(
         buildCase_content.caseReference + caseNumber,
       ),

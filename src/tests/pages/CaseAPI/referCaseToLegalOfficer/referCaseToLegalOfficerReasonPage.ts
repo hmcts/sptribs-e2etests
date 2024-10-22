@@ -13,6 +13,7 @@ type ReferCaseToLegalOfficerReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page, referralReason: referralReason): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -28,14 +29,13 @@ const referCaseToLegalOfficerReasonPage: ReferCaseToLegalOfficerReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${referCaseToLegalOfficerReasonContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         referCaseToLegalOfficerReasonContent.caseReference + caseNumber,
       ),

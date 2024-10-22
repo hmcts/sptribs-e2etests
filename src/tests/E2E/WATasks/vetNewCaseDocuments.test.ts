@@ -20,8 +20,8 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
-    let caseNumber01: any;
-    caseNumber01 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber156 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -30,6 +30,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -41,7 +42,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber01}`);
+    console.log(`Case Number : ${caseNumber156}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -60,38 +61,41 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
       false,
-      caseNumber01,
+      caseNumber156,
+      subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me and Go To Task",
       false,
-      caseNumber01,
+      caseNumber156,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
-    await buildCase.buildCase(page, false, caseNumber01);
+    await buildCase.buildCase(page, false, caseNumber156, subjectName);
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber01,
+      caseNumber156,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp);
+    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
   });
 
   test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
-    let caseNumber02: any;
-    caseNumber02 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber157 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -100,6 +104,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -111,7 +116,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber02}`);
+    console.log(`Case Number : ${caseNumber157}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -130,36 +135,39 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
       false,
-      caseNumber02,
+      caseNumber157,
+      subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Link: Assign Task to Me",
       false,
-      caseNumber02,
+      caseNumber157,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
-    await buildCase.buildCase(page, false, caseNumber02);
+    await buildCase.buildCase(page, false, caseNumber157, subjectName);
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber02,
+      caseNumber157,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp);
+    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    let caseNumber03: any;
-    caseNumber03 = await createCase.createCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber158 = await createCase.createCase(
       page,
       userRole,
       false,
@@ -168,6 +176,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -179,7 +188,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber03}`);
+    console.log(`Case Number : ${caseNumber158}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -198,39 +207,42 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
       false,
-      caseNumber03,
+      caseNumber158,
+      subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName);
+    await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
       userRole,
       "Event DropDown",
       false,
-      caseNumber03,
+      caseNumber158,
       taskName,
       priority,
       assignedUser,
       numberOfDays,
       event,
       stateBeforeCompletion,
+      subjectName,
     );
-    await buildCase.buildCase(page, false, caseNumber03);
+    await buildCase.buildCase(page, false, caseNumber158, subjectName);
     await task.checkCompletedTask(
       page,
       false,
       taskName,
-      caseNumber03,
+      caseNumber158,
       stateAfterCompletion,
+      subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp);
+    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
   });
 });
 
 test("Task completion: Accessibility test / Build Case : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  let caseNumber04: any;
-  caseNumber04 = await createCase.createCase(
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber159 = await createCase.createCase(
     page,
     userRole,
     false,
@@ -239,6 +251,7 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     true,
     true,
     "Email",
+    subjectName,
     true,
     false,
     "1996",
@@ -250,7 +263,7 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber04}`);
+  console.log(`Case Number : ${caseNumber159}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
   await editCase.editCase(
     page,
@@ -269,29 +282,32 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     true,
     false,
     false,
-    caseNumber04,
+    caseNumber159,
+    subjectName,
   );
-  await task.seeTask(page, userRole, true, taskName);
+  await task.seeTask(page, userRole, true, taskName, subjectName);
   await task.initiateTask(
     page,
     userRole,
     "Link: Assign Task to Me and Go To Task",
     true,
-    caseNumber04,
+    caseNumber159,
     taskName,
     priority,
     assignedUser,
     numberOfDays,
     event,
     stateBeforeCompletion,
+    subjectName,
   );
-  await buildCase.buildCase(page, true, caseNumber04);
+  await buildCase.buildCase(page, true, caseNumber159, subjectName);
   await task.checkCompletedTask(
     page,
     true,
     taskName,
-    caseNumber04,
+    caseNumber159,
     stateAfterCompletion,
+    subjectName,
   );
-  await task.removeTask(page, nextTriggeredTaskToCleanUp);
+  await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
 });

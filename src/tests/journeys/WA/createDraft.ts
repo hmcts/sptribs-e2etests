@@ -14,6 +14,7 @@ type CreateDraft = {
     errorMessaging: boolean,
     template: Template,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -24,6 +25,7 @@ const createDraft: CreateDraft = {
     errorMessaging: boolean,
     template: Template,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     const invalidTemplates: Template[] = [
       "CIC1 - Eligibility",
@@ -41,6 +43,7 @@ const createDraft: CreateDraft = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     switch (errorMessaging) {
       default:
@@ -50,26 +53,35 @@ const createDraft: CreateDraft = {
           caseNumber,
           accessibilityTest,
           template,
+          subjectName,
         );
         await orderMainContentPage.fillInFields(page);
         await addDocumentFooterPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await addDocumentFooterPage.fillInFields(page);
         await previewTemplatePage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await previewTemplatePage.fillInFields(
           page,
           template,
           caseNumber,
           null,
+          subjectName,
         );
-        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(page, accessibilityTest);
         await confirmPage.closeAndReturnToCase(page);
@@ -81,21 +93,29 @@ const createDraft: CreateDraft = {
           caseNumber,
           accessibilityTest,
           template,
+          subjectName,
         );
         await orderMainContentPage.triggerErrorMessages(page);
         await addDocumentFooterPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await addDocumentFooterPage.triggerErrorMessages(page);
         await previewTemplatePage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await page.click('[type="submit"]');
-        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await submitPage.continueOn(page);
         await confirmPage.checkPageLoads(page, accessibilityTest);
         await confirmPage.closeAndReturnToCase(page);

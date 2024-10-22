@@ -13,12 +13,14 @@ type CaseDetailsTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCaseDetailsTab(page: Page): Promise<void>;
   checkPageInfo(
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -30,9 +32,10 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator("dl[id='case-details'] h3")).toHaveText(
         caseDetailsTabContent.pageTitle,
       ),
@@ -79,11 +82,12 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-      ).toHaveText(subjectDetailsContent.name),
+      ).toHaveText(subjectName),
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseDateOfBirth']"),
       ).toHaveText(await commonHelpers.convertDate(true)),

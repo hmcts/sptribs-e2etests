@@ -16,6 +16,7 @@ type EditCaseDateObjectsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkAndFillInFields(page: Page, initialState: initialState): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -33,6 +34,7 @@ const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editCaseDateObjectsContent.pageTitle}")`,
@@ -41,9 +43,7 @@ const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editCaseDateObjectsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editCaseDateObjectsContent.caseReference + caseNumber,
       ),

@@ -18,6 +18,7 @@ type UpdateCaseJourney = {
     multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleBackButtonJourney(page: Page): Promise<void>;
 };
@@ -33,6 +34,7 @@ const updateCaseJourney: UpdateCaseJourney = {
     multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     switch (errorMessaging) {
       default:
@@ -43,7 +45,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
-        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.fillInFields(page, subjectName);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadDocumentsPage.fillInFields(page, additionalInformation);
@@ -86,7 +88,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.continueOn(page);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.triggerErrorMessages(page, cy);
-        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.fillInFields(page, subjectName);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.triggerErrorMessages(page, cy);
         await uploadDocumentsPage.checkPageLoads(page, cy, accessibilityTest);

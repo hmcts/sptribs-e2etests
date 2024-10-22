@@ -15,12 +15,14 @@ type CasePartiesTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCasePartiesTab(page: Page): Promise<void>;
   checkPageInfo(
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -32,9 +34,10 @@ const casePartiesTabPage: CasePartiesTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator(".case-field").nth(1)).toHaveText(
         casePartiesTabContent.subHeading1,
       ),
@@ -89,11 +92,12 @@ const casePartiesTabPage: CasePartiesTabPage = {
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-      ).toHaveText(subjectDetailsContent.name),
+      ).toHaveText(subjectName),
       expect(
         page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
       ).toHaveText(subjectContactDetailsContent.emailAddress),

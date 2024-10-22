@@ -14,6 +14,7 @@ type IssueToRespondent = {
     errorMessaging: boolean,
     recipients: parties[],
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -25,11 +26,13 @@ const issueToRespondent: IssueToRespondent = {
     errorMessaging: boolean,
     recipients: parties[],
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await selectAdditionalDocuments.checkPageLoads(
       page,
       accessibilityTest,
       caseNumber,
+      subjectName,
     );
     switch (errorMessaging) {
       default:
@@ -38,6 +41,7 @@ const issueToRespondent: IssueToRespondent = {
           page,
           accessibilityTest,
           caseNumber,
+          subjectName,
         );
         await notifyOtherPartiesPage.continueOn(page, recipients);
         await submitPage.checkPageLoads(
@@ -45,6 +49,7 @@ const issueToRespondent: IssueToRespondent = {
           accessibilityTest,
           caseNumber,
           recipients,
+          subjectName,
         );
         await submitPage.continueOn(page, recipients);
         await confirmPage.checkPageLoads(
@@ -52,6 +57,7 @@ const issueToRespondent: IssueToRespondent = {
           accessibilityTest,
           caseNumber,
           recipients,
+          subjectName,
         );
         await confirmPage.continueOn(page);
         break;
@@ -62,6 +68,7 @@ const issueToRespondent: IssueToRespondent = {
           page,
           accessibilityTest,
           caseNumber,
+          subjectName,
         );
         await notifyOtherPartiesPage.triggerErrorMessages(page);
         await notifyOtherPartiesPage.continueOn(page, recipients);
@@ -70,6 +77,7 @@ const issueToRespondent: IssueToRespondent = {
           accessibilityTest,
           caseNumber,
           recipients,
+          subjectName,
         );
         await submitPage.continueOn(page, recipients);
         await confirmPage.checkPageLoads(
@@ -77,6 +85,7 @@ const issueToRespondent: IssueToRespondent = {
           accessibilityTest,
           caseNumber,
           recipients,
+          subjectName,
         );
         await confirmPage.continueOn(page);
         break;

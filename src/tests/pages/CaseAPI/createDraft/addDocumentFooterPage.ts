@@ -12,6 +12,7 @@ type AddDocumentFooterPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -26,6 +27,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${addDocumentFooter_content.pageTitle}")`,
@@ -35,9 +37,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
         addDocumentFooter_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `div > markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`div > markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

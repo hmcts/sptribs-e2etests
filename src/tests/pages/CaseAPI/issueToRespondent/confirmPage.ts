@@ -12,6 +12,7 @@ type ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     recipients: parties[],
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -22,14 +23,13 @@ const confirmPage: ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     recipients: parties[],
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${submit_content.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         notifyOtherParties_content.caseReference + caseNumber,
       ),

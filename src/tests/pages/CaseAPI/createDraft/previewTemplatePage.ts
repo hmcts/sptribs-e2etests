@@ -15,12 +15,14 @@ type PreviewTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
     template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -33,6 +35,7 @@ const previewTemplatePage: PreviewTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${previewTemplate_content.pageTitle}")`,
@@ -44,9 +47,7 @@ const previewTemplatePage: PreviewTemplatePage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         previewTemplate_content.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         previewTemplate_content.caseReference + caseNumber,
       ),
@@ -82,6 +83,7 @@ const previewTemplatePage: PreviewTemplatePage = {
     template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
+    subjectName: string,
   ): Promise<void> {
     await commonHelpers.checkDocument(
       page,
@@ -89,6 +91,7 @@ const previewTemplatePage: PreviewTemplatePage = {
       caseNumber,
       caseNoticeType,
       false,
+      subjectName,
     );
     await page.click(this.continue);
   },
