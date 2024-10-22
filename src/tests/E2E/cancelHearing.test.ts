@@ -14,6 +14,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber301 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -23,6 +24,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -36,7 +38,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber301}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber301);
+    await buildCase.buildCase(page, false, caseNumber301, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -53,6 +55,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber301,
+      subjectName,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -60,11 +63,13 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Case Rejected",
       false,
       caseNumber301,
-    );
-    await task.removeTask(page, taskRemovedIssueCase);
+      subjectName
+  );
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Cancel hearing - consent order.", async ({ page }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber302 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -74,6 +79,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -87,7 +93,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber302}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber302);
+    await buildCase.buildCase(page, false, caseNumber302, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -104,6 +110,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber302,
+      subjectName
     );
     await cancelHearing.cancelHearing(
       page,
@@ -111,13 +118,15 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Consent Order received and no time for infill",
       false,
       caseNumber302,
+      subjectName
     );
-    await task.removeTask(page, taskRemovedIssueCase);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Cancel hearing - incomplete panel.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber303 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -127,6 +136,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -140,7 +150,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber303}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber303);
+    await buildCase.buildCase(page, false, caseNumber303, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -157,6 +167,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber303,
+      subjectName
     );
     await cancelHearing.cancelHearing(
       page,
@@ -164,13 +175,15 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Incomplete Panel",
       false,
       caseNumber303,
+      subjectName
     );
-    await task.removeTask(page, taskRemovedIssueCase);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Cancel hearing - no suitable cases.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber304 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -180,6 +193,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -193,7 +207,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber304}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber304);
+    await buildCase.buildCase(page, false, caseNumber304, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -210,6 +224,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber304,
+      subjectName
     );
     await cancelHearing.cancelHearing(
       page,
@@ -217,11 +232,13 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "No suitable cases that are ready to list",
       false,
       caseNumber304,
+      subjectName
     );
-    await task.removeTask(page, taskRemovedIssueCase);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Cancel hearing - request for R27.", async ({ page }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber305 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -231,6 +248,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -244,7 +262,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber305}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber305);
+    await buildCase.buildCase(page, false, caseNumber305, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -261,6 +279,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber305,
+      subjectName
     );
     await cancelHearing.cancelHearing(
       page,
@@ -268,13 +287,15 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Request for R27 decision and no time for infill",
       false,
       caseNumber305,
+      subjectName
     );
-    await task.removeTask(page, taskRemovedIssueCase);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Cancel hearing - venue unavailable.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber306 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -284,6 +305,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -297,7 +319,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber306}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber306);
+    await buildCase.buildCase(page, false, caseNumber306, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -314,6 +336,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber306,
+      subjectName
     );
     await cancelHearing.cancelHearing(
       page,
@@ -321,13 +344,15 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Venue Unavailable",
       false,
       caseNumber306,
+      subjectName
     );
-    await task.removeTask(page, taskRemovedIssueCase);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber308 = await createCase.createCase(
       page,
       userRoleAdmin,
@@ -337,6 +362,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -350,7 +376,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     console.log(`Case Number : ${caseNumber308}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber308);
+    await buildCase.buildCase(page, false, caseNumber308, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -367,6 +393,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
       caseNumber308,
+      subjectName
     );
     await cancelHearing.cancelHearing(
       page,
@@ -374,14 +401,16 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Case Rejected",
       true,
       caseNumber308,
+      subjectName
     );
-    await task.removeTask(page, taskRemovedIssueCase);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 });
 
 test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
   page,
 }): Promise<void> => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber309 = await createCase.createCase(
     page,
     userRoleAdmin,
@@ -391,6 +420,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     true,
     true,
     "Email",
+    subjectName,
     true,
     false,
     "1996",
@@ -404,7 +434,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
   );
   console.log(`Case Number : ${caseNumber309}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber309);
+  await buildCase.buildCase(page, false, caseNumber309, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
   await createListing.createListing(
     page,
@@ -418,7 +448,8 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
     false,
     caseNumber309,
+    subjectName
   );
-  await cancelHearing.cancelHearing(page, true, "Other", false, caseNumber309);
-  await task.removeTask(page, taskRemovedIssueCase);
+  await cancelHearing.cancelHearing(page, true, "Other", false, caseNumber309, subjectName);
+  await task.removeTask(page, taskRemovedIssueCase, subjectName);
 });
