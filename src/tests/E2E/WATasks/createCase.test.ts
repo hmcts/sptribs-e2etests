@@ -1,19 +1,22 @@
 import { test } from "@playwright/test";
-import createCase from "../journeys/WA/createCase.ts";
+import createCase from "../../journeys/WA/createCase.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
-  test("Caseworker - Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
+  test("Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Fatal",
       true,
       true,
       "Email",
+      subjectName,
       true,
       true,
       "1996",
@@ -27,18 +30,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Medical Re-opening Category, Email Contact", async ({
+  test("Assessment - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waCaseWorker",
       false,
       "Assessment",
       "Medical Re-opening",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "2001",
@@ -52,18 +57,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Minor Category, Post Contact", async ({
-    page,
-  }) => {
+  test("Assessment - Minor Category, Post Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waSeniorCaseworker",
       false,
       "Assessment",
       "Minor",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "2008",
@@ -77,18 +82,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Paragraph 26 Category, Post Contact", async ({
-    page,
-  }) => {
+  test("Assessment - Paragraph 26 Category, Post Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreTeamLead",
       false,
       "Assessment",
       "Paragraph 26",
       false,
       true,
       "Post",
+      subjectName,
       true,
       true,
       "2012",
@@ -102,18 +107,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Sexual Abuse Category, Email Contact", async ({
+  test("Assessment - Sexual Abuse Category, Email Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waRegionalHearingCentreAdmin",
       false,
       "Assessment",
       "Sexual Abuse",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -127,18 +134,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Special Jurisdiction Category, Email Contact", async ({
+  test("Assessment - Special Jurisdiction Category, Email Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waRegionalHearingCentreTeamLead",
       false,
       "Assessment",
       "Special Jurisdiction",
       true,
       true,
       "Email",
+      subjectName,
       true,
       true,
       "2001",
@@ -152,18 +161,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Other Category, Email Contact", async ({
-    page,
-  }) => {
+  test("Eligibility - Other Category, Email Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waCTSCAdmin",
       false,
       "Eligibility",
       "Other",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "2008",
@@ -177,18 +186,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Fatal Category, Post Contact", async ({
-    page,
-  }) => {
+  test("Eligibility - Fatal Category, Post Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waCTSCTeamLead",
       false,
       "Eligibility",
       "Fatal",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "1996",
@@ -202,18 +211,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Medical Re-opening Category, Email Contact", async ({
+  test("Eligibility - Medical Re-opening Category, Email Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Medical Re-opening",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "2012",
@@ -227,18 +238,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Minor Category, Post Contact @crossbrowserCaseAPI", async ({
+  test("Eligibility - Minor Category, Post Contact @crossbrowserCaseAPI", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Minor",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "2001",
@@ -252,18 +265,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Paragraph 26 Category, Post Contact", async ({
+  test("Eligibility - Paragraph 26 Category, Post Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Paragraph 26",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "1996",
@@ -277,18 +292,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Sexual Abuse Category, Email Contact", async ({
+  test("Eligibility - Sexual Abuse Category, Email Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Sexual Abuse",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "2008",
@@ -302,18 +319,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Other Category, Email Contact", async ({
-    page,
-  }) => {
+  test("Assessment - Other Category, Email Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "2012",
@@ -327,18 +344,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Eligibility - Other Category, Post Contact", async ({
-    page,
-  }) => {
+  test("Eligibility - Other Category, Post Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Other",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "2001",
@@ -352,18 +369,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Caseworker - Assessment - Other Category, Post Contact", async ({
+  test("Assessment - Other Category, Post Contact, Compensation Linked", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "1996",
@@ -377,18 +396,18 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Senior Caseworker - Assessment - Other Category, Post Contact", async ({
-    page,
-  }) => {
+  test("Assessment - Other Category, Post Contact", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "seniorCaseworker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "1996",
@@ -402,18 +421,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Hearing centre admin - Eligibility - Other Category, Email Contact", async ({
+  test("Eligibility - Other Category, Email Contact, Applicant explained", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "hearingCentreAdmin",
+      "waHearingCentreAdmin",
       false,
       "Eligibility",
       "Other",
       true,
       true,
       "Post",
+      subjectName,
       true,
       false,
       "1996",
@@ -427,18 +448,20 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("hearing Centre Team Lead - Assessment - Other Category, Email Contact", async ({
+  test("Assessment - Other Category, Email Contact, Applicant explained", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "hearingCentreTeamLead",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -453,15 +476,17 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "caseWorker",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Other",
       true,
       true,
       "Email",
+      subjectName,
       true,
       false,
       "1996",
@@ -479,15 +504,17 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
 test("Accessibility test every page. @accessibilityCaseAPI", async ({
   page,
 }) => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   await createCase.createCase(
     page,
-    "caseWorker",
+    "waHearingCentreAdmin",
     true,
     "Assessment",
     "Other",
     true,
     true,
     "Email",
+    subjectName,
     true,
     false,
     "1996",
