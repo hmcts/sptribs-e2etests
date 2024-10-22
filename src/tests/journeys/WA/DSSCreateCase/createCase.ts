@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { UserRole } from "../../../config.ts";
 import caseAPILoginPage from "../../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../../pages/CaseAPI/caseList/casesPage.ts";
-import verifyCaseDetails from "./DSSVerifyDetails.ts";
 import landingPage from "../../../pages/DSSCreateCase/landingPage.ts";
 import loginPage from "../../../pages/DSSCreateCase/loginPage.ts";
 import subjectDetailsPage from "../../../pages/DSSCreateCase/subjectDetailsPage.ts";
@@ -16,6 +15,7 @@ import uploadOtherInformationPage from "../../../pages/DSSCreateCase/uploadOther
 import checkYourAnswersPage from "../../../pages/DSSCreateCase/checkYourAnswersPage.ts";
 import applicationSubmittedPage from "../../../pages/DSSCreateCase/applicationSubmittedPage.ts";
 import stateTab_content from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
+import DSSVerifyCaseDetails from "./DSSVerifyDetails.ts";
 
 type CreateFeApplication = {
   createFEApplication(
@@ -44,13 +44,13 @@ type CreateFeApplication = {
     backButtonJourney: boolean,
     accessibilityTest: boolean,
     subjectName: string,
-  ): Promise<string | void>;
+  ): Promise<any>;
   handleRepresentationLogic(
     page: Page,
     cy: boolean,
     representationQualified: boolean,
     accessibilityTest: boolean,
-  ): Promise<void>;
+  ): Promise<any>;
   handleCompleteApplication(
     page: Page,
     cy: boolean,
@@ -61,8 +61,8 @@ type CreateFeApplication = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     subjectName: string,
-  ): Promise<string>;
-  handleBackButtonJourney(page: Page): Promise<void>;
+  ): Promise<any>;
+  handleBackButtonJourney(page: Page): Promise<any>;
 };
 
 const createFEApplication: CreateFeApplication = {
@@ -79,7 +79,7 @@ const createFEApplication: CreateFeApplication = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     subjectName: string,
-  ): Promise<string | void> {
+  ): Promise<any> {
     switch (errorMessaging) {
       default:
         return await createFEApplication.normalFEFlow(
@@ -171,7 +171,7 @@ const createFEApplication: CreateFeApplication = {
     backButtonJourney: boolean,
     accessibilityTest: boolean,
     subjectName: string,
-  ): Promise<string | void> {
+  ): Promise<any> {
     await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
     await landingPage.continueOn(page);
     await loginPage.SignInUser(page, user);
@@ -259,7 +259,7 @@ const createFEApplication: CreateFeApplication = {
     cy: boolean,
     representationQualified: boolean,
     accessibilityTest: boolean,
-  ): Promise<void> {
+  ): Promise<any> {
     await representationQualifiedPage.checkPageLoads(
       page,
       cy,
@@ -284,22 +284,21 @@ const createFEApplication: CreateFeApplication = {
     multipleDocuments: boolean,
     subjectName: string,
   ): Promise<string> {
-    const time = await checkYourAnswersPage.continueOn(page);
+    await checkYourAnswersPage.continueOn(page);
     await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
     await applicationSubmittedPage.checkCICCaseNumber(page);
     const caseNumber = await applicationSubmittedPage.returnCICCaseNumber(page);
-    await caseAPILoginPage.SignInUser(page, "caseWorker");
+    await caseAPILoginPage.SignInUser(page, "waCaseWorker");
     await casesPage.checkPageLoads(page, accessibilityTest);
     await casesPage.changeCaseType(page);
     await casesPage.searchForCaseNumber(page, caseNumber);
-    await verifyCaseDetails.verifyCaseDetails(
+    await DSSVerifyCaseDetails.verifyCaseDetails(
       page,
       accessibilityTest,
       caseNumber,
       stateTab_content.DSSSubmittedState,
       representationPresent,
       representationQualified,
-      time,
       uploadOtherInfo,
       multipleDocuments,
       user,
@@ -308,7 +307,7 @@ const createFEApplication: CreateFeApplication = {
     return caseNumber;
   },
 
-  async handleBackButtonJourney(page: Page): Promise<void> {
+  async handleBackButtonJourney(page: Page): Promise<any> {
     await checkYourAnswersPage.pressBackButton(page);
     await uploadOtherInformationPage.pressBackButton(page);
     await uploadSupportingDocumentsPage.pressBackButton(page);

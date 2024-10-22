@@ -30,7 +30,7 @@ type CheckYourAnswersPage = {
     multipleDocuments: boolean,
     subjectName: string,
   ): Promise<void>;
-  continueOn(page: Page): Promise<string>;
+  continueOn(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -570,9 +570,8 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     }
   },
 
-  async continueOn(page: Page): Promise<string> {
+  async continueOn(page: Page): Promise<void> {
     await page.click(this.continueButton);
-    return await commonHelpers.getTimestamp();
   },
 
   async pressBackButton(page: Page): Promise<void> {

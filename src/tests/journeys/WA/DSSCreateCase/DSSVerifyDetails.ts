@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { UserRole } from "../../../config.ts";
 import historyTabPage from "../../../pages/CaseAPI/caseTabs/historyTabPage.ts";
 import summaryTabPage from "../../../pages/CaseAPI/caseTabs/summaryTabPage.ts";
 import stateTabPage from "../../../pages/CaseAPI/caseTabs/stateTabPage.ts";
@@ -6,7 +7,6 @@ import caseDetailsTabPage from "../../../pages/CaseAPI/caseTabs/caseDetailsTabPa
 import casePartiesTabPage from "../../../pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
 import caseDocumentsTabPage from "../../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
 import caseFileViewTabPage from "../../../pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
-import { UserRole } from "../../../config.ts";
 
 type DSSVerifyDetails = {
   verifyCaseDetails(
@@ -16,12 +16,11 @@ type DSSVerifyDetails = {
     state: string,
     representationPresent: boolean,
     representationQualified: boolean,
-    time: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
     subjectName: string,
-  ): Promise<void>;
+  ): Promise<any>;
 };
 
 const DSSVerifyCaseDetails: DSSVerifyDetails = {
@@ -32,12 +31,11 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     state: string,
     representationPresent: boolean,
     representationQualified: boolean,
-    time: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
     subjectName: string,
-  ): Promise<void> {
+  ): Promise<any> {
     await historyTabPage.checkPageLoads(
       page,
       accessibilityTest,
@@ -48,7 +46,6 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     await historyTabPage.checkPageInfo(
       page,
       ["Submit case (cic)"],
-      [time],
       user,
       state,
     );

@@ -23,7 +23,7 @@ type CaseFileViewTabPage = {
 };
 
 const caseFileViewTabPage: CaseFileViewTabPage = {
-  caseFileViewTab: ".mat-tab-label",
+  caseFileViewTab: `.mat-tab-label-content:text-is("Case file view")`,
 
   async checkPageLoads(
     page: Page,
@@ -52,8 +52,8 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
   },
 
   async changeToCaseFileViewTab(page: Page): Promise<void> {
-    await page.locator(this.caseFileViewTab).nth(10).click();
-    await page.locator(this.caseFileViewTab).nth(10).click();
+    await page.locator(this.caseFileViewTab).click();
+    await page.locator(this.caseFileViewTab).click();
   },
 
   async checkPageInfo(
