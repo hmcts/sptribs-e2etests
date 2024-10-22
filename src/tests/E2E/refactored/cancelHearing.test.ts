@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import cancelHearing from "../journeys/WA/cancelHearing.ts";
-import createCase from "../journeys/WA/createCase.ts";
-import commonHelpers from "../helpers/commonHelpers.ts";
-import events_content from "../fixtures/content/CaseAPI/events_content.ts";
-import buildCase from "../journeys/WA/buildCase.ts";
-import task from "../journeys/WA/task.ts";
-import createListing from "../journeys/WA/createListing.ts";
+import cancelHearing from "../../journeys/WA/cancelHearing.ts";
+import createCase from "../../journeys/WA/createCase.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../../journeys/WA/buildCase.ts";
+import task from "../../journeys/WA/task.ts";
+import createListing from "../../journeys/WA/createListing.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
