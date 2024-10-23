@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import createEditStay from "../../journeys/WA/createEditStay";
-import commonHelpers from "../../helpers/commonHelpers";
-import createCase from "../../journeys/WA/createCase";
+import createEditStay from "../../journeys/WA/createEditStay.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import createCase from "../../journeys/WA/createCase.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
