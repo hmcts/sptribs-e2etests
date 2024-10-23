@@ -4,7 +4,6 @@ import postponeHearingReasonContent from "../../../fixtures/content/CaseAPI/post
 import commonHelpers, {
   hearingPostponedReasons,
 } from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type PostponeHearingReasonPage = {
   previous: string;
@@ -14,6 +13,7 @@ type PostponeHearingReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -32,6 +32,7 @@ const postponeHearingReasonPage: PostponeHearingReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${postponeHearingReasonContent.pageTitle}")`,
@@ -40,9 +41,7 @@ const postponeHearingReasonPage: PostponeHearingReasonPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         postponeHearingReasonContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         postponeHearingReasonContent.caseReference + caseNumber,
       ),
