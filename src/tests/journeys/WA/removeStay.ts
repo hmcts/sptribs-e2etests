@@ -56,7 +56,12 @@ const removeStay: RemoveStay = {
           subjectName,
         );
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          subjectName,
+        );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
         await summaryTabPage.checkRemoveStayDetails(

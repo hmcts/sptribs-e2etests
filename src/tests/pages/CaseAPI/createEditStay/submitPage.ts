@@ -61,7 +61,7 @@ const submitPage: SubmitPage = {
       }),
     ]);
     if (stayReason === "Other") {
-      expect(
+      await expect(
         page.locator(`.text-16:text-is("${submit_content.textOnPage4}")`),
       ).toBeVisible();
     }

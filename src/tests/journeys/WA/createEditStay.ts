@@ -55,7 +55,12 @@ const createEditStay: CreateEditStay = {
         );
         await submitPage.checkValidInfo(page, stayReason, optionalText);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          subjectName,
+        );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
         await summaryTabPage.checkStayDetails(
@@ -83,7 +88,12 @@ const createEditStay: CreateEditStay = {
         );
         await submitPage.checkValidInfo(page, stayReason, optionalText);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          subjectName,
+          caseNumber,
+        );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
         await summaryTabPage.checkStayDetails(
