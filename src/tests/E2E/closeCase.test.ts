@@ -1,405 +1,713 @@
 import { test } from "@playwright/test";
-import closeCase from "../../removedFiles/closeCase.ts";
+import closeCase from "../journeys/WA/closeCase.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import createCase from "../journeys/WA/createCase.ts";
+import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../journeys/WA/buildCase.ts";
+import hearingOptions from "../journeys/WA/hearingOptions.ts";
+
+const userRoleAdmin = "waHearingCentreAdmin";
 
 test.describe("Case-API Close case tests. @CaseAPI", () => {
-  // Case Management initial state tests
-  // test("Close a case management case as it is withdrawn as a caseworker with optional information. @crossbrowserCaseAPI", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseWithdrawn",
-  //     true,
-  //     null,
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is withdrawn with no optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber500 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber500}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber500, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber500,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseWithdrawn",
+      false,
+      null,
+      null,
+      caseNumber500,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is rejected created in error as a senior caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "seniorCaseworker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseRejected",
-  //     false,
-  //     "createdInError",
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is rejected created in error with optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber501 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber501}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber501, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber501,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseRejected",
+      true,
+      "createdInError",
+      null,
+      caseNumber501,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is rejected deadline missed as a hearing centre admin with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "hearingCentreAdmin",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseRejected",
-  //     true,
-  //     "deadlineMissed",
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is rejected deadline missed with no optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber502 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber502}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber502, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber502,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseRejected",
+      false,
+      "deadlineMissed",
+      null,
+      caseNumber502,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is rejected duplicate case as a hearing centre team lead with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "hearingCentreTeamLead",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseRejected",
-  //     false,
-  //     "duplicateCase",
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is rejected duplicate case with optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber503 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber503}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber503, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber503,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseRejected",
+      true,
+      "duplicateCase",
+      null,
+      caseNumber503,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is rejected vexatious litigant as a Senior Judge with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "seniorJudge",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseRejected",
-  //     true,
-  //     "vexatiousLitigant",
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is rejected vexatious litigant with no optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber504 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber504}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber504, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber504,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseRejected",
+      false,
+      "vexatiousLitigant",
+      null,
+      caseNumber504,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is rejected other reason as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseRejected",
-  //     false,
-  //     "other",
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is rejected other reason with optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber505 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber505}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber505, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber505,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseRejected",
+      true,
+      "other",
+      null,
+      caseNumber505,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is strikeout noncompliance with directions as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseStrikeOut",
-  //     true,
-  //     null,
-  //     "noncomplianceWithDirections",
-  //   );
-  // });
+  test("Close a ready to list case as it is strikeout noncompliance with directions with no optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber506 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber506}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber506, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber506,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseStrikeOut",
+      false,
+      null,
+      "noncomplianceWithDirections",
+      caseNumber506,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is strikeout other reason as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseStrikeOut",
-  //     false,
-  //     null,
-  //     "other",
-  //   );
-  // });
+  test("Close a ready to list case as it is strikeout other reason with optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber507 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber507}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber507, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber507,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseStrikeOut",
+      true,
+      null,
+      "other",
+      caseNumber507,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is a concession as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "caseConcession",
-  //     true,
-  //     null,
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is a concession with no optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber508 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber508}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber508, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber508,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseConcession",
+      false,
+      null,
+      null,
+      caseNumber508,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is a consent order as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "consentOrder",
-  //     false,
-  //     null,
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is a consent order with optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber509 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber509}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber509, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber509,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "consentOrder",
+      true,
+      null,
+      null,
+      caseNumber509,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case as it is a rule 27 as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "rule27",
-  //     true,
-  //     null,
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case as it is a rule 27 with no optional information. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber510 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber510}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber510, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber510,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "rule27",
+      false,
+      null,
+      null,
+      caseNumber510,
+      subjectName,
+    );
+  });
 
-  // test("Close a case management case due to death of appellant as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Case Management",
-  //     false,
-  //     "deathOfAppellant",
-  //     true,
-  //     null,
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is withdrawn as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseWithdrawn",
-  //     false,
-  //     null,
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is rejected created in error as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseRejected",
-  //     true,
-  //     "createdInError",
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is rejected deadline missed as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseRejected",
-  //     false,
-  //     "deadlineMissed",
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is rejected duplicate case as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseRejected",
-  //     true,
-  //     "duplicateCase",
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is rejected vexatious litigant as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseRejected",
-  //     false,
-  //     "vexatiousLitigant",
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is rejected other reason as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseRejected",
-  //     true,
-  //     "other",
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is strikeout noncompliance with directions as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseStrikeOut",
-  //     false,
-  //     null,
-  //     "noncomplianceWithDirections",
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is strikeout other reason as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseStrikeOut",
-  //     true,
-  //     null,
-  //     "other",
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is a concession as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "caseConcession",
-  //     false,
-  //     null,
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is a consent order as a caseworker with optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "consentOrder",
-  //     true,
-  //     null,
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case as it is a rule 27 as a caseworker with no optional information. @crossbrowserCaseAPI", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "rule27",
-  //     false,
-  //     null,
-  //     null,
-  //   );
-  // });
-
-  // test("Close a ready to list case due to death of appellant as a caseworker with no optional information.", async ({
-  //   page,
-  // }): Promise<void> => {
-  //   await closeCase.closeCase(
-  //     page,
-  //     "caseWorker",
-  //     false,
-  //     "Ready to list",
-  //     false,
-  //     "deathOfAppellant",
-  //     false,
-  //     null,
-  //     null,
-  //   );
-  // });
+  test("Close a ready to list case due to death of appellant with no optional information.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber511 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber511}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber511, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber511,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "deathOfAppellant",
+      false,
+      null,
+      null,
+      caseNumber511,
+      subjectName,
+    );
+  });
 
   test("Error messaging - Close Case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber512 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber512}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber512, subjectName);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
-      "caseWorker",
       false,
-      "Case Management",
       true,
       "rule27",
       false,
       null,
       null,
+      caseNumber512,
+      subjectName,
     );
   });
 });
@@ -407,15 +715,41 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
 test("Accessibility test - Close case @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber513 = await createCase.createCase(
+    page,
+    userRoleAdmin,
+    false,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    subjectName,
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+  );
+  console.log(`Case Number : ${caseNumber513}`);
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  await buildCase.buildCase(page, false, caseNumber513, subjectName);
+  await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
   await closeCase.closeCase(
     page,
-    "caseWorker",
     true,
-    "Case Management",
     true,
     "rule27",
     false,
     null,
     null,
+    caseNumber513,
+    subjectName,
   );
 });
