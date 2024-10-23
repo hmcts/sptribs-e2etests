@@ -36,6 +36,9 @@ const stateTabPage: StateTabPage = {
   },
 
   async checkStateTab(page: Page, state: string): Promise<void> {
+    await page.waitForSelector(
+      `markdown[class='markdown'] h4:has-text("${stateTabContent.caseState}")`,
+    );
     if (state == stateTabContent.DSSSubmittedState) {
       await expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
         stateTabContent.caseState + stateTabContent.DSSSubmittedState,
