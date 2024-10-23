@@ -22,7 +22,6 @@ import createListingListingDetailsContent from "../../../fixtures/content/CaseAP
 import createListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingRemoteHearingInformation_content.ts";
 import createListingOtherInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingOtherInformation_content.ts";
 import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
 import path from "path";
@@ -145,19 +144,13 @@ const hearingTabPage: HearingsTabPage = {
     editListing: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `div.case-viewer-label:text-is("${hearingsTab_content.title}")`,
+    );
+    await page.waitForSelector(
+      `span.text-16:text-is("${hearingsTab_content.subtitle2}")`,
+    );
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `div.case-viewer-label:text-is("${hearingsTab_content.title}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `span.text-16:text-is("${hearingsTab_content.subtitle2}")`,
-        ),
-        1,
-      ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (hearingsTab_content as any)[
           `textOnPage${index + 5}`
@@ -524,6 +517,9 @@ const hearingTabPage: HearingsTabPage = {
   },
 
   async changeToHearingsTab(page: Page): Promise<void> {
+    await page.waitForSelector(this.hearingsTab);
+    // For tab clicking flakiness
+    await page.locator(this.hearingsTab).click();
     await page.locator(this.hearingsTab).click();
   },
 
