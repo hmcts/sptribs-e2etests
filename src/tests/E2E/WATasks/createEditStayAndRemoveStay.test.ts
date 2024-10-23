@@ -14,7 +14,7 @@ const state = "Case Status:  Case management";
 const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
-  test.only("Stay a case management case for reason waitingOutcomeOfCivilCase, with optional text. @crossbrowserCaseAPI", async ({
+  test("Stay a case management case for reason waitingOutcomeOfCivilCase, with optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -42,7 +42,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     console.log(`Case Number : ${caseNumber900}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber900, subjectName);
-    //await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await createEditStay.createEditStay(
       page,
       false,
@@ -411,6 +411,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber907,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
@@ -464,6 +465,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber908,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
@@ -517,6 +519,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber909,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
@@ -570,6 +573,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber910,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
@@ -623,6 +627,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber911,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
@@ -676,6 +681,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber912,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
@@ -729,6 +735,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       false,
       caseNumber913,
+      subjectName,
     );
     await createEditStay.createEditStay(
       page,
