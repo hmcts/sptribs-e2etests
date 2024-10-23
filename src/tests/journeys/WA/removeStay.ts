@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import createEditStay from "./createEditStay.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import config, { UserRole } from "../../config.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
@@ -15,10 +14,12 @@ type RemoveStay = {
   removeStay(
     page: Page,
     accessibilityTest: boolean,
-    user: UserRole,
     removeReason: RemoveReason,
     optionalText: boolean,
     errorJourney: boolean,
+    caseNumber: string,
+    subjectName: string,
+    state: string,
   ): Promise<void>;
 };
 
@@ -26,26 +27,13 @@ const removeStay: RemoveStay = {
   async removeStay(
     page: Page,
     accessibilityTest: boolean,
-    user: UserRole,
     removeReason: RemoveReason,
     optionalText: boolean,
     errorJourney: boolean,
+    caseNumber: string,
+    subjectName: string,
+    state: string,
   ): Promise<void> {
-    const caseNumber = await createEditStay.createEditStay(
-      page,
-      false,
-      "Case Management",
-      "caseWorker",
-      false,
-      "waitingOutcomeOfCivilCase",
-      true,
-    );
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      user,
-      config.CaseAPIBaseURL,
-      caseNumber,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       events_content.removeStay,
@@ -56,6 +44,7 @@ const removeStay: RemoveStay = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await removeStayPage.continueOn(page, removeReason, optionalText);
         await submitPage.checkPageLoads(
@@ -64,24 +53,30 @@ const removeStay: RemoveStay = {
           accessibilityTest,
           removeReason,
           optionalText,
+          subjectName,
         );
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          subjectName,
+        );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
         await summaryTabPage.checkRemoveStayDetails(
           page,
           removeReason,
           optionalText,
+          state,
         );
-        await stateTabPage.changeToStateTab(page);
-        await stateTabPage.checkStateTab(page, "Case management");
         break;
       case true:
         await removeStayPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await removeStayPage.triggerErrorMessages(page);
     }
