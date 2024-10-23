@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import config, { UserRole } from "../tests/config.ts";
-import hearingOptions from "../tests/journeys/CaseAPI/hearingOptions.ts";
+import hearingOptions from "./hearingOptions.ts";
 import commonHelpers, { allEvents } from "../tests/helpers/commonHelpers.ts";
 import buildCase from "./buildCase.ts";
 import events_content from "../tests/fixtures/content/CaseAPI/events_content.ts";
