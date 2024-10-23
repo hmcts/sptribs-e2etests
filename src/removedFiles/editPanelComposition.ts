@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
+import { UserRole } from "../tests/config.ts";
 import panelComposition from "./panelComposition.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
+import commonHelpers from "../tests/helpers/commonHelpers.ts";
 import casePanelCompositionPage, {
   Panel2,
   Panel3,
-} from "../../pages/CaseAPI/editPanelComposition/casePanelCompositionPage.ts";
-import submitPage from "../../pages/CaseAPI/editPanelComposition/submitPage.ts";
-import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
+} from "../tests/pages/CaseAPI/editPanelComposition/casePanelCompositionPage.ts";
+import submitPage from "../tests/pages/CaseAPI/editPanelComposition/submitPage.ts";
+import hearingsTabPage from "../tests/pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 
 type EditPanelComposition = {
   editPanelComposition(
