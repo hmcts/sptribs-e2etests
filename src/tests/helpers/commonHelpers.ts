@@ -55,7 +55,7 @@ interface CommonHelpers {
     cy: boolean,
     service: string,
   ): Promise<void>;
-  chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<void>;
+  chooseEventFromDropdown(page: Page, chosenEvent: allEvents): Promise<any>;
   checkNumberAndSubject(
     page: Page,
     caseNumber: string,
@@ -314,10 +314,7 @@ const commonHelpers: CommonHelpers = {
     await Promise.all([promises, expect(locator).toHaveCount(count)]);
   },
 
-  async chooseEventFromDropdown(
-    page: Page,
-    chosenEvent: string,
-  ): Promise<void> {
+  async chooseEventFromDropdown(page: Page, chosenEvent: string): Promise<any> {
     await page.waitForSelector("#next-step", { state: "visible" });
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();

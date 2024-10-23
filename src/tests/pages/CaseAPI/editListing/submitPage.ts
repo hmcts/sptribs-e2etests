@@ -26,6 +26,7 @@ type SubmitPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -53,6 +54,7 @@ const submitPage: SubmitPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h2:text-is("${submitContent.subTitle}")`,
@@ -61,9 +63,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),
