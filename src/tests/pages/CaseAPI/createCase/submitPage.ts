@@ -725,7 +725,7 @@ const submitPage: SubmitPage = {
         page.locator(
           `ccd-read-date-field > span.text-16:text-is("${caseSubjectDetailsObject_content.dayOfBirth} ${await commonHelpers.shortMonths(parseInt(caseSubjectDetailsObject_content.monthOfBirth))} ${caseSubjectDetailsObject_content.yearOfBirth}")`,
         ),
-        1,
+        2,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
