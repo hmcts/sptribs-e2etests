@@ -10,6 +10,7 @@ type CICADetailsTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCICADetailsTab(page: Page): Promise<void>;
   checkValidInfo(page: Page): Promise<void>;
@@ -22,9 +23,10 @@ const cicaDetailsTabPage: CICADetailsTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, true),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, true, subjectName),
       expect(page.locator("h4")).toHaveText(CICADetailsTabContent.title),
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (CICADetailsTabContent as any)[
