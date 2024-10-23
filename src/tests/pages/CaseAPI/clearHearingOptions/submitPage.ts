@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/clearHearingOptions/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -12,6 +11,7 @@ type SubmitPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -25,13 +25,14 @@ const submitPage: SubmitPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageTitle}")`,
     );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`h3:text-is("${caseSubjectDetailsObject_content.name}")`),
+        page.locator(`h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

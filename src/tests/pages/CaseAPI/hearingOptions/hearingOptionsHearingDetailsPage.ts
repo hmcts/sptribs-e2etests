@@ -1,9 +1,10 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, {
   hearingFormat,
 } from "../../../helpers/commonHelpers.ts";
 import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
+import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 
 type HearingOptionsHearingDetailsPage = {
   venue: string;
@@ -13,7 +14,12 @@ type HearingOptionsHearingDetailsPage = {
   previous: string;
   continue: string;
   cancel: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void>;
   fillInFields(
     page: Page,
     venue: boolean,
@@ -33,11 +39,20 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
   continue: '[type="submit"]',
   cancel: ".cancel",
 
-  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${hearingOptionsHearingDetailsContent.pageTitle}")`,
     );
     await Promise.all([
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > p")).toContainText(
+        addCaseNotes_content.caseReference + caseNumber,
+      ),
       ...Array.from({ length: 11 }, (_, index) => {
         const textOnPage = (hearingOptionsHearingDetailsContent as any)[
           `textOnPage${index + 1}`

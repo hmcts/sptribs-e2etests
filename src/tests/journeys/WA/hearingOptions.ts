@@ -1,7 +1,5 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
 import commonHelpers, {
-  allEvents,
   caseRegionCode,
   hearingFormat,
 } from "../../helpers/commonHelpers.ts";
@@ -22,6 +20,7 @@ type HearingOptions = {
     shortNoticeHearing: boolean,
     editJourney: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<any>;
 };
 
@@ -37,6 +36,7 @@ const hearingOptions: HearingOptions = {
     shortNoticeHearing: boolean,
     editJourney: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<any> {
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -46,6 +46,7 @@ const hearingOptions: HearingOptions = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await hearingOptionsRegionDataPage.fillInFields(
       page,
@@ -56,6 +57,8 @@ const hearingOptions: HearingOptions = {
     await hearingOptionsHearingDetailsPage.checkPageLoads(
       page,
       accessibilityTest,
+      caseNumber,
+      subjectName,
     );
     await hearingOptionsHearingDetailsPage.fillInFields(
       page,
@@ -65,7 +68,14 @@ const hearingOptions: HearingOptions = {
       shortNoticeHearing,
     );
     await hearingOptionsHearingDetailsPage.continueOn(page);
-    await submitPage.checkPageLoads(page, region, venue, accessibilityTest);
+    await submitPage.checkPageLoads(
+      page,
+      region,
+      venue,
+      accessibilityTest,
+      caseNumber,
+      subjectName,
+    );
     await submitPage.checkValidInfo(
       page,
       region,
@@ -86,6 +96,7 @@ const hearingOptions: HearingOptions = {
         page,
         caseNumber,
         accessibilityTest,
+        subjectName,
       );
       await hearingOptionsRegionDataPage.fillInFields(
         page,
@@ -96,6 +107,8 @@ const hearingOptions: HearingOptions = {
       await hearingOptionsHearingDetailsPage.checkPageLoads(
         page,
         accessibilityTest,
+        caseNumber,
+        subjectName,
       );
       await hearingOptionsHearingDetailsPage.fillInFields(
         page,
@@ -105,7 +118,14 @@ const hearingOptions: HearingOptions = {
         true,
       );
       await hearingOptionsHearingDetailsPage.continueOn(page);
-      await submitPage.checkPageLoads(page, region, venue, accessibilityTest);
+      await submitPage.checkPageLoads(
+        page,
+        region,
+        venue,
+        accessibilityTest,
+        caseNumber,
+        subjectName,
+      );
       await submitPage.checkValidInfo(
         page,
         region,

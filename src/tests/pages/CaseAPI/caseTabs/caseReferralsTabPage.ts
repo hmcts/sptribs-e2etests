@@ -19,7 +19,7 @@ type CaseReferralsTabPage = {
 };
 
 const caseReferralsTabPage: CaseReferralsTabPage = {
-  caseReferralsTab: ".mat-tab-label",
+  caseReferralsTab: `.mat-tab-label-content:text-is("Case Referrals")`,
 
   async checkPageLoads(
     page: Page,
@@ -59,7 +59,7 @@ const caseReferralsTabPage: CaseReferralsTabPage = {
   },
 
   async changeToCaseReferralsTab(page: Page): Promise<void> {
-    await page.locator(this.caseReferralsTab).nth(12).click();
+    await page.locator(this.caseReferralsTab).click();
   },
 
   async checkValidInfo(

@@ -6,6 +6,7 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/hearingOptions/submit_content.ts";
+import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -16,6 +17,8 @@ type SubmitPage = {
     region: boolean,
     venue: boolean,
     accessibilityTest: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -39,11 +42,17 @@ const submitPage: SubmitPage = {
     region: boolean,
     venue: boolean,
     accessibilityTest: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
     );
     await Promise.all([
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > p")).toContainText(
+        addCaseNotes_content.caseReference + caseNumber,
+      ),
       expect(page.locator(".text-16").nth(0)).toHaveText(
         submitContent.textOnPage1,
       ),

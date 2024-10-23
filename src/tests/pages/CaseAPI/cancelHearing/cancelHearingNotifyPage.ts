@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import cancelHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingNotifyPage_content.ts";
 
@@ -9,6 +8,7 @@ type CancelHearingNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -19,6 +19,7 @@ const cancelHearingNotifyPage: CancelHearingNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${cancelHearingNotifyPageContent.pageTitle}")`,
@@ -27,9 +28,7 @@ const cancelHearingNotifyPage: CancelHearingNotifyPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         cancelHearingNotifyPageContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         cancelHearingNotifyPageContent.caseReference + caseNumber,
       ),

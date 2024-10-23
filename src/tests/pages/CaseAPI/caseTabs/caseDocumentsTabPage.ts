@@ -40,7 +40,7 @@ type CaseDocumentsTabPage = {
 };
 
 const caseDocumentsTabPage: CaseDocumentsTabPage = {
-  caseDocumentsTab: ".mat-tab-label",
+  caseDocumentsTab: `.mat-tab-label-content:text-is("Case Documents")`,
 
   async checkPageLoads(
     page: Page,
@@ -236,7 +236,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
   },
 
   async changeToCaseDocumentsTab(page: Page): Promise<void> {
-    await page.locator(this.caseDocumentsTab).nth(6).click();
+    await page.locator(this.caseDocumentsTab).click();
   },
 
   async checkPageInfo(

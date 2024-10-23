@@ -9,7 +9,7 @@ import commonHelpers, {
   hearingType,
   hearingVenues,
 } from "../tests/helpers/commonHelpers.ts";
-import hearingOptions from "../tests/journeys/CaseAPI/hearingOptions.ts";
+import hearingOptions from "./hearingOptions.ts";
 import createListingHearingTypeAndFormatPage from "../tests/pages/CaseAPI/createListing/createListingHearingTypeAndFormatPage.ts";
 import createListingRegionInfoPage from "../tests/pages/CaseAPI/createListing/createListingRegionInfoPage.ts";
 import createListingListingDetailsPage from "../tests/pages/CaseAPI/createListing/createListingListingDetailsPage.ts";

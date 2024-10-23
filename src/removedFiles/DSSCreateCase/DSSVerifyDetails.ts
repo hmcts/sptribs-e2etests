@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
-import summaryTabPage from "../../pages/CaseAPI/caseTabs/summaryTabPage.ts";
-import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
-import caseDetailsTabPage from "../../pages/CaseAPI/caseTabs/caseDetailsTabPage.ts";
-import casePartiesTabPage from "../../pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
-import caseDocumentsTabPage from "../../pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
-import caseFileViewTabPage from "../../pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
-import { UserRole } from "../../config.ts";
+import historyTabPage from "../../tests/pages/CaseAPI/caseTabs/historyTabPage.ts";
+import summaryTabPage from "../../tests/pages/CaseAPI/caseTabs/summaryTabPage.ts";
+import stateTabPage from "../../tests/pages/CaseAPI/caseTabs/stateTabPage.ts";
+import caseDetailsTabPage from "../../tests/pages/CaseAPI/caseTabs/caseDetailsTabPage.ts";
+import casePartiesTabPage from "../../tests/pages/CaseAPI/caseTabs/casePartiesTabPage.ts";
+import caseDocumentsTabPage from "../../tests/pages/CaseAPI/caseTabs/caseDocumentsTabPage.ts";
+import caseFileViewTabPage from "../../tests/pages/CaseAPI/caseTabs/caseFileViewTabPage.ts";
+import { UserRole } from "../../tests/config.ts";
 
 type DSSVerifyDetails = {
   verifyCaseDetails(
@@ -16,10 +16,10 @@ type DSSVerifyDetails = {
     state: string,
     representationPresent: boolean,
     representationQualified: boolean,
-    time: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<any>;
 };
 
@@ -31,21 +31,21 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     state: string,
     representationPresent: boolean,
     representationQualified: boolean,
-    time: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<any> {
     await historyTabPage.checkPageLoads(
       page,
       accessibilityTest,
       caseNumber,
       state,
+      subjectName,
     );
     await historyTabPage.checkPageInfo(
       page,
       ["Submit case (cic)"],
-      [time],
       user,
       state,
     );
@@ -55,15 +55,22 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       representationPresent,
       caseNumber,
+      subjectName,
     );
     await summaryTabPage.checkPageInfo(
       page,
       caseNumber,
       representationPresent,
       representationQualified,
+      subjectName,
     );
     await stateTabPage.changeToStateTab(page);
-    await stateTabPage.checkPageLoads(page, accessibilityTest, caseNumber);
+    await stateTabPage.checkPageLoads(
+      page,
+      accessibilityTest,
+      caseNumber,
+      subjectName,
+    );
     await stateTabPage.checkStateTab(page, state);
     await caseDetailsTabPage.changeToCaseDetailsTab(page);
     await caseDetailsTabPage.checkPageLoads(
@@ -71,11 +78,13 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       representationPresent,
       caseNumber,
+      subjectName,
     );
     await caseDetailsTabPage.checkPageInfo(
       page,
       representationPresent,
       representationQualified,
+      subjectName,
     );
     await casePartiesTabPage.changeToCasePartiesTab(page);
     await casePartiesTabPage.checkPageLoads(
@@ -83,11 +92,13 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       accessibilityTest,
       representationPresent,
       caseNumber,
+      subjectName,
     );
     await casePartiesTabPage.checkPageInfo(
       page,
       representationPresent,
       representationQualified,
+      subjectName,
     );
     await caseDocumentsTabPage.changeToCaseDocumentsTab(page);
     await caseDocumentsTabPage.checkPageLoads(
@@ -98,6 +109,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       uploadOtherInfo,
       false,
       user,
+      subjectName,
     );
     await caseDocumentsTabPage.checkPageInfo(
       page,
@@ -109,6 +121,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       page,
       accessibilityTest,
       caseNumber,
+      subjectName,
     );
     await caseFileViewTabPage.checkPageInfo(
       page,
