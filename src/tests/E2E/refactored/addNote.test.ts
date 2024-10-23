@@ -150,6 +150,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       false,
       caseNumber203,
+      subjectName,
     );
     await addNote.addNote(page, false, caseNumber203, subjectName);
   });
