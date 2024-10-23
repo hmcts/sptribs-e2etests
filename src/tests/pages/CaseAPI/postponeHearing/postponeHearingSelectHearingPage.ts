@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import postponeHearingSelectHearingContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingSelectHearing_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type PostponeHearingSelectHearingPage = {
@@ -12,6 +11,7 @@ type PostponeHearingSelectHearingPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<string | null>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -27,6 +27,7 @@ const postponeHearingSelectHearingPage: PostponeHearingSelectHearingPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${postponeHearingSelectHearingContent.pageTitle}")`,
@@ -35,9 +36,7 @@ const postponeHearingSelectHearingPage: PostponeHearingSelectHearingPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         postponeHearingSelectHearingContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         postponeHearingSelectHearingContent.caseReference + caseNumber,
       ),
