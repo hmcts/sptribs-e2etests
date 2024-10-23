@@ -107,9 +107,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Create a CIC8 draft in the Case Stayed state.", async ({
-    page,
-  }) => {
+  test("Create a CIC8 draft in the Case Stayed state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber801 = await createCase.createCase(
       page,
