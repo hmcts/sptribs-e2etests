@@ -12,6 +12,7 @@ type EditListingSelectHearingPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<string | null>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -27,6 +28,7 @@ const editListingSelectHearingPage: EditListingSelectHearingPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editListingSelectHearingContent.pageTitle}")`,
@@ -35,9 +37,7 @@ const editListingSelectHearingPage: EditListingSelectHearingPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingSelectHearingContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingSelectHearingContent.caseReference + caseNumber,
       ),

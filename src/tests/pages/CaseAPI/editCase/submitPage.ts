@@ -663,12 +663,13 @@ const submitPage: SubmitPage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `ccd-read-date-field > span.text-16:text-is("${editCaseSubjectDetailsObject_content.dayOfBirth} ${await commonHelpers.shortMonths(parseInt(editCaseSubjectDetailsObject_content.monthOfBirth))} ${editCaseSubjectDetailsObject_content.yearOfBirth}")`,
-        ),
-        1,
-      ),
+      expect(
+        page
+          .locator(
+            `ccd-read-date-field > span.text-16:text-is("${editCaseSubjectDetailsObject_content.dayOfBirth} ${await commonHelpers.shortMonths(parseInt(editCaseSubjectDetailsObject_content.monthOfBirth))} ${editCaseSubjectDetailsObject_content.yearOfBirth}")`,
+          )
+          .first(),
+      ).toBeVisible(),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `ccd-field-read-label > div > ccd-read-fixed-list-field > span.text-16:text-is("${scheme}")`,

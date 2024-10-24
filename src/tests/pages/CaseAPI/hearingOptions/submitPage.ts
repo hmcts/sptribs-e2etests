@@ -161,6 +161,7 @@ const submitPage: SubmitPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);
+    await page.waitForSelector(`h2:text-is("History")`);
   },
 };
 
