@@ -87,7 +87,7 @@ const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
       caseNumber,
       caseNoticeType,
       true,
-      subjectName
+      subjectName,
     );
     await page.click(this.continue);
   },

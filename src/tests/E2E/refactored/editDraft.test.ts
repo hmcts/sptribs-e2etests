@@ -98,7 +98,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1500,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1500);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1500,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
@@ -185,7 +190,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1501,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1501);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1501,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
@@ -277,7 +287,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1502,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1502);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1502,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
@@ -361,7 +376,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1503,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1503);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1503,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
@@ -448,7 +468,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1504,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1504);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1504,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
@@ -522,7 +547,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1505,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1505);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1505,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
@@ -598,7 +628,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1506,
       subjectName,
     );
-    await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1506);
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber1506,
+    );
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 });
@@ -675,6 +710,11 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
     caseNumber1507,
     subjectName,
   );
-  await commonHelpers.signOutAndGoToCase(page, userRoleAdmin, config.CaseAPIBaseURL, caseNumber1507);
+  await commonHelpers.signOutAndGoToCase(
+    page,
+    userRoleAdmin,
+    config.CaseAPIBaseURL,
+    caseNumber1507,
+  );
   await task.removeTask(page, taskNameProcess, subjectName);
 });

@@ -65,7 +65,7 @@ const editDraft: EditDraft = {
           template,
           caseNumber,
           null,
-          subjectName
+          subjectName,
         );
         await submitPage.checkPageLoads(
           page,
