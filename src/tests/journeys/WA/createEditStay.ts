@@ -6,7 +6,6 @@ import addStayPage, {
 import submitPage from "../../pages/CaseAPI/createEditStay/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/createEditStay/confirmPage.ts";
 import summaryTabPage from "../../pages/CaseAPI/caseTabs/summaryTabPage.ts";
-import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
 
 type CreateEditStay = {
   createEditStay(

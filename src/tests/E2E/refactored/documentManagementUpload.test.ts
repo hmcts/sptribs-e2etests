@@ -1,10 +1,11 @@
 import { test } from "@playwright/test";
-import editCICACaseDetails from "../../journeys/WA/editCICACaseDetails.ts";
+import documentManagementUpload from "../../journeys/WA/documentManagementUpload.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import createCase from "../../journeys/WA/createCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
+import hearingOptions from "../../journeys/WA/hearingOptions.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import createSummary from "../../journeys/WA/createSummary.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
@@ -14,12 +15,12 @@ const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 const stateCaseStayed = "Case Status:  Case stayed";
 
-test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): void => {
-  test("Edit CICA case details as a respondent - case management.", async ({
+test.describe("Case-API Upload document tests. @CaseAPI", () => {
+  test("Upload a document to a submitted case. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1400 = await createCase.createCase(
+    const caseNumber1200 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -40,23 +41,26 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1400}`);
-    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber1400, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
-    await editCICACaseDetails.editCICACaseDetails(
+    console.log(`Case Number : ${caseNumber1200}`);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
+    await documentManagementUpload.documentManagementUpload(
       page,
       false,
-      caseNumber1400,
+      false,
+      false,
+      caseNumber1200,
       subjectName,
     );
   });
 
-  test("Edit CICA case details as a respondent - awaiting hearing.", async ({
+  test("Upload a document to a ready to list case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1401 = await createCase.createCase(
+    const caseNumber1201 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -77,9 +81,65 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1401}`);
+    console.log(`Case Number : ${caseNumber1201}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber1401, subjectName);
+    await buildCase.buildCase(page, false, caseNumber1201, subjectName);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber1201,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
+    await documentManagementUpload.documentManagementUpload(
+      page,
+      false,
+      false,
+      false,
+      caseNumber1201,
+      subjectName,
+    );
+  });
+
+  test("Upload multiple documents to an awaiting hearing case.", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1202 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber1202}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1202, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -96,22 +156,28 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       false,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
-      caseNumber1401,
+      caseNumber1202,
       subjectName,
     );
-    await editCICACaseDetails.editCICACaseDetails(
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
+    await documentManagementUpload.documentManagementUpload(
       page,
       false,
-      caseNumber1401,
+      true,
+      false,
+      caseNumber1202,
       subjectName,
     );
   });
 
-  test("Edit CICA case details as a respondent - awaiting outcome.", async ({
+  test("Upload a document to an awaiting outcome case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1402 = await createCase.createCase(
+    const caseNumber1203 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -132,9 +198,9 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1402}`);
+    console.log(`Case Number : ${caseNumber1203}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber1402, subjectName);
+    await buildCase.buildCase(page, false, caseNumber1203, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -151,7 +217,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       false,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
-      caseNumber1402,
+      caseNumber1203,
       subjectName,
     );
     await createSummary.createSummary(
@@ -168,22 +234,28 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       true,
       false,
       false,
-      caseNumber1402,
+      caseNumber1203,
       subjectName,
     );
-    await editCICACaseDetails.editCICACaseDetails(
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
+    await documentManagementUpload.documentManagementUpload(
       page,
       false,
-      caseNumber1402,
+      false,
+      false,
+      caseNumber1203,
       subjectName,
     );
   });
 
-  test("Edit CICA case details as a respondent - case stayed.", async ({
+  test("Upload multiple documents to a closed case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1403 = await createCase.createCase(
+    const caseNumber1204 = await createCase.createCase(
       page,
       userRoleAdmin,
       false,
@@ -204,9 +276,63 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1403}`);
+    console.log(`Case Number : ${caseNumber1204}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber1403, subjectName);
+    await buildCase.buildCase(page, false, caseNumber1204, subjectName);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
+    await closeCase.closeCase(
+      page,
+      false,
+      false,
+      "caseWithdrawn",
+      false,
+      null,
+      null,
+      caseNumber1204,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
+    await documentManagementUpload.documentManagementUpload(
+      page,
+      false,
+      true,
+      false,
+      caseNumber1204,
+      subjectName,
+    );
+  });
+
+  test("Upload a document to a stayed case. @crossbrowserCaseAPI", async ({
+    page,
+  }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1205 = await createCase.createCase(
+      page,
+      userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    console.log(`Case Number : ${caseNumber1205}`);
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1205, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await createEditStay.createEditStay(
       page,
@@ -214,63 +340,21 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       false,
       "awaitingACourtJudgement",
       false,
-      caseNumber1403,
+      caseNumber1205,
       subjectName,
       stateCaseStayed,
     );
-    await editCICACaseDetails.editCICACaseDetails(
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
+    await documentManagementUpload.documentManagementUpload(
       page,
       false,
-      caseNumber1403,
+      false,
+      false,
+      caseNumber1205,
       subjectName,
     );
   });
-});
-
-test("Accessibility test - edit CICA case details - case closed @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
-  page,
-}): Promise<void> => {
-  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber1404 = await createCase.createCase(
-    page,
-    userRoleAdmin,
-    false,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    subjectName,
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
-  console.log(`Case Number : ${caseNumber1404}`);
-  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber1404, subjectName);
-  await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
-  await closeCase.closeCase(
-    page,
-    false,
-    false,
-    "caseWithdrawn",
-    false,
-    null,
-    null,
-    caseNumber1404,
-    subjectName,
-  );
-  await editCICACaseDetails.editCICACaseDetails(
-    page,
-    true,
-    caseNumber1404,
-    subjectName,
-  );
 });
