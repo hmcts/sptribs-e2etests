@@ -342,7 +342,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       false,
       caseNumber1205,
       subjectName,
-      stateCaseStayed
+      stateCaseStayed,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
