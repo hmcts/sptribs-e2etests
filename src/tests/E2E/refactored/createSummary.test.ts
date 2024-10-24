@@ -37,6 +37,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1101}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1101, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -55,7 +56,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1101,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -72,9 +73,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1101,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is allowed.", async ({
@@ -103,6 +103,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1102}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1102, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -121,7 +122,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       null,
       false,
       caseNumber1102,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -138,9 +139,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       true,
       false,
       caseNumber1102,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing over multiple days.", async ({
@@ -169,6 +169,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1103}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1103, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -187,7 +188,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1103,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -204,9 +205,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1103,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary without a full panel - hearing outcome is refused.", async ({
@@ -235,6 +235,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1104}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1104, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -253,7 +254,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1104,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -270,9 +271,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1104,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is withdrawn at hearing.", async ({
@@ -301,6 +301,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1105}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1105, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -319,7 +320,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1105,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -336,9 +337,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1105,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned to face to face.", async ({
@@ -367,6 +367,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1106}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1106, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -385,7 +386,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1106,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -402,9 +403,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1106,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned to video.", async ({
@@ -433,6 +433,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1107}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1107, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -451,7 +452,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1107,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -468,9 +469,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1107,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned due to admin error.", async ({
@@ -499,6 +499,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1108}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1108, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -517,7 +518,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1108,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -534,9 +535,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1108,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as appellant did not attend.", async ({
@@ -565,6 +565,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1109}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1109, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -583,7 +584,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1109,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -600,9 +601,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1109,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as appellant did not have bundle. @crossbrowserCaseAPI", async ({
@@ -631,6 +631,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1110}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1110, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -649,7 +650,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1110,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -666,9 +667,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1110,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as appellant not ready to proceed.", async ({
@@ -697,6 +697,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1111}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1111, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -715,7 +716,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1111,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -732,9 +733,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1111,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned due to complex case.", async ({
@@ -763,6 +763,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1112}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1112, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -781,7 +782,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1112,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -798,9 +799,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1112,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned due to failure to comply with directions.", async ({
@@ -829,6 +829,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1113}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1113, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -847,7 +848,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1113,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -864,9 +865,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1113,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned for Legal Rep/No Sol.", async ({
@@ -895,6 +895,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1114}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1114, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -913,7 +914,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1114,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -930,9 +931,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1114,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned for Other Parties to Attend.", async ({
@@ -961,6 +961,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1115}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1115, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -979,7 +980,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1115,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -996,9 +997,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1115,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further evidence received at hearing.", async ({
@@ -1027,6 +1027,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1116}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1116, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1045,7 +1046,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1116,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1062,9 +1063,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1116,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further evidence supplied but not before Tribunal at hearing.", async ({
@@ -1093,6 +1093,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1117}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1117, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1111,7 +1112,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1117,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1128,9 +1129,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1117,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further Loss of Earnings information required - Appellant.", async ({
@@ -1159,6 +1159,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1118}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1118, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1177,7 +1178,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1118,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1194,9 +1195,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1118,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further Loss of Earnings information required - Respondent.", async ({
@@ -1225,6 +1225,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1119}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1119, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1243,7 +1244,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1119,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1260,9 +1261,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1119,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further medical evidence required - Appellant.", async ({
@@ -1291,6 +1291,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1120}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1120, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1309,7 +1310,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1120,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1326,9 +1327,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1120,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further medical evidence required - Respondent.", async ({
@@ -1357,6 +1357,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1121}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1121, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1375,7 +1376,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1121,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1392,9 +1393,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1121,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further police evidence required - Respondent.", async ({
@@ -1423,6 +1423,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1122}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1122, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1441,7 +1442,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1122,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1458,9 +1459,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1122,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further police evidence required - Appellant.", async ({
@@ -1489,6 +1489,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1123}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1123, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1507,7 +1508,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1123,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1524,9 +1525,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1123,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as further police evidence required - HMCTS (Summons).", async ({
@@ -1555,6 +1555,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1124}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1124, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1573,7 +1574,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1124,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1590,9 +1591,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1124,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned due to insufficient time.", async ({
@@ -1621,6 +1621,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1125}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1125, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1639,7 +1640,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1125,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1656,9 +1657,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1125,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as interpreter required.", async ({
@@ -1687,6 +1687,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1126}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1126, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1705,7 +1706,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1126,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1722,9 +1723,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1126,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as Member Unable to Attend.", async ({
@@ -1753,6 +1753,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1127}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1127, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1771,7 +1772,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1127,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1788,9 +1789,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1127,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as PO did not attend.", async ({
@@ -1819,6 +1819,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1128}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1128, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1837,7 +1838,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1128,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1854,9 +1855,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1128,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned due to Poor Evidence.", async ({
@@ -1885,6 +1885,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1129}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1129, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1903,7 +1904,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1129,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1920,9 +1921,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1129,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as venue not suitable.", async ({
@@ -1951,6 +1951,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1130}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1130, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1969,7 +1970,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1130,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -1986,9 +1987,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1130,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned as witness did not attend.", async ({
@@ -2017,6 +2017,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1131}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1131, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -2035,7 +2036,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1131,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -2052,9 +2053,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1131,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Create hearing summary - hearing outcome is adjourned for other reason.", async ({
@@ -2083,6 +2083,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
     );
     console.log(`Case Number : ${caseNumber1132}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1132, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -2101,7 +2102,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1132,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -2118,9 +2119,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber1132,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
@@ -2149,6 +2149,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       true,
     );
     console.log(`Case Number : ${caseNumber1133}`);
+    await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1133, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -2167,7 +2168,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       null,
       true,
       caseNumber1133,
-      subjectName
+      subjectName,
     );
     await createSummary.createSummary(
       page,
@@ -2184,9 +2185,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       false,
       true,
       caseNumber1133,
-      subjectName
+      subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 });
 
@@ -2216,12 +2216,10 @@ test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
     false,
   );
   console.log(`Case Number : ${caseNumber1134}`);
+  await task.removeTask(page, taskRemovedIssueCase, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1134, subjectName);
-  await commonHelpers.chooseEventFromDropdown(
-    page,
-    "Hearings: Create listing",
-  );
+  await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
   await createListing.createListing(
     page,
     true,
@@ -2234,7 +2232,7 @@ test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
     "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
     false,
     caseNumber1134,
-    subjectName
+    subjectName,
   );
   await createSummary.createSummary(
     page,
@@ -2251,7 +2249,6 @@ test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
     false,
     false,
     caseNumber1134,
-    subjectName
+    subjectName,
   );
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
 });
