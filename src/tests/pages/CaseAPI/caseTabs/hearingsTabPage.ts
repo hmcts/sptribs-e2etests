@@ -521,6 +521,7 @@ const hearingTabPage: HearingsTabPage = {
     // For tab clicking flakiness
     await page.locator(this.hearingsTab).click();
     await page.locator(this.hearingsTab).click();
+    await page.locator(this.hearingsTab).click();
   },
 
   async checkPanelComposition(
