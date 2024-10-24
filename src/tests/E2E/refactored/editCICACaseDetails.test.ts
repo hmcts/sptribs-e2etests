@@ -210,7 +210,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await createEditStay.createEditStay(
       page,
-      true,
+      false,
       false,
       "awaitingACourtJudgement",
       false,
