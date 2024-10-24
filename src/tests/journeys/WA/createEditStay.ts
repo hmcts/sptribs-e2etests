@@ -17,6 +17,7 @@ type CreateEditStay = {
     optionalText: boolean,
     caseNumber: string,
     subjectName: string,
+    state: string,
   ): Promise<any>;
 };
 
@@ -29,6 +30,7 @@ const createEditStay: CreateEditStay = {
     optionalText: boolean,
     caseNumber: string,
     subjectName: string,
+    state: string,
   ): Promise<any> {
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -53,12 +55,20 @@ const createEditStay: CreateEditStay = {
         );
         await submitPage.checkValidInfo(page, stayReason, optionalText);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          subjectName,
+        );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
-        await summaryTabPage.checkStayDetails(page, stayReason, optionalText);
-        await stateTabPage.changeToStateTab(page);
-        await stateTabPage.checkStateTab(page, "Case stayed");
+        await summaryTabPage.checkStayDetails(
+          page,
+          stayReason,
+          optionalText,
+          state,
+        );
         break;
       case true:
         await addStayPage.checkPageLoads(
@@ -68,6 +78,30 @@ const createEditStay: CreateEditStay = {
           subjectName,
         );
         await addStayPage.triggerErrorMessages(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          stayReason,
+          optionalText,
+          subjectName,
+        );
+        await submitPage.checkValidInfo(page, stayReason, optionalText);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          subjectName,
+          caseNumber,
+        );
+        await confirmPage.closeAndReturnToCase(page);
+        await summaryTabPage.changeToSummaryTab(page);
+        await summaryTabPage.checkStayDetails(
+          page,
+          stayReason,
+          optionalText,
+          state,
+        );
         break;
     }
   },
