@@ -1,22 +1,37 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/reinstateCase/confirm_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 
 type ConfirmPage = {
   closeAndReturn: string;
-  checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
+  checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void>;
   closeAndReturnToCase(page: Page): Promise<void>;
 };
 
 const createCaseConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
-  async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
+  async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${confirm_content.pageTitle}")`,
     );
     await Promise.all([
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        createListingListingDetailsContent.caseReference + caseNumber,
+      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h1:text-is("${confirm_content.subTitle1}")`),
         1,

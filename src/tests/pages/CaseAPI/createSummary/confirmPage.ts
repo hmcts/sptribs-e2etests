@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirmContent from "../../../fixtures/content/CaseAPI/createSummary/confirm_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type ConfirmPage = {
   checkPageLoads(
@@ -44,6 +43,7 @@ const confirmPage: ConfirmPage = {
     await page
       .getByRole("button", { name: "Close and Return to case details" })
       .click();
+    await page.waitForSelector(`h2:text-is("History")`);
   },
 };
 

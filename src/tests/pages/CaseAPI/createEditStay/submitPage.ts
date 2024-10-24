@@ -61,10 +61,9 @@ const submitPage: SubmitPage = {
       }),
     ]);
     if (stayReason === "Other") {
-      await commonHelpers.checkVisibleAndPresent(
+      await expect(
         page.locator(`.text-16:text-is("${submit_content.textOnPage4}")`),
-        1,
-      );
+      ).toBeVisible();
     }
     if (optionalText) {
       await commonHelpers.checkVisibleAndPresent(
