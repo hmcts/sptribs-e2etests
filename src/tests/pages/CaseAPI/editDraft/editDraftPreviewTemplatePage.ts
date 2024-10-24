@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers, {
   CaseNoticeType,
 } from "../../../helpers/commonHelpers.ts";
@@ -15,12 +14,14 @@ type EditDraftPreviewTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
     template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -33,6 +34,7 @@ const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editDraftPreviewTemplateContent.pageTitle}")`,
@@ -41,9 +43,7 @@ const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editDraftPreviewTemplateContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editDraftPreviewTemplateContent.caseReference + caseNumber,
       ),
@@ -79,6 +79,7 @@ const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
     template: Template,
     caseNumber: string,
     caseNoticeType: CaseNoticeType,
+    subjectName: string,
   ): Promise<void> {
     await commonHelpers.checkDocument(
       page,
@@ -86,6 +87,7 @@ const editDraftPreviewTemplatePage: EditDraftPreviewTemplatePage = {
       caseNumber,
       caseNoticeType,
       true,
+      subjectName
     );
     await page.click(this.continue);
   },
