@@ -69,7 +69,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
       caseNumber1000,
-      subjectName
+      subjectName,
     );
   });
 });
