@@ -13,6 +13,7 @@ type EditListingOtherInformationPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -28,6 +29,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingotherInformation`,
@@ -39,9 +41,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editListingOtherInformationContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingOtherInformationContent.caseReference + caseNumber,
       ),

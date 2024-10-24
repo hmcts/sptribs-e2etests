@@ -16,6 +16,7 @@ import createEditStay from "../../journeys/WA/createEditStay.ts";
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedNewCase = "Register New Case";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
+const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
@@ -353,6 +354,7 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
     false,
     caseNumber207,
     subjectName,
+    stateCaseStayed,
   );
   await addNote.addNote(page, true, caseNumber207, subjectName);
 });
