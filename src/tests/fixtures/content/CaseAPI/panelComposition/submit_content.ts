@@ -2,7 +2,6 @@ const submit_content = {
   pageTitle: "Case: Panel Composition",
   pageSubtitle: "Check your answers",
   caseReference: "Case number: ",
-  name: "Subject AutoTesting",
   textOnPage1: "Check the information below carefully.",
   textOnPage2: "Panel 1",
   textOnPage3: "Panel 2",
