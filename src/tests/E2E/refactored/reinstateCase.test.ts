@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
-import reinstateCase from "../journeys/WA/reinstateCase.ts";
-import commonHelpers from "../helpers/commonHelpers.ts";
-import createCase from "../journeys/WA/createCase.ts";
-import events_content from "../fixtures/content/CaseAPI/events_content.ts";
-import buildCase from "../journeys/WA/buildCase.ts";
-import closeCase from "../journeys/WA/closeCase.ts";
+import reinstateCase from "../../journeys/WA/reinstateCase.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import createCase from "../../journeys/WA/createCase.ts";
+import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../../journeys/WA/buildCase.ts";
+import closeCase from "../../journeys/WA/closeCase.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 
