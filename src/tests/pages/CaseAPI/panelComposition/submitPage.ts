@@ -13,6 +13,7 @@ type SubmitPage = {
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -25,11 +26,12 @@ const submitPage: SubmitPage = {
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(`h1:text-is("${submit_content.pageTitle}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`h3:text-is("${submit_content.name}")`),
+        page.locator(`h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

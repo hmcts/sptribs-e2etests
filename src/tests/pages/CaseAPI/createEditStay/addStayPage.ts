@@ -136,6 +136,9 @@ const addStayPage: AddStayPage = {
     await page.click(`#stayStayReason-Other`);
     await new Promise((resolve) => setTimeout(resolve, 5000)); // avoid ExUI concurrency not loading
     await page.click(this.continue);
+    await page.waitForSelector(
+      `#error-summary-title:text-is("${addStay_content.errorBanner}")`,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(

@@ -15,6 +15,7 @@ type EditListingRegionInfoPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -34,6 +35,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingregionInfo`,
@@ -45,9 +47,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editListingRegionInfoContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingRegionInfoContent.caseReference + caseNumber,
       ),
