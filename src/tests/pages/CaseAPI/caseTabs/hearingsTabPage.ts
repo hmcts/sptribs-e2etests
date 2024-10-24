@@ -720,7 +720,7 @@ const hearingTabPage: HearingsTabPage = {
           5,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span.text-16:text-is("Yes")`),
+          page.locator(`span.text-16:text-is("Yes")`).first(),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(
