@@ -2190,14 +2190,14 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
+test.only("Accessibility test - create summary @accessibilityCaseAPI.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber1134 = await createCase.createCase(
     page,
     userRoleAdmin,
-    true,
+    false,
     "Assessment",
     "Other",
     true,
@@ -2222,7 +2222,7 @@ test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
   await createListing.createListing(
     page,
-    true,
+    false,
     true,
     "1-London",
     "Case management",
