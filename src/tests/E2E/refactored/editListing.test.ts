@@ -625,7 +625,7 @@ test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber1607 = await createCase.createCase(
+  const caseNumber1608 = await createCase.createCase(
     page,
     userRoleAdmin,
     false,
@@ -646,9 +646,9 @@ test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber1607}`);
+  console.log(`Case Number : ${caseNumber1608}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-  await buildCase.buildCase(page, false, caseNumber1607, subjectName);
+  await buildCase.buildCase(page, false, caseNumber1608, subjectName);
   await task.removeTask(page, taskRemovedIssueCase, subjectName);
   await hearingOptions.hearingOptions(
     page,
@@ -660,7 +660,7 @@ test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
     "Hybrid",
     false,
     true,
-    caseNumber1607,
+    caseNumber1608,
     subjectName,
   );
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
@@ -675,7 +675,7 @@ test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
     false,
     "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
     false,
-    caseNumber1607,
+    caseNumber1608,
     subjectName,
   );
   await editListing.editListing(
@@ -689,7 +689,7 @@ test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
     false,
     "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
     false,
-    caseNumber1607,
+    caseNumber1608,
     subjectName,
   );
 });
