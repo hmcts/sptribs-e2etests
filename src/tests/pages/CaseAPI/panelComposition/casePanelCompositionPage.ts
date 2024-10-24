@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/clearHearingOptions/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import casePanelComposition_content from "../../../fixtures/content/CaseAPI/panelComposition/casePanelComposition_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
@@ -10,6 +9,7 @@ type CasePanelCompositionPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -28,13 +28,14 @@ const casePanelCompositionPage: CasePanelCompositionPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `h1:text-is("${casePanelComposition_content.pageTitle}")`,
     );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`h3:text-is("${caseSubjectDetailsObject_content.name}")`),
+        page.locator(`h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

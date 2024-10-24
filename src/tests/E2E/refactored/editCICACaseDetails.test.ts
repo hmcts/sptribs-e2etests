@@ -12,6 +12,7 @@ import createEditStay from "../../journeys/WA/createEditStay.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
+const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): void => {
   test("Edit CICA case details as a respondent - case management.", async ({
@@ -215,6 +216,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       false,
       caseNumber1403,
       subjectName,
+      stateCaseStayed,
     );
     await editCICACaseDetails.editCICACaseDetails(
       page,
