@@ -18,6 +18,7 @@ const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
 const eventOrders = "Orders: Create draft";
 const caseManagementState = "Case management";
+const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Case-API Create draft tests. @CaseAPI", () => {
   test("Create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
@@ -142,6 +143,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
       false,
       caseNumber801,
       subjectName,
+      stateCaseStayed,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
