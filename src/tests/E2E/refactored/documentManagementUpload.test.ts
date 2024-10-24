@@ -13,6 +13,7 @@ import createEditStay from "../../journeys/WA/createEditStay.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
+const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Case-API Upload document tests. @CaseAPI", () => {
   test("Upload a document to a submitted case. @crossbrowserCaseAPI", async ({
@@ -341,6 +342,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       false,
       caseNumber1205,
       subjectName,
+      stateCaseStayed
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
