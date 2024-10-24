@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
-import commonHelpers, { State } from "../../helpers/commonHelpers.ts";
-import config, { UserRole } from "../../config.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 import { Template } from "../../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
-import createDraft from "../../../removedFiles/createDraft.ts";
 import editDraftOrderPage from "../../pages/CaseAPI/editDraft/editDraftOrderPage.ts";
 import editDraftOrderMainContentPage from "../../pages/CaseAPI/editDraft/editDraftOrderMainContentPage.ts";
 import editDraftAddDocumentFooterPage from "../../pages/CaseAPI/editDraft/editDraftAddDocumentFooterPage.ts";
@@ -14,92 +12,29 @@ import ordersAndDecisionsTabPage from "../../pages/CaseAPI/caseTabs/ordersAndDec
 type EditDraft = {
   editDraft(
     page: Page,
-    user: UserRole,
-    initialState: State,
     accessibilityTest: boolean,
     errorMessaging: boolean,
     template: Template,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const editDraft: EditDraft = {
   async editDraft(
     page: Page,
-    user: UserRole,
-    initialState: State,
     accessibilityTest: boolean,
     errorMessaging: boolean,
     template: Template,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    let caseNumber: string | void = "";
-    switch (initialState) {
-      default:
-        throw new Error("The initial state is invalid.");
-      case "Case Management":
-        caseNumber = await createDraft.createDraft(
-          page,
-          "caseWorker",
-          "Case Management",
-          false,
-          false,
-          template,
-        );
-        break;
-      case "Ready to list":
-        caseNumber = await createDraft.createDraft(
-          page,
-          "caseWorker",
-          "Ready to list",
-          false,
-          false,
-          template,
-        );
-        break;
-      case "Awaiting Hearing":
-        caseNumber = await createDraft.createDraft(
-          page,
-          "caseWorker",
-          "Awaiting Hearing",
-          false,
-          false,
-          template,
-        );
-        break;
-      case "Case Stayed":
-        caseNumber = await createDraft.createDraft(
-          page,
-          "caseWorker",
-          "Case Stayed",
-          false,
-          false,
-          template,
-        );
-        break;
-      case "Case closed":
-        caseNumber = await createDraft.createDraft(
-          page,
-          "caseWorker",
-          "Case closed",
-          false,
-          false,
-          template,
-        );
-        break;
-    }
-    if (typeof caseNumber !== "string") {
-      throw new Error("The case number is invalid.");
-    }
-    await commonHelpers.signOutAndGoToCase(
-      page,
-      user,
-      config.CaseAPIBaseURL,
-      caseNumber,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Orders: Edit draft");
     await editDraftOrderPage.checkPageLoads(
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     switch (errorMessaging) {
       default:
@@ -109,35 +44,48 @@ const editDraft: EditDraft = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDraftOrderMainContentPage.fillInFields(page);
         await editDraftAddDocumentFooterPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDraftAddDocumentFooterPage.fillInFields(page);
         await editDraftPreviewTemplatePage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDraftPreviewTemplatePage.fillInFields(
           page,
           template,
           caseNumber,
           null,
+          subjectName,
         );
-        await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await submitPage.checkAllInfo(page, editedTemplate);
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await confirmPage.closeAndReturnToCase(page);
         await page.click(
           `.mat-tab-label-content:text-is("Orders & Decisions")`,
         );
         await ordersAndDecisionsTabPage.checkDraftOrder(page, template, true);
-
         break;
       case true:
         await editDraftOrderPage.triggerErrorMessages(page);
@@ -147,12 +95,14 @@ const editDraft: EditDraft = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDraftOrderMainContentPage.triggerErrorMessages(page);
         await editDraftAddDocumentFooterPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await editDraftAddDocumentFooterPage.triggerErrorMessages(page);
         break;

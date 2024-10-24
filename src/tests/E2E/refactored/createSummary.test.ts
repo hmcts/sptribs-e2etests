@@ -2190,7 +2190,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
   });
 });
 
-test.only("Accessibility test - create summary @accessibilityCaseAPI.", async ({
+test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
