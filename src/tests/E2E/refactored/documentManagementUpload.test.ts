@@ -336,7 +336,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
     await createEditStay.createEditStay(
       page,
-      true,
+      false,
       false,
       "awaitingACourtJudgement",
       false,
