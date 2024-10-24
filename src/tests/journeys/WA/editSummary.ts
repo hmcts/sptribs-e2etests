@@ -24,7 +24,6 @@ import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type EditSummary = {
   editSummary(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
@@ -36,13 +35,14 @@ type EditSummary = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     fullPanelHearing: boolean,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const editSummary: EditSummary = {
   async editSummary(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
@@ -54,25 +54,9 @@ const editSummary: EditSummary = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     fullPanelHearing: boolean,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    let caseNumber: string | void;
-
-    caseNumber = await createSummary.createSummary(
-      page,
-      user,
-      false,
-      "Case management",
-      "Hybrid",
-      "Morning",
-      false,
-      "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
-      "Fox Court",
-      "Allowed",
-      null,
-      true,
-      false,
-      false,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Hearings: Edit summary");
     if (caseNumber !== undefined) {
       switch (errorMessaging) {
@@ -81,6 +65,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           const hearing = await editSummarySelectHearingPage.fillInFields(page);
           await editSummarySelectHearingPage.continueOn(page);
@@ -88,6 +73,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummaryHearingTypeAndFormatPage.fillInFields(
             page,
@@ -100,6 +86,7 @@ const editSummary: EditSummary = {
             caseNumber,
             accessibilityTest,
             venue,
+            subjectName,
           );
           await editSummaryListingDetailsPage.checkFields(page);
           await editSummaryListingDetailsPage.fillFields(
@@ -113,6 +100,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           const panel = await editSummaryHearingAttendeesPage.fillFields(
             page,
@@ -123,6 +111,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummaryHearingAttendeesRolePage.checkFields(page);
           await editSummaryHearingAttendeesRolePage.continueOn(page);
@@ -131,6 +120,7 @@ const editSummary: EditSummary = {
             caseNumber,
             accessibilityTest,
             errorMessaging,
+            subjectName,
           );
           await editSummaryHearingOutcomePage.fillFields(
             page,
@@ -142,6 +132,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummaryHearingRecordingUploadPage.checkFields(page);
           await editSummaryHearingRecordingUploadPage.continueOn(page);
@@ -154,6 +145,7 @@ const editSummary: EditSummary = {
             hearingAdjournedReason,
             venue,
             accessibilityTest,
+            subjectName,
           );
           await submitPage.checkValidInfo(
             page,
@@ -170,7 +162,12 @@ const editSummary: EditSummary = {
             venueName,
           );
           await submitPage.continueOn(page);
-          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await confirmPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            subjectName,
+          );
           await confirmPage.continueOn(page);
           await hearingsTabPage.changeToHearingsTab(page);
           await hearingsTabPage.checkPageLoads(
@@ -202,6 +199,7 @@ const editSummary: EditSummary = {
             panel,
             fullPanelHearing,
             false,
+            subjectName,
           );
           break;
         case true:
@@ -209,6 +207,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummarySelectHearingPage.triggerErrorMessages(page);
           await editSummarySelectHearingPage.fillInFields(page);
@@ -217,6 +216,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummaryHearingTypeAndFormatPage.continueOn(page);
           await editSummaryListingDetailsPage.checkPageLoads(
@@ -224,6 +224,7 @@ const editSummary: EditSummary = {
             caseNumber,
             accessibilityTest,
             venue,
+            subjectName,
           );
           await editSummaryListingDetailsPage.triggerErrorMessages(page);
           await editSummaryListingDetailsPage.fillFields(
@@ -237,6 +238,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummaryHearingAttendeesPage.triggerErrorMessages(page);
           await editSummaryHearingAttendeesPage.fillFields(
@@ -248,6 +250,7 @@ const editSummary: EditSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editSummaryHearingAttendeesRolePage.triggerErrorMessages(page);
           await editSummaryHearingAttendeesRolePage.checkFields(page);
@@ -257,6 +260,7 @@ const editSummary: EditSummary = {
             caseNumber,
             accessibilityTest,
             errorMessaging,
+            subjectName,
           );
           await editSummaryHearingOutcomePage.triggerErrorMessages(page);
           break;

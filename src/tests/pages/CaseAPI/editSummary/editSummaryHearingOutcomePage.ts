@@ -16,6 +16,7 @@ type EditSummaryHearingOutcomePage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(
     page: Page,
@@ -36,6 +37,7 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/edit-hearing-summaryhearingOutcome`,
@@ -47,9 +49,7 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editSummaryHearingOutcomeContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editSummaryHearingOutcomeContent.caseReference + caseNumber,
       ),
