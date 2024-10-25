@@ -1,9 +1,8 @@
 import { expect, Page } from "@playwright/test";
+import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import config from "../../config.ts";
 import myWork_content from "../../fixtures/content/CaseAPI/myWork/myWork_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
-import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
-import axeTest from "../../helpers/accessibilityTestHelper.ts";
 
 type MyWorkPage = {
   myTasksTab: string;
@@ -13,6 +12,7 @@ type MyWorkPage = {
   assignToMeLink: string;
   myWorkLink: string;
   availableTasksUrl: string;
+  myTasksUrl: string;
   checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -38,6 +38,7 @@ const myWorkPage: MyWorkPage = {
   assignToMeLink: "#action_claim",
   myWorkLink: `a.hmcts-primary-navigation__link:text-is(" My work ")`,
   availableTasksUrl: `${config.CaseAPIBaseURL.replace(/\/cases$/, "")}/work/my-work/available`,
+  myTasksUrl: `${config.CaseAPIBaseURL.replace(/\/cases$/, "")}/work/my-work/list`,
 
   async checkPageLoads(page, accessibilityTest, user): Promise<void> {
     await page.locator(".hmcts-primary-navigation__link").first().click();
@@ -203,19 +204,66 @@ const myWorkPage: MyWorkPage = {
     taskName: string,
     subjectName: string,
   ): Promise<void> {
-    await page.locator(this.myTasksTab).click();
-    await page.waitForSelector(`td:has-text("${subjectName}")`);
-
-    await page
+    const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`;
+    const subjectTask = page
       .locator("tr")
       .filter({
         has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(
         `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,
-      )
-      .click();
+      );
+    const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
+
+    await page.locator(this.myTasksTab).click();
+    await page.locator(subjectAutoTesting).first().waitFor();
+    while (true) {
+      let locatorFound = false;
+      if (await subjectTask.isVisible()) {
+        await subjectTask.click();
+        break;
+      }
+
+      const paginationExists =
+        (await page.locator(paginationLocator).count()) > 0;
+      if (!paginationExists) {
+        await page.goto(this.myTasksUrl);
+        await page.waitForTimeout(2000);
+      } else {
+        const paginationCount = await page.locator(paginationLocator).count();
+        for (let i = 0; i < paginationCount; i++) {
+          const nextPage = page.locator(paginationLocator).nth(i);
+          const nextPageNumber = await nextPage.textContent();
+
+          if (nextPageNumber) {
+            console.log(`Navigating to page ${nextPageNumber}`);
+            await page.waitForSelector(paginationLocator);
+            await nextPage.click();
+            await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
+            await page.waitForTimeout(2000);
+
+            if (await subjectTask.isVisible()) {
+              locatorFound = true;
+              await subjectTask.click();
+              break;
+            }
+          }
+        }
+        if (locatorFound) {
+          await subjectTask.click();
+          break;
+        } else {
+          console.log(
+            "No more pages left to check. Restarting from the first page...",
+          );
+          await page.getByText("page 1").click();
+          await page.waitForSelector(`li > span:text("1")`);
+          await page.waitForTimeout(2000);
+        }
+      }
+    }
   },
+
   async navigateToMyWorkPage(page: Page): Promise<void> {
     await page.goto(this.availableTasksUrl);
     await page.waitForSelector(`h3:text-is("My work")`);
