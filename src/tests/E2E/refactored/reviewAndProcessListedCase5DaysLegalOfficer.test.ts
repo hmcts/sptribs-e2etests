@@ -164,7 +164,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
   });
 
-  test("Task is completable via next steps link - assign to me", async ({
+  test("Task is completable via next steps link - assign to me @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -27,7 +27,7 @@ const stateCaseStayed = "Case Status:  Case stayed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Send order tests @CaseAPI", () => {
-  test("Send a draft order in the Ready to list state", async ({
+  test("Send a draft order in the Ready to list state @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

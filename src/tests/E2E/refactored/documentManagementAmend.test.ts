@@ -133,7 +133,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
     );
   });
 
-  test("Amend documents uploaded to a case awaiting a hearing. @crossbrowserCaseAPI", async ({
+  test("Amend documents uploaded to a case awaiting a hearing.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

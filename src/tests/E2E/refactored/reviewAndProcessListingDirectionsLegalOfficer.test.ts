@@ -34,7 +34,7 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
@@ -628,7 +628,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
   });
 
-  test("Noncompliance task is cancellable through close case", async ({
+  test("Noncompliance task is cancellable through close case @crossbrowserCaseAPI", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);

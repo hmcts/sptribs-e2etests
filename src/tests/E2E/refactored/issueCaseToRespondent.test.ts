@@ -145,7 +145,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown - Issue a case to a representative", async ({
+  test("Task is completed via event dropdown - Issue a case to a representative @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -480,7 +480,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Issue to respondent : Error messaging", async ({ page }) => {
+  test("Issue to respondent : Error messaging @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber31 = await createCase.createCase(
       page,

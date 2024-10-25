@@ -292,7 +292,9 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber134 = await createCase.createCase(
       page,

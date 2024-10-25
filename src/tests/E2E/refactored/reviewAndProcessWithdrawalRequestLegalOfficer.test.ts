@@ -522,7 +522,9 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     );
   });
 
-  test("Error Messaging - Manage due date", async ({ page }) => {
+  test("Error Messaging - Manage due date @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber152 = await createCase.createCase(

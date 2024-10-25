@@ -385,9 +385,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
-  test("Edit a CIC10 draft in the Case closed state. @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Edit a CIC10 draft in the Case closed state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1504 = await createCase.createCase(
       page,
@@ -477,7 +475,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await task.removeTask(page, taskNameProcess, subjectName);
   });
 
-  test("Edit a CIC13 draft. @crossbrowserCaseAPI", async ({ page }) => {
+  test("Edit a CIC13 draft.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1505 = await createCase.createCase(
       page,

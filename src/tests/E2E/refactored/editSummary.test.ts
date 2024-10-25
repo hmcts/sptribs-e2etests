@@ -94,7 +94,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Final, Face to face, all day, Fox Court, Refused. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Final, Face to face, all day, Fox Court, Refused.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -176,7 +176,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Interlocutory, Video, Afternoon, Fox Court, Withdrawn at hearing. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Interlocutory, Video, Afternoon, Fox Court, Withdrawn at hearing.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -258,7 +258,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Case Management, Telephone, Morning, Fox Court, Adjourned, Admin Error. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Case Management, Telephone, Morning, Fox Court, Adjourned, Admin Error.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -340,7 +340,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Case Management, Paper, Morning, Fox Court, Adjourned, Other. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Case Management, Paper, Morning, Fox Court, Adjourned, Other.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

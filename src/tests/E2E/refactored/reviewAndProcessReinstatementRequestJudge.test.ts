@@ -27,7 +27,7 @@ const stateBeforeCompletion = "Case closed";
 const stateAfterCompletion = "Case closed";
 
 test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

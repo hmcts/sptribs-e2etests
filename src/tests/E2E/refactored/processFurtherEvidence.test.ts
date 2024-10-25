@@ -314,7 +314,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Document management: Upload - Contact parties", async ({ page }) => {
+  test("Document management: Upload - Contact parties @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber163 = await createCase.createCase(
       page,
@@ -444,7 +446,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 });
 
-test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

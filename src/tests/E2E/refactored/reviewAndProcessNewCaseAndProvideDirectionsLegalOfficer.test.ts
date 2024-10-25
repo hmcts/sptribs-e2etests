@@ -34,7 +34,7 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -672,7 +672,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 });
 
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);

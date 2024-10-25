@@ -251,7 +251,9 @@ test.describe("Review Stay Request - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber114 = await createCase.createCase(
       page,

@@ -264,7 +264,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     );
   });
 
-  test("Reinstate a case which has a strikeout decision with no optional text. @crossbrowserCaseAPI", async ({
+  test("Reinstate a case which has a strikeout decision with no optional text.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

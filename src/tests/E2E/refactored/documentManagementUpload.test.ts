@@ -305,7 +305,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
     );
   });
 
-  test("Upload a document to a stayed case. @crossbrowserCaseAPI", async ({
+  test("Upload a document to a stayed case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

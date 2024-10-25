@@ -515,7 +515,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
   });
 });
 
-test("Task completion: Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);

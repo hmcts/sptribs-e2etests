@@ -422,7 +422,9 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Process task is cancellable through close case", async ({ page }) => {
+  test("Process task is cancellable through close case @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber126 = await createCase.createCase(
       page,

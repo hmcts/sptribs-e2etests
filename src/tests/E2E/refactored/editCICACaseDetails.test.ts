@@ -14,7 +14,7 @@ const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 const stateCaseStayed = "Case Status:  Case stayed";
 
-test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): void => {
+test.describe("Edit CICA case details tests @CaseAPI", (): void => {
   test("Edit CICA case details as a respondent - case management.", async ({
     page,
   }): Promise<void> => {
