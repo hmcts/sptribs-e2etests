@@ -157,10 +157,15 @@ const commonHelpers: CommonHelpers = {
     const privilegeDayPath = "src/tests/fixtures/privilegeDay.json";
 
     const fetchBankHolidays = async () => {
-      const response = await axios.get(
-        "https://www.gov.uk/bank-holidays/scotland.json",
-      );
-      return response.data;
+      try {
+        const response = await axios.get(
+          "https://www.gov.uk/bank-holidays/scotland.json",
+        );
+        return response.data;
+      } catch (error) {
+        console.error("Failed to fetch bank holidays:", error);
+        throw new Error("Could not fetch bank holidays");
+      }
     };
 
     const fetchPrivilegeDay = async () => {
