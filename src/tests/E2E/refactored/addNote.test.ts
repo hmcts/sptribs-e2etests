@@ -50,7 +50,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     });
   }
 
-  test("Add a note to a Submitted case case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a Submitted case case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -111,7 +111,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber202, subjectName);
   });
 
-  test("Add a note to a Ready to list case case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a Ready to list case case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -156,7 +156,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber203, subjectName);
   });
 
-  test("Add a note to a awaiting hearing case case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a awaiting hearing case case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -206,7 +206,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber204, subjectName);
   });
 
-  test("Add a note to a awaiting outcome case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a awaiting outcome case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -273,9 +273,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber205, subjectName);
   });
 
-  test("Add a note to a case closed case. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Add a note to a case closed case.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber206 = await createCase.createCase(
       page,

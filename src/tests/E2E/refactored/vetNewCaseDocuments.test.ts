@@ -238,7 +238,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   });
 });
 
-test("Task completion: Accessibility test / Build Case : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Build Case : Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

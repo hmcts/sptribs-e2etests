@@ -19,7 +19,7 @@ const eventRefer = "Refer case to legal officer";
 const removedTask = "Review other request - Legal Officer";
 
 test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
-  test("Refer case to legal officer - ready to list, listing directions", async ({
+  test("Refer case to legal officer - ready to list, listing directions @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

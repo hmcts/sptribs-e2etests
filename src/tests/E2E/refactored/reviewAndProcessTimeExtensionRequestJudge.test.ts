@@ -29,7 +29,7 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

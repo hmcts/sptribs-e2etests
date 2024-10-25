@@ -36,7 +36,7 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task - Case management", async ({
+  test("Task is completable via next steps link - assign to me and go to task - Case management @crossbrowserCaseAPI", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
@@ -502,7 +502,9 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
     );
   });
 
-  test("Process task is cancellable through close case", async ({ page }) => {
+  test("Process task is cancellable through close case @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber85 = await createCase.createCase(
       page,

@@ -251,7 +251,9 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber100 = await createCase.createCase(
       page,

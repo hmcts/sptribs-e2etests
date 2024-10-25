@@ -193,7 +193,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
   });
 
-  test("Edit hearing options in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
+  test("Edit hearing options in the 'Ready to list' state.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

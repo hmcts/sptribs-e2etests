@@ -12,7 +12,7 @@ const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 
 test.describe("Edit hearing listing tests @CaseAPI", (): void => {
-  test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East. @crossbrowserCaseAPI", async ({
+  test("Edit hearing listing, 1-London, Case management, F2F, Morning, East. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -283,7 +283,9 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber09 = await createCase.createCase(
       page,
@@ -408,7 +410,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
     );
   });
 
-  test("Error Messaging", async ({ page }) => {
+  test("Error Messaging @crossbrowserCaseAPI", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber60 = await createCase.createCase(
       page,
