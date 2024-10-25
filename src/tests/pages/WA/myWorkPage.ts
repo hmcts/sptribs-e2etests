@@ -204,8 +204,7 @@ const myWorkPage: MyWorkPage = {
     taskName: string,
     subjectName: string,
   ): Promise<void> {
-    await page.locator(this.myTasksTab).click();
-    await page.waitForLoadState("domcontentloaded");
+    const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`
     const subjectTask = page
       .locator("tr")
       .filter({
@@ -216,6 +215,8 @@ const myWorkPage: MyWorkPage = {
       );
     const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
 
+    await page.locator(this.myTasksTab).click();
+    await page.locator(subjectAutoTesting).first().waitFor();
     while (true) {
       let locatorFound = false;
       if (await subjectTask.isVisible()) {
