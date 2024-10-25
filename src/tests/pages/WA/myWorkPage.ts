@@ -204,7 +204,7 @@ const myWorkPage: MyWorkPage = {
     taskName: string,
     subjectName: string,
   ): Promise<void> {
-    const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`
+    const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`;
     const subjectTask = page
       .locator("tr")
       .filter({
