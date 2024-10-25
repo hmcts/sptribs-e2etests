@@ -26,6 +26,7 @@ type EditSummaryListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     venue: hearingVenues | null,
+    subjectName: string,
   ): Promise<void>;
   checkFields(page: Page): Promise<void>;
   fillFields(
@@ -58,6 +59,7 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     venue: hearingVenues | null,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editSummaryListingDetailsContent.pageTitle}")`,
@@ -66,9 +68,7 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editSummaryListingDetailsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editSummaryListingDetailsContent.caseReference + caseNumber,
       ),
