@@ -59,7 +59,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber103}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber103, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -170,7 +169,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber104}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber104, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -279,7 +277,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber105}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber105, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -388,7 +385,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber106}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber106, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -448,7 +444,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber107}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber107, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -541,7 +536,6 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber108}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber108, subjectName);
   await task.removeTask(page, taskRemoved, subjectName);

@@ -59,7 +59,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber69}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber69, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -170,7 +169,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber70}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber70, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -279,7 +277,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber71}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber71, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -388,7 +385,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber72}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber72, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -448,7 +444,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber73}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber73, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -548,7 +543,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber74}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber74, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -698,7 +692,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber75}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber75, subjectName);
   await task.removeTask(page, taskRemoved, subjectName);

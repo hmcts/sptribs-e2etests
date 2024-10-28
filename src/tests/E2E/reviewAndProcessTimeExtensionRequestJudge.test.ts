@@ -54,7 +54,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber137}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber137, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -165,7 +164,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber138}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber138, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -276,7 +274,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber139}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber139, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -385,7 +382,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber140}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber140, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -445,7 +441,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber141}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber141, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

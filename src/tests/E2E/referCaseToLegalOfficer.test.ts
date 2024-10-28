@@ -44,7 +44,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2200}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2200, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -97,7 +96,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2201}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2201, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -150,7 +148,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2202}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2202, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -203,7 +200,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2203}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2203, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -256,7 +252,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2204}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2204, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -309,7 +304,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2205}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2205, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -362,7 +356,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2206}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2206, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -422,7 +415,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2207}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2207, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -480,7 +472,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2208}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2208, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -538,7 +529,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2209}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2209, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -596,7 +586,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2210}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2210, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -654,7 +643,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2211}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2211, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -712,7 +700,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2212}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2212, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -787,7 +774,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2213}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2213, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -862,7 +848,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2214}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2214, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -937,7 +922,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2215}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2215, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1012,7 +996,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2216}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2216, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1087,7 +1070,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2217}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2217, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1162,7 +1144,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2218}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2218, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1244,7 +1225,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2219}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2219, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1294,7 +1274,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2220}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2220, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1344,7 +1323,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2221}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2221, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1394,7 +1372,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2222}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2222, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1444,7 +1421,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2223}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2223, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1494,7 +1470,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2224}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2224, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1544,7 +1519,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2225}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2225, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -1601,7 +1575,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2226}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2226, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -1652,7 +1625,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2227}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2227, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -1703,7 +1675,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2228}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2228, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -1754,7 +1725,6 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2229}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2229, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

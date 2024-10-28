@@ -36,7 +36,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber301}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber301, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -91,7 +90,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber302}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber302, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -148,7 +146,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber303}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber303, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -205,7 +202,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber304}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber304, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -260,7 +256,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber305}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber305, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -317,7 +312,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber306}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber306, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -374,7 +368,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber307}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber307, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -432,7 +425,6 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber308}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber308, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");

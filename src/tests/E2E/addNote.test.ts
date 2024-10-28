@@ -38,7 +38,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
         false,
         subjectName,
       );
-      console.log(`Case Number : ${caseNumber200}`);
       await commonHelpers.signOutAndGoToCase(
         page,
         userRoleAdmin,
@@ -75,7 +74,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber201}`);
     await addNote.addNote(page, false, caseNumber201, subjectName);
   });
 
@@ -104,7 +102,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber202}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber202, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -136,7 +133,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber203}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber203, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -181,7 +177,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber204}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber204, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -231,7 +226,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber205}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber205, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -296,7 +290,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber206}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber206, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -340,7 +333,6 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber207}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber207, subjectName);
   await task.removeTask(page, taskRemovedIssueCase, subjectName);

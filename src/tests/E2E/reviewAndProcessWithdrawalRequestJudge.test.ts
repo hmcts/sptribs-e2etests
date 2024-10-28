@@ -54,7 +54,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber142}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber142, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -165,7 +164,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber143}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber143, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -274,7 +272,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber144}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber144, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -383,7 +380,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber145}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber145, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -443,7 +439,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber146}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber146, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

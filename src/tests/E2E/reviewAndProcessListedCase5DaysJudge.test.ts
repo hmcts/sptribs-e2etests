@@ -54,7 +54,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber04, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -189,7 +188,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber05}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber05, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -314,7 +312,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber06}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber06, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

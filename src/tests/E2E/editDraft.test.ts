@@ -51,7 +51,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1500}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1500, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -130,7 +129,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1501}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1501, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -222,7 +220,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1502}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1502, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -319,7 +316,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1503}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1503, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -408,7 +404,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1504}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1504, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -498,7 +493,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1505}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1505, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -579,7 +573,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1506}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1506, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -661,7 +654,6 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber1507}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1507, subjectName);
   await task.removeTask(page, taskRemovedIssueCase, subjectName);

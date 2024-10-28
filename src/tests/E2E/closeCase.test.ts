@@ -34,7 +34,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber500}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber500, subjectName);
     await hearingOptions.hearingOptions(
@@ -89,7 +88,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber501}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber501, subjectName);
     await hearingOptions.hearingOptions(
@@ -144,7 +142,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber502}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber502, subjectName);
     await hearingOptions.hearingOptions(
@@ -199,7 +196,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber503}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber503, subjectName);
     await hearingOptions.hearingOptions(
@@ -254,7 +250,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber504}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber504, subjectName);
     await hearingOptions.hearingOptions(
@@ -309,7 +304,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber505}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber505, subjectName);
     await hearingOptions.hearingOptions(
@@ -364,7 +358,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber506}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber506, subjectName);
     await hearingOptions.hearingOptions(
@@ -419,7 +412,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber507}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber507, subjectName);
     await hearingOptions.hearingOptions(
@@ -474,7 +466,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber508}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber508, subjectName);
     await hearingOptions.hearingOptions(
@@ -529,7 +520,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber509}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber509, subjectName);
     await hearingOptions.hearingOptions(
@@ -584,7 +574,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber510}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber510, subjectName);
     await hearingOptions.hearingOptions(
@@ -639,7 +628,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber511}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber511, subjectName);
     await hearingOptions.hearingOptions(
@@ -694,7 +682,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber512}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber512, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -737,7 +724,6 @@ test("Accessibility test - Close case @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber513}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber513, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

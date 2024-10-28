@@ -36,7 +36,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1700}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1700, subjectName);
     await panelComposition.panelComposition(
@@ -76,7 +75,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1701}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1701, subjectName);
     await panelComposition.panelComposition(
@@ -116,7 +114,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1702}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1702, subjectName);
     await panelComposition.panelComposition(
@@ -156,7 +153,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1703}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1703, subjectName);
     await panelComposition.panelComposition(
@@ -196,7 +192,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1704}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1704, subjectName);
     await panelComposition.panelComposition(
@@ -246,7 +241,6 @@ test("Accessibility test - Create and Edit Panel composition @accessibilityCaseA
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber1705}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1705, subjectName);
   await panelComposition.panelComposition(

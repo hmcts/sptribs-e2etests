@@ -52,7 +52,6 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI", ():
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber153}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber153, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -166,7 +165,6 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI", ():
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber154}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber154, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -280,7 +278,6 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI", ():
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber155}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber155, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

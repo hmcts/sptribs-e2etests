@@ -58,7 +58,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber132}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber132, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -206,7 +205,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber133}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber133, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -317,7 +315,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber134}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber134, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -426,7 +423,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber135}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber135, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -486,7 +482,6 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber136}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber136, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

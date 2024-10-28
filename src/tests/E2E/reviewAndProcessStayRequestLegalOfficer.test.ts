@@ -60,7 +60,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber117}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber117, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -209,7 +208,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber118}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber118, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -318,7 +316,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber119}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber119, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -427,7 +424,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber120}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber120, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -487,7 +483,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber121}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber121, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

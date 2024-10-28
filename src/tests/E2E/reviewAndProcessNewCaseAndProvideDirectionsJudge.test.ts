@@ -59,7 +59,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber62}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber62, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -170,7 +169,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber63}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber63, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -281,7 +279,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber64}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber64, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -390,7 +387,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber65}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber65, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -450,7 +446,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber66}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber66, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -550,7 +545,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber67}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber67, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -700,7 +694,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber68}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber68, subjectName);
   await task.removeTask(page, taskRemoved, subjectName);

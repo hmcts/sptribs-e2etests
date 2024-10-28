@@ -38,7 +38,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1300}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1300, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -90,7 +89,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1301}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1301, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -155,7 +153,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1302}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1302, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -225,7 +222,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1303}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1303, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

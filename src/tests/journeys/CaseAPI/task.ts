@@ -162,7 +162,6 @@ const task: Task = {
       taskName,
       subjectName,
     );
-    console.log("task completion successful");
   },
 
   async removeTask(page, taskRemoved, subjectName): Promise<void> {

@@ -36,7 +36,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2000}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2000, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -93,7 +92,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2001}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2001, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -150,7 +148,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2002}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2002, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -207,7 +204,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2003}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2003, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -264,7 +260,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2004}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2004, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -321,7 +316,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2005}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2005, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -378,7 +372,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2006}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2006, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -435,7 +428,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2007}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2007, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -492,7 +484,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2008}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2008, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -549,7 +540,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2009}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2009, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -606,7 +596,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2010}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2010, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -663,7 +652,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2011}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2011, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -720,7 +708,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2012}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2012, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -777,7 +764,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2013}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2013, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -834,7 +820,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2014}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2014, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -891,7 +876,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2015}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2015, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -948,7 +932,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2016}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2016, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1005,7 +988,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2017}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2017, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1062,7 +1044,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2018}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2018, subjectName);
     await commonHelpers.chooseEventFromDropdown(
@@ -1120,7 +1101,6 @@ test("Accessibility test - postpone hearing @accessibilityCaseAPI. @crossbrowser
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber2019}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber2019, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");

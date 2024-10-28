@@ -36,7 +36,6 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1000}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1000, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);

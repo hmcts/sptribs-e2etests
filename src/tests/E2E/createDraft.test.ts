@@ -46,7 +46,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber800}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber800, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -131,7 +130,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber801}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber801, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -215,7 +213,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber802}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber802, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);

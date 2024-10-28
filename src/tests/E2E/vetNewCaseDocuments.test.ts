@@ -42,7 +42,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber156}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -116,7 +115,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber157}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -188,7 +186,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber158}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
     await editCase.editCase(
       page,
@@ -263,7 +260,6 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber159}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.editCase);
   await editCase.editCase(
     page,

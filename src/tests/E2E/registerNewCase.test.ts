@@ -33,7 +33,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber34}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -98,7 +97,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber35}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -163,7 +161,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber36}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -228,7 +225,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber37}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -293,7 +289,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber38}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -358,7 +353,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber39}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -421,7 +415,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber40}`);
     await task.seeTask(page, userRole, false, taskName, subjectName);
     await task.initiateTask(
       page,
@@ -478,7 +471,6 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     false,
     subjectName,
   );
-  console.log(`Case Number : ${caseNumber41}`);
   await task.seeTask(page, userRole, true, taskName, subjectName);
   await task.initiateTask(
     page,

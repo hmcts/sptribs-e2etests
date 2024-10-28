@@ -34,7 +34,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2300}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2300, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -85,7 +84,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2301}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2301, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -136,7 +134,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2302}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2302, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -187,7 +184,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2303}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2303, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -238,7 +234,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2304}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2304, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -289,7 +284,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2305}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2305, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -340,7 +334,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2306}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2306, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -391,7 +384,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2307}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2307, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -443,7 +435,6 @@ test("Accessibility test - Reinstate case. @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber2308}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber2308, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

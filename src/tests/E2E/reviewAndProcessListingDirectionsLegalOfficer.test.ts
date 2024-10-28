@@ -60,7 +60,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber45}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber45, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -209,7 +208,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber46}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber46, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -356,7 +354,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber47}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber47, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -502,7 +499,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber48}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber48, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -562,7 +558,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber49}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber49, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -654,7 +649,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber50}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber50, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, eventRefer);

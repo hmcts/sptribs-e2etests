@@ -36,7 +36,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber401}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber401, subjectName);
     await hearingOptions.hearingOptions(
@@ -86,7 +85,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber402}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber402, subjectName);
     await hearingOptions.hearingOptions(
@@ -130,7 +128,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber403}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber403, subjectName);
     await hearingOptions.hearingOptions(
@@ -174,7 +171,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber404}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber404, subjectName);
     await hearingOptions.hearingOptions(
@@ -218,7 +214,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber405}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber405, subjectName);
     await hearingOptions.hearingOptions(
@@ -263,7 +258,6 @@ test("Accessibility test @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber406}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber406, subjectName);
   await hearingOptions.hearingOptions(

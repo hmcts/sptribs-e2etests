@@ -54,7 +54,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber122}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber122, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -165,7 +164,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber123}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber123, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -276,7 +274,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber124}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber124, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -385,7 +382,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber125}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber125, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -447,7 +443,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber126}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber126, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

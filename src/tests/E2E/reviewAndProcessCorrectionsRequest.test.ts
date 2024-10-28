@@ -52,7 +52,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber20}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber20, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -166,7 +165,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber21}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber21, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -278,7 +276,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber22}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber22, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

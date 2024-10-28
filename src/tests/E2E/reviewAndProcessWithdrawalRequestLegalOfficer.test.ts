@@ -59,7 +59,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber147}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber147, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -170,7 +169,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber148}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber148, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -279,7 +277,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber149}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber149, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -388,7 +385,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber150}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber150, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -448,7 +444,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber151}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber151, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -548,7 +543,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber152}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber152, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

@@ -52,7 +52,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber109}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber109, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -166,7 +165,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber110}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber110, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -278,7 +276,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber111}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber111, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

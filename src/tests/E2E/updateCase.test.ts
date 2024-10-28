@@ -24,7 +24,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       "waHearingCentreAdmin",
@@ -66,7 +65,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       "waHearingCentreAdmin",
@@ -108,7 +106,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       "waHearingCentreAdmin",
@@ -150,7 +147,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       "waHearingCentreAdmin",

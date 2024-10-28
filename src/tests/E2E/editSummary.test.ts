@@ -37,7 +37,6 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1800}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1800, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -119,7 +118,6 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1801}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1801, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -201,7 +199,6 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1802}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1802, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -283,7 +280,6 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1803}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1803, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -365,7 +361,6 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1804}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1804, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -447,7 +442,6 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1805}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1805, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -530,7 +524,6 @@ test("Accessibility test - edit summary @accessibilityCaseAPI", async ({
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber1806}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1806, subjectName);
   await task.removeTask(page, taskRemovedIssueCase, subjectName);

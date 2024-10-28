@@ -52,7 +52,6 @@ test.describe("Send order tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2400}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2400, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -168,7 +167,6 @@ test.describe("Send order tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2401}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2401, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -281,7 +279,6 @@ test.describe("Send order tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2402}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2402, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -397,7 +394,6 @@ test.describe("Send order tests @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber2403}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2403, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

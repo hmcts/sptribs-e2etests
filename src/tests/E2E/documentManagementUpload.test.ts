@@ -41,7 +41,6 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1200}`);
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -81,7 +80,6 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1201}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1201, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -137,7 +135,6 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1202}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1202, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -198,7 +195,6 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1203}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1203, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -276,7 +272,6 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1204}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1204, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -330,7 +325,6 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1205}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1205, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);

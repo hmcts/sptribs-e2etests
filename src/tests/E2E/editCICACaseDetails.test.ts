@@ -40,7 +40,6 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1400}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1400, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -77,7 +76,6 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1401}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1401, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -132,7 +130,6 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1402}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1402, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -204,7 +201,6 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber1403}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1403, subjectName);
     await task.removeTask(page, taskRemovedIssueCase, subjectName);
@@ -252,7 +248,6 @@ test("Accessibility test - edit CICA case details - case closed @accessibilityCa
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber1404}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1404, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

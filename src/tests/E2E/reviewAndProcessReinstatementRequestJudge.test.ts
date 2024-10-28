@@ -52,7 +52,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber92}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber92, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -166,7 +165,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber93}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber93, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
@@ -278,7 +276,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber94}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber94, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);

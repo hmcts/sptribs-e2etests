@@ -54,7 +54,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber89}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber89, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -189,7 +188,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber90}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber90, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -322,7 +320,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber91}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber91, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

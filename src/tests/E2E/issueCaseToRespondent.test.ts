@@ -46,7 +46,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber24}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber24, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -108,7 +107,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber25}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber25, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -170,7 +168,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber26}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber26, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -232,7 +229,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber27}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber27, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -294,7 +290,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber28}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber28, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -354,7 +349,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber29}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber29, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -404,7 +398,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber30}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber30, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -453,7 +446,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber31}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber31, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -505,7 +497,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber31}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber31, subjectName);
     await task.seeTask(page, userRole, false, taskName, subjectName);
@@ -568,7 +559,6 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber33}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber33, subjectName);
   await task.seeTask(page, userRole, true, taskName, subjectName);

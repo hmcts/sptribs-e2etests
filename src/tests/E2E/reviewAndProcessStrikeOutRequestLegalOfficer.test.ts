@@ -60,7 +60,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber127}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber127, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -209,7 +208,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber128}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber128, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -318,7 +316,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber129}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber129, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -427,7 +424,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber130}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber130, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -487,7 +483,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber131}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber131, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);

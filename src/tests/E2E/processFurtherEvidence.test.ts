@@ -51,7 +51,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber160}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleAdmin,
@@ -151,7 +150,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber161}`);
     await commonHelpers.signOutAndGoToCase(
       page,
       userRoleAdmin,
@@ -256,7 +254,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber162}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber162, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -339,7 +336,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber163}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber163, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -408,7 +404,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber164}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber164, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -471,7 +466,6 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
     true,
     false,
   );
-  console.log(`Case Number : ${caseNumber165}`);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber165, subjectName);
   await task.removeTask(page, taskRemoved, subjectName);

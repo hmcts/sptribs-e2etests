@@ -54,7 +54,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber98}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber98, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -165,7 +164,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber99}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber99, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -276,7 +274,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber100}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber100, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -385,7 +382,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber101}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber101, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
@@ -445,7 +441,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       true,
       false,
     );
-    console.log(`Case Number : ${caseNumber102}`);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber102, subjectName);
     await task.removeTask(page, taskRemoved, subjectName);
