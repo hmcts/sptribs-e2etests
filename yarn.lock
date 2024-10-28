@@ -119,7 +119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.48.2":
+"@playwright/test@npm:^1.46.1":
   version: 1.48.2
   resolution: "@playwright/test@npm:1.48.2"
   dependencies:
@@ -175,12 +175,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.10.0":
-  version: 20.16.13
-  resolution: "@types/node@npm:20.16.13"
+"@types/node@npm:*":
+  version: 22.8.1
+  resolution: "@types/node@npm:22.8.1"
+  dependencies:
+    undici-types: "npm:~6.19.8"
+  checksum: 10/ae969e3d956dead1422c35d568ea5d48dd124a38a1a337cbd120fec6e13cc92b45c7308f91f1139fcd2337a67d4704d5614d6a2c444b1fb268f85e9f1d24c713
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.17.1":
+  version: 20.17.1
+  resolution: "@types/node@npm:20.17.1"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/6e7b82119372cc12d28fcc1b0c10d1b8fa560bbb500f87a4c68bc446a0986d42c92e0f583040167841a0c598131979c3399b17c736c9fb8ba4f0dcf2b2048a84
+  checksum: 10/d1f4cd7158df97167953031f7245af3203f52b5f4965c175253b96489c7c55e4c2d4c8a697bb34211bfb99b8824cfcf6287e16cabdac6184a99eedcb26fdd432
   languageName: node
   linkType: hard
 
@@ -1388,7 +1397,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.48.2, playwright-core@npm:^1.48.2":
+"playwright-core@npm:1.48.2, playwright-core@npm:^1.46.1":
   version: 1.48.2
   resolution: "playwright-core@npm:1.48.2"
   bin:
@@ -1715,11 +1724,11 @@ __metadata:
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
-    "@playwright/test": "npm:^1.48.2"
-    "@types/node": "npm:^20.10.0"
+    "@playwright/test": "npm:^1.46.1"
+    "@types/node": "npm:^20.17.1"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
-    playwright-core: "npm:^1.48.2"
+    playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.3.3"
     ts-node: "npm:^10.9.2"
@@ -1887,7 +1896,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
+"undici-types@npm:~6.19.2, undici-types@npm:~6.19.8":
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10/cf0b48ed4fc99baf56584afa91aaffa5010c268b8842f62e02f752df209e3dea138b372a60a963b3b2576ed932f32329ce7ddb9cb5f27a6c83040d8cd74b7a70
