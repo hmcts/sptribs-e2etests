@@ -102,7 +102,7 @@ const myWorkPage: MyWorkPage = {
 
   async selectAvailableTasks(page: Page): Promise<void> {
     await page.locator(this.availableTasksTab).click();
-    page.waitForURL(/.*\/available$/);
+    await page.waitForURL(/.*\/available$/);
     await page.waitForTimeout(5000);
   },
 

@@ -4,7 +4,6 @@ import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import CheckYourAnswersContent from "../../fixtures/content/DSSCreateCase/CheckYourAnswers_content.ts";
-import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
 import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import uploadOtherInformation_content from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";

@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import createEditStaySubmit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
@@ -147,7 +146,7 @@ const summaryTabPage: SummaryTabPage = {
     await page.waitForSelector(
       `.text-16:has-text("${summaryTab_content.textOnPage10}")`,
     );
-    expect(page.locator("markdown.markdown > h4")).toContainText(state);
+    await expect(page.locator("markdown.markdown > h4")).toContainText(state);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -208,30 +207,29 @@ const summaryTabPage: SummaryTabPage = {
     optionalText: boolean,
     state: string,
   ): Promise<void> {
-    const removeReasonText = removeStaySubmit_content[removeReason];
     await page.waitForSelector(
       `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
     );
-    expect(page.locator("markdown.markdown > h4")).toContainText(state);
-    expect(
+    await expect(page.locator("markdown.markdown > h4")).toContainText(state);
+    await expect(
       page.locator(
         `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
       ),
     ).toBeVisible();
 
     if (removeReason === "Other") {
-      expect(
+      await expect(
         page.locator(
           `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
         ),
       ).toBeVisible();
-      expect(
+      await expect(
         page
           .locator("#case-viewer-field-read--removeStayStayRemoveReason")
           .getByText("Other"),
       ).toBeVisible();
 
-      expect(
+      await expect(
         page.locator(
           `ccd-read-text-field > span:has-text("${removeStay_content.otherText}")`,
         ),
@@ -239,12 +237,12 @@ const summaryTabPage: SummaryTabPage = {
     }
 
     if (optionalText) {
-      expect(
+      await expect(
         page
           .getByRole("cell", { name: "Provide additional details" })
           .locator("div"),
       ).toBeVisible();
-      expect(
+      await expect(
         page.locator(
           `ccd-read-text-area-field > span:has-text("${removeStay_content.optionalText}")`,
         ),

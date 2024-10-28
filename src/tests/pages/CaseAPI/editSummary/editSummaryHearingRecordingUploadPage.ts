@@ -3,7 +3,6 @@ import path from "path";
 import config from "../../../config.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import editSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingRecordingUpload_content.ts";
 
 type EditSummaryHearingRecordingUploadPage = {

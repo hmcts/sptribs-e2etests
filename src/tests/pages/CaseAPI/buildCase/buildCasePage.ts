@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import buildCase_content from "../../../fixtures/content/CaseAPI/buildCase/buildCase_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 
 type BuildCasePage = {
   checkPageLoads(

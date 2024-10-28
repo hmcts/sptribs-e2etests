@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
-import createFEApplication from "../journeys/WA/DSSCreateCase/createCase.ts";
+import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
-import task from "../journeys/WA/task.ts";
+import task from "../journeys/CaseAPI/task.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
   test("Check for an existing case to update, upload one document and additional information - CY", async ({

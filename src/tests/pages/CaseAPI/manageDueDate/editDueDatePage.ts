@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import orderDueDates_content from "../../../fixtures/content/CaseAPI/sendOrder/orderDueDates_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
