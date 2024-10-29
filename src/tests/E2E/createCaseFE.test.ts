@@ -1,11 +1,10 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
 import task from "../journeys/CaseAPI/task.ts";
-
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemoved = "Register New Case";
 
 test.describe("DSS Create case tests. @DSSCreate", (): void => {
   test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
@@ -15,7 +14,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber701 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       true,
@@ -28,11 +27,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber701,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
@@ -42,7 +45,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber702 = await createFEApplication.createFEApplication(
       page,
       true,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       true,
@@ -55,11 +58,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber702,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
@@ -69,7 +76,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber703 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -82,11 +89,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber703,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
@@ -96,7 +107,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber704 = await createFEApplication.createFEApplication(
       page,
       true,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -109,11 +120,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber704,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
@@ -123,7 +138,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber705 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -136,11 +151,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber705,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
@@ -150,7 +169,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber706 = await createFEApplication.createFEApplication(
       page,
       true,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -163,11 +182,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber706,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
@@ -177,7 +200,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber707 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       false,
       false,
@@ -190,11 +213,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber707,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
@@ -204,7 +231,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber708 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -217,11 +244,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber708,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
@@ -231,7 +262,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     const caseNumber709 = await createFEApplication.createFEApplication(
       page,
       true,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       false,
       false,
@@ -244,11 +275,15 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber709,
     );
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
   });
 
   test("Test all back buttons on the Frontend application", async ({
@@ -258,7 +293,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       true,
@@ -278,7 +313,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   //   await createFEApplication.createFEApplication(
   //     page,
   //     false,
-  //     "citizen",
+  //     waUsers_content.userRoleCitizen,
   //     true,
   //     true,
   //     true,
@@ -296,7 +331,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   //   await createFEApplication.createFEApplication(
   //     page,
   //     true,
-  //     "citizen",
+  //     waUsers_content.userRoleCitizen,
   //     true,
   //     true,
   //     true,
@@ -317,7 +352,7 @@ test("Accessibility test every page on DSS submit. @DSSAccessibility", async ({
   await createFEApplication.createFEApplication(
     page,
     false,
-    "demoCitizen",
+    waUsers_content.userRoleCitizen,
     true,
     true,
     true,

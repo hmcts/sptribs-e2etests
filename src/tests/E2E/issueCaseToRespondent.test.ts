@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
@@ -10,15 +14,8 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 
-const taskName = "Issue Case To Respondent";
 const priority = " low ";
-const assignedUser = "sptribswa hearingcentreadmin";
-const userRole = "waHearingCentreAdmin";
 const numberOfDays = 2;
-const event = "Case: Issue to respondent";
-const stateBeforeCompletion = "Case management";
-const stateAfterCompletion = "Case management";
-const caseClosedState = "Case closed";
 
 test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
@@ -27,7 +24,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber24 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -48,24 +45,30 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber24, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber24,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Issue to respondent",
+      states_content.caseManagementState,
       subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       false,
       ["Subject", "Representative", "Respondent", "Applicant"],
@@ -75,9 +78,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber24,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -88,7 +91,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber25 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -109,24 +112,30 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber25, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber25,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Issue to respondent",
+      states_content.caseManagementState,
       subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       false,
       ["Subject"],
@@ -136,9 +145,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber25,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -149,7 +158,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber26 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -170,24 +179,30 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber26, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber26,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Issue to respondent",
+      states_content.caseManagementState,
       subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       false,
       ["Representative"],
@@ -197,9 +212,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber26,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -210,7 +225,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber27 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -231,24 +246,30 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber27, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber27,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Issue to respondent",
+      states_content.caseManagementState,
       subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       false,
       ["Respondent"],
@@ -258,9 +279,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber27,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -271,7 +292,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber28 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -292,24 +313,30 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber28, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber28,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Issue to respondent",
+      states_content.caseManagementState,
       subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       false,
       ["Applicant"],
@@ -319,9 +346,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber28,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -330,7 +357,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber29 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -351,7 +378,13 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber29, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -368,9 +401,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber29,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -379,7 +412,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber30 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -400,7 +433,13 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber30, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -414,9 +453,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber30,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -427,7 +466,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber31 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -448,7 +487,13 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber31, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -465,9 +510,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber31,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -478,7 +523,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber31 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -499,24 +544,30 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber31, subjectName);
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber31,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Issue to respondent",
+      states_content.caseManagementState,
       subjectName,
     );
     await issueToRespondent.issueToRespondent(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       true,
       ["Subject"],
@@ -526,9 +577,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.issueCaseToRespondentTask,
       caseNumber31,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -540,7 +591,7 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber33 = await createCase.createCase(
     page,
-    userRole,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -561,24 +612,30 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber33, subjectName);
-  await task.seeTask(page, userRole, true, taskName, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    true,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRole,
+    waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber33,
-    taskName,
+    taskNames_content.issueCaseToRespondentTask,
     priority,
-    assignedUser,
+    authors_content.assignedUserAdmin,
     numberOfDays,
-    event,
-    stateBeforeCompletion,
+    "Case: Issue to respondent",
+    states_content.caseManagementState,
     subjectName,
   );
   await issueToRespondent.issueToRespondent(
     page,
-    userRole,
+    waUsers_content.userRoleAdmin,
     true,
     false,
     ["Subject", "Representative", "Respondent", "Applicant"],
@@ -588,9 +645,9 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
   await task.checkCompletedTask(
     page,
     true,
-    taskName,
+    taskNames_content.issueCaseToRespondentTask,
     caseNumber33,
-    stateAfterCompletion,
+    states_content.caseManagementState,
     subjectName,
   );
 });

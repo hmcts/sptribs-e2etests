@@ -1,4 +1,7 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
@@ -12,12 +15,6 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import config from "../config.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-const stateCaseStayed = "Case Status:  Case stayed";
-const eventRefer = "Refer case to legal officer";
-const removedTask = "Review other request - Legal Officer";
-
 test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
   test("Refer case to legal officer - ready to list, listing directions @crossbrowserCaseAPI", async ({
     page,
@@ -25,7 +22,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2200 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -46,7 +43,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2200, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -60,7 +61,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2200,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -77,7 +81,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2201 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -98,7 +102,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2201, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -112,7 +120,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2201,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -129,7 +140,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2202 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -150,7 +161,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2202, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -164,7 +179,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2202,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -181,7 +199,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2203 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -202,7 +220,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2203, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -216,7 +238,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2203,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -233,7 +258,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2204 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -254,7 +279,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2204, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -268,7 +297,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2204,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -285,7 +317,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2205 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -306,7 +338,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2205, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -320,7 +356,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2205,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -337,7 +376,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2206 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -358,7 +397,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2206, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -372,7 +415,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2206,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -387,7 +433,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber2206,
     );
-    await task.removeTask(page, removedTask, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
   });
 
   test("Refer case to legal officer - awaiting hearing, rule 27 request", async ({
@@ -396,7 +446,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2207 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -417,7 +467,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2207, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -436,7 +490,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2207,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -453,7 +510,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2208 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -474,7 +531,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2208, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -493,7 +554,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2208,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -510,7 +574,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2209 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -531,7 +595,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2209, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -550,7 +618,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2209,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -567,7 +638,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2210 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -588,7 +659,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2210, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -607,7 +682,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2210,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -624,7 +702,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2211 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -645,7 +723,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2211, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -664,7 +746,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2211,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -681,7 +766,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2212 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -702,7 +787,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2212, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -738,7 +827,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2212,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -755,7 +847,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2213 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -776,7 +868,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2213, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -812,7 +908,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2213,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -829,7 +928,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2214 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -850,7 +949,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2214, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -886,7 +989,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2214,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -903,7 +1009,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2215 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -924,7 +1030,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2215, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -960,7 +1070,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2215,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -977,7 +1090,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2216 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -998,7 +1111,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2216, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1034,7 +1151,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2216,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1051,7 +1171,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2217 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1072,7 +1192,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2217, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1108,7 +1232,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2217,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1125,7 +1252,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2218 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1146,7 +1273,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2218, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1182,7 +1313,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2218,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1197,7 +1331,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber2218,
     );
-    await task.removeTask(page, removedTask, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
   });
 
   test("Refer case to legal officer - case stayed, listing directions", async ({
@@ -1206,7 +1344,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2219 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1227,7 +1365,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2219, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1236,9 +1378,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2219,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1255,7 +1400,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2220 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1276,7 +1421,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2220, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1285,9 +1434,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2220,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1304,7 +1456,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2221 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1325,7 +1477,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2221, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1334,9 +1490,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2221,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1353,7 +1512,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2222 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1374,7 +1533,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2222, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1383,9 +1546,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2222,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1402,7 +1568,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2223 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1423,7 +1589,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2223, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1432,9 +1602,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2223,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1451,7 +1624,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2224 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1472,7 +1645,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2224, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1481,9 +1658,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2224,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1500,7 +1680,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2225 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1521,7 +1701,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2225, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -1530,9 +1714,12 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       false,
       caseNumber2225,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1547,7 +1734,11 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber2225,
     );
-    await task.removeTask(page, removedTask, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
   });
 
   test("Refer case to legal officer - case closed, corrections", async ({
@@ -1556,7 +1747,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2226 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1589,7 +1780,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2226,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1606,7 +1800,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2227 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1639,7 +1833,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2227,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1656,7 +1853,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2228 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1689,7 +1886,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2228,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -1706,7 +1906,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2229 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1739,7 +1939,10 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
       caseNumber2229,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,

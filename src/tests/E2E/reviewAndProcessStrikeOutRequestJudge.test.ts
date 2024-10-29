@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
@@ -10,23 +14,10 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 
-const taskName = "Review Strike out request - Judge";
-const taskNameProcess = "Process strike out directions returned";
 const priorityReview = null;
 const priorityProcess = " low ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
-const eventRefer = "Refer case to judge";
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case management";
-const stateAfterCompletion = "Case management";
-const caseClosedState = "Case closed";
-const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - CIC8 - ME Joint Instruction", async ({
@@ -35,7 +26,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber122 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -56,8 +47,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber122, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -66,19 +61,25 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       caseNumber122,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewStrikeOutJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber122,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -92,30 +93,30 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber122,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber122,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -132,9 +133,9 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       caseNumber122,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -145,7 +146,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber123 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -166,8 +167,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber123, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -176,19 +181,25 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       caseNumber123,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewStrikeOutJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber123,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -202,30 +213,30 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber123,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber123,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -242,9 +253,9 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       caseNumber123,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -255,7 +266,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber124 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -276,8 +287,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber124, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -286,19 +301,25 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       caseNumber124,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewStrikeOutJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Event DropDown",
       false,
       caseNumber124,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -312,30 +333,30 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber124,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber124,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -352,9 +373,9 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       caseNumber124,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -363,7 +384,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber125 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -384,8 +405,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber125, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -394,7 +419,13 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       caseNumber125,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewStrikeOutJudge,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -411,9 +442,9 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber125,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -424,7 +455,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber126 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -445,8 +476,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber126, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -455,19 +490,25 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       caseNumber126,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewStrikeOutJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber126,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -481,16 +522,16 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber126,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processStrikeOut,
       subjectName,
     );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
@@ -509,9 +550,9 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber126,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });

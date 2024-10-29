@@ -1,4 +1,6 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
@@ -7,9 +9,6 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-
 test.describe("Create hearing listing tests @CaseAPI", (): void => {
   test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
     page,
@@ -17,7 +16,7 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1000 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -38,7 +37,11 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1000, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,

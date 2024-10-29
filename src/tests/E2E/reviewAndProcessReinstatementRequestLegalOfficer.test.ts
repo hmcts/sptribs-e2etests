@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
@@ -9,22 +13,10 @@ import task from "../journeys/CaseAPI/task.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 
-const taskName = "Review Reinstatement request - Legal Officer";
-const taskNameProcess = "Process Reinstatement decision notice";
 const priorityReview = " low ";
 const priorityProcess = " low ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserLO = "sptribswa seniorcaseworker";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleLO = "waSeniorCaseworker";
-const userRoleCaseWorker = "waCaseWorker";
-const eventRefer = "Refer case to legal officer";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 5;
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case closed";
-const stateAfterCompletion = "Case closed";
 
 test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -33,7 +25,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber95 = await createCase.createCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       false,
       "Assessment",
       "Other",
@@ -66,7 +58,10 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber95,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -75,19 +70,25 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber95,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewReinstatementLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber95,
-      taskName,
+      taskNames_content.reviewReinstatementLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.closedState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -100,23 +101,23 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber95,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.closedState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -133,9 +134,9 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       caseNumber95,
-      stateAfterCompletion,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -146,7 +147,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber96 = await createCase.createCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       false,
       "Assessment",
       "Other",
@@ -179,7 +180,10 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber96,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -188,19 +192,25 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber96,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewReinstatementLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me",
       false,
       caseNumber96,
-      taskName,
+      taskNames_content.reviewReinstatementLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.closedState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -213,23 +223,23 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber96,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.closedState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -246,9 +256,9 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       caseNumber96,
-      stateAfterCompletion,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -259,7 +269,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber97 = await createCase.createCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       false,
       "Assessment",
       "Other",
@@ -292,7 +302,10 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber97,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -301,19 +314,25 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber97,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewReinstatementLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Event DropDown",
       false,
       caseNumber97,
-      taskName,
+      taskNames_content.reviewReinstatementLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.closedState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -326,23 +345,23 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber97,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.closedState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -359,9 +378,9 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       caseNumber97,
-      stateAfterCompletion,
+      states_content.closedState,
       subjectName,
     );
   });

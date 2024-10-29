@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
@@ -10,23 +14,10 @@ import config from "../config.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 
-const taskName = " Review list case (within 5 days) - Legal Officer ";
-const taskNameProcess = "Process directions re. listed case (within 5 days)";
 const priorityReview = " medium ";
 const priorityProcess = " medium ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserLO = "sptribswa seniorcaseworker";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleLO = "waSeniorCaseworker";
-const userRoleCaseWorker = "waCaseWorker";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
-const eventRefer = "Refer case to legal officer";
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Awaiting hearing";
-const stateAfterCompletion = "Awaiting hearing";
-const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -35,7 +26,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber01 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -56,7 +47,11 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -77,11 +72,14 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       config.CaseAPIBaseURL,
       caseNumber01,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -90,19 +88,25 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       caseNumber01,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewListCase5DaysLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber01,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -116,30 +120,30 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       caseNumber01,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber01,
-      taskNameProcess,
+      taskNames_content.processDirectionsListCase5Days,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -156,9 +160,9 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       caseNumber01,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });
@@ -169,7 +173,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber02 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -190,7 +194,11 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber02, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -211,11 +219,14 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       config.CaseAPIBaseURL,
       caseNumber02,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -224,19 +235,25 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       caseNumber02,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewListCase5DaysLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me",
       false,
       caseNumber02,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -249,23 +266,23 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber02,
-      taskNameProcess,
+      taskNames_content.processDirectionsListCase5Days,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -282,9 +299,9 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       caseNumber02,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });
@@ -293,7 +310,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber03 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -314,7 +331,11 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber03, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -335,11 +356,14 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       config.CaseAPIBaseURL,
       caseNumber03,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -348,19 +372,25 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       caseNumber03,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewListCase5DaysLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Event DropDown",
       false,
       caseNumber03,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -373,23 +403,23 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber03,
-      taskNameProcess,
+      taskNames_content.processDirectionsListCase5Days,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -406,9 +436,9 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewListCase5DaysLO,
       caseNumber03,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });

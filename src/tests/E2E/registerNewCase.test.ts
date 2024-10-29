@@ -1,18 +1,15 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import editCase from "../journeys/CaseAPI/editCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 
-const taskName = "Register New Case";
 const priority = " low ";
-const assignedUser = "sptribswa hearingcentreadmin";
-const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
-const event = "Case: Edit case";
-const stateBeforeCompletion = "DSS-Submitted";
-const stateAfterCompletion = "Submitted";
-const nextTriggeredTaskToCleanUp = "Vet New Case Documents";
 
 test.describe("Register new case task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task / Edit Case : Assessment - Fatal Category, Email Contact, 1996, Scotland", async ({
@@ -22,7 +19,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber34: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -33,19 +30,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber34,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -71,12 +74,16 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       caseNumber34,
-      stateAfterCompletion,
+      states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
   });
 
   test("Task is completable via next steps link - assign to me / Edit Case : Assessment - Medical Re-opening Category, Email Contact, 2001, London", async ({
@@ -86,7 +93,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber35 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -97,19 +104,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber35,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -135,12 +148,16 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       caseNumber35,
-      stateAfterCompletion,
+      states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
   });
 
   test("Task is completed via event dropdown / Edit Case : Assessment - Minor Category, Post Contact, 2008, Midlands", async ({
@@ -150,7 +167,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber36 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -161,19 +178,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber36,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -199,12 +222,16 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       caseNumber36,
-      stateAfterCompletion,
+      states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
   });
 
   test("Task is completable via next steps link / Edit Case : Assessment - Paragraph 26 Category, Post Contact, 2012, North East", async ({
@@ -214,7 +241,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber37 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       false,
@@ -225,19 +252,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber37,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -263,12 +296,16 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       caseNumber37,
-      stateAfterCompletion,
+      states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
   });
 
   test("Task is completable via next steps link / Edit Case : Assessment - Special Jurisdiction Category, Wales & South West", async ({
@@ -278,7 +315,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber38 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -289,19 +326,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber38,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -327,12 +370,16 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       caseNumber38,
-      stateAfterCompletion,
+      states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
   });
 
   test("Task is completable via next steps link / Edit Case : Eligibility - Other Category", async ({
@@ -342,7 +389,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber39 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -353,19 +400,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber39,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -391,12 +444,16 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       caseNumber39,
-      stateAfterCompletion,
+      states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
   });
 
   test("Edit Case : Error Messaging", async ({ page }) => {
@@ -404,7 +461,7 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
     const caseNumber40 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       true,
       true,
       false,
@@ -415,19 +472,25 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber40,
-      taskName,
+      taskNames_content.registerNewCaseTask,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Edit case",
+      states_content.DSSSubmittedState,
       subjectName,
     );
     await editCase.editCase(
@@ -460,7 +523,7 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
   const caseNumber41 = await createFEApplication.createFEApplication(
     page,
     false,
-    "demoCitizen",
+    waUsers_content.userRoleCitizen,
     true,
     true,
     false,
@@ -471,19 +534,25 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     false,
     subjectName,
   );
-  await task.seeTask(page, userRole, true, taskName, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    true,
+    taskNames_content.registerNewCaseTask,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRole,
+    waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber41,
-    taskName,
+    taskNames_content.registerNewCaseTask,
     priority,
-    assignedUser,
+    authors_content.assignedUserAdmin,
     numberOfDays,
-    event,
-    stateBeforeCompletion,
+    "Case: Edit case",
+    states_content.DSSSubmittedState,
     subjectName,
   );
   await editCase.editCase(
@@ -509,10 +578,14 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
   await task.checkCompletedTask(
     page,
     true,
-    taskName,
+    taskNames_content.registerNewCaseTask,
     caseNumber41,
-    stateAfterCompletion,
+    states_content.submittedState,
     subjectName,
   );
-  await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.vetNewCaseDocuments,
+    subjectName,
+  );
 });

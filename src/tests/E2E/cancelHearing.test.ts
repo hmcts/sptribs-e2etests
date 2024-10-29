@@ -1,4 +1,6 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import cancelHearing from "../journeys/CaseAPI/cancelHearing.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
@@ -7,9 +9,6 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
     page,
@@ -17,7 +16,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber301 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -64,14 +63,18 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber301,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Cancel hearing - consent order.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber302 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -118,7 +121,11 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber302,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Cancel hearing - incomplete panel.", async ({
@@ -127,7 +134,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber303 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -174,7 +181,11 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber303,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Cancel hearing - no suitable cases.", async ({
@@ -183,7 +194,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber304 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -230,14 +241,18 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber304,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Cancel hearing - request for R27.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber305 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -284,7 +299,11 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber305,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Cancel hearing - venue unavailable.", async ({
@@ -293,7 +312,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber306 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -340,7 +359,11 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber306,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
@@ -349,7 +372,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber307 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -396,7 +419,11 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber307,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 });
 
@@ -406,7 +433,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber308 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -450,5 +477,9 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     caseNumber308,
     subjectName,
   );
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
 });

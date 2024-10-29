@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
@@ -11,27 +15,12 @@ import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 
-const taskName = "Review new case and provide directions - Judge";
-const taskNameProcess = "Process directions returned";
-const taskNameNonCompliance = "Follow up noncompliance of directions";
 const priorityReview = null;
 const priorityProcess = " low ";
 const priorityNonCompliance = " medium ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
-const eventRefer = "Refer case to judge";
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const eventContactParties = "Case: Contact parties";
-const stateBeforeCompletion = "Case management";
-const stateAfterCompletion = "Case management";
-const caseClosedState = "Case closed";
-const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27 @crossbrowserCaseAPI", async ({
@@ -40,7 +29,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber62 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -61,8 +50,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber62, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -71,19 +64,25 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       caseNumber62,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewNewCaseJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber62,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -97,30 +96,30 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber62,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber62,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -137,9 +136,9 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       caseNumber62,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -150,7 +149,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber63 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -171,8 +170,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber63, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -181,19 +184,25 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       caseNumber63,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewNewCaseJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber63,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -207,30 +216,30 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber63,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber63,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -247,9 +256,9 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       caseNumber63,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -260,7 +269,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber64 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -281,8 +290,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber64, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -291,19 +304,25 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       caseNumber64,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewNewCaseJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Event DropDown",
       false,
       caseNumber64,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -317,30 +336,30 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber64,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber64,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -357,9 +376,9 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       caseNumber64,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -368,7 +387,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber65 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -389,8 +408,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber65, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -399,7 +422,13 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       caseNumber65,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewNewCaseJudge,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -416,9 +445,9 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber65,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -427,7 +456,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber66 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -448,8 +477,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber66, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -458,19 +491,25 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       caseNumber66,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewNewCaseJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber66,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -484,16 +523,16 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber66,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
@@ -512,9 +551,9 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber66,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -526,7 +565,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber67 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -547,8 +586,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber67, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -557,19 +600,25 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       caseNumber67,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewNewCaseJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber67,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -583,30 +632,30 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber67,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber67,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -623,35 +672,35 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processDirectionsReturned,
       caseNumber67,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       true,
-      taskNameNonCompliance,
+      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber67,
-      taskNameNonCompliance,
+      taskNames_content.nonComplianceDirections,
       priorityNonCompliance,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysNonCompliance,
-      eventContactParties,
-      stateBeforeCompletion,
+      "Case: Contact parties",
+      states_content.caseManagementState,
       subjectName,
     );
     await contactParties.contactParties(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       true,
       caseNumber67,
@@ -660,9 +709,9 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNameNonCompliance,
+      taskNames_content.nonComplianceDirections,
       caseNumber67,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -675,7 +724,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber68 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -696,8 +745,12 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber68, subjectName);
-  await task.removeTask(page, taskRemoved, subjectName);
-  await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
   await referCaseToJudge.referCaseToJudge(
     page,
     true,
@@ -706,19 +759,25 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     caseNumber68,
     subjectName,
   );
-  await task.seeTask(page, userRoleJudge, true, taskName, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleJudge,
+    true,
+    taskNames_content.reviewNewCaseJudge,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRoleJudge,
+    waUsers_content.userRoleJudge,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber68,
-    taskName,
+    taskNames_content.reviewNewCaseJudge,
     priorityReview,
-    assignedUserJudge,
+    authors_content.assignedUserJudge,
     numberOfDaysReview,
-    eventOrders,
-    stateBeforeCompletion,
+    "Orders: Create draft",
+    states_content.caseManagementState,
     subjectName,
   );
   await createDraft.createDraft(
@@ -732,24 +791,30 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.checkCompletedTask(
     page,
     true,
-    taskName,
+    taskNames_content.reviewNewCaseJudge,
     caseNumber68,
-    stateAfterCompletion,
+    states_content.caseManagementState,
     subjectName,
   );
-  await task.seeTask(page, userRoleAdmin, false, taskNameProcess, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    false,
+    taskNames_content.processDirectionsReturned,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber68,
-    taskNameProcess,
+    taskNames_content.processDirectionsReturned,
     priorityProcess,
-    assignedUserAdmin,
+    authors_content.assignedUserAdmin,
     numberOfDaysProcess,
-    eventSendOrder,
-    stateBeforeCompletion,
+    "Orders: Send order",
+    states_content.caseManagementState,
     subjectName,
   );
   await sendOrder.sendOrder(
@@ -766,35 +831,35 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.checkCompletedTask(
     page,
     true,
-    taskNameProcess,
+    taskNames_content.processDirectionsReturned,
     caseNumber68,
-    stateAfterCompletion,
+    states_content.caseManagementState,
     subjectName,
   );
   await task.seeTask(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     true,
-    taskNameNonCompliance,
+    taskNames_content.nonComplianceDirections,
     subjectName,
   );
   await task.initiateTask(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber68,
-    taskNameNonCompliance,
+    taskNames_content.nonComplianceDirections,
     priorityNonCompliance,
-    assignedUserAdmin,
+    authors_content.assignedUserAdmin,
     numberOfDaysNonCompliance,
-    eventContactParties,
-    stateBeforeCompletion,
+    "Case: Contact parties",
+    states_content.caseManagementState,
     subjectName,
   );
   await contactParties.contactParties(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     true,
     false,
     caseNumber68,
@@ -803,9 +868,9 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.checkCompletedTask(
     page,
     true,
-    taskNameNonCompliance,
+    taskNames_content.nonComplianceDirections,
     caseNumber68,
-    stateAfterCompletion,
+    states_content.caseManagementState,
     subjectName,
   );
 });

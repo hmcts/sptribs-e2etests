@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
@@ -17,20 +21,8 @@ import documentManagementAmend from "../journeys/CaseAPI/documentManagementAmend
 import myWorkPage from "../pages/WA/myWorkPage.ts";
 import tasksPage from "../pages/WA/tasksPage.ts";
 
-const taskName = "Process further evidence";
 const priority = " low ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const userRoleAdmin = "waHearingCentreAdmin";
 const numberOfDays = 7;
-const eventContactParties = "Case: Contact parties";
-const eventEditCase = "Case: Edit case";
-const eventUploadDoc = "Document management: Upload";
-const eventRefer = "Refer case to judge";
-const eventReferLO = "Refer case to legal officer";
-const eventAmendDoc = "Document management: Amend";
-const caseManagementState = "Case management";
-const caseClosedState = "Case closed";
-const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -40,7 +32,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     const caseNumber160 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -53,11 +45,11 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber160,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
     await editCase.editCase(
       page,
       false,
@@ -99,19 +91,25 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber160,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       priority,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      eventReferLO,
-      caseManagementState,
+      "Refer case to legal officer",
+      states_content.caseManagementState,
       subjectName,
     );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
@@ -125,9 +123,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       caseNumber160,
-      caseManagementState,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -139,7 +137,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     const caseNumber161 = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -152,11 +150,11 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber161,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventEditCase);
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
     await editCase.editCase(
       page,
       false,
@@ -198,19 +196,25 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber161,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       priority,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      eventRefer,
-      caseManagementState,
+      "Refer case to judge",
+      states_content.caseManagementState,
       subjectName,
     );
     await referCaseToJudge.referCaseToJudge(
@@ -224,9 +228,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       caseNumber161,
-      caseManagementState,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -235,7 +239,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber162 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -256,8 +260,15 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber162, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
     await documentManagementUpload.documentManagementUpload(
       page,
       false,
@@ -266,19 +277,25 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber162,
       subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, true, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      true,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       true,
       caseNumber162,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       priority,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      eventEditCase,
-      caseManagementState,
+      "Case: Edit case",
+      states_content.caseManagementState,
       subjectName,
     );
     await editCase.editCase(
@@ -304,9 +321,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       true,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       caseNumber162,
-      caseManagementState,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -317,7 +334,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber163 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -338,8 +355,15 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber163, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
     await documentManagementUpload.documentManagementUpload(
       page,
       false,
@@ -348,24 +372,30 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber163,
       subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, true, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      true,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       true,
       caseNumber163,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       priority,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      eventContactParties,
-      caseManagementState,
+      "Case: Contact parties",
+      states_content.caseManagementState,
       subjectName,
     );
     await contactParties.contactParties(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       false,
       caseNumber163,
@@ -374,9 +404,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       true,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       caseNumber163,
-      caseManagementState,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -385,7 +415,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber164 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -406,8 +436,15 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber164, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Document management: Upload",
+    );
     await documentManagementUpload.documentManagementUpload(
       page,
       false,
@@ -416,7 +453,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber164,
       subjectName,
     );
-    await task.seeTask(page, userRoleAdmin, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -433,9 +476,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.processFurtherEvidence,
       caseNumber164,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -447,7 +490,7 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber165 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -468,8 +511,15 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber165, subjectName);
-  await task.removeTask(page, taskRemoved, subjectName);
-  await commonHelpers.chooseEventFromDropdown(page, eventUploadDoc);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
+  await commonHelpers.chooseEventFromDropdown(
+    page,
+    "Document management: Upload",
+  );
   await documentManagementUpload.documentManagementUpload(
     page,
     false,
@@ -478,19 +528,25 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
     caseNumber165,
     subjectName,
   );
-  await task.seeTask(page, userRoleAdmin, true, taskName, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    true,
+    taskNames_content.processFurtherEvidence,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber165,
-    taskName,
+    taskNames_content.processFurtherEvidence,
     priority,
-    assignedUserAdmin,
+    authors_content.assignedUserAdmin,
     numberOfDays,
-    eventAmendDoc,
-    caseManagementState,
+    "Document management: Amend",
+    states_content.caseManagementState,
     subjectName,
   );
   await documentManagementAmend.documentManagementAmend(
@@ -502,9 +558,9 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
   await task.checkCompletedTask(
     page,
     true,
-    taskName,
+    taskNames_content.processFurtherEvidence,
     caseNumber165,
-    caseManagementState,
+    states_content.caseManagementState,
     subjectName,
   );
 });

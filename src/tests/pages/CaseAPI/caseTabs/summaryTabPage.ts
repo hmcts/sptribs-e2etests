@@ -146,7 +146,9 @@ const summaryTabPage: SummaryTabPage = {
     await page.waitForSelector(
       `.text-16:has-text("${summaryTab_content.textOnPage10}")`,
     );
-    await expect(page.locator("markdown.markdown > h4")).toContainText(state);
+    await expect(page.locator("markdown.markdown > h4")).toContainText(
+      summaryTab_content.caseState + state,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -210,7 +212,9 @@ const summaryTabPage: SummaryTabPage = {
     await page.waitForSelector(
       `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
     );
-    await expect(page.locator("markdown.markdown > h4")).toContainText(state);
+    await expect(page.locator("markdown.markdown > h4")).toContainText(
+      summaryTab_content.caseState + state,
+    );
     await expect(
       page.locator(
         `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,

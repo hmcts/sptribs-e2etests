@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
@@ -10,23 +14,10 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 
-const taskName = "Review withdrawal request - Judge";
-const taskNameProcess = "Process Case Withdrawal Directions";
 const priorityReview = null;
 const priorityProcess = " low ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
-const eventRefer = "Refer case to judge";
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case management";
-const stateAfterCompletion = "Case management";
-const caseClosedState = "Case closed";
-const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
@@ -35,7 +26,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber142 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -56,8 +47,12 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber142, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -66,19 +61,25 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       caseNumber142,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewWithdrawalJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber142,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -92,30 +93,30 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber142,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber142,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -132,9 +133,9 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       caseNumber142,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -145,7 +146,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber143 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -166,8 +167,12 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber143, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -176,19 +181,25 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       caseNumber143,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewWithdrawalJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber143,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -202,30 +213,30 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber143,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber143,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -242,9 +253,9 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       caseNumber143,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -253,7 +264,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber144 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -274,8 +285,12 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber144, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -284,19 +299,25 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       caseNumber144,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewWithdrawalJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Event DropDown",
       false,
       caseNumber144,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -310,30 +331,30 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber144,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber144,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.caseManagementState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -350,9 +371,9 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       caseNumber144,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -361,7 +382,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber145 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -382,8 +403,12 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber145, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -392,7 +417,13 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       caseNumber145,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewWithdrawalJudge,
+      subjectName,
+    );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -409,9 +440,9 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber145,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -420,7 +451,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber146 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -441,8 +472,12 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber146, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -451,19 +486,25 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       caseNumber146,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewWithdrawalJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber146,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -477,16 +518,16 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber146,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processWithdrawal,
       subjectName,
     );
     await myWorkPage.clickAssignAndGoToTask(page, subjectName);
@@ -505,9 +546,9 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber146,
-      caseClosedState,
+      states_content.closedState,
       subjectName,
     );
   });

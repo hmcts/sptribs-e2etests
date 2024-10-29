@@ -1,4 +1,7 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
@@ -12,12 +15,6 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import config from "../config.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-const stateCaseStayed = "Case Status:  Case stayed";
-const eventRefer = "Refer case to judge";
-const removedTask = "Review other request - Judge";
-
 test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
   test("Refer case to judge - ready to list, listing directions", async ({
     page,
@@ -25,7 +22,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2100 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -46,7 +43,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2100, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -60,7 +61,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2100,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -77,7 +78,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2101 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -98,7 +99,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2101, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -112,7 +117,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2101,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -129,7 +134,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2102 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -150,7 +155,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2102, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -164,7 +173,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2102,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -181,7 +190,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2103 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -202,7 +211,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2103, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -216,7 +229,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2103,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -233,7 +246,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2104 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -254,7 +267,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2104, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -268,7 +285,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2104,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -285,7 +302,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2105 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -306,7 +323,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2105, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -320,7 +341,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2105,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -337,7 +358,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2106 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -358,7 +379,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2106, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -372,7 +397,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2106,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -387,7 +412,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber2106,
     );
-    await task.removeTask(page, removedTask, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.reviewOtherRequestJudge,
+      subjectName,
+    );
   });
 
   test("Refer case to judge - awaiting hearing, rule 27 request", async ({
@@ -396,7 +425,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2107 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -417,7 +446,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2107, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -436,7 +469,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2107,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -453,7 +486,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2108 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -474,7 +507,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2108, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -493,7 +530,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2108,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -510,7 +547,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2109 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -531,7 +568,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2109, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -550,7 +591,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2109,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -567,7 +608,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2110 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -588,7 +629,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2110, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -607,7 +652,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2110,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -624,7 +669,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2111 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -645,7 +690,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2111, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -664,7 +713,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2111,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -681,7 +730,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2112 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -702,7 +751,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2112, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -738,7 +791,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2112,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -755,7 +808,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2113 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -776,7 +829,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2113, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -812,7 +869,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2113,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -829,7 +886,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2114 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -850,7 +907,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2114, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -886,7 +947,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2114,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -903,7 +964,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2115 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -924,7 +985,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2115, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -960,7 +1025,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2115,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -977,7 +1042,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2116 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -998,7 +1063,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2116, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1034,7 +1103,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2116,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1051,7 +1120,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2117 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1072,7 +1141,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2117, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1108,7 +1181,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2117,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1125,7 +1198,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2118 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1146,7 +1219,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2118, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1182,7 +1259,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2118,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1197,7 +1274,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber2118,
     );
-    await task.removeTask(page, removedTask, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.reviewOtherRequestJudge,
+      subjectName,
+    );
   });
 
   test("Refer case to judge - case stayed, listing directions", async ({
@@ -1206,7 +1287,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2119 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1227,7 +1308,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2119, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1236,9 +1321,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2119,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1255,7 +1340,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2120 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1276,7 +1361,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2120, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1285,9 +1374,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2120,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1304,7 +1393,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2121 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1325,7 +1414,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2121, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1334,9 +1427,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2121,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1353,7 +1446,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2122 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1374,7 +1467,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2122, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1383,9 +1480,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2122,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1402,7 +1499,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2123 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1423,7 +1520,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2123, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1432,9 +1533,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2123,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1451,7 +1552,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2124 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1472,7 +1573,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2124, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1481,9 +1586,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2124,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1500,7 +1605,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2125 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1521,7 +1626,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2125, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -1530,9 +1639,9 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       false,
       caseNumber2125,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -1547,7 +1656,11 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber2125,
     );
-    await task.removeTask(page, removedTask, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.reviewOtherRequestJudge,
+      subjectName,
+    );
   });
 
   test("Refer case to judge - case closed, listing directions", async ({
@@ -1556,7 +1669,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2126 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1589,7 +1702,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
       caseNumber2126,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,

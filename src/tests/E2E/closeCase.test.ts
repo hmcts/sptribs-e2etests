@@ -1,12 +1,11 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
-
-const userRoleAdmin = "waHearingCentreAdmin";
 
 test.describe("Case-API Close case tests. @CaseAPI", () => {
   test("Close a ready to list case as it is withdrawn with no optional information.", async ({
@@ -15,7 +14,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber500 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -69,7 +68,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber501 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -123,7 +122,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber502 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -177,7 +176,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber503 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -231,7 +230,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber504 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -285,7 +284,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber505 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -339,7 +338,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber506 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -393,7 +392,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber507 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -447,7 +446,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber508 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -501,7 +500,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber509 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -555,7 +554,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber510 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -609,7 +608,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber511 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -663,7 +662,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber512 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -705,7 +704,7 @@ test("Accessibility test - Close case @accessibilityCaseAPI", async ({
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber513 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",

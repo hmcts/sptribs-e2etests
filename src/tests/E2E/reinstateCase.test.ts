@@ -1,12 +1,11 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import reinstateCase from "../journeys/CaseAPI/reinstateCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
-
-const userRoleAdmin = "waHearingCentreAdmin";
 
 test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
   test("Reinstate a case which has been closed in error with no optional text. @crossbrowserCaseAPI", async ({
@@ -15,7 +14,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2300 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -65,7 +64,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2301 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -115,7 +114,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2302 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -165,7 +164,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2303 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -215,7 +214,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2304 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -265,7 +264,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2305 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -315,7 +314,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2306 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -365,7 +364,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2307 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -416,7 +415,7 @@ test("Accessibility test - Reinstate case. @accessibilityCaseAPI", async ({
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber2308 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",

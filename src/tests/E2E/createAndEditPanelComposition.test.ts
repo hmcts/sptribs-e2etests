@@ -1,4 +1,6 @@
 import { test } from "@playwright/test";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import panelComposition from "../journeys/CaseAPI/panelComposition.ts";
 import editPanelComposition from "../journeys/CaseAPI/editPanelComposition.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
@@ -7,9 +9,6 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-
 test.describe("Panel Composition tests @CaseAPI", () => {
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
     page,
@@ -17,7 +16,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1700 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -47,7 +46,11 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1700,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Make a panel composition only one panel member and specialism information.", async ({
@@ -56,7 +59,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1701 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -86,7 +89,11 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1701,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Make a panel composition only two panel members and no specialism information", async ({
@@ -95,7 +102,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1702 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -125,7 +132,11 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1702,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Make a panel composition with all information.", async ({
@@ -134,7 +145,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1703 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -164,7 +175,11 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1703,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Make and edit a panel composition with all information.", async ({
@@ -173,7 +188,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1704 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -212,7 +227,11 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1704,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 });
 
@@ -222,7 +241,7 @@ test("Accessibility test - Create and Edit Panel composition @accessibilityCaseA
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber1705 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -261,5 +280,9 @@ test("Accessibility test - Create and Edit Panel composition @accessibilityCaseA
     caseNumber1705,
     subjectName,
   );
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
 });

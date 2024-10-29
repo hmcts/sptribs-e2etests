@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import config from "../config.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
@@ -10,23 +14,10 @@ import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
-const taskName = "Review Postponement request - Judge";
-const taskNameProcess = "Process postponement directions";
 const priorityReview = null;
 const priorityProcess = " medium ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
-const userRoleCaseWorker = "waCaseWorker";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
-const eventRefer = "Refer case to judge";
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Awaiting hearing";
-const stateAfterCompletion = "Awaiting hearing";
-const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Postponement Directions - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
@@ -35,7 +26,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber86 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -56,7 +47,11 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber86, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -77,11 +72,11 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       config.CaseAPIBaseURL,
       caseNumber86,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -90,19 +85,25 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       caseNumber86,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewPostponementJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber86,
-      taskName,
+      taskNames_content.reviewPostponementJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -116,30 +117,30 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewPostponementJudge,
       caseNumber86,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber86,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -156,9 +157,9 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       caseNumber86,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });
@@ -169,7 +170,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber87 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -190,7 +191,11 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber87, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -211,11 +216,11 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       config.CaseAPIBaseURL,
       caseNumber87,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -224,19 +229,25 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       caseNumber87,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewPostponementJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber87,
-      taskName,
+      taskNames_content.reviewPostponementJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -250,30 +261,30 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewPostponementJudge,
       caseNumber87,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber87,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -290,9 +301,9 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       caseNumber87,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });
@@ -301,7 +312,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber88 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -322,7 +333,11 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber88, subjectName);
-    await task.removeTask(page, taskRemoved, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -343,11 +358,11 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       config.CaseAPIBaseURL,
       caseNumber88,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -356,19 +371,25 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
       caseNumber88,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewPostponementJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Event DropDown",
       false,
       caseNumber88,
-      taskName,
+      taskNames_content.reviewPostponementJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -382,30 +403,30 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.reviewPostponementJudge,
       caseNumber88,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber88,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -422,9 +443,9 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI", ():
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processPostponementDirections,
       caseNumber88,
-      stateAfterCompletion,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });
