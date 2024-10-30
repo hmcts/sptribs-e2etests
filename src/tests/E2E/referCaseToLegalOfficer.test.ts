@@ -21,7 +21,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  
+
   test("Refer case to legal officer - ready to list, listing directions @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
