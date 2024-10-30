@@ -6,11 +6,17 @@ import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import createSummary from "../../journeys/WA/createSummary.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 
 test.describe("Create hearing summary tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Create hearing summary - hearing outcome is allowed. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

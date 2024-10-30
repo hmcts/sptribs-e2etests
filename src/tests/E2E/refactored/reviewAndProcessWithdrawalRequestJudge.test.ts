@@ -9,6 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review withdrawal request - Judge";
 const taskNameProcess = "Process Case Withdrawal Directions";
@@ -29,6 +30,10 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {

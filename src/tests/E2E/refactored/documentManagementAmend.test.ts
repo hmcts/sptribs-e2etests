@@ -11,12 +11,17 @@ import createListing from "../../journeys/WA/createListing.ts";
 import createSummary from "../../journeys/WA/createSummary.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
 import createEditStay from "../../journeys/WA/createEditStay.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Case-API Amend document tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Amend documents uploaded to a submitted case.", async ({
     page,
   }): Promise<void> => {

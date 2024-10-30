@@ -7,11 +7,16 @@ import events_content from "../../fixtures/content/CaseAPI/events_content";
 import createListing from "../../journeys/WA/createListing";
 import task from "../../journeys/WA/task";
 import hearingOptions from "../../journeys/WA/hearingOptions";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 
 test.describe("Edit hearing listing tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

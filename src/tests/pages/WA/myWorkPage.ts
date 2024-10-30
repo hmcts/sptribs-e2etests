@@ -28,6 +28,7 @@ type MyWorkPage = {
     subjectName: string,
   ): Promise<void>;
   navigateToMyWorkPage(page: Page): Promise<void>;
+  dataCleanUpAssignTask(page: Page, selector: string): Promise<void>;
 };
 
 const myWorkPage: MyWorkPage = {
@@ -102,7 +103,7 @@ const myWorkPage: MyWorkPage = {
   async selectAvailableTasks(page: Page): Promise<void> {
     await page.locator(this.availableTasksTab).click();
     page.waitForURL(/.*\/available$/);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
   },
 
   async seeTask(
@@ -217,8 +218,22 @@ const myWorkPage: MyWorkPage = {
       .click();
   },
   async navigateToMyWorkPage(page: Page): Promise<void> {
-    await page.goto(this.availableTasksUrl);
+    await page.locator(this.myWorkLink).click();
     await page.waitForSelector(`h3:text-is("My work")`);
+  },
+
+  async dataCleanUpAssignTask(page: Page, selector: string): Promise<void> {
+    await page
+      .locator("tr")
+      .filter({
+        has: page.locator(selector),
+      })
+      .locator(`div > button:has-text("Manage")`)
+      .first()
+      .click();
+    await page.waitForSelector(this.assignToMeLink);
+    await page.locator(this.assignToMeLink).click();
+    await page.waitForTimeout(3000);
   },
 };
 

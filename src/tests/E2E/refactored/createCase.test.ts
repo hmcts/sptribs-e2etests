@@ -1,8 +1,16 @@
 import { test } from "@playwright/test";
 import createCase from "../../journeys/WA/createCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
+
+const userRoleAdmin = "waHearingCentreAdmin";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
     page,
   }) => {

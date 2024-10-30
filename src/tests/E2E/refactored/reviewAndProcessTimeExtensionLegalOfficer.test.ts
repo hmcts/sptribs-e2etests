@@ -9,6 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review Time extension request - Legal Officer";
 const taskNameProcess = "Process time extension directions returned";
@@ -32,6 +33,10 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {

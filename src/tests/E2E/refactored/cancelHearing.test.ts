@@ -6,9 +6,15 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
 import createListing from "../../journeys/WA/createListing.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
+
+test("Check for redundant test data", async ({ page }) => {
+  test.setTimeout(20 * 60 * 1000);
+  await testDataCleanUp(page, userRoleAdmin);
+});
 
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({

@@ -10,6 +10,7 @@ import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 import contactParties from "../../journeys/WA/contactParties.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review new case and provide directions - Judge";
 const taskNameProcess = "Process directions returned";
@@ -34,6 +35,10 @@ const caseClosedState = "Case closed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27  ", async ({
     page,
   }) => {

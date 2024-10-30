@@ -9,6 +9,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Issue Case To Respondent";
 const priority = " low ";
@@ -21,6 +22,10 @@ const stateAfterCompletion = "Case management";
 const caseClosedState = "Case closed";
 
 test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRole);
+  });
   test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
     page,
   }) => {

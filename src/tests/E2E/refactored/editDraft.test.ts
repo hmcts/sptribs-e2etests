@@ -12,6 +12,7 @@ import createEditStay from "../../journeys/WA/createEditStay.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
 import config from "../../config.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 const taskName = "Review other request - Legal Officer";
@@ -26,6 +27,10 @@ const stateCaseStayed = "Case Status:  Case stayed";
 const taskNameProcess = "Process other directions returned";
 
 test.describe("Case-API Edit draft tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Edit a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
     page,
   }) => {

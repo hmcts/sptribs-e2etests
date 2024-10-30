@@ -8,6 +8,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import referCaseToJudge from "../../journeys/WA/referCaseToJudge.ts";
 import task from "../../journeys/WA/task.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review Set Aside request";
 const taskNameProcess = "Process Set Aside directions";
@@ -27,6 +28,10 @@ const stateBeforeCompletion = "Case closed";
 const stateAfterCompletion = "Case closed";
 
 test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {

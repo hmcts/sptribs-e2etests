@@ -3,11 +3,17 @@ import createFEApplication from "../../journeys/WA/DSSCreateCase/createCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import config from "../../config.ts";
 import task from "../../journeys/WA/task.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemoved = "Register New Case";
 
 test.describe("DSS Create case tests. @DSSCreate", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {

@@ -19,8 +19,14 @@ const numberOfDaysReview = 5;
 const eventOrders = "Orders: Create draft";
 const caseManagementState = "Case management";
 const stateCaseStayed = "Case Status:  Case stayed";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 test.describe("Case-API Create draft tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
     page,
   }) => {

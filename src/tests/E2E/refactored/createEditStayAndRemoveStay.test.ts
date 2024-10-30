@@ -7,6 +7,7 @@ import task from "../../journeys/WA/task.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptions from "../../journeys/WA/hearingOptions.ts";
 import removeStay from "../../journeys/WA/removeStay.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
@@ -14,6 +15,11 @@ const state = "Case Status:  Case management";
 const stateCaseStayed = "Case Status:  Case stayed";
 
 test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Stay a case management case for reason waitingOutcomeOfCivilCase, with optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

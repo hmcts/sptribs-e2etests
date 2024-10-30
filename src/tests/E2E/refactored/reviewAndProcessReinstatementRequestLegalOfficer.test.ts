@@ -8,6 +8,7 @@ import closeCase from "../../journeys/WA/closeCase.ts";
 import task from "../../journeys/WA/task.ts";
 import sendOrder from "../../journeys/WA/sendOrder.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review Reinstatement request - Legal Officer";
 const taskNameProcess = "Process Reinstatement decision notice";
@@ -27,6 +28,10 @@ const stateBeforeCompletion = "Case closed";
 const stateAfterCompletion = "Case closed";
 
 test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {

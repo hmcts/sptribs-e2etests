@@ -3,8 +3,6 @@ import config from "../../config.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import tasks_content from "../../fixtures/content/CaseAPI/myWork/tasks_content.ts";
-import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
-import task from "../../journeys/WA/task.ts";
 
 type TasksPage = {
   myTasksTab: string;
@@ -38,6 +36,7 @@ type TasksPage = {
   ): Promise<void>;
   navigateToTaskTab(page: Page, event: any, caseNumber: string): Promise<void>;
   chooseEventFromDropdown(page: Page, event: any): Promise<void>;
+  dataCleanUpMarkAsDone(page: Page, selector: any): Promise<void>;
 };
 
 const tasksPage: TasksPage = {
@@ -276,6 +275,15 @@ const tasksPage: TasksPage = {
       await page.waitForSelector(`h1:text-is("Mark the task as done")`);
       await page.locator("#submit-button").click();
     }
+  },
+
+  async dataCleanUpMarkAsDone(page: Page, selector: any): Promise<void> {
+    await selector.first().locator(`button:has-text("Manage")`).click();
+    await page.waitForSelector("#action_complete");
+    await page.locator("#action_complete").click();
+    await page.waitForSelector(`button:text-is("Mark as done")`);
+    await page.locator("#submit-button").click();
+    await page.waitForTimeout(5000);
   },
 };
 

@@ -6,11 +6,17 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
 import clearHearingOptions from "../../journeys/WA/clearHearingOptions.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 
 test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Create and clear hearing options in the 'Case management' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

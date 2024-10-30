@@ -8,11 +8,16 @@ import task from "../../journeys/WA/task.ts";
 import hearingOptions from "../../journeys/WA/hearingOptions.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import createSummary from "../../journeys/WA/createSummary.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Case-API Edit case tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Edit Case in State Case management - Assessment - Minor Category, Post Contact", async ({
     page,
   }) => {

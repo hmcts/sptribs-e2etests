@@ -5,10 +5,15 @@ import createCase from "../../journeys/WA/createCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 
 test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Reinstate a case which has been closed in error with no optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

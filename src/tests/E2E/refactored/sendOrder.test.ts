@@ -9,6 +9,7 @@ import hearingOptions from "../../journeys/WA/hearingOptions.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
 import createDraft from "../../journeys/WA/createDraft.ts";
 import createEditStay from "../../journeys/WA/createEditStay.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review other request - Legal Officer";
 const taskNameProcess = "Process other directions returned";
@@ -27,6 +28,10 @@ const stateCaseStayed = "Case Status:  Case stayed";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Send order tests @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Send a draft order in the Ready to list state", async ({
     page,
   }): Promise<void> => {

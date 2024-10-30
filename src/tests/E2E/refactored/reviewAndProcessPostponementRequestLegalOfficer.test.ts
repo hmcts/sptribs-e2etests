@@ -9,6 +9,7 @@ import sendOrder from "../../journeys/WA/sendOrder.ts";
 import createListing from "../../journeys/WA/createListing.ts";
 import config from "../../config.ts";
 import referCaseToLegalOfficer from "../../journeys/WA/referCaseToLegalOfficer.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Review Postponement request - Legal Officer";
 const taskNameProcess = "Process postponement directions";
@@ -29,6 +30,10 @@ const stateAfterCompletion = "Awaiting hearing";
 const taskRemoved = " Issue Case To Respondent ";
 
 test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {

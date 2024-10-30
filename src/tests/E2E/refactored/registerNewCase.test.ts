@@ -3,6 +3,7 @@ import createFEApplication from "../../journeys/WA/DSSCreateCase/createCase.ts";
 import task from "../../journeys/WA/task.ts";
 import editCase from "../../journeys/WA/editCase.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const taskName = "Register New Case";
 const priority = " low ";
@@ -15,6 +16,10 @@ const stateAfterCompletion = "Submitted";
 const nextTriggeredTaskToCleanUp = "Vet New Case Documents";
 
 test.describe("Register new case task tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRole);
+  });
   test("Task is completable via next steps link - assign to me and go to task / Edit Case : Assessment - Fatal Category, Email Contact, 1996, Scotland", async ({
     page,
   }) => {

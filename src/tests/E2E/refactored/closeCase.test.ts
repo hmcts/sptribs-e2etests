@@ -5,10 +5,16 @@ import createCase from "../../journeys/WA/createCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import hearingOptions from "../../journeys/WA/hearingOptions.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 
 test.describe("Case-API Close case tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Close a ready to list case as it is withdrawn with no optional information.", async ({
     page,
   }): Promise<void> => {

@@ -11,6 +11,7 @@ import createSummary from "../../journeys/WA/createSummary.ts";
 import createEditStay from "../../journeys/WA/createEditStay.ts";
 import closeCase from "../../journeys/WA/closeCase.ts";
 import config from "../../config.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
@@ -19,6 +20,10 @@ const eventRefer = "Refer case to legal officer";
 const removedTask = "Review other request - Legal Officer";
 
 test.describe("Case-API Refer case to legal officer tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
   test("Refer case to legal officer - ready to list, listing directions", async ({
     page,
   }): Promise<void> => {

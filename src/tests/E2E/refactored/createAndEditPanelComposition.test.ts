@@ -6,11 +6,17 @@ import createCase from "../../journeys/WA/createCase.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../../journeys/WA/buildCase.ts";
 import task from "../../journeys/WA/task.ts";
+import testDataCleanUp from "../../helpers/testDataCleanUp.ts";
 
 const userRoleAdmin = "waHearingCentreAdmin";
 const taskRemovedIssueCase = " Issue Case To Respondent ";
 
 test.describe("Panel Composition tests @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, userRoleAdmin);
+  });
+
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
