@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import submitContent from "../../../fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import path from "path";

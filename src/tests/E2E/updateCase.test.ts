@@ -1,9 +1,10 @@
 import { test } from "@playwright/test";
-import createFEApplication from "../journeys/WA/DSSCreateCase/createCase.ts";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
-import task from "../journeys/WA/task.ts";
+import task from "../journeys/CaseAPI/task.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
   test("Check for an existing case to update, upload one document and additional information - CY", async ({
@@ -13,7 +14,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     const caseNumber01: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -24,10 +25,9 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber01}`);
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waHearingCentreAdmin",
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber01,
     );
@@ -55,7 +55,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     const caseNumber02: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -66,10 +66,9 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber02}`);
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waHearingCentreAdmin",
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber02,
     );
@@ -97,7 +96,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     const caseNumber03: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -108,10 +107,9 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber03}`);
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waHearingCentreAdmin",
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber03,
     );
@@ -139,7 +137,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     const caseNumber04: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -150,10 +148,9 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
-    console.log(`Case Number : ${caseNumber04}`);
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waHearingCentreAdmin",
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber04,
     );
@@ -179,7 +176,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     const caseNumber05: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -192,7 +189,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waHearingCentreAdmin",
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber05,
     );
@@ -218,7 +215,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     const caseNumber06: any = await createFEApplication.createFEApplication(
       page,
       false,
-      "demoCitizen",
+      waUsers_content.userRoleCitizen,
       false,
       false,
       true,
@@ -231,7 +228,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waHearingCentreAdmin",
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber06,
     );
@@ -260,7 +257,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
   const caseNumber07: any = await createFEApplication.createFEApplication(
     page,
     false,
-    "demoCitizen",
+    waUsers_content.userRoleCitizen,
     false,
     false,
     true,
@@ -273,7 +270,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
   );
   await commonHelpers.signOutAndGoToCase(
     page,
-    "waHearingCentreAdmin",
+    waUsers_content.userRoleAdmin,
     config.CaseAPIBaseURL,
     caseNumber07,
   );

@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { StayReason } from "./addStayPage.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";

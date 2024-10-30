@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectOrderIssuingType_content from "../../../fixtures/content/CaseAPI/sendOrder/selectOrderIssueingType_content.ts";
 

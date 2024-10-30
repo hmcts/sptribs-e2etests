@@ -4,8 +4,7 @@ import commonHelpers, {
   caseRegion,
   Scheme,
 } from "../../../helpers/commonHelpers.ts";
-import { initialState } from "../../../journeys/WA/editCase.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
 import editCaseFurtherDetailsObjectContent from "../../../fixtures/content/CaseAPI/editCase/editCaseFurtherDetailsObject_content.ts";
 
 type EditCaseFurtherDetailsObjectPage = {

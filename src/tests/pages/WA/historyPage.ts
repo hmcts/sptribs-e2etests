@@ -28,7 +28,7 @@ const historyPage: HistoryPage = {
     accessibilityTest: boolean,
     stateBeforeCompletion: string,
   ): Promise<void> {
-    expect(
+    await expect(
       page.getByRole("row", { name: `End state ${stateBeforeCompletion}` }),
     ).toBeVisible();
     if (accessibilityTest) {
@@ -40,7 +40,7 @@ const historyPage: HistoryPage = {
     page: Page,
     stateAfterCompletion: string,
   ): Promise<void> {
-    expect(
+    await expect(
       page.getByRole("row", { name: `End state ${stateAfterCompletion}` }),
     ).toBeVisible();
   },

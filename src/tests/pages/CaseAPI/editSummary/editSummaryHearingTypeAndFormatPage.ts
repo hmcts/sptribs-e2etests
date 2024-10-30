@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingType,
 } from "../../../helpers/commonHelpers.ts";
 import editSummaryHearingTypeAndFormatContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingTypeAndFormat_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditSummaryHearingTypeAndFormatPage = {
   previous: string;

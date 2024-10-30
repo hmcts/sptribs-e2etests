@@ -102,7 +102,7 @@ const myWorkPage: MyWorkPage = {
 
   async selectAvailableTasks(page: Page): Promise<void> {
     await page.locator(this.availableTasksTab).click();
-    page.waitForURL(/.*\/available$/);
+    await page.waitForURL(/.*\/available$/);
     await page.waitForTimeout(5000);
   },
 
@@ -122,7 +122,6 @@ const myWorkPage: MyWorkPage = {
     while (true) {
       let locatorFound = false;
       if (await subjectTask.isVisible()) {
-        console.log("Task visible!");
         break;
       }
 
@@ -138,7 +137,6 @@ const myWorkPage: MyWorkPage = {
           const nextPageNumber = await nextPage.textContent();
 
           if (nextPageNumber) {
-            console.log(`Navigating to page ${nextPageNumber}`);
             await page.waitForSelector(paginationLocator);
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
@@ -151,7 +149,6 @@ const myWorkPage: MyWorkPage = {
               .locator(`exui-task-field:text-is("${taskName}")`);
 
             if (await subjectTask.isVisible()) {
-              console.log("Task visible!");
               locatorFound = true;
               break;
             }
@@ -160,9 +157,6 @@ const myWorkPage: MyWorkPage = {
         if (locatorFound) {
           break;
         } else {
-          console.log(
-            "No more pages left to check. Restarting from the first page...",
-          );
           await page.getByText("page 1").click();
           await page.waitForSelector(`li > span:text("1")`);
           await page.waitForTimeout(2000); // waiting for cron job before rechecking
@@ -236,7 +230,6 @@ const myWorkPage: MyWorkPage = {
           const nextPageNumber = await nextPage.textContent();
 
           if (nextPageNumber) {
-            console.log(`Navigating to page ${nextPageNumber}`);
             await page.waitForSelector(paginationLocator);
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
@@ -253,9 +246,6 @@ const myWorkPage: MyWorkPage = {
           await subjectTask.click();
           break;
         } else {
-          console.log(
-            "No more pages left to check. Restarting from the first page...",
-          );
           await page.getByText("page 1").click();
           await page.waitForSelector(`li > span:text("1")`);
           await page.waitForTimeout(2000);

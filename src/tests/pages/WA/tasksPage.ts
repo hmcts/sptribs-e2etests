@@ -63,7 +63,6 @@ const tasksPage: TasksPage = {
       .count();
 
     while (assignedToElements > 1) {
-      console.log(`Found more than 1 task. Reloading page...`);
       await page.reload();
       await page.waitForSelector(
         `p.govuk-body > strong:text-is("${taskName}")`,
@@ -197,9 +196,6 @@ const tasksPage: TasksPage = {
       if (!isTaskVisible) {
         return;
       }
-      console.log(
-        `Task "${taskName}" is still visible, retrying in ${delay / 1000} seconds...`,
-      );
       await page.waitForTimeout(delay);
     }
   },

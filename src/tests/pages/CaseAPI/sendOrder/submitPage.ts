@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { OrderType } from "./selectOrderIssuingTypePage.ts";
 import { ReminderDays } from "./sendReminderPage.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/sendOrder/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";

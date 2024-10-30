@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { RejectionReason } from "./rejectionDetailsPage.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/closeCase/submit_content.ts";
 import { CaseCloseReason } from "./selectReasonPage.ts";

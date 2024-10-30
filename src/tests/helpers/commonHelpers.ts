@@ -1,16 +1,17 @@
 import axios from "axios";
-import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import * as fs from "node:fs";
+import { UserRole } from "../config.ts";
+import { Template } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { randomBytes } from "crypto";
+import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import authors_content from "../fixtures/content/authors_content.ts";
 import CookiesContent from "../fixtures/content/cookies_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
-import { UserRole } from "../config.ts";
 import idamLoginHelper from "./idamLoginHelper.ts";
-import { Template } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import eligibility from "../fixtures/content/CaseAPI/documents/eligibility.ts";
 import finalDecisionMain_content from "../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
 import addDocumentFooter_content from "../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
@@ -28,7 +29,6 @@ import loGeneralDirections from "../fixtures/content/CaseAPI/documents/loGeneral
 import editDraftAddDocumentFooter_content from "../fixtures/content/CaseAPI/editDraft/editDraftAddDocumentFooter_content.ts";
 import editDraftOrderMainContent_content from "../fixtures/content/CaseAPI/editDraft/editDraftOrderMainContent_content.ts";
 import uploadCaseDocuments_content from "../fixtures/content/CaseAPI/documentManagementUpload/uploadCaseDocuments_content.ts";
-import * as fs from "node:fs";
 
 interface CommonHelpers {
   readonly months: string[];

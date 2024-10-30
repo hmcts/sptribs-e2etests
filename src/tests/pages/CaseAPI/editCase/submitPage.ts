@@ -13,7 +13,6 @@ import editCaseSubjectDetailsObject_content from "../../../fixtures/content/Case
 import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
 import editCaseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseApplicantDetailsObject_content.ts";
 import editCaseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseRepresentativeDetailsObject_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;

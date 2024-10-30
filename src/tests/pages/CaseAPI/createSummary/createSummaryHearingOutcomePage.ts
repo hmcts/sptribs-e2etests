@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingAdjournedReasons,
   hearingOutcome,
 } from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateSummaryHearingOutcomePage = {
   previous: string;
