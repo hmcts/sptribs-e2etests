@@ -5,8 +5,14 @@ import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
 import task from "../journeys/CaseAPI/task.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+  
   test("Check for an existing case to update, upload one document and additional information - CY", async ({
     page,
   }) => {
