@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 import closeCaseNotifyPage_content from "../../../fixtures/content/CaseAPI/closeCase/closeCaseNotifyPage_content.ts";

@@ -3,7 +3,6 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import casePartiesTabContent from "../../../fixtures/content/CaseAPI/caseTabs/casePartiesTab_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import respondentDetailsContent from "../../../fixtures/content/RespondentDetails_content.ts";

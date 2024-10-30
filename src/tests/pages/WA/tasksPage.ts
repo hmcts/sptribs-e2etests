@@ -64,7 +64,6 @@ const tasksPage: TasksPage = {
       .count();
 
     while (assignedToElements > 1) {
-      console.log(`Found more than 1 task. Reloading page...`);
       await page.reload();
       await page.waitForSelector(
         `p.govuk-body > strong:text-is("${taskName}")`,
@@ -116,26 +115,32 @@ const tasksPage: TasksPage = {
       expect(
         page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
       );
-      expect(page.locator("exui-priority-field > strong")).toHaveText(
+      await expect(page.locator("exui-priority-field > strong")).toHaveText(
         taskPriority,
       );
       expect(
         page.locator(`span.row-padding:text-is("${tasks_content.dueDate}")`),
       );
-      expect(page.locator(`dd > span:text-is("${dueDate}")`)).toBeVisible();
+      await expect(
+        page.locator(`dd > span:text-is("${dueDate}")`),
+      ).toBeVisible();
     } else {
       expect(
         page.locator(
           `span.row-padding:text-is("${tasks_content.taskCreated}")`,
         ),
       );
-      expect(
+      await expect(
         page.locator(
           `dd > span:text-is("${await commonHelpers.todayDateFull()}")`,
         ),
       ).toBeVisible();
-      expect(page.locator("#action_cancel")).toHaveText(tasks_content.link3);
-      expect(page.locator("#action_reassign")).toHaveText(tasks_content.link4);
+      await expect(page.locator("#action_cancel")).toHaveText(
+        tasks_content.link3,
+      );
+      await expect(page.locator("#action_reassign")).toHaveText(
+        tasks_content.link4,
+      );
     }
 
     if (accessibilityTest) {
@@ -192,9 +197,6 @@ const tasksPage: TasksPage = {
       if (!isTaskVisible) {
         return;
       }
-      console.log(
-        `Task "${taskName}" is still visible, retrying in ${delay / 1000} seconds...`,
-      );
       await page.waitForTimeout(delay);
     }
   },
@@ -229,7 +231,7 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(`h1:text-is("Mark the task as done")`);
     await page.locator("#submit-button").click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);
-    expect(
+    await expect(
       page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
     ).not.toBeVisible();
   },

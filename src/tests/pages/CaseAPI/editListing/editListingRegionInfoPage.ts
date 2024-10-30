@@ -4,7 +4,6 @@ import commonHelpers, {
   caseRegionCode,
 } from "../../../helpers/commonHelpers.ts";
 import editListingRegionInfoContent from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditListingRegionInfoPage = {
   region: string;

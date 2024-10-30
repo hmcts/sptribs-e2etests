@@ -4,7 +4,6 @@ import cancelHearingReasonContent from "../../../fixtures/content/CaseAPI/cancel
 import commonHelpers, {
   hearingCancelledReasons,
 } from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CancelHearingReasonPage = {
   previous: string;

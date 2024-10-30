@@ -1,6 +1,4 @@
 import { Page } from "@playwright/test";
-import createListing from "../../../removedFiles/createListing.ts";
-import { UserRole } from "../../config.ts";
 import commonHelpers, {
   caseRegionCode,
   hearingType,

@@ -1,5 +1,5 @@
 const summaryTab_content = {
-  caseState: "Case Status: DSS-Submitted",
+  caseState: "Case Status: ",
   subHeading1: "Case details",
   textOnPage1: "Subject's full name",
   textOnPage2: "Subject's date of birth",

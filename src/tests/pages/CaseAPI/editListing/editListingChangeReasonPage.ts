@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditListingChangeReasonPage = {
   reason: string;

@@ -1,18 +1,18 @@
-import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
-import SubjectDetails_content from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
+import axios from "axios";
+import * as fs from "node:fs";
+import { UserRole } from "../config.ts";
+import { Template } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { randomBytes } from "crypto";
+import subjectDetailsPage from "../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import authors_content from "../fixtures/content/authors_content.ts";
 import CookiesContent from "../fixtures/content/cookies_content.ts";
 import caseDocumentsUploadObject_content from "../fixtures/content/CaseAPI/createCase/caseDocumentsUploadObject_content.ts";
 import allTabTitles_content from "../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import CaseFinderContent from "../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
 import feedbackBanner_content from "../fixtures/content/DSSUpdateCase/feedbackBanner_content.ts";
-import { UserRole } from "../config.ts";
 import idamLoginHelper from "./idamLoginHelper.ts";
-import { Template } from "../pages/CaseAPI/issueFinalDecision/selectTemplatePage.ts";
 import eligibility from "../fixtures/content/CaseAPI/documents/eligibility.ts";
-import caseSubjectDetailsObject_content from "../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import finalDecisionMain_content from "../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
 import addDocumentFooter_content from "../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
 import quantum from "../fixtures/content/CaseAPI/documents/quantum.ts";
@@ -154,13 +154,52 @@ const commonHelpers: CommonHelpers = {
   },
 
   async futureDate(numberOfDays: number): Promise<string> {
+    const privilegeDayPath = "src/tests/fixtures/privilegeDay.json";
+
+    const fetchBankHolidays = async () => {
+      try {
+        const response = await axios.get(
+          "https://www.gov.uk/bank-holidays/scotland.json",
+        );
+        return response.data;
+      } catch (error) {
+        console.error("Failed to fetch bank holidays:", error);
+        throw new Error("Could not fetch bank holidays");
+      }
+    };
+
+    const fetchPrivilegeDay = async () => {
+      const data = fs.readFileSync(privilegeDayPath, "utf-8");
+      const privilegeDayData = JSON.parse(data);
+      return privilegeDayData.events.map((event: any) => event.date);
+    };
+
     const today = new Date();
     let workingDaysCount = 0;
+
+    const holidaysData = await fetchBankHolidays();
+    const holidays: string[] = holidaysData.events
+      .filter((event: any) => {
+        const holidayDate = new Date(event.date);
+        const dayOfWeek = holidayDate.getDay();
+        return dayOfWeek !== 0 && dayOfWeek !== 6;
+      })
+      .map((event: any) => event.date);
+
+    const privilegeDay: string[] = await fetchPrivilegeDay();
+    const allHolidays = new Set([...holidays, ...privilegeDay]);
+
     while (workingDaysCount < numberOfDays) {
       today.setDate(today.getDate() + 1);
 
       const dayOfWeek = today.getDay();
-      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      const formattedDate = today.toISOString().split("T")[0];
+
+      if (
+        dayOfWeek !== 0 &&
+        dayOfWeek !== 6 &&
+        !allHolidays.has(formattedDate)
+      ) {
         workingDaysCount++;
       }
     }

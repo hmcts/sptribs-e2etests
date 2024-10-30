@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers, {
   CaseNoticeType,
 } from "../../../helpers/commonHelpers.ts";

@@ -139,7 +139,6 @@ const subjectDetailsPage: SubjectDetailsPage = {
   async fillInFields(page: Page, subjectName: string) {
     await page.click(this.rejectCookiesButton);
     await page.fill(this.fields.fullName, `${subjectName}`);
-    console.log(`Subject Name: ${subjectName}`);
 
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
     await page.fill(

@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingOtherInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingOtherInformation_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditListingOtherInformationPage = {
   importantInfo: string;

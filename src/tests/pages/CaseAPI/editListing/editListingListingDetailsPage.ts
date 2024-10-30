@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateListingListingDetailsPage = {
   venue: string;

@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { referralReason } from "../referCaseToJudge/referCaseToJudgeReasonPage.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/referCaseToLegalOfficer/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import referCaseToLegalOfficerReasonContent from "../../../fixtures/content/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReason_content.ts";
 
