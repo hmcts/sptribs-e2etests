@@ -1,4 +1,6 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import postponeHearing from "../journeys/CaseAPI/postponeHearing.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
@@ -7,9 +9,6 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-
 test.describe("Postpone hearing tests @CaseAPI", (): void => {
   test("Postpone hearing as a caseworker - Appellant is out of country. @crossbrowserCaseAPI", async ({
     page,
@@ -17,7 +16,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2000 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -64,7 +63,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2000,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a senior caseworker - Appellant seeking legal advice.", async ({
@@ -73,7 +76,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2001 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -120,7 +123,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2001,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a hearing centre admin - Appellant unable to attend face to face.", async ({
@@ -129,7 +136,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2002 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -176,7 +183,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2002,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a hearing centre team lead - Appellant unavailable.", async ({
@@ -185,7 +196,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2003 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -232,7 +243,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2003,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a senior judge - Bereavement.", async ({
@@ -241,7 +256,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2004 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -288,7 +303,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2004,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Case stayed due to Civil proceedings.", async ({
@@ -297,7 +316,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2005 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -344,7 +363,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2005,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - CICA requests case be heard by a single Judge.", async ({
@@ -353,7 +376,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2006 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -400,7 +423,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2006,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - CICA seeking Counsel.", async ({
@@ -409,7 +436,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2007 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -456,7 +483,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2007,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - extension granted.", async ({
@@ -465,7 +496,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2008 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -512,7 +543,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2008,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Face to face hearing required.", async ({
@@ -521,7 +556,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2009 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -568,7 +603,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2009,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Last minute submissions.", async ({
@@ -577,7 +616,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2010 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -624,7 +663,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2010,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - linked cases.", async ({
@@ -633,7 +676,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2011 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -680,7 +723,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2011,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Member excluded.", async ({
@@ -689,7 +736,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2012 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -736,7 +783,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2012,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Representative/Solicitor cannot make contact with Appellant.", async ({
@@ -745,7 +796,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2013 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -792,7 +843,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2013,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Representative/Solicitor seeking further evidence.", async ({
@@ -801,7 +856,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2014 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -848,7 +903,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2014,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Representative/Solicitor unavailable.", async ({
@@ -857,7 +916,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2015 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -904,7 +963,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2015,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Tribunal members unavailable.", async ({
@@ -913,7 +976,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2016 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -960,7 +1023,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2016,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Postpone hearing as a caseworker - Tribunal members deemed listing time directed inadequate.", async ({
@@ -969,7 +1036,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2017 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1016,7 +1083,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2017,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
@@ -1025,7 +1096,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2018 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -1072,7 +1143,11 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2018,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 });
 
@@ -1082,7 +1157,7 @@ test("Accessibility test - postpone hearing @accessibilityCaseAPI. @crossbrowser
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber2019 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -1126,5 +1201,9 @@ test("Accessibility test - postpone hearing @accessibilityCaseAPI. @crossbrowser
     caseNumber2019,
     subjectName,
   );
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
 });

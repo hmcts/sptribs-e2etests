@@ -1,4 +1,6 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
@@ -7,9 +9,6 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-
 test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
   test("Create and clear hearing options in the 'Case management' state. @crossbrowserCaseAPI", async ({
     page,
@@ -17,7 +16,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber401 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -57,7 +56,11 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber401,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Create hearing options with no region and no venue in the 'Case management' state.", async ({
@@ -66,7 +69,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber402 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -100,7 +103,11 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber402,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Create hearing options with no region and venue not listed in the 'Case management' state.", async ({
@@ -109,7 +116,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber403 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -143,7 +150,11 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber403,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Create hearing options with a region but venue not listed in the 'Case management' state. @crossbrowserCaseAPI", async ({
@@ -152,7 +163,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber404 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -186,7 +197,11 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber404,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Edit hearing options in the 'Ready to list' state.", async ({
@@ -195,7 +210,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber405 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -229,7 +244,11 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber405,
       subjectName,
     );
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 });
 
@@ -239,7 +258,7 @@ test("Accessibility test @accessibilityCaseAPI", async ({
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber406 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -279,5 +298,9 @@ test("Accessibility test @accessibilityCaseAPI", async ({
     caseNumber406,
     subjectName,
   );
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
 });

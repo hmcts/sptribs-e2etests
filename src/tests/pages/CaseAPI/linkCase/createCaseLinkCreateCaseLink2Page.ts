@@ -3,7 +3,7 @@ import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createCaseLinkcreateCaseLink2_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import stateTab_content from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
+import states_content from "../../../fixtures/content/states_content.ts";
 
 type CreateCaseLinkCreateCaseLink2Page = {
   next: string;
@@ -114,7 +114,7 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `tbody > tr > td:text-is("${stateTab_content.submittedState}")`,
+          `tbody > tr > td:text-is("${states_content.submittedState}")`,
         ),
         1,
       ),

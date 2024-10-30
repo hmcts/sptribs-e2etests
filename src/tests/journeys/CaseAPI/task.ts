@@ -2,7 +2,10 @@ import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
-import { taskCompletionMethod } from "../../helpers/commonHelpers.ts";
+import {
+  allEvents,
+  taskCompletionMethod,
+} from "../../helpers/commonHelpers.ts";
 import tasksPage from "../../pages/WA/tasksPage.ts";
 import historyPage from "../../pages/WA/historyPage.ts";
 
@@ -24,7 +27,7 @@ type Task = {
     priority: any,
     assignedUser: string,
     numberOfDays: number,
-    event: any,
+    event: allEvents,
     stateBeforeCompletion: string,
     subjectName: string,
   ): Promise<void>;

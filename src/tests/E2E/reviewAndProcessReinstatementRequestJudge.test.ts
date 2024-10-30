@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
@@ -9,22 +13,10 @@ import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 
-const taskName = "Review Reinstatement request - Judge";
-const taskNameProcess = "Process Reinstatement decision notice";
 const priorityReview = null;
 const priorityProcess = " low ";
-const assignedUserAdmin = "sptribswa hearingcentreadmin";
-const assignedUserJudge = "Ms Kayla Adams";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleJudge = "waPrincipalJudge";
-const userRoleCaseWorker = "waCaseWorker";
-const eventRefer = "Refer case to judge";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 5;
-const eventOrders = "Orders: Create draft";
-const eventSendOrder = "Orders: Send order";
-const stateBeforeCompletion = "Case closed";
-const stateAfterCompletion = "Case closed";
 
 test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
@@ -33,7 +25,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber92 = await createCase.createCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       false,
       "Assessment",
       "Other",
@@ -66,7 +58,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber92,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -75,19 +67,25 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber92,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewReinstatementJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber92,
-      taskName,
+      taskNames_content.reviewReinstatementJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.closedState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -100,23 +98,23 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber92,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.closedState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -133,9 +131,9 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       caseNumber92,
-      stateAfterCompletion,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -146,7 +144,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber93 = await createCase.createCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       false,
       "Assessment",
       "Other",
@@ -179,7 +177,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber93,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -188,19 +186,25 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber93,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewReinstatementJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Link: Assign Task to Me",
       false,
       caseNumber93,
-      taskName,
+      taskNames_content.reviewReinstatementJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.closedState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -213,23 +217,23 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber93,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.closedState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -246,9 +250,9 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       caseNumber93,
-      stateAfterCompletion,
+      states_content.closedState,
       subjectName,
     );
   });
@@ -257,7 +261,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber94 = await createCase.createCase(
       page,
-      userRoleCaseWorker,
+      waUsers_content.userRoleCaseWorker,
       false,
       "Assessment",
       "Other",
@@ -290,7 +294,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber94,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, eventRefer);
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
       false,
@@ -299,19 +303,25 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       caseNumber94,
       subjectName,
     );
-    await task.seeTask(page, userRoleJudge, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewReinstatementJudge,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleJudge,
+      waUsers_content.userRoleJudge,
       "Event DropDown",
       false,
       caseNumber94,
-      taskName,
+      taskNames_content.reviewReinstatementJudge,
       priorityReview,
-      assignedUserJudge,
+      authors_content.assignedUserJudge,
       numberOfDaysReview,
-      eventOrders,
-      stateBeforeCompletion,
+      "Orders: Create draft",
+      states_content.closedState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -324,23 +334,23 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     );
     await task.seeTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber94,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       priorityProcess,
-      assignedUserAdmin,
+      authors_content.assignedUserAdmin,
       numberOfDaysProcess,
-      eventSendOrder,
-      stateBeforeCompletion,
+      "Orders: Send order",
+      states_content.closedState,
       subjectName,
     );
     await sendOrder.sendOrder(
@@ -357,9 +367,9 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
     await task.checkCompletedTask(
       page,
       false,
-      taskNameProcess,
+      taskNames_content.processReinstatement,
       caseNumber94,
-      stateAfterCompletion,
+      states_content.closedState,
       subjectName,
     );
   });

@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
@@ -6,15 +10,8 @@ import editCase from "../journeys/CaseAPI/editCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 
-const taskName = "Vet New Case Documents";
 const priority = " low ";
-const assignedUser = "sptribswa hearingcentreadmin";
-const userRole = "waHearingCentreAdmin";
 const numberOfDays = 5;
-const event = "Case: Build case";
-const stateBeforeCompletion = "Submitted";
-const stateAfterCompletion = "Case management";
-const nextTriggeredTaskToCleanUp = "Issue Case To Respondent";
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -23,7 +20,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber156 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -63,31 +60,41 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber156,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber156,
-      taskName,
+      taskNames_content.vetNewCaseDocuments,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Build case",
+      states_content.submittedState,
       subjectName,
     );
     await buildCase.buildCase(page, false, caseNumber156, subjectName);
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.vetNewCaseDocuments,
       caseNumber156,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Task is completable via next steps link - assign to me", async ({
@@ -96,7 +103,7 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber157 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -136,38 +143,48 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber157,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
       caseNumber157,
-      taskName,
+      taskNames_content.vetNewCaseDocuments,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Build case",
+      states_content.submittedState,
       subjectName,
     );
     await buildCase.buildCase(page, false, caseNumber157, subjectName);
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.vetNewCaseDocuments,
       caseNumber157,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber158 = await createCase.createCase(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -207,31 +224,41 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber158,
       subjectName,
     );
-    await task.seeTask(page, userRole, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.vetNewCaseDocuments,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRole,
+      waUsers_content.userRoleAdmin,
       "Event DropDown",
       false,
       caseNumber158,
-      taskName,
+      taskNames_content.vetNewCaseDocuments,
       priority,
-      assignedUser,
+      authors_content.assignedUserAdmin,
       numberOfDays,
-      event,
-      stateBeforeCompletion,
+      "Case: Build case",
+      states_content.submittedState,
       subjectName,
     );
     await buildCase.buildCase(page, false, caseNumber158, subjectName);
     await task.checkCompletedTask(
       page,
       false,
-      taskName,
+      taskNames_content.vetNewCaseDocuments,
       caseNumber158,
-      stateAfterCompletion,
+      states_content.caseManagementState,
       subjectName,
     );
-    await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
   });
 });
 
@@ -241,7 +268,7 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber159 = await createCase.createCase(
     page,
-    userRole,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -281,29 +308,39 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     caseNumber159,
     subjectName,
   );
-  await task.seeTask(page, userRole, true, taskName, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    true,
+    taskNames_content.vetNewCaseDocuments,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRole,
+    waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
     true,
     caseNumber159,
-    taskName,
+    taskNames_content.vetNewCaseDocuments,
     priority,
-    assignedUser,
+    authors_content.assignedUserAdmin,
     numberOfDays,
-    event,
-    stateBeforeCompletion,
+    "Case: Build case",
+    states_content.submittedState,
     subjectName,
   );
   await buildCase.buildCase(page, true, caseNumber159, subjectName);
   await task.checkCompletedTask(
     page,
     true,
-    taskName,
+    taskNames_content.vetNewCaseDocuments,
     caseNumber159,
-    stateAfterCompletion,
+    states_content.caseManagementState,
     subjectName,
   );
-  await task.removeTask(page, nextTriggeredTaskToCleanUp, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
 });

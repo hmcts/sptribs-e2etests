@@ -14,7 +14,7 @@ import uploadSupportingDocumentsPage from "../../pages/DSSCreateCase/uploadSuppo
 import uploadOtherInformationPage from "../../pages/DSSCreateCase/uploadOtherInformationPage.ts";
 import checkYourAnswersPage from "../../pages/DSSCreateCase/checkYourAnswersPage.ts";
 import applicationSubmittedPage from "../../pages/DSSCreateCase/applicationSubmittedPage.ts";
-import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
+import states_content from "../../fixtures/content/states_content.ts";
 import DSSVerifyCaseDetails from "./DSSVerifyDetails.ts";
 
 type CreateFeApplication = {
@@ -296,7 +296,7 @@ const createFEApplication: CreateFeApplication = {
       page,
       accessibilityTest,
       caseNumber,
-      stateTab_content.DSSSubmittedState,
+      states_content.DSSSubmittedState,
       representationPresent,
       representationQualified,
       uploadOtherInfo,

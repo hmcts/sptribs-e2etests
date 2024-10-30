@@ -1,4 +1,8 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -13,17 +17,8 @@ import createListing from "../journeys/CaseAPI/createListing.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import config from "../config.ts";
 
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-const taskName = "Review other request - Legal Officer";
 const priorityReview = " low ";
-const assignedUserLO = "sptribswa seniorcaseworker";
-const userRoleAdmin = "waHearingCentreAdmin";
-const userRoleLO = "waSeniorCaseworker";
 const numberOfDaysReview = 5;
-const eventOrders = "Orders: Create draft";
-const caseManagementState = "Case management";
-const stateCaseStayed = "Case Status:  Case stayed";
-const taskNameProcess = "Process other directions returned";
 
 test.describe("Case-API Edit draft tests. @CaseAPI", () => {
   test("Edit a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
@@ -32,7 +27,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1500 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -53,7 +48,11 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1500, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -66,19 +65,25 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1500,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1500,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      caseManagementState,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -99,18 +104,22 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1500,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 
   test("Edit a CIC6 draft in the Ready to list state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1501 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -131,7 +140,11 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1501, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -157,18 +170,24 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1501,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1501,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
+      "Orders: Create draft",
       "Ready to list",
       subjectName,
     );
@@ -190,18 +209,22 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1501,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 
   test("Edit a CIC7 draft in the Awaiting Hearing state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1502 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -222,7 +245,11 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1502, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -253,18 +280,24 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1502,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1502,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
+      "Orders: Create draft",
       "Awaiting hearing",
       subjectName,
     );
@@ -286,18 +319,22 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1502,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 
   test("Edit a CIC8 draft in the Case Stayed state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1503 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -318,7 +355,11 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1503, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -327,7 +368,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       false,
       caseNumber1503,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -341,18 +382,24 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1503,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1503,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
+      "Orders: Create draft",
       "Case stayed",
       subjectName,
     );
@@ -374,18 +421,22 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1503,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 
   test("Edit a CIC10 draft in the Case closed state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1504 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -430,18 +481,24 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1504,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1504,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
+      "Orders: Create draft",
       "Case closed",
       subjectName,
     );
@@ -463,18 +520,22 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1504,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 
   test("Edit a CIC13 draft.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1505 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -495,7 +556,11 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1505, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -508,19 +573,25 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1505,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1505,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      caseManagementState,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -541,11 +612,15 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1505,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 
   test("Error messaging - Edit draft @crossbrowserCaseAPI", async ({
@@ -554,7 +629,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1506 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -575,7 +650,11 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1506, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -588,19 +667,25 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1506,
       subjectName,
     );
-    await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
     await task.initiateTask(
       page,
-      userRoleLO,
+      waUsers_content.userRoleLO,
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber1506,
-      taskName,
+      taskNames_content.reviewOtherRequestLO,
       priorityReview,
-      assignedUserLO,
+      authors_content.assignedUserLO,
       numberOfDaysReview,
-      eventOrders,
-      caseManagementState,
+      "Orders: Create draft",
+      states_content.caseManagementState,
       subjectName,
     );
     await createDraft.createDraft(
@@ -621,11 +706,15 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1506,
     );
-    await task.removeTask(page, taskNameProcess, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.processOtherDirectionsReturned,
+      subjectName,
+    );
   });
 });
 
@@ -635,7 +724,7 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber1507 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -656,7 +745,11 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1507, subjectName);
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Refer case to legal officer",
@@ -669,19 +762,25 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
     caseNumber1507,
     subjectName,
   );
-  await task.seeTask(page, userRoleLO, false, taskName, subjectName);
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleLO,
+    false,
+    taskNames_content.reviewOtherRequestLO,
+    subjectName,
+  );
   await task.initiateTask(
     page,
-    userRoleLO,
+    waUsers_content.userRoleLO,
     "Link: Assign Task to Me and Go To Task",
     false,
     caseNumber1507,
-    taskName,
+    taskNames_content.reviewOtherRequestLO,
     priorityReview,
-    assignedUserLO,
+    authors_content.assignedUserLO,
     numberOfDaysReview,
-    eventOrders,
-    caseManagementState,
+    "Orders: Create draft",
+    states_content.caseManagementState,
     subjectName,
   );
   await createDraft.createDraft(
@@ -702,9 +801,13 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
   );
   await commonHelpers.signOutAndGoToCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     config.CaseAPIBaseURL,
     caseNumber1507,
   );
-  await task.removeTask(page, taskNameProcess, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.processOtherDirectionsReturned,
+    subjectName,
+  );
 });

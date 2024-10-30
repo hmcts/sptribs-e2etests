@@ -1,4 +1,7 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
@@ -8,11 +11,6 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import removeStay from "../journeys/CaseAPI/removeStay.ts";
 
-const userRoleAdmin = "waHearingCentreAdmin";
-const taskRemovedIssueCase = " Issue Case To Respondent ";
-const state = "Case Status:  Case management";
-const stateCaseStayed = "Case Status:  Case stayed";
-
 test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
   test("Stay a case management case for reason waitingOutcomeOfCivilCase, with optional text. @crossbrowserCaseAPI", async ({
     page,
@@ -20,7 +18,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber900 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -41,7 +39,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber900, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -50,7 +52,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber900,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -60,7 +62,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber900,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -70,7 +72,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber901 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -91,7 +93,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber901, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -100,7 +106,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber901,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -110,7 +116,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber901,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -120,7 +126,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber902 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -141,7 +147,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber902, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -150,7 +160,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber902,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -160,7 +170,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber902,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -170,7 +180,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber903 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -191,7 +201,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber903, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -200,7 +214,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber903,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -210,7 +224,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber903,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -220,7 +234,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber904 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -241,7 +255,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber904, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -250,7 +268,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber904,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -260,7 +278,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber904,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -270,7 +288,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber905 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -291,7 +309,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber905, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -300,7 +322,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber905,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -310,7 +332,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber905,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -320,7 +342,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber906 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -341,7 +363,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber906, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -350,7 +376,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber906,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -360,7 +386,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber906,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 
@@ -370,7 +396,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber907 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -391,7 +417,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber907, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -413,7 +443,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber907,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -423,7 +453,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber908 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -444,7 +474,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber908, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -466,7 +500,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber908,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -476,7 +510,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber909 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -497,7 +531,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber909, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -519,7 +557,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber909,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -529,7 +567,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber910 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -550,7 +588,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber910, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -572,7 +614,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber910,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -582,7 +624,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber911 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -603,7 +645,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber911, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -625,7 +671,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber911,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -635,7 +681,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber912 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -656,7 +702,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber912, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -678,7 +728,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber912,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -688,7 +738,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber913 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -709,7 +759,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber913, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -731,7 +785,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber913,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
   });
 
@@ -741,7 +795,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber914 = await createCase.createCase(
       page,
-      userRoleAdmin,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -762,7 +816,11 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber914, subjectName);
-    await task.removeTask(page, taskRemovedIssueCase, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -771,7 +829,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       false,
       caseNumber914,
       subjectName,
-      stateCaseStayed,
+      states_content.caseStayedState,
     );
     await removeStay.removeStay(
       page,
@@ -781,7 +839,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       true,
       caseNumber914,
       subjectName,
-      state,
+      states_content.caseManagementState,
     );
   });
 });
@@ -792,7 +850,7 @@ test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber915 = await createCase.createCase(
     page,
-    userRoleAdmin,
+    waUsers_content.userRoleAdmin,
     false,
     "Assessment",
     "Other",
@@ -813,7 +871,11 @@ test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber915, subjectName);
-  await task.removeTask(page, taskRemovedIssueCase, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+  );
   await createEditStay.createEditStay(
     page,
     true,
@@ -822,7 +884,7 @@ test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
     true,
     caseNumber915,
     subjectName,
-    stateCaseStayed,
+    states_content.caseStayedState,
   );
   await removeStay.removeStay(
     page,
@@ -832,6 +894,6 @@ test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
     false,
     caseNumber915,
     subjectName,
-    state,
+    states_content.caseManagementState,
   );
 });
