@@ -12,7 +12,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  
+
   test("Check for an existing case to update, upload one document and additional information - CY", async ({
     page,
   }) => {
