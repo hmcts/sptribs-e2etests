@@ -30,6 +30,7 @@ const idamLoginHelper: IdamLoginHelper = {
   ): Promise<void> {
     if (!page.url().includes("idam-web-public.")) {
       await page.goto(application);
+      await page.waitForLoadState("domcontentloaded");
     }
     if (page.url().includes("demo")) {
       await page.waitForSelector(`#skiplinktarget:text("Sign in")`);

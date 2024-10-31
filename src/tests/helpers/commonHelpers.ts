@@ -374,7 +374,7 @@ const commonHelpers: CommonHelpers = {
         page.locator(
           "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
         ),
-      ).toHaveText(subjectName),
+      ).toHaveText(`${subjectName}`),
       expect(page.locator(".case-field").first()).toContainText(
         allTabTitles_content.pageTitle + caseNumber,
       ),
@@ -550,6 +550,7 @@ const commonHelpers: CommonHelpers = {
     await page.waitForLoadState("domcontentloaded");
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.goto(await this.generateUrl(baseURL, caseNumber));
+    await page.waitForLoadState("domcontentloaded");
   },
 
   async checkForButtons(

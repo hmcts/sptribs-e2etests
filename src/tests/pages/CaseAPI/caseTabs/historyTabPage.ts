@@ -29,6 +29,7 @@ const historyTabPage: HistoryTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    state: string,
     subjectName: string,
   ): Promise<void> {
     await commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName);
