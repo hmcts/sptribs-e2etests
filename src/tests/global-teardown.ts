@@ -7,14 +7,12 @@ import {
 } from "@playwright/test";
 import caseAPILoginPage from "./pages/CaseAPI/caseList/caseAPILoginPage";
 import myWorkPage from "./pages/WA/myWorkPage";
-import globalSetup from "./global-setup";
 
 async function dataCleanUpByUser(
   UserCleanUp: any,
   action: (context: BrowserContext) => Promise<void>,
 ) {
-  //const browser: Browser = await chromium.launch( {headless: false});
-  const browser: Browser = await chromium.launch();
+  const browser: Browser = await chromium.launch({headless: true});
   const context: BrowserContext = await browser.newContext();
   const page: Page = await context.newPage();
 
