@@ -1,8 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 
 module.exports = defineConfig({
-  globalSetup: require.resolve('./src/tests/global-setup'),
-  globalTeardown: require.resolve('./src/tests/global-teardown'),
+  globalSetup: require.resolve("./src/tests/global-setup"),
+  globalTeardown: require.resolve("./src/tests/global-teardown"),
   testDir: "./src/tests/E2E",
   /* Run tests in files in parallel */
   fullyParallel: true,
