@@ -98,7 +98,7 @@ const task: Task = {
           stateBeforeCompletion,
         );
         await tasksPage.navigateToTaskTab(page, event, caseNumber);
-        await tasksPage.clickTaskLink(page, event);
+        await tasksPage.clickTaskLink(page, event, taskName);
         break;
       case "Link: Assign Task to Me":
         await myWorkPage.clickAssignToMe(page, subjectName);
@@ -122,7 +122,7 @@ const task: Task = {
           stateBeforeCompletion,
         );
         await tasksPage.navigateToTaskTab(page, event, caseNumber);
-        await tasksPage.clickTaskLink(page, event);
+        await tasksPage.clickTaskLink(page, event, taskName);
         break;
       case "Event DropDown":
         await myWorkPage.clickAssignAndGoToTask(page, subjectName);

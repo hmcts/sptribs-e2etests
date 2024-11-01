@@ -53,11 +53,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber137, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -173,11 +168,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber138, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -293,11 +283,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber139, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -411,11 +396,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber140, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -480,11 +460,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber141, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,

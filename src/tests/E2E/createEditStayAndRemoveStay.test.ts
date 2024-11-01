@@ -45,11 +45,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber900, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -99,11 +94,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber901, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -153,11 +143,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber902, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -207,11 +192,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber903, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -261,11 +241,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber904, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -315,11 +290,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber905, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -369,11 +339,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber906, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -423,11 +388,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber907, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -480,11 +440,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber908, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -537,11 +492,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber909, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -594,11 +544,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber910, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -651,11 +596,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber911, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -708,11 +648,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber912, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -765,11 +700,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber913, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -822,11 +752,6 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber914, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -877,11 +802,6 @@ test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber915, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await createEditStay.createEditStay(
     page,
     true,

@@ -2,13 +2,37 @@ import { Page } from "@playwright/test";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage";
 import myWorkPage from "../pages/WA/myWorkPage";
 import tasksPage from "../pages/WA/tasksPage";
+import taskNames_content from "../fixtures/content/taskNames_content";
 
 async function testDataCleanUp(page: Page, user: any): Promise<void> {
-  const locators = [
-    `exui-task-field:text-is(" Issue Decision Notice ")`,
-    `exui-task-field:text-is(" Complete Hearing Outcome ")`,
-    `exui-task-field:text-is(" Stitch/collate hearing bundle ")`,
-  ];
+  const locator1: any = page
+    .locator("tr", { hasText: "Subject AutoTesting" })
+    .filter({
+      has: page.locator(
+        `exui-task-field:text-is(" Issue Case To Respondent ")`,
+      ),
+    });
+  const locator2: any = page
+    .locator("tr", { hasText: "Subject AutoTesting" })
+    .filter({
+      has: page.locator(`exui-task-field:text-is(" Issue Decision Notice ")`),
+    });
+  const locator3: any = page
+    .locator("tr", { hasText: "Subject AutoTesting" })
+    .filter({
+      has: page.locator(
+        `exui-task-field:text-is(" Complete Hearing Outcome ")`,
+      ),
+    });
+  const locator4: any = page
+    .locator("tr", { hasText: "Subject AutoTesting" })
+    .filter({
+      has: page.locator(
+        `exui-task-field:text-is(" Stitch/collate hearing bundle ")`,
+      ),
+    });
+
+  const availableTasksLocator = [locator1, locator2, locator3, locator4];
 
   await caseAPILoginPage.SignInUser(page, user);
   await myWorkPage.navigateToMyWorkPage(page);
@@ -16,7 +40,7 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
 
   while (true) {
     let anySelectorVisible = false;
-    for (const selector of locators) {
+    for (const selector of availableTasksLocator) {
       if (await page.locator(selector).first().isVisible()) {
         await myWorkPage.dataCleanUpAssignTask(page, selector);
         anySelectorVisible = true;
@@ -51,10 +75,17 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
       has: page.locator(`a:text-is("Stitch/collate hearing bundle")`),
     });
 
+  const autotestingTaskLocator4: any = page
+    .locator("tr", { hasText: "Subject AutoTesting" })
+    .filter({
+      has: page.locator(`a:text-is("Issue Case To Respondent")`),
+    });
+
   const myTaskLocators = [
     autotestingTaskLocator1,
     autotestingTaskLocator2,
     autotestingTaskLocator3,
+    autotestingTaskLocator4,
   ];
 
   while (true) {

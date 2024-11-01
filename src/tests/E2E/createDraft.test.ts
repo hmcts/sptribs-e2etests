@@ -50,11 +50,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber800, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -144,11 +139,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber801, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -237,11 +227,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber802, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

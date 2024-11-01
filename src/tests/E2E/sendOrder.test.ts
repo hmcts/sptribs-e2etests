@@ -53,11 +53,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2400, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -181,11 +176,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2401, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -306,11 +296,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2402, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -434,11 +419,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2403, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       true,

@@ -55,11 +55,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber69, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -178,11 +173,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber70, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -299,11 +289,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber71, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -420,11 +405,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber72, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -492,11 +472,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber73, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -604,11 +579,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber74, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -766,11 +736,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber75, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Refer case to legal officer",

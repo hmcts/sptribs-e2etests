@@ -59,11 +59,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber81, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -219,11 +214,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber82, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -494,11 +484,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber84, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -568,11 +553,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber85, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

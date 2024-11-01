@@ -54,11 +54,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber76, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -174,11 +169,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber77, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -443,11 +433,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber79, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -512,11 +497,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber80, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,

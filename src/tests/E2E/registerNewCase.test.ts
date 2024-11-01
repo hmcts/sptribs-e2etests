@@ -84,11 +84,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link - assign to me / Edit Case : Assessment - Medical Re-opening Category, Email Contact, 2001, London", async ({
@@ -156,11 +151,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       taskNames_content.registerNewCaseTask,
       caseNumber35,
       states_content.submittedState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
   });
@@ -232,11 +222,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link / Edit Case : Assessment - Paragraph 26 Category, Post Contact, 2012, North East", async ({
@@ -304,11 +289,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       taskNames_content.registerNewCaseTask,
       caseNumber37,
       states_content.submittedState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
   });
@@ -380,11 +360,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link / Edit Case : Eligibility - Other Category", async ({
@@ -452,11 +427,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       taskNames_content.registerNewCaseTask,
       caseNumber39,
       states_content.submittedState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
   });
@@ -586,11 +556,6 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     taskNames_content.registerNewCaseTask,
     caseNumber41,
     states_content.submittedState,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.vetNewCaseDocuments,
     subjectName,
   );
 });

@@ -8,14 +8,8 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
-import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
-    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
-  });
-
   test("Create and clear hearing options in the 'Case management' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -62,11 +56,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber401,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Create hearing options with no region and no venue in the 'Case management' state.", async ({
@@ -107,11 +96,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber402,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -156,11 +140,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber403,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Create hearing options with a region but venue not listed in the 'Case management' state. @crossbrowserCaseAPI", async ({
@@ -203,11 +182,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       caseNumber404,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Edit hearing options in the 'Ready to list' state.", async ({
@@ -248,11 +222,6 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
       false,
       true,
       caseNumber405,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -302,11 +271,6 @@ test("Accessibility test @accessibilityCaseAPI", async ({
     page,
     true,
     caseNumber406,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });

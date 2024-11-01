@@ -52,11 +52,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber16, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -172,11 +167,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber17, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -290,11 +280,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber177, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -408,11 +393,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber18, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -477,11 +457,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber19, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,

@@ -44,11 +44,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1600, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -123,11 +118,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1601, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -202,11 +192,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1602, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -281,11 +266,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1603, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -360,11 +340,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1604, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -439,11 +414,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1605, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -518,11 +488,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1606, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -597,11 +562,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1607, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -677,11 +637,6 @@ test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1608, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await hearingOptions.hearingOptions(
     page,
     false,

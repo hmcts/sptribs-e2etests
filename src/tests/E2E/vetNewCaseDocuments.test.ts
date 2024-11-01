@@ -95,11 +95,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       states_content.caseManagementState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link - assign to me", async ({
@@ -178,11 +173,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       states_content.caseManagementState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
@@ -257,11 +247,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       taskNames_content.vetNewCaseDocuments,
       caseNumber158,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -341,11 +326,6 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     taskNames_content.vetNewCaseDocuments,
     caseNumber159,
     states_content.caseManagementState,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });

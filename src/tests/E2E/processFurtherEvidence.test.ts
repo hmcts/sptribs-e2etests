@@ -265,11 +265,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber162, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -360,11 +355,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber163, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -441,11 +431,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber164, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -516,11 +501,6 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber165, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Document management: Upload",

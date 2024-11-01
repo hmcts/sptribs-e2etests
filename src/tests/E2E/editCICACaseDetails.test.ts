@@ -47,11 +47,6 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1400, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await editCICACaseDetails.editCICACaseDetails(
       page,
       false,
@@ -87,11 +82,6 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1401, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -145,11 +135,6 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1402, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -220,11 +205,6 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1403, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,

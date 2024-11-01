@@ -5,14 +5,8 @@ import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
 import task from "../journeys/CaseAPI/task.ts";
-import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("DSS Create case tests. @DSSCreate", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
-    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
-  });
-
   test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
     page,
   }) => {
@@ -36,11 +30,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber701,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
     );
   });
 
@@ -68,11 +57,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber702,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
   });
 
   test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
@@ -98,11 +82,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber703,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
     );
   });
 
@@ -130,11 +109,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber704,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
   });
 
   test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
@@ -160,11 +134,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber705,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
     );
   });
 
@@ -192,11 +161,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber706,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
@@ -222,11 +186,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber707,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
     );
   });
 
@@ -254,11 +213,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       config.CaseAPIBaseURL,
       caseNumber708,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
   });
 
   test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
@@ -284,11 +238,6 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber709,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
     );
   });
 

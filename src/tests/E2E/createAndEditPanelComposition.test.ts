@@ -8,14 +8,8 @@ import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
-import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Panel Composition tests @CaseAPI", () => {
-  test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
-    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
-  });
-
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -50,11 +44,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       null,
       false,
       caseNumber1700,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -95,11 +84,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1701,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Make a panel composition only two panel members and no specialism information", async ({
@@ -138,11 +122,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1702,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Make a panel composition with all information.", async ({
@@ -179,11 +158,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       "Lay Member",
       true,
       caseNumber1703,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -233,11 +207,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1704,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 });
 
@@ -284,11 +253,6 @@ test("Accessibility test - Create and Edit Panel composition @accessibilityCaseA
     "Medical Member",
     true,
     caseNumber1705,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });

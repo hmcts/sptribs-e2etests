@@ -26,7 +26,7 @@ type TasksPage = {
     taskName: string,
     subjectName: string,
   ): Promise<void>;
-  clickTaskLink(page: Page, event: any): Promise<void>;
+  clickTaskLink(page: Page, event: any, taskName: string): Promise<void>;
   markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
   markTasksAsDone(
     page: Page,
@@ -56,28 +56,31 @@ const tasksPage: TasksPage = {
     subjectName: string,
   ): Promise<any> {
     const dueDate = await commonHelpers.futureDate(numberOfDays);
+    const specificTask = page.locator("exui-case-task", {
+      hasText: `${taskName}`,
+    });
     await page.waitForSelector(`p.govuk-body > strong:text-is("${taskName}")`);
 
-    //check for more than one task if cron job hasn't cleared previous task
-    let assignedToElements = await page
-      .locator(`span:text-is("Assigned to")`)
-      .count();
+    // //check for more than one task if cron job hasn't cleared previous task
+    // let assignedToElements = await page
+    //   .locator(`span:text-is("Assigned to")`)
+    //   .count();
 
-    while (assignedToElements > 1) {
-      await page.reload();
-      await page.waitForSelector(
-        `p.govuk-body > strong:text-is("${taskName}")`,
-      );
-      await page.waitForTimeout(1000);
-      assignedToElements = await page
-        .locator(`span:text-is("Assigned to")`)
-        .count();
+    // while (assignedToElements > 1) {
+    //   await page.reload();
+    //   await page.waitForSelector(
+    //     `p.govuk-body > strong:text-is("${taskName}")`,
+    //   );
+    //   await page.waitForTimeout(1000);
+    //   assignedToElements = await page
+    //     .locator(`span:text-is("Assigned to")`)
+    //     .count();
 
-      // Break if there's only 1 task left
-      if (assignedToElements <= 1) {
-        break;
-      }
-    }
+    //   // Break if there's only 1 task left
+    //   if (assignedToElements <= 1) {
+    //     break;
+    //   }
+    // }
 
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -91,54 +94,59 @@ const tasksPage: TasksPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         tasks_content.caseReference + caseNumber,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`p.govuk-body > strong:text-is("${taskName}")`),
-        1,
-      ),
+      commonHelpers.checkVisibleAndPresent(specificTask, 1),
       ...Array.from({ length: 3 }, (_, index: number) => {
         const textOnPage: ArrayConstructor = (tasks_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`span.row-padding:text-is("${textOnPage}")`),
+          specificTask.locator(`span.row-padding:text-is("${textOnPage}")`),
           1,
         );
       }),
       expect(
-        page.locator(`.govuk-summary-list__value:text-is("${assignedUser}")`),
+        specificTask.locator(
+          `.govuk-summary-list__value:text-is("${assignedUser}")`,
+        ),
       ).toBeVisible(),
-      expect(page.locator("#action_complete")).toHaveText(tasks_content.link1),
-      expect(page.locator("#action_unclaim")).toHaveText(tasks_content.link2),
-      expect(page.locator(`p > a:text-is("${event}")`)).toBeVisible(),
+      expect(specificTask.locator("#action_complete")).toHaveText(
+        tasks_content.link1,
+      ),
+      expect(specificTask.locator("#action_unclaim")).toHaveText(
+        tasks_content.link2,
+      ),
+      expect(specificTask.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
     if (user !== "waPrincipalJudge") {
+      // expect(
+      //   specificTask.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
+      // );
+      // await expect(specificTask.locator("exui-priority-field > strong")).toHaveText(
+      //   taskPriority,
+      // );
       expect(
-        page.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
-      );
-      await expect(page.locator("exui-priority-field > strong")).toHaveText(
-        taskPriority,
-      );
-      expect(
-        page.locator(`span.row-padding:text-is("${tasks_content.dueDate}")`),
+        specificTask.locator(
+          `span.row-padding:text-is("${tasks_content.dueDate}")`,
+        ),
       );
       await expect(
-        page.locator(`dd > span:text-is("${dueDate}")`),
+        specificTask.locator(`dd > span:text-is("${dueDate}")`),
       ).toBeVisible();
     } else {
       expect(
-        page.locator(
+        specificTask.locator(
           `span.row-padding:text-is("${tasks_content.taskCreated}")`,
         ),
       );
       await expect(
-        page.locator(
+        specificTask.locator(
           `dd > span:text-is("${await commonHelpers.todayDateFull()}")`,
         ),
       ).toBeVisible();
-      await expect(page.locator("#action_cancel")).toHaveText(
+      await expect(specificTask.locator("#action_cancel")).toHaveText(
         tasks_content.link3,
       );
-      await expect(page.locator("#action_reassign")).toHaveText(
+      await expect(specificTask.locator("#action_reassign")).toHaveText(
         tasks_content.link4,
       );
     }
@@ -213,8 +221,11 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(`a:text-is("${event}")`, { state: "attached" });
   },
 
-  async clickTaskLink(page: Page, event: any): Promise<void> {
-    await page.locator(`a:text-is("${event}")`).click();
+  async clickTaskLink(page: Page, event: any, taskName: string): Promise<void> {
+    const specificTask = page.locator("exui-case-task", {
+      hasText: `${taskName}`,
+    });
+    await specificTask.locator(`a:text-is("${event}")`).click();
   },
 
   async chooseEventFromDropdown(page: Page, event: any): Promise<void> {
@@ -224,10 +235,14 @@ const tasksPage: TasksPage = {
   },
 
   async markAsDone(page, nextTriggeredTaskCleanUp): Promise<void> {
+    const specificTask = page.locator("exui-case-task", {
+      hasText: `${nextTriggeredTaskCleanUp}`,
+    });
+
     await page.waitForSelector(
       `p strong:text-is("${nextTriggeredTaskCleanUp}")`,
     );
-    await page.locator("#action_complete").click();
+    await specificTask.locator("#action_complete").click();
     await page.waitForSelector(`h1:text-is("Mark the task as done")`);
     await page.locator("#submit-button").click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);

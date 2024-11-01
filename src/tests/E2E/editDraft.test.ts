@@ -53,11 +53,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1500, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -113,11 +108,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber1500,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
-    );
   });
 
   test("Edit a CIC6 draft in the Ready to list state.", async ({ page }) => {
@@ -145,11 +135,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1501, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -218,11 +203,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber1501,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
-    );
   });
 
   test("Edit a CIC7 draft in the Awaiting Hearing state.", async ({ page }) => {
@@ -250,11 +230,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1502, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -328,11 +303,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber1502,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
-    );
   });
 
   test("Edit a CIC8 draft in the Case Stayed state.", async ({ page }) => {
@@ -360,11 +330,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1503, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -429,11 +394,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1503,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
     );
   });
 
@@ -529,11 +489,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       config.CaseAPIBaseURL,
       caseNumber1504,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
-    );
   });
 
   test("Edit a CIC13 draft.", async ({ page }) => {
@@ -561,11 +516,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1505, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -620,11 +570,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1505,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
     );
   });
 
@@ -655,11 +600,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1506, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -714,11 +654,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       waUsers_content.userRoleAdmin,
       config.CaseAPIBaseURL,
       caseNumber1506,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
     );
   });
 });
@@ -750,11 +685,6 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1507, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Refer case to legal officer",
@@ -809,10 +739,5 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
     waUsers_content.userRoleAdmin,
     config.CaseAPIBaseURL,
     caseNumber1507,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.processOtherDirectionsReturned,
-    subjectName,
   );
 });

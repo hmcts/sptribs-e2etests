@@ -8,12 +8,6 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
-import testDataCleanUp from "../helpers/testDataCleanUp.ts";
-
-test("Check for redundant test data", async ({ page }) => {
-  test.setTimeout(20 * 60 * 1000);
-  await testDataCleanUp(page, waUsers_content.userRoleAdmin);
-});
 
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
@@ -69,11 +63,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber301,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Cancel hearing - consent order.", async ({ page }): Promise<void> => {
@@ -125,11 +114,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Consent Order received and no time for infill",
       false,
       caseNumber302,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -187,11 +171,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber303,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Cancel hearing - no suitable cases.", async ({
@@ -247,11 +226,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber304,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Cancel hearing - request for R27.", async ({ page }): Promise<void> => {
@@ -303,11 +277,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       "Request for R27 decision and no time for infill",
       false,
       caseNumber305,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -365,11 +334,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber306,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
@@ -425,11 +389,6 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       caseNumber307,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 });
 
@@ -481,11 +440,6 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     "Other",
     false,
     caseNumber308,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });
