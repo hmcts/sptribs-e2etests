@@ -41,7 +41,7 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
   while (true) {
     let anySelectorVisible = false;
     for (const selector of availableTasksLocator) {
-      if (await page.locator(selector).first().isVisible()) {
+      if (await selector.first().isVisible()) {
         await myWorkPage.dataCleanUpAssignTask(page, selector);
         anySelectorVisible = true;
       }
