@@ -60,28 +60,6 @@ const tasksPage: TasksPage = {
       hasText: `${taskName}`,
     });
     await page.waitForSelector(`p.govuk-body > strong:text-is("${taskName}")`);
-
-    // //check for more than one task if cron job hasn't cleared previous task
-    // let assignedToElements = await page
-    //   .locator(`span:text-is("Assigned to")`)
-    //   .count();
-
-    // while (assignedToElements > 1) {
-    //   await page.reload();
-    //   await page.waitForSelector(
-    //     `p.govuk-body > strong:text-is("${taskName}")`,
-    //   );
-    //   await page.waitForTimeout(1000);
-    //   assignedToElements = await page
-    //     .locator(`span:text-is("Assigned to")`)
-    //     .count();
-
-    //   // Break if there's only 1 task left
-    //   if (assignedToElements <= 1) {
-    //     break;
-    //   }
-    // }
-
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h2:text-is("${tasks_content.title}")`),
@@ -118,12 +96,6 @@ const tasksPage: TasksPage = {
       expect(specificTask.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
     if (user !== "waPrincipalJudge") {
-      // expect(
-      //   specificTask.locator(`span.row-padding:text-is("${tasks_content.priority}")`),
-      // );
-      // await expect(specificTask.locator("exui-priority-field > strong")).toHaveText(
-      //   taskPriority,
-      // );
       expect(
         specificTask.locator(
           `span.row-padding:text-is("${tasks_content.dueDate}")`,
