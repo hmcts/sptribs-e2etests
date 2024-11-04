@@ -12,7 +12,7 @@ async function dataCleanUpByUser(
   UserCleanUp: any,
   action: (context: BrowserContext) => Promise<void>,
 ) {
-  const browser: Browser = await chromium.launch({ headless: true });
+  const browser: Browser = await chromium.launch({ headless: false });
   const context: BrowserContext = await browser.newContext();
   const page: Page = await context.newPage();
 
@@ -38,7 +38,7 @@ async function dataCleanUpByUser(
       const nextPageButton = page.locator(`a[aria-label="Next page"]`);
       if (await nextPageButton.isVisible()) {
         await nextPageButton.click();
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(5000);
       } else {
         break;
       }
@@ -47,7 +47,7 @@ async function dataCleanUpByUser(
 
   await page.locator(`a:text-is("My work")`).click();
   await page.waitForSelector(`h3:text-is("My work")`);
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(5000);
 
   while (true) {
     while (await page.locator(subjectAutoTesting).first().isVisible()) {
@@ -60,14 +60,14 @@ async function dataCleanUpByUser(
       await page.locator("#action_complete").click();
       await page.waitForSelector(`button:text-is("Mark as done")`);
       await page.locator("#submit-button").click();
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(5000);
     }
 
     if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
       const nextPageButton = page.locator(`a[aria-label="Next page"]`);
       if (await nextPageButton.isVisible()) {
         await nextPageButton.click();
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(5000);
       } else {
         break;
       }

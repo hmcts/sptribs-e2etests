@@ -503,7 +503,11 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
       taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewOtherRequestLO,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -601,7 +605,11 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
       taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processOtherDirectionsReturned,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

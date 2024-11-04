@@ -410,7 +410,11 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       taskNames_content.reviewWithdrawalJudge,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewWithdrawalJudge,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -511,7 +515,11 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       taskNames_content.processWithdrawal,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processWithdrawal,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

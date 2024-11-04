@@ -409,7 +409,11 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       taskNames_content.reviewListingDirectionsJudge,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewListingDirectionsJudge,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -510,7 +514,11 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       taskNames_content.processListingDirections,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processListingDirections,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

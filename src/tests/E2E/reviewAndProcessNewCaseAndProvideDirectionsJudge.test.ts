@@ -414,7 +414,11 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewNewCaseJudge,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -515,7 +519,11 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       taskNames_content.processDirectionsReturned,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processDirectionsReturned,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -655,7 +663,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     await task.seeTask(
       page,
       waUsers_content.userRoleAdmin,
-      true,
+      false,
       taskNames_content.nonComplianceDirections,
       subjectName,
     );

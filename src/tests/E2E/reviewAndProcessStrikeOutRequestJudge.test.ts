@@ -411,7 +411,11 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       taskNames_content.reviewStrikeOutJudge,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewStrikeOutJudge,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -514,7 +518,11 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       taskNames_content.processStrikeOut,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processStrikeOut,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

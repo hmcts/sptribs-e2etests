@@ -464,7 +464,11 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       taskNames_content.reviewStrikeOutLO,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewStrikeOutLO,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -568,7 +572,11 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI", (): void => 
       taskNames_content.processStrikeOut,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processStrikeOut,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

@@ -13,6 +13,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
+import tasks_content from "../fixtures/content/CaseAPI/myWork/tasks_content.ts";
 
 const priority = " low ";
 const numberOfDays = 2;
@@ -385,7 +386,11 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.issueCaseToRespondentTask,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -440,7 +445,11 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.issueCaseToRespondentTask,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -494,7 +503,11 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.issueCaseToRespondentTask,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

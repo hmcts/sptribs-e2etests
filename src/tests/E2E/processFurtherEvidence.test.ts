@@ -77,10 +77,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber160, subjectName);
-    await tasksPage.markTasksAsDone(page, caseNumber160, 3, [
+    await tasksPage.markTasksAsDone(page, caseNumber160, 2, [
       "Register New Case",
       "Vet New Case Documents",
-      "Issue Case To Respondent",
     ]);
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
@@ -450,7 +449,11 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       taskNames_content.processFurtherEvidence,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processFurtherEvidence,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

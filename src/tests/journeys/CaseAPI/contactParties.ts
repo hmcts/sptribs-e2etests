@@ -71,6 +71,18 @@ const contactParties: ContactParties = {
       case true:
         await partiesToContactPage.tickCheckBoxes(page, false, user);
         await partiesToContactPage.triggerErrorMessages(page);
+        await partiesToContactPage.tickCheckBoxes(page, true, user);
+        await partiesToContactPage.continueOn(page);
+        await page.waitForSelector(`h2:text-is("Check your answers")`);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          user,
+          subjectName,
+        );
+        await confirmPage.continueOn(page);
         break;
     }
   },

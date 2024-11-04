@@ -412,7 +412,11 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       taskNames_content.reviewTimeExtensionJudge,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewTimeExtensionJudge,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -513,7 +517,11 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       taskNames_content.processTimeExtensionDirections,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processTimeExtensionDirections,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

@@ -84,7 +84,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       taskNames_content.reviewListingDirectionsLO,
       priorityReview,
       authors_content.assignedUserLO,
-      numberOfDaysProcess,
+      numberOfDaysReview,
       "Orders: Create draft",
       states_content.caseManagementState,
       subjectName,
@@ -539,7 +539,11 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewListingDirectionsLO,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -635,7 +639,11 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       taskNames_content.processListingDirections,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processListingDirections,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -766,7 +774,11 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       taskNames_content.nonComplianceDirections,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.nonComplianceDirections,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

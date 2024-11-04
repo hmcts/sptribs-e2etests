@@ -463,7 +463,11 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       taskNames_content.reviewTimeExtensionLO,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewTimeExtensionLO,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -567,7 +571,11 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void
       taskNames_content.processTimeExtensionDirections,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processTimeExtensionDirections,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
