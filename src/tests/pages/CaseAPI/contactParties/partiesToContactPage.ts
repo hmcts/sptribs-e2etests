@@ -79,7 +79,7 @@ const partiesToContactPage: PartiesToContactPage = {
       ),
     ]);
     await commonHelpers.checkVisibleAndPresent(
-      page.locator(`.form-label:text-is("${textToCheck}")`),
+      await page.locator(`.form-label:text-is("${textToCheck}")`),
       1,
     );
     if (accessibilityTest) {
@@ -101,12 +101,12 @@ const partiesToContactPage: PartiesToContactPage = {
         partiesToContact_content.messageRequiredError1,
       ),
     ]);
-    page.fill(this.message, partiesToContact_content.message);
-    page.click(this.continue);
-    page.waitForSelector(
-      `.error-summary > h3:has-text("${partiesToContact_content.errorBanner2}")`,
+    await page.fill(this.message, partiesToContact_content.message);
+    await page.click(this.continue);
+    await page.waitForSelector(
+      `div.error-summary > h3:has-text("${partiesToContact_content.errorBanner2}")`,
     );
-    expect(
+    await expect(
       page.locator(
         `#errors > li:has-text("${partiesToContact_content.partyRequiredError}")`,
       ),
@@ -114,7 +114,7 @@ const partiesToContactPage: PartiesToContactPage = {
   },
 
   async fillInFields(page) {
-    page.fill(this.message, partiesToContact_content.message);
+    await page.fill(this.message, partiesToContact_content.message);
   },
 
   async continueOn(page: Page): Promise<void> {
