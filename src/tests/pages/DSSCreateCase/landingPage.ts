@@ -24,9 +24,13 @@ const landingPage: LandingPage = {
     switch (cy) {
       case true:
         await page.goto(config.FEBaseURL);
-        await page.locator(".govuk-link").nth(1).click();
+        await page.waitForSelector(
+          `h1:text-is("${LandingPageDetails.pageTitle}")`,
+        );
+        await page.locator(`a.govuk-link:text-is("Cymraeg")`).click();
+        await page.waitForSelector(`.govuk-link:text-is("English")`);
         await Promise.all([
-          expect(page.locator(".govuk-link").nth(1)).toHaveText("English"),
+          expect(page.locator(`a.govuk-link:text-is("English")`)).toBeVisible(),
           expect(page.locator(".govuk-heading-l")).toHaveText(
             LandingPageDetails.pageTitleCy,
           ),
@@ -51,6 +55,9 @@ const landingPage: LandingPage = {
         break;
       default:
         await page.goto(config.FEBaseURL);
+        await page.waitForSelector(
+          `h1:text-is("${LandingPageDetails.pageTitle}")`,
+        );
         await Promise.all([
           expect(page.locator(".govuk-heading-l")).toHaveText(
             LandingPageDetails.pageTitle,

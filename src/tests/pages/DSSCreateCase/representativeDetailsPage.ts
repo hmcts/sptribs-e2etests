@@ -40,6 +40,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
   ): Promise<void> {
     switch (cy) {
       case true:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${representativeDetailsContent.pageTitleCy}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
@@ -80,6 +83,9 @@ const representativeDetailsPage: RepresentativeDetailsPage = {
         ]);
         break;
       default:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${representativeDetailsContent.pageTitle}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(

@@ -7,11 +7,16 @@ import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import editCase from "../journeys/CaseAPI/editCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priority = " low ";
 const numberOfDays = 5;
 
 test.describe("Register new case task tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task / Edit Case : Assessment - Fatal Category, Email Contact, 1996, Scotland", async ({
     page,
   }) => {
@@ -77,11 +82,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       taskNames_content.registerNewCaseTask,
       caseNumber34,
       states_content.submittedState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
   });
@@ -153,11 +153,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
   });
 
   test("Task is completed via event dropdown / Edit Case : Assessment - Minor Category, Post Contact, 2008, Midlands", async ({
@@ -225,11 +220,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       taskNames_content.registerNewCaseTask,
       caseNumber36,
       states_content.submittedState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
   });
@@ -301,11 +291,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link / Edit Case : Assessment - Special Jurisdiction Category, Wales & South West", async ({
@@ -375,11 +360,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link / Edit Case : Eligibility - Other Category", async ({
@@ -447,11 +427,6 @@ test.describe("Register new case task tests @CaseAPI", (): void => {
       taskNames_content.registerNewCaseTask,
       caseNumber39,
       states_content.submittedState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
   });
@@ -581,11 +556,6 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     taskNames_content.registerNewCaseTask,
     caseNumber41,
     states_content.submittedState,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.vetNewCaseDocuments,
     subjectName,
   );
 });

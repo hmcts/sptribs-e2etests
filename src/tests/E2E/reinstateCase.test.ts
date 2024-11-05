@@ -6,8 +6,13 @@ import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
   test("Reinstate a case which has been closed in error with no optional text. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

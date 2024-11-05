@@ -13,6 +13,7 @@ import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priorityReview = " low ";
 const priorityProcess = " low ";
@@ -20,6 +21,11 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 
 test.describe("Send order tests @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+
   test("Send a draft order in the Ready to list state @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -47,11 +53,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2400, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -175,11 +176,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2401, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -300,11 +296,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2402, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -428,11 +419,6 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2403, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       true,

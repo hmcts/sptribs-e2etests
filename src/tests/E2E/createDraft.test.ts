@@ -12,11 +12,17 @@ import task from "../journeys/CaseAPI/task.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
 test.describe("Case-API Create draft tests. @CaseAPI", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+
   test("Create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -44,11 +50,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber800, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -138,11 +139,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber801, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -231,11 +227,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber802, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

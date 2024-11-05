@@ -20,11 +20,16 @@ import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer
 import documentManagementAmend from "../journeys/CaseAPI/documentManagementAmend.ts";
 import myWorkPage from "../pages/WA/myWorkPage.ts";
 import tasksPage from "../pages/WA/tasksPage.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priority = " low ";
 const numberOfDays = 7;
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -72,10 +77,9 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber160, subjectName);
-    await tasksPage.markTasksAsDone(page, caseNumber160, 3, [
+    await tasksPage.markTasksAsDone(page, caseNumber160, 2, [
       "Register New Case",
       "Vet New Case Documents",
-      "Issue Case To Respondent",
     ]);
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
@@ -260,11 +264,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber162, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -355,11 +354,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber163, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -436,11 +430,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber164, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
@@ -460,7 +449,11 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       taskNames_content.processFurtherEvidence,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processFurtherEvidence,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -511,11 +504,6 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber165, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Document management: Upload",

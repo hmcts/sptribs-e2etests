@@ -550,6 +550,7 @@ const commonHelpers: CommonHelpers = {
     await page.waitForLoadState("domcontentloaded");
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.goto(await this.generateUrl(baseURL, caseNumber));
+    await page.waitForLoadState("domcontentloaded");
   },
 
   async checkForButtons(

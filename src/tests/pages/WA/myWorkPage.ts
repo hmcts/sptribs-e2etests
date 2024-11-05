@@ -20,14 +20,23 @@ type MyWorkPage = {
   ): Promise<void>;
   selectAvailableTasks(page: Page): Promise<void>;
   seeTask(page: Page, taskName: string, subjectName: string): Promise<void>;
-  clickAssignAndGoToTask(page: Page, subjectName: string): Promise<void>;
-  clickAssignToMe(page: Page, subjectName: string): Promise<void>;
+  clickAssignAndGoToTask(
+    page: Page,
+    subjectName: string,
+    taskName: string,
+  ): Promise<void>;
+  clickAssignToMe(
+    page: Page,
+    subjectName: string,
+    taskName: string,
+  ): Promise<void>;
   navigateToTaskPage(
     page: Page,
     taskName: string,
     subjectName: string,
   ): Promise<void>;
   navigateToMyWorkPage(page: Page): Promise<void>;
+  dataCleanUpAssignTask(page: Page, selector: string): Promise<void>;
 };
 
 const myWorkPage: MyWorkPage = {
@@ -129,7 +138,7 @@ const myWorkPage: MyWorkPage = {
         (await page.locator(paginationLocator).count()) > 0;
       if (!paginationExists) {
         await page.goto(this.availableTasksUrl);
-        await page.waitForTimeout(2000); // // waiting for cron job before rechecking
+        await page.waitForTimeout(3000); // // waiting for cron job before rechecking
       } else {
         const paginationCount = await page.locator(paginationLocator).count();
         for (let i = 0; i < paginationCount; i++) {
@@ -159,32 +168,40 @@ const myWorkPage: MyWorkPage = {
         } else {
           await page.getByText("page 1").click();
           await page.waitForSelector(`li > span:text("1")`);
-          await page.waitForTimeout(2000); // waiting for cron job before rechecking
+          await page.waitForTimeout(3000); // waiting for cron job before rechecking
         }
       }
     }
   },
 
-  async clickAssignAndGoToTask(page: Page, subjectName: string): Promise<void> {
+  async clickAssignAndGoToTask(
+    page: Page,
+    subjectName: string,
+    taskName,
+  ): Promise<void> {
     await page
-      .locator("tr")
-      .filter({
+      .locator("tr", {
         has: page.locator(`td:has-text("${subjectName}")`),
+        hasText: taskName,
       })
-      .locator(`div > button:has-text("Manage")`)
+      .locator(`td > div > button:has-text("Manage")`)
       .click();
     await page.waitForSelector(this.assignToMeAndGoToTask);
     await page.locator(this.assignToMeAndGoToTask).click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);
   },
 
-  async clickAssignToMe(page: Page, subjectName: string): Promise<void> {
+  async clickAssignToMe(
+    page: Page,
+    subjectName: string,
+    taskName: string,
+  ): Promise<void> {
     await page
-      .locator("tr")
-      .filter({
+      .locator("tr", {
         has: page.locator(`td:has-text("${subjectName}")`),
+        hasText: taskName,
       })
-      .locator(`div > button:text-is("Manage ")`)
+      .locator(`td > div > button:has-text("Manage")`)
       .click();
     await page.waitForSelector(this.assignToMeLink);
     await page.locator(this.assignToMeLink).click();
@@ -222,7 +239,7 @@ const myWorkPage: MyWorkPage = {
         (await page.locator(paginationLocator).count()) > 0;
       if (!paginationExists) {
         await page.goto(this.myTasksUrl);
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(3000);
       } else {
         const paginationCount = await page.locator(paginationLocator).count();
         for (let i = 0; i < paginationCount; i++) {
@@ -233,7 +250,7 @@ const myWorkPage: MyWorkPage = {
             await page.waitForSelector(paginationLocator);
             await nextPage.click();
             await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(3000);
 
             if (await subjectTask.isVisible()) {
               locatorFound = true;
@@ -248,15 +265,22 @@ const myWorkPage: MyWorkPage = {
         } else {
           await page.getByText("page 1").click();
           await page.waitForSelector(`li > span:text("1")`);
-          await page.waitForTimeout(2000);
+          await page.waitForTimeout(3000);
         }
       }
     }
   },
 
   async navigateToMyWorkPage(page: Page): Promise<void> {
-    await page.goto(this.availableTasksUrl);
+    await page.locator(this.myWorkLink).click();
     await page.waitForSelector(`h3:text-is("My work")`);
+  },
+
+  async dataCleanUpAssignTask(page: Page, selector: any): Promise<void> {
+    await selector.first().locator(`div > button:has-text("Manage")`).click();
+    await page.waitForSelector(this.assignToMeLink);
+    await page.locator(this.assignToMeLink).click();
+    await page.waitForTimeout(3000);
   },
 };
 

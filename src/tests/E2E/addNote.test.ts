@@ -43,11 +43,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
         caseNumber200,
       );
       await addNote.addNote(page, false, caseNumber200, subjectName);
-      await task.removeTask(
-        page,
-        taskNames_content.registerNewCaseTask,
-        subjectName,
-      );
     });
   }
 
@@ -106,11 +101,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber202, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await addNote.addNote(page, false, caseNumber202, subjectName);
   });
 
@@ -141,11 +131,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber203, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -189,11 +174,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber204, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -242,11 +222,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber205, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -353,11 +328,6 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber207, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await createEditStay.createEditStay(
     page,
     true,

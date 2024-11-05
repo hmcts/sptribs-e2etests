@@ -8,8 +8,13 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Postpone hearing tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
   test("Postpone hearing as a caseworker - Appellant is out of country. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -61,11 +66,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Appellant is out of country",
       false,
       caseNumber2000,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -123,11 +123,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2001,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a hearing centre admin - Appellant unable to attend face to face.", async ({
@@ -181,11 +176,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Appellant unable to attend face to face, change of hearing format requested",
       false,
       caseNumber2002,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -243,11 +233,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2003,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a senior judge - Bereavement.", async ({
@@ -301,11 +286,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Bereavement",
       false,
       caseNumber2004,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -363,11 +343,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2005,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a caseworker - CICA requests case be heard by a single Judge.", async ({
@@ -421,11 +396,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "CICA requests case be heard by a single Judge as a Rule 27 decision",
       false,
       caseNumber2006,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -483,11 +453,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2007,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a caseworker - extension granted.", async ({
@@ -541,11 +506,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Extension granted",
       false,
       caseNumber2008,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -603,11 +563,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2009,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a caseworker - Last minute submissions.", async ({
@@ -661,11 +616,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Last minute submissions i.e. 1-2 weeks prior to hearing",
       false,
       caseNumber2010,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -723,11 +673,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2011,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a caseworker - Member excluded.", async ({
@@ -781,11 +726,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Member excluded - listed in error",
       false,
       caseNumber2012,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -843,11 +783,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2013,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a caseworker - Representative/Solicitor seeking further evidence.", async ({
@@ -901,11 +836,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Representative/Solicitor seeking further evidence",
       false,
       caseNumber2014,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -963,11 +893,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2015,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Postpone hearing as a caseworker - Tribunal members unavailable.", async ({
@@ -1021,11 +946,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       "Tribunal members unavailable (holiday/work/appointment/unwell)",
       false,
       caseNumber2016,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -1083,11 +1003,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2017,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Error messaging. @crossbrowserCaseAPI", async ({
@@ -1143,11 +1058,6 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
       caseNumber2018,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 });
 
@@ -1199,11 +1109,6 @@ test("Accessibility test - postpone hearing @accessibilityCaseAPI. @crossbrowser
     "Other",
     false,
     caseNumber2019,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });

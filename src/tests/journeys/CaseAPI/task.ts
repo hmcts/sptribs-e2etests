@@ -78,7 +78,7 @@ const task: Task = {
   ): Promise<void> {
     switch (taskCompletionMethod) {
       default: //"Link: Assign Task to Me and Go To Task"
-        await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+        await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskName);
         await tasksPage.checkPageLoads(
           page,
           accessibilityTest,
@@ -98,10 +98,10 @@ const task: Task = {
           stateBeforeCompletion,
         );
         await tasksPage.navigateToTaskTab(page, event, caseNumber);
-        await tasksPage.clickTaskLink(page, event);
+        await tasksPage.clickTaskLink(page, event, taskName);
         break;
       case "Link: Assign Task to Me":
-        await myWorkPage.clickAssignToMe(page, subjectName);
+        await myWorkPage.clickAssignToMe(page, subjectName, taskName);
         await myWorkPage.navigateToTaskPage(page, taskName, subjectName);
         await tasksPage.checkPageLoads(
           page,
@@ -122,10 +122,10 @@ const task: Task = {
           stateBeforeCompletion,
         );
         await tasksPage.navigateToTaskTab(page, event, caseNumber);
-        await tasksPage.clickTaskLink(page, event);
+        await tasksPage.clickTaskLink(page, event, taskName);
         break;
       case "Event DropDown":
-        await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+        await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskName);
         await tasksPage.checkPageLoads(
           page,
           accessibilityTest,
@@ -171,7 +171,7 @@ const task: Task = {
     await myWorkPage.navigateToMyWorkPage(page);
     await myWorkPage.selectAvailableTasks(page);
     await myWorkPage.seeTask(page, taskRemoved, subjectName);
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskRemoved);
     await tasksPage.markAsDone(page, taskRemoved);
   },
 };

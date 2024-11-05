@@ -9,11 +9,16 @@ import task from "../journeys/CaseAPI/task.ts";
 import editCase from "../journeys/CaseAPI/editCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priority = " low ";
 const numberOfDays = 5;
 
 test.describe("Vet new case documents task tests @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
@@ -88,11 +93,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       taskNames_content.vetNewCaseDocuments,
       caseNumber156,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -173,11 +173,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       states_content.caseManagementState,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
@@ -252,11 +247,6 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       taskNames_content.vetNewCaseDocuments,
       caseNumber158,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -336,11 +326,6 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     taskNames_content.vetNewCaseDocuments,
     caseNumber159,
     states_content.caseManagementState,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });

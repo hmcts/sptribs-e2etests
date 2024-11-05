@@ -89,6 +89,7 @@ const partiesToContactPage: PartiesToContactPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
+    await page.waitForSelector("#error-summary-title");
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
         partiesToContact_content.errorBanner1,
@@ -99,20 +100,17 @@ const partiesToContactPage: PartiesToContactPage = {
       expect(page.locator(".error-message")).toHaveText(
         partiesToContact_content.messageRequiredError1,
       ),
-      page.fill(this.message, partiesToContact_content.message),
-      page.click(this.continue),
-      page.waitForSelector(
-        'div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted',
-      ),
-      expect(
-        page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
-      ).toContainText(partiesToContact_content.errorBanner2),
-      expect(
-        page.locator(
-          'div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted',
-        ),
-      ).toContainText(partiesToContact_content.partyRequiredError),
     ]);
+    page.fill(this.message, partiesToContact_content.message);
+    page.click(this.continue);
+    page.waitForSelector(
+      `.error-summary > h3:has-text("${partiesToContact_content.errorBanner2}")`,
+    );
+    expect(
+      page.locator(
+        `#errors > li:has-text("${partiesToContact_content.partyRequiredError}")`,
+      ),
+    ).toBeVisible();
   },
 
   async fillInFields(page) {

@@ -46,11 +46,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1700,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Make a panel composition only one panel member and specialism information.", async ({
@@ -87,11 +82,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       null,
       true,
       caseNumber1701,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -132,11 +122,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1702,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 
   test("Make a panel composition with all information.", async ({
@@ -173,11 +158,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       "Lay Member",
       true,
       caseNumber1703,
-      subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
       subjectName,
     );
   });
@@ -227,11 +207,6 @@ test.describe("Panel Composition tests @CaseAPI", () => {
       caseNumber1704,
       subjectName,
     );
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
   });
 });
 
@@ -278,11 +253,6 @@ test("Accessibility test - Create and Edit Panel composition @accessibilityCaseA
     "Medical Member",
     true,
     caseNumber1705,
-    subjectName,
-  );
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
     subjectName,
   );
 });

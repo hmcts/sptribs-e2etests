@@ -12,6 +12,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priorityReview = null;
 const priorityProcess = " low ";
@@ -19,6 +20,11 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 5;
 
 test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
     page,
   }) => {

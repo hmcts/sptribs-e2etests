@@ -13,6 +13,7 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priorityReview = " medium ";
 const priorityProcess = " medium ";
@@ -20,6 +21,11 @@ const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 
 test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -47,11 +53,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber89, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -194,11 +195,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber90, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -339,11 +335,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber91, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",

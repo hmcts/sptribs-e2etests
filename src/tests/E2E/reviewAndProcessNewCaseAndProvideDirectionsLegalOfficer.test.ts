@@ -14,6 +14,7 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import documentManagementUpload from "../journeys/CaseAPI/documentManagementUpload.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priorityReview = " low ";
 const priorityProcess = " low ";
@@ -23,6 +24,10 @@ const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
 test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(20 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -50,11 +55,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber69, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -108,7 +108,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -117,7 +117,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber69,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
       authors_content.assignedUserAdmin,
       numberOfDaysProcess,
@@ -139,7 +139,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       caseNumber69,
       states_content.caseManagementState,
       subjectName,
@@ -173,11 +173,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber70, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -231,7 +226,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -240,7 +235,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       "Link: Assign Task to Me",
       false,
       caseNumber70,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
       authors_content.assignedUserAdmin,
       numberOfDaysProcess,
@@ -262,7 +257,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       caseNumber70,
       states_content.caseManagementState,
       subjectName,
@@ -294,11 +289,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber71, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -352,7 +342,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -361,7 +351,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       "Event DropDown",
       false,
       caseNumber71,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
       authors_content.assignedUserAdmin,
       numberOfDaysProcess,
@@ -383,7 +373,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       caseNumber71,
       states_content.caseManagementState,
       subjectName,
@@ -415,11 +405,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber72, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -439,7 +424,11 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       taskNames_content.reviewNewCaseLO,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.reviewNewCaseLO,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -487,11 +476,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber73, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -545,10 +529,14 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName);
+    await myWorkPage.clickAssignAndGoToTask(
+      page,
+      subjectName,
+      taskNames_content.processDirectionsReturned,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -564,7 +552,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.reviewNewCaseLO,
+      taskNames_content.processDirectionsReturned,
       caseNumber73,
       states_content.closedState,
       subjectName,
@@ -599,11 +587,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber74, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -657,7 +640,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -666,7 +649,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       "Event DropDown",
       false,
       caseNumber74,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       priorityProcess,
       authors_content.assignedUserAdmin,
       numberOfDaysProcess,
@@ -688,7 +671,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.processDirectionsReturned,
       caseNumber74,
       states_content.caseManagementState,
       subjectName,
@@ -761,11 +744,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber75, subjectName);
-  await task.removeTask(
-    page,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Refer case to legal officer",
@@ -819,7 +797,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     page,
     waUsers_content.userRoleAdmin,
     false,
-    taskNames_content.processOtherDirectionsReturned,
+    taskNames_content.processDirectionsReturned,
     subjectName,
   );
   await task.initiateTask(
@@ -828,7 +806,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     "Event DropDown",
     false,
     caseNumber75,
-    taskNames_content.processOtherDirectionsReturned,
+    taskNames_content.processDirectionsReturned,
     priorityProcess,
     authors_content.assignedUserAdmin,
     numberOfDaysProcess,
@@ -850,7 +828,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.checkCompletedTask(
     page,
     false,
-    taskNames_content.processOtherDirectionsReturned,
+    taskNames_content.processDirectionsReturned,
     caseNumber75,
     states_content.caseManagementState,
     subjectName,
