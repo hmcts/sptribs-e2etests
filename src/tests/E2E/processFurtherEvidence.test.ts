@@ -394,6 +394,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       caseNumber163,
       subjectName,
+      true,
     );
     await task.checkCompletedTask(
       page,

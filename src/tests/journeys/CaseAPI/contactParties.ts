@@ -13,6 +13,7 @@ type ContactParties = {
     errorMessaging: boolean,
     caseNumber: string,
     subjectName: string,
+    taskCompletion: boolean,
   ): Promise<void>;
 };
 
@@ -24,20 +25,15 @@ const contactParties: ContactParties = {
     errorMessaging: boolean,
     caseNumber: string,
     subjectName: string,
+    taskCompletion: boolean,
   ): Promise<void> {
-    // if (user == "respondent") {
-    //   await commonHelpers.chooseEventFromDropdown(
-    //     page,
-    //     "Case: CICA Contact parties",
-    //   );
-    // }
     await selectDocumentsPage.checkPageLoads(
       page,
       caseNumber,
       accessibilityTest,
       subjectName,
     );
-    await selectDocumentsPage.tickCheckbox(page);
+    await selectDocumentsPage.tickCheckbox(page, taskCompletion);
     await selectDocumentsPage.continueOn(page);
     await partiesToContactPage.checkPageLoads(
       page,
