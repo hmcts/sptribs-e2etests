@@ -688,6 +688,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       true,
       caseNumber67,
       subjectName,
+      true,
     );
     await task.checkCompletedTask(
       page,
@@ -842,6 +843,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     false,
     caseNumber68,
     subjectName,
+    true,
   );
   await task.checkCompletedTask(
     page,

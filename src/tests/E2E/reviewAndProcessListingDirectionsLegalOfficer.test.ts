@@ -173,6 +173,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       false,
       caseNumber45,
       subjectName,
+      true,
     );
     await task.checkCompletedTask(
       page,
@@ -329,6 +330,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       false,
       caseNumber46,
       subjectName,
+      true,
     );
     await task.checkCompletedTask(
       page,
@@ -484,6 +486,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
       false,
       caseNumber47,
       subjectName,
+      true,
     );
     await task.checkCompletedTask(
       page,

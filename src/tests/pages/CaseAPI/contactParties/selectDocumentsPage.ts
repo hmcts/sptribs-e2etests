@@ -16,7 +16,7 @@ type SelectDocumentsPage = {
     accessibilityTest: boolean,
     subjectName: string,
   ): Promise<void>;
-  tickCheckbox(page: Page): Promise<void>;
+  tickCheckbox(page: Page, taskCompletion: boolean): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
 
@@ -76,19 +76,34 @@ const selectDocumentsPage: SelectDocumentsPage = {
   async continueOn(page: Page): Promise<void> {
     await page.click(this.continue);
   },
-  async tickCheckbox(page: Page): Promise<void> {
-    await page
-      .locator(
-        'input[type="checkbox"][name="contactPartiesDocumentsDocumentList"][id^="contactPartiesDocumentsDocumentList_"]',
-      )
-      .nth(1)
-      .check();
-    const isChecked = await page
-      .locator(
-        'input[type="checkbox"][id^="contactPartiesDocumentsDocumentList_"]',
-      )
-      .nth(1)
-      .isChecked();
+  async tickCheckbox(page: Page, taskCompletion: boolean): Promise<void> {
+    if (taskCompletion) {
+      await page
+        .locator(
+          'input[type="checkbox"][name="contactPartiesDocumentsDocumentList"][id^="contactPartiesDocumentsDocumentList_"]',
+        )
+        .nth(1)
+        .check();
+      const isChecked = await page
+        .locator(
+          'input[type="checkbox"][id^="contactPartiesDocumentsDocumentList_"]',
+        )
+        .nth(1)
+        .isChecked();
+    } else {
+      await page
+        .locator(
+          'input[type="checkbox"][name="contactPartiesDocumentsDocumentList"][id^="contactPartiesDocumentsDocumentList_"]',
+        )
+        .nth(0)
+        .check();
+      const isChecked = await page
+        .locator(
+          'input[type="checkbox"][id^="contactPartiesDocumentsDocumentList_"]',
+        )
+        .nth(0)
+        .isChecked();
+    }
   },
 };
 
