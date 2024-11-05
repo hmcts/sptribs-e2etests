@@ -90,8 +90,8 @@ const createEditStay: CreateEditStay = {
         await confirmPage.checkPageLoads(
           page,
           accessibilityTest,
-          subjectName,
           caseNumber,
+          subjectName,
         );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
