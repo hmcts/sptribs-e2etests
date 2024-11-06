@@ -17,6 +17,7 @@ type CreateEditStay = {
     caseNumber: string,
     subjectName: string,
     state: string,
+    DSSSubmitted: boolean,
   ): Promise<any>;
 };
 
@@ -30,6 +31,7 @@ const createEditStay: CreateEditStay = {
     caseNumber: string,
     subjectName: string,
     state: string,
+    DSSSubmitted: boolean,
   ): Promise<any> {
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -59,6 +61,7 @@ const createEditStay: CreateEditStay = {
           accessibilityTest,
           caseNumber,
           subjectName,
+          DSSSubmitted,
         );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);
@@ -92,6 +95,7 @@ const createEditStay: CreateEditStay = {
           accessibilityTest,
           caseNumber,
           subjectName,
+          DSSSubmitted,
         );
         await confirmPage.closeAndReturnToCase(page);
         await summaryTabPage.changeToSummaryTab(page);

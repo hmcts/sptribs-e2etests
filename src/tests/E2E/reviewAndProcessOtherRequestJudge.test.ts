@@ -186,6 +186,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
       false,
       caseNumber77,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -319,6 +320,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber78,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -465,6 +467,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
       "noncomplianceWithDirections",
       caseNumber79,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -570,6 +573,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber80,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

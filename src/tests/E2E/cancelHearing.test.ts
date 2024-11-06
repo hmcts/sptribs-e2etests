@@ -1,12 +1,10 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import cancelHearing from "../journeys/CaseAPI/cancelHearing.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
@@ -54,6 +52,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber301,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -107,6 +106,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber302,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -162,6 +162,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber303,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -217,6 +218,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber304,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -270,6 +272,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber305,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -325,6 +328,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber306,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -380,6 +384,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
       false,
       caseNumber307,
       subjectName,
+      false,
     );
     await cancelHearing.cancelHearing(
       page,
@@ -433,6 +438,7 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
     false,
     caseNumber308,
     subjectName,
+    false,
   );
   await cancelHearing.cancelHearing(
     page,

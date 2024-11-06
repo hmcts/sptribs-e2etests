@@ -9,6 +9,7 @@ type CreateListingNotifyPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -20,6 +21,7 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createListingNotifyPageContent.pageTitle}")`,
@@ -32,40 +34,63 @@ const createListingNotifyPage: CreateListingNotifyPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingNotifyPageContent.caseReference + caseNumber,
       ),
+
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `dt > ccd-markdown > div > markdown > p:text-is("${createListingNotifyPageContent.textOnPage1}")`,
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${createListingNotifyPageContent.textOnPage2}")`,
-        ),
-        4,
-      ),
-      ...Array.from({ length: 4 }, (_, index: number) => {
-        const textOnPage = (createListingNotifyPageContent as any)[
-          `textOnPage${index + 3}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
     ]);
+
+    if (!DSSSubmitted) {
+      await Promise.all([
+        ...Array.from({ length: 4 }, (_, index: number) => {
+          const textOnPage = (createListingNotifyPageContent as any)[
+            `textOnPage${index + 3}`
+          ];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.form-label:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
+    }
+
     if (accessibilityTest) {
       await axeTest(page);
     }
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
-    await page
-      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+    if (
+      await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).isVisible()
+    ) {
+      await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
+    }
+    if (
+      await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .isVisible()
+    ) {
+      await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .click();
+    }
+    if (
+      await page
+        .locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`)
+        .isVisible()
+    ) {
+      await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
+    }
+    if (
+      await page
+        .locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`)
+        .isVisible()
+    ) {
+      await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+    }
     await page.getByRole("button", { name: "Continue" }).click();
   },
 

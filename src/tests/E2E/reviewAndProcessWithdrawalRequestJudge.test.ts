@@ -426,6 +426,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber145,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -531,6 +532,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber146,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

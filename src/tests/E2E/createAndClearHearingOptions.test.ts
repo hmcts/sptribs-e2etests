@@ -1,12 +1,10 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
 
 test.describe("Create and clear hearing options tests @CaseAPI", (): void => {

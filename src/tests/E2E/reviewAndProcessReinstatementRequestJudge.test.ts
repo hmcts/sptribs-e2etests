@@ -63,6 +63,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       null,
       caseNumber92,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -182,6 +183,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       null,
       caseNumber93,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -299,6 +301,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI", (): v
       null,
       caseNumber94,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(

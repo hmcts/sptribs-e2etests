@@ -1,7 +1,6 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import states_content from "../fixtures/content/states_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
@@ -9,7 +8,6 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import addNote from "../journeys/CaseAPI/addNote.ts";
 import config from "../config.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
@@ -191,6 +189,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       caseNumber204,
       subjectName,
+      false,
     );
     await addNote.addNote(page, false, caseNumber204, subjectName);
   });
@@ -239,6 +238,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       false,
       caseNumber205,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -296,6 +296,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
       null,
       caseNumber206,
       subjectName,
+      false,
     );
     await addNote.addNote(page, false, caseNumber206, subjectName);
   });
@@ -337,6 +338,7 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
     caseNumber207,
     subjectName,
     states_content.caseStayedState,
+    false,
   );
   await addNote.addNote(page, true, caseNumber207, subjectName);
 });

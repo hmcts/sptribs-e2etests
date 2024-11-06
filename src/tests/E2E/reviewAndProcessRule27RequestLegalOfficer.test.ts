@@ -440,6 +440,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       null,
       caseNumber106,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -540,6 +541,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       null,
       caseNumber107,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

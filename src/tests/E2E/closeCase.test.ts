@@ -59,6 +59,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber500,
       subjectName,
+      false,
     );
   });
 
@@ -113,6 +114,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber501,
       subjectName,
+      false,
     );
   });
 
@@ -167,6 +169,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber502,
       subjectName,
+      false,
     );
   });
 
@@ -221,6 +224,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber503,
       subjectName,
+      false,
     );
   });
 
@@ -275,6 +279,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber504,
       subjectName,
+      false,
     );
   });
 
@@ -329,6 +334,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber505,
       subjectName,
+      false,
     );
   });
 
@@ -383,6 +389,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       "noncomplianceWithDirections",
       caseNumber506,
       subjectName,
+      false,
     );
   });
 
@@ -437,6 +444,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       "other",
       caseNumber507,
       subjectName,
+      false,
     );
   });
 
@@ -491,6 +499,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber508,
       subjectName,
+      false,
     );
   });
 
@@ -545,6 +554,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber509,
       subjectName,
+      false,
     );
   });
 
@@ -599,6 +609,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber510,
       subjectName,
+      false,
     );
   });
 
@@ -653,6 +664,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber511,
       subjectName,
+      false,
     );
   });
 
@@ -694,6 +706,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
       null,
       caseNumber512,
       subjectName,
+      false,
     );
   });
 });
@@ -736,5 +749,6 @@ test("Accessibility test - Close case @accessibilityCaseAPI", async ({
     null,
     caseNumber513,
     subjectName,
+    false,
   );
 });

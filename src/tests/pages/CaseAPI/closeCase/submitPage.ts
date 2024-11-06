@@ -25,6 +25,7 @@ type SubmitPage = {
     page: Page,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   checkPageLoads(
     page: Page,
@@ -33,14 +34,16 @@ type SubmitPage = {
     closeReason: CaseCloseReason,
     optionalText: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
-  checkCommonInfo(page: Page): Promise<void>;
+  checkCommonInfo(page: Page, DSSSubmitted: boolean): Promise<void>;
   checkAllInfo(
     page: Page,
     closeReason: CaseCloseReason,
     optionalText: boolean,
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -54,6 +57,7 @@ const submitPage: SubmitPage = {
     page: Page,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
@@ -63,17 +67,6 @@ const submitPage: SubmitPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 7 }, (_, index: number) => {
-        const textOnPage = (submit_content as any)[`textOnPage${index + 2}`];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${submit_content.textOnPage9}")`),
-        4,
-      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,
@@ -81,6 +74,22 @@ const submitPage: SubmitPage = {
         this.cancel,
       ),
     ]);
+
+    if (!DSSSubmitted) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`.text-16:text-is("${submit_content.textOnPage9}")`),
+          4,
+        ),
+        ...Array.from({ length: 7 }, (_, index: number) => {
+          const textOnPage = (submit_content as any)[`textOnPage${index + 2}`];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.text-16:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
+    }
   },
 
   async checkPageLoads(
@@ -90,11 +99,12 @@ const submitPage: SubmitPage = {
     closeReason: CaseCloseReason,
     optionalText: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     switch (closeReason) {
       default: // Case withdrawn
         await Promise.all([
-          this.checkCommon(page, caseNumber, subjectName),
+          this.checkCommon(page, caseNumber, subjectName, DSSSubmitted),
           ...Array.from({ length: 2 }, (_, index: number) => {
             const textOnPage = (submit_content as any)[`withdrawn${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
@@ -112,7 +122,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseRejected":
         await Promise.all([
-          this.checkCommon(page, caseNumber, subjectName),
+          this.checkCommon(page, caseNumber, subjectName, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.rejected1}")`),
             1,
@@ -127,7 +137,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseStrikeOut":
         await Promise.all([
-          this.checkCommon(page, caseNumber, subjectName),
+          this.checkCommon(page, caseNumber, subjectName, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.strikeOut1}")`),
             1,
@@ -142,7 +152,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseConcession":
         await Promise.all([
-          this.checkCommon(page, caseNumber, subjectName),
+          this.checkCommon(page, caseNumber, subjectName, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.conceded}")`),
             1,
@@ -157,7 +167,7 @@ const submitPage: SubmitPage = {
         break;
       case "consentOrder":
         await Promise.all([
-          this.checkCommon(page, caseNumber, subjectName),
+          this.checkCommon(page, caseNumber, subjectName, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.consentOrder}")`),
             1,
@@ -172,7 +182,7 @@ const submitPage: SubmitPage = {
         break;
       case "rule27":
         await Promise.all([
-          this.checkCommon(page, caseNumber, subjectName),
+          this.checkCommon(page, caseNumber, subjectName, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.rule27}")`),
             1,
@@ -199,7 +209,7 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async checkCommonInfo(page: Page): Promise<void> {
+  async checkCommonInfo(page: Page, DSSSubmitted: boolean): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -224,20 +234,24 @@ const submitPage: SubmitPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("Representative")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
         page.locator(`.text-16:text-is("Respondent")`),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.text-16:text-is("Applicant (if different from subject)")`,
-        ),
-        1,
-      ),
     ]);
+    if (!DSSSubmitted) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`.text-16:text-is("Representative")`),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.text-16:text-is("Applicant (if different from subject)")`,
+          ),
+          1,
+        ),
+      ]);
+    }
   },
 
   async checkAllInfo(
@@ -246,11 +260,12 @@ const submitPage: SubmitPage = {
     optionalText: boolean,
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     switch (closeReason) {
       default: // Case withdrawn
         await Promise.all([
-          this.checkCommonInfo(page),
+          this.checkCommonInfo(page, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${selectReason_content.textOnPage2}")`,
@@ -283,7 +298,7 @@ const submitPage: SubmitPage = {
         switch (rejectionReason) {
           case "other":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(`.text-16:text-is("${submit_content.rejected2}")`),
                 1,
@@ -310,7 +325,7 @@ const submitPage: SubmitPage = {
             break;
           case "createdInError":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage3}")`,
@@ -327,7 +342,7 @@ const submitPage: SubmitPage = {
             break;
           case "duplicateCase":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage3}")`,
@@ -344,7 +359,7 @@ const submitPage: SubmitPage = {
             break;
           case "deadlineMissed":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage3}")`,
@@ -361,7 +376,7 @@ const submitPage: SubmitPage = {
             break;
           case "vexatiousLitigant":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage3}")`,
@@ -392,7 +407,7 @@ const submitPage: SubmitPage = {
         switch (strikeoutReason) {
           case "other":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${submit_content.strikeOut2}")`,
@@ -421,7 +436,7 @@ const submitPage: SubmitPage = {
             break;
           case "noncomplianceWithDirections":
             await Promise.all([
-              this.checkCommonInfo(page),
+              this.checkCommonInfo(page, DSSSubmitted),
               commonHelpers.checkVisibleAndPresent(
                 page.locator(
                   `.text-16:text-is("${selectReason_content.textOnPage4}")`,
@@ -450,7 +465,7 @@ const submitPage: SubmitPage = {
         break;
       case "caseConcession":
         await Promise.all([
-          this.checkCommonInfo(page),
+          this.checkCommonInfo(page, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${selectReason_content.textOnPage5}")`,
@@ -475,7 +490,7 @@ const submitPage: SubmitPage = {
         break;
       case "consentOrder":
         await Promise.all([
-          this.checkCommonInfo(page),
+          this.checkCommonInfo(page, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${selectReason_content.textOnPage6}")`,
@@ -500,7 +515,7 @@ const submitPage: SubmitPage = {
         break;
       case "rule27":
         await Promise.all([
-          this.checkCommonInfo(page),
+          this.checkCommonInfo(page, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${selectReason_content.textOnPage7}")`,
@@ -525,7 +540,7 @@ const submitPage: SubmitPage = {
         break;
       case "deathOfAppellant":
         await Promise.all([
-          this.checkCommonInfo(page),
+          this.checkCommonInfo(page, DSSSubmitted),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.text-16:text-is("${selectReason_content.textOnPage9}")`,

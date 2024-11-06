@@ -440,6 +440,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       null,
       caseNumber150,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -548,6 +549,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       null,
       caseNumber151,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

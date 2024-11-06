@@ -427,6 +427,7 @@ test.describe("Review Stay Request - Judge @CaseAPI", (): void => {
       "noncomplianceWithDirections",
       caseNumber115,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -531,6 +532,7 @@ test.describe("Review Stay Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber116,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

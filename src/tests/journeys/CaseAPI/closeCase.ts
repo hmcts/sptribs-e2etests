@@ -29,6 +29,7 @@ type CloseCase = {
     strikeoutReason: StrikeoutReason | null,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
 };
 
@@ -43,6 +44,7 @@ const closeCase: CloseCase = {
     strikeoutReason: StrikeoutReason | null,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await caseWarningPage.checkPageLoads(
       page,
@@ -136,6 +138,7 @@ const closeCase: CloseCase = {
           caseNumber,
           accessibilityTest,
           subjectName,
+          DSSSubmitted,
         );
         await closeCaseNotifyPage.continueOn(page);
         await submitPage.checkPageLoads(
@@ -145,6 +148,7 @@ const closeCase: CloseCase = {
           closeReason,
           optionalText,
           subjectName,
+          DSSSubmitted,
         );
         await submitPage.checkAllInfo(
           page,
@@ -152,9 +156,10 @@ const closeCase: CloseCase = {
           optionalText,
           rejectionReason,
           strikeoutReason,
+          DSSSubmitted,
         );
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(page, accessibilityTest, DSSSubmitted);
         await confirmPage.closeAndReturnToCase(page);
         await page.waitForSelector(`h2:text-is("History")`);
         break;
@@ -251,6 +256,7 @@ const closeCase: CloseCase = {
           caseNumber,
           accessibilityTest,
           subjectName,
+          DSSSubmitted,
         );
         await closeCaseNotifyPage.triggerErrorMessages(page);
         await closeCaseNotifyPage.continueOn(page);
@@ -261,6 +267,7 @@ const closeCase: CloseCase = {
           "rule27",
           false,
           subjectName,
+          DSSSubmitted,
         );
         break;
     }

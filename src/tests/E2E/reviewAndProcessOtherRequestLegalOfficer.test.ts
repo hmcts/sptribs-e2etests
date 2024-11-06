@@ -231,6 +231,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
       false,
       caseNumber82,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -367,6 +368,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
       null,
       caseNumber83,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -519,6 +521,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
       "noncomplianceWithDirections",
       caseNumber84,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -621,6 +624,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
       null,
       caseNumber85,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

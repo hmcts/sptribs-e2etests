@@ -247,6 +247,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       false,
       caseNumber1502,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -339,6 +340,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1503,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -433,6 +435,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       null,
       caseNumber1504,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

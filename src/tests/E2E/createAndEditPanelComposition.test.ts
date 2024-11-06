@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import panelComposition from "../journeys/CaseAPI/panelComposition.ts";
 import editPanelComposition from "../journeys/CaseAPI/editPanelComposition.ts";
@@ -7,7 +6,6 @@ import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 
 test.describe("Panel Composition tests @CaseAPI", () => {
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({

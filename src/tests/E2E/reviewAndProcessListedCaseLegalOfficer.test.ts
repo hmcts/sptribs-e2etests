@@ -70,6 +70,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       caseNumber13,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -204,6 +205,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       caseNumber14,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -336,6 +338,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): voi
       false,
       caseNumber15,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,

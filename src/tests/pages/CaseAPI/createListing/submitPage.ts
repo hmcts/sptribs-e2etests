@@ -25,6 +25,7 @@ type SubmitPage = {
     venue: hearingVenues | null,
     accessibilityTest: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -35,6 +36,7 @@ type SubmitPage = {
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -52,6 +54,7 @@ const submitPage: SubmitPage = {
     venue: hearingVenues | null,
     accessibilityTest: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
@@ -92,12 +95,6 @@ const submitPage: SubmitPage = {
           1,
         );
       }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage16}")`,
-        ),
-        4,
-      ),
       commonHelpers.checkForButtons(
         page,
         this.saveAndContinue,
@@ -105,6 +102,23 @@ const submitPage: SubmitPage = {
         this.cancel,
       ),
     ]);
+
+    if (DSSSubmitted) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage16}")`,
+        ),
+        2,
+      );
+    } else {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage16}")`,
+        ),
+        4,
+      );
+    }
+
     if (region) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -176,6 +190,7 @@ const submitPage: SubmitPage = {
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
@@ -221,31 +236,51 @@ const submitPage: SubmitPage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span:text-is("${createListingNotifyPageContent.textOnPage3}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage4}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage5}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage6}")`,
-        ),
-        1,
-      ),
     ]);
+
+    if (DSSSubmitted) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span:text-is("${createListingNotifyPageContent.textOnPage3}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage5}")`,
+          ),
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span:text-is("${createListingNotifyPageContent.textOnPage3}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage4}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage5}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage6}")`,
+          ),
+          1,
+        ),
+      ]);
+    }
 
     if (region) {
       await commonHelpers.checkVisibleAndPresent(

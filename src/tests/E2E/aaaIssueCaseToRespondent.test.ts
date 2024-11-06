@@ -13,7 +13,6 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
-import tasks_content from "../fixtures/content/CaseAPI/myWork/tasks_content.ts";
 
 const priority = " low ";
 const numberOfDays = 2;
@@ -402,6 +401,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
       null,
       caseNumber29,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

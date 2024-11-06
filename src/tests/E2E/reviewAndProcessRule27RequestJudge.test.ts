@@ -427,6 +427,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       null,
       caseNumber101,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -532,6 +533,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI", ()
       "noncomplianceWithDirections",
       caseNumber102,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

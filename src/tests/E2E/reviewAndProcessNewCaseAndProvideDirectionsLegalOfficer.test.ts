@@ -440,6 +440,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       null,
       caseNumber72,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -548,6 +549,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       null,
       caseNumber73,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

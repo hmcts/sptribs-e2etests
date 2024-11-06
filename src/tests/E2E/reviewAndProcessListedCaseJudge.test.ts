@@ -69,6 +69,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber07,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -200,6 +201,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber08,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -331,6 +333,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
       false,
       caseNumber09,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -460,6 +463,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
       true,
       caseNumber60,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -557,6 +561,7 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
     false,
     caseNumber61,
     subjectName,
+    false,
   );
   await commonHelpers.signOutAndGoToCase(
     page,
