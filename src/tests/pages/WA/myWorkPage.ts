@@ -50,6 +50,9 @@ const myWorkPage: MyWorkPage = {
   myTasksUrl: `${config.CaseAPIBaseURL.replace(/\/cases$/, "")}/work/my-work/list`,
 
   async checkPageLoads(page, accessibilityTest, user): Promise<void> {
+    await page.waitForSelector(
+      `.hmcts-primary-navigation__link:text-is("My work")`,
+    );
     await page.locator(".hmcts-primary-navigation__link").first().click();
     await page.waitForSelector(
       `.govuk-heading-xl:text-is("${myWork_content.pageTitle}")`,

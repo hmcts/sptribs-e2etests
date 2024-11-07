@@ -68,8 +68,8 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     ) {
       await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).check();
       await expect(
-      page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`),
-    ).toBeChecked();
+        page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`),
+      ).toBeChecked();
     }
     if (
       await page
@@ -80,8 +80,8 @@ const createListingNotifyPage: CreateListingNotifyPage = {
         .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
         .check();
       await expect(
-      page.locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`),
-    ).toBeChecked();
+        page.locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`),
+      ).toBeChecked();
     }
     if (
       await page
@@ -90,8 +90,8 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     ) {
       await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).check();
       await expect(
-      page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`),
-    ).toBeChecked();
+        page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`),
+      ).toBeChecked();
     }
     if (
       await page
@@ -100,8 +100,8 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     ) {
       await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).check();
       await expect(
-      page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`),
-    ).toBeChecked();
+        page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`),
+      ).toBeChecked();
     }
     await page.getByRole("button", { name: "Continue" }).click();
   },
