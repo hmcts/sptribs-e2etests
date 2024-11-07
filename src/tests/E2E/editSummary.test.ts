@@ -1,11 +1,9 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import editSummary from "../journeys/CaseAPI/editSummary.ts";
@@ -60,6 +58,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       false,
       caseNumber1800,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -140,6 +139,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       false,
       caseNumber1801,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -220,6 +220,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       false,
       caseNumber1802,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -300,6 +301,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       false,
       caseNumber1803,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -380,6 +382,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       false,
       caseNumber1804,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -460,6 +463,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
       false,
       caseNumber1805,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -538,6 +542,7 @@ test("Accessibility test - edit summary @accessibilityCaseAPI", async ({
     false,
     caseNumber1806,
     subjectName,
+    false,
   );
   await createSummary.createSummary(
     page,

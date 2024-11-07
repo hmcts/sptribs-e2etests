@@ -425,6 +425,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       "other",
       caseNumber18,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -530,6 +531,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI", (): void
       null,
       caseNumber19,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

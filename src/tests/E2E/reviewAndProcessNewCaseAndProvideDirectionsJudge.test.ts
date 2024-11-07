@@ -430,6 +430,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       null,
       caseNumber65,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -535,6 +536,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
       null,
       caseNumber66,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

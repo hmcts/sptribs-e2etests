@@ -11,6 +11,7 @@ type ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   closeAndReturnToCase(page: Page): Promise<void>;
 };
@@ -23,18 +24,13 @@ const createCaseConfirmPage: ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `markdown > h1:text-is("${confirm_content.subTitle1}")`,
     );
     await Promise.all([
       expect(page.locator(".heading-h1")).toHaveText(confirm_content.pageTitle),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h2:has-text("${confirm_content.textOnPage1}")`,
-        ),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
@@ -43,6 +39,22 @@ const createCaseConfirmPage: ConfirmPage = {
         createListingNotifyPageContent.caseReference + caseNumber,
       ),
     ]);
+
+    if (DSSSubmitted) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown > h2:has-text("${confirm_content.textOnPage2}")`,
+        ),
+        1,
+      );
+    } else {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `markdown > h2:has-text("${confirm_content.textOnPage1}")`,
+        ),
+        1,
+      );
+    }
 
     if (accessibilityTest) {
       await axeTest(page);

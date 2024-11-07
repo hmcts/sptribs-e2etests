@@ -185,6 +185,7 @@ test.describe("Send order tests @CaseAPI", () => {
       caseNumber2401,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -428,6 +429,7 @@ test.describe("Send order tests @CaseAPI", () => {
       caseNumber2403,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

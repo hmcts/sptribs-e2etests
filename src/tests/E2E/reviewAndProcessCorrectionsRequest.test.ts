@@ -62,6 +62,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
       null,
       caseNumber20,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -181,6 +182,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
       null,
       caseNumber21,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -298,6 +300,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
       null,
       caseNumber22,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(

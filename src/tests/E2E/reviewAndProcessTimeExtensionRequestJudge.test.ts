@@ -428,6 +428,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber140,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -533,6 +534,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber141,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

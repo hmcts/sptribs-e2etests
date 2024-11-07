@@ -148,6 +148,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
       caseNumber801,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

@@ -51,6 +51,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2300,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -101,6 +102,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2301,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -151,6 +153,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2302,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -201,6 +204,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2303,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -251,6 +255,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2304,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -301,6 +306,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2305,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -351,6 +357,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2306,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -401,6 +408,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
       null,
       caseNumber2307,
       subjectName,
+      false,
     );
     await reinstateCase.reinstateCase(
       page,
@@ -452,6 +460,7 @@ test("Accessibility test - Reinstate case. @accessibilityCaseAPI", async ({
     null,
     caseNumber2308,
     subjectName,
+    false,
   );
   await reinstateCase.reinstateCase(
     page,

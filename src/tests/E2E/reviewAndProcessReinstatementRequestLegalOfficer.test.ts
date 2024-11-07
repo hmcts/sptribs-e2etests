@@ -62,6 +62,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       null,
       caseNumber95,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -184,6 +185,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       null,
       caseNumber96,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -306,6 +308,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       null,
       caseNumber97,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

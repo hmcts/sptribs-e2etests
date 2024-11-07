@@ -427,6 +427,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber125,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,
@@ -534,6 +535,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
       null,
       caseNumber126,
       subjectName,
+      false,
     );
     await task.checkCompletedTask(
       page,

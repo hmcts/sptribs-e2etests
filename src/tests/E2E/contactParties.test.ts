@@ -51,6 +51,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       null,
       caseNumber2500,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
     await contactParties.contactParties(
@@ -100,6 +101,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       caseNumber2501,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
     await contactParties.contactParties(
@@ -246,6 +248,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       false,
       caseNumber2504,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
     await contactParties.contactParties(
@@ -302,6 +305,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       false,
       caseNumber2505,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,

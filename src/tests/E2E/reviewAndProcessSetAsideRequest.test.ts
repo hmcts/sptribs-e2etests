@@ -63,6 +63,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
       null,
       caseNumber109,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -182,6 +183,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
       null,
       caseNumber110,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
@@ -299,6 +301,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
       null,
       caseNumber111,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(

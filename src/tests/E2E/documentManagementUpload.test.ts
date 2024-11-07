@@ -1,13 +1,11 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import states_content from "../fixtures/content/states_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import documentManagementUpload from "../journeys/CaseAPI/documentManagementUpload.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
@@ -157,6 +155,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       false,
       caseNumber1202,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -216,6 +215,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       false,
       caseNumber1203,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -286,6 +286,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       null,
       caseNumber1204,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -337,6 +338,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
       caseNumber1205,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

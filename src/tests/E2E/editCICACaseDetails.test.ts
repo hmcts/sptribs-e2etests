@@ -1,13 +1,11 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import states_content from "../fixtures/content/states_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import editCICACaseDetails from "../journeys/CaseAPI/editCICACaseDetails.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
@@ -99,6 +97,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       false,
       caseNumber1401,
       subjectName,
+      false,
     );
     await editCICACaseDetails.editCICACaseDetails(
       page,
@@ -152,6 +151,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       false,
       caseNumber1402,
       subjectName,
+      false,
     );
     await createSummary.createSummary(
       page,
@@ -214,6 +214,7 @@ test.describe("Edit CICA case details tests @CaseAPI @crossbrowserCaseAPI", (): 
       caseNumber1403,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await editCICACaseDetails.editCICACaseDetails(
       page,
@@ -262,6 +263,7 @@ test("Accessibility test - edit CICA case details - case closed @accessibilityCa
     null,
     caseNumber1404,
     subjectName,
+    false,
   );
   await editCICACaseDetails.editCICACaseDetails(
     page,

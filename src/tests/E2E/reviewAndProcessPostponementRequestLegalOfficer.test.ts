@@ -70,6 +70,7 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       false,
       caseNumber89,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -212,6 +213,7 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       false,
       caseNumber90,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -352,6 +354,7 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       false,
       caseNumber91,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,

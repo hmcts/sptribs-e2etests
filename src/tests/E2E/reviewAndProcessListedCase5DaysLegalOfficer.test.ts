@@ -69,6 +69,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       false,
       caseNumber01,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -211,6 +212,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       false,
       caseNumber02,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
@@ -343,6 +345,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI",
       false,
       caseNumber03,
       subjectName,
+      false,
     );
     await commonHelpers.signOutAndGoToCase(
       page,

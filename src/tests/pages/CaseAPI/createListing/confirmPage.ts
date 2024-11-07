@@ -9,6 +9,7 @@ type ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -19,6 +20,7 @@ const confirmPage: ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${confirmContent.pageHint}")`,
@@ -32,11 +34,20 @@ const confirmPage: ConfirmPage = {
         page.locator(`markdown > h1:text-is("${confirmContent.pageTitle}")`),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
+    ]);
+
+    if (DSSSubmitted) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(`markdown > h2:has-text("${confirmContent.textOnPage2}")`),
+        1,
+      );
+    } else {
+      await commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h2:has-text("${confirmContent.textOnPage}")`),
         1,
-      ),
-    ]);
+      );
+    }
+
     if (accessibilityTest) {
       await axeTest(page);
     }

@@ -29,6 +29,7 @@ type CreateListing = {
     errorMessaging: boolean,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
 };
 
@@ -46,6 +47,7 @@ const createListing: CreateListing = {
     errorMessaging: boolean,
     caseNumber: string,
     subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await createListingHearingTypeAndFormatPage.checkPageLoads(
       page,
@@ -108,35 +110,8 @@ const createListing: CreateListing = {
           caseNumber,
           accessibilityTest,
           subjectName,
+          DSSSubmitted,
         );
-        await createListingNotifyPage.continueOn(page);
-        await submitPage.checkPageLoads(
-          page,
-          caseNumber,
-          region,
-          hearingAcrossMultipleDays,
-          venue,
-          accessibilityTest,
-          subjectName,
-        );
-        await submitPage.checkValidInfo(
-          page,
-          region,
-          caseRegionCode,
-          hearingType,
-          hearingFormat,
-          hearingSession,
-          hearingAcrossMultipleDays,
-          venue,
-        );
-        await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(
-          page,
-          caseNumber,
-          accessibilityTest,
-          subjectName,
-        );
-        await confirmPage.continueOn(page);
         break;
       case true:
         await createListingHearingTypeAndFormatPage.triggerErrorMessage(page);
@@ -194,38 +169,42 @@ const createListing: CreateListing = {
           caseNumber,
           accessibilityTest,
           subjectName,
+          DSSSubmitted,
         );
         await createListingNotifyPage.triggerErrorMessages(page);
-        await createListingNotifyPage.continueOn(page);
-        await submitPage.checkPageLoads(
-          page,
-          caseNumber,
-          region,
-          hearingAcrossMultipleDays,
-          venue,
-          accessibilityTest,
-          subjectName,
-        );
-        await submitPage.checkValidInfo(
-          page,
-          region,
-          caseRegionCode,
-          hearingType,
-          hearingFormat,
-          hearingSession,
-          hearingAcrossMultipleDays,
-          venue,
-        );
-        await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(
-          page,
-          caseNumber,
-          accessibilityTest,
-          subjectName,
-        );
-        await confirmPage.continueOn(page);
         break;
     }
+    await createListingNotifyPage.continueOn(page);
+    await submitPage.checkPageLoads(
+      page,
+      caseNumber,
+      region,
+      hearingAcrossMultipleDays,
+      venue,
+      accessibilityTest,
+      subjectName,
+      DSSSubmitted,
+    );
+    await submitPage.checkValidInfo(
+      page,
+      region,
+      caseRegionCode,
+      hearingType,
+      hearingFormat,
+      hearingSession,
+      hearingAcrossMultipleDays,
+      venue,
+      DSSSubmitted,
+    );
+    await submitPage.continueOn(page);
+    await confirmPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+      DSSSubmitted,
+    );
+    await confirmPage.continueOn(page);
   },
 };
 

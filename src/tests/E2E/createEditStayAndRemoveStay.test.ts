@@ -1,12 +1,10 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import states_content from "../fixtures/content/states_content.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import removeStay from "../journeys/CaseAPI/removeStay.ts";
@@ -54,6 +52,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber900,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -103,6 +102,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber901,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -152,6 +152,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber902,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -201,6 +202,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber903,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -250,6 +252,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber904,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -299,6 +302,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber905,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -348,6 +352,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber906,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -410,6 +415,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber907,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -462,6 +468,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber908,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -514,6 +521,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber909,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -566,6 +574,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber910,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -618,6 +627,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber911,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -670,6 +680,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber912,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -722,6 +733,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber913,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
   });
 
@@ -761,6 +773,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
       caseNumber914,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await removeStay.removeStay(
       page,
@@ -811,6 +824,7 @@ test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
     caseNumber915,
     subjectName,
     states_content.caseStayedState,
+    false,
   );
   await removeStay.removeStay(
     page,
