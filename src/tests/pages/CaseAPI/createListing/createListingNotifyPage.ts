@@ -60,12 +60,24 @@ const createListingNotifyPage: CreateListingNotifyPage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
+    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).check();
+    await expect(
+      page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`),
+    ).toBeChecked();
     await page
       .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+      .check();
+    await expect(
+      page.locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`),
+    ).toBeChecked();
+    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).check();
+    await expect(
+      page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`),
+    ).toBeChecked();
+    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).check();
+    await expect(
+      page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`),
+    ).toBeChecked();
     await page.getByRole("button", { name: "Continue" }).click();
   },
 

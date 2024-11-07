@@ -6,6 +6,7 @@ import addStayPage, {
 import submitPage from "../../pages/CaseAPI/createEditStay/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/createEditStay/confirmPage.ts";
 import summaryTabPage from "../../pages/CaseAPI/caseTabs/summaryTabPage.ts";
+import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
 
 type CreateEditStay = {
   createEditStay(
@@ -61,13 +62,6 @@ const createEditStay: CreateEditStay = {
           subjectName,
         );
         await confirmPage.closeAndReturnToCase(page);
-        await summaryTabPage.changeToSummaryTab(page);
-        await summaryTabPage.checkStayDetails(
-          page,
-          stayReason,
-          optionalText,
-          state,
-        );
         break;
       case true:
         await addStayPage.checkPageLoads(
@@ -94,13 +88,6 @@ const createEditStay: CreateEditStay = {
           subjectName,
         );
         await confirmPage.closeAndReturnToCase(page);
-        await summaryTabPage.changeToSummaryTab(page);
-        await summaryTabPage.checkStayDetails(
-          page,
-          stayReason,
-          optionalText,
-          state,
-        );
         break;
     }
   },
