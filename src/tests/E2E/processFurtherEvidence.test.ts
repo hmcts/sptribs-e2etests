@@ -120,6 +120,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
   });
 
   test("Submitted - DSS Update - Edit case", async ({ page }) => {
@@ -228,6 +229,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.submittedState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Submitted - Doc upload - Doc amend", async ({ page }) => {
@@ -866,6 +869,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.readyToListState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Ready to list - Update case - Refer to judge", async ({ page }) => {
@@ -977,6 +982,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.readyToListState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Ready to list - Doc upload - Edit case", async ({ page }) => {
@@ -1374,6 +1381,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.awaitingHearingState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Awaiting hearing - Update case - Refer to judge", async ({ page }) => {
@@ -1491,6 +1500,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.awaitingHearingState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Awaiting hearing - Doc upload - Edit case", async ({ page }) => {
@@ -1923,6 +1934,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.awaitingOutcomeState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Awaiting outcome - Update case - Refer to judge", async ({ page }) => {
@@ -2057,6 +2070,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.awaitingOutcomeState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Awaiting outcome - Doc upload - Edit case", async ({ page }) => {
@@ -2916,6 +2931,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.caseStayedState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Case stayed - Update case - Refer to judge", async ({ page }) => {
@@ -3025,6 +3042,8 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       states_content.caseStayedState,
       subjectName,
     );
+    await task.removeTask(page, taskNames_content.registerNewCaseTask, subjectName);
+    await task.removeTask(page, taskNames_content.vetNewCaseDocuments, subjectName);
   });
 
   test("Case stayed - Doc upload - Contact parties", async ({ page }) => {
