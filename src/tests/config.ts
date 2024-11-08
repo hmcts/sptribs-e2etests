@@ -20,7 +20,6 @@ export type UserRole =
   | "waCTSCTeamLead"
   | "waRespondent"
   | "waPresidentOfTribunal"
-  | "waPrincipalJudge"
   | "waTribunalJudgeSalaried"
   | "waTribunalJudgeFeePaid";
 
@@ -109,12 +108,6 @@ const config: Config = {
     password:
       process.env.WA_PRESIDENT_OF_TRIBUNAL_PASSWORD ||
       "wa-presidentOfTribunal-password",
-  },
-  waPrincipalJudge: {
-    email:
-      process.env.WA_PRINCIPAL_JUDGE_USERNAME || "wa-principalJudge-username",
-    password:
-      process.env.WA_PRINCIPAL_JUDGE_PASSWORD || "wa-principalJudge-password",
   },
   waTribunalJudgeSalaried: {
     email:

@@ -90,8 +90,6 @@ def secrets = [
                 secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD'),
                 secret('wa-presidentOfTribunal-username', 'WA_PRESIDENT_OF_TRIBUNAL_USERNAME'),
                 secret('wa-presidentOfTribunal-password', 'WA_PRESIDENT_OF_TRIBUNAL_PASSWORD'),
-                secret('wa-principalJudge-username', 'WA_PRINCIPAL_JUDGE_USERNAME'),
-                secret('wa-principalJudge-password', 'WA_PRINCIPAL_JUDGE_PASSWORD'),
                 secret('wa-tribunalJudgeSalaried-username', 'WA_TRIBUNAL_JUDGE_SALARIED_USERNAME'),
                 secret('wa-tribunalJudgeSalaried-password', 'WA_TRIBUNAL_JUDGE_SALARIED_PASSWORD'),
                 secret('wa-tribunalJudgeFeePaid-username', 'WA_TRIBUNAL_JUDGE_FEE_PAID_USERNAME'),
