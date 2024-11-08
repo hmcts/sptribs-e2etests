@@ -86,7 +86,7 @@ def secrets = [
                 secret('wa-ctscAdmin-password', 'WA_CTSC_ADMIN_PASSWORD'),
                 secret('wa-ctscTeamLead-username', 'WA_CTSC_TEAM_LEAD_USERNAME'),
                 secret('wa-ctscTeamLead-password', 'WA_CTSC_TEAM_LEAD_PASSWORD'),
-                secret('wa-respondent-user', 'WA_RESPONDENT_USERNAME'),
+                secret('wa-respondent-username', 'WA_RESPONDENT_USERNAME'),
                 secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD'),
                 secret('wa-presidentOfTribunal-username', 'WA_PRESIDENT_OF_TRIBUNAL_USERNAME'),
                 secret('wa-presidentOfTribunal-password', 'WA_PRESIDENT_OF_TRIBUNAL_PASSWORD'),
