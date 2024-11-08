@@ -31,7 +31,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI", (): v
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task - Case management @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task - Case management", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);

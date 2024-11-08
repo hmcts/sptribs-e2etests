@@ -238,9 +238,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Eligibility - Minor Category, Post Contact @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Eligibility - Minor Category, Post Contact", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
@@ -475,7 +473,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
+  test("Error messaging.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,

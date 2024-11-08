@@ -525,7 +525,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
   });
 
-  test("Stay a Ready to list case for reason unableToProgressDueToSubject, with no optional text. @crossbrowserCaseAPI", async ({
+  test("Stay a Ready to list case for reason unableToProgressDueToSubject, with no optional text.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -737,9 +737,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messages - Create/Edit stay @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messages - Create/Edit stay", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber914 = await createCase.createCase(
       page,

@@ -14,7 +14,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Edit hearing summary - Case management, hybrid, morning, Fox Court, Allowed. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Case management, hybrid, morning, Fox Court, Allowed.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

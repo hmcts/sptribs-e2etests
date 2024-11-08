@@ -24,7 +24,9 @@ const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
 test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
@@ -718,7 +720,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 });
 
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);

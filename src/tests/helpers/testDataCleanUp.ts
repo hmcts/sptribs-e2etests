@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage";
 import myWorkPage from "../pages/WA/myWorkPage";
 import tasksPage from "../pages/WA/tasksPage";
-import taskNames_content from "../fixtures/content/taskNames_content";
 
 async function testDataCleanUp(page: Page, user: any): Promise<void> {
   const locator1: any = page
@@ -36,7 +35,7 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
 
   await caseAPILoginPage.SignInUser(page, user);
   await myWorkPage.navigateToMyWorkPage(page);
-  await myWorkPage.selectAvailableTasks(page);
+  await myWorkPage.selectAvailableTasks(page, user);
 
   while (true) {
     let anySelectorVisible = false;

@@ -530,9 +530,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Issue to respondent : Error messaging @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Issue to respondent : Error messaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber31 = await createCase.createCase(
       page,

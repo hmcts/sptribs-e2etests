@@ -558,7 +558,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a ready to list case as it is a rule 27 with no optional information. @crossbrowserCaseAPI", async ({
+  test("Close a ready to list case as it is a rule 27 with no optional information.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

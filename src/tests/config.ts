@@ -6,12 +6,6 @@ export interface UserCredentials {
 }
 
 export type UserRole =
-  | "caseWorker"
-  | "seniorCaseworker"
-  | "hearingCentreAdmin"
-  | "hearingCentreTeamLead"
-  | "judge"
-  | "seniorJudge"
   | "respondent"
   | "citizen"
   | "superUser"
@@ -35,38 +29,6 @@ interface Config {
 }
 
 const config: Config = {
-  caseWorker: {
-    email: process.env.CASEWORKER_USERNAME || "caseworker-user",
-    password: process.env.CASEWORKER_PASSWORD || "caseworker-password",
-  },
-  seniorCaseworker: {
-    email: process.env.SENIOR_CASEWORKER_USERNAME || "seniorCaseworker-user",
-    password:
-      process.env.SENIOR_CASEWORKER_PASSWORD || "seniorCaseworker-password",
-  },
-  hearingCentreAdmin: {
-    email:
-      process.env.HEARING_CENTRE_ADMIN_USERNAME || "hearingCentreAdmin-user",
-    password:
-      process.env.HEARING_CENTRE_ADMIN_PASSWORD ||
-      "hearingCentreAdmin-password",
-  },
-  hearingCentreTeamLead: {
-    email:
-      process.env.HEARING_CENTRE_TEAM_LEAD_USERNAME ||
-      "hearingCentreTeamLead-user",
-    password:
-      process.env.HEARING_CENTRE_TEAM_LEAD_PASSWORD ||
-      "hearingCentreTeamLead-password",
-  },
-  judge: {
-    email: process.env.JUDGE_USERNAME || "judge-user",
-    password: process.env.JUDGE_PASSWORD || "judge-password",
-  },
-  seniorJudge: {
-    email: process.env.SENIOR_JUDGE_USERNAME || "seniorJudge-user",
-    password: process.env.SENIOR_JUDGE_PASSWORD || "seniorJudge-password",
-  },
   respondent: {
     email: process.env.RESPONDENT_USERNAME || "respondent-user",
     password: process.env.RESPONDENT_PASSWORD || "respondent-password",

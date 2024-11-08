@@ -599,7 +599,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned as appellant did not have bundle. @crossbrowserCaseAPI", async ({
+  test("Create hearing summary - hearing outcome is adjourned as appellant did not have bundle.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

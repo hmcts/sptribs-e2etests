@@ -340,9 +340,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber307 = await createCase.createCase(
       page,
@@ -397,7 +395,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
+test("Accessibility test - cancel hearing - other @accessibilityCaseAPI.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

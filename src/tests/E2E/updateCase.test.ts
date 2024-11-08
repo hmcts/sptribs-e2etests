@@ -37,7 +37,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber01,
     );
-    await task.removeTask(page, "Register New Case", subjectName);
+    await task.removeTask(
+      page,
+      "Register New Case",
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -78,7 +83,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber02,
     );
-    await task.removeTask(page, "Register New Case", subjectName);
+    await task.removeTask(
+      page,
+      "Register New Case",
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -119,7 +129,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber03,
     );
-    await task.removeTask(page, "Register New Case", subjectName);
+    await task.removeTask(
+      page,
+      "Register New Case",
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -160,7 +175,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber04,
     );
-    await task.removeTask(page, "Register New Case", subjectName);
+    await task.removeTask(
+      page,
+      "Register New Case",
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -199,7 +219,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber05,
     );
-    await task.removeTask(page, "Register New Case", subjectName);
+    await task.removeTask(
+      page,
+      "Register New Case",
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -238,7 +263,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber06,
     );
-    await task.removeTask(page, "Register New Case", subjectName);
+    await task.removeTask(
+      page,
+      "Register New Case",
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -280,7 +310,12 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     config.CaseAPIBaseURL,
     caseNumber07,
   );
-  await task.removeTask(page, "Register New Case", subjectName);
+  await task.removeTask(
+    page,
+    "Register New Case",
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await page.locator(`a:text-is(" Sign out ")`).click();
   await page.waitForLoadState("domcontentloaded");
   await updateCaseJourney.updateCase(

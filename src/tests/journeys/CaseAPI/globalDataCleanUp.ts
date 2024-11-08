@@ -13,7 +13,7 @@ const globalDataCleanUp: GlobalDataCleanUp = {
   async dataCleanUpByUser(page, UserCleanUp) {
     await caseAPILoginPage.SignInUser(page, UserCleanUp);
     await myWorkPage.navigateToMyWorkPage(page);
-    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.selectAvailableTasks(page, UserCleanUp);
 
     const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`;
 

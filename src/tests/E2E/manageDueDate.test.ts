@@ -27,7 +27,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("User is able to manage due date in state 'Ready to list' Orders sent in state Case management", async ({
+  test("User is able to manage due date in state 'Ready to list' Orders sent in state Case management @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const numberOfDaysReview = 5;
@@ -276,6 +276,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       false,
       caseNumber2701,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -332,6 +333,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       null,
       caseNumber2702,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -459,6 +461,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       caseNumber2703,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

@@ -376,7 +376,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waPrincipalJudge",
+      waUsers_content.userRoleJudge,
       config.CaseAPIBaseURL,
       caseNumber2106,
     );
@@ -1185,7 +1185,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waPrincipalJudge",
+      waUsers_content.userRoleJudge,
       config.CaseAPIBaseURL,
       caseNumber2118,
     );
@@ -1534,7 +1534,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.signOutAndGoToCase(
       page,
-      "waPrincipalJudge",
+      waUsers_content.userRoleJudge,
       config.CaseAPIBaseURL,
       caseNumber2125,
     );

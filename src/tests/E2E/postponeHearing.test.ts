@@ -13,7 +13,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Postpone hearing as a caseworker - Appellant is out of country. @crossbrowserCaseAPI", async ({
+  test("Postpone hearing as a caseworker - Appellant is out of country.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -1021,9 +1021,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2018 = await createCase.createCase(
       page,

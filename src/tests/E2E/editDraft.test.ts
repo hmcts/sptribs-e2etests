@@ -576,9 +576,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Edit draft @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Error messaging - Edit draft", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1506 = await createCase.createCase(
       page,

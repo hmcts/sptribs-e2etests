@@ -3,6 +3,7 @@ import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import config from "../../config.ts";
 import myWork_content from "../../fixtures/content/CaseAPI/myWork/myWork_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
+import waUsers_content from "../../fixtures/content/waUsers_content.ts";
 
 type MyWorkPage = {
   myTasksTab: string;
@@ -18,7 +19,7 @@ type MyWorkPage = {
     accessibilityTest: boolean,
     user: any,
   ): Promise<void>;
-  selectAvailableTasks(page: Page): Promise<void>;
+  selectAvailableTasks(page: Page, user: any): Promise<void>;
   seeTask(page: Page, taskName: string, subjectName: string): Promise<void>;
   clickAssignAndGoToTask(
     page: Page,
@@ -77,7 +78,7 @@ const myWorkPage: MyWorkPage = {
       }),
     ]);
 
-    if (user === "waPrincipalJudge") {
+    if (user === waUsers_content.userRoleJudge) {
       await Promise.all([
         ...Array.from({ length: 6 }, (_, index) => {
           const judicialColumn = (myWork_content as any)[
@@ -112,10 +113,21 @@ const myWorkPage: MyWorkPage = {
     }
   },
 
-  async selectAvailableTasks(page: Page): Promise<void> {
+  async selectAvailableTasks(page: Page, user: any): Promise<void> {
     await page.locator(this.availableTasksTab).click();
     await page.waitForURL(/.*\/available$/);
     await page.waitForTimeout(5000);
+
+    if (user === waUsers_content.userRoleJudge) {
+      await page
+        .getByRole("button")
+        .filter({ hasText: " Show work filter " })
+        .dispatchEvent("click");
+      await page.waitForSelector("xuilib-generic-filter > form");
+      await page.locator("input#checkbox_servicesSSCS").click();
+      await page.locator("button#applyFilter").click();
+      await page.waitForTimeout(5000);
+    }
   },
 
   async seeTask(

@@ -8,7 +8,7 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
 
 test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
-  test("Create and clear hearing options in the 'Case management' state. @crossbrowserCaseAPI", async ({
+  test("Create and clear hearing options in the 'Case management' state.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

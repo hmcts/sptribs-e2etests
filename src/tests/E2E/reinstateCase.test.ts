@@ -370,9 +370,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Reinstate case. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging - Reinstate case.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2307 = await createCase.createCase(
       page,

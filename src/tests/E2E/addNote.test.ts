@@ -16,7 +16,7 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 
 test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
-    test("Add a note to a DSS-submitted case. @crossbrowserCaseAPI", async ({
+    test("Add a note to a DSS-submitted case.", async ({
       page,
     }): Promise<void> => {
       const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -72,7 +72,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber201, subjectName);
   });
 
-  test("Add a note to a Case management case case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a Case management case case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

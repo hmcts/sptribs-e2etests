@@ -30,7 +30,9 @@ const priority = " low ";
 const numberOfDays = 7;
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
@@ -124,6 +126,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -237,11 +240,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -885,11 +890,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -1006,11 +1013,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -1413,11 +1422,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -1540,11 +1551,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -1982,11 +1995,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -2126,11 +2141,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -2995,11 +3012,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -3114,11 +3133,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       page,
       taskNames_content.registerNewCaseTask,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 

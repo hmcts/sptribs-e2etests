@@ -10,12 +10,14 @@ import hearingOptions from "../journeys/CaseAPI/hearingOptions";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Edit hearing listing tests @CaseAPI", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East. @crossbrowserCaseAPI", async ({
+  test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

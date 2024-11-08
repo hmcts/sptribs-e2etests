@@ -3,6 +3,7 @@ import config from "../../config.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import tasks_content from "../../fixtures/content/CaseAPI/myWork/tasks_content.ts";
+import waUsers_content from "../../fixtures/content/waUsers_content.ts";
 
 type TasksPage = {
   myTasksTab: string;
@@ -95,7 +96,7 @@ const tasksPage: TasksPage = {
       ),
       expect(specificTask.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
-    if (user !== "waPrincipalJudge") {
+    if (user !== waUsers_content.userRoleJudge) {
       expect(
         specificTask.locator(
           `span.row-padding:text-is("${tasks_content.dueDate}")`,
