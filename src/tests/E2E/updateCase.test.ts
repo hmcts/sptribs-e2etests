@@ -46,6 +46,13 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
+    await page.locator(`a.govuk-link.language:text-is(" English ")`).click();
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber01,
+    );
     await task.removeTask(
       page,
       taskNames_content.registerNewCaseTask,
@@ -97,6 +104,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       subjectName,
+    );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber02,
     );
     await task.removeTask(
       page,
@@ -150,6 +163,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       subjectName,
     );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      config.CaseAPIBaseURL,
+      caseNumber03,
+    );
     await task.removeTask(
       page,
       taskNames_content.registerNewCaseTask,
@@ -188,6 +207,12 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber04,
     );
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -201,18 +226,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
       subjectName,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
-    await task.removeTask(
-      page,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -342,6 +355,12 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     false,
     false,
     subjectName,
+  );
+  await commonHelpers.signOutAndGoToCase(
+    page,
+    waUsers_content.userRoleAdmin,
+    config.CaseAPIBaseURL,
+    caseNumber07,
   );
   await task.removeTask(
     page,
