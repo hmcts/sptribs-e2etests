@@ -1,18 +1,13 @@
 import { test } from "@playwright/test";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
 import task from "../journeys/CaseAPI/task.ts";
-import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("DSS Update case tests. @DSSUpdate", () => {
-  test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
-    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
-  });
-
   test("Check for an existing case to update, upload one document and additional information - CY", async ({
     page,
   }) => {
@@ -37,12 +32,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber01,
     );
-    await task.removeTask(
-      page,
-      "Register New Case",
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -56,6 +45,18 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       subjectName,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -83,12 +84,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber02,
     );
-    await task.removeTask(
-      page,
-      "Register New Case",
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -102,6 +97,18 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       subjectName,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -129,12 +136,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber03,
     );
-    await task.removeTask(
-      page,
-      "Register New Case",
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -148,6 +149,18 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       false,
       false,
       subjectName,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -175,12 +188,6 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       config.CaseAPIBaseURL,
       caseNumber04,
     );
-    await task.removeTask(
-      page,
-      "Register New Case",
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
@@ -194,6 +201,18 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
       true,
       false,
       subjectName,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.processFurtherEvidence,
+      subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -310,12 +329,6 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     config.CaseAPIBaseURL,
     caseNumber07,
   );
-  await task.removeTask(
-    page,
-    "Register New Case",
-    subjectName,
-    waUsers_content.userRoleAdmin,
-  );
   await page.locator(`a:text-is(" Sign out ")`).click();
   await page.waitForLoadState("domcontentloaded");
   await updateCaseJourney.updateCase(
@@ -329,5 +342,17 @@ test("Check for an existing case to update - aXe test as it proceeds. @UpdateAcc
     false,
     false,
     subjectName,
+  );
+  await task.removeTask(
+    page,
+    taskNames_content.registerNewCaseTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
+  await task.removeTask(
+    page,
+    taskNames_content.processFurtherEvidence,
+    subjectName,
+    waUsers_content.userRoleAdmin,
   );
 });
