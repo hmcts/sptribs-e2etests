@@ -55,7 +55,7 @@ const globalDataCleanUp: GlobalDataCleanUp = {
         await page.locator("#action_complete").click();
         await page.waitForSelector(`button:text-is("Mark as done")`);
         await page.locator("#submit-button").click();
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(7000);
       }
 
       if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
