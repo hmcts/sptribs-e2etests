@@ -113,7 +113,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
-      "waRegionalHearingCentreAdmin",
+      "waHearingCentreAdmin",
       false,
       "Assessment",
       "Sexual Abuse",

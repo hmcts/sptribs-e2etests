@@ -22,7 +22,6 @@ const numberOfDaysProcess = 1;
 
 test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 

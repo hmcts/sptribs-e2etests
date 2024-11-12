@@ -25,7 +25,6 @@ const numberOfDaysNonCompliance = 1;
 
 test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Task is completable via next steps link - assign to me and go to task", async ({

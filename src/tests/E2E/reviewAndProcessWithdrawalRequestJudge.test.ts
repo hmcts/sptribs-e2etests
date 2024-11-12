@@ -24,7 +24,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
-    test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 

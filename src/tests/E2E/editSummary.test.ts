@@ -11,7 +11,6 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Edit hearing summary tests @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Edit hearing summary - Case management, hybrid, morning, Fox Court, Allowed.", async ({

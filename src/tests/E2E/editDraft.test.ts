@@ -23,7 +23,6 @@ const numberOfDaysReview = 5;
 
 test.describe("Case-API Edit draft tests. @CaseAPI", () => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Edit a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({

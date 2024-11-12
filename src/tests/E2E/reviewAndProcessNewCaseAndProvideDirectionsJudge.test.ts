@@ -25,7 +25,6 @@ const numberOfDaysNonCompliance = 1;
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27", async ({
