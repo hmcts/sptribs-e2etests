@@ -58,12 +58,6 @@ const myWorkPage: MyWorkPage = {
     await page.waitForSelector(
       `.govuk-heading-xl:text-is("${myWork_content.pageTitle}")`,
     );
-    await expect(page.locator("xuilib-generic-filter")).toBeHidden();
-    await page
-      .getByRole("button")
-      .filter({ hasText: " Show work filter " })
-      .dispatchEvent("click");
-    await page.waitForSelector("xuilib-generic-filter > form");
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`p:text-is("${myWork_content.hintText}")`),
@@ -123,8 +117,10 @@ const myWorkPage: MyWorkPage = {
         .getByRole("button")
         .filter({ hasText: " Show work filter " })
         .dispatchEvent("click");
+
       await page.waitForSelector("xuilib-generic-filter > form");
-      await page.locator("input#checkbox_servicesSSCS").click();
+      await page.locator("input#checkbox_servicesservices_all").click();
+      await page.locator("input#checkbox_servicesST_CIC").click();
       await page.locator("button#applyFilter").click();
       await page.waitForTimeout(5000);
     }
