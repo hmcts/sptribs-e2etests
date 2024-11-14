@@ -14,7 +14,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import config from "../config.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
+test.describe("Case-API Refer case to judge tests. @CaseAPI @CaseAPI4", () => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

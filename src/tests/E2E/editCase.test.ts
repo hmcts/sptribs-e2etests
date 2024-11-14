@@ -10,7 +10,7 @@ import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Edit case tests. @CaseAPI", () => {
+test.describe("Case-API Edit case tests. @CaseAPI @CaseAPI3", () => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

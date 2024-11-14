@@ -17,7 +17,7 @@ import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer
 const priority = " low ";
 const numberOfDays = 2;
 
-test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
+test.describe("Issue case to respondent task tests @CaseAPI @CaseAPI1", (): void => {
   test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
     page,
   }) => {

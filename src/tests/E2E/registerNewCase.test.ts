@@ -12,7 +12,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priority = " low ";
 const numberOfDays = 5;
 
-test.describe("Register new case task tests @CaseAPI", (): void => {
+test.describe("Register new case task tests @CaseAPI @CaseAPI5", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

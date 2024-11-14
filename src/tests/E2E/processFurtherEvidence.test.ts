@@ -29,7 +29,7 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 const priority = " low ";
 const numberOfDays = 7;
 
-test.describe("Process further evidence task tests @CaseAPI", (): void => {
+test.describe("Process further evidence task tests @CaseAPI @CaseAPI4", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {

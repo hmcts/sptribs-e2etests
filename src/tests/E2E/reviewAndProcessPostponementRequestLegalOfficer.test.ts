@@ -20,7 +20,7 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process Postponement Directions - Legal Officer @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

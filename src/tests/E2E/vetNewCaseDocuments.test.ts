@@ -14,7 +14,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priority = " low ";
 const numberOfDays = 5;
 
-test.describe("Vet new case documents task tests @CaseAPI", (): void => {
+test.describe("Vet new case documents task tests @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {

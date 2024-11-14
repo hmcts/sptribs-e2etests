@@ -23,7 +23,7 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => {
+test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

@@ -14,7 +14,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Amend document tests. @CaseAPI", () => {
+test.describe("Case-API Amend document tests. @CaseAPI @CaseAPI2", () => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

@@ -12,7 +12,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Edit CICA case details tests @CaseAPI", (): void => {
+test.describe("Edit CICA case details tests @CaseAPI @CaseAPI3", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

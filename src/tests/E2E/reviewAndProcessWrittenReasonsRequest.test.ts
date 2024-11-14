@@ -19,7 +19,7 @@ const priorityProcess = " low ";
 const numberOfDaysReview = 28;
 const numberOfDaysProcess = 3;
 
-test.describe("Review and Process Written Reasons request - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Written Reasons request - Judge @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

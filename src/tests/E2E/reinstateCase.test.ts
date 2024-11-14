@@ -8,7 +8,7 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Close Reinstate case tests. @CaseAPI", () => {
+test.describe("Case-API Close Reinstate case tests. @CaseAPI @CaseAPI5", () => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

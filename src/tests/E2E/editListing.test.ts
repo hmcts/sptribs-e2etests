@@ -9,7 +9,7 @@ import createListing from "../journeys/CaseAPI/createListing";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Edit hearing listing tests @CaseAPI", (): void => {
+test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {

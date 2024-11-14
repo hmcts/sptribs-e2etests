@@ -20,7 +20,7 @@ const priorityProcess = " medium ";
 const numberofDaysReview = 1;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Listed Case - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process Listed Case - Legal Officer @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

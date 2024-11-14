@@ -7,7 +7,7 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
 
-test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
+test.describe("Create and clear hearing options tests @CaseAPI @CaseAPI1", (): void => {
   test("Create and clear hearing options in the 'Case management' state.", async ({
     page,
   }): Promise<void> => {

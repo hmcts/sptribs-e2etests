@@ -14,7 +14,7 @@ import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 
-test.describe("Case-API Add note tests. @CaseAPI", () => {
+test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
   if (!config.skipDSSCreateTests) {
     test("Add a note to a DSS-submitted case.", async ({
       page,

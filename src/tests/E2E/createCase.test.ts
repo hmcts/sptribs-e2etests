@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 
-test.describe("Case-API Create case tests. @CaseAPI", () => {
+test.describe("Case-API Create case tests. @CaseAPI @CaseAPI1", () => {
   test("Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
     page,
   }) => {

@@ -10,7 +10,7 @@ import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import removeStay from "../journeys/CaseAPI/removeStay.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
+test.describe("Case-API Create/edit stay tests. @CaseAPI @CaseAPI2", () => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

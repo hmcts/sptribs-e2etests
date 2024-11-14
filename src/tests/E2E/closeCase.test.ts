@@ -7,7 +7,7 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
-test.describe("Case-API Close case tests. @CaseAPI", () => {
+test.describe("Case-API Close case tests. @CaseAPI @CaseAPI1", () => {
   test("Close a ready to list case as it is withdrawn with no optional information.", async ({
     page,
   }): Promise<void> => {

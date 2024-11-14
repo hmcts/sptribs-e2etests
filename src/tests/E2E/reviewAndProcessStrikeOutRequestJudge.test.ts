@@ -20,7 +20,7 @@ const priorityProcess = " low ";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 
-test.describe("Review Strike Out Request - Judge @CaseAPI", (): void => {
+test.describe("Review Strike Out Request - Judge @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

@@ -20,7 +20,7 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Listed Case - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Listed Case - Judge @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {

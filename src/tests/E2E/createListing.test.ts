@@ -8,7 +8,7 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Create hearing listing tests @CaseAPI", (): void => {
+test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

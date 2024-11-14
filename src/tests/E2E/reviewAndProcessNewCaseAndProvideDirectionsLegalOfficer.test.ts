@@ -23,7 +23,7 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process  New Case and Provide Directions - Legal Officer @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {

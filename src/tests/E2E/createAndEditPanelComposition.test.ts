@@ -7,7 +7,7 @@ import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 
-test.describe("Panel Composition tests @CaseAPI", () => {
+test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

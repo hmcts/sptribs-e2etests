@@ -13,7 +13,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Upload document tests. @CaseAPI", () => {
+test.describe("Case-API Upload document tests. @CaseAPI @CaseAPI3", () => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {

@@ -21,7 +21,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
-test.describe("Case-API Edit draft tests. @CaseAPI", () => {
+test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

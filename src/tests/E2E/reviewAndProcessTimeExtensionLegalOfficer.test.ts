@@ -22,7 +22,7 @@ const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review Time Extension Request - Legal Officer @CaseAPI", (): void => {
+test.describe("Review Time Extension Request - Legal Officer @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

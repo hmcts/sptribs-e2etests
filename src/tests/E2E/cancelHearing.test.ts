@@ -7,7 +7,7 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 
-test.describe("Cancel hearing tests @CaseAPI", (): void => {
+test.describe("Cancel hearing tests @CaseAPI @CaseAPI1", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {

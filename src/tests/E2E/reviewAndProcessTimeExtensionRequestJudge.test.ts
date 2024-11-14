@@ -20,7 +20,7 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 2;
 const numberOfDaysProcess = 1;
 
-test.describe("Review Time Extension Request - Judge @CaseAPI", (): void => {
+test.describe("Review Time Extension Request - Judge @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
