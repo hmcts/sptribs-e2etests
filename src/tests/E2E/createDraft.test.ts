@@ -21,7 +21,7 @@ test.describe("Case-API Create draft tests. @CaseAPI @CaseAPI2", () => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 

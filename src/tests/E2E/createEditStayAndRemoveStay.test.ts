@@ -12,6 +12,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Case-API Create/edit stay tests. @CaseAPI @CaseAPI2", () => {
   test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 

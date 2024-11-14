@@ -27,6 +27,7 @@ const numberOfDaysNonCompliance = 1;
 
 test.describe("Review and Process Other Request - Legal Officer @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 

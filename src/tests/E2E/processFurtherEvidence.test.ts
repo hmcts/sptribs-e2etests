@@ -33,6 +33,7 @@ test.describe("Process further evidence task tests @CaseAPI @CaseAPI4", (): void
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 

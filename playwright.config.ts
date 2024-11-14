@@ -13,6 +13,12 @@ module.exports = defineConfig({
   expect: {
     timeout: 60 * 1000,
   },
+
+  use: {
+    actionTimeout: 60 * 1000,
+    navigationTimeout: 60 * 1000,
+  },
+
   reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */

@@ -10,6 +10,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 test.describe("Case-API Close Reinstate case tests. @CaseAPI @CaseAPI5", () => {
   test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Reinstate a case which has been closed in error with no optional text. @crossbrowserCaseAPI", async ({

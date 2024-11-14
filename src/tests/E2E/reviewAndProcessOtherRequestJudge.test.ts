@@ -24,6 +24,7 @@ const numberOfDaysProcess = 7;
 
 test.describe("Review and Process Other Request - Judge @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Task is completable via next steps link - assign to me and go to task - Case management", async ({
