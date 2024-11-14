@@ -1726,7 +1726,7 @@ test.describe("Process further evidence task tests @CaseAPI @CaseAPI4", (): void
     await task.seeTask(
       page,
       waUsers_content.userRoleAdmin,
-      true,
+      false,
       taskNames_content.processFurtherEvidence,
       subjectName,
     );

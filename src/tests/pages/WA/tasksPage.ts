@@ -269,9 +269,9 @@ const tasksPage: TasksPage = {
 
   async dataCleanUpMarkAsDone(page: Page, selector: any): Promise<void> {
     await selector.first().locator(`button:has-text("Manage")`).click();
-    await page.waitForSelector("#action_complete");
+    await page.waitForSelector("#action_cancel");
     await page.locator("#action_complete").click();
-    await page.waitForSelector(`button:text-is("Mark as done")`);
+    await page.waitForSelector(`button:text-is("Cancel task")`);
     await page.locator("#submit-button").click();
     await page.waitForTimeout(5000);
   },

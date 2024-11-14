@@ -23,16 +23,20 @@ const globalDataCleanUp: GlobalDataCleanUp = {
             .locator("tr", { hasText: "Subject AutoTesting" })
             .first()
             .locator(`button:has-text("Manage")`)
-            .click();
+            .click({ force: true });
           await page.waitForSelector("#action_claim");
-          await page.locator("#action_claim").click();
+          await page.locator("#action_claim").click({ force: true });
+          // if (page.url().includes('service-down')) {
+          //   await myWorkPage.navigateToMyWorkPage(page);
+          //   await myWorkPage.selectAvailableTasks(page, UserCleanUp);
+          // }
           await page.waitForTimeout(5000);
         }
 
         if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
           const nextPageButton = page.locator(`a[aria-label="Next page"]`);
           if (await nextPageButton.isVisible()) {
-            await nextPageButton.click();
+            await nextPageButton.click({ force: true });
             await page.waitForTimeout(5000);
           } else {
             break;
@@ -41,7 +45,7 @@ const globalDataCleanUp: GlobalDataCleanUp = {
       }
     }
 
-    await page.locator(`a:text-is("My work")`).click();
+    await page.locator(`a:text-is("My work")`).click({ force: true });
     await page.waitForSelector(`h3:text-is("My work")`);
     await page.waitForTimeout(5000);
 
@@ -52,17 +56,17 @@ const globalDataCleanUp: GlobalDataCleanUp = {
           .first()
           .locator(`button:has-text("Manage")`)
           .click();
-        await page.waitForSelector("#action_complete");
-        await page.locator("#action_complete").click();
-        await page.waitForSelector(`button:text-is("Mark as done")`);
-        await page.locator("#submit-button").click();
+        await page.waitForSelector("#action_cancel");
+        await page.locator("#action_cancel").click({ force: true });
+        await page.waitForSelector(`button:text-is("Cancel task")`);
+        await page.locator("#submit-button").click({ force: true });
         await page.waitForTimeout(7000);
       }
 
       if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
         const nextPageButton = page.locator(`a[aria-label="Next page"]`);
         if (await nextPageButton.isVisible()) {
-          await nextPageButton.click();
+          await nextPageButton.click({ force: true });
           await page.waitForTimeout(5000);
         } else {
           break;
