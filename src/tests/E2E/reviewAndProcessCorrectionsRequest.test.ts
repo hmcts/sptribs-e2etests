@@ -13,6 +13,7 @@ import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import config from "../config.ts";
 
 const priorityReview = null;
 const priorityProcess = " low ";
@@ -30,7 +31,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber20 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -55,7 +56,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -156,7 +157,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber21 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -181,7 +182,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -280,7 +281,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber22 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -305,7 +306,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(

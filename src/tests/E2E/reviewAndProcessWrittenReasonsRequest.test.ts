@@ -30,7 +30,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI @Case
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber153 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -55,7 +55,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI @Case
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -156,7 +156,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI @Case
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber154 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -181,7 +181,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI @Case
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -282,7 +282,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI @Case
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber155 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -307,7 +307,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI @Case
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
