@@ -56,7 +56,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI @CaseAPI7",
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleAdmin,
+      waUsers_content.userRoleCaseWorker,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -182,7 +182,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI @CaseAPI7",
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleAdmin,
+      waUsers_content.userRoleCaseWorker,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -306,7 +306,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI @CaseAPI7",
       page,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
-      waUsers_content.userRoleAdmin,
+      waUsers_content.userRoleCaseWorker,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
