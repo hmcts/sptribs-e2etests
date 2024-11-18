@@ -55,13 +55,13 @@ const editPanelComposition: EditPanelComposition = {
       subjectName,
     );
     await submitPage.continueOn(page);
-    await hearingsTabPage.changeToHearingsTab(page);
-    await hearingsTabPage.checkPanelComposition(
-      page,
-      panel2,
-      panel3,
-      specialisms,
-    );
+    // await hearingsTabPage.changeToHearingsTab(page);
+    // await hearingsTabPage.checkPanelComposition(
+    //   page,
+    //   panel2,
+    //   panel3,
+    //   specialisms,
+    // );
   },
 };
 

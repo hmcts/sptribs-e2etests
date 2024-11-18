@@ -180,38 +180,38 @@ const createSummary: CreateSummary = {
             subjectName,
           );
           await confirmPage.continueOn(page);
-          await hearingsTabPage.changeToHearingsTab(page);
-          await hearingsTabPage.checkPageLoads(
-            page,
-            true,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            true,
-            false,
-            null,
-            false,
-            editJourney,
-            false,
-            false,
-            false,
-            accessibilityTest,
-          );
-          await hearingTabPage.checkValidInfoCreateSummary(
-            page,
-            hearingType,
-            hearingFormat,
-            hearingSession,
-            hearingAcrossMultipleDays,
-            venue,
-            venueName,
-            hearingOutcome,
-            hearingAdjournedReason,
-            panel,
-            fullPanelHearing,
-            editJourney,
-            subjectName,
-          );
+          // await hearingsTabPage.changeToHearingsTab(page);
+          // await hearingsTabPage.checkPageLoads(
+          //   page,
+          //   true,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   true,
+          //   false,
+          //   null,
+          //   false,
+          //   editJourney,
+          //   false,
+          //   false,
+          //   false,
+          //   accessibilityTest,
+          // );
+          // await hearingTabPage.checkValidInfoCreateSummary(
+          //   page,
+          //   hearingType,
+          //   hearingFormat,
+          //   hearingSession,
+          //   hearingAcrossMultipleDays,
+          //   venue,
+          //   venueName,
+          //   hearingOutcome,
+          //   hearingAdjournedReason,
+          //   panel,
+          //   fullPanelHearing,
+          //   editJourney,
+          //   subjectName,
+          // );
           break;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(

@@ -23,7 +23,7 @@ test.describe("Global Data Cleanup. @dataCleanup", () => {
     );
   });
 
-  test("Global automation test data clean up. - Senior caseworker", async ({
+  test("Global automation test data clean up. - Legal Officer", async ({
     page,
   }): Promise<void> => {
     test.setTimeout(10 * 60 * 1000);

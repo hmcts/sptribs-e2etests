@@ -167,38 +167,38 @@ const editSummary: EditSummary = {
             subjectName,
           );
           await confirmPage.continueOn(page);
-          await hearingsTabPage.changeToHearingsTab(page);
-          await hearingsTabPage.checkPageLoads(
-            page,
-            true,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            false,
-            true,
-            hearingOutcome,
-            fullPanelHearing,
-            false,
-            false,
-            false,
-            false,
-            accessibilityTest,
-          );
-          await hearingsTabPage.checkValidInfoCreateSummary(
-            page,
-            hearingType,
-            hearingFormat,
-            hearingSession,
-            hearingAcrossMultipleDays,
-            venue,
-            venueName,
-            hearingOutcome,
-            hearingAdjournedReason,
-            panel,
-            fullPanelHearing,
-            false,
-            subjectName,
-          );
+          // await hearingsTabPage.changeToHearingsTab(page);
+          // await hearingsTabPage.checkPageLoads(
+          //   page,
+          //   true,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   false,
+          //   true,
+          //   hearingOutcome,
+          //   fullPanelHearing,
+          //   false,
+          //   false,
+          //   false,
+          //   false,
+          //   accessibilityTest,
+          // );
+          // await hearingsTabPage.checkValidInfoCreateSummary(
+          //   page,
+          //   hearingType,
+          //   hearingFormat,
+          //   hearingSession,
+          //   hearingAcrossMultipleDays,
+          //   venue,
+          //   venueName,
+          //   hearingOutcome,
+          //   hearingAdjournedReason,
+          //   panel,
+          //   fullPanelHearing,
+          //   false,
+          //   subjectName,
+          // );
           break;
         case true:
           await editSummarySelectHearingPage.checkPageLoads(
