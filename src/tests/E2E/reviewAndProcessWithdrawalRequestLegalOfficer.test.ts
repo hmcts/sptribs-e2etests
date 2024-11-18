@@ -55,6 +55,12 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber147, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -173,6 +179,12 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber148, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -289,6 +301,12 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber149, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -405,6 +423,12 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber150, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -477,6 +501,12 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber151, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -589,6 +619,12 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber152, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

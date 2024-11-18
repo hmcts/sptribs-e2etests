@@ -54,6 +54,12 @@ test.describe("Review Stay Request - Judge @CaseAPI @CaseAPI7", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber112, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -169,6 +175,12 @@ test.describe("Review Stay Request - Judge @CaseAPI @CaseAPI7", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber113, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -284,6 +296,12 @@ test.describe("Review Stay Request - Judge @CaseAPI @CaseAPI7", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber114, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -397,6 +415,12 @@ test.describe("Review Stay Request - Judge @CaseAPI @CaseAPI7", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber115, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -465,6 +489,12 @@ test.describe("Review Stay Request - Judge @CaseAPI @CaseAPI7", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber116, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,

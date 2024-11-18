@@ -57,6 +57,12 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber127, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -213,6 +219,12 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber128, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -329,6 +341,12 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber129, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -445,6 +463,12 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber130, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -516,6 +540,12 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", ()
       false,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await buildCase.buildCase(page, false, caseNumber131, subjectName);
     await commonHelpers.chooseEventFromDropdown(
       page,

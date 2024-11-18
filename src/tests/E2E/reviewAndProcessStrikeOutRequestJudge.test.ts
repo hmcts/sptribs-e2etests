@@ -52,6 +52,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI @CaseAPI7", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber122, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -167,6 +173,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI @CaseAPI7", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber123, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -282,6 +294,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI @CaseAPI7", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber124, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -395,6 +413,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI @CaseAPI7", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber125, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -466,6 +490,12 @@ test.describe("Review Strike Out Request - Judge @CaseAPI @CaseAPI7", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber126, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
