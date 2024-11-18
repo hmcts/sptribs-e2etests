@@ -16,7 +16,7 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe.only("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
+test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
   if (!config.skipDSSCreateTests) {
     test("Add a note to a DSS-submitted case.", async ({
       page,
