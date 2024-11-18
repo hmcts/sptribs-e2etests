@@ -7,6 +7,8 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
   test("Check for redundant test data", async ({ page }) => {
@@ -41,6 +43,12 @@ test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1000, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,

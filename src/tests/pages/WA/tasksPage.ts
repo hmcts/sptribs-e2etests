@@ -28,7 +28,7 @@ type TasksPage = {
     subjectName: string,
   ): Promise<void>;
   clickTaskLink(page: Page, event: any, taskName: string): Promise<void>;
-  markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
+  cancelTask(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
   markTasksAsDone(
     page: Page,
     caseNumber: string,
@@ -207,7 +207,7 @@ const tasksPage: TasksPage = {
     await page.getByRole("button", { name: "Go" }).click();
   },
 
-  async markAsDone(page, nextTriggeredTaskCleanUp): Promise<void> {
+  async cancelTask(page, nextTriggeredTaskCleanUp): Promise<void> {
     const specificTask = page.locator("exui-case-task", {
       hasText: `${nextTriggeredTaskCleanUp}`,
     });
@@ -215,8 +215,8 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(
       `p strong:text-is("${nextTriggeredTaskCleanUp}")`,
     );
-    await specificTask.locator("#action_complete").click();
-    await page.waitForSelector(`h1:text-is("Mark the task as done")`);
+    await specificTask.locator("#action_cancel").click();
+    await page.waitForSelector(`h1:text-is("Cancel a task")`);
     await page.locator("#submit-button").click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);
     await expect(

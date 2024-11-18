@@ -6,6 +6,8 @@ import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
@@ -35,6 +37,12 @@ test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1700, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await panelComposition.panelComposition(
       page,
       false,
@@ -73,6 +81,12 @@ test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1701, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await panelComposition.panelComposition(
       page,
       false,
@@ -111,6 +125,12 @@ test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1702, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await panelComposition.panelComposition(
       page,
       false,
@@ -149,6 +169,12 @@ test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1703, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await panelComposition.panelComposition(
       page,
       false,
@@ -187,6 +213,12 @@ test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1704, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await panelComposition.panelComposition(
       page,
       false,
@@ -235,6 +267,12 @@ test("Accessibility test - Create and Edit Panel composition @accessibilityCaseA
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1705, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await panelComposition.panelComposition(
     page,
     true,

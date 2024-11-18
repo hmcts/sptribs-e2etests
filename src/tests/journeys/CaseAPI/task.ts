@@ -173,7 +173,7 @@ const task: Task = {
     await myWorkPage.selectAvailableTasks(page, user);
     await myWorkPage.seeTask(page, taskRemoved, subjectName);
     await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskRemoved);
-    await tasksPage.markAsDone(page, taskRemoved);
+    await tasksPage.cancelTask(page, taskRemoved);
   },
 };
 
