@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage";
 import myWorkPage from "../pages/WA/myWorkPage";
-import tasksPage from "../pages/WA/tasksPage";
 
 async function testDataCleanUp(page: Page, user: any): Promise<void> {
   const locator1: any = page
@@ -41,7 +40,16 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
     let anySelectorVisible = false;
     for (const selector of availableTasksLocator) {
       if (await selector.first().isVisible()) {
-        await myWorkPage.dataCleanUpAssignTask(page, selector);
+        await selector
+          .first()
+          .locator(`div > button:has-text("Manage")`)
+          .click();
+        await page.waitForSelector("#action_claim");
+        await page.locator("#action_claim").click();
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForTimeout(7000);
         anySelectorVisible = true;
       }
     }
@@ -58,7 +66,7 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
   }
   await page.locator(`a:text-is("My work")`).click();
   await page.waitForSelector(`h3:text-is("My work")`);
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(7000);
 
   const autotestingTaskLocator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
@@ -91,7 +99,18 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
     let anySelectorVisible1 = false;
     for (const selector1 of myTaskLocators) {
       if (await selector1.first().isVisible()) {
-        await tasksPage.dataCleanUpMarkAsDone(page, selector1);
+        await selector1.first().locator(`button:has-text("Manage")`).click();
+        await page.waitForSelector("#action_cancel");
+        await page.locator("#action_cancel").click();
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForSelector(`button:text-is("Cancel task")`);
+        await page.locator("#submit-button").click();
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForTimeout(5000);
         anySelectorVisible1 = true;
       }
     }

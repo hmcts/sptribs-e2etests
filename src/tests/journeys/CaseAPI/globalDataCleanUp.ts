@@ -26,11 +26,11 @@ const globalDataCleanUp: GlobalDataCleanUp = {
             .click({ force: true });
           await page.waitForSelector("#action_claim");
           await page.locator("#action_claim").click({ force: true });
-          // if (page.url().includes('service-down')) {
-          //   await myWorkPage.navigateToMyWorkPage(page);
-          //   await myWorkPage.selectAvailableTasks(page, UserCleanUp);
-          // }
           await page.waitForTimeout(5000);
+          if (page.url().includes("service-down")) {
+            await myWorkPage.navigateToMyWorkPage(page);
+            await myWorkPage.selectAvailableTasks(page, UserCleanUp);
+          }
         }
 
         if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
@@ -58,8 +58,14 @@ const globalDataCleanUp: GlobalDataCleanUp = {
           .click();
         await page.waitForSelector("#action_cancel");
         await page.locator("#action_cancel").click({ force: true });
+        if (page.url().includes("service-down")) {
+          continue;
+        }
         await page.waitForSelector(`button:text-is("Cancel task")`);
         await page.locator("#submit-button").click({ force: true });
+        if (page.url().includes("service-down")) {
+          continue;
+        }
         await page.waitForTimeout(7000);
       }
 

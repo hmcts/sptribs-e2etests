@@ -128,7 +128,6 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
           editSummaryHearingAttendeesRoleContent.otherAttendanceError,
         ),
       ]);
-      await page.pause();
       for (let i = 2; i < 18; i++) {
         const label = (editSummaryHearingAttendeesRoleContent as any)[
           `textOnPage${i}`

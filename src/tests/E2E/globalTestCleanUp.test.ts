@@ -6,34 +6,16 @@ test.describe("Global Data Cleanup. @dataCleanup", () => {
   test("Global automation test data clean up. - Admin", async ({
     page,
   }): Promise<void> => {
-    test.setTimeout(10 * 60 * 1000);
+    test.setTimeout(20 * 60 * 1000);
     await globalDataCleanUp.globalDataCleanUp(
       page,
       waUsers_content.userRoleAdmin,
     );
-  });
-
-  test("Global automation test data clean up. - Judge", async ({
-    page,
-  }): Promise<void> => {
-    test.setTimeout(10 * 60 * 1000);
     await globalDataCleanUp.globalDataCleanUp(
       page,
       waUsers_content.userRoleJudge,
     );
-  });
-
-  test("Global automation test data clean up. - Senior caseworker", async ({
-    page,
-  }): Promise<void> => {
-    test.setTimeout(10 * 60 * 1000);
     await globalDataCleanUp.globalDataCleanUp(page, waUsers_content.userRoleLO);
-  });
-
-  test("Global automation test data clean up. - Caseworker", async ({
-    page,
-  }): Promise<void> => {
-    test.setTimeout(10 * 60 * 1000);
     await globalDataCleanUp.globalDataCleanUp(
       page,
       waUsers_content.userRoleCaseWorker,

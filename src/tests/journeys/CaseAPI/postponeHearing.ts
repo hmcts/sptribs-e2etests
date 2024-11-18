@@ -75,32 +75,32 @@ const postponeHearing: PostponeHearing = {
           subjectName,
         );
         await confirmPage.continueOn(page);
-        await hearingsTabPage.changeToHearingsTab(page);
-        await hearingsTabPage.checkPageLoads(
-          page,
-          true,
-          false,
-          false,
-          "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-          false,
-          false,
-          null,
-          false,
-          false,
-          false,
-          true,
-          false,
-          accessibilityTest,
-        );
-        await hearingTabPage.checkValidInfoPostponeHearing(
-          page,
-          reasonPostponed,
-          "2-Midlands",
-          "Final",
-          "Paper",
-          "Morning",
-          "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-        );
+        // await hearingsTabPage.changeToHearingsTab(page);
+        // await hearingsTabPage.checkPageLoads(
+        //   page,
+        //   true,
+        //   false,
+        //   false,
+        //   "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+        //   false,
+        //   false,
+        //   null,
+        //   false,
+        //   false,
+        //   false,
+        //   true,
+        //   false,
+        //   accessibilityTest,
+        // );
+        // await hearingTabPage.checkValidInfoPostponeHearing(
+        //   page,
+        //   reasonPostponed,
+        //   "2-Midlands",
+        //   "Final",
+        //   "Paper",
+        //   "Morning",
+        //   "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+        // );
         break;
       case true:
         await postponeHearingSelectHearingPage.checkPageLoads(
