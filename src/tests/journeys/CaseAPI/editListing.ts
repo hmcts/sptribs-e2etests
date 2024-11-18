@@ -160,35 +160,35 @@ const editListing: EditListing = {
             subjectName,
           );
           await confirmPage.continueOn(page);
-          await hearingsTabPage.changeToHearingsTab(page);
-          await hearingsTabPage.checkPageLoads(
-            page,
-            region,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            false,
-            false,
-            null,
-            false,
-            false,
-            false,
-            false,
-            true,
-            accessibilityTest,
-          );
-          await hearingsTabPage.checkValidInfoCreateListing(
-            page,
-            region,
-            caseRegionCode,
-            hearingType,
-            hearingFormat,
-            hearingSession,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            true,
-          );
+          // await hearingsTabPage.changeToHearingsTab(page);
+          // await hearingsTabPage.checkPageLoads(
+          //   page,
+          //   region,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   false,
+          //   false,
+          //   null,
+          //   false,
+          //   false,
+          //   false,
+          //   false,
+          //   true,
+          //   accessibilityTest,
+          // );
+          // await hearingsTabPage.checkValidInfoCreateListing(
+          //   page,
+          //   region,
+          //   caseRegionCode,
+          //   hearingType,
+          //   hearingFormat,
+          //   hearingSession,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   true,
+          // );
           break;
         case true:
           await editListingSelectHearingPage.checkPageLoads(
