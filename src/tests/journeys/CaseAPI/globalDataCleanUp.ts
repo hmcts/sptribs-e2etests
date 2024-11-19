@@ -24,8 +24,14 @@ const globalDataCleanUp: GlobalDataCleanUp = {
             .first()
             .locator(`button:has-text("Manage")`)
             .click({ force: true });
+          if (page.url().includes("service-down")) {
+            continue;
+          }
           await page.waitForSelector("#action_claim");
           await page.locator("#action_claim").click({ force: true });
+          if (page.url().includes("service-down")) {
+            continue;
+          }
           await page.waitForTimeout(5000);
           if (page.url().includes("service-down")) {
             await myWorkPage.navigateToMyWorkPage(page);
@@ -46,6 +52,9 @@ const globalDataCleanUp: GlobalDataCleanUp = {
     }
 
     await page.locator(`a:text-is("My work")`).click({ force: true });
+    if (page.url().includes("service-down")) {
+      await page.locator(`a:text-is("My work")`).click({ force: true });
+    }
     await page.waitForSelector(`h3:text-is("My work")`);
     await page.waitForTimeout(5000);
 

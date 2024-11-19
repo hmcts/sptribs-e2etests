@@ -332,6 +332,13 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
+      stage('Global data clean up') {
+        try {
+          yarnBuilder.yarn('test:dataCleanUp')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        }
+      }
       stage('Case-API Application E2E tests - Chrome 5') {
         try {
           yarnBuilder.yarn('test:ChromeCaseAPI5')
@@ -439,12 +446,12 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
 
-//    stage('Global data clean up') {
-//      try {
-//        yarnBuilder.yarn('test:dataCleanUp')
-//      } catch (Error) {
-//        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-//      }
-//    }
+    stage('Global data clean up') {
+      try {
+        yarnBuilder.yarn('test:dataCleanUp')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      }
+    }
   }
 }
