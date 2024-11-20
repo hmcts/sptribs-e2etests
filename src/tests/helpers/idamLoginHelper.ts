@@ -30,6 +30,7 @@ const idamLoginHelper: IdamLoginHelper = {
   ): Promise<void> {
     if (!page.url().includes("idam-web-public.")) {
       await page.goto(application);
+      await page.waitForLoadState("domcontentloaded");
     }
     if (page.url().includes("demo")) {
       await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
@@ -50,6 +51,7 @@ const idamLoginHelper: IdamLoginHelper = {
       await page.fill(this.fields.username, userCredentials.email);
       await page.fill(this.fields.password, userCredentials.password);
       await page.click(this.submitButton);
+      await page.waitForLoadState("domcontentloaded");
     } else {
       console.error("Invalid credential type");
     }

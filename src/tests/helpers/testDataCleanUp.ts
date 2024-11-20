@@ -1,24 +1,26 @@
 import { Page } from "@playwright/test";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage";
 import myWorkPage from "../pages/WA/myWorkPage";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
+
 async function testDataCleanUp(page: Page, user: any): Promise<void> {
   const locator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
-      has: page.locator(`exui-task-field:text-is(" Issue Decision Notice ")`),
+      has: page.locator(`exui-task-field:has-text("${taskNames_content.issueDecisionNotice}")`),
     });
   const locator2: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
       has: page.locator(
-        `exui-task-field:text-is(" Complete Hearing Outcome ")`,
+        `exui-task-field:has-text("${taskNames_content.completeHearingOutcome}")`,
       ),
     });
   const locator3: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
       has: page.locator(
-        `exui-task-field:text-is(" Stitch/collate hearing bundle ")`,
+        `exui-task-field:has-text("${taskNames_content.stitchCollateHearingBundle}")`,
       ),
     });
   const availableTasksLocator = [locator1, locator2, locator3];
@@ -58,14 +60,14 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
   await page.waitForTimeout(7000);
   const autotestingTaskLocator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({ has: page.locator(`a:text-is("Issue Decision Notice")`) });
+    .filter({ has: page.locator(`a:has-text("${taskNames_content.issueDecisionNotice}")`) });
   const autotestingTaskLocator2: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({ has: page.locator(`a:text-is("Complete Hearing Outcome")`) });
+    .filter({ has: page.locator(`a:has-text("${taskNames_content.completeHearingOutcome}")`) });
   const autotestingTaskLocator3: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
-      has: page.locator(`a:text-is("Stitch/collate hearing bundle")`),
+      has: page.locator(`a:has-text("${taskNames_content.stitchCollateHearingBundle}")`),
     });
   const myTaskLocators = [
     autotestingTaskLocator1,

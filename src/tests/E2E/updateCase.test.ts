@@ -253,7 +253,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     );
     await task.removeTask(
       page,
-      "Register New Case",
+      taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
@@ -297,7 +297,7 @@ test.describe("DSS Update case tests. @DSSUpdate", () => {
     );
     await task.removeTask(
       page,
-      "Register New Case",
+      taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
