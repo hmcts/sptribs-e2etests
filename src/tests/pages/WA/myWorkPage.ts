@@ -100,8 +100,6 @@ const myWorkPage: MyWorkPage = {
         page.locator(`button > h1:text-is("${myWork_content.priorityColumn}")`),
       );
     }
-    await page.click(this.filterButton);
-
     if (accessibilityTest) {
       await axeTest(page);
     }

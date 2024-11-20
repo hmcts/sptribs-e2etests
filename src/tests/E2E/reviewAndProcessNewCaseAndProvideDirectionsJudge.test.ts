@@ -822,7 +822,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    false,
+    true,
     taskNames_content.processDirectionsReturned,
     subjectName,
   );
