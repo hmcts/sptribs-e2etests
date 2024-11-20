@@ -49,7 +49,7 @@ const taskNames_content = {
   vetNewCaseDocuments: "Vet new case documents",
   issueDecisionNotice: "Issue decision notice",
   completeHearingOutcome: "Complete hearing outcome",
-  stitchCollateHearingBundle: "Stitch/collate hearing bundle"
+  stitchCollateHearingBundle: "Stitch/collate hearing bundle",
 } as const;
 
 export default taskNames_content;

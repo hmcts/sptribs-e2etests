@@ -7,7 +7,9 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
   const locator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
-      has: page.locator(`exui-task-field:has-text("${taskNames_content.issueDecisionNotice}")`),
+      has: page.locator(
+        `exui-task-field:has-text("${taskNames_content.issueDecisionNotice}")`,
+      ),
     });
   const locator2: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
@@ -60,14 +62,24 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
   await page.waitForTimeout(7000);
   const autotestingTaskLocator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({ has: page.locator(`a:has-text("${taskNames_content.issueDecisionNotice}")`) });
+    .filter({
+      has: page.locator(
+        `a:has-text("${taskNames_content.issueDecisionNotice}")`,
+      ),
+    });
   const autotestingTaskLocator2: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({ has: page.locator(`a:has-text("${taskNames_content.completeHearingOutcome}")`) });
+    .filter({
+      has: page.locator(
+        `a:has-text("${taskNames_content.completeHearingOutcome}")`,
+      ),
+    });
   const autotestingTaskLocator3: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
-      has: page.locator(`a:has-text("${taskNames_content.stitchCollateHearingBundle}")`),
+      has: page.locator(
+        `a:has-text("${taskNames_content.stitchCollateHearingBundle}")`,
+      ),
     });
   const myTaskLocators = [
     autotestingTaskLocator1,
