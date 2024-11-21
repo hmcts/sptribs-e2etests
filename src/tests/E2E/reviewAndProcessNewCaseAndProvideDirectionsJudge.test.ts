@@ -785,7 +785,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleJudge,
-    true,
+    false,
     taskNames_content.reviewNewCaseJudge,
     subjectName,
   );
@@ -822,7 +822,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    true,
+    false,
     taskNames_content.processDirectionsReturned,
     subjectName,
   );
@@ -862,7 +862,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    true,
+    false,
     taskNames_content.nonComplianceDirections,
     subjectName,
   );

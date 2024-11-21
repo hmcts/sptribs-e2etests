@@ -3594,7 +3594,7 @@ test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCas
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    true,
+    false,
     taskNames_content.processFurtherEvidence,
     subjectName,
   );

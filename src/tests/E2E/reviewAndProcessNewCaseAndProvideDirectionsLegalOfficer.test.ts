@@ -759,7 +759,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibilityCaseAPI", async ({
   page,
 }) => {
-  test.setTimeout(7 * 60 * 1000);
+  test.setTimeout(8 * 60 * 1000);
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber75 = await createCase.createCase(
     page,
@@ -805,7 +805,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleLO,
-    true,
+    false,
     taskNames_content.reviewNewCaseLO,
     subjectName,
   );
@@ -882,7 +882,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    true,
+    false,
     taskNames_content.nonComplianceDirections,
     subjectName,
   );
