@@ -23,12 +23,12 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 3;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", (): void => {
+test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
@@ -56,6 +56,12 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber45, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -213,6 +219,12 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber46, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -368,7 +380,12 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber47, subjectName);
-
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -523,6 +540,12 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber48, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -595,6 +618,12 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber49, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -699,6 +728,12 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI", 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber50, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

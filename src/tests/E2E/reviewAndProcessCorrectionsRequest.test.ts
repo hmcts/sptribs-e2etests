@@ -13,15 +13,16 @@ import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import config from "../config.ts";
 
 const priorityReview = null;
 const priorityProcess = " low ";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 3;
 
-test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
@@ -30,7 +31,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber20 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -51,6 +52,12 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber20, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -150,7 +157,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber21 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -171,6 +178,12 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber21, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -268,7 +281,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber22 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -289,6 +302,12 @@ test.describe("Review and Process Corrections - Judge @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber22, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

@@ -21,9 +21,9 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
-test.describe("Case-API Edit draft tests. @CaseAPI", () => {
+test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Edit a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
@@ -53,6 +53,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1500, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -135,6 +141,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1501, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -230,6 +242,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1502, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -331,6 +349,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1503, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -424,6 +448,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1504, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -519,6 +549,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1505, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -576,9 +612,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Edit draft @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Error messaging - Edit draft", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1506 = await createCase.createCase(
       page,
@@ -603,6 +637,12 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1506, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -688,6 +728,12 @@ test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1507, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await commonHelpers.chooseEventFromDropdown(
     page,
     "Refer case to legal officer",

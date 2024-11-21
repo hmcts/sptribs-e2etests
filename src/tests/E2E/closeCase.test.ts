@@ -6,8 +6,10 @@ import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Close case tests. @CaseAPI", () => {
+test.describe("Case-API Close case tests. @CaseAPI @CaseAPI1", () => {
   test("Close a ready to list case as it is withdrawn with no optional information.", async ({
     page,
   }): Promise<void> => {
@@ -35,6 +37,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber500, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -90,6 +98,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber501, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -145,6 +159,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber502, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -200,6 +220,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber503, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -255,6 +281,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber504, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -310,6 +342,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber505, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -365,6 +403,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber506, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -420,6 +464,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber507, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -475,6 +525,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber508, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -530,6 +586,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber509, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -558,7 +620,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a ready to list case as it is a rule 27 with no optional information. @crossbrowserCaseAPI", async ({
+  test("Close a ready to list case as it is a rule 27 with no optional information.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -585,6 +647,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber510, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -640,6 +708,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber511, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -695,6 +769,12 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber512, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -738,6 +818,12 @@ test("Accessibility test - Close case @accessibilityCaseAPI", async ({
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber513, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
   await closeCase.closeCase(
     page,

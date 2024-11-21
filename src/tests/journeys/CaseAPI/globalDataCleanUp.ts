@@ -5,7 +5,7 @@ import waUsers_content from "../../fixtures/content/waUsers_content";
 
 type GlobalDataCleanUp = {
   dataCleanUpByUser(page: Page, UserCleanUp: any): Promise<void>;
-  globalDataCleanUp(page: Page): Promise<void>;
+  globalDataCleanUp(page: Page, UserCleanUp: any): Promise<void>;
   signOut(page: Page): Promise<void>;
 };
 
@@ -13,34 +13,48 @@ const globalDataCleanUp: GlobalDataCleanUp = {
   async dataCleanUpByUser(page, UserCleanUp) {
     await caseAPILoginPage.SignInUser(page, UserCleanUp);
     await myWorkPage.navigateToMyWorkPage(page);
-    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.selectAvailableTasks(page, UserCleanUp);
 
     const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`;
-
-    while (true) {
-      while (await page.locator(subjectAutoTesting).first().isVisible()) {
-        await page
-          .locator("tr", { hasText: "Subject AutoTesting" })
-          .first()
-          .locator(`button:has-text("Manage")`)
-          .click();
-        await page.waitForSelector("#action_claim");
-        await page.locator("#action_claim").click();
-        await page.waitForTimeout(5000);
-      }
-
-      if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
-        const nextPageButton = page.locator(`a[aria-label="Next page"]`);
-        if (await nextPageButton.isVisible()) {
-          await nextPageButton.click();
+    if (!(UserCleanUp === waUsers_content.userRoleCaseWorker)) {
+      while (true) {
+        while (await page.locator(subjectAutoTesting).first().isVisible()) {
+          await page
+            .locator("tr", { hasText: "Subject AutoTesting" })
+            .first()
+            .locator(`button:has-text("Manage")`)
+            .click({ force: true });
+          if (page.url().includes("service-down")) {
+            continue;
+          }
+          await page.waitForSelector("#action_claim");
+          await page.locator("#action_claim").click({ force: true });
+          if (page.url().includes("service-down")) {
+            continue;
+          }
           await page.waitForTimeout(5000);
-        } else {
-          break;
+          if (page.url().includes("service-down")) {
+            await myWorkPage.navigateToMyWorkPage(page);
+            await myWorkPage.selectAvailableTasks(page, UserCleanUp);
+          }
+        }
+
+        if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
+          const nextPageButton = page.locator(`a[aria-label="Next page"]`);
+          if (await nextPageButton.isVisible()) {
+            await nextPageButton.click({ force: true });
+            await page.waitForTimeout(5000);
+          } else {
+            break;
+          }
         }
       }
     }
 
-    await page.locator(`a:text-is("My work")`).click();
+    await page.locator(`a:text-is("My work")`).click({ force: true });
+    if (page.url().includes("service-down")) {
+      await page.locator(`a:text-is("My work")`).click({ force: true });
+    }
     await page.waitForSelector(`h3:text-is("My work")`);
     await page.waitForTimeout(5000);
 
@@ -51,17 +65,23 @@ const globalDataCleanUp: GlobalDataCleanUp = {
           .first()
           .locator(`button:has-text("Manage")`)
           .click();
-        await page.waitForSelector("#action_complete");
-        await page.locator("#action_complete").click();
-        await page.waitForSelector(`button:text-is("Mark as done")`);
-        await page.locator("#submit-button").click();
-        await page.waitForTimeout(5000);
+        await page.waitForSelector("#action_cancel");
+        await page.locator("#action_cancel").click({ force: true });
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForSelector(`button:text-is("Cancel task")`);
+        await page.locator("#submit-button").click({ force: true });
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForTimeout(7000);
       }
 
       if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
         const nextPageButton = page.locator(`a[aria-label="Next page"]`);
         if (await nextPageButton.isVisible()) {
-          await nextPageButton.click();
+          await nextPageButton.click({ force: true });
           await page.waitForTimeout(5000);
         } else {
           break;
@@ -74,14 +94,9 @@ const globalDataCleanUp: GlobalDataCleanUp = {
     await page.waitForLoadState("domcontentloaded");
   },
 
-  async globalDataCleanUp(page: Page): Promise<void> {
-    await this.dataCleanUpByUser(page, waUsers_content.userRoleAdmin);
+  async globalDataCleanUp(page: Page, UserCleanUp: any): Promise<void> {
+    await this.dataCleanUpByUser(page, UserCleanUp);
     await this.signOut(page);
-    await this.dataCleanUpByUser(page, waUsers_content.userRoleCaseWorker);
-    await this.signOut(page);
-    await this.dataCleanUpByUser(page, waUsers_content.userRoleJudge);
-    await this.signOut(page);
-    await this.dataCleanUpByUser(page, waUsers_content.userRoleLO);
   },
 };
 export default globalDataCleanUp;

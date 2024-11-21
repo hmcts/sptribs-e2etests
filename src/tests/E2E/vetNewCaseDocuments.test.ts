@@ -14,9 +14,11 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priority = " low ";
 const numberOfDays = 5;
 
-test.describe("Vet new case documents task tests @CaseAPI", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+test.describe("Vet new case documents task tests @CaseAPI @CaseAPI7", (): void => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
   test("Task is completable via next steps link - assign to me and go to task", async ({
@@ -94,6 +96,12 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber156,
       states_content.caseManagementState,
       subjectName,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 
@@ -173,6 +181,12 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       states_content.caseManagementState,
       subjectName,
     );
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
@@ -248,6 +262,12 @@ test.describe("Vet new case documents task tests @CaseAPI", (): void => {
       caseNumber158,
       states_content.caseManagementState,
       subjectName,
+    );
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
     );
   });
 });
@@ -327,5 +347,11 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     caseNumber159,
     states_content.caseManagementState,
     subjectName,
+  );
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
   );
 });

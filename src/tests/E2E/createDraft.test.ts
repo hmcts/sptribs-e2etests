@@ -17,9 +17,11 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
-test.describe("Case-API Create draft tests. @CaseAPI", () => {
-  test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+test.describe("Case-API Create draft tests. @CaseAPI @CaseAPI2", () => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
@@ -50,6 +52,12 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber800, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -139,6 +147,12 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber801, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -201,9 +215,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Error messaging - Create draft", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber802 = await createCase.createCase(
       page,
@@ -228,6 +240,12 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber802, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",

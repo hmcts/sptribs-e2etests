@@ -6,8 +6,10 @@ import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Cancel hearing tests @CaseAPI", (): void => {
+test.describe("Cancel hearing tests @CaseAPI @CaseAPI1", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -35,6 +37,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber301, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -89,6 +97,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber302, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -145,6 +159,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber303, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -201,6 +221,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber304, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -255,6 +281,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber305, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -311,6 +343,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber306, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -340,9 +378,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber307 = await createCase.createCase(
       page,
@@ -367,6 +403,12 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber307, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -397,7 +439,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
+test("Accessibility test - cancel hearing - other @accessibilityCaseAPI.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -424,6 +466,12 @@ test("Accessibility test - cancel hearing - other @accessibilityCaseAPI. @crossb
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber308, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
   await createListing.createListing(
     page,

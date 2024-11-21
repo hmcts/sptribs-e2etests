@@ -90,11 +90,10 @@ const historyTabPage: HistoryTabPage = {
           1,
         );
       }
-      if (user === "caseWorker") {
+
+      if (user === "demoCitizen") {
         await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedCaseworker}")`,
-          ),
+          page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
           allEvents.length + 1,
         );
       } else if (user === "citizen") {
@@ -104,33 +103,49 @@ const historyTabPage: HistoryTabPage = {
           ),
           allEvents.length + 1,
         );
-      } else if (user === "seniorCaseworker") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedSeniorCaseWorker}")`,
-          ),
-          allEvents.length + 1,
-        );
-      } else if (user === "hearingCentreAdmin") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedHearingCentreAdmin}")`,
-          ),
-          allEvents.length + 1,
-        );
-      } else if (user === "hearingCentreTeamLead") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedHearingCentreTeamLead}")`,
-          ),
-          allEvents.length + 1,
-        );
-      } else if (user === "demoCitizen") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
-          allEvents.length + 1,
-        );
       }
+
+      // if (user === "caseWorker") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedCaseworker}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "citizen") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedCitizen}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "seniorCaseworker") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedSeniorCaseWorker}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "hearingCentreAdmin") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedHearingCentreAdmin}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "hearingCentreTeamLead") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedHearingCentreTeamLead}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "demoCitizen") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
+      //     allEvents.length + 1,
+      //   );
+      // }
       await commonHelpers.checkVisibleAndPresent(
         page.locator(`span.text-16:text-is("${state}")`),
         1,

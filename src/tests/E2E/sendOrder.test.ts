@@ -20,9 +20,9 @@ const priorityProcess = " low ";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 
-test.describe("Send order tests @CaseAPI", () => {
+test.describe("Send order tests @CaseAPI @CaseAPI7", () => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
@@ -53,6 +53,12 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2400, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -176,6 +182,12 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2401, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await createEditStay.createEditStay(
       page,
       false,
@@ -297,6 +309,12 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2402, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -420,6 +438,12 @@ test.describe("Send order tests @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2403, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await createEditStay.createEditStay(
       page,
       true,

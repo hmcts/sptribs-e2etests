@@ -43,6 +43,7 @@ type Task = {
     page: Page,
     taskRemoved: string,
     subjectName: string,
+    user: any,
   ): Promise<void>;
 };
 
@@ -58,7 +59,7 @@ const task: Task = {
     await page.waitForLoadState("domcontentloaded");
     await caseAPILoginPage.SignInUser(page, user);
     await myWorkPage.checkPageLoads(page, accessibilityTest, user);
-    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.selectAvailableTasks(page, user);
     await myWorkPage.seeTask(page, taskName, subjectName);
   },
 
@@ -167,12 +168,12 @@ const task: Task = {
     );
   },
 
-  async removeTask(page, taskRemoved, subjectName): Promise<void> {
+  async removeTask(page, taskRemoved, subjectName, user): Promise<void> {
     await myWorkPage.navigateToMyWorkPage(page);
-    await myWorkPage.selectAvailableTasks(page);
+    await myWorkPage.selectAvailableTasks(page, user);
     await myWorkPage.seeTask(page, taskRemoved, subjectName);
     await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskRemoved);
-    await tasksPage.markAsDone(page, taskRemoved);
+    await tasksPage.cancelTask(page, taskRemoved);
   },
 };
 

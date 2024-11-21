@@ -19,9 +19,9 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 2;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void => {
+test.describe("Review and Process Set Aside Request - Judge @CaseAPI @CaseAPI7", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
@@ -31,7 +31,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber109 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -52,6 +52,12 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber109, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -151,7 +157,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber110 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -172,6 +178,12 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber110, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -269,7 +281,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber111 = await createCase.createCase(
       page,
-      waUsers_content.userRoleCaseWorker,
+      waUsers_content.userRoleAdmin,
       false,
       "Assessment",
       "Other",
@@ -290,6 +302,12 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI", (): void 
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber111, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

@@ -11,8 +11,10 @@ import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Contact parties tests. @CaseAPI", () => {
+test.describe("Case-API Contact parties tests. @CaseAPI @CaseAPI1", () => {
   test("Send a message to all parties related to a closed case.", async ({
     page,
   }): Promise<void> => {
@@ -40,6 +42,12 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2500, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -92,6 +100,12 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2501, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -179,6 +193,12 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2503, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -231,6 +251,12 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2504, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -288,6 +314,12 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2505, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",

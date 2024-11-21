@@ -23,12 +23,12 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): void => {
+test.describe("Review New Case and Provide Directions - Judge @CaseAPI @CaseAPI6", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27 @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -55,6 +55,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber62, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -170,6 +176,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber63, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -285,6 +297,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber64, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -398,6 +416,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber65, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -467,6 +491,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber66, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -576,6 +606,12 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI", (): voi
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber67, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
     await referCaseToJudge.referCaseToJudge(
       page,
@@ -731,6 +767,12 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber68, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
   await referCaseToJudge.referCaseToJudge(
     page,
@@ -743,7 +785,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleJudge,
-    true,
+    false,
     taskNames_content.reviewNewCaseJudge,
     subjectName,
   );
@@ -820,7 +862,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    true,
+    false,
     taskNames_content.nonComplianceDirections,
     subjectName,
   );

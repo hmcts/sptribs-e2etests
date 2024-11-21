@@ -21,13 +21,13 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 const priorityReview = " low ";
 const priorityProcess = " low ";
 
-test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void => {
+test.describe("User is able to Manage Due Date of an order @CaseAPI @CaseAPI3", (): void => {
   test("Check for redundant test data", async ({ page }) => {
-    test.setTimeout(20 * 60 * 1000);
+    test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("User is able to manage due date in state 'Ready to list' Orders sent in state Case management", async ({
+  test("User is able to manage due date in state 'Ready to list' Orders sent in state Case management @crossbrowserCaseAPI", async ({
     page,
   }) => {
     const numberOfDaysReview = 5;
@@ -56,6 +56,12 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2700, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -186,6 +192,12 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2701, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
@@ -276,6 +288,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       false,
       caseNumber2701,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -321,6 +334,12 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2702, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -332,6 +351,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       null,
       caseNumber2702,
       subjectName,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,
@@ -450,6 +470,12 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2703, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await createEditStay.createEditStay(
       page,
       true,
@@ -459,6 +485,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       caseNumber2703,
       subjectName,
       states_content.caseStayedState,
+      false,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

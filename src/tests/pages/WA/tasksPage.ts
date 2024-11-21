@@ -3,6 +3,7 @@ import config from "../../config.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import tasks_content from "../../fixtures/content/CaseAPI/myWork/tasks_content.ts";
+import waUsers_content from "../../fixtures/content/waUsers_content.ts";
 
 type TasksPage = {
   myTasksTab: string;
@@ -27,7 +28,7 @@ type TasksPage = {
     subjectName: string,
   ): Promise<void>;
   clickTaskLink(page: Page, event: any, taskName: string): Promise<void>;
-  markAsDone(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
+  cancelTask(page: Page, nextTriggeredTaskCleanUp: string): Promise<void>;
   markTasksAsDone(
     page: Page,
     caseNumber: string,
@@ -95,7 +96,7 @@ const tasksPage: TasksPage = {
       ),
       expect(specificTask.locator(`p > a:text-is("${event}")`)).toBeVisible(),
     ]);
-    if (user !== "waPrincipalJudge") {
+    if (user !== waUsers_content.userRoleJudge) {
       expect(
         specificTask.locator(
           `span.row-padding:text-is("${tasks_content.dueDate}")`,
@@ -206,7 +207,7 @@ const tasksPage: TasksPage = {
     await page.getByRole("button", { name: "Go" }).click();
   },
 
-  async markAsDone(page, nextTriggeredTaskCleanUp): Promise<void> {
+  async cancelTask(page, nextTriggeredTaskCleanUp): Promise<void> {
     const specificTask = page.locator("exui-case-task", {
       hasText: `${nextTriggeredTaskCleanUp}`,
     });
@@ -214,8 +215,8 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(
       `p strong:text-is("${nextTriggeredTaskCleanUp}")`,
     );
-    await specificTask.locator("#action_complete").click();
-    await page.waitForSelector(`h1:text-is("Mark the task as done")`);
+    await specificTask.locator("#action_cancel").click();
+    await page.waitForSelector(`h1:text-is("Cancel a task")`);
     await page.locator("#submit-button").click();
     await page.waitForSelector(`h2:text-is("Active tasks")`);
     await expect(
@@ -268,9 +269,9 @@ const tasksPage: TasksPage = {
 
   async dataCleanUpMarkAsDone(page: Page, selector: any): Promise<void> {
     await selector.first().locator(`button:has-text("Manage")`).click();
-    await page.waitForSelector("#action_complete");
+    await page.waitForSelector("#action_cancel");
     await page.locator("#action_complete").click();
-    await page.waitForSelector(`button:text-is("Mark as done")`);
+    await page.waitForSelector(`button:text-is("Cancel task")`);
     await page.locator("#submit-button").click();
     await page.waitForTimeout(5000);
   },

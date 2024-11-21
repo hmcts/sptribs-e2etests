@@ -13,10 +13,12 @@ import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Add note tests. @CaseAPI", () => {
+test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
   if (!config.skipDSSCreateTests) {
-    test("Add a note to a DSS-submitted case. @crossbrowserCaseAPI", async ({
+    test("Add a note to a DSS-submitted case.", async ({
       page,
     }): Promise<void> => {
       const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -72,7 +74,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber201, subjectName);
   });
 
-  test("Add a note to a Case management case case. @crossbrowserCaseAPI", async ({
+  test("Add a note to a Case management case case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -100,6 +102,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber202, subjectName);
     await addNote.addNote(page, false, caseNumber202, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
   });
 
   test("Add a note to a Ready to list case case.", async ({
@@ -129,6 +137,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber203, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await hearingOptions.hearingOptions(
       page,
       false,
@@ -172,6 +186,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber204, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -221,6 +241,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber205, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -285,6 +311,12 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber206, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -329,6 +361,12 @@ test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAP
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber207, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
   await createEditStay.createEditStay(
     page,
     true,

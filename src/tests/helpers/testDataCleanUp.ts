@@ -1,48 +1,48 @@
 import { Page } from "@playwright/test";
 import caseAPILoginPage from "../pages/CaseAPI/caseList/caseAPILoginPage";
 import myWorkPage from "../pages/WA/myWorkPage";
-import tasksPage from "../pages/WA/tasksPage";
-import taskNames_content from "../fixtures/content/taskNames_content";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 async function testDataCleanUp(page: Page, user: any): Promise<void> {
   const locator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
       has: page.locator(
-        `exui-task-field:text-is(" Issue Case To Respondent ")`,
+        `exui-task-field:has-text("${taskNames_content.issueDecisionNotice}")`,
       ),
     });
   const locator2: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
-      has: page.locator(`exui-task-field:text-is(" Issue Decision Notice ")`),
+      has: page.locator(
+        `exui-task-field:has-text("${taskNames_content.completeHearingOutcome}")`,
+      ),
     });
   const locator3: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
       has: page.locator(
-        `exui-task-field:text-is(" Complete Hearing Outcome ")`,
+        `exui-task-field:has-text("${taskNames_content.stitchCollateHearingBundle}")`,
       ),
     });
-  const locator4: any = page
-    .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({
-      has: page.locator(
-        `exui-task-field:text-is(" Stitch/collate hearing bundle ")`,
-      ),
-    });
-
-  const availableTasksLocator = [locator1, locator2, locator3, locator4];
-
+  const availableTasksLocator = [locator1, locator2, locator3];
   await caseAPILoginPage.SignInUser(page, user);
   await myWorkPage.navigateToMyWorkPage(page);
-  await myWorkPage.selectAvailableTasks(page);
-
+  await myWorkPage.selectAvailableTasks(page, user);
   while (true) {
     let anySelectorVisible = false;
     for (const selector of availableTasksLocator) {
       if (await selector.first().isVisible()) {
-        await myWorkPage.dataCleanUpAssignTask(page, selector);
+        await selector
+          .first()
+          .locator(`div > button:has-text("Manage")`)
+          .click();
+        await page.waitForSelector("#action_claim");
+        await page.locator("#action_claim").click();
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForTimeout(7000);
         anySelectorVisible = true;
       }
     }
@@ -59,40 +59,49 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
   }
   await page.locator(`a:text-is("My work")`).click();
   await page.waitForSelector(`h3:text-is("My work")`);
-  await page.waitForTimeout(5000);
-
+  await page.waitForTimeout(7000);
   const autotestingTaskLocator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({ has: page.locator(`a:text-is("Issue Decision Notice")`) });
-
+    .filter({
+      has: page.locator(
+        `a:has-text("${taskNames_content.issueDecisionNotice}")`,
+      ),
+    });
   const autotestingTaskLocator2: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({ has: page.locator(`a:text-is("Complete Hearing Outcome")`) });
-
+    .filter({
+      has: page.locator(
+        `a:has-text("${taskNames_content.completeHearingOutcome}")`,
+      ),
+    });
   const autotestingTaskLocator3: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
     .filter({
-      has: page.locator(`a:text-is("Stitch/collate hearing bundle")`),
+      has: page.locator(
+        `a:has-text("${taskNames_content.stitchCollateHearingBundle}")`,
+      ),
     });
-
-  const autotestingTaskLocator4: any = page
-    .locator("tr", { hasText: "Subject AutoTesting" })
-    .filter({
-      has: page.locator(`a:text-is("Issue Case To Respondent")`),
-    });
-
   const myTaskLocators = [
     autotestingTaskLocator1,
     autotestingTaskLocator2,
     autotestingTaskLocator3,
-    autotestingTaskLocator4,
   ];
-
   while (true) {
     let anySelectorVisible1 = false;
     for (const selector1 of myTaskLocators) {
       if (await selector1.first().isVisible()) {
-        await tasksPage.dataCleanUpMarkAsDone(page, selector1);
+        await selector1.first().locator(`button:has-text("Manage")`).click();
+        await page.waitForSelector("#action_cancel");
+        await page.locator("#action_cancel").click();
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForSelector(`button:text-is("Cancel task")`);
+        await page.locator("#submit-button").click();
+        if (page.url().includes("service-down")) {
+          continue;
+        }
+        await page.waitForTimeout(5000);
         anySelectorVisible1 = true;
       }
     }
