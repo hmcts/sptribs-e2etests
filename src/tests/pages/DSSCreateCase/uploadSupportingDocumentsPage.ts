@@ -156,8 +156,8 @@ const uploadSupportingDocumentsPage: UploadSupportingDocumentsPage = {
       .locator(this.fields.uploadFileButton)
       .setInputFiles(config.testFile);
     await page.click(this.fields.fileUploadedOption);
-    await expect(page.locator(".uploadedFile").first()).toContainText(
-      path.basename(config.testFile),
+    await page.waitForSelector(
+      `.uploadedFile:text-is("${path.basename(config.testFile)}")`,
     );
     if (cy) {
       await expect(
