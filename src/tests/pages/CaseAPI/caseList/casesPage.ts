@@ -12,7 +12,7 @@ type CasesPage = {
 };
 
 const casesPage: CasesPage = {
-  searchCaseNumber: "#\\[CASE_REFERENCE\\]",
+  searchCaseNumber: "input#\\[CASE_REFERENCE\\]",
   caseType: "#wb-case-type",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {

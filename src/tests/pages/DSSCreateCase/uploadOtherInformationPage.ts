@@ -260,14 +260,12 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         uploadOtherInformationContent.documentRelevance,
       );
       await page.click(this.fields.fileUploadedOption);
-      await Promise.all([
-        expect(page.locator(".uploadedFile").first()).toContainText(
-          path.basename(config.testWordFile),
-        ),
-        expect(page.locator(".uploadedFile").first()).toContainText(
-          uploadOtherInformationContent.documentRelevance,
-        ),
-      ]);
+      await page.waitForSelector(
+        `.uploadedFile:has-text("${path.basename(config.testWordFile)}")`,
+      );
+      await expect(page.locator(".uploadedFile").first()).toContainText(
+        uploadOtherInformationContent.documentRelevance,
+      );
       if (cy) {
         await expect(
           page.locator(

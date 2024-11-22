@@ -96,21 +96,17 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
       expect(
         page.locator("td[id='case-viewer-field-read--cicCasePhoneNumber']"),
       ).toHaveText(subjectContactDetailsContent.contactNumber),
-      expect(
-        page
-          .locator("ccd-read-multi-select-list-field[class='ng-star-inserted']")
-          .nth(0),
-      ).toHaveText("Subject"),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span.text-16:text-is("Subject")`),
+        1,
+      ),
     ]);
     if (representationPresent) {
       await Promise.all([
-        expect(
-          page
-            .locator(
-              "ccd-read-multi-select-list-field[class='ng-star-inserted']",
-            )
-            .nth(1),
-        ).toHaveText("Representative"),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(`span.text-16:text-is("Representative")`),
+          1,
+        ),
         expect(
           page.locator(
             "td[id='case-viewer-field-read--cicCaseRepresentativeFullName']",
