@@ -264,6 +264,7 @@ const commonHelpers: CommonHelpers = {
     }
     await page.fill(postCode, authors_content.postCode);
     await page.click(findAddress);
+    await page.waitForSelector(selectAddress);
     await page.selectOption(selectAddress, authors_content.selectOption);
     expect(await page.inputValue(buildingAndStreet)).toEqual(
       authors_content.buildingAndStreet,

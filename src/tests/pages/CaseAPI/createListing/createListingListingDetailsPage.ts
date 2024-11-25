@@ -153,6 +153,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await page.click(this.remove);
       await expect(page.locator(".cdk-overlay-container")).toBeVisible();
       await page.locator("button[title='Remove']").click();
+      await expect(page.locator(".cdk-overlay-container")).not.toBeVisible();
     }
     // if (accessibilityTest) {
     //   await axeTest(page);
