@@ -15,7 +15,7 @@ test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test.only("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
+  test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
