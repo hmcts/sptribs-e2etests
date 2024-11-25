@@ -60,6 +60,7 @@ const editCICACaseDetailsEditCaseDetailsPage: EditCICACaseDetailsEditCaseDetails
           this.cancel,
         ),
       ]);
+      await page.pause();
 
       if (accessibilityTest) {
         await axeTest(page);

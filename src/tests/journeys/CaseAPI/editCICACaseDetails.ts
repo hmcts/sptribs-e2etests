@@ -28,6 +28,9 @@ const editCICACaseDetails: EditCICACaseDetails = {
       config.CaseAPIBaseURL,
       caseNumber,
     );
+    if (accessibilityTest) {
+      await page.waitForTimeout(15000);
+    }
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Case: Edit case details",

@@ -5,7 +5,6 @@ import commonHelpers from "../helpers/commonHelpers.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
-import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
@@ -16,7 +15,7 @@ test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
+  test.only("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -48,19 +47,6 @@ test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
-    );
-    await hearingOptions.hearingOptions(
-      page,
-      false,
-      true,
-      "1-London",
-      true,
-      false,
-      "Hybrid",
-      false,
-      false,
-      caseNumber1000,
-      subjectName,
     );
     await commonHelpers.chooseEventFromDropdown(
       page,

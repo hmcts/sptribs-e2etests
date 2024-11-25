@@ -108,6 +108,7 @@ const sendOrder: SendOrder = {
         await confirmPage.checkPageLoads(page, accessibilityTest);
         await confirmPage.closeAndReturnToCase(page);
         await page.waitForSelector(`h2:text-is("History")`);
+        await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
         break;
       case true:
         await selectOrderIssuingTypePage.triggerErrorMessages(page);
