@@ -16,7 +16,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Amend document tests. @CaseAPI @CaseAPI2", () => {
+test.describe("Case-API Amend document tests. @CaseAPI", () => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
@@ -70,7 +70,7 @@ test.describe("Case-API Amend document tests. @CaseAPI @CaseAPI2", () => {
     );
   });
 
-  test("Amend documents uploaded to a case in Ready to List.", async ({
+  test("Amend documents uploaded to a case in Ready to List. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

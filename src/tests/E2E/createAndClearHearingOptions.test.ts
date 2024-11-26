@@ -9,8 +9,8 @@ import clearHearingOptions from "../journeys/CaseAPI/clearHearingOptions.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Create and clear hearing options tests @CaseAPI @CaseAPI1", (): void => {
-  test("Create and clear hearing options in the 'Case management' state.", async ({
+test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
+  test("Create and clear hearing options in the 'Case management' state. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -64,7 +64,7 @@ test.describe("Create and clear hearing options tests @CaseAPI @CaseAPI1", (): v
     );
   });
 
-  test("Create hearing options with no region and no venue in the 'Case management' state.", async ({
+  test("Create hearing options with no region and no venue in the 'Case management' state. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

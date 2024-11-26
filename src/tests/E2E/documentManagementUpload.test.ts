@@ -15,7 +15,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Upload document tests. @CaseAPI @CaseAPI3", () => {
+test.describe("Case-API Upload document tests. @CaseAPI", () => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -121,7 +121,7 @@ test.describe("Case-API Upload document tests. @CaseAPI @CaseAPI3", () => {
     );
   });
 
-  test("Upload multiple documents to an awaiting hearing case.", async ({
+  test("Upload multiple documents to an awaiting hearing case. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

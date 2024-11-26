@@ -9,7 +9,7 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
+test.describe("Panel Composition tests @CaseAPI", () => {
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -142,7 +142,7 @@ test.describe("Panel Composition tests @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Make a panel composition with all information.", async ({
+  test("Make a panel composition with all information. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

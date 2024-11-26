@@ -10,13 +10,13 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Postpone hearing tests @CaseAPI @CaseAPI3", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Postpone hearing tests @CaseAPI", (): void => {
+  test("Check for redundant test data @CaseAPI2", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Postpone hearing as a caseworker - Appellant is out of country.", async ({
+  test("Postpone hearing as a caseworker - Appellant is out of country. @CaseAPI2", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -636,7 +636,7 @@ test.describe("Postpone hearing tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Postpone hearing as a caseworker - Last minute submissions.", async ({
+  test("Postpone hearing as a caseworker - Last minute submissions. @CaseAPI2", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

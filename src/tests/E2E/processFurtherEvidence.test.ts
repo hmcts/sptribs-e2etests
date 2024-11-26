@@ -29,7 +29,7 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 const priority = " low ";
 const numberOfDays = 7;
 
-test.describe("Process further evidence task tests @CaseAPI @CaseAPI4", (): void => {
+test.describe("Process further evidence task tests @CaseAPI", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -397,7 +397,7 @@ test.describe("Process further evidence task tests @CaseAPI @CaseAPI4", (): void
     );
   });
 
-  test("Case management - Task is completable via next steps link - assign to me and go to task", async ({
+  test("Case management - Task is completable via next steps link - assign to me and go to task @CaseAPI2", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -2366,7 +2366,9 @@ test.describe("Process further evidence task tests @CaseAPI @CaseAPI4", (): void
     );
   });
 
-  test("Awaiting outcome - Doc upload - Contact parties", async ({ page }) => {
+  test("Awaiting outcome - Doc upload - Contact parties @CaseAPI2", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2617 = await createCase.createCase(
       page,

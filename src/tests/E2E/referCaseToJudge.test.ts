@@ -16,7 +16,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Refer case to judge tests. @CaseAPI @CaseAPI4", () => {
+test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
@@ -78,7 +78,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI @CaseAPI4", () => {
     );
   });
 
-  test("Refer case to judge - ready to list, rule 27 request", async ({
+  test("Refer case to judge - ready to list, rule 27 request @CaseAPI2", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -1472,7 +1472,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI @CaseAPI4", () => {
     );
   });
 
-  test("Refer case to judge - case stayed, strike out request", async ({
+  test("Refer case to judge - case stayed, strike out request @CaseAPI2", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

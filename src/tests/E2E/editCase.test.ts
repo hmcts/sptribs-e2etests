@@ -12,12 +12,12 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Edit case tests. @CaseAPI @CaseAPI3", () => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Case-API Edit case tests. @CaseAPI", () => {
+  test("Check for redundant test data @CaseAPI1", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Edit Case in State Case management - Assessment - Minor Category, Post Contact", async ({
+  test("Edit Case in State Case management - Assessment - Minor Category, Post Contact @CaseAPI1", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

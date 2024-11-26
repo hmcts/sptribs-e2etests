@@ -12,7 +12,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Create/edit stay tests. @CaseAPI @CaseAPI2", () => {
+test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
@@ -74,7 +74,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI @CaseAPI2", () => {
     );
   });
 
-  test("Stay a case management case for reason awaitingOutcomeOfCriminalProceedings, with no optional text.", async ({
+  test("Stay a case management case for reason awaitingOutcomeOfCriminalProceedings, with no optional text.  @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -528,7 +528,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI @CaseAPI2", () => {
     );
   });
 
-  test("Stay a Ready to list case for reason awaitingACourtJudgement with optional text.", async ({
+  test("Stay a Ready to list case for reason awaitingACourtJudgement with optional text. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

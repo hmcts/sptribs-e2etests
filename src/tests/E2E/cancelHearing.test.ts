@@ -9,7 +9,7 @@ import createListing from "../journeys/CaseAPI/createListing.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Cancel hearing tests @CaseAPI @CaseAPI1", (): void => {
+test.describe("Cancel hearing tests @CaseAPI", (): void => {
   test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
@@ -72,7 +72,9 @@ test.describe("Cancel hearing tests @CaseAPI @CaseAPI1", (): void => {
     );
   });
 
-  test("Cancel hearing - consent order.", async ({ page }): Promise<void> => {
+  test("Cancel hearing - consent order.  @CaseAPI1", async ({
+    page,
+  }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber302 = await createCase.createCase(
       page,
@@ -256,7 +258,9 @@ test.describe("Cancel hearing tests @CaseAPI @CaseAPI1", (): void => {
     );
   });
 
-  test("Cancel hearing - request for R27.", async ({ page }): Promise<void> => {
+  test("Cancel hearing - request for R27. @CaseAPI1", async ({
+    page,
+  }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber305 = await createCase.createCase(
       page,

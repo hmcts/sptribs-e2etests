@@ -32,11 +32,7 @@
     "test:dataCleanUp": "yarn playwright install && npx playwright test --project chromium --grep @dataCleanup",
     "test:ChromeCaseAPI1": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI1",
     "test:ChromeCaseAPI2": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI2",
-    "test:ChromeCaseAPI3": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI3",
-    "test:ChromeCaseAPI4": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI4",
-    "test:ChromeCaseAPI5": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI5",
-    "test:ChromeCaseAPI6": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI6",
-    "test:ChromeCaseAPI7": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI7"
+    "test:ChromeCaseAPI3": "yarn playwright install && npx playwright test --project chromium --grep @CaseAPI3"
   },
   "pre-commit": [
     "lint"

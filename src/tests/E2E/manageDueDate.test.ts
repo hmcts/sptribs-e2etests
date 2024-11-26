@@ -21,7 +21,7 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 const priorityReview = " low ";
 const priorityProcess = " low ";
 
-test.describe("User is able to Manage Due Date of an order @CaseAPI @CaseAPI3", (): void => {
+test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
@@ -163,7 +163,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI @CaseAPI3", 
     );
   });
 
-  test("User is able to manage due date in state 'Awaiting Hearing', Orders sent in state Case Management", async ({
+  test("User is able to manage due date in state 'Awaiting Hearing', Orders sent in state Case Management @CaseAPI2", async ({
     page,
   }) => {
     const numberOfDaysReview = 1;

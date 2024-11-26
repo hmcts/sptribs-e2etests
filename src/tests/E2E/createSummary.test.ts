@@ -10,8 +10,8 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Create hearing summary tests @CaseAPI @CaseAPI2", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Create hearing summary tests @CaseAPI", (): void => {
+  test("Check for redundant test data  @CaseAPI1", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
@@ -87,7 +87,7 @@ test.describe("Create hearing summary tests @CaseAPI @CaseAPI2", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is allowed.", async ({
+  test("Create hearing summary - hearing outcome is allowed. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -1720,7 +1720,7 @@ test.describe("Create hearing summary tests @CaseAPI @CaseAPI2", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned due to insufficient time.", async ({
+  test("Create hearing summary - hearing outcome is adjourned due to insufficient time. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -2217,7 +2217,7 @@ test.describe("Create hearing summary tests @CaseAPI @CaseAPI2", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned for other reason.", async ({
+  test("Create hearing summary - hearing outcome is adjourned for other reason. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -2288,9 +2288,7 @@ test.describe("Create hearing summary tests @CaseAPI @CaseAPI2", (): void => {
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1133 = await createCase.createCase(
       page,
