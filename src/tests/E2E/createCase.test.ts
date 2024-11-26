@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 
-test.describe("Case-API Create case tests. @CaseAPI @CaseAPI1", () => {
+test.describe("Case-API Create case tests. @CaseAPI", () => {
   test("Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -30,7 +30,7 @@ test.describe("Case-API Create case tests. @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Assessment - Medical Re-opening Category, Email Contact", async ({
+  test("Assessment - Medical Re-opening Category, Email Contact @CaseAPI1", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -263,7 +263,7 @@ test.describe("Case-API Create case tests. @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Eligibility - Paragraph 26 Category, Post Contact", async ({
+  test("Eligibility - Paragraph 26 Category, Post Contact @CaseAPI1", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -473,7 +473,7 @@ test.describe("Case-API Create case tests. @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Error messaging.", async ({ page }) => {
+  test("Error messaging. @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
@@ -499,9 +499,7 @@ test.describe("Case-API Create case tests. @CaseAPI @CaseAPI1", () => {
   });
 });
 
-test("Accessibility test every page. @accessibilityCaseAPI", async ({
-  page,
-}) => {
+test("Accessibility test every page. @accessibility", async ({ page }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   await createCase.createCase(
     page,

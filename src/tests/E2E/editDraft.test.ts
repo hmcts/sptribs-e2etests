@@ -21,7 +21,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
-test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
+test.describe("Case-API Edit draft tests. @CaseAPI", () => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
@@ -217,7 +217,9 @@ test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
     );
   });
 
-  test("Edit a CIC7 draft in the Awaiting Hearing state.", async ({ page }) => {
+  test("Edit a CIC7 draft in the Awaiting Hearing state. @CaseAPI1", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1502 = await createCase.createCase(
       page,
@@ -524,7 +526,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
     );
   });
 
-  test("Edit a CIC13 draft.", async ({ page }) => {
+  test("Edit a CIC13 draft. @CaseAPI1", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1505 = await createCase.createCase(
       page,
@@ -612,7 +614,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
     );
   });
 
-  test("Error messaging - Edit draft", async ({ page }) => {
+  test("Error messaging - Edit draft @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1506 = await createCase.createCase(
       page,
@@ -701,7 +703,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI @CaseAPI3", () => {
   });
 });
 
-test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
+test("Accessibility test - Edit draft - CIC14 @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

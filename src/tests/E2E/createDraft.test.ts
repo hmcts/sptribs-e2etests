@@ -17,8 +17,8 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
-test.describe("Case-API Create draft tests. @CaseAPI @CaseAPI2", () => {
-  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+test.describe("Case-API Create draft tests. @CaseAPI", () => {
+  test("Check for redundant test data @CaseAPI1 @crossbrowserCaseAPI", async ({
     page,
   }) => {
     test.setTimeout(10 * 60 * 1000);
@@ -122,7 +122,9 @@ test.describe("Case-API Create draft tests. @CaseAPI @CaseAPI2", () => {
     );
   });
 
-  test("Create a CIC8 draft in the Case Stayed state.", async ({ page }) => {
+  test("Create a CIC8 draft in the Case Stayed state. @CaseAPI1", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber801 = await createCase.createCase(
       page,
@@ -215,7 +217,7 @@ test.describe("Case-API Create draft tests. @CaseAPI @CaseAPI2", () => {
     );
   });
 
-  test("Error messaging - Create draft", async ({ page }) => {
+  test("Error messaging - Create draft @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber802 = await createCase.createCase(
       page,

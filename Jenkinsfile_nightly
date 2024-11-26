@@ -175,23 +175,6 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
       }
-      stage('DSS Create case application accessibility tests') {
-        try {
-          yarnBuilder.yarn('test:AccessibilityDSS')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'DSS Create Case Application Accessibility Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
-        }
-      }
     }
     if (!params.skipDSSUpdateTests) {
       stage('DSS Update Case Application E2E tests - Chrome') {
@@ -245,23 +228,6 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
       }
-      stage('DSS Update Case Application accessibility tests') {
-        try {
-          yarnBuilder.yarn('test:AccessibilityUC')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'DSS Update Application Accessibility Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
-        }
-      }
     }
     if (!params.skipCaseAPITests) {
       stage('Case-API Application E2E tests - Chrome 1') {
@@ -298,6 +264,13 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
+      stage('Global data clean up') {
+        try {
+          yarnBuilder.yarn('test:dataCleanUp')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        }
+      }
       stage('Case-API Application E2E tests - Chrome 3') {
         try {
           yarnBuilder.yarn('test:ChromeCaseAPI3')
@@ -311,88 +284,6 @@ withNightlyPipeline(type, product, component, 600) {
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
                   reportName: 'Case-API Application Chrome E2E Test Report 3'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
-        }
-      }
-      stage('Global data clean up') {
-        try {
-          yarnBuilder.yarn('test:dataCleanUp')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
-      stage('Case-API Application E2E tests - Chrome 4') {
-        try {
-          yarnBuilder.yarn('test:ChromeCaseAPI4')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Case-API Application Chrome E2E Test Report 4'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
-        }
-      }
-      stage('Case-API Application E2E tests - Chrome 5') {
-        try {
-          yarnBuilder.yarn('test:ChromeCaseAPI5')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Case-API Application Chrome E2E Test Report 5'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
-        }
-      }
-      stage('Case-API Application E2E tests - Chrome 6') {
-        try {
-          yarnBuilder.yarn('test:ChromeCaseAPI6')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Case-API Application Chrome E2E Test Report 6'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
-        }
-      }
-      stage('Global data clean up') {
-        try {
-          yarnBuilder.yarn('test:dataCleanUp')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
-      stage('Case-API Application E2E tests - Chrome 7') {
-        try {
-          yarnBuilder.yarn('test:ChromeCaseAPI7')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Case-API Application Chrome E2E Test Report 7'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
@@ -434,9 +325,9 @@ withNightlyPipeline(type, product, component, 600) {
 //      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
 //        and then these will be turned back on.
 
-      stage('Case-API Application accessibility tests') {
+      stage('Accessibility tests') {
         try {
-          yarnBuilder.yarn('test:AccessibilityCaseAPI')
+          yarnBuilder.yarn('test:accessibility')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -446,13 +337,12 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'Case-API Application Accessibility Test Report'
+                  reportName: 'Accessibility Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
     }
-
     stage('Global data clean up') {
       try {
         yarnBuilder.yarn('test:dataCleanUp')

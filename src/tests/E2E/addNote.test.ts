@@ -16,7 +16,7 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
+test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
     test("Add a note to a DSS-submitted case.", async ({
       page,
@@ -74,7 +74,7 @@ test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
     await addNote.addNote(page, false, caseNumber201, subjectName);
   });
 
-  test("Add a note to a Case management case case.", async ({
+  test("Add a note to a Case management case case. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -286,7 +286,9 @@ test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
     await addNote.addNote(page, false, caseNumber205, subjectName);
   });
 
-  test("Add a note to a case closed case.", async ({ page }): Promise<void> => {
+  test("Add a note to a case closed case. @CaseAPI1", async ({
+    page,
+  }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber206 = await createCase.createCase(
       page,
@@ -334,7 +336,7 @@ test.describe("Case-API Add note tests. @CaseAPI @CaseAPI1", () => {
   });
 });
 
-test("Accessibility test - Add a note to a case stayed case. @crossbrowserCaseAPI", async ({
+test("Accessibility test - Add a note to a case stayed case. @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -12,12 +12,12 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 const priority = " low ";
 const numberOfDays = 5;
 
-test.describe("Register new case task tests @CaseAPI @CaseAPI5", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Register new case task tests @CaseAPI ", (): void => {
+  test("Check for redundant test data @CaseAPI2", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task / Edit Case : Assessment - Fatal Category, Email Contact, 1996, Scotland", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Edit Case : Assessment - Fatal Category, Email Contact, 1996, Scotland @CaseAPI2", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -362,7 +362,7 @@ test.describe("Register new case task tests @CaseAPI @CaseAPI5", (): void => {
     );
   });
 
-  test("Task is completable via next steps link / Edit Case : Eligibility - Other Category", async ({
+  test("Task is completable via next steps link / Edit Case : Eligibility - Other Category @CaseAPI2", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -431,7 +431,7 @@ test.describe("Register new case task tests @CaseAPI @CaseAPI5", (): void => {
     );
   });
 
-  test("Edit Case : Error Messaging", async ({ page }) => {
+  test("Edit Case : Error Messaging @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber40 = await createFEApplication.createFEApplication(
       page,
@@ -491,7 +491,7 @@ test.describe("Register new case task tests @CaseAPI @CaseAPI5", (): void => {
   });
 });
 
-test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

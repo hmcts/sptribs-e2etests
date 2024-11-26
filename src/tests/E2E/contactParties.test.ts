@@ -14,8 +14,8 @@ import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Contact parties tests. @CaseAPI @CaseAPI1", () => {
-  test("Send a message to all parties related to a closed case.", async ({
+test.describe("Case-API Contact parties tests. @CaseAPI", () => {
+  test("Send a message to all parties related to a closed case. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -166,7 +166,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Send a message to all parties related to a case in Ready to list.", async ({
+  test("Send a message to all parties related to a case in Ready to list. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -20,7 +20,7 @@ const priorityProcess = " low ";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 
-test.describe("Review Withdrawal Request - Judge @CaseAPI @CaseAPI7", (): void => {
+test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
@@ -270,7 +270,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI @CaseAPI7", (): void =
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @CaseAPI3", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber144 = await createCase.createCase(
       page,

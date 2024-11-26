@@ -17,8 +17,8 @@ import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer
 const priority = " low ";
 const numberOfDays = 2;
 
-test.describe("Issue case to respondent task tests @CaseAPI @CaseAPI1", (): void => {
-  test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties", async ({
+test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
+  test("Task is completable via next steps link - assign to me and go to task - Issue a case to all parties @CaseAPI1", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -85,7 +85,7 @@ test.describe("Issue case to respondent task tests @CaseAPI @CaseAPI1", (): void
     );
   });
 
-  test("Task is completable via next steps link - assign to me - Issue case to a subject", async ({
+  test("Task is completable via next steps link - assign to me - Issue case to a subject @CaseAPI1", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -530,7 +530,9 @@ test.describe("Issue case to respondent task tests @CaseAPI @CaseAPI1", (): void
     );
   });
 
-  test("Issue to respondent : Error messaging", async ({ page }) => {
+  test("Issue to respondent : Error messaging @ErrorMessaging", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber31 = await createCase.createCase(
       page,
@@ -596,7 +598,7 @@ test.describe("Issue case to respondent task tests @CaseAPI @CaseAPI1", (): void
   });
 });
 
-test("Task completion: Accessibility test / Issue Case to Respondent : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Issue Case to Respondent : Accessibility test @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

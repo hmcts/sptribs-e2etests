@@ -11,15 +11,15 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
-  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+test.describe("Edit hearing listing tests @CaseAPI", (): void => {
+  test("Check for redundant test data @crossbrowserCaseAPI @CaseAPI1", async ({
     page,
   }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East.", async ({
+  test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -343,7 +343,7 @@ test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Edit hearing listing, 5-South East, Interlocutory, Video, Afternoon, Brighton.", async ({
+  test("Edit hearing listing, 5-South East, Interlocutory, Video, Afternoon, Brighton. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -505,7 +505,7 @@ test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Edit hearing listing, 2-Midlands, CaseManagement, Face to face, Morning, Venue not listed.", async ({
+  test("Edit hearing listing, 2-Midlands, CaseManagement, Face to face, Morning, Venue not listed. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -586,9 +586,7 @@ test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Error Messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error Messaging. @ErrorMessaging", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1607 = await createCase.createCase(
       page,
@@ -668,7 +666,7 @@ test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
   });
 });
 
-test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
+test("Accessibility Test - Edit Listing. @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

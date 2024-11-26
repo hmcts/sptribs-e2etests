@@ -20,8 +20,8 @@ const priorityProcess = " low ";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 3;
 
-test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
+  test("Check for redundant test data @CaseAPI2", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
@@ -277,7 +277,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI @CaseAPI5", (): v
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @CaseAPI2", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber22 = await createCase.createCase(
       page,

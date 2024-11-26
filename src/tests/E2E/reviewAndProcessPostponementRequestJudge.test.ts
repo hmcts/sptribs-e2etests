@@ -20,13 +20,13 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Postponement Directions - Judge @CaseAPI @CaseAPI6", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", (): void => {
+  test("Check for redundant test data @CaseAPI3", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task @CaseAPI3", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

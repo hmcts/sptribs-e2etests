@@ -20,14 +20,14 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Listed Case - Judge @CaseAPI @CaseAPI6", (): void => {
+test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
   test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task @CaseAPI2", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -441,7 +441,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI @CaseAPI6", (): v
     );
   });
 
-  test("Error Messaging", async ({ page }) => {
+  test("Error Messaging @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber60 = await createCase.createCase(
       page,
@@ -546,7 +546,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI @CaseAPI6", (): v
   });
 });
 
-test("Task completion: Accessibility test / Review Listed Case - Judge : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Review Listed Case - Judge : Accessibility test @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

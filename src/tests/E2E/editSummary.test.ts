@@ -11,12 +11,12 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Edit hearing summary tests @CaseAPI @CaseAPI3", (): void => {
+test.describe("Edit hearing summary tests @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Edit hearing summary - Case management, hybrid, morning, Fox Court, Allowed.", async ({
+  test("Edit hearing summary - Case management, hybrid, morning, Fox Court, Allowed. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -190,7 +190,7 @@ test.describe("Edit hearing summary tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Edit hearing summary - Interlocutory, Video, Afternoon, Fox Court, Withdrawn at hearing.", async ({
+  test("Edit hearing summary - Interlocutory, Video, Afternoon, Fox Court, Withdrawn at hearing. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -364,7 +364,7 @@ test.describe("Edit hearing summary tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Edit hearing summary - Case Management, Paper, Morning, Fox Court, Adjourned, Other.", async ({
+  test("Edit hearing summary - Case Management, Paper, Morning, Fox Court, Adjourned, Other. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -451,7 +451,7 @@ test.describe("Edit hearing summary tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Edit hearing summary - Error Messaging. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Error Messaging. @ErrorMessaging", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -539,7 +539,7 @@ test.describe("Edit hearing summary tests @CaseAPI @CaseAPI3", (): void => {
   });
 });
 
-test("Accessibility test - edit summary @accessibilityCaseAPI", async ({
+test("Accessibility test - edit summary @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

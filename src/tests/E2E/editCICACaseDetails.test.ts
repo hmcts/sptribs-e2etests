@@ -14,7 +14,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Edit CICA case details tests @CaseAPI @CaseAPI3", (): void => {
+test.describe("Edit CICA case details tests @CaseAPI", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
@@ -198,7 +198,7 @@ test.describe("Edit CICA case details tests @CaseAPI @CaseAPI3", (): void => {
     );
   });
 
-  test("Edit CICA case details as a respondent - case stayed.", async ({
+  test("Edit CICA case details as a respondent - case stayed. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -251,7 +251,7 @@ test.describe("Edit CICA case details tests @CaseAPI @CaseAPI3", (): void => {
   });
 });
 
-test("Accessibility test - edit CICA case details - case closed @accessibilityCaseAPI. @crossbrowserCaseAPI", async ({
+test("Accessibility test - edit CICA case details - case closed @accessibility.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

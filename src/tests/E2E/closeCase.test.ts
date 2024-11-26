@@ -9,8 +9,8 @@ import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Close case tests. @CaseAPI @CaseAPI1", () => {
-  test("Close a ready to list case as it is withdrawn with no optional information.", async ({
+test.describe("Case-API Close case tests. @CaseAPI", () => {
+  test("Close a ready to list case as it is withdrawn with no optional information. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -681,7 +681,7 @@ test.describe("Case-API Close case tests. @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Close a ready to list case due to death of appellant with no optional information.", async ({
+  test("Close a ready to list case due to death of appellant with no optional information.  @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -742,9 +742,7 @@ test.describe("Case-API Close case tests. @CaseAPI @CaseAPI1", () => {
     );
   });
 
-  test("Error messaging - Close Case. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging - Close Case.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber512 = await createCase.createCase(
       page,
@@ -791,7 +789,7 @@ test.describe("Case-API Close case tests. @CaseAPI @CaseAPI1", () => {
   });
 });
 
-test("Accessibility test - Close case @accessibilityCaseAPI", async ({
+test("Accessibility test - Close case @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
