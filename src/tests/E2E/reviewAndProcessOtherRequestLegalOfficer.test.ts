@@ -557,9 +557,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
     );
   });
 
-  test("Process task is cancellable through close case ", async ({
-    page,
-  }) => {
+  test("Process task is cancellable through close case ", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber85 = await createCase.createCase(
       page,

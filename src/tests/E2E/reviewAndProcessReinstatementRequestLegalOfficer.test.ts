@@ -282,9 +282,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     );
   });
 
-  test("Task is completed via event dropdown ", async ({
-    page,
-  }) => {
+  test("Task is completed via event dropdown ", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber97 = await createCase.createCase(
       page,
