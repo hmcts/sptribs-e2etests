@@ -67,7 +67,7 @@ test.describe("DSS Update case tests.", () => {
     );
   });
 
-  test("Check for an existing case to update, upload one document and no additional information @DSSUpdateFirefox", async ({
+  test("Check for an existing case to update, upload one document and no additional information @updateDSSFirefox", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -125,7 +125,7 @@ test.describe("DSS Update case tests.", () => {
     );
   });
 
-  test("Check for an existing case to update, upload no documents and additional information @DSSUpdateWebkit", async ({
+  test("Check for an existing case to update, upload no documents and additional information @updateDSSWebkit", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
