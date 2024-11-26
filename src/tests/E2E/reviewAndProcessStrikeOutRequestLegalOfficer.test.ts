@@ -23,13 +23,13 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void => {
+  test("Check for redundant test data @CaseAPI3", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task @CaseAPI3", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
@@ -316,7 +316,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI @CaseAPI7", ()
     );
   });
 
-  test("Task is completed via event dropdown", async ({ page }) => {
+  test("Task is completed via event dropdown @CaseAPI3", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber129 = await createCase.createCase(
       page,

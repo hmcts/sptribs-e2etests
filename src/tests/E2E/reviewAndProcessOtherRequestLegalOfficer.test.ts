@@ -25,13 +25,13 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review and Process Other Request - Legal Officer @CaseAPI @CaseAPI6", (): void => {
+test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task - Case management", async ({
+  test("Task is completable via next steps link - assign to me and go to task - Case management @CaseAPI3", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
@@ -342,7 +342,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI @CaseAP
     );
   });
 
-  test("Task is completed via event dropdown - Case closed", async ({
+  test("Task is completed via event dropdown - Case closed @CaseAPI3", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -557,7 +557,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI @CaseAP
     );
   });
 
-  test("Process task is cancellable through close case @crossbrowserCaseAPI", async ({
+  test("Process task is cancellable through close case ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -19,12 +19,12 @@ const priorityProcess = " low ";
 const numberOfDaysReview = 5;
 const numberOfDaysProcess = 5;
 
-test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI @CaseAPI6", (): void => {
+test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI ", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task", async ({
+  test("Task is completable via next steps link - assign to me and go to task @CaseAPI3", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -282,7 +282,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     );
   });
 
-  test("Task is completed via event dropdown @crossbrowserCaseAPI", async ({
+  test("Task is completed via event dropdown ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -20,13 +20,13 @@ const priorityProcess = " medium ";
 const numberOfDaysReview = 1;
 const numberOfDaysProcess = 1;
 
-test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI @CaseAPI5", (): void => {
+test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI ", (): void => {
   test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task @CaseAPI2", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -23,12 +23,12 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
-test.describe("Review New Case and Provide Directions - Judge @CaseAPI @CaseAPI6", (): void => {
-  test("Check for redundant test data", async ({ page }) => {
+test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): void => {
+  test("Check for redundant test data @CaseAPI2", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27 @CaseAPI2", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -270,7 +270,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI @CaseAPI6
     );
   });
 
-  test("Task is completed via event dropdown / Create Draft order CIC7 - ME Dmi Reports ", async ({
+  test("Task is completed via event dropdown / Create Draft order CIC7 - ME Dmi Reports @CaseAPI2 ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -739,7 +739,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI @CaseAPI6
   });
 });
 
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
+test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI ", async ({
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);
