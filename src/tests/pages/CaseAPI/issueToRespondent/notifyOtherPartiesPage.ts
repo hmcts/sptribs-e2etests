@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers, { parties } from "../../../helpers/commonHelpers.ts";
 import notifyOtherParties_content from "../../../fixtures/content/CaseAPI/issueToRespondent/notifyOtherParties_content.ts";
 
@@ -9,6 +8,7 @@ type NotifyOtherPartiesPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page, recipients: parties[]): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -19,6 +19,7 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${notifyOtherParties_content.pageTitle}")`,
@@ -27,9 +28,7 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         notifyOtherParties_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         notifyOtherParties_content.caseReference + caseNumber,
       ),
@@ -80,6 +79,9 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.getByRole("button", { name: "Continue" }).click();
+    await page.waitForSelector(
+      `.error-summary-heading:has-text("${notifyOtherParties_content.errorTitle}")`,
+    );
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
         `.error-summary-heading:has-text("${notifyOtherParties_content.errorTitle}")`,

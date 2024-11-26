@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import rejectionDetails_content from "../../../fixtures/content/CaseAPI/closeCase/rejectionDetails_content.ts";
@@ -21,6 +20,7 @@ type RejectionDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page, rejectionReason: RejectionReason): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -36,6 +36,7 @@ const rejectionDetailsPage: RejectionDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     if (!errorMessaging) {
       await page.click(`#closeRejectionReason-other`);
@@ -50,9 +51,7 @@ const rejectionDetailsPage: RejectionDetailsPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),

@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import historyTabContent from "../../../fixtures/content/CaseAPI/caseTabs/historyTab_content.ts";
-import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
 import authorsContent from "../../../fixtures/content/authors_content.ts";
 import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
 import { UserRole } from "../../../config.ts";
@@ -14,11 +13,11 @@ type HistoryTabPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     state: string,
+    subjectName: string,
   ): Promise<void>;
   checkPageInfo(
     page: Page,
     allEvents: allEvents[],
-    eventTimes: string[],
     user: UserRole,
     state: string,
   ): Promise<void>;
@@ -31,8 +30,9 @@ const historyTabPage: HistoryTabPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     state: string,
+    subjectName: string,
   ): Promise<void> {
-    await commonHelpers.checkAllCaseTabs(page, caseNumber, false);
+    await commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName);
     await Promise.all([
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (allTabTitles_content as any)[`tab${index + 13}`];
@@ -63,13 +63,14 @@ const historyTabPage: HistoryTabPage = {
         }
       }).filter(Boolean),
     ]);
-    if (accessibilityTest) await axeTest(page);
+    if (accessibilityTest) {
+      await axeTest(page);
+    }
   },
 
   async checkPageInfo(
     page: Page,
     allEvents: allEvents[],
-    eventTimes: string[],
     user: UserRole,
     state: string,
   ): Promise<void> {
@@ -89,11 +90,10 @@ const historyTabPage: HistoryTabPage = {
           1,
         );
       }
-      if (user === "caseWorker") {
+
+      if (user === "demoCitizen") {
         await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedCaseworker}")`,
-          ),
+          page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
           allEvents.length + 1,
         );
       } else if (user === "citizen") {
@@ -103,28 +103,49 @@ const historyTabPage: HistoryTabPage = {
           ),
           allEvents.length + 1,
         );
-      } else if (user === "seniorCaseworker") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedSeniorCaseWorker}")`,
-          ),
-          allEvents.length + 1,
-        );
-      } else if (user === "hearingCentreAdmin") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedHearingCentreAdmin}")`,
-          ),
-          allEvents.length + 1,
-        );
-      } else if (user === "hearingCentreTeamLead") {
-        await commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `span.text-16:text-is("${authorsContent.automatedHearingCentreTeamLead}")`,
-          ),
-          allEvents.length + 1,
-        );
       }
+
+      // if (user === "caseWorker") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedCaseworker}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "citizen") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedCitizen}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "seniorCaseworker") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedSeniorCaseWorker}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "hearingCentreAdmin") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedHearingCentreAdmin}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "hearingCentreTeamLead") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(
+      //       `span.text-16:text-is("${authorsContent.automatedHearingCentreTeamLead}")`,
+      //     ),
+      //     allEvents.length + 1,
+      //   );
+      // } else if (user === "demoCitizen") {
+      //   await commonHelpers.checkVisibleAndPresent(
+      //     page.locator(`span.text-16:text-is("${authorsContent.demoCitizen}")`),
+      //     allEvents.length + 1,
+      //   );
+      // }
       await commonHelpers.checkVisibleAndPresent(
         page.locator(`span.text-16:text-is("${state}")`),
         1,

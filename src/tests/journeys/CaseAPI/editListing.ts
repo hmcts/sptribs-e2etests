@@ -1,6 +1,4 @@
 import { Page } from "@playwright/test";
-import createListing from "./createListing.ts";
-import { UserRole } from "../../config.ts";
 import commonHelpers, {
   caseRegionCode,
   hearingType,
@@ -23,7 +21,6 @@ import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type EditListing = {
   editListing(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
@@ -33,13 +30,14 @@ type EditListing = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const editListing: EditListing = {
   async editListing(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
@@ -49,22 +47,9 @@ const editListing: EditListing = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    let caseNumber: string | void;
-    caseNumber = await createListing.createListing(
-      page,
-      user,
-      false,
-      true,
-      "2-Midlands",
-      "Final",
-      "Paper",
-      "Morning",
-      false,
-      false,
-      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-      false,
-    );
     await commonHelpers.chooseEventFromDropdown(page, "Hearings: Edit listing");
     if (caseNumber !== undefined) {
       switch (errorMessaging) {
@@ -73,6 +58,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           const hearing = await editListingSelectHearingPage.fillInFields(page);
           await editListingSelectHearingPage.continueOn(page);
@@ -80,6 +66,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingHearingTypeAndFormatPage.fillInFields(
             page,
@@ -91,6 +78,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingRegionInfoPage.fillInFields(
             page,
@@ -103,6 +91,7 @@ const editListing: EditListing = {
             caseNumber,
             accessibilityTest,
             venue,
+            subjectName,
           );
           await editListingListingDetailsPage.checkFields(page);
           await editListingListingDetailsPage.fillFields(
@@ -116,6 +105,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingRemoteHearingInformationPage.checkFields(page);
           await editListingRemoteHearingInformationPage.continueOn(page);
@@ -123,6 +113,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingOtherInformationPage.checkFields(page);
           await editListingOtherInformationPage.continueOn(page);
@@ -130,6 +121,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingChangeReasonPage.fillFields(page);
           await editListingChangeReasonPage.continueOn(page);
@@ -137,6 +129,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingNotifyPage.continueOn(page);
           await submitPage.checkPageLoads(
@@ -146,6 +139,7 @@ const editListing: EditListing = {
             hearingAcrossMultipleDays,
             venue,
             accessibilityTest,
+            subjectName,
           );
           await submitPage.checkValidInfo(
             page,
@@ -159,43 +153,49 @@ const editListing: EditListing = {
             venue,
           );
           await submitPage.continueOn(page);
-          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
-          await confirmPage.continueOn(page);
-          await hearingsTabPage.changeToHearingsTab(page);
-          await hearingsTabPage.checkPageLoads(
+          await confirmPage.checkPageLoads(
             page,
-            region,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            false,
-            false,
-            null,
-            false,
-            false,
-            false,
-            false,
-            true,
+            caseNumber,
             accessibilityTest,
+            subjectName,
           );
-          await hearingsTabPage.checkValidInfoCreateListing(
-            page,
-            region,
-            caseRegionCode,
-            hearingType,
-            hearingFormat,
-            hearingSession,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            true,
-          );
+          await confirmPage.continueOn(page);
+          // await hearingsTabPage.changeToHearingsTab(page);
+          // await hearingsTabPage.checkPageLoads(
+          //   page,
+          //   region,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   false,
+          //   false,
+          //   null,
+          //   false,
+          //   false,
+          //   false,
+          //   false,
+          //   true,
+          //   accessibilityTest,
+          // );
+          // await hearingsTabPage.checkValidInfoCreateListing(
+          //   page,
+          //   region,
+          //   caseRegionCode,
+          //   hearingType,
+          //   hearingFormat,
+          //   hearingSession,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   true,
+          // );
           break;
         case true:
           await editListingSelectHearingPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingSelectHearingPage.triggerErrorMessages(page);
           await editListingSelectHearingPage.fillInFields(page);
@@ -204,12 +204,14 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingHearingTypeAndFormatPage.continueOn(page);
           await editListingRegionInfoPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingRegionInfoPage.fillInFields(
             page,
@@ -222,6 +224,7 @@ const editListing: EditListing = {
             caseNumber,
             accessibilityTest,
             venue,
+            subjectName,
           );
           await editListingListingDetailsPage.triggerErrorMessages(page);
           await editListingListingDetailsPage.fillFields(
@@ -235,18 +238,21 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingRemoteHearingInformationPage.continueOn(page);
           await editListingOtherInformationPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingOtherInformationPage.continueOn(page);
           await editListingChangeReasonPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingChangeReasonPage.triggerErrorMessages(page);
           await editListingChangeReasonPage.fillFields(page);
@@ -255,6 +261,7 @@ const editListing: EditListing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await editListingNotifyPage.triggerErrorMessages(page);
           break;

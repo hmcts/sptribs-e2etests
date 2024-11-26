@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/createDraft/addDocumentFooter_content.ts";
@@ -12,6 +11,7 @@ type AddDocumentFooterPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -26,6 +26,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${addDocumentFooter_content.pageTitle}")`,
@@ -35,9 +36,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
         addDocumentFooter_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `div > markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`div > markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
@@ -71,7 +70,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await expect(page.locator(`input`)).toBeEmpty();
+    await expect(page.locator(`input#orderContentOrderSignature`)).toBeEmpty();
     await page.fill(
       `#orderContentOrderSignature`,
       addDocumentFooter_content.signature,
@@ -80,7 +79,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {
-    await expect(page.locator(`input`)).toBeEmpty();
+    await expect(page.locator(`input#orderContentOrderSignature`)).toBeEmpty();
     await page.click(this.continue);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(

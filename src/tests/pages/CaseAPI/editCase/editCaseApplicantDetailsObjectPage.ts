@@ -5,7 +5,6 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
 import editCaseApplicantDetailsObjectContent from "../../../fixtures/content/CaseAPI/editCase/editCaseApplicantDetailsObject_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditCaseApplicantDetailsObjectPage = {
   previous: string;
@@ -24,6 +23,7 @@ type EditCaseApplicantDetailsObjectPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkFields(page: Page, initialState: initialState): Promise<void>;
   fillInFields(page: Page, contactPreference: ContactPreference): Promise<void>;
@@ -48,6 +48,7 @@ const editCaseApplicantDetailsObjectPage: EditCaseApplicantDetailsObjectPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editCaseApplicantDetailsObjectContent.pageTitle}")`,
@@ -56,9 +57,7 @@ const editCaseApplicantDetailsObjectPage: EditCaseApplicantDetailsObjectPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editCaseApplicantDetailsObjectContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editCaseApplicantDetailsObjectContent.caseReference + caseNumber,
       ),

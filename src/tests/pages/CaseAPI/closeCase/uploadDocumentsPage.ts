@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import uploadDocuments_content from "../../../fixtures/content/CaseAPI/closeCase/uploadDocuments_content.ts";
@@ -15,6 +14,7 @@ type UploadDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -30,6 +30,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${uploadDocuments_content.pageTitle}")`,
@@ -43,9 +44,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

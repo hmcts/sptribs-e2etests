@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createSummaryHearingAttendeesContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendees_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CreateSummaryHearingAttendeesPage = {
@@ -14,6 +13,7 @@ type CreateSummaryHearingAttendeesPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page, fullPanelHearing: boolean): Promise<string[]>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -31,6 +31,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingAttendees`,
@@ -42,9 +43,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createSummaryHearingAttendeesContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createSummaryHearingAttendeesContent.caseReference + caseNumber,
       ),

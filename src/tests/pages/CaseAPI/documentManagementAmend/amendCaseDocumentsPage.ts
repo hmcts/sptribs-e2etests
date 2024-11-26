@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import amendCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/amendCaseDocuments_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
@@ -14,6 +13,7 @@ type AmendCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -29,6 +29,7 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${amendCaseDocuments_content.pageTitle}")`,
@@ -37,9 +38,7 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         amendCaseDocuments_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         amendCaseDocuments_content.caseReference + caseNumber,
       ),

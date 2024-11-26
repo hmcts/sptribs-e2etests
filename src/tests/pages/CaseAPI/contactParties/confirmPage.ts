@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/contactParties/confirm_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
@@ -13,6 +12,7 @@ type ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -24,6 +24,7 @@ const confirmPage: ConfirmPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     user: UserRole,
+    subjectName: string,
   ): Promise<void> {
     const headingRegex = new RegExp(
       `${confirm_content.textOnPage2}|${confirm_content.textOnPage3}`,
@@ -38,9 +39,7 @@ const confirmPage: ConfirmPage = {
       );
     }
     await Promise.all([
-      expect(page.locator("markdown > h3").nth(0)).toHaveText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3").nth(0)).toHaveText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toHaveText(
         partiesToContact_content.caseReference + caseNumber,
       ),

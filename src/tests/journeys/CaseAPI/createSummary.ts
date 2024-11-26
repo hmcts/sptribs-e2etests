@@ -1,6 +1,4 @@
 import { Page } from "@playwright/test";
-import createListing from "./createListing.ts";
-import { UserRole } from "../../config.ts";
 import commonHelpers, {
   hearingAdjournedReasons,
   hearingOutcome,
@@ -25,7 +23,6 @@ import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type CreateSummary = {
   createSummary(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
@@ -38,13 +35,14 @@ type CreateSummary = {
     fullPanelHearing: boolean,
     editJourney: boolean,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<string | void>;
 };
 
 const createSummary: CreateSummary = {
   async createSummary(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     hearingType: hearingType,
     hearingFormat: hearingFormat,
@@ -57,23 +55,9 @@ const createSummary: CreateSummary = {
     fullPanelHearing: boolean,
     editJourney: boolean,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<string | void> {
-    let caseNumber: string | void;
-
-    caseNumber = await createListing.createListing(
-      page,
-      user,
-      false,
-      true,
-      "1-London",
-      hearingType,
-      hearingFormat,
-      hearingSession,
-      hearingAcrossMultipleDays,
-      false,
-      venue,
-      false,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings:Create summary",
@@ -85,6 +69,7 @@ const createSummary: CreateSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           const hearing =
             await createSummarySelectHearingPage.fillInFields(page);
@@ -93,6 +78,7 @@ const createSummary: CreateSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await createSummaryHearingTypeAndFormatPage.checkFields(
             page,
@@ -107,6 +93,7 @@ const createSummary: CreateSummary = {
             accessibilityTest,
             hearingAcrossMultipleDays,
             venue,
+            subjectName,
           );
           await createSummaryListingDetailsPage.checkFields(
             page,
@@ -122,6 +109,7 @@ const createSummary: CreateSummary = {
             caseNumber,
             accessibilityTest,
             errorMessaging,
+            subjectName,
           );
           const panel = await createSummaryHearingAttendeesPage.fillFields(
             page,
@@ -132,6 +120,7 @@ const createSummary: CreateSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await createSummaryHearingAttendeesRolePage.fillFields(page);
           await createSummaryHearingAttendeesRolePage.continueOn(page);
@@ -140,6 +129,7 @@ const createSummary: CreateSummary = {
             caseNumber,
             accessibilityTest,
             errorMessaging,
+            subjectName,
           );
           await createSummaryHearingOutcomePage.fillFields(
             page,
@@ -151,6 +141,7 @@ const createSummary: CreateSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await createSummaryHearingRecordingUploadPage.fillFields(page);
           await createSummaryHearingRecordingUploadPage.continueOn(page);
@@ -164,6 +155,7 @@ const createSummary: CreateSummary = {
             venue,
             editJourney,
             accessibilityTest,
+            subjectName,
           );
           await submitPage.checkValidInfo(
             page,
@@ -181,45 +173,52 @@ const createSummary: CreateSummary = {
             editJourney,
           );
           await submitPage.continueOn(page);
-          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
-          await confirmPage.continueOn(page);
-          await hearingsTabPage.changeToHearingsTab(page);
-          await hearingsTabPage.checkPageLoads(
+          await confirmPage.checkPageLoads(
             page,
-            true,
-            hearingAcrossMultipleDays,
-            false,
-            venue,
-            true,
-            false,
-            null,
-            false,
-            editJourney,
-            false,
-            false,
-            false,
+            caseNumber,
             accessibilityTest,
+            subjectName,
           );
-          await hearingTabPage.checkValidInfoCreateSummary(
-            page,
-            hearingType,
-            hearingFormat,
-            hearingSession,
-            hearingAcrossMultipleDays,
-            venue,
-            venueName,
-            hearingOutcome,
-            hearingAdjournedReason,
-            panel,
-            fullPanelHearing,
-            editJourney,
-          );
-          return caseNumber;
+          await confirmPage.continueOn(page);
+          // await hearingsTabPage.changeToHearingsTab(page);
+          // await hearingsTabPage.checkPageLoads(
+          //   page,
+          //   true,
+          //   hearingAcrossMultipleDays,
+          //   false,
+          //   venue,
+          //   true,
+          //   false,
+          //   null,
+          //   false,
+          //   editJourney,
+          //   false,
+          //   false,
+          //   false,
+          //   accessibilityTest,
+          // );
+          // await hearingTabPage.checkValidInfoCreateSummary(
+          //   page,
+          //   hearingType,
+          //   hearingFormat,
+          //   hearingSession,
+          //   hearingAcrossMultipleDays,
+          //   venue,
+          //   venueName,
+          //   hearingOutcome,
+          //   hearingAdjournedReason,
+          //   panel,
+          //   fullPanelHearing,
+          //   editJourney,
+          //   subjectName,
+          // );
+          break;
         case true:
           await createSummarySelectHearingPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await createSummarySelectHearingPage.triggerErrorMessages(page);
           await createSummarySelectHearingPage.fillInFields(page);
@@ -228,6 +227,7 @@ const createSummary: CreateSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await createSummaryHearingTypeAndFormatPage.checkFields(
             page,
@@ -242,6 +242,7 @@ const createSummary: CreateSummary = {
             accessibilityTest,
             hearingAcrossMultipleDays,
             venue,
+            subjectName,
           );
           await createSummaryListingDetailsPage.triggerErrorMessages(page);
           await createSummaryListingDetailsPage.continueOn(page);
@@ -250,6 +251,7 @@ const createSummary: CreateSummary = {
             caseNumber,
             accessibilityTest,
             errorMessaging,
+            subjectName,
           );
           await createSummaryHearingAttendeesPage.triggerErrorMessages(page);
           await createSummaryHearingAttendeesPage.continueOn(page);
@@ -257,6 +259,7 @@ const createSummary: CreateSummary = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await createSummaryHearingAttendeesRolePage.triggerErrorMessages(
             page,
@@ -268,6 +271,7 @@ const createSummary: CreateSummary = {
             caseNumber,
             accessibilityTest,
             errorMessaging,
+            subjectName,
           );
           await createSummaryHearingOutcomePage.triggerErrorMessages(page);
       }

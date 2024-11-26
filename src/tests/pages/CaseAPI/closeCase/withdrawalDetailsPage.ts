@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import withdrawalDetails_content from "../../../fixtures/content/CaseAPI/closeCase/withdrawalDetails_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
@@ -13,6 +12,7 @@ type WithdrawalDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -27,6 +27,7 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${withdrawalDetails_content.pageTitle}")`,
@@ -38,9 +39,7 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),

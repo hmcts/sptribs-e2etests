@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/manageDueDate/confirm-content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type ConfirmPage = {
   closeAndReturn: string;
@@ -10,6 +9,7 @@ type ConfirmPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   closeAndReturnToCase(page: Page): Promise<void>;
 };
@@ -17,7 +17,12 @@ type ConfirmPage = {
 const manageDueDateConfirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
-  async checkPageLoads(page, accessibilityTest, caseNumber): Promise<void> {
+  async checkPageLoads(
+    page,
+    accessibilityTest,
+    caseNumber,
+    subjectName,
+  ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${confirm_content.pageTitle}")`,
     );
@@ -26,9 +31,7 @@ const manageDueDateConfirmPage: ConfirmPage = {
         page.locator(`markdown > h1:text-is("${confirm_content.subTitle1}")`),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         confirm_content.caseReference + caseNumber,
       ),

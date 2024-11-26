@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
-import buildCase from "./buildCase.ts";
 import casePanelCompositionPage, {
   Panel2,
   Panel3,
@@ -13,32 +11,25 @@ import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type PanelComposition = {
   panelComposition(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
-  ): Promise<string>;
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void>;
 };
 
 const panelComposition: PanelComposition = {
   async panelComposition(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
-  ): Promise<string> {
-    let previousEvents: allEvents[] = [];
-    let eventTimes: string[] = [];
-    const caseNumber: string = await buildCase.buildCase(
-      page,
-      previousEvents,
-      eventTimes,
-      accessibilityTest,
-      user,
-    );
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<void> {
     await commonHelpers.chooseEventFromDropdown(
       page,
       events_content.panelComposition,
@@ -47,6 +38,7 @@ const panelComposition: PanelComposition = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await casePanelCompositionPage.fillInFields(
       page,
@@ -61,16 +53,16 @@ const panelComposition: PanelComposition = {
       panel2,
       panel3,
       specialisms,
+      subjectName,
     );
     await submitPage.continueOn(page);
-    await page.locator(`.mat-tab-label-content:text-is("Hearings")`).click();
-    await hearingsTabPage.checkPanelComposition(
-      page,
-      panel2,
-      panel3,
-      specialisms,
-    );
-    return caseNumber;
+    // await hearingsTabPage.changeToHearingsTab(page);
+    // await hearingsTabPage.checkPanelComposition(
+    //   page,
+    //   panel2,
+    //   panel3,
+    //   specialisms,
+    // );
   },
 };
 

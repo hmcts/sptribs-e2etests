@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
@@ -15,6 +14,7 @@ type PartiesToContactPage = {
     caseNumber: string,
     user: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   tickCheckBoxes(page: Page, checkBoxes: boolean, user: string): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -32,6 +32,7 @@ const partiesToContactPage: PartiesToContactPage = {
     caseNumber: string,
     user: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     const pageHintRegex = new RegExp(
       `${selectDocument_content.pageHint}|${partiesToContact_content.pageHintCICA}`,
@@ -46,7 +47,7 @@ const partiesToContactPage: PartiesToContactPage = {
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
       expect(page.locator("markdown > h3").nth(0)).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         partiesToContact_content.caseReference + caseNumber,
@@ -78,7 +79,7 @@ const partiesToContactPage: PartiesToContactPage = {
       ),
     ]);
     await commonHelpers.checkVisibleAndPresent(
-      page.locator(`.form-label:text-is("${textToCheck}")`),
+      await page.locator(`.form-label:text-is("${textToCheck}")`),
       1,
     );
     if (accessibilityTest) {
@@ -88,6 +89,7 @@ const partiesToContactPage: PartiesToContactPage = {
 
   async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(this.continue);
+    await page.waitForSelector("#error-summary-title");
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
         partiesToContact_content.errorBanner1,
@@ -98,21 +100,21 @@ const partiesToContactPage: PartiesToContactPage = {
       expect(page.locator(".error-message")).toHaveText(
         partiesToContact_content.messageRequiredError1,
       ),
-      page.fill(this.message, partiesToContact_content.message),
-      page.click(this.continue),
-      expect(
-        page.locator(".heading-h3.error-summary-heading.ng-star-inserted"),
-      ).toContainText(partiesToContact_content.errorBanner2),
-      expect(
-        page.locator(
-          'div[role="group"].error-summary[aria-label="Cannot continue because the service reported one or more errors or warnings"] li.ng-star-inserted',
-        ),
-      ).toContainText(partiesToContact_content.partyRequiredError),
     ]);
+    await page.fill(this.message, partiesToContact_content.message);
+    await page.click(this.continue);
+    await page.waitForSelector(
+      `div.error-summary > h3:has-text("${partiesToContact_content.errorBanner2}")`,
+    );
+    await expect(
+      page.locator(
+        `#errors > li:has-text("${partiesToContact_content.partyRequiredError}")`,
+      ),
+    ).toBeVisible();
   },
 
   async fillInFields(page) {
-    page.fill(this.message, partiesToContact_content.message);
+    await page.fill(this.message, partiesToContact_content.message);
   },
 
   async continueOn(page: Page): Promise<void> {

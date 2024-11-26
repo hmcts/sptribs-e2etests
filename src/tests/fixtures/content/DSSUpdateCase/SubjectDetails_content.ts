@@ -1,3 +1,5 @@
+import subjectDetails_content from "../DSSCreateCase/SubjectDetails_content.ts";
+
 const subjectDetailsContent = {
   header: "Update an appeal to the First-tier Tribunal",
   pageTitle: "Subject of this case",
@@ -8,7 +10,7 @@ const subjectDetailsContent = {
   textOnPage1: "Day",
   textOnPage2: "Month",
   textOnPage3: "Year",
-  name: "Subject AutoTesting",
+  name: subjectDetails_content.name,
   dayOfBirth: "1",
   monthOfBirth: "1",
   yearOfBirth: "2000",

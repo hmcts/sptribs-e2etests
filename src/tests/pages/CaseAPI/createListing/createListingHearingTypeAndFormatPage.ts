@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingType,
 } from "../../../helpers/commonHelpers.ts";
 import createListingHearingTypeAndFormatContent from "../../../fixtures/content/CaseAPI/createListing/createListingHearingTypeAndFormat_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateListingHearingTypeAndFormatPage = {
   previous: string;
@@ -15,6 +14,7 @@ type CreateListingHearingTypeAndFormatPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -35,6 +35,7 @@ const createListingHearingTypeAndFormatPage: CreateListingHearingTypeAndFormatPa
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForSelector(
         `.govuk-heading-l:text-is("${createListingHearingTypeAndFormatContent.pageTitle}")`,
@@ -43,9 +44,7 @@ const createListingHearingTypeAndFormatPage: CreateListingHearingTypeAndFormatPa
         expect(page.locator(".govuk-caption-l")).toHaveText(
           createListingHearingTypeAndFormatContent.pageHint,
         ),
-        expect(page.locator("markdown > h3")).toContainText(
-          caseSubjectDetailsObject_content.name,
-        ),
+        expect(page.locator("markdown > h3")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createListingHearingTypeAndFormatContent.caseReference + caseNumber,
         ),

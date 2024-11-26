@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createDraft/submit_content.ts";
 import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/createDraft/addDocumentFooter_content.ts";
 import orderMainContent_content from "../../../fixtures/content/CaseAPI/createDraft/orderMainContent_content.ts";
@@ -15,6 +14,7 @@ type SubmitPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkAllInfo(page: Page, template: Template): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -29,14 +29,13 @@ const submitPage: SubmitPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),

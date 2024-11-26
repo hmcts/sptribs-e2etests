@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateListingListingDetailsPage = {
   venue: string;
@@ -26,6 +25,7 @@ type CreateListingListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -57,6 +57,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createListingListingDetailsContent.pageTitle}")`,
@@ -68,9 +69,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createListingListingDetailsContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),
@@ -154,6 +153,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await page.click(this.remove);
       await expect(page.locator(".cdk-overlay-container")).toBeVisible();
       await page.locator("button[title='Remove']").click();
+      await expect(page.locator(".cdk-overlay-container")).not.toBeVisible();
     }
     // if (accessibilityTest) {
     //   await axeTest(page);

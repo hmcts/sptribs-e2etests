@@ -8,7 +8,6 @@ import commonHelpers, {
   hearingSession,
 } from "../../../helpers/commonHelpers.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/createListing/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import createListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingRemoteHearingInformation_content.ts";
 import createListingOtherInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingOtherInformation_content.ts";
@@ -25,6 +24,8 @@ type SubmitPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -35,6 +36,7 @@ type SubmitPage = {
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -51,14 +53,14 @@ const submitPage: SubmitPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),
@@ -93,12 +95,6 @@ const submitPage: SubmitPage = {
           1,
         );
       }),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage16}")`,
-        ),
-        4,
-      ),
       commonHelpers.checkForButtons(
         page,
         this.saveAndContinue,
@@ -106,6 +102,23 @@ const submitPage: SubmitPage = {
         this.cancel,
       ),
     ]);
+
+    if (DSSSubmitted) {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage16}")`,
+        ),
+        2,
+      );
+    } else {
+      await commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submitContent.textOnPage16}")`,
+        ),
+        4,
+      );
+    }
+
     if (region) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -177,6 +190,7 @@ const submitPage: SubmitPage = {
     hearingSession: hearingSession,
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
@@ -222,31 +236,51 @@ const submitPage: SubmitPage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span:text-is("${createListingNotifyPageContent.textOnPage3}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage4}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage5}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage6}")`,
-        ),
-        1,
-      ),
     ]);
+
+    if (DSSSubmitted) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span:text-is("${createListingNotifyPageContent.textOnPage3}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage5}")`,
+          ),
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span:text-is("${createListingNotifyPageContent.textOnPage3}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage4}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage5}")`,
+          ),
+          1,
+        ),
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `td > span.text-16:text-is("${createListingNotifyPageContent.textOnPage6}")`,
+          ),
+          1,
+        ),
+      ]);
+    }
 
     if (region) {
       await commonHelpers.checkVisibleAndPresent(

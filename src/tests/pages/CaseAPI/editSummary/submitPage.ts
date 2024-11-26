@@ -12,7 +12,6 @@ import commonHelpers, {
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/editSummary/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import editSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryListingDetails_content.ts";
 import editSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendeesRole_content.ts";
 import editSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingRecordingUpload_content.ts";
@@ -32,6 +31,7 @@ type SubmitPage = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -83,6 +83,7 @@ const submitPage: SubmitPage = {
     hearingAdjournedReason: hearingAdjournedReasons | null,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/submit`,
@@ -91,9 +92,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3").first()).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3").first()).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),

@@ -10,7 +10,6 @@ import commonHelpers, {
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
 import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
@@ -34,6 +33,7 @@ type SubmitPage = {
     venue: hearingVenues | null,
     editJourney: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -87,6 +87,7 @@ const submitPage: SubmitPage = {
     venue: hearingVenues | null,
     editJourney: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/submit`,
@@ -96,7 +97,7 @@ const submitPage: SubmitPage = {
         submitContent.pageTitle,
       ),
       expect(page.locator("markdown > h3").first()).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,

@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { StayReason } from "./addStayPage.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
@@ -17,6 +16,7 @@ type SubmitPage = {
     accessibilityTest: boolean,
     stayReason: StayReason,
     optionalText: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -37,6 +37,7 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
     stayReason: StayReason,
     optionalText: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageHint}")`,
@@ -44,9 +45,7 @@ const submitPage: SubmitPage = {
     await Promise.all([
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
@@ -61,10 +60,9 @@ const submitPage: SubmitPage = {
       }),
     ]);
     if (stayReason === "Other") {
-      await commonHelpers.checkVisibleAndPresent(
+      await expect(
         page.locator(`.text-16:text-is("${submit_content.textOnPage4}")`),
-        1,
-      );
+      ).toBeVisible();
     }
     if (optionalText) {
       await commonHelpers.checkVisibleAndPresent(

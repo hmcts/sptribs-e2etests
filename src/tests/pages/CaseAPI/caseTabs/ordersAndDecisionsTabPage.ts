@@ -21,6 +21,7 @@ const ordersAndDecisionsTabPage: OrdersAndDecisionsTabPage = {
     template: Template,
     editDraftJourney: boolean,
   ): Promise<void> {
+    await page.waitForSelector(`.text-16:text-is("${template}")`);
     await Promise.all([
       ...Array.from({ length: 6 }, (_, index) => {
         const draft = (ordersAndDecisionsTab_content as any)[

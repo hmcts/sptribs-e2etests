@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectDraftOrder_content from "../../../fixtures/content/CaseAPI/sendOrder/selectDraftOrder_content.ts";
 
@@ -12,6 +11,7 @@ type SelectDraftOrderPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -26,6 +26,7 @@ const selectDraftOrderPage: SelectDraftOrderPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.form-label:text-is("${selectDraftOrder_content.textOnPage1}")`,
@@ -37,9 +38,7 @@ const selectDraftOrderPage: SelectDraftOrderPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         selectDraftOrder_content.caseReference + caseNumber,
       ),

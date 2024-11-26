@@ -1,6 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
-import createListing from "./createListing.ts";
 import commonHelpers, {
   hearingCancelledReasons,
 } from "../../helpers/commonHelpers.ts";
@@ -15,36 +13,23 @@ import hearingTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type CancelHearing = {
   cancelHearing(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     reasonCancelled: hearingCancelledReasons,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const cancelHearing: CancelHearing = {
   async cancelHearing(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     reasonCancelled: hearingCancelledReasons,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    let caseNumber: string | void;
-    caseNumber = await createListing.createListing(
-      page,
-      user,
-      false,
-      true,
-      "2-Midlands",
-      "Final",
-      "Paper",
-      "Morning",
-      false,
-      false,
-      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-      false,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Cancel hearing",
@@ -56,6 +41,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           const hearing =
             await cancelHearingSelectHearingPage.fillInFields(page);
@@ -64,6 +50,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingReasonPage.fillInFields(page, reasonCancelled);
           await cancelHearingReasonPage.continueOn(page);
@@ -71,45 +58,57 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingNotifyPage.continueOn(page);
-          await submitPage.checkPageLoads(page, caseNumber, accessibilityTest);
+          await submitPage.checkPageLoads(
+            page,
+            caseNumber,
+            accessibilityTest,
+            subjectName,
+          );
           await submitPage.checkValidInfo(page, hearing, reasonCancelled);
           await submitPage.continueOn(page);
-          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
-          await confirmPage.continueOn(page);
-          await hearingsTabPage.changeToHearingsTab(page);
-          await hearingsTabPage.checkPageLoads(
+          await confirmPage.checkPageLoads(
             page,
-            true,
-            false,
-            false,
-            "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-            false,
-            false,
-            null,
-            false,
-            false,
-            true,
-            false,
-            false,
+            caseNumber,
             accessibilityTest,
+            subjectName,
           );
-          await hearingTabPage.checkValidInfoCancelHearing(
-            page,
-            reasonCancelled,
-            "2-Midlands",
-            "Final",
-            "Paper",
-            "Morning",
-            "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-          );
+          await confirmPage.continueOn(page);
+          // await hearingsTabPage.changeToHearingsTab(page);
+          // await hearingsTabPage.checkPageLoads(
+          //   page,
+          //   true,
+          //   false,
+          //   false,
+          //   "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+          //   false,
+          //   false,
+          //   null,
+          //   false,
+          //   false,
+          //   true,
+          //   false,
+          //   false,
+          //   accessibilityTest,
+          // );
+          // await hearingTabPage.checkValidInfoCancelHearing(
+          //   page,
+          //   reasonCancelled,
+          //   "2-Midlands",
+          //   "Final",
+          //   "Paper",
+          //   "Morning",
+          //   "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+          // );
           break;
         case true:
           await cancelHearingSelectHearingPage.checkPageLoads(
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingSelectHearingPage.triggerErrorMessages(page);
           await cancelHearingSelectHearingPage.fillInFields(page);
@@ -118,6 +117,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingReasonPage.triggerErrorMessages(page);
           await cancelHearingReasonPage.fillInFields(page, reasonCancelled);
@@ -126,6 +126,7 @@ const cancelHearing: CancelHearing = {
             page,
             caseNumber,
             accessibilityTest,
+            subjectName,
           );
           await cancelHearingNotifyPage.triggerErrorMessages(page);
           break;

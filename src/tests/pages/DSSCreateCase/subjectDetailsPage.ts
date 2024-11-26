@@ -17,7 +17,7 @@ type SubjectDetailsPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, subjectName: string): Promise<void>;
   triggerErrorMessages(page: Page, cy: boolean): Promise<void>;
 };
 
@@ -34,7 +34,13 @@ const subjectDetailsPage: SubjectDetailsPage = {
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
       case true:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitle}")`,
+        );
         await page.locator(".govuk-link.language").click();
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitleCy}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.govuk-link.language:text-is("English")`),
@@ -85,6 +91,9 @@ const subjectDetailsPage: SubjectDetailsPage = {
         ]);
         break;
       default:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitle}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
@@ -136,9 +145,11 @@ const subjectDetailsPage: SubjectDetailsPage = {
     }
   },
 
-  async fillInFields(page: Page) {
+  async fillInFields(page: Page, subjectName: string) {
     await page.click(this.rejectCookiesButton);
-    await page.fill(this.fields.fullName, subjectDetailsContent.name);
+    await page.waitForSelector("#subjectFullName");
+    await page.fill(this.fields.fullName, `${subjectName}`);
+
     await page.fill(this.fields.dayOfBirth, subjectDetailsContent.dayOfBirth);
     await page.fill(
       this.fields.monthOfBirth,

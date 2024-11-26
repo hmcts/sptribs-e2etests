@@ -1,7 +1,5 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
 import commonHelpers, {
-  allEvents,
   caseRegionCode,
   hearingFormat,
 } from "../../helpers/commonHelpers.ts";
@@ -9,12 +7,10 @@ import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import hearingOptionsRegionDataPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsRegionDataPage.ts";
 import hearingOptionsHearingDetailsPage from "../../pages/CaseAPI/hearingOptions/hearingOptionsHearingDetailsPage.ts";
 import submitPage from "../../pages/CaseAPI/hearingOptions/submitPage.ts";
-import buildCase from "./buildCase.ts";
 
 type HearingOptions = {
   hearingOptions(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
@@ -23,13 +19,14 @@ type HearingOptions = {
     hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
     editJourney: boolean,
-  ): Promise<string>;
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<any>;
 };
 
 const hearingOptions: HearingOptions = {
   async hearingOptions(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     region: boolean,
     caseRegionCode: caseRegionCode | null,
@@ -38,16 +35,9 @@ const hearingOptions: HearingOptions = {
     hearingFormat: hearingFormat,
     shortNoticeHearing: boolean,
     editJourney: boolean,
-  ): Promise<string> {
-    let previousEvents: allEvents[] = [];
-    let eventTimes: string[] = [];
-    const caseNumber = await buildCase.buildCase(
-      page,
-      previousEvents,
-      eventTimes,
-      accessibilityTest,
-      user,
-    );
+    caseNumber: string,
+    subjectName: string,
+  ): Promise<any> {
     await commonHelpers.chooseEventFromDropdown(
       page,
       events_content.hearingOptions,
@@ -56,6 +46,7 @@ const hearingOptions: HearingOptions = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await hearingOptionsRegionDataPage.fillInFields(
       page,
@@ -66,6 +57,8 @@ const hearingOptions: HearingOptions = {
     await hearingOptionsHearingDetailsPage.checkPageLoads(
       page,
       accessibilityTest,
+      caseNumber,
+      subjectName,
     );
     await hearingOptionsHearingDetailsPage.fillInFields(
       page,
@@ -75,7 +68,14 @@ const hearingOptions: HearingOptions = {
       shortNoticeHearing,
     );
     await hearingOptionsHearingDetailsPage.continueOn(page);
-    await submitPage.checkPageLoads(page, region, venue, accessibilityTest);
+    await submitPage.checkPageLoads(
+      page,
+      region,
+      venue,
+      accessibilityTest,
+      caseNumber,
+      subjectName,
+    );
     await submitPage.checkValidInfo(
       page,
       region,
@@ -96,6 +96,7 @@ const hearingOptions: HearingOptions = {
         page,
         caseNumber,
         accessibilityTest,
+        subjectName,
       );
       await hearingOptionsRegionDataPage.fillInFields(
         page,
@@ -106,6 +107,8 @@ const hearingOptions: HearingOptions = {
       await hearingOptionsHearingDetailsPage.checkPageLoads(
         page,
         accessibilityTest,
+        caseNumber,
+        subjectName,
       );
       await hearingOptionsHearingDetailsPage.fillInFields(
         page,
@@ -115,7 +118,14 @@ const hearingOptions: HearingOptions = {
         true,
       );
       await hearingOptionsHearingDetailsPage.continueOn(page);
-      await submitPage.checkPageLoads(page, region, venue, accessibilityTest);
+      await submitPage.checkPageLoads(
+        page,
+        region,
+        venue,
+        accessibilityTest,
+        caseNumber,
+        subjectName,
+      );
       await submitPage.checkValidInfo(
         page,
         region,
@@ -127,7 +137,6 @@ const hearingOptions: HearingOptions = {
       );
       await submitPage.continueOn(page);
     }
-    return caseNumber;
   },
 };
 

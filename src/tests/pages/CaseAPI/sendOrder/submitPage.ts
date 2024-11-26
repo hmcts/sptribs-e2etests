@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { OrderType } from "./selectOrderIssuingTypePage.ts";
 import { ReminderDays } from "./sendReminderPage.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/sendOrder/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
@@ -21,6 +20,7 @@ type SubmitPage = {
     orderType: OrderType,
     completed: boolean,
     reminder: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -44,6 +44,7 @@ const submitPage: SubmitPage = {
     orderType: OrderType,
     completed: boolean,
     reminder: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h2:text-is("${submit_content.pageTitle}")`,
@@ -52,9 +53,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submit_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),
@@ -153,6 +152,9 @@ const submitPage: SubmitPage = {
         ]);
         break;
       case "UploadOrder":
+        await page.waitForSelector(
+          `ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("${submit_content.upload}")`),
@@ -164,7 +166,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testPdfFile)}")`,
+              `ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
             ),
             1,
           ),

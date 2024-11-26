@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/manageDueDate/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
@@ -16,6 +15,7 @@ type SubmitPage = {
     accessibilityTest: boolean,
     completed: boolean,
     completedCheckboxChecked: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(page: Page, completedCheckboxChecked: boolean): Promise<void>;
   saveAndContinue(page: Page): Promise<void>;
@@ -23,6 +23,7 @@ type SubmitPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -37,6 +38,7 @@ const submitPage: SubmitPage = {
     accessibilityTest,
     completed,
     completedCheckboxChecked,
+    subjectName,
   ): Promise<void> {
     await page.waitForSelector(`h2:text-is("${submit_content.pageTitle}")`);
     await Promise.all([
@@ -52,9 +54,7 @@ const submitPage: SubmitPage = {
         page.locator(`span:text-is("${submit_content.draft}")`),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),
@@ -127,12 +127,22 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async checkChangeLink(page, caseNumber, accessibilityTest): Promise<void> {
+  async checkChangeLink(
+    page,
+    caseNumber,
+    accessibilityTest,
+    subjectName,
+  ): Promise<void> {
     await page.locator(`[aria-label="Change Due Date"]`).click();
     await page.waitForURL(
       /.*\/caseworker-amend-due-datecaseworkerAmendDueDateEditDueDate$/,
     );
-    await editDueDatePage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await editDueDatePage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     await page.click(this.continue);
     await page.waitForURL(/.*\/submit$/);
   },

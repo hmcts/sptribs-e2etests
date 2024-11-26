@@ -1,10 +1,6 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
-import commonHelpers, {
-  allEvents,
-  parties,
-} from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
+import { parties } from "../../helpers/commonHelpers.ts";
 import selectAdditionalDocuments from "../../pages/CaseAPI/issueToRespondent/selectAdditionalDocumentsPage.ts";
 import notifyOtherPartiesPage from "../../pages/CaseAPI/issueToRespondent/notifyOtherPartiesPage.ts";
 import submitPage from "../../pages/CaseAPI/issueToRespondent/submitPage.ts";
@@ -17,6 +13,8 @@ type IssueToRespondent = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     recipients: parties[],
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -27,24 +25,14 @@ const issueToRespondent: IssueToRespondent = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     recipients: parties[],
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    let previousEvents: allEvents[] = [];
-    let eventTimes: string[] = [];
-    const caseNumber = await buildCase.buildCase(
-      page,
-      previousEvents,
-      eventTimes,
-      accessibilityTest,
-      user,
-    );
-    await commonHelpers.chooseEventFromDropdown(
-      page,
-      "Case: Issue to respondent",
-    );
     await selectAdditionalDocuments.checkPageLoads(
       page,
       accessibilityTest,
       caseNumber,
+      subjectName,
     );
     switch (errorMessaging) {
       default:
@@ -53,6 +41,7 @@ const issueToRespondent: IssueToRespondent = {
           page,
           accessibilityTest,
           caseNumber,
+          subjectName,
         );
         await notifyOtherPartiesPage.continueOn(page, recipients);
         await submitPage.checkPageLoads(
@@ -60,6 +49,7 @@ const issueToRespondent: IssueToRespondent = {
           accessibilityTest,
           caseNumber,
           recipients,
+          subjectName,
         );
         await submitPage.continueOn(page, recipients);
         await confirmPage.checkPageLoads(
@@ -67,6 +57,7 @@ const issueToRespondent: IssueToRespondent = {
           accessibilityTest,
           caseNumber,
           recipients,
+          subjectName,
         );
         await confirmPage.continueOn(page);
         break;
@@ -77,8 +68,26 @@ const issueToRespondent: IssueToRespondent = {
           page,
           accessibilityTest,
           caseNumber,
+          subjectName,
         );
         await notifyOtherPartiesPage.triggerErrorMessages(page);
+        await notifyOtherPartiesPage.continueOn(page, recipients);
+        await submitPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          recipients,
+          subjectName,
+        );
+        await submitPage.continueOn(page, recipients);
+        await confirmPage.checkPageLoads(
+          page,
+          accessibilityTest,
+          caseNumber,
+          recipients,
+          subjectName,
+        );
+        await confirmPage.continueOn(page);
         break;
     }
   },

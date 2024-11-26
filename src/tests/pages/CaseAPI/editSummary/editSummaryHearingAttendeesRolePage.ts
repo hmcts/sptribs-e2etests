@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendeesRole_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditSummaryHearingAttendeesRolePage = {
@@ -12,6 +11,7 @@ type EditSummaryHearingAttendeesRolePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -28,6 +28,7 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForSelector(
         `.govuk-heading-l:text-is("${editSummaryHearingAttendeesRoleContent.pageTitle}")`,
@@ -36,9 +37,7 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
         expect(page.locator(".govuk-caption-l")).toHaveText(
           editSummaryHearingAttendeesRoleContent.pageHint,
         ),
-        expect(page.locator("markdown > h3")).toContainText(
-          caseSubjectDetailsObject_content.name,
-        ),
+        expect(page.locator("markdown > h3")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           editSummaryHearingAttendeesRoleContent.caseReference + caseNumber,
         ),
@@ -129,7 +128,6 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
           editSummaryHearingAttendeesRoleContent.otherAttendanceError,
         ),
       ]);
-      await page.pause();
       for (let i = 2; i < 18; i++) {
         const label = (editSummaryHearingAttendeesRoleContent as any)[
           `textOnPage${i}`

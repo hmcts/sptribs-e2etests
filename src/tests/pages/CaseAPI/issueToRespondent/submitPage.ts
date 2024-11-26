@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers, { parties } from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/issueToRespondent/submit_content.ts";
 import path from "path";
@@ -12,6 +11,7 @@ type SubmitPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     recipients: parties[],
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page, recipients: string[]): Promise<void>;
 };
@@ -22,6 +22,7 @@ const submitPage: SubmitPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     recipients: parties[],
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submit_content.pageTitle}")`,
@@ -30,9 +31,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".heading-h2")).toHaveText(
         submit_content.pageSubtitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),

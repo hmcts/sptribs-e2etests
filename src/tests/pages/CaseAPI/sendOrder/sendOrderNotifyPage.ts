@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import sendOrderNotifyPage_content from "../../../fixtures/content/CaseAPI/sendOrder/sendOrderNotifyPage_content.ts";
 
@@ -9,6 +8,7 @@ type CloseCaseNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -18,6 +18,7 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `dt > ccd-markdown > div > markdown > p:text-is("${sendOrderNotifyPage_content.textOnPage1}")`,
@@ -27,9 +28,7 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
         sendOrderNotifyPage_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

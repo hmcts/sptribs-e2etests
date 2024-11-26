@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/editDraft/confirm_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type ConfirmPage = {
   closeAndReturn: string;
@@ -10,6 +9,7 @@ type ConfirmPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   closeAndReturnToCase(page: Page): Promise<void>;
 };
@@ -21,14 +21,13 @@ const createCaseConfirmPage: ConfirmPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${confirm_content.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         confirm_content.caseReference + caseNumber,
       ),

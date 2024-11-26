@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 
@@ -9,6 +8,8 @@ type CreateListingNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -19,6 +20,8 @@ const createListingNotifyPage: CreateListingNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createListingNotifyPageContent.pageTitle}")`,
@@ -27,46 +30,79 @@ const createListingNotifyPage: CreateListingNotifyPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createListingNotifyPageContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingNotifyPageContent.caseReference + caseNumber,
       ),
+
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `dt > ccd-markdown > div > markdown > p:text-is("${createListingNotifyPageContent.textOnPage1}")`,
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${createListingNotifyPageContent.textOnPage2}")`,
-        ),
-        4,
-      ),
-      ...Array.from({ length: 4 }, (_, index: number) => {
-        const textOnPage = (createListingNotifyPageContent as any)[
-          `textOnPage${index + 3}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
     ]);
+
+    if (!DSSSubmitted) {
+      await Promise.all([
+        ...Array.from({ length: 4 }, (_, index: number) => {
+          const textOnPage = (createListingNotifyPageContent as any)[
+            `textOnPage${index + 3}`
+          ];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.form-label:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
+    }
+
     if (accessibilityTest) {
       await axeTest(page);
     }
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
-    await page
-      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+    if (
+      await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).isVisible()
+    ) {
+      await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).check();
+      await expect(
+        page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`),
+      ).toBeChecked();
+    }
+    if (
+      await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .isVisible()
+    ) {
+      await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .check();
+      await expect(
+        page.locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`),
+      ).toBeChecked();
+    }
+    if (
+      await page
+        .locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`)
+        .isVisible()
+    ) {
+      await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).check();
+      await expect(
+        page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`),
+      ).toBeChecked();
+    }
+    if (
+      await page
+        .locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`)
+        .isVisible()
+    ) {
+      await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).check();
+      await expect(
+        page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`),
+      ).toBeChecked();
+    }
     await page.getByRole("button", { name: "Continue" }).click();
   },
 

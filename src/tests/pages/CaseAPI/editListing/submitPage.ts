@@ -8,7 +8,6 @@ import commonHelpers, {
   hearingSession,
 } from "../../../helpers/commonHelpers.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/editListing/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
 import editListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingRemoteHearingInformation_content.ts";
 import editListingOtherInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingOtherInformation_content.ts";
@@ -26,6 +25,7 @@ type SubmitPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(
     page: Page,
@@ -53,6 +53,7 @@ const submitPage: SubmitPage = {
     hearingAcrossMultipleDays: boolean,
     venue: hearingVenues | null,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h2:text-is("${submitContent.subTitle}")`,
@@ -61,9 +62,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),

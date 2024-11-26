@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/contactParties/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 
@@ -14,6 +13,7 @@ type SubmitPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(page: Page, user: string): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -29,6 +29,7 @@ const submitPage: SubmitPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     const pageHintRegex = new RegExp(
       `${submit_content.title}|${partiesToContact_content.pageHintCICA}`,
@@ -38,9 +39,7 @@ const submitPage: SubmitPage = {
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(pageHintRegex),
-      expect(page.locator("markdown > h3")).toHaveText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toHaveText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toHaveText(
         partiesToContact_content.caseReference + caseNumber,
       ),

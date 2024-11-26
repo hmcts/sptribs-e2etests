@@ -4,6 +4,12 @@ const authors_content = {
   automatedSeniorCaseWorker: "Automated SENIORCASEWORKER",
   automatedHearingCentreAdmin: "Automated HEARINGCENTREADMIN",
   automatedHearingCentreTeamLead: "Automated HEARINGCENTRETEAMLEAD",
+  demoCitizen: "Dss CITIZEN1",
+
+  assignedUserLO: "sptribswa seniorcaseworker",
+  assignedUserAdmin: "sptribswa hearingcentreadmin",
+  assignedUserJudge: "Ms Whitney Lamb",
+
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",
   buildingAndStreet: "Buckingham Palace",

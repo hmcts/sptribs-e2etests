@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditListingChangeReasonPage = {
   reason: string;
@@ -13,6 +12,7 @@ type EditListingChangeReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -29,6 +29,7 @@ const editListingChangeReasonPage: EditListingChangeReasonPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editListingChangeReasonContent.pageTitle}")`,
@@ -37,9 +38,7 @@ const editListingChangeReasonPage: EditListingChangeReasonPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingChangeReasonContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingChangeReasonContent.caseReference + caseNumber,
       ),

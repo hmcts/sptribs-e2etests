@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
@@ -12,6 +11,7 @@ type AddCaseNotePage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
 };
@@ -25,6 +25,7 @@ const addCaseNotePage: AddCaseNotePage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${addCaseNotes_content.pageTitle}")`,
@@ -33,9 +34,7 @@ const addCaseNotePage: AddCaseNotePage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         addCaseNotes_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        subjectDetailsContent.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p")).toContainText(
         addCaseNotes_content.caseReference + caseNumber,
       ),
@@ -67,6 +66,8 @@ const addCaseNotePage: AddCaseNotePage = {
   async fillInFields(page: Page): Promise<void> {
     await page.fill(`.form-control`, `${addCaseNotes_content.textContent}`);
     await page.click(this.continue);
+    await page.waitForSelector(`h2:text-is("History")`);
+    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
   },
 };
 

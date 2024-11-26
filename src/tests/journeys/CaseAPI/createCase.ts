@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import {
-  allEvents,
   caseRegion,
   Category,
   ContactPreference,
@@ -22,9 +21,6 @@ import caseDocumentsUploadObjectPage from "../../pages/CaseAPI/createCase/caseDo
 import caseFurtherDetailsObjectPage from "../../pages/CaseAPI/createCase/caseFurtherDetailsObjectPage.ts";
 import submitPage from "../../pages/CaseAPI/createCase/submitPage.ts";
 import createCaseConfirmPage from "../../pages/CaseAPI/createCase/confirmPage.ts";
-import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
-import stateTab_content from "../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
-import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 
 type CreateCase = {
   createCase(
@@ -36,6 +32,7 @@ type CreateCase = {
     representative: boolean,
     applicant: boolean,
     contactPreference: ContactPreference,
+    subjectName: string,
     representativeQualified: boolean,
     multipleFiles: boolean,
     schemeSelection: Scheme,
@@ -47,14 +44,6 @@ type CreateCase = {
     needLogin: boolean,
     errorMessaging: boolean,
   ): Promise<string>;
-  verifyDetails(
-    page: Page,
-    user: UserRole,
-    accessibilityTest: boolean,
-    caseNumber: string,
-    previousEvents: allEvents[],
-    eventTimes: string[],
-  ): Promise<void>;
 };
 
 const createCase: CreateCase = {
@@ -67,6 +56,7 @@ const createCase: CreateCase = {
     representative: boolean,
     applicant: boolean,
     contactPreference: ContactPreference,
+    subjectName: string,
     representativeQualified: boolean,
     multipleFiles: boolean,
     schemeSelection: Scheme,
@@ -78,6 +68,7 @@ const createCase: CreateCase = {
     needLogin: boolean,
     errorMessaging: boolean,
   ): Promise<string> {
+    let caseNumber: any;
     if (needLogin) {
       await caseAPILoginPage.SignInUser(page, user);
       await casesPage.checkPageLoads(page, accessibilityTest);
@@ -112,6 +103,7 @@ const createCase: CreateCase = {
         await caseSubjectDetailsObjectPage.fillInFields(
           page,
           contactPreference,
+          subjectName,
         );
         if (applicant) {
           await caseApplicantDetailsObjectPage.checkPageLoads(
@@ -183,9 +175,9 @@ const createCase: CreateCase = {
           compensationLinked,
           tribunalFormsInTime,
           applicantExplained,
+          subjectName,
         );
-        await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
-        return await createCaseConfirmPage.returnCaseNumber(page);
+        break;
       case true:
         await caseCategorisationDetailsPage.checkPageLoads(
           page,
@@ -216,6 +208,7 @@ const createCase: CreateCase = {
         await caseSubjectDetailsObjectPage.fillInFields(
           page,
           contactPreference,
+          subjectName,
         );
         if (applicant) {
           await caseApplicantDetailsObjectPage.checkPageLoads(
@@ -292,35 +285,14 @@ const createCase: CreateCase = {
           compensationLinked,
           tribunalFormsInTime,
           applicantExplained,
+          subjectName,
         );
-        await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
-        return await createCaseConfirmPage.returnCaseNumber(page);
+        break;
     }
-  },
-
-  async verifyDetails(
-    page: Page,
-    user: UserRole,
-    accessibilityTest: boolean,
-    caseNumber: string,
-    previousEvents: allEvents[],
-    eventTimes: string[],
-  ): Promise<void> {
-    previousEvents.push(events_content.createCase);
-    eventTimes.push(await createCaseConfirmPage.closeAndReturnToCase(page));
-    await historyTabPage.checkPageLoads(
-      page,
-      accessibilityTest,
-      caseNumber,
-      stateTab_content.submittedState,
-    );
-    await historyTabPage.checkPageInfo(
-      page,
-      previousEvents,
-      eventTimes,
-      user,
-      stateTab_content.submittedState,
-    );
+    await createCaseConfirmPage.checkPageLoads(page, accessibilityTest);
+    caseNumber = await createCaseConfirmPage.returnCaseNumber(page);
+    await createCaseConfirmPage.closeAndReturnToCase(page);
+    return caseNumber;
   },
 };
 

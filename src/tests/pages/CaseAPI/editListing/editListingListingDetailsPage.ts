@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
 import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateListingListingDetailsPage = {
   venue: string;
@@ -26,6 +25,7 @@ type CreateListingListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     venue: hearingVenues | null,
+    subjectName: string,
   ): Promise<void>;
   checkFields(page: Page): Promise<void>;
   fillFields(
@@ -58,6 +58,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     venue: hearingVenues | null,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editListingListingDetailsContent.pageTitle}")`,
@@ -66,9 +67,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingListingDetailsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingListingDetailsContent.caseReference + caseNumber,
       ),

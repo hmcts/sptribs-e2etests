@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editDraftOrderMainContentContent from "../../../fixtures/content/CaseAPI/editDraft/editDraftOrderMainContent_content.ts";
@@ -12,6 +11,7 @@ type EditDraftOrderMainContentPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -26,6 +26,7 @@ const editDraftOrderMainContentPage: EditDraftOrderMainContentPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${editDraftOrderMainContentContent.pageTitle}")`,
@@ -35,9 +36,7 @@ const editDraftOrderMainContentPage: EditDraftOrderMainContentPage = {
         editDraftOrderMainContentContent.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

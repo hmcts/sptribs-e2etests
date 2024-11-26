@@ -1,121 +1,299 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import authors_content from "../fixtures/content/authors_content.ts";
+import states_content from "../fixtures/content/states_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import createCase from "../journeys/CaseAPI/createCase.ts";
+import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../journeys/CaseAPI/buildCase.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
+import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
+import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-test.describe("Case-API Create draft tests. @CaseAPI", () => {
-  test("As a Caseworker create a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
+const priorityReview = " low ";
+const numberOfDaysReview = 5;
+
+test.describe("Case-API Create draft tests. @CaseAPI @CaseAPI2", () => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
     page,
   }) => {
-    await createDraft.createDraft(
-      page,
-      "caseWorker",
-      "Case Management",
-      false,
-      false,
-      "CIC3 - Rule 27",
-    );
+    test.setTimeout(10 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("As a Senior Caseworker create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
+  test("Create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber800 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber800, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber800,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Other",
+      false,
+      caseNumber800,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleLO,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber800,
+      taskNames_content.reviewOtherRequestLO,
+      priorityReview,
+      authors_content.assignedUserLO,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.readyToListState,
+      subjectName,
+    );
     await createDraft.createDraft(
       page,
-      "seniorCaseworker",
-      "Ready to list",
       false,
       false,
       "CIC6 - General Directions",
+      caseNumber800,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      caseNumber800,
+      states_content.readyToListState,
+      subjectName,
     );
   });
 
-  test("As a hearing centre admin create a CIC7 draft in the Awaiting Hearing state.", async ({
-    page,
-  }) => {
-    await createDraft.createDraft(
+  test("Create a CIC8 draft in the Case Stayed state.", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber801 = await createCase.createCase(
       page,
-      "hearingCentreAdmin",
-      "Awaiting Hearing",
+      waUsers_content.userRoleAdmin,
       false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
       false,
-      "CIC7 - ME Dmi Reports",
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
     );
-  });
-
-  test("As a hearing Centre Team Lead create a CIC8 draft in the Case Stayed state.", async ({
-    page,
-  }) => {
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber801, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await createEditStay.createEditStay(
+      page,
+      true,
+      false,
+      "awaitingACourtJudgement",
+      false,
+      caseNumber801,
+      subjectName,
+      states_content.caseStayedState,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Other",
+      false,
+      caseNumber801,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleLO,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber801,
+      taskNames_content.reviewOtherRequestLO,
+      priorityReview,
+      authors_content.assignedUserLO,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.caseStayedState,
+      subjectName,
+    );
     await createDraft.createDraft(
       page,
-      "hearingCentreTeamLead",
-      "Case Stayed",
       false,
       false,
       "CIC8 - ME Joint Instruction",
+      caseNumber801,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      caseNumber801,
+      states_content.caseStayedState,
+      subjectName,
     );
   });
 
-  test("As a Senior Judge create a CIC10 draft in the Case closed state.", async ({
-    page,
-  }) => {
-    await createDraft.createDraft(
+  test("Error messaging - Create draft", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber802 = await createCase.createCase(
       page,
-      "seniorJudge",
-      "Case closed",
+      waUsers_content.userRoleAdmin,
       false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
       false,
-      "CIC10 - Strike Out Warning",
-    );
-  });
-
-  test("As a Judge create a CIC13 draft in the case management state.", async ({
-    page,
-  }) => {
-    await createDraft.createDraft(
-      page,
-      "judge",
-      "Case Management",
-      false,
-      false,
-      "CIC13 - Pro Forma Summons",
-    );
-  });
-
-  test("As a Caseworker create a CIC14 draft in the case management state.", async ({
-    page,
-  }) => {
-    await createDraft.createDraft(
-      page,
-      "caseWorker",
-      "Case Management",
-      false,
-      false,
-      "CIC14 – LO General Directions",
-    );
-  });
-
-  test("Error messaging - Create draft @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
-    await createDraft.createDraft(
-      page,
-      "caseWorker",
-      "Case Management",
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
       false,
       true,
-      "CIC14 – LO General Directions",
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber802, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Other",
+      false,
+      caseNumber802,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleLO,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber802,
+      taskNames_content.reviewOtherRequestLO,
+      priorityReview,
+      authors_content.assignedUserLO,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.caseManagementState,
+      subjectName,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC6 - General Directions",
+      caseNumber802,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewOtherRequestLO,
+      caseNumber802,
+      states_content.caseManagementState,
+      subjectName,
     );
   });
-});
-
-test("Accessibility test - Create draft @accessibilityCaseAPI", async ({
-  page,
-}): Promise<void> => {
-  await createDraft.createDraft(
-    page,
-    "caseWorker",
-    "Case Management",
-    true,
-    false,
-    "CIC14 – LO General Directions",
-  );
 });

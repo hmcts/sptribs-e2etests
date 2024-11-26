@@ -12,6 +12,7 @@ type CaseFileViewTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCaseFileViewTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -22,15 +23,16 @@ type CaseFileViewTabPage = {
 };
 
 const caseFileViewTabPage: CaseFileViewTabPage = {
-  caseFileViewTab: ".mat-tab-label",
+  caseFileViewTab: `.mat-tab-label-content:text-is("Case file view")`,
 
   async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator(".govuk-heading-l")).toHaveText(
         caseFileViewTabContent.pageTitle,
       ),
@@ -50,8 +52,8 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
   },
 
   async changeToCaseFileViewTab(page: Page): Promise<void> {
-    await page.locator(this.caseFileViewTab).nth(10).click();
-    await page.locator(this.caseFileViewTab).nth(10).click();
+    await page.locator(this.caseFileViewTab).click();
+    await page.locator(this.caseFileViewTab).click();
   },
 
   async checkPageInfo(

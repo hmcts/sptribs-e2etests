@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import selectOrder_content from "../../../fixtures/content/CaseAPI/manageDueDate/selectOrder_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
 type SelectOrderPage = {
@@ -12,6 +11,7 @@ type SelectOrderPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   selectDropdownOption(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -22,7 +22,12 @@ const selectOrderPage: SelectOrderPage = {
   continue: '[type="submit"]',
   cancel: ".cancel",
 
-  async checkPageLoads(page, caseNumber, accessibilityTest): Promise<void> {
+  async checkPageLoads(
+    page,
+    caseNumber,
+    accessibilityTest,
+    subjectName,
+  ): Promise<void> {
     await page.waitForSelector(
       `.form-label:text-is("${selectOrder_content.textOnPage1}")`,
     );
@@ -30,9 +35,7 @@ const selectOrderPage: SelectOrderPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         `${selectOrder_content.pageHint}`,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p")).toContainText(
         selectOrder_content.caseReference + caseNumber,
       ),

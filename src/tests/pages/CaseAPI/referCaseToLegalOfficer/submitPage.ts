@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { referralReason } from "../referCaseToJudge/referCaseToJudgeReasonPage.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/referCaseToLegalOfficer/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import referCaseToLegalOfficerReasonContent from "../../../fixtures/content/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReason_content.ts";
 
@@ -15,6 +14,7 @@ type SubmitPage = {
     caseNumber: string,
     referralReason: referralReason,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkAndFillInfo(page: Page, referralReason: referralReason): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -30,14 +30,13 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     referralReason: referralReason,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),

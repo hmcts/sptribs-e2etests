@@ -4,7 +4,6 @@ import config from "../../config.ts";
 import axeTest from "../../helpers/accessibilityTestHelper";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import CheckYourAnswersContent from "../../fixtures/content/DSSCreateCase/CheckYourAnswers_content.ts";
-import subjectDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectDetails_content";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
 import representativeDetailsContent from "../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import uploadOtherInformation_content from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
@@ -28,8 +27,9 @@ type CheckYourAnswersPage = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<void>;
-  continueOn(page: Page): Promise<string>;
+  continueOn(page: Page): Promise<void>;
   pressBackButton(page: Page): Promise<void>;
 };
 
@@ -210,6 +210,9 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         }
         break;
       default:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${CheckYourAnswersContent.pageTitle}")`,
+        );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
@@ -385,6 +388,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     representationQualified: boolean,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
+    subjectName: string,
   ): Promise<void> {
     const yes = "Yes";
     const no = "No";
@@ -393,9 +397,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
 
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.govuk-summary-list__value:text-is("${subjectDetailsContent.name}")`,
-        ),
+        page.locator(`.govuk-summary-list__value:text-is("${subjectName}")`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
@@ -567,9 +569,8 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     }
   },
 
-  async continueOn(page: Page): Promise<string> {
+  async continueOn(page: Page): Promise<void> {
     await page.click(this.continueButton);
-    return await commonHelpers.getTimestamp();
   },
 
   async pressBackButton(page: Page): Promise<void> {

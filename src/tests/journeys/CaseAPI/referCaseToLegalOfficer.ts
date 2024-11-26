@@ -1,194 +1,106 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import hearingOptions from "./hearingOptions.ts";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
-import closeCase from "./closeCase.ts";
-import createEditStay from "./createEditStay.ts";
-import createListing from "./createListing.ts";
-import createSummary from "./createSummary.ts";
-import { initialState } from "./referCaseToJudge.ts";
 import { referralReason } from "../../pages/CaseAPI/referCaseToJudge/referCaseToJudgeReasonPage.ts";
 import referCaseToLegalOfficerReasonPage from "../../pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReasonPage.ts";
 import referCaseToLegalOfficerAdditionalInfoPage from "../../pages/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerAdditionalInfoPage.ts";
 import submitPage from "../../pages/CaseAPI/referCaseToLegalOfficer/submitPage.ts";
-import historyTabPage from "../../pages/CaseAPI/caseTabs/historyTabPage.ts";
-import caseReferralsTabPage from "../../pages/CaseAPI/caseTabs/caseReferralsTabPage.ts";
 import confirmPage from "../../pages/CaseAPI/referCaseToLegalOfficer/confirmPage.ts";
 
 type ReferCaseToLegalOfficer = {
   referCaseToLegalOfficer(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
-    initialState: initialState,
     referralReason: referralReason,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const referCaseToLegalOfficer: ReferCaseToLegalOfficer = {
   async referCaseToLegalOfficer(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
-    initialState: initialState,
     referralReason: referralReason,
     errorMessaging: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    let caseNumber: string | void;
-    switch (initialState) {
-      default: // Defaults to Case management
-        let previousEvents: allEvents[] = [];
-        let eventTimes: string[] = [];
-        caseNumber = await buildCase.buildCase(
+    switch (errorMessaging) {
+      default:
+        await referCaseToLegalOfficerReasonPage.checkPageLoads(
           page,
-          previousEvents,
-          eventTimes,
-          true,
-          "caseWorker",
+          caseNumber,
+          accessibilityTest,
+          subjectName,
         );
-        break;
-      case "Ready to list":
-        caseNumber = await hearingOptions.hearingOptions(
+        await referCaseToLegalOfficerReasonPage.fillFields(
           page,
-          "caseWorker",
-          false,
-          true,
-          "1-London",
-          true,
-          false,
-          "Face to Face",
-          false,
-          false,
+          referralReason,
         );
-        break;
-      case "Awaiting hearing":
-        caseNumber = await createListing.createListing(
+        await referCaseToLegalOfficerReasonPage.continueOn(page);
+        await referCaseToLegalOfficerAdditionalInfoPage.checkPageLoads(
           page,
-          "caseWorker",
-          false,
-          true,
-          "1-London",
-          "Case management",
-          "Face to Face",
-          "Morning",
-          false,
-          false,
-          "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
-          false,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
         );
-        break;
-      case "Awaiting outcome":
-        caseNumber = await createSummary.createSummary(
+        await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
+        await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
+        await submitPage.checkPageLoads(
           page,
-          "caseWorker",
-          false,
-          "Case management",
-          "Hybrid",
-          "Morning",
-          false,
-          "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
-          "Fox Court",
-          "Allowed",
-          null,
-          true,
-          false,
-          false,
+          caseNumber,
+          referralReason,
+          accessibilityTest,
+          subjectName,
         );
-        break;
-      case "Case stayed":
-        caseNumber = await createEditStay.createEditStay(
+        await submitPage.checkAndFillInfo(page, referralReason);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(
           page,
-          false,
-          "Case Management",
-          "caseWorker",
-          false,
-          "waitingOutcomeOfCivilCase",
-          true,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
         );
+        await confirmPage.continueOn(page);
         break;
-      case "Case closed":
-        caseNumber = await closeCase.closeCase(
+      case true:
+        await referCaseToLegalOfficerReasonPage.checkPageLoads(
           page,
-          "caseWorker",
-          false,
-          "Case Management",
-          false,
-          "caseWithdrawn",
-          true,
-          null,
-          null,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
         );
+        await referCaseToLegalOfficerReasonPage.triggerErrorMessages(page);
+        await referCaseToLegalOfficerReasonPage.fillFields(
+          page,
+          referralReason,
+        );
+        await referCaseToLegalOfficerReasonPage.continueOn(page);
+        await referCaseToLegalOfficerAdditionalInfoPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
+        await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
+        await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
+        await submitPage.checkPageLoads(
+          page,
+          caseNumber,
+          referralReason,
+          accessibilityTest,
+          subjectName,
+        );
+        await submitPage.checkAndFillInfo(page, referralReason);
+        await submitPage.continueOn(page);
+        await confirmPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
+        await confirmPage.continueOn(page);
         break;
-    }
-    if (caseNumber !== undefined) {
-      await commonHelpers.signOutAndGoToCase(
-        page,
-        user,
-        config.CaseAPIBaseURL,
-        caseNumber,
-      );
-      await commonHelpers.chooseEventFromDropdown(
-        page,
-        "Refer case to legal officer",
-      );
-      switch (errorMessaging) {
-        default:
-          await referCaseToLegalOfficerReasonPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await referCaseToLegalOfficerReasonPage.fillFields(
-            page,
-            referralReason,
-          );
-          await referCaseToLegalOfficerReasonPage.continueOn(page);
-          await referCaseToLegalOfficerAdditionalInfoPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await referCaseToLegalOfficerAdditionalInfoPage.fillFields(page);
-          await referCaseToLegalOfficerAdditionalInfoPage.continueOn(page);
-          await submitPage.checkPageLoads(
-            page,
-            caseNumber,
-            referralReason,
-            accessibilityTest,
-          );
-          await submitPage.checkAndFillInfo(page, referralReason);
-          await submitPage.continueOn(page);
-          await confirmPage.checkPageLoads(page, caseNumber, accessibilityTest);
-          await confirmPage.continueOn(page);
-          await historyTabPage.checkPageLoads(
-            page,
-            accessibilityTest,
-            caseNumber,
-            initialState,
-          );
-          await historyTabPage.checkReferral(page);
-          await caseReferralsTabPage.changeToCaseReferralsTab(page);
-          await caseReferralsTabPage.checkPageLoads(
-            page,
-            accessibilityTest,
-            caseNumber,
-            referralReason,
-          );
-          await caseReferralsTabPage.checkValidInfo(page, referralReason);
-          break;
-        case true:
-          await referCaseToLegalOfficerReasonPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-          );
-          await referCaseToLegalOfficerReasonPage.triggerErrorMessages(page);
-          break;
-      }
-    } else {
-      throw new Error("Case number is undefined.");
     }
   },
 };

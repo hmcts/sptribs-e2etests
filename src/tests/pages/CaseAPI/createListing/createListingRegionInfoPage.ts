@@ -4,7 +4,6 @@ import commonHelpers, {
   caseRegionCode,
 } from "../../../helpers/commonHelpers.ts";
 import createListingRegionInfoContent from "../../../fixtures/content/CaseAPI/createListing/createListingRegionInfo_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateListingRegionInfoPage = {
   region: string;
@@ -15,6 +14,7 @@ type CreateListingRegionInfoPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(
     page: Page,
@@ -34,6 +34,7 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-record-listing/caseworker-record-listingregionInfo`,
@@ -45,9 +46,7 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createListingRegionInfoContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingRegionInfoContent.caseReference + caseNumber,
       ),

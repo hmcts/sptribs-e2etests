@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import rule27_content from "../../../fixtures/content/CaseAPI/closeCase/rule27_content.ts";
@@ -13,6 +12,7 @@ type Rule27Page = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -27,6 +27,7 @@ const rule27Page: Rule27Page = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${rule27_content.pageTitle}")`,
@@ -36,9 +37,7 @@ const rule27Page: Rule27Page = {
         page.locator(`.govuk-caption-l:text-is("${rule27_content.pageHint}")`),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),

@@ -3,7 +3,6 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import allTabTitlesContent from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import casePartiesTabContent from "../../../fixtures/content/CaseAPI/caseTabs/casePartiesTab_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import respondentDetailsContent from "../../../fixtures/content/RespondentDetails_content.ts";
@@ -15,26 +14,29 @@ type CasePartiesTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCasePartiesTab(page: Page): Promise<void>;
   checkPageInfo(
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const casePartiesTabPage: CasePartiesTabPage = {
-  casePartiesTab: ".mat-tab-label",
+  casePartiesTab: `.mat-tab-label-content:text-is("Case Parties")`,
 
   async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator(".case-field").nth(1)).toHaveText(
         casePartiesTabContent.subHeading1,
       ),
@@ -82,18 +84,19 @@ const casePartiesTabPage: CasePartiesTabPage = {
   },
 
   async changeToCasePartiesTab(page: Page): Promise<void> {
-    await page.locator(this.casePartiesTab).nth(4).click();
+    await page.locator(this.casePartiesTab).click();
   },
 
   async checkPageInfo(
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-      ).toHaveText(subjectDetailsContent.name),
+      ).toHaveText(subjectName),
       expect(
         page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
       ).toHaveText(subjectContactDetailsContent.emailAddress),

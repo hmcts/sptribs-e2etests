@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingAdjournedReasons,
   hearingOutcome,
 } from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateSummaryHearingOutcomePage = {
   previous: string;
@@ -16,6 +15,7 @@ type CreateSummaryHearingOutcomePage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(
     page: Page,
@@ -36,6 +36,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
     caseNumber: string,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createSummaryHearingOutcomeContent.pageTitle}")`,
@@ -44,9 +45,7 @@ const createSummaryHearingOutcomePage: CreateSummaryHearingOutcomePage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createSummaryHearingOutcomeContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createSummaryHearingOutcomeContent.caseReference + caseNumber,
       ),

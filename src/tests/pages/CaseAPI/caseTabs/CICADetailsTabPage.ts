@@ -10,21 +10,23 @@ type CICADetailsTabPage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCICADetailsTab(page: Page): Promise<void>;
   checkValidInfo(page: Page): Promise<void>;
 };
 
 const cicaDetailsTabPage: CICADetailsTabPage = {
-  CICADetailsTab: ".mat-tab-label",
+  CICADetailsTab: `.mat-tab-label-content:text-is("CICA Details")`,
 
   async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, true),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, true, subjectName),
       expect(page.locator("h4")).toHaveText(CICADetailsTabContent.title),
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (CICADetailsTabContent as any)[
@@ -44,7 +46,7 @@ const cicaDetailsTabPage: CICADetailsTabPage = {
   },
 
   async changeToCICADetailsTab(page: Page): Promise<void> {
-    await page.locator(this.CICADetailsTab).nth(9).click();
+    await page.locator(this.CICADetailsTab).click();
   },
 
   async checkValidInfo(page: Page): Promise<void> {

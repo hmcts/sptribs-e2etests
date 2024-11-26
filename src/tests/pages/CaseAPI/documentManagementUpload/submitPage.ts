@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import submitContent from "../../../fixtures/content/CaseAPI/documentManagementUpload/submit_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import path from "path";
@@ -15,6 +14,7 @@ type SubmitPage = {
     caseNumber: string,
     multipleDocuments: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfo(page: Page, multipleDocuments: boolean): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -30,13 +30,14 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     multipleDocuments: boolean,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator("markdown > h3").first()).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,

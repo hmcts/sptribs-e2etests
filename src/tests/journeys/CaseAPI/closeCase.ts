@@ -1,9 +1,4 @@
 import { Page } from "@playwright/test";
-import config, { UserRole } from "../../config.ts";
-import hearingOptions from "./hearingOptions.ts";
-import commonHelpers, { allEvents } from "../../helpers/commonHelpers.ts";
-import buildCase from "./buildCase.ts";
-import events_content from "../../fixtures/content/CaseAPI/events_content.ts";
 import caseWarningPage from "../../pages/CaseAPI/closeCase/caseWarningPage.ts";
 import selectReasonPage, {
   CaseCloseReason,
@@ -22,74 +17,48 @@ import uploadDocumentsPage from "../../pages/CaseAPI/closeCase/uploadDocumentsPa
 import closeCaseNotifyPage from "../../pages/CaseAPI/closeCase/closeCaseNotifyPage.ts";
 import submitPage from "../../pages/CaseAPI/closeCase/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/closeCase/confirmPage.ts";
-import stateTabPage from "../../pages/CaseAPI/caseTabs/stateTabPage.ts";
-
-type initialState = "Case Management" | "Ready to list";
 
 type CloseCase = {
   closeCase(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
-    initialState: initialState,
     errorMessaging: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
-  ): Promise<string>;
+    caseNumber: string,
+    subjectName: string,
+    DSSSubmitted: boolean,
+  ): Promise<void>;
 };
 
 const closeCase: CloseCase = {
   async closeCase(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
-    initialState: initialState,
     errorMessaging: boolean,
     closeReason: CaseCloseReason,
     optionalText: boolean,
     rejectionReason: RejectionReason | null,
     strikeoutReason: StrikeoutReason | null,
-  ): Promise<string> {
-    let caseNumber: string = "";
-    switch (initialState) {
-      case "Ready to list":
-        caseNumber = await hearingOptions.hearingOptions(
-          page,
-          "caseWorker",
-          false,
-          true,
-          "1-London",
-          true,
-          false,
-          "Face to Face",
-          false,
-          false,
-        );
-        break;
-      default: // Defaults to Case management.
-        let previousEvents: allEvents[] = [];
-        let eventTimes: string[] = [];
-        caseNumber = await buildCase.buildCase(
-          page,
-          previousEvents,
-          eventTimes,
-          true,
-          "caseWorker",
-        );
-        break;
-    }
-    await commonHelpers.signOutAndGoToCase(
+    caseNumber: string,
+    subjectName: string,
+    DSSSubmitted: boolean,
+  ): Promise<void> {
+    await caseWarningPage.checkPageLoads(
       page,
-      user,
-      config.CaseAPIBaseURL,
       caseNumber,
+      accessibilityTest,
+      subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
-    await caseWarningPage.checkPageLoads(page, caseNumber, accessibilityTest);
     await caseWarningPage.continueOn(page);
-    await selectReasonPage.checkPageLoads(page, caseNumber, accessibilityTest);
+    await selectReasonPage.checkPageLoads(
+      page,
+      caseNumber,
+      accessibilityTest,
+      subjectName,
+    );
     switch (errorMessaging) {
       default:
         await selectReasonPage.continueOn(page, closeReason, optionalText);
@@ -102,6 +71,7 @@ const closeCase: CloseCase = {
               caseNumber,
               accessibilityTest,
               errorMessaging,
+              subjectName,
             );
             if (rejectionReason !== null) {
               await rejectionDetailsPage.continueOn(page, rejectionReason);
@@ -113,6 +83,7 @@ const closeCase: CloseCase = {
               caseNumber,
               accessibilityTest,
               errorMessaging,
+              subjectName,
             );
             if (strikeoutReason !== null) {
               await strikeoutDetailsPage.continueOn(page, strikeoutReason);
@@ -123,6 +94,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await concessionDetailsPage.continueOn(page);
             break;
@@ -131,6 +103,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await consentOrderPage.continueOn(page);
             break;
@@ -139,6 +112,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await rule27Page.continueOn(page);
             break;
@@ -147,6 +121,7 @@ const closeCase: CloseCase = {
               page,
               caseNumber,
               accessibilityTest,
+              subjectName,
             );
             await withdrawalDetailsPage.continueOn(page);
             break;
@@ -155,12 +130,15 @@ const closeCase: CloseCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await uploadDocumentsPage.continueOn(page);
         await closeCaseNotifyPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
+          DSSSubmitted,
         );
         await closeCaseNotifyPage.continueOn(page);
         await submitPage.checkPageLoads(
@@ -169,6 +147,8 @@ const closeCase: CloseCase = {
           accessibilityTest,
           closeReason,
           optionalText,
+          subjectName,
+          DSSSubmitted,
         );
         await submitPage.checkAllInfo(
           page,
@@ -176,12 +156,13 @@ const closeCase: CloseCase = {
           optionalText,
           rejectionReason,
           strikeoutReason,
+          DSSSubmitted,
         );
         await submitPage.continueOn(page);
-        await confirmPage.checkPageLoads(page, accessibilityTest);
+        await confirmPage.checkPageLoads(page, accessibilityTest, DSSSubmitted);
         await confirmPage.closeAndReturnToCase(page);
-        await stateTabPage.changeToStateTab(page);
-        await stateTabPage.checkStateTab(page, "Case closed");
+        await page.waitForSelector(`h2:text-is("History")`);
+        await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
         break;
       case true:
         await selectReasonPage.triggerErrorMessages(page);
@@ -189,12 +170,14 @@ const closeCase: CloseCase = {
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await withdrawalDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "caseRejected", false);
         await rejectionDetailsPage.checkPageLoads(
@@ -202,12 +185,14 @@ const closeCase: CloseCase = {
           caseNumber,
           accessibilityTest,
           errorMessaging,
+          subjectName,
         );
         await rejectionDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "caseStrikeOut", false);
         await strikeoutDetailsPage.checkPageLoads(
@@ -215,50 +200,64 @@ const closeCase: CloseCase = {
           caseNumber,
           accessibilityTest,
           errorMessaging,
+          subjectName,
         );
         await strikeoutDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "caseConcession", false);
         await concessionDetailsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await concessionDetailsPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "consentOrder", false);
         await consentOrderPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await consentOrderPage.triggerErrorMessages(page);
         await selectReasonPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await selectReasonPage.continueOn(page, "rule27", false);
-        await rule27Page.checkPageLoads(page, caseNumber, accessibilityTest);
+        await rule27Page.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
         await rule27Page.triggerErrorMessages(page);
         await uploadDocumentsPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
         );
         await uploadDocumentsPage.triggerErrorMessages(page);
         await closeCaseNotifyPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
+          subjectName,
+          DSSSubmitted,
         );
         await closeCaseNotifyPage.triggerErrorMessages(page);
         await closeCaseNotifyPage.continueOn(page);
@@ -268,10 +267,11 @@ const closeCase: CloseCase = {
           accessibilityTest,
           "rule27",
           false,
+          subjectName,
+          DSSSubmitted,
         );
         break;
     }
-    return caseNumber;
   },
 };
 

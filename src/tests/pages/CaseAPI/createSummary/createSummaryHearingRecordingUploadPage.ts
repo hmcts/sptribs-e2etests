@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import config from "../../../config.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
 
 type CreateSummaryHearingRecordingUploadPage = {
@@ -14,6 +13,7 @@ type CreateSummaryHearingRecordingUploadPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -30,6 +30,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingRecordingUploadPage`,
@@ -42,7 +43,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
           createSummaryHearingRecordingUploadContent.pageTitle,
         ),
         expect(page.locator("markdown > h3").nth(0)).toContainText(
-          caseSubjectDetailsObject_content.name,
+          `${subjectName}`,
         ),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createSummaryHearingRecordingUploadContent.caseReference + caseNumber,

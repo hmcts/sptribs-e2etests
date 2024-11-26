@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import uploadCaseDocumentsContent from "../../../fixtures/content/CaseAPI/documentManagementUpload/uploadCaseDocuments_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import config from "../../../config.ts";
 
 type UploadCaseDocumentsPage = {
@@ -15,8 +14,13 @@ type UploadCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
-  fillFields(page: Page, multipleDocuments: boolean): Promise<void>;
+  fillFields(
+    page: Page,
+    multipleDocuments: boolean,
+    errorMessaging: boolean,
+  ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
@@ -32,6 +36,7 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${uploadCaseDocumentsContent.pageTitle}")`,
@@ -40,9 +45,7 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         uploadCaseDocumentsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         uploadCaseDocumentsContent.caseReference + caseNumber,
       ),
@@ -82,8 +85,14 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
     }
   },
 
-  async fillFields(page: Page, multipleDocuments: boolean): Promise<void> {
-    await page.click(this.addNew);
+  async fillFields(
+    page: Page,
+    multipleDocuments: boolean,
+    errorMessaging: boolean,
+  ): Promise<void> {
+    if (!errorMessaging) {
+      await page.click(this.addNew);
+    }
     await commonHelpers.uploadFileController(
       page,
       "newCaseworkerCICDocumentUpload",

@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createSummarySelectHearingContent from "../../../fixtures/content/CaseAPI/createSummary/createSummarySelectHearing_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateSummarySelectHearingPage = {
   previous: string;
@@ -12,6 +11,7 @@ type CreateSummarySelectHearingPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<string | null>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -27,6 +27,7 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${createSummarySelectHearingContent.pageTitle}")`,
@@ -35,9 +36,7 @@ const createSummarySelectHearingPage: CreateSummarySelectHearingPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createSummarySelectHearingContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createSummarySelectHearingContent.caseReference + caseNumber,
       ),

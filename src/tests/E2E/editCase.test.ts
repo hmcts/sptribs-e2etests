@@ -1,64 +1,58 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import editCase from "../journeys/CaseAPI/editCase.ts";
-import config from "../config.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import createCase from "../journeys/CaseAPI/createCase.ts";
+import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../journeys/CaseAPI/buildCase.ts";
+import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
+import createListing from "../journeys/CaseAPI/createListing.ts";
+import createSummary from "../journeys/CaseAPI/createSummary.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Case-API Edit case tests. @CaseAPI", () => {
-  if (!config.skipDSSCreateTests) {
-    test("Caseworker - DSS Submitted - Assessment - Fatal Category, Email Contact @crossbrowserCaseAPI", async ({
-      page,
-    }) => {
-      await editCase.editCase(
-        page,
-        "caseWorker",
-        false,
-        "DSS Submitted",
-        "Assessment",
-        "Fatal",
-        true,
-        true,
-        "Email",
-        true,
-        "1996",
-        "Scotland",
-        true,
-        false,
-        true,
-        false,
-        false,
-      );
-    });
-  }
-
-  test("Caseworker - Submitted - Assessment - Medical Re-opening Category, Email Contact", async ({
+test.describe("Case-API Edit case tests. @CaseAPI @CaseAPI3", () => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(10 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+  test("Edit Case in State Case management - Assessment - Minor Category, Post Contact", async ({
     page,
   }) => {
-    await editCase.editCase(
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1300 = await createCase.createCase(
       page,
-      "caseWorker",
+      waUsers_content.userRoleAdmin,
       false,
-      "Submitted",
       "Assessment",
-      "Medical Re-opening",
+      "Other",
       true,
       true,
       "Email",
+      subjectName,
       true,
-      "2001",
-      "London",
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
       true,
       false,
       true,
-      false,
       false,
     );
-  });
-
-  test("Caseworker - Case management - Assessment - Minor Category, Post Contact", async ({
-    page,
-  }) => {
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1300, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
     await editCase.editCase(
       page,
-      "caseWorker",
       false,
       "Case Management",
       "Assessment",
@@ -74,15 +68,60 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
       false,
+      caseNumber1300,
+      subjectName,
     );
   });
 
-  test("Caseworker - Ready to list - Assessment - Paragraph 26 Category, Post Contact", async ({
+  test("Edit case in state Ready to list - Assessment - Paragraph 26 Category, Post Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1301 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1301, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber1301,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
     await editCase.editCase(
       page,
-      "caseWorker",
       false,
       "Ready to list",
       "Assessment",
@@ -98,15 +137,66 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
       false,
+      caseNumber1301,
+      subjectName,
     );
   });
 
-  test("Caseworker - Awaiting hearing - Assessment - Sexual Abuse Category, Email Contact", async ({
+  test("Edit case in State Awaiting hearing - Assessment - Sexual Abuse Category, Email Contact. @crossbrowserCaseAPI", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1302 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1302, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "1-London",
+      "Case management",
+      "Face to Face",
+      "Morning",
+      false,
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      false,
+      caseNumber1302,
+      subjectName,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
     await editCase.editCase(
       page,
-      "caseWorker",
       false,
       "Awaiting hearing",
       "Assessment",
@@ -122,15 +212,83 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
       false,
+      caseNumber1302,
+      subjectName,
     );
   });
 
-  test("Caseworker - Awaiting outcome - Assessment - Special Jurisdiction Category, Email Contact", async ({
+  test("Edit Case in state Awaiting outcome - Assessment - Special Jurisdiction Category, Email Contact", async ({
     page,
   }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1303 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1303, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "1-London",
+      "Case management",
+      "Face to Face",
+      "Morning",
+      false,
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      false,
+      caseNumber1303,
+      subjectName,
+      false,
+    );
+    await createSummary.createSummary(
+      page,
+      false,
+      "Case management",
+      "Face to Face",
+      "Morning",
+      false,
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      "East London Tribunal Hearing Centre",
+      "Allowed",
+      null,
+      true,
+      false,
+      false,
+      caseNumber1303,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
     await editCase.editCase(
       page,
-      "caseWorker",
       false,
       "Awaiting outcome",
       "Assessment",
@@ -146,150 +304,8 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
       true,
       false,
       false,
+      caseNumber1303,
+      subjectName,
     );
   });
-
-  test("Senior Judge - Assessment - Other Category, Post Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "seniorJudge",
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Post",
-      true,
-      "1996",
-      "Midlands",
-      true,
-      false,
-      true,
-      false,
-      false,
-    );
-  });
-
-  test("Senior Caseworker - Assessment - Other Category, Post Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "seniorCaseworker",
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Post",
-      true,
-      "1996",
-      "Midlands",
-      true,
-      true,
-      true,
-      true,
-      false,
-    );
-  });
-
-  test("Hearing centre admin - Eligibility - Other Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "hearingCentreAdmin",
-      false,
-      "Submitted",
-      "Eligibility",
-      "Other",
-      true,
-      true,
-      "Post",
-      true,
-      "1996",
-      "Midlands",
-      true,
-      true,
-      true,
-      true,
-      false,
-    );
-  });
-
-  test("Hearing Centre Team Lead - Assessment - Other Category, Email Contact", async ({
-    page,
-  }) => {
-    await editCase.editCase(
-      page,
-      "hearingCentreTeamLead",
-      false,
-      "Submitted",
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      true,
-      "1996",
-      "Midlands",
-      true,
-      true,
-      true,
-      true,
-      false,
-    );
-  });
-
-  if (!config.skipDSSCreateTests) {
-    test("Error messaging. @crossbrowserCaseAPI", async ({ page }) => {
-      await editCase.editCase(
-        page,
-        "caseWorker",
-        false,
-        "DSS Submitted",
-        "Assessment",
-        "Medical Re-opening",
-        true,
-        true,
-        "Email",
-        true,
-        "1996",
-        "Scotland",
-        true,
-        false,
-        true,
-        false,
-        true,
-      );
-    });
-  }
-});
-
-test("Accessibility test every page. @accessibilityCaseAPI", async ({
-  page,
-}) => {
-  await editCase.editCase(
-    page,
-    "caseWorker",
-    true,
-    "Submitted",
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    true,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    true,
-    false,
-  );
 });

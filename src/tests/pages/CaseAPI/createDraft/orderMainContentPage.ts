@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
@@ -14,6 +13,7 @@ type OrderMainContentPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     template: Template,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -29,6 +29,7 @@ const orderMainContentPage: OrderMainContentPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     template: Template,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${orderMainContent_content.pageTitle}")`,
@@ -38,9 +39,7 @@ const orderMainContentPage: OrderMainContentPage = {
         orderMainContent_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 import closeCaseNotifyPage_content from "../../../fixtures/content/CaseAPI/closeCase/closeCaseNotifyPage_content.ts";
@@ -10,6 +9,8 @@ type CloseCaseNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -20,6 +21,8 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
+    DSSSubmitted: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${closeCaseNotifyPage_content.pageTitle}")`,
@@ -32,9 +35,7 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
         closeCaseNotifyPage_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
+        page.locator(`markdown > h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
@@ -46,35 +47,75 @@ const closeCaseNotifyPage: CloseCaseNotifyPage = {
         ),
         1,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${closeCaseNotifyPage_content.textOnPage2}")`,
-        ),
-        4,
-      ),
-      ...Array.from({ length: 4 }, (_, index: number) => {
-        const textOnPage = (closeCaseNotifyPage_content as any)[
-          `textOnPage${index + 3}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.form-label:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
     ]);
+    if (!DSSSubmitted) {
+      await Promise.all([
+        commonHelpers.checkVisibleAndPresent(
+          page.locator(
+            `.form-label:text-is("${closeCaseNotifyPage_content.textOnPage2}")`,
+          ),
+          4,
+        ),
+        ...Array.from({ length: 4 }, (_, index: number) => {
+          const textOnPage = (closeCaseNotifyPage_content as any)[
+            `textOnPage${index + 3}`
+          ];
+          return commonHelpers.checkVisibleAndPresent(
+            page.locator(`.form-label:text-is("${textOnPage}")`),
+            1,
+          );
+        }),
+      ]);
+    }
+
     if (accessibilityTest) {
       await axeTest(page);
     }
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
-    await page
-      .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
-      .click();
-    await page.locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`).click();
-    await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
-    await page.getByRole("button", { name: "Continue" }).click();
+    if (
+      (await page
+        .locator(`#cicCaseNotifyPartySubject-SubjectCIC`)
+        .isChecked()) ||
+      (await page
+        .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+        .isChecked())
+    ) {
+      await page.getByRole("button", { name: "Continue" }).click();
+    } else {
+      if (
+        await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).isVisible()
+      ) {
+        await page.locator(`#cicCaseNotifyPartySubject-SubjectCIC`).click();
+      }
+      if (
+        await page
+          .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+          .isVisible()
+      ) {
+        await page
+          .locator(`#cicCaseNotifyPartyRepresentative-RepresentativeCIC`)
+          .click();
+      }
+      if (
+        await page
+          .locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`)
+          .isVisible()
+      ) {
+        await page
+          .locator(`#cicCaseNotifyPartyRespondent-RespondentCIC`)
+          .click();
+      }
+      if (
+        await page
+          .locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`)
+          .isVisible()
+      ) {
+        await page.locator(`#cicCaseNotifyPartyApplicant-ApplicantCIC`).click();
+      }
+      await page.getByRole("button", { name: "Continue" }).click();
+    }
   },
 
   async triggerErrorMessages(page: Page): Promise<void> {

@@ -1,13 +1,13 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import buildCase_content from "../../../fixtures/content/CaseAPI/buildCase/buildCase_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 
 type BuildCasePage = {
   checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -17,6 +17,7 @@ const builtCasePage: BuildCasePage = {
     page: Page,
     accessibilityTest: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${buildCase_content.pageTitle}")`,
@@ -25,9 +26,7 @@ const builtCasePage: BuildCasePage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         buildCase_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        subjectDetailsContent.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p")).toContainText(
         buildCase_content.caseReference + caseNumber,
       ),

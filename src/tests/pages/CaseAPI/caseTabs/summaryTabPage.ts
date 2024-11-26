@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import createEditStaySubmit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
@@ -18,6 +17,7 @@ type SummaryTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToSummaryTab(page: Page): Promise<void>;
   checkPageInfo(
@@ -25,33 +25,33 @@ type SummaryTabPage = {
     caseNumber: string,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkStayDetails(
     page: Page,
     stayReason: keyof typeof createEditStaySubmit_content,
     optionalText: boolean,
+    state: string,
   ): Promise<void>;
   checkRemoveStayDetails(
     page: Page,
     Remove: keyof typeof removeStaySubmit_content,
     optionalText: boolean,
+    state: string,
   ): Promise<void>;
 };
 
 const summaryTabPage: SummaryTabPage = {
-  summaryTab: ".mat-tab-label",
+  summaryTab: `.mat-tab-label-content:text-is("Summary")`,
 
   async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
-      expect(page.locator("markdown[class='markdown'] h4")).toHaveText(
-        summaryTabContent.caseState,
-      ),
       expect(page.locator("dl[id='case-details'] h3")).toHaveText(
         summaryTabContent.subHeading1,
       ),
@@ -64,7 +64,7 @@ const summaryTabPage: SummaryTabPage = {
     ]);
     if (representationPresent) {
       await commonHelpers.checkVisibleAndPresent(
-        page.locator(`h3:text-is("${summaryTabContent.subHeading2}")`),
+        page.locator(`h3:has-text("${summaryTabContent.subHeading2}")`),
         1,
       );
       await Promise.all([
@@ -85,7 +85,7 @@ const summaryTabPage: SummaryTabPage = {
   },
 
   async changeToSummaryTab(page: Page): Promise<void> {
-    await page.locator(this.summaryTab).nth(1).click();
+    await page.locator(this.summaryTab).click();
   },
 
   async checkPageInfo(
@@ -93,11 +93,12 @@ const summaryTabPage: SummaryTabPage = {
     caseNumber: string,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-      ).toHaveText(subjectDetailsContent.name),
+      ).toHaveText(subjectName),
       expect(
         page.locator("ccd-read-date-field[class='ng-star-inserted']"),
       ).toHaveText(await commonHelpers.convertDate(true)),
@@ -139,52 +140,63 @@ const summaryTabPage: SummaryTabPage = {
     page: Page,
     stayReason: keyof typeof createEditStaySubmit_content,
     optionalText: boolean,
+    state: string,
   ): Promise<void> {
     const stayReasonText = createEditStaySubmit_content[stayReason];
+    await page.waitForSelector(
+      `.text-16:has-text("${summaryTab_content.textOnPage10}")`,
+    );
+    await expect(page.locator("markdown.markdown > h4")).toContainText(
+      summaryTab_content.caseState + state,
+    );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage10}")`),
+        page.locator(
+          `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage10}")`,
+        ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage11}")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${stayReasonText}")`),
+        page.locator(`.text-16:has-text("${summaryTab_content.textOnPage11}")`),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.text-16:text-is("${addStay_content.day} ${await commonHelpers.shortMonths(parseInt(addStay_content.month))} ${addStay_content.year}")`,
+          `ccd-read-fixed-radio-list-field > span.text-16:has-text("${stayReasonText}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `ccd-read-date-field > span.text-16:has-text("${addStay_content.day} ${await commonHelpers.shortMonths(parseInt(addStay_content.month))} ${addStay_content.year}")`,
         ),
         1,
       ),
     ]);
     if (stayReason === "Other") {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${summaryTab_content.textOnPage13}")`,
-          ),
-          1,
+      await expect(
+        page.locator(
+          `th#case-viewer-field-label > .text-16:has-text("${summaryTab_content.textOnPage13}")`,
         ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${addStay_content.otherText}")`),
-          1,
+      ).toBeVisible();
+      await expect(
+        page.locator(
+          `ccd-read-text-field > span:has-text("${addStay_content.otherText}")`,
         ),
-      ]);
+      ).toBeVisible();
     }
     if (optionalText) {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `.text-16:text-is("${summaryTab_content.textOnPage12}")`,
+            `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage12}")`,
           ),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${addStay_content.optionalText}")`),
+          page.locator(
+            `ccd-read-text-area-field > span:has-text("${addStay_content.optionalText}")`,
+          ),
           1,
         ),
       ]);
@@ -195,45 +207,50 @@ const summaryTabPage: SummaryTabPage = {
     page: Page,
     removeReason: keyof typeof removeStaySubmit_content,
     optionalText: boolean,
+    state: string,
   ): Promise<void> {
-    const removeReasonText = removeStaySubmit_content[removeReason];
-    await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${summaryTab_content.textOnPage14}")`),
-        1,
+    await page.waitForSelector(
+      `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
+    );
+    await expect(page.locator("markdown.markdown > h4")).toContainText(
+      summaryTab_content.caseState + state,
+    );
+    await expect(
+      page.locator(
+        `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("${removeReasonText}")`),
-        1,
-      ),
-    ]);
+    ).toBeVisible();
+
     if (removeReason === "Other") {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `.text-16:text-is("${summaryTab_content.textOnPage15}")`,
-          ),
-          1,
+      await expect(
+        page.locator(
+          `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
         ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${removeStay_content.otherText}")`),
-          1,
+      ).toBeVisible();
+      await expect(
+        page
+          .locator("#case-viewer-field-read--removeStayStayRemoveReason")
+          .getByText("Other"),
+      ).toBeVisible();
+
+      await expect(
+        page.locator(
+          `ccd-read-text-field > span:has-text("${removeStay_content.otherText}")`,
         ),
-      ]);
+      ).toBeVisible();
     }
+
     if (optionalText) {
-      await Promise.all([
-        commonHelpers.checkVisibleAndPresent(
-          page
-            .locator(`.text-16:text-is("${summaryTab_content.textOnPage16}")`)
-            .nth(1),
-          1,
+      await expect(
+        page
+          .getByRole("cell", { name: "Provide additional details" })
+          .locator("div"),
+      ).toBeVisible();
+      await expect(
+        page.locator(
+          `ccd-read-text-area-field > span:has-text("${removeStay_content.optionalText}")`,
         ),
-        commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${removeStay_content.optionalText}")`),
-          1,
-        ),
-      ]);
+      ).toBeVisible();
     }
   },
 };

@@ -1,13 +1,91 @@
 import { test } from "@playwright/test";
-import editListing from "../journeys/CaseAPI/editListing.ts";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import editListing from "../journeys/CaseAPI/editListing";
+import commonHelpers from "../helpers/commonHelpers";
+import createCase from "../journeys/CaseAPI/createCase";
+import buildCase from "../journeys/CaseAPI/buildCase";
+import events_content from "../fixtures/content/CaseAPI/events_content";
+import createListing from "../journeys/CaseAPI/createListing";
+import hearingOptions from "../journeys/CaseAPI/hearingOptions";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Edit hearing listing tests @CaseAPI", (): void => {
-  test("Edit hearing listing as a caseworker. @crossbrowserCaseAPI", async ({
+test.describe("Edit hearing listing tests @CaseAPI @CaseAPI3", (): void => {
+  test("Check for redundant test data @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
+    test.setTimeout(10 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
+  });
+
+  test("Edit hearing listing, 1-London, Casemanagement, F2F, Morning, East.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1600 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1600, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1600,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1600,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "caseWorker",
       false,
       true,
       "1-London",
@@ -17,15 +95,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       false,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
+      caseNumber1600,
+      subjectName,
     );
   });
 
-  test("Edit hearing listing as a senior caseworker.", async ({
+  test("Edit hearing listing, 11-Scotland, Final, Hybrid, Morning, Aberdeen.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1601 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1601, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1601,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1601,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "seniorCaseworker",
       false,
       true,
       "11-Scotland",
@@ -35,15 +176,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       true,
       "Aberdeen Tribunal Hearing Centre-AB1, 48 Huntly Street, Aberdeen, AB10 1SH",
       false,
+      caseNumber1601,
+      subjectName,
     );
   });
 
-  test("Edit hearing listing as a hearing centre admin. @crossbrowserCaseAPI", async ({
+  test("Edit hearing listing, 2-Midlands, interlocutory, Video, Afternoon, Birmingham.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1602 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1602, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1602,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1602,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "hearingCentreAdmin",
       false,
       true,
       "2-Midlands",
@@ -53,15 +257,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       false,
       "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
       false,
+      caseNumber1602,
+      subjectName,
     );
   });
 
-  test("Edit hearing listing as a hearing centre team leader.", async ({
+  test("Edit hearing listing, 3-North East, Case Management, Telephone, All Day, Sheffield.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1603 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1603, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1603,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1603,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "hearingCentreTeamLead",
       false,
       true,
       "3-North East",
@@ -71,15 +338,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       false,
       "Sheffield Magistrates Court-Castle Street",
       false,
+      caseNumber1603,
+      subjectName,
     );
   });
 
-  test("Edit hearing listing as a senior judge.", async ({
+  test("Edit hearing listing, 5-South East, Interlocutory, Video, Afternoon, Brighton.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1604 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1604, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1604,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1604,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "seniorJudge",
       false,
       true,
       "5-South East",
@@ -89,15 +419,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       true,
       "Brighton Tribunal Hearing Centre-City Gate House, 185 Dyke Road",
       false,
+      caseNumber1604,
+      subjectName,
     );
   });
 
-  test("Edit hearing listing with no region and venue not listed.", async ({
+  test("Edit hearing listing, No venue, CaseManagement, Face to face, Morning, Venue not listed.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1605 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1605, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1605,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1605,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "caseWorker",
       false,
       false,
       null,
@@ -107,15 +500,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       false,
       null,
       false,
+      caseNumber1605,
+      subjectName,
     );
   });
 
-  test("Edit hearing listing with a region but venue not listed.", async ({
+  test("Edit hearing listing, 2-Midlands, CaseManagement, Face to face, Morning, Venue not listed.", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1606 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1606, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1606,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1606,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "caseWorker",
       false,
       true,
       "2-Midlands",
@@ -125,15 +581,78 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       false,
       null,
       false,
+      caseNumber1606,
+      subjectName,
     );
   });
 
-  test("Error messaging. @crossbrowserCaseAPI", async ({
+  test("Error Messaging. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1607 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1607, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      true,
+      "1-London",
+      true,
+      false,
+      "Hybrid",
+      false,
+      true,
+      caseNumber1607,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "2-Midlands",
+      "Final",
+      "Paper",
+      "Morning",
+      false,
+      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+      false,
+      caseNumber1607,
+      subjectName,
+      false,
+    );
     await editListing.editListing(
       page,
-      "caseWorker",
       false,
       true,
       "1-London",
@@ -143,16 +662,76 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
       false,
       "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       true,
+      caseNumber1607,
+      subjectName,
     );
   });
 });
 
-test("Accessibility test - edit listing @accessibilityCaseAPI", async ({
+test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
   page,
 }): Promise<void> => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber1608 = await createCase.createCase(
+    page,
+    waUsers_content.userRoleAdmin,
+    false,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    subjectName,
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  await buildCase.buildCase(page, false, caseNumber1608, subjectName);
+  await task.removeTask(
+    page,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
+  await hearingOptions.hearingOptions(
+    page,
+    false,
+    true,
+    "1-London",
+    true,
+    false,
+    "Hybrid",
+    false,
+    true,
+    caseNumber1608,
+    subjectName,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Hearings: Create listing");
+  await createListing.createListing(
+    page,
+    false,
+    true,
+    "2-Midlands",
+    "Final",
+    "Paper",
+    "Morning",
+    false,
+    "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
+    false,
+    caseNumber1608,
+    subjectName,
+    false,
+  );
   await editListing.editListing(
     page,
-    "caseWorker",
     true,
     true,
     "1-London",
@@ -162,5 +741,7 @@ test("Accessibility test - edit listing @accessibilityCaseAPI", async ({
     false,
     "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
     false,
+    caseNumber1608,
+    subjectName,
   );
 });

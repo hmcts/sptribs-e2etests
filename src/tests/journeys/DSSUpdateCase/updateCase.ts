@@ -6,9 +6,6 @@ import subjectDetailsPage from "../../pages/DSSUpdateCase/subjectDetailsPage.ts"
 import uploadDocumentsPage from "../../pages/DSSUpdateCase/uploadDocumentsPage.ts";
 import checkYourAnswersPage from "../../pages/DSSUpdateCase/checkYourAnswersPage.ts";
 import confirmPage from "../../pages/DSSUpdateCase/confirmPage.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
-import config from "../../config.ts";
-import path from "path";
 
 type UpdateCaseJourney = {
   updateCase(
@@ -21,14 +18,9 @@ type UpdateCaseJourney = {
     multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void>;
   handleBackButtonJourney(page: Page): Promise<void>;
-  verifyDetails(
-    page: Page,
-    caseNumber: string,
-    multipleDocuments: boolean,
-    uploadDocument: boolean,
-  ): Promise<void>;
 };
 
 const updateCaseJourney: UpdateCaseJourney = {
@@ -42,6 +34,7 @@ const updateCaseJourney: UpdateCaseJourney = {
     multipleDocuments: boolean,
     backButtonJourney: boolean,
     errorMessaging: boolean,
+    subjectName: string,
   ): Promise<void> {
     switch (errorMessaging) {
       default:
@@ -52,7 +45,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
-        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.fillInFields(page, subjectName);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadDocumentsPage.fillInFields(page, additionalInformation);
@@ -84,20 +77,6 @@ const updateCaseJourney: UpdateCaseJourney = {
         await checkYourAnswersPage.continueOn(page);
         await confirmPage.checkPageLoads(page, cy, accessibilityTest);
         await confirmPage.returnCaseNumber(page, caseNumber);
-        const caseNumberFinal = await confirmPage.returnCaseNumber(
-          page,
-          caseNumber,
-        );
-        if (typeof caseNumberFinal === "string") {
-          await this.verifyDetails(
-            page,
-            caseNumberFinal,
-            multipleDocuments,
-            uploadDocument,
-          );
-        } else {
-          console.error("caseNumber is void, unable to proceed.");
-        }
         break;
       case true:
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
@@ -109,7 +88,7 @@ const updateCaseJourney: UpdateCaseJourney = {
         await caseFinderPage.continueOn(page);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.triggerErrorMessages(page, cy);
-        await subjectDetailsPage.fillInFields(page);
+        await subjectDetailsPage.fillInFields(page, subjectName);
         await subjectDetailsPage.continueOn(page);
         await uploadDocumentsPage.triggerErrorMessages(page, cy);
         await uploadDocumentsPage.checkPageLoads(page, cy, accessibilityTest);
@@ -128,86 +107,6 @@ const updateCaseJourney: UpdateCaseJourney = {
     await checkYourAnswersPage.pressBackButton(page);
     await uploadDocumentsPage.pressBackButton(page);
     await subjectDetailsPage.pressBackButton(page);
-  },
-
-  async verifyDetails(
-    page: Page,
-    caseNumber: string,
-    multipleDocuments: boolean,
-    uploadDocument: boolean,
-  ): Promise<void> {
-    const navigationPage = await commonHelpers.generateUrl(
-      config.CaseAPIBaseURL,
-      caseNumber,
-    );
-    await page.goto(navigationPage);
-    await commonHelpers.checkVisibleAndPresent(
-      page.locator(`.text-16:text-is("DSS Update Case Submission")`),
-      2,
-    );
-    if (uploadDocument) {
-      await page.locator(`.mat-tab-label:has-text("Case Documents")`).click();
-      if (!multipleDocuments) {
-        await Promise.all([
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(`.text-16:text-is("DSS Other information documents")`),
-            2,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(`span:text-is("Lorem ipsum relevance")`),
-            2,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testWordFile)}")`,
-            ),
-            2,
-          ),
-        ]);
-      } else {
-        await Promise.all([
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(`.text-16:text-is("DSS Other information documents")`),
-            11,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(`span:text-is("Lorem ipsum relevance")`),
-            11,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testWordFile)}")`,
-            ),
-            2,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testWordFile)}")`,
-            ),
-            2,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testPdfFile)}")`,
-            ),
-            5,
-          ),
-          commonHelpers.checkVisibleAndPresent(
-            page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testFile)}")`,
-            ),
-            6,
-          ),
-        ]);
-      }
-    }
-    await page.locator(`.mat-tab-label:has-text("Messages")`).click();
-    if (uploadDocument) {
-      await commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("Lorem ipsum additional information")`),
-        2,
-      );
-    }
   },
 };
 

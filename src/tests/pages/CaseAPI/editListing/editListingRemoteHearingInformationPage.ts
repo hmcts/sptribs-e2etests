@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingRemoteHearingInformation_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type EditListingRemoteHearingInformationPage = {
   videoLink: string;
@@ -14,6 +13,7 @@ type EditListingRemoteHearingInformationPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectname: string,
   ): Promise<void>;
   checkFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -31,6 +31,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingremoteHearingInformation`,
@@ -42,9 +43,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
         expect(page.locator(".govuk-heading-l")).toHaveText(
           editListingRemoteHearingInformationContent.pageTitle,
         ),
-        expect(page.locator("markdown > h3")).toContainText(
-          caseSubjectDetailsObject_content.name,
-        ),
+        expect(page.locator("markdown > h3")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           editListingRemoteHearingInformationContent.caseReference + caseNumber,
         ),

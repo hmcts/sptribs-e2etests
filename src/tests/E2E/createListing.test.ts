@@ -1,165 +1,59 @@
 import { test } from "@playwright/test";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import createCase from "../journeys/CaseAPI/createCase.ts";
+import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import buildCase from "../journeys/CaseAPI/buildCase.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("Create hearing listing tests @CaseAPI", (): void => {
-  test("Create hearing listing as a caseworker in the 'Case management' state. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      true,
-      "1-London",
-      "Case management",
-      "Face to Face",
-      "Morning",
-      false,
-      false,
-      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a senior caseworker in Scotland for a Final hearing.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "seniorCaseworker",
-      false,
-      true,
-      "11-Scotland",
-      "Final",
-      "Hybrid",
-      "Morning",
-      true,
-      false,
-      "Aberdeen Tribunal Hearing Centre-AB1, 48 Huntly Street, Aberdeen, AB10 1SH",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a hearing centre admin in the Midlands for an Interlocutory hearing.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "hearingCentreAdmin",
-      false,
-      true,
-      "2-Midlands",
-      "Interlocutory",
-      "Video",
-      "Afternoon",
-      false,
-      false,
-      "Birmingham Civil And Family Justice Centre-Priory Courts, 33 Bull Street",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a hearing centre team leader in the North East for a Case management hearing.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "hearingCentreTeamLead",
-      false,
-      true,
-      "3-North East",
-      "Case management",
-      "Telephone",
-      "All day",
-      false,
-      false,
-      "Sheffield Magistrates Court-Castle Street",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a caseworker in the North West for a Final hearing with Paper format.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      true,
-      "4-North West",
-      "Final",
-      "Paper",
-      "Morning",
-      false,
-      false,
-      "Liverpool Civil And Family Court-Vernon Street, City Square",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a senior judge in the South East for an Interlocutory hearing across multiple days.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "seniorJudge",
-      false,
-      true,
-      "5-South East",
-      "Interlocutory",
-      "Video",
-      "Afternoon",
-      true,
-      false,
-      "Brighton Tribunal Hearing Centre-City Gate House, 185 Dyke Road",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a hearing centre admin in the South West for a Case management hearing.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "hearingCentreAdmin",
-      false,
-      true,
-      "6-South West",
-      "Case management",
-      "Hybrid",
-      "All day",
-      false,
-      false,
-      "Bristol Magistrates Court-Marlborough Street, Bristol, BS1 3NU",
-      false,
-    );
-  });
-
-  test("Create hearing listing as a hearing centre team lead in Wales for a Final hearing with Telephone format.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "hearingCentreTeamLead",
-      false,
-      true,
-      "7-Wales",
-      "Final",
-      "Telephone",
-      "Morning",
-      false,
-      false,
-      "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
-      false,
-    );
+test.describe("Create hearing listing tests @CaseAPI @CaseAPI2", (): void => {
+  test("Check for redundant test data", async ({ page }) => {
+    test.setTimeout(10 * 60 * 1000);
+    await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
   test("Create hearing listing in the 'Ready to list' state. @crossbrowserCaseAPI", async ({
     page,
   }): Promise<void> => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber1000 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber1000, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
     await createListing.createListing(
       page,
-      "caseWorker",
       false,
       true,
       "1-London",
@@ -167,104 +61,11 @@ test.describe("Create hearing listing tests @CaseAPI", (): void => {
       "Face to Face",
       "Morning",
       false,
-      true,
       "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
       false,
-    );
-  });
-
-  test("Create hearing listing with the hearing across multiple days.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      true,
-      "1-London",
-      "Case management",
-      "Face to Face",
-      "Morning",
-      true,
-      false,
-      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      caseNumber1000,
+      subjectName,
       false,
     );
   });
-
-  test("Create hearing listing with no region and venue not listed.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      false,
-      null,
-      "Case management",
-      "Face to Face",
-      "Morning",
-      false,
-      false,
-      null,
-      false,
-    );
-  });
-
-  test("Create hearing listing with a region but venue not listed.", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      true,
-      "2-Midlands",
-      "Case management",
-      "Face to Face",
-      "Morning",
-      false,
-      false,
-      null,
-      false,
-    );
-  });
-
-  test("Error messaging. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
-    await createListing.createListing(
-      page,
-      "caseWorker",
-      false,
-      true,
-      "1-London",
-      "Case management",
-      "Face to Face",
-      "Morning",
-      false,
-      false,
-      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
-      true,
-    );
-  });
-});
-
-test("Accessibility test - create listing @accessibilityCaseAPI", async ({
-  page,
-}): Promise<void> => {
-  await createListing.createListing(
-    page,
-    "caseWorker",
-    true,
-    true,
-    "1-London",
-    "Case management",
-    "Face to Face",
-    "Morning",
-    false,
-    false,
-    "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
-    false,
-  );
 });

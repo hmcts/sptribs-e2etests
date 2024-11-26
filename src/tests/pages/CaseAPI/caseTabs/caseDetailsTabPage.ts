@@ -2,7 +2,6 @@ import { expect, Page } from "@playwright/test";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseDetailsTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseDetailsTab_content.ts";
-import subjectDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 
@@ -13,26 +12,29 @@ type CaseDetailsTabPage = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
   changeToCaseDetailsTab(page: Page): Promise<void>;
   checkPageInfo(
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const caseDetailsTabPage: CaseDetailsTabPage = {
-  caseDetailsTab: ".mat-tab-label",
+  caseDetailsTab: `.mat-tab-label-content:text-is("Case Details")`,
 
   async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
     representationPresent: boolean,
     caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
-      commonHelpers.checkAllCaseTabs(page, caseNumber, false),
+      commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName),
       expect(page.locator("dl[id='case-details'] h3")).toHaveText(
         caseDetailsTabContent.pageTitle,
       ),
@@ -72,18 +74,19 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
   },
 
   async changeToCaseDetailsTab(page: Page): Promise<void> {
-    await page.locator(this.caseDetailsTab).nth(3).click();
+    await page.locator(this.caseDetailsTab).click();
   },
 
   async checkPageInfo(
     page: Page,
     representationPresent: boolean,
     representationQualified: boolean,
+    subjectName: string,
   ): Promise<void> {
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
-      ).toHaveText(subjectDetailsContent.name),
+      ).toHaveText(subjectName),
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseDateOfBirth']"),
       ).toHaveText(await commonHelpers.convertDate(true)),

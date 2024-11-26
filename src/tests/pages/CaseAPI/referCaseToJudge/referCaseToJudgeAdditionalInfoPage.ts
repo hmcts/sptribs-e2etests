@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import referCaseToJudgeAdditionalInfoContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/referCaseToJudgeAdditionalInfo_content.ts";
 
 type ReferCaseToJudgeAdditionalInfoPage = {
@@ -12,6 +11,7 @@ type ReferCaseToJudgeAdditionalInfoPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillFields(page: Page): Promise<void>;
   continueOn(page: Page): Promise<void>;
@@ -26,6 +26,7 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-judge/refer-to-judgereferToJudgeAdditionalInfo`,
@@ -34,9 +35,7 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         referCaseToJudgeAdditionalInfoContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         referCaseToJudgeAdditionalInfoContent.caseReference + caseNumber,
       ),

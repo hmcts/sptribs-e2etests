@@ -62,24 +62,38 @@ def secrets = [
                 secret('github-branch-secret', 'GITHUB_TOKEN'),
                 secret('idam-ui-secret', 'IDAM_SECRET'),
                 secret('idam-systemupdate-password', 'TEST_PASSWORD'),
-                secret('caseworker-user', 'CASEWORKER_USERNAME'),
-                secret('caseworker-password', 'CASEWORKER_PASSWORD'),
-                secret('seniorCaseworker-user', 'SENIOR_CASEWORKER_USERNAME'),
-                secret('seniorCaseworker-password', 'SENIOR_CASEWORKER_PASSWORD'),
-                secret('hearingCentreAdmin-user', 'HEARING_CENTRE_ADMIN_USERNAME'),
-                secret('hearingCentreAdmin-password', 'HEARING_CENTRE_ADMIN_PASSWORD'),
-                secret('hearingCentreTeamLead-user', 'HEARING_CENTRE_TEAM_LEAD_USERNAME'),
-                secret('hearingCentreTeamLead-password', 'HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
-                secret('judge-user', 'JUDGE_USERNAME'),
-                secret('judge-password', 'JUDGE_PASSWORD'),
-                secret('seniorJudge-user', 'SENIOR_JUDGE_USERNAME'),
-                secret('seniorJudge-password', 'SENIOR_JUDGE_PASSWORD'),
                 secret('respondent-user', 'RESPONDENT_USERNAME'),
                 secret('respondent-password', 'RESPONDENT_PASSWORD'),
                 secret('citizen-user', 'CITIZEN_USERNAME'),
                 secret('citizen-password', 'CITIZEN_PASSWORD'),
                 secret('superUser-user', 'SUPER_USER_USERNAME'),
                 secret('superUser-password', 'SUPER_USER_PASSWORD'),
+                secret('demoCitizen-user', 'DEMO_CITIZEN_USERNAME'),
+                secret('demoCitizen-password', 'DEMO_CITIZEN_PASSWORD'),
+                secret('wa-caseworker-username', 'WA_CASEWORKER_USERNAME'),
+                secret('wa-caseworker-password', 'WA_CASEWORKER_PASSWORD'),
+                secret('wa-seniorCaseworker-username', 'WA_SENIOR_CASEWORKER_USERNAME'),
+                secret('wa-seniorCaseworker-password', 'WA_SENIOR_CASEWORKER_PASSWORD'),
+                secret('wa-hearingCentreAdmin-username', 'WA_HEARING_CENTRE_ADMIN_USERNAME'),
+                secret('wa-hearingCentreAdmin-password', 'WA_HEARING_CENTRE_ADMIN_PASSWORD'),
+                secret('wa-hearingCentreTeamLead-username', 'WA_HEARING_CENTRE_TEAM_LEAD_USERNAME'),
+                secret('wa-hearingCentreTeamLead-password', 'WA_HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
+                secret('wa-regionalHearingCentreAdmin-username', 'WA_REGIONAL_HEARING_CENTRE_ADMIN_USERNAME'),
+                secret('wa-regionalHearingCentreAdmin-password', 'WA_REGIONAL_HEARING_CENTRE_ADMIN_PASSWORD'),
+                secret('wa-regionalHearingCentreTeamLead-username', 'WA_REGIONAL_HEARING_CENTRE_TEAM_LEAD_USERNAME'),
+                secret('wa-regionalHearingCentreTeamLead-password', 'WA_REGIONAL_HEARING_CENTRE_TEAM_LEAD_PASSWORD'),
+                secret('wa-ctscAdmin-username', 'WA_CTSC_ADMIN_USERNAME'),
+                secret('wa-ctscAdmin-password', 'WA_CTSC_ADMIN_PASSWORD'),
+                secret('wa-ctscTeamLead-username', 'WA_CTSC_TEAM_LEAD_USERNAME'),
+                secret('wa-ctscTeamLead-password', 'WA_CTSC_TEAM_LEAD_PASSWORD'),
+                secret('wa-respondent-username', 'WA_RESPONDENT_USERNAME'),
+                secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD'),
+                secret('wa-presidentOfTribunal-username', 'WA_PRESIDENT_OF_TRIBUNAL_USERNAME'),
+                secret('wa-presidentOfTribunal-password', 'WA_PRESIDENT_OF_TRIBUNAL_PASSWORD'),
+                secret('wa-tribunalJudgeSalaried-username', 'WA_TRIBUNAL_JUDGE_SALARIED_USERNAME'),
+                secret('wa-tribunalJudgeSalaried-password', 'WA_TRIBUNAL_JUDGE_SALARIED_PASSWORD'),
+                secret('wa-tribunalJudgeFeePaid-username', 'WA_TRIBUNAL_JUDGE_FEE_PAID_USERNAME'),
+                secret('wa-tribunalJudgeFeePaid-password', 'WA_TRIBUNAL_JUDGE_FEE_PAID_PASSWORD'),
         ]
 ]
 
@@ -100,6 +114,15 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
+
+    stage('Global data clean up') {
+      try {
+        yarnBuilder.yarn('test:dataCleanUp')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      }
+    }
+
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
         try {
@@ -241,9 +264,9 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if (!params.skipCaseAPITests) {
-      stage('Case-API Application E2E tests - Chrome') {
+      stage('Case-API Application E2E tests - Chrome 1') {
         try {
-          yarnBuilder.yarn('test:ChromeCaseAPI')
+          yarnBuilder.yarn('test:ChromeCaseAPI1')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -253,7 +276,123 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'Case-API Application Chrome E2E Test Report'
+                  reportName: 'Case-API Application Chrome E2E Test Report 1'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Case-API Application E2E tests - Chrome 2') {
+        try {
+          yarnBuilder.yarn('test:ChromeCaseAPI2')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Chrome E2E Test Report 2'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Case-API Application E2E tests - Chrome 3') {
+        try {
+          yarnBuilder.yarn('test:ChromeCaseAPI3')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Chrome E2E Test Report 3'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Global data clean up') {
+        try {
+          yarnBuilder.yarn('test:dataCleanUp')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        }
+      }
+      stage('Case-API Application E2E tests - Chrome 4') {
+        try {
+          yarnBuilder.yarn('test:ChromeCaseAPI4')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Chrome E2E Test Report 4'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Case-API Application E2E tests - Chrome 5') {
+        try {
+          yarnBuilder.yarn('test:ChromeCaseAPI5')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Chrome E2E Test Report 5'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Case-API Application E2E tests - Chrome 6') {
+        try {
+          yarnBuilder.yarn('test:ChromeCaseAPI6')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Chrome E2E Test Report 6'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
+        }
+      }
+      stage('Global data clean up') {
+        try {
+          yarnBuilder.yarn('test:dataCleanUp')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        }
+      }
+      stage('Case-API Application E2E tests - Chrome 7') {
+        try {
+          yarnBuilder.yarn('test:ChromeCaseAPI7')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Case-API Application Chrome E2E Test Report 7'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
@@ -275,6 +414,7 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
+
 //      stage('Case-API Application E2E tests - Webkit') {
 //        try {
 //          yarnBuilder.yarn('test:WebkitCaseAPI')
@@ -293,6 +433,7 @@ withNightlyPipeline(type, product, component, 600) {
 //        }
 //      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
 //        and then these will be turned back on.
+
       stage('Case-API Application accessibility tests') {
         try {
           yarnBuilder.yarn('test:AccessibilityCaseAPI')
@@ -309,6 +450,14 @@ withNightlyPipeline(type, product, component, 600) {
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
+      }
+    }
+
+    stage('Global data clean up') {
+      try {
+        yarnBuilder.yarn('test:dataCleanUp')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
   }

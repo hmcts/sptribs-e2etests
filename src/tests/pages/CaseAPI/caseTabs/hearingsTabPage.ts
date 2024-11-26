@@ -22,7 +22,6 @@ import createListingListingDetailsContent from "../../../fixtures/content/CaseAP
 import createListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingRemoteHearingInformation_content.ts";
 import createListingOtherInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingOtherInformation_content.ts";
 import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
 import path from "path";
@@ -83,6 +82,7 @@ type HearingsTabPage = {
     panel: string[],
     fullPanelHearing: boolean,
     editJourney: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkValidInfoCancelHearing(
     page: Page,
@@ -105,7 +105,7 @@ type HearingsTabPage = {
 };
 
 const hearingTabPage: HearingsTabPage = {
-  hearingsTab: ".mat-tab-label-content",
+  hearingsTab: `.mat-tab-label-content:text-is("Hearings")`,
   listingTable:
     "table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ",
   hearingAttendees: [
@@ -144,19 +144,13 @@ const hearingTabPage: HearingsTabPage = {
     editListing: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await page.waitForSelector(
+      `div.case-viewer-label:text-is("${hearingsTab_content.title}")`,
+    );
+    await page.waitForSelector(
+      `span.text-16:text-is("${hearingsTab_content.subtitle2}")`,
+    );
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `div.case-viewer-label:text-is("${hearingsTab_content.title}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `span.text-16:text-is("${hearingsTab_content.subtitle2}")`,
-        ),
-        1,
-      ),
       ...Array.from({ length: 4 }, (_, index) => {
         const textOnPage = (hearingsTab_content as any)[
           `textOnPage${index + 5}`
@@ -523,7 +517,11 @@ const hearingTabPage: HearingsTabPage = {
   },
 
   async changeToHearingsTab(page: Page): Promise<void> {
-    await page.locator(this.hearingsTab).nth(8).click();
+    await page.waitForSelector(this.hearingsTab);
+    // For tab clicking flakiness
+    await page.locator(this.hearingsTab).click();
+    await page.locator(this.hearingsTab).click();
+    await page.locator(this.hearingsTab).click();
   },
 
   async checkPanelComposition(
@@ -723,7 +721,7 @@ const hearingTabPage: HearingsTabPage = {
           5,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`span.text-16:text-is("Yes")`),
+          page.locator(`span.text-16:text-is("Yes")`).first(),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(
@@ -814,6 +812,7 @@ const hearingTabPage: HearingsTabPage = {
     panel: string[],
     fullPanelHearing: boolean,
     editJourney: boolean,
+    subjectName: string,
   ): Promise<void> {
     const currentDate = new Date();
     await Promise.all([
@@ -896,7 +895,7 @@ const hearingTabPage: HearingsTabPage = {
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           this.listingTable +
-            `ccd-read-text-field > span.text-16:text-is("${caseSubjectDetailsObject_content.name}")`,
+            `ccd-read-text-field > span.text-16:text-is("${subjectName}")`,
         ),
         1,
       ),

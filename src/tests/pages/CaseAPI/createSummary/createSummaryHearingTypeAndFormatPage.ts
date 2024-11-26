@@ -5,7 +5,6 @@ import commonHelpers, {
   hearingType,
 } from "../../../helpers/commonHelpers.ts";
 import createSummaryHearingTypeAndFormatContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingTypeAndFormat_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 
 type CreateSummaryHearingTypeAndFormatPage = {
   previous: string;
@@ -15,6 +14,7 @@ type CreateSummaryHearingTypeAndFormatPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   checkFields(
     page: Page,
@@ -35,6 +35,7 @@ const createSummaryHearingTypeAndFormatPage: CreateSummaryHearingTypeAndFormatPa
       page: Page,
       caseNumber: string,
       accessibilityTest: boolean,
+      subjectName: string,
     ): Promise<void> {
       await page.waitForSelector(
         `.govuk-heading-l:text-is("${createSummaryHearingTypeAndFormatContent.pageTitle}")`,
@@ -43,9 +44,7 @@ const createSummaryHearingTypeAndFormatPage: CreateSummaryHearingTypeAndFormatPa
         expect(page.locator(".govuk-caption-l")).toHaveText(
           createSummaryHearingTypeAndFormatContent.pageHint,
         ),
-        expect(page.locator("markdown > h3")).toContainText(
-          caseSubjectDetailsObject_content.name,
-        ),
+        expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createSummaryHearingTypeAndFormatContent.caseReference + caseNumber,
         ),

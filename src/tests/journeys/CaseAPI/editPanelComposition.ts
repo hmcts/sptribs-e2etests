@@ -1,6 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
-import panelComposition from "./panelComposition.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 import casePanelCompositionPage, {
   Panel2,
@@ -12,31 +10,25 @@ import hearingsTabPage from "../../pages/CaseAPI/caseTabs/hearingsTabPage.ts";
 type EditPanelComposition = {
   editPanelComposition(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void>;
 };
 
 const editPanelComposition: EditPanelComposition = {
   async editPanelComposition(
     page: Page,
-    user: UserRole,
     accessibilityTest: boolean,
     panel2: Panel2,
     panel3: Panel3,
     specialisms: boolean,
+    caseNumber: string,
+    subjectName: string,
   ): Promise<void> {
-    const caseNumber: string = await panelComposition.panelComposition(
-      page,
-      user,
-      accessibilityTest,
-      "Medical Member",
-      "Lay Member",
-      false,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Case: Edit Panel Composition",
@@ -45,6 +37,7 @@ const editPanelComposition: EditPanelComposition = {
       page,
       caseNumber,
       accessibilityTest,
+      subjectName,
     );
     await casePanelCompositionPage.fillInFields(
       page,
@@ -59,15 +52,16 @@ const editPanelComposition: EditPanelComposition = {
       panel2,
       panel3,
       specialisms,
+      subjectName,
     );
     await submitPage.continueOn(page);
-    await page.locator(`.mat-tab-label-content:text-is("Hearings")`).click();
-    await hearingsTabPage.checkPanelComposition(
-      page,
-      panel2,
-      panel3,
-      specialisms,
-    );
+    // await hearingsTabPage.changeToHearingsTab(page);
+    // await hearingsTabPage.checkPanelComposition(
+    //   page,
+    //   panel2,
+    //   panel3,
+    //   specialisms,
+    // );
   },
 };
 

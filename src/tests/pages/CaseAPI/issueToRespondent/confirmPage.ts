@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import commonHelpers, { parties } from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/issueToRespondent/submit_content.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/issueToRespondent/confirm_content.ts";
@@ -12,6 +11,7 @@ type ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     recipients: parties[],
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
 };
@@ -22,14 +22,13 @@ const confirmPage: ConfirmPage = {
     accessibilityTest: boolean,
     caseNumber: string,
     recipients: parties[],
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.heading-h1:text-is("${submit_content.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
-      ),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         notifyOtherParties_content.caseReference + caseNumber,
       ),
@@ -59,6 +58,8 @@ const confirmPage: ConfirmPage = {
     await page
       .getByRole("button", { name: "Close and Return to case details" })
       .click();
+    await page.waitForSelector(`h2:text-is("History")`);
+    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
   },
 };
 
