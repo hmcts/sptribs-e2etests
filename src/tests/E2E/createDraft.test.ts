@@ -217,7 +217,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Create draft", async ({ page }) => {
+  test("Error messaging - Create draft @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber802 = await createCase.createCase(
       page,

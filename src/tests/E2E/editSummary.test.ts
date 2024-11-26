@@ -451,7 +451,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Error Messaging.", async ({
+  test("Edit hearing summary - Error Messaging. @ErrorMessaging", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -539,7 +539,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - edit summary @accessibilityCaseAPI", async ({
+test("Accessibility test - edit summary @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

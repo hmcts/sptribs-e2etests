@@ -441,7 +441,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     );
   });
 
-  test("Error Messaging", async ({ page }) => {
+  test("Error Messaging @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber60 = await createCase.createCase(
       page,
@@ -546,7 +546,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
   });
 });
 
-test("Task completion: Accessibility test / Review Listed Case - Judge : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Review Listed Case - Judge : Accessibility test @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

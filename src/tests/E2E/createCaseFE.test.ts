@@ -6,8 +6,8 @@ import config from "../config.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
-test.describe("DSS Create case tests. @DSSCreate", (): void => {
-  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit.", async ({
+test.describe("DSS Create case tests.", (): void => {
+  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit. @DSSCreate", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -39,7 +39,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy", async ({
+  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit - Cy @DSSCreate", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -71,7 +71,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with no representative, additional information, no PCQ, and submit.", async ({
+  test("Create an application with no representative, additional information, no PCQ, and submit. @DSSCreate", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -103,7 +103,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with no representative, additional information, no PCQ, and submit - Cy", async ({
+  test("Create an application with no representative, additional information, no PCQ, and submit - Cy @DSSCreateWebkit", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -135,7 +135,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit.", async ({
+  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit. @DSSCreateWebkit", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -167,7 +167,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy. @DSSCreateWebkit", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -199,7 +199,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit.", async ({
+  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit. @DSSCreateFirefox", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -231,7 +231,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with all details, no representative, uploading multiple documents, and submitting.", async ({
+  test("Create an application with all details, no representative, uploading multiple documents, and submitting. @DSSCreateFirefox", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -263,7 +263,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy.", async ({
+  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy. @DSSCreateFirefox", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -295,7 +295,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
     );
   });
 
-  test("Test all back buttons on the Frontend application", async ({
+  test("Test all back buttons on the Frontend application @DSSCreate", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -354,7 +354,7 @@ test.describe("DSS Create case tests. @DSSCreate", (): void => {
   // });
 });
 
-test("Accessibility test every page on DSS submit. @DSSAccessibility", async ({
+test("Accessibility test every page on DSS submit. @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

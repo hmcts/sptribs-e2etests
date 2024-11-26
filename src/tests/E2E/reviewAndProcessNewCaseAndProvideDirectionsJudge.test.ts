@@ -578,7 +578,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     );
   });
 
-  test("Task is completable via next steps link - assign to me and go to task / Error Messaging  ", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Error Messaging @ErrorMessaging", async ({
     page,
   }) => {
     test.setTimeout(7 * 60 * 1000);
@@ -739,7 +739,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
   });
 });
 
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibilityCaseAPI ", async ({
+test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibility ", async ({
   page,
 }) => {
   test.setTimeout(7 * 60 * 1000);

@@ -473,7 +473,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging.", async ({ page }) => {
+  test("Error messaging. @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     await createCase.createCase(
       page,
@@ -499,9 +499,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test every page. @accessibilityCaseAPI", async ({
-  page,
-}) => {
+test("Accessibility test every page. @accessibility", async ({ page }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   await createCase.createCase(
     page,

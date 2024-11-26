@@ -742,9 +742,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Close Case. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Error messaging - Close Case.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber512 = await createCase.createCase(
       page,
@@ -791,7 +789,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Close case @accessibilityCaseAPI", async ({
+test("Accessibility test - Close case @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

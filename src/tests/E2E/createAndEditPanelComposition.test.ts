@@ -240,7 +240,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Create and Edit Panel composition @accessibilityCaseAPI", async ({
+test("Accessibility test - Create and Edit Panel composition @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

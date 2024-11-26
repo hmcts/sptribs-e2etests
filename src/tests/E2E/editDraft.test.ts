@@ -614,7 +614,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messaging - Edit draft", async ({ page }) => {
+  test("Error messaging - Edit draft @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1506 = await createCase.createCase(
       page,
@@ -703,7 +703,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Edit draft - CIC14 @accessibilityCaseAPI", async ({
+test("Accessibility test - Edit draft - CIC14 @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

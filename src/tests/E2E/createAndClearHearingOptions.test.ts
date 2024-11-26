@@ -257,9 +257,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test @accessibilityCaseAPI", async ({
-  page,
-}): Promise<void> => {
+test("Accessibility test @accessibility", async ({ page }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber406 = await createCase.createCase(
     page,

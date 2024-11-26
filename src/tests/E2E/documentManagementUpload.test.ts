@@ -16,9 +16,7 @@ import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Case-API Upload document tests. @CaseAPI", () => {
-  test("Check for redundant test data @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

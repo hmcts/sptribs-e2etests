@@ -414,7 +414,9 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     );
   });
 
-  test("Error messaging - Reinstate case.", async ({ page }): Promise<void> => {
+  test("Error messaging - Reinstate case. @ErrorMessaging", async ({
+    page,
+  }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2307 = await createCase.createCase(
       page,
@@ -470,7 +472,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
   });
 });
 
-test("Accessibility test - Reinstate case. @accessibilityCaseAPI", async ({
+test("Accessibility test - Reinstate case. @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

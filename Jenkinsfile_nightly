@@ -175,23 +175,6 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
         }
       }
-      stage('DSS Create case application accessibility tests') {
-        try {
-          yarnBuilder.yarn('test:AccessibilityDSS')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'DSS Create Case Application Accessibility Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
-        }
-      }
     }
     if (!params.skipDSSUpdateTests) {
       stage('DSS Update Case Application E2E tests - Chrome') {
@@ -241,23 +224,6 @@ withNightlyPipeline(type, product, component, 600) {
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
                   reportName: 'DSS Update Case Application Webkit E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
-        }
-      }
-      stage('DSS Update Case Application accessibility tests') {
-        try {
-          yarnBuilder.yarn('test:AccessibilityUC')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'DSS Update Application Accessibility Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSUpdateFunctional/*'
         }
@@ -359,9 +325,9 @@ withNightlyPipeline(type, product, component, 600) {
 //      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
 //        and then these will be turned back on.
 
-      stage('Case-API Application accessibility tests') {
+      stage('Accessibility tests') {
         try {
-          yarnBuilder.yarn('test:AccessibilityCaseAPI')
+          yarnBuilder.yarn('test:accessibility')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -371,7 +337,7 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
-                  reportName: 'Case-API Application Accessibility Test Report'
+                  reportName: 'Accessibility Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }

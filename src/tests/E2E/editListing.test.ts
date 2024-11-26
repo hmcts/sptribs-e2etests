@@ -586,7 +586,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error Messaging.", async ({ page }): Promise<void> => {
+  test("Error Messaging. @ErrorMessaging", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1607 = await createCase.createCase(
       page,
@@ -666,7 +666,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility Test - Edit Listing. @accessibilityCaseAPI", async ({
+test("Accessibility Test - Edit Listing. @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -251,7 +251,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - edit CICA case details - case closed @accessibilityCaseAPI.", async ({
+test("Accessibility test - edit CICA case details - case closed @accessibility.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

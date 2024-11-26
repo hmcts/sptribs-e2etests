@@ -30,9 +30,7 @@ const priority = " low ";
 const numberOfDays = 7;
 
 test.describe("Process further evidence task tests @CaseAPI", (): void => {
-  test("Check for redundant test data @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
@@ -3548,9 +3546,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
   });
 });
 
-test("Task completion: Accessibility test @accessibilityCaseAPI @crossbrowserCaseAPI", async ({
-  page,
-}) => {
+test("Task completion: Accessibility test @accessibility", async ({ page }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber165 = await createCase.createCase(
     page,

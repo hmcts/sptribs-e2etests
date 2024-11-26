@@ -530,7 +530,9 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Issue to respondent : Error messaging", async ({ page }) => {
+  test("Issue to respondent : Error messaging @ErrorMessaging", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber31 = await createCase.createCase(
       page,
@@ -596,7 +598,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
   });
 });
 
-test("Task completion: Accessibility test / Issue Case to Respondent : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Issue Case to Respondent : Accessibility test @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

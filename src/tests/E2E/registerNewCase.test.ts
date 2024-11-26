@@ -431,7 +431,7 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
     );
   });
 
-  test("Edit Case : Error Messaging", async ({ page }) => {
+  test("Edit Case : Error Messaging @ErrorMessaging", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber40 = await createFEApplication.createFEApplication(
       page,
@@ -491,7 +491,7 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
   });
 });
 
-test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibilityCaseAPI", async ({
+test("Task completion: Accessibility test / Edit Case : Accessibility test @accessibility", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

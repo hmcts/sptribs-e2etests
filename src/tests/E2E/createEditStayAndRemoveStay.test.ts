@@ -823,7 +823,9 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     );
   });
 
-  test("Error messages - Create/Edit stay", async ({ page }): Promise<void> => {
+  test("Error messages - Create/Edit stay @ErrorMessaging", async ({
+    page,
+  }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber914 = await createCase.createCase(
       page,
@@ -878,7 +880,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Create/Edit stay @accessibilityCaseAPI", async ({
+test("Accessibility test - Create/Edit stay @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -2217,7 +2217,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned for other reason. @crossbrowserCaseAPI", async ({
+  test("Create hearing summary - hearing outcome is adjourned for other reason.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -2288,7 +2288,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Error messaging.", async ({ page }): Promise<void> => {
+  test("Error messaging. @ErrorMessaging", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1133 = await createCase.createCase(
       page,
@@ -2358,7 +2358,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test - create summary @accessibilityCaseAPI.", async ({
+test("Accessibility test - create summary @accessibility.", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
