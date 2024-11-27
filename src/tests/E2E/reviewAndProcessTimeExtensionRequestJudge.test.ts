@@ -26,7 +26,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

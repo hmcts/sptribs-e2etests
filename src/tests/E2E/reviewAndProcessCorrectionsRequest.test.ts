@@ -13,7 +13,6 @@ import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
-import config from "../config.ts";
 
 const priorityReview = null;
 const priorityProcess = " low ";
@@ -25,7 +24,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me and go to task ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

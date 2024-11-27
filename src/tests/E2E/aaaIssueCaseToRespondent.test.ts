@@ -152,7 +152,7 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
   });
 
-  test("Task is completed via event dropdown - Issue a case to a representative @crossbrowserCaseAPI", async ({
+  test("Task is completed via event dropdown - Issue a case to a representative", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

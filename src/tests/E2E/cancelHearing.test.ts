@@ -10,9 +10,7 @@ import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Cancel hearing tests @CaseAPI", (): void => {
-  test("Cancel hearing - case rejected. @crossbrowserCaseAPI", async ({
-    page,
-  }): Promise<void> => {
+  test("Cancel hearing - case rejected.", async ({ page }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber301 = await createCase.createCase(
       page,

@@ -22,7 +22,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Refer case to legal officer - ready to list, listing directions @crossbrowserCaseAPI", async ({
+  test("Refer case to legal officer - ready to list, listing directions", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

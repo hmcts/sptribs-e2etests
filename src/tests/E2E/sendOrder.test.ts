@@ -26,7 +26,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Send a draft order in the Ready to list state @crossbrowserCaseAPI", async ({
+  test("Send a draft order in the Ready to list state", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -3,7 +3,7 @@ import createCase from "../journeys/CaseAPI/createCase.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 
 test.describe("Case-API Create case tests. @CaseAPI", () => {
-  test("Assessment - Fatal Category, Email Contact, multiple documents @crossbrowserCaseAPI", async ({
+  test("Assessment - Fatal Category, Email Contact, multiple documents", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

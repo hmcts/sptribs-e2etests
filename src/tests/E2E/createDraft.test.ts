@@ -18,16 +18,12 @@ const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
 test.describe("Case-API Create draft tests. @CaseAPI", () => {
-  test("Check for redundant test data @CaseAPI1 @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Check for redundant test data @CaseAPI1", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Create a CIC6 draft in the Ready to list state. @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Create a CIC6 draft in the Ready to list state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber800 = await createCase.createCase(
       page,

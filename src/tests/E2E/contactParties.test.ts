@@ -287,7 +287,7 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
       false,
     );
   });
-  test("Send a message to all parties related to a case that is awaiting an outcome decision. @crossbrowserCaseAPI", async ({
+  test("Send a message to all parties related to a case that is awaiting an outcome decision.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
