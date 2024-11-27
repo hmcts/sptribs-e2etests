@@ -20,7 +20,7 @@ test.describe("Case-API Upload document tests. @CaseAPI", () => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Upload a document to a submitted case. @crossbrowserCaseAPI", async ({
+  test("Upload a document to a submitted case.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

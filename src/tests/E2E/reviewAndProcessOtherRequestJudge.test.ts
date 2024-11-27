@@ -148,7 +148,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     );
   });
 
-  test("Task is completable via next steps link - assign to me - Awaiting hearing @crossbrowserCaseAPI", async ({
+  test("Task is completable via next steps link - assign to me - Awaiting hearing", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

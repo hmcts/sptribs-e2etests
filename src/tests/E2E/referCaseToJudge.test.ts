@@ -821,7 +821,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
   });
 
-  test("Refer case to judge - awaiting outcome, rule 27 request @crossbrowserCaseAPI", async ({
+  test("Refer case to judge - awaiting outcome, rule 27 request", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

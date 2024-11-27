@@ -26,7 +26,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Task is completable via next steps link - assign to me and go to task @crossbrowserCaseAPI ", async ({
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

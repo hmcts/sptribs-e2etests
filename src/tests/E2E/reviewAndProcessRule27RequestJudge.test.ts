@@ -21,7 +21,9 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 
 test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (): void => {
-  test("Check for redundant test data @CaseAPI3", async ({ page }) => {
+  test("Check for redundant test data @CaseAPI3 @crossbrowserCaseAPI", async ({
+    page,
+  }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

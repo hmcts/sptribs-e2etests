@@ -276,9 +276,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI ", ()
     );
   });
 
-  test("Task is completed via event dropdown @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Task is completed via event dropdown", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber155 = await createCase.createCase(
       page,
