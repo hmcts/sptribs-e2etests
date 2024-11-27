@@ -7,7 +7,7 @@ import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("DSS Create case tests.", (): void => {
-  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit. @DSSCreate", async ({
+  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit. ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -103,7 +103,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
   });
 
-  test("Create an application with no representative, additional information, no PCQ, and submit - Cy @createDSSWebkit", async ({
+  test("Create an application with no representative, additional information, no PCQ, and submit - Cy ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -167,7 +167,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
   });
 
-  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy. @createDSSWebkit", async ({
+  test("Create an application with all details, a qualified representative, no additional information, no PCQ, and submit - Cy. ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -231,7 +231,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
   });
 
-  test("Create an application with all details, no representative, uploading multiple documents, and submitting. @createDSSFirefox", async ({
+  test("Create an application with all details, no representative, uploading multiple documents, and submitting. ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -263,7 +263,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
   });
 
-  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy. @createDSSFirefox", async ({
+  test("Create an application with all details, an unqualified representative, no additional information, no PCQ, and submit - Cy. ", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -315,43 +315,6 @@ test.describe("DSS Create case tests.", (): void => {
     );
   });
 
-  // Unresolved bug with error messaging
-
-  // test("Error messaging", async ({ page }) => {
-  //   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  //   await createFEApplication.createFEApplication(
-  //     page,
-  //     false,
-  //     waUsers_content.userRoleCitizen,
-  //     true,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     subjectName
-  //   );
-  // });
-  //
-  // test("Error messaging - Cy", async ({ page }) => {
-  //   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  //   await createFEApplication.createFEApplication(
-  //     page,
-  //     true,
-  //     waUsers_content.userRoleCitizen,
-  //     true,
-  //     true,
-  //     true,
-  //     false,
-  //     false,
-  //     false,
-  //     false,
-  //     true,
-  //     subjectName
-  //   );
-  // });
 });
 
 test("Accessibility test every page on DSS submit. @accessibility", async ({
