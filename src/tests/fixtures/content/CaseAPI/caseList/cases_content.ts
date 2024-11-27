@@ -12,6 +12,7 @@ const cases_content = {
   textOnPage9: "Applicant Name",
   textOnPage10: "Representative Reference",
   createCaseButton: "Create case",
+  yourCases: "Your cases",
 } as const;
 
 export default cases_content;
