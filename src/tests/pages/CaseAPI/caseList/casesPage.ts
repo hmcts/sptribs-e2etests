@@ -19,7 +19,9 @@ const casesPage: CasesPage = {
     await page.waitForSelector(
       `.govuk-heading-xl:text-is("${casesContent.pageTitle}")`,
     );
-    await page.waitForSelector(`h2[aria-label='Filters']:text-is("${casesContent.subTitle1}")`);
+    await page.waitForSelector(
+      `h2[aria-label='Filters']:text-is("${casesContent.subTitle1}")`,
+    );
     await page.waitForSelector("div#dynamicFilters");
     await Promise.all([
       expect(page.locator(".govuk-heading-xl")).toHaveText(
