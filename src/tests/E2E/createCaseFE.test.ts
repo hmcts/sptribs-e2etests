@@ -314,7 +314,6 @@ test.describe("DSS Create case tests.", (): void => {
       subjectName,
     );
   });
-
 });
 
 test("Accessibility test every page on DSS submit. @accessibility", async ({
