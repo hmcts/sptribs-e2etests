@@ -32,7 +32,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
   test("Task is completable via next steps link - assign to me and go to task @CaseAPI3", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber127 = await createCase.createCase(
       page,

@@ -594,7 +594,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging - Refer to LO, contact parties @ErrorMessaging", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber74 = await createCase.createCase(
       page,

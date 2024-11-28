@@ -31,7 +31,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
   test("Task is completable via next steps link - assign to me and go to task @CaseAPI2", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber45 = await createCase.createCase(
       page,
@@ -194,7 +193,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
   test("Task is completable via next steps link - assign to me @CaseAPI2", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber46 = await createCase.createCase(
       page,
@@ -355,7 +353,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber47 = await createCase.createCase(
       page,
@@ -703,7 +700,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
   test("Noncompliance task is cancellable through close case ", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber50 = await createCase.createCase(
       page,

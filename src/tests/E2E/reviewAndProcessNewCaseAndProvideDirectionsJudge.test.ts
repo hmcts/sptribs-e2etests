@@ -581,7 +581,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
   test("Task is completable via next steps link - assign to me and go to task / Error Messaging @ErrorMessaging", async ({
     page,
   }) => {
-    test.setTimeout(7 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber67 = await createCase.createCase(
       page,
@@ -742,7 +741,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
 test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibility ", async ({
   page,
 }) => {
-  test.setTimeout(7 * 60 * 1000);
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber68 = await createCase.createCase(
     page,
