@@ -587,7 +587,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
 test("Task completion: Accessibility test @accessibility ", async ({
   page,
 }) => {
-  test.setTimeout(7 * 60 * 1000);
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
   const caseNumber108 = await createCase.createCase(
     page,
