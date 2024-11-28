@@ -282,6 +282,9 @@ const myWorkPage: MyWorkPage = {
 
   async navigateToMyWorkPage(page: Page): Promise<void> {
     await page.locator(this.myWorkLink).click();
+    while (page.url().includes("service-down")) {
+      await page.locator(this.myWorkLink).click();
+    }
     await page.waitForSelector(`h3:text-is("My work")`);
   },
 
