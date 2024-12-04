@@ -512,7 +512,7 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
   await task.seeTask(
     page,
     waUsers_content.userRoleAdmin,
-    true,
+    false,
     taskNames_content.registerNewCaseTask,
     subjectName,
   );
@@ -520,7 +520,7 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     page,
     waUsers_content.userRoleAdmin,
     "Link: Assign Task to Me and Go To Task",
-    true,
+    false,
     caseNumber41,
     taskNames_content.registerNewCaseTask,
     priority,
@@ -552,7 +552,7 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
   );
   await task.checkCompletedTask(
     page,
-    true,
+    false,
     taskNames_content.registerNewCaseTask,
     caseNumber41,
     states_content.submittedState,
