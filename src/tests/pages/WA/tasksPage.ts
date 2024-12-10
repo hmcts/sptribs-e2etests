@@ -134,16 +134,12 @@ const tasksPage: TasksPage = {
     caseNumber: string,
     taskName: string,
     subjectName: string,
-
-    maxRetries: number = 3,
-    delay: number = 30000,
   ): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
       `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
     );
-    await page.waitForURL(/.*\/tasks$/);
-
+    await page.waitForTimeout(10000);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(`h2:text-is("${tasks_content.title}")`),
@@ -157,28 +153,22 @@ const tasksPage: TasksPage = {
         tasks_content.caseReference + caseNumber,
       ),
     ]);
-    // Initial visibility check before starting the loop
+
     let isTaskVisible = await page
       .locator(`p.govuk-body > strong:text-is("${taskName}")`)
       .isVisible();
 
-    if (!isTaskVisible) {
-      return;
-    }
-
-    // Retry if the task is still visible, up to maxRetries
-    for (let i = 0; i < maxRetries; i++) {
+    while (isTaskVisible) {
       await page.goto(
         `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
       );
-      await page.waitForURL(/.*\/tasks$/);
+      await page.waitForTimeout(10000);
       isTaskVisible = await page
         .locator(`p.govuk-body > strong:text-is("${taskName}")`)
         .isVisible();
       if (!isTaskVisible) {
-        return;
+        break;
       }
-      await page.waitForTimeout(delay);
     }
   },
 
