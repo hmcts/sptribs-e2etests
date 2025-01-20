@@ -147,7 +147,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:has-text("draft.pdf")`),
-            1,
+            2,
           ),
         ]);
         break;
