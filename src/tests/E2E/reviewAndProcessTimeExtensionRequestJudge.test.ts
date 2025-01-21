@@ -17,7 +17,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
 const priorityReview = null;
 const priorityProcess = " medium ";
-const numberOfDaysReview = 2;
+const numberOfDaysReview = 5;
 const numberOfDaysProcess = 1;
 
 test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
