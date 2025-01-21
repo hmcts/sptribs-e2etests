@@ -166,7 +166,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
   test("User is able to manage due date in state 'Awaiting Hearing', Orders sent in state Case Management @CaseAPI2", async ({
     page,
   }) => {
-    const numberOfDaysReview = 1;
+    const numberOfDaysReview = 5;
     const numberOfDaysProcess = 1;
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2701 = await createCase.createCase(

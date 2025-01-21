@@ -15,10 +15,10 @@ import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
-const priorityReview = " medium ";
+const priorityReview = " low ";
 const priorityProcess = " medium ";
 const priorityNonCompliance = " medium ";
-const numberOfDaysReview = 1;
+const numberOfDaysReview = 5;
 const numberOfDaysProcess = 1;
 const numberOfDaysNonCompliance = 1;
 
