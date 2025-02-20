@@ -117,7 +117,6 @@ withNightlyPipeline(type, product, component, 600) {
 
     stage('Install Playwright and dependencies') {
       try {
-        echo 'Installing Playwright and dependencies...'
         yarnBuilder.yarn('configure')
       } catch (Error) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
