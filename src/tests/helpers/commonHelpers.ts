@@ -359,8 +359,10 @@ const commonHelpers: CommonHelpers = {
     await page.selectOption("#next-step", chosenEvent);
     await expect(page.getByRole("button", { name: "Go" })).toBeEnabled();
     await page.getByRole("button", { name: "Go" }).click({ force: true });
+    await expect(page.locator("div.spinner-container")).toHaveCount(0);
     while (await page.isVisible("#next-step")) {
       await page.getByRole("button", { name: "Go" }).click();
+      await expect(page.locator("div.spinner-container")).toHaveCount(0);
       await page.waitForTimeout(5000);
     }
   },
