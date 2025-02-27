@@ -121,7 +121,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
       await page
         .locator("#recFileUpload_0_documentLink")
         .setInputFiles(config.testMP3File);
-      await expect(page.locator(".error-message")).toHaveCount(0);
+      await page.locator(".error-message").waitFor({ state: "hidden" });
       await page
         .locator("#recDesc")
         .fill(createSummaryHearingRecordingUploadContent.recordingLocation);

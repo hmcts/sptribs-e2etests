@@ -344,7 +344,7 @@ const commonHelpers: CommonHelpers = {
     );
     let fileUploadLocator = `#${selector}_${docNumber}_documentLink`;
     await page.locator(fileUploadLocator).setInputFiles(file);
-    await page.waitForSelector(".error-message", { state: "detached" });
+    await page.locator(".error-message").waitFor({ state: "hidden" });
   },
 
   async checkVisibleAndPresent(locator: Locator, count: number): Promise<void> {

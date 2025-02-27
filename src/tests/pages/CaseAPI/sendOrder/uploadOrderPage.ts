@@ -105,11 +105,7 @@ const uploadOrderPage: UploadOrderPage = {
     await page
       .locator(`#cicCaseOrderFile_0_documentLink`)
       .setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(
-        `.error-message:text-is("${uploadOrder_Content.errorUploading}")`,
-      ),
-    ).toHaveCount(0);
+    await page.locator(".error-message").waitFor({ state: "hidden" });
     await page.click(this.continue);
   },
 
