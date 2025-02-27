@@ -76,15 +76,16 @@ const uploadOrderPage: UploadOrderPage = {
         page.locator(`h3:text-is("${uploadOrder_Content.subTitle1}")`),
         1,
       ),
-      ...Array.from({ length: 2 }, (_, index: number) => {
-        const textOnPage: ArrayConstructor = (uploadOrder_Content as any)[
-          `textOnPage${index + 7}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span:text-is("${uploadOrder_Content.textOnPage7}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `legend.form-label:text-is("${uploadOrder_Content.textOnPage8}")`,
+        ),
+        1,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,
