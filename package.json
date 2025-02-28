@@ -6,7 +6,7 @@
     "node": ">=18.16.0"
   },
   "scripts": {
-    "configure": "yarn playwright install --with-deps",
+    "configure": "yarn playwright install",
     "test:ui": "npx playwright test --project chromium --headed",
     "test:fullfunctional": "npx playwright test --project chromium",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox",
