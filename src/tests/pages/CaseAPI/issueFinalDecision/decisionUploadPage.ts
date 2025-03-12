@@ -97,7 +97,7 @@ const decisionUploadPage: DecisionUploadPage = {
     await page
       .locator(`#caseIssueFinalDecisionDocument_documentLink`)
       .setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await page.locator(".error-message").waitFor({ state: "hidden" });
     await page.click(this.continue);
   },
 

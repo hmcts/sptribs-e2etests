@@ -108,7 +108,7 @@ const reinstateUploadDocumentPage: ReinstateUploadDocumentPage = {
     await page
       .locator(`#cicCaseReinstateDocumentsUpload_0_documentLink`)
       .setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await page.locator(".error-message").waitFor({ state: "hidden" });
     await page.click(this.continue);
   },
 

@@ -6,7 +6,7 @@
     "node": ">=18.16.0"
   },
   "scripts": {
-    "configure": "yarn playwright install --with-deps",
+    "configure": "yarn playwright install",
     "test:ui": "npx playwright test --project chromium --headed",
     "test:fullfunctional": "npx playwright test --project chromium",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox",
@@ -46,8 +46,8 @@
   "devDependencies": {
     "@playwright/test": "^1.46.1",
     "@types/node": "^20.10.0",
-    "prettier": "3.5.1",
+    "prettier": "3.5.3",
     "ts-node": "^10.9.2"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.7.0"
 }
