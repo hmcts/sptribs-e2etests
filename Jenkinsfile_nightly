@@ -57,8 +57,10 @@ static Map < String, Object > secret(String secretName, String envVariable) {
   ]
 }
 
+def ENV_NAME = params.SPTRIBS_FRONTEND_URL.contains("demo") ? "demo" : "aat"
+
 def secrets = [
-        'sptribs-${env}': [
+        'sptribs-${ENV_NAME}': [
                 secret('github-branch-secret', 'GITHUB_TOKEN'),
                 secret('idam-ui-secret', 'IDAM_SECRET'),
                 secret('idam-systemupdate-password', 'TEST_PASSWORD'),
@@ -100,6 +102,8 @@ def secrets = [
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
+  echo "Environment Selected: ${ENV_NAME}"
+  echo "Secrets being fetched from: sptribs-${ENV_NAME}"
   loadVaultSecrets(secrets)
   env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
   env.DSS_BASE_URL = params.SPTRIBS_FRONTEND_URL
