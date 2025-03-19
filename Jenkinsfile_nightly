@@ -6,17 +6,17 @@ properties([
         parameters([
                 string(
                         name: 'SPTRIBS_FRONTEND_URL',
-                        defaultValue: 'https://sptribs-frontend.demo.platform.hmcts.net',
+                        defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
                         description: 'The DSS URL to test against'
                 ),
                 string(
                         name: 'SPTRIBS_CASEAPI_URL',
-                        defaultValue: 'https://manage-case.demo.platform.hmcts.net/cases',
+                        defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
                         description: 'The Case-API URL to test against'
                 ),
                 string(
                         name: 'SPTRIBS_UPDATE_URL',
-                        defaultValue: 'https://sptribs-dss-update-case-web.demo.platform.hmcts.net/',
+                        defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/',
                         description: 'The Update Case URL to test against'
                 ),
                 string(
@@ -102,7 +102,6 @@ def secrets = [
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
-  echo "Environment Selected: ${ENV_NAME}"
   echo "Secrets being fetched from: sptribs-${ENV_NAME}"
   loadVaultSecrets(secrets)
   env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
