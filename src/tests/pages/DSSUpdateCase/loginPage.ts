@@ -12,7 +12,11 @@ const signInPage: SignInPage = {
     await page.waitForSelector(
       `#skiplinktarget:text("Sign in or create an account")`,
     );
-    await idamLoginHelper.signInUser(page, waUsers_content.userRoleCitizen, config.FEBaseURL);
+    await idamLoginHelper.signInUser(
+      page,
+      waUsers_content.userRoleCitizen,
+      config.FEBaseURL,
+    );
   },
 };
 
