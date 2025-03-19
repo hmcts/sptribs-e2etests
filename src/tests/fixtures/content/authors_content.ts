@@ -8,7 +8,7 @@ const authors_content = {
 
   assignedUserLO: "sptribswa seniorcaseworker",
   assignedUserAdmin: "sptribswa hearingcentreadmin",
-  assignedUserJudge: "Ms Whitney Lamb",
+  assignedUserJudge: "Mr Logan Everett",
 
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",

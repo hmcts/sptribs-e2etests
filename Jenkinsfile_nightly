@@ -6,17 +6,17 @@ properties([
         parameters([
                 string(
                         name: 'SPTRIBS_FRONTEND_URL',
-                        defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
+                        defaultValue: 'https://sptribs-frontend.demo.platform.hmcts.net',
                         description: 'The DSS URL to test against'
                 ),
                 string(
                         name: 'SPTRIBS_CASEAPI_URL',
-                        defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+                        defaultValue: 'https://manage-case.demo.platform.hmcts.net/cases',
                         description: 'The Case-API URL to test against'
                 ),
                 string(
                         name: 'SPTRIBS_UPDATE_URL',
-                        defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/',
+                        defaultValue: 'https://sptribs-dss-update-case-web.demo.platform.hmcts.net/',
                         description: 'The Update Case URL to test against'
                 ),
                 string(
