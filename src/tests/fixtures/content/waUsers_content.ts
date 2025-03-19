@@ -1,6 +1,6 @@
 const waUsers_content = {
   userRoleAdmin: "waHearingCentreAdmin",
-  userRoleCitizen: "demoCitizen",
+  userRoleCitizen: "citizen",
   userRoleLO: "waSeniorCaseworker",
   userRoleJudge: "waPresidentOfTribunal",
   userRoleCaseWorker: "waCaseWorker",
