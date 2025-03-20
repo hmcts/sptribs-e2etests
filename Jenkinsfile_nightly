@@ -100,6 +100,7 @@ def secrets = [
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
+  echo "Environment Selected:" + env.ENVIRONMENT
   loadVaultSecrets(secrets)
   env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
   env.DSS_BASE_URL = params.SPTRIBS_FRONTEND_URL
