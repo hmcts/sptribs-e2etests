@@ -1,7 +1,8 @@
+import config from "../../config.ts";
+
 const waUsers_content = {
   userRoleAdmin: "waHearingCentreAdmin",
-  // userRoleCitizen: process.env.ENV_NAME === "demo" ? "demoCitizen" : "citizen",
-  userRoleCitizen: "citizen",
+  userRoleCitizen: config.FEBaseURL.includes("demo") ? "demoCitizen" : "citizen",
   userRoleLO: "waSeniorCaseworker",
   userRoleJudge: "waPresidentOfTribunal",
   userRoleCaseWorker: "waCaseWorker",

@@ -57,8 +57,6 @@ static Map < String, Object > secret(String secretName, String envVariable) {
   ]
 }
 
-//env.ENV_NAME = params.SPTRIBS_FRONTEND_URL.contains("demo") ? "demo" : "aat"
-
 def secrets = [
         'sptribs-${env}': [
                 secret('github-branch-secret', 'GITHUB_TOKEN'),
@@ -102,7 +100,6 @@ def secrets = [
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
-  echo "Secrets being fetched from: ${params.SPTRIBS_FRONTEND_URL}"
   loadVaultSecrets(secrets)
   env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
   env.DSS_BASE_URL = params.SPTRIBS_FRONTEND_URL
