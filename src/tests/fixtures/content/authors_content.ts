@@ -10,8 +10,9 @@ const authors_content = {
 
   assignedUserLO: "sptribswa seniorcaseworker",
   assignedUserAdmin: "sptribswa hearingcentreadmin",
-  assignedUserJudge:
-    config.FEBaseURL.includes("demo") ? "Mr Logan Everett" : "Ms Whitney Lamb",
+  assignedUserJudge: config.FEBaseURL.includes("demo")
+    ? "Mr Logan Everett"
+    : "Ms Whitney Lamb",
 
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",
