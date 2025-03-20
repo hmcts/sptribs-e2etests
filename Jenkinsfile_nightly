@@ -57,10 +57,8 @@ static Map < String, Object > secret(String secretName, String envVariable) {
   ]
 }
 
-env.ENV_NAME = params.SPTRIBS_FRONTEND_URL.contains("demo") ? "demo" : "aat"
-
 def secrets = [
-        ('sptribs-'+ env.ENV_NAME): [
+        'sptribs-${env}': [
                 secret('github-branch-secret', 'GITHUB_TOKEN'),
                 secret('idam-ui-secret', 'IDAM_SECRET'),
                 secret('idam-systemupdate-password', 'TEST_PASSWORD'),
