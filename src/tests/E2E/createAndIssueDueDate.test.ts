@@ -246,7 +246,7 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
     );
   });
 
-  test.only("Issue due date task is cancellable through close case", async ({
+  test("Issue due date task is cancellable through close case", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
