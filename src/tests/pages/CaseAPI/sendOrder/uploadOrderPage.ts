@@ -82,7 +82,7 @@ const uploadOrderPage: UploadOrderPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `legend.form-label:text-is("${uploadOrder_Content.textOnPage8}")`,
+          `span.form-label:text-is("${uploadOrder_Content.textOnPage8}")`,
         ),
         1,
       ),
