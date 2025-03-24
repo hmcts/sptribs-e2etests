@@ -76,15 +76,16 @@ const uploadOrderPage: UploadOrderPage = {
         page.locator(`h3:text-is("${uploadOrder_Content.subTitle1}")`),
         1,
       ),
-      ...Array.from({ length: 2 }, (_, index: number) => {
-        const textOnPage: ArrayConstructor = (uploadOrder_Content as any)[
-          `textOnPage${index + 7}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`span:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(`span:text-is("${uploadOrder_Content.textOnPage7}")`),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `span.form-label:text-is("${uploadOrder_Content.textOnPage8}")`,
+        ),
+        1,
+      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,
@@ -105,11 +106,7 @@ const uploadOrderPage: UploadOrderPage = {
     await page
       .locator(`#cicCaseOrderFile_0_documentLink`)
       .setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(
-        `.error-message:text-is("${uploadOrder_Content.errorUploading}")`,
-      ),
-    ).toHaveCount(0);
+    await page.locator(".error-message").waitFor({ state: "hidden" });
     await page.click(this.continue);
   },
 

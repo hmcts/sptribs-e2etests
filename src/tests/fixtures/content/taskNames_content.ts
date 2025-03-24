@@ -52,6 +52,8 @@ const taskNames_content = {
   issueDecisionNotice: "Issue decision notice",
   completeHearingOutcome: "Complete hearing outcome",
   stitchCollateHearingBundle: "Stitch/collate hearing bundle",
+  createDueDate: "Create due date",
+  issueDueDate: "Issue due date",
 } as const;
 
 export default taskNames_content;
