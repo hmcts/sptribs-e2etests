@@ -59,7 +59,7 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 }
 
 def secrets = [
-        'sptribs-${env}': [
+        'sptribs-${params.ENVIRONMENT}': [
                 secret('github-branch-secret', 'GITHUB_TOKEN'),
                 secret('idam-ui-secret', 'IDAM_SECRET'),
                 secret('idam-systemupdate-password', 'TEST_PASSWORD'),
