@@ -184,12 +184,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.10.0":
-  version: 20.17.26
-  resolution: "@types/node@npm:20.17.26"
+"@types/node@npm:*":
+  version: 22.13.16
+  resolution: "@types/node@npm:22.13.16"
+  dependencies:
+    undici-types: "npm:~6.20.0"
+  checksum: 10/3d94deb7bc6961fb58510ed33d69aae7703c8ccdc839353d6696feea6c3f39253c07075aec298c611672230950496e680202ba83ca8f4b34d948b39eeaae2857
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.17.29":
+  version: 20.17.29
+  resolution: "@types/node@npm:20.17.29"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/5b2721583b5b8f75b443390335a62da92d4b543275c3b7d24b35eabd3da69faf193c18ec7f6f25166ad8e357b2e8c8e1f419d3600d03a2e6863a57ca38e60e02
+  checksum: 10/9985582e4338ca4f408c3ca1cdae7c3ac23a692886f6ff18ef1bd0500149811d42da5156aabb1883a4c33f15f2ada365579aed5852bb22811dfbc2279e89e47d
   languageName: node
   linkType: hard
 
@@ -802,7 +811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.3.7":
+"glob@npm:^10.2.2, glob@npm:^10.3.10":
   version: 10.4.5
   resolution: "glob@npm:10.4.5"
   dependencies:
@@ -1262,12 +1271,11 @@ __metadata:
   linkType: hard
 
 "minizlib@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "minizlib@npm:3.0.1"
+  version: 3.0.2
+  resolution: "minizlib@npm:3.0.2"
   dependencies:
-    minipass: "npm:^7.0.4"
-    rimraf: "npm:^5.0.5"
-  checksum: 10/622cb85f51e5c206a080a62d20db0d7b4066f308cb6ce82a9644da112367c3416ae7062017e631eb7ac8588191cfa4a9a279b8651c399265202b298e98c4acef
+    minipass: "npm:^7.1.2"
+  checksum: 10/c075bed1594f68dcc8c35122333520112daefd4d070e5d0a228bd4cf5580e9eed3981b96c0ae1d62488e204e80fd27b2b9d0068ca9a5ef3993e9565faf63ca41
   languageName: node
   linkType: hard
 
@@ -1616,17 +1624,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^5.0.5":
-  version: 5.0.10
-  resolution: "rimraf@npm:5.0.10"
-  dependencies:
-    glob: "npm:^10.3.7"
-  bin:
-    rimraf: dist/esm/bin.mjs
-  checksum: 10/f3b8ce81eecbde4628b07bdf9e2fa8b684e0caea4999acb1e3b0402c695cd41f28cd075609a808e61ce2672f528ca079f675ab1d8e8d5f86d56643a03e0b8d2e
-  languageName: node
-  linkType: hard
-
 "run-parallel@npm:^1.1.9":
   version: 1.2.0
   resolution: "run-parallel@npm:1.2.0"
@@ -1799,7 +1796,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@playwright/test": "npm:^1.46.1"
-    "@types/node": "npm:^20.10.0"
+    "@types/node": "npm:^20.17.29"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     playwright-core: "npm:^1.46.1"
@@ -1974,6 +1971,13 @@ __metadata:
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10/cf0b48ed4fc99baf56584afa91aaffa5010c268b8842f62e02f752df209e3dea138b372a60a963b3b2576ed932f32329ce7ddb9cb5f27a6c83040d8cd74b7a70
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.20.0":
+  version: 6.20.0
+  resolution: "undici-types@npm:6.20.0"
+  checksum: 10/583ac7bbf4ff69931d3985f4762cde2690bb607844c16a5e2fbb92ed312fe4fa1b365e953032d469fa28ba8b224e88a595f0b10a449332f83fa77c695e567dbe
   languageName: node
   linkType: hard
 
