@@ -59,6 +59,12 @@ Should you wish to run in headed mode, you can select modify run configuration, 
 `--project chromium --headed`
 This runs a test in Chrome, whilst headed.
 
+### Generate secrets
+
+Run the [get_secrets.sh](./scripts/get_secrets.sh) to create & populate your `.env.` file. Run:
+
+`./scripts/get_secrets.sh`
+
 ### To obtain an E2E report, use the following command:
 
 `yarn test:report`
