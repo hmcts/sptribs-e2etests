@@ -233,7 +233,9 @@ const myWorkPage: MyWorkPage = {
       .locator(
         `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,
       );
-    const paginationLocator = `a span:text-matches("^[1-9][0-9]*$", "i")`;
+    const paginationLocator = page.locator("ccd-pagination a span", {
+      hasText: /^[1-9][0-9]*$/,
+    });
 
     await page.locator(this.myTasksTab).click();
     await page.locator(subjectAutoTesting).first().waitFor();
@@ -244,37 +246,22 @@ const myWorkPage: MyWorkPage = {
         break;
       }
 
-      const paginationExists =
-        (await page.locator(paginationLocator).count()) > 0;
+      const paginationExists = (await paginationLocator.count()) > 0;
       if (!paginationExists) {
         await page.goto(this.myTasksUrl);
         await page.waitForTimeout(3000);
       } else {
-        const paginationCount = await page.locator(paginationLocator).count();
-        for (let i = 0; i < paginationCount; i++) {
-          const nextPage = page.locator(paginationLocator).nth(i);
-          const nextPageNumber = await nextPage.textContent();
+        await page.getByLabel("Next Page").click();
+        await page.waitForTimeout(3000);
 
-          if (nextPageNumber) {
-            await page.waitForSelector(paginationLocator);
-            await nextPage.click();
-            await page.waitForSelector(`li span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(3000);
-
-            if (await subjectTask.isVisible()) {
-              locatorFound = true;
-              await subjectTask.click();
-              break;
-            }
-          }
+        if (await subjectTask.isVisible()) {
+          locatorFound = true;
+          await subjectTask.click();
+          break;
         }
         if (locatorFound) {
           await subjectTask.click();
           break;
-        } else {
-          await page.getByText("page 1").click();
-          await page.waitForSelector(`li span:text("1")`);
-          await page.waitForTimeout(3000);
         }
       }
     }
