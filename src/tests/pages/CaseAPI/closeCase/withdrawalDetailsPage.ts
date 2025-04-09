@@ -1,8 +1,8 @@
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import withdrawalDetails_content from "../../../fixtures/content/CaseAPI/closeCase/withdrawalDetails_content.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type WithdrawalDetailsPage = {
   continue: string;
@@ -81,6 +81,8 @@ const withdrawalDetailsPage: WithdrawalDetailsPage = {
       `#closeWithdrawalRequestDate-year`,
       `${withdrawalDetails_content.year}`,
     );
+    // Workaround to remove the date error which stops the continue button from being clicked
+    await page.locator("h1").click();
     await page.click(this.continue);
   },
 
