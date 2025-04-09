@@ -8,6 +8,7 @@ node_modules/
 .nyc_output
 .sass-cache
 *.css
+.env
 
 
 # Yarn 3 files

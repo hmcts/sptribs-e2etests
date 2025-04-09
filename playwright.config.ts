@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const DEFAULT_VIEWPORT = { width: 1920, height: 1080 };
+
 module.exports = defineConfig({
   testDir: "./src/tests/E2E",
   /* Run tests in files in parallel */
@@ -13,12 +15,13 @@ module.exports = defineConfig({
   expect: {
     timeout: 2 * 60 * 1000,
   },
-
   use: {
-    actionTimeout: 2 * 60 * 1000,
-    navigationTimeout: 2 * 60 * 1000,
+    actionTimeout: 30_000,
+    navigationTimeout: 30_000,
+    trace: "retain-on-failure",
+    video: "retain-on-failure",
+    screenshot: "only-on-failure",
   },
-
   reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */
@@ -30,26 +33,24 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
-        trace: "on",
         javaScriptEnabled: true,
+        viewport: DEFAULT_VIEWPORT,
       },
     },
     {
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
-        screenshot: "off",
-        trace: "on",
         javaScriptEnabled: true,
+        viewport: DEFAULT_VIEWPORT,
       },
     },
     {
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
-        screenshot: "off",
-        trace: "on",
         javaScriptEnabled: true,
+        viewport: DEFAULT_VIEWPORT,
       },
     },
     {
