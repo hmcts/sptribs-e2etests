@@ -507,46 +507,46 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       states_content.awaitingHearingState,
       subjectName,
     );
-    // await task.seeTask(
-    //   page,
-    //   waUsers_content.userRoleAdmin,
-    //   false,
-    //   taskNames_content.processRule27,
-    //   subjectName,
-    // );
-    // await task.initiateTask(
-    //   page,
-    //   waUsers_content.userRoleAdmin,
-    //   "Link: Assign Task to Me and Go To Task",
-    //   false,
-    //   caseNumber108,
-    //   taskNames_content.processRule27,
-    //   priorityProcess,
-    //   authors_content.assignedUserAdmin,
-    //   numberOfDaysProcess,
-    //   "Orders: Send order",
-    //   states_content.caseManagementState,
-    //   subjectName,
-    // );
-    // await sendOrder.sendOrder(
-    //   page,
-    //   caseNumber108,
-    //   "DraftOrder",
-    //   false,
-    //   false,
-    //   true,
-    //   true,
-    //   "1",
-    //   subjectName,
-    // );
-    // await task.checkCompletedTask(
-    //   page,
-    //   false,
-    //   taskNames_content.processRule27,
-    //   caseNumber108,
-    //   states_content.caseManagementState,
-    //   subjectName,
-    // );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processRule27,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber108,
+      taskNames_content.processRule27,
+      priorityProcess,
+      authors_content.assignedUserAdmin,
+      numberOfDaysProcess,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber108,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.processRule27,
+      caseNumber108,
+      states_content.awaitingHearingState,
+      subjectName,
+    );
   });
 
   test("Review is cancellable through close case", async ({ page }) => {
