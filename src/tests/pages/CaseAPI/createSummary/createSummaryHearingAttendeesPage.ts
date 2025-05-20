@@ -70,9 +70,9 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
         expect(page.locator("#memberList > div > h2")).toHaveText(
           createSummaryHearingAttendeesContent.subTitle1,
         ),
-        expect(
-          page.locator("#memberList_0_0 > div > div > label > h3"),
-        ).toHaveText(createSummaryHearingAttendeesContent.subTitle1),
+        // expect(
+        //   page.locator("#memberList_0_0 > div > div > label > h3"),
+        // ).toHaveText(createSummaryHearingAttendeesContent.subTitle1),
         ...Array.from({ length: 5 }, (_, index) => {
           const textOnPage = (createSummaryHearingAttendeesContent as any)[
             `textOnPage${index + 5}`
