@@ -10,6 +10,13 @@ EXAMPLE_ENV_FILE=".env.example"
 ENV_FILE=".env"
 TEMP_ENV_FILE=$(mktemp)
 
+# Detect OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SED_COMMAND="sed -i ''"
+else
+    SED_COMMAND="sed -i"
+fi
+
 secrets=$(az keyvault secret list --vault-name $KEY_VAULT_NAME --query "[].{id:id, tags:tags}" -o json)
 echo "$secrets" | jq -c '.[]' | while read -r secret; do
     secret_id=$(echo $secret | jq -r '.id')
@@ -29,7 +36,7 @@ if [ -f $EXAMPLE_ENV_FILE ]; then
         value=$(grep "^$key=" $TEMP_ENV_FILE | cut -d '=' -f 2-)
         if [ -n "$value" ]; then
             echo "Setting $key"
-            sed -i '' "s|^$key=.*|$key=$value|" $ENV_FILE
+            $SED_COMMAND "s|^$key=.*|$key=$value|" $ENV_FILE
         fi
     done < $EXAMPLE_ENV_FILE
     echo ".env file created successfully."
