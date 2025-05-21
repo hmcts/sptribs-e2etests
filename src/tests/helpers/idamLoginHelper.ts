@@ -48,7 +48,10 @@ const idamLoginHelper: IdamLoginHelper = {
 
     const userCredentials: UserCredentials | string = config[user];
     if (isUserCredentials(userCredentials)) {
-      await page.fill(this.fields.username, userCredentials.email);
+      await page.fill(
+        this.fields.username,
+        userCredentials.email.replace("mailto:", ""),
+      );
       await page.fill(this.fields.password, userCredentials.password);
       await page.click(this.submitButton);
       await page.waitForLoadState("domcontentloaded");
