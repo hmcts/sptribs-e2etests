@@ -8,15 +8,15 @@ This application uses Playwright.ts as both a test runner, and framework, and no
 
 We make use of TypeScript, and follow the strict type declarations, no .js files should appear in this repository as .js is disabled.
 
-Should you wish to contribute, please reach out to the Special Tribunals team for permissions.
-
 ### Requirements
 
 To run the application on your pc, please ensure you have the following:
 
-Node.JS v21.6.2
+ - node.js version 20 or above
+ - jq
+ - azure-cli
 
-### Running the application on local environment
+### Running the tests locally
 
 Please install the dependencies with the following cmd:
 
@@ -24,7 +24,7 @@ Please install the dependencies with the following cmd:
 
 `yarn install`
 
-You will also need the config.js file from a current developer, which should be located in tests/config.js, this file should **NEVER** be committed.
+You will need to run the `./scripts/get_secrets.sh` script to create the `.env` file, which is used to store secrets for the application. This will create a `.env` file in the root of the repository.
 
 ### To run the e2e tests:
 
@@ -58,12 +58,6 @@ Should you wish to run a test locally, I recommend using Intellij Aqua, and you 
 Should you wish to run in headed mode, you can select modify run configuration, and then change the playwright options, the following are recommended:
 `--project chromium --headed`
 This runs a test in Chrome, whilst headed.
-
-### Generate secrets
-
-Run the [get_secrets.sh](./scripts/get_secrets.sh) to create & populate your `.env.` file. Run:
-
-`./scripts/get_secrets.sh`
 
 ### To obtain an E2E report, use the following command:
 
