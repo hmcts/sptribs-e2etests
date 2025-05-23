@@ -38,6 +38,8 @@ const taskNames_content = {
   reviewWithdrawalLO: "Review withdrawal request - Legal Officer",
   reviewWithdrawalJudge: "Review withdrawal request - Judge",
   processWithdrawal: "Process case withdrawal directions",
+  reviewWithdrawalRequestCaseListedLO:
+    "Review withdrawal request case listed - Legal Officer",
   reviewSetAside: "Review set aside request",
   processSetAside: "Process set aside directions",
   reviewCorrectionsRequest: "Review corrections request",
