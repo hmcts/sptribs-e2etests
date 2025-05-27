@@ -12,9 +12,9 @@ We make use of TypeScript, and follow the strict type declarations, no .js files
 
 To run the application on your pc, please ensure you have the following:
 
- - node.js version 20 or above
- - jq
- - azure-cli
+- node.js version 20 or above
+- jq
+- azure-cli
 
 ### Running the tests locally
 

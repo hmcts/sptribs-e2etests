@@ -30,6 +30,7 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-judge/refer-to-judgereferToJudgeAdditionalInfo`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(

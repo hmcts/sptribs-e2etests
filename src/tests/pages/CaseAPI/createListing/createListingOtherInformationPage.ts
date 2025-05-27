@@ -32,6 +32,7 @@ const createListingOtherInformationPage: CreateListingOtherInformationPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-record-listing/caseworker-record-listingotherInformation`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(

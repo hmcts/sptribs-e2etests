@@ -107,7 +107,7 @@ const myWorkPage: MyWorkPage = {
 
   async selectAvailableTasks(page: Page, user: any): Promise<void> {
     await page.locator(this.availableTasksTab).click();
-    await page.waitForURL(/.*\/available$/);
+    await page.waitForURL(/.*\/available$/, { timeout: 30_000 });
     await page.waitForTimeout(7000);
 
     if (user === waUsers_content.userRoleJudge) {

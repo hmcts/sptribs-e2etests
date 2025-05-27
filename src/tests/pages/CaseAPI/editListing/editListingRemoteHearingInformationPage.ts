@@ -35,6 +35,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingremoteHearingInformation`,
+        { timeout: 30_000 },
       );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(

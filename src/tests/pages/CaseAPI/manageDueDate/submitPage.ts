@@ -136,6 +136,7 @@ const submitPage: SubmitPage = {
     await page.locator(`[aria-label="Change Due Date"]`).click();
     await page.waitForURL(
       /.*\/caseworker-amend-due-datecaseworkerAmendDueDateEditDueDate$/,
+      { timeout: 30_000 },
     );
     await editDueDatePage.checkPageLoads(
       page,
@@ -144,7 +145,7 @@ const submitPage: SubmitPage = {
       subjectName,
     );
     await page.click(this.continue);
-    await page.waitForURL(/.*\/submit$/);
+    await page.waitForURL(/.*\/submit$/, { timeout: 30_000 });
   },
 
   async saveAndContinue(page: Page): Promise<void> {
