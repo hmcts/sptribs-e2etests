@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import config from "../../config.ts";
 import myWork_content from "../../fixtures/content/CaseAPI/myWork/myWork_content.ts";
 import waUsers_content from "../../fixtures/content/waUsers_content.ts";
-import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type MyWorkPage = {
@@ -101,7 +101,7 @@ const myWorkPage: MyWorkPage = {
       );
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

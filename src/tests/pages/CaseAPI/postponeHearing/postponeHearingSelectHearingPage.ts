@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import postponeHearingSelectHearingContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingSelectHearing_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -51,7 +50,7 @@ const postponeHearingSelectHearingPage: PostponeHearingSelectHearingPage = {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

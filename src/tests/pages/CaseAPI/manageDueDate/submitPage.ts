@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
+import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/manageDueDate/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editDueDatePage from "./editDueDatePage.ts";
 
 type SubmitPage = {
@@ -99,7 +99,7 @@ const submitPage: SubmitPage = {
       }
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

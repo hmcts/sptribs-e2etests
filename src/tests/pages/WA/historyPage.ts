@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper.ts";
 
 type HistoryPage = {
   caseHistoryTab: string;
@@ -32,7 +32,7 @@ const historyPage: HistoryPage = {
       page.getByRole("row", { name: `End state ${stateBeforeCompletion}` }),
     ).toBeVisible();
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

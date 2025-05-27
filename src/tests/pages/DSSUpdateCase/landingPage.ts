@@ -1,6 +1,6 @@
-import config from "../../config";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
+import config from "../../config";
 import LandingPageDetails from "../../fixtures/content/DSSUpdateCase/LandingPage_content";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
@@ -75,7 +75,7 @@ const landingPage: LandingPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

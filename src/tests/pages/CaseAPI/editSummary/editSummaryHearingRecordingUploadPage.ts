@@ -1,9 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../../config.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingRecordingUpload_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditSummaryHearingRecordingUploadPage = {
   previous: string;
@@ -87,7 +86,7 @@ const editSummaryHearingRecordingUploadPage: EditSummaryHearingRecordingUploadPa
       ]);
 
       // if (accessibilityTest) {
-      //   await axeTest(page);
+      //   await new AxeUtils(page).audit();
       // }
     },
 

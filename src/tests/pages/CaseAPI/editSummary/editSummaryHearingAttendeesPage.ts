@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editSummaryHearingAttendeesContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendees_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -60,7 +59,7 @@ const editSummaryHearingAttendeesPage: EditSummaryHearingAttendeesPage = {
     ]);
 
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

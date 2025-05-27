@@ -1,10 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editSummaryHearingTypeAndFormatContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingTypeAndFormat_content.ts";
 import commonHelpers, {
   hearingFormat,
   hearingType,
 } from "../../../helpers/commonHelpers.ts";
-import editSummaryHearingTypeAndFormatContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingTypeAndFormat_content.ts";
 
 type EditSummaryHearingTypeAndFormatPage = {
   previous: string;
@@ -64,7 +64,7 @@ const editSummaryHearingTypeAndFormatPage: EditSummaryHearingTypeAndFormatPage =
         ),
       ]);
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 

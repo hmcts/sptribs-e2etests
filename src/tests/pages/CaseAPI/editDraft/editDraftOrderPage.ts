@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editDraftOrderContent from "../../../fixtures/content/CaseAPI/editDraft/editDraftOrder_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditDraftOrderPage = {
   previous: string;
@@ -58,7 +57,7 @@ const editDraftOrderPage: EditDraftOrderPage = {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

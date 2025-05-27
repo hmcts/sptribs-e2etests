@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import path from "path";
 import config, { UserRole } from "../../../config.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseDocumentsTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseDocumentsTab_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -231,7 +231,7 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
       }
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

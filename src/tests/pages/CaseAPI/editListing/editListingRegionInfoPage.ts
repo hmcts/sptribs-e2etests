@@ -1,9 +1,8 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editListingRegionInfoContent from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
 import commonHelpers, {
   caseRegionCode,
 } from "../../../helpers/commonHelpers.ts";
-import editListingRegionInfoContent from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
 
 type EditListingRegionInfoPage = {
   region: string;
@@ -61,7 +60,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

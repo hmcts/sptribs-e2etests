@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
@@ -125,7 +125,7 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

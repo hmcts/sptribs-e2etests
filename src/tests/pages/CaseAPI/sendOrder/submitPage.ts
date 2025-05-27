@@ -1,13 +1,13 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import { OrderType } from "./selectOrderIssuingTypePage.ts";
-import { ReminderDays } from "./sendReminderPage.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/sendOrder/submit_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import uploadOrder_Content from "../../../fixtures/content/CaseAPI/sendOrder/uploadOrder_Content.ts";
 import path from "path";
 import config from "../../../config.ts";
 import orderDueDates_content from "../../../fixtures/content/CaseAPI/sendOrder/orderDueDates_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/sendOrder/submit_content.ts";
+import uploadOrder_Content from "../../../fixtures/content/CaseAPI/sendOrder/uploadOrder_Content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { OrderType } from "./selectOrderIssuingTypePage.ts";
+import { ReminderDays } from "./sendReminderPage.ts";
 
 type SubmitPage = {
   previous: string;
@@ -127,7 +127,7 @@ const submitPage: SubmitPage = {
       ]);
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingRemoteHearingInformation_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditListingRemoteHearingInformationPage = {
   videoLink: string;
@@ -64,7 +64,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
         ),
       ]);
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 

@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers, { parties } from "../../../helpers/commonHelpers.ts";
 import notifyOtherParties_content from "../../../fixtures/content/CaseAPI/issueToRespondent/notifyOtherParties_content.ts";
+import commonHelpers, { parties } from "../../../helpers/commonHelpers.ts";
 
 type NotifyOtherPartiesPage = {
   checkPageLoads(
@@ -55,7 +55,7 @@ const notifyOtherPartiesPage: NotifyOtherPartiesPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

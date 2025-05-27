@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingOutcome_content.ts";
 import commonHelpers, {
   hearingAdjournedReasons,
@@ -105,7 +105,7 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

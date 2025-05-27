@@ -1,21 +1,21 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../../config.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendeesRole_content.ts";
+import editSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingOutcome_content.ts";
+import editSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingRecordingUpload_content.ts";
+import editSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryListingDetails_content.ts";
+import submitContent from "../../../fixtures/content/CaseAPI/editSummary/submit_content.ts";
 import commonHelpers, {
-  hearingType,
-  hearingFormat,
-  hearingSession,
-  hearingOutcome,
   hearingAdjournedReasons,
+  hearingFormat,
+  hearingOutcome,
+  hearingSession,
+  hearingType,
   hearingVenueNames,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import submitContent from "../../../fixtures/content/CaseAPI/editSummary/submit_content.ts";
-import editSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryListingDetails_content.ts";
-import editSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendeesRole_content.ts";
-import editSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingRecordingUpload_content.ts";
-import editSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingOutcome_content.ts";
 
 type SubmitPage = {
   hearingAttendees: string[];
@@ -246,7 +246,7 @@ const submitPage: SubmitPage = {
       }
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

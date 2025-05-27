@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import casesContent from "../../../fixtures/content/CaseAPI/caseList/cases_content.ts";
 
 type CasesPage = {
@@ -62,7 +61,7 @@ const casesPage: CasesPage = {
     }
 
     if (accessibilityTest) {
-      // await axeTest(page); disabled due to EXUI accessibility issues DTSSTCI-733.
+      // await new AxeUtils(page).audit(); disabled due to EXUI accessibility issues DTSSTCI-733.
     }
   },
 
