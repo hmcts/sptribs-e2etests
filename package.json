@@ -37,7 +37,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/playwright-common": "^1.0.19",
+    "@hmcts/playwright-common": "^1.0.20",
     "axios": "^1.7.5",
     "dependency-check": "^4.1.0",
     "dotenv": "^16.4.7",
