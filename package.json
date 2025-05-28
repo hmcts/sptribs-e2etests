@@ -26,7 +26,7 @@
     "test:report": "yarn playwright show-report",
     "test:accessibility": "npx playwright test --project chromium --grep @accessibility",
     "lint": "yarn prettier . --write",
-    "delete-branch": "ts-node src/tests/helpers/nightlyDevDeletion.ts",
+    "delete-branch": "yarn tsx src/tests/helpers/nightlyDevDeletion.ts",
     "test:dataCleanUp": "npx playwright test --project chromium --grep @dataCleanup",
     "test:ChromeCaseAPI1": "npx playwright test --project chromium --grep @CaseAPI1",
     "test:ChromeCaseAPI2": "npx playwright test --project chromium --grep @CaseAPI2",
@@ -49,7 +49,7 @@
     "@playwright/test": "^1.46.1",
     "@types/node": "^22.0.0",
     "prettier": "3.5.3",
-    "ts-node": "^10.9.2"
+    "tsx": "^4.19.4"
   },
   "packageManager": "yarn@4.9.1"
 }
