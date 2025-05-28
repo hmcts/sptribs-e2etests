@@ -1,11 +1,11 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editCaseFurtherDetailsObjectContent from "../../../fixtures/content/CaseAPI/editCase/editCaseFurtherDetailsObject_content.ts";
 import commonHelpers, {
   caseRegion,
   Scheme,
 } from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
-import editCaseFurtherDetailsObjectContent from "../../../fixtures/content/CaseAPI/editCase/editCaseFurtherDetailsObject_content.ts";
 
 type EditCaseFurtherDetailsObjectPage = {
   previous: string;
@@ -115,7 +115,7 @@ const editCaseFurtherDetailsObjectPage: EditCaseFurtherDetailsObjectPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

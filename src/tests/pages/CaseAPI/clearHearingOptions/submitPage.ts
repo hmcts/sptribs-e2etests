@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/clearHearingOptions/submit_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -47,7 +47,7 @@ const submitPage: SubmitPage = {
     ]);
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import commonHelpers, {
   hearingSession,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 
 type CreateListingListingDetailsPage = {
   venue: string;
@@ -156,7 +155,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await expect(page.locator(".cdk-overlay-container")).not.toBeVisible();
     }
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

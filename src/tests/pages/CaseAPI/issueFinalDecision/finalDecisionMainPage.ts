@@ -1,9 +1,8 @@
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { Template } from "./selectTemplatePage.ts";
 import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { Template } from "./selectTemplatePage.ts";
 
 type FinalDecisionMainPage = {
   previous: string;
@@ -116,7 +115,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
         break;
     }
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

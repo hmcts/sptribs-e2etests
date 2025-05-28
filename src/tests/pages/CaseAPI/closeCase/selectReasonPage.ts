@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import selectReason_content from "../../../fixtures/content/CaseAPI/closeCase/selectReason_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 export type CaseCloseReason =
   | "caseWithdrawn"
@@ -73,7 +73,7 @@ const selectReasonPage: SelectReasonPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

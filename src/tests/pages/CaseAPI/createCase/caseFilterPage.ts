@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseFilter_content from "../../../fixtures/content/CaseAPI/createCase/caseFilter_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -34,7 +34,7 @@ const caseFilterPage: CaseFilterPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

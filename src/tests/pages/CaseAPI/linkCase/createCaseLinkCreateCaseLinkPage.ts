@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createCaseLinkCreateCaseLink_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkCreateCaseLink_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -48,7 +48,7 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLinkPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

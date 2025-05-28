@@ -1,9 +1,9 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
-import confirm_content from "../../../fixtures/content/CaseAPI/contactParties/confirm_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 import { UserRole } from "../../../config.ts";
+import confirm_content from "../../../fixtures/content/CaseAPI/contactParties/confirm_content.ts";
+import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
 
 type ConfirmPage = {
   continue: string;
@@ -49,7 +49,7 @@ const confirmPage: ConfirmPage = {
       expect(page.locator("markdown > h2")).toHaveText(headingRegex),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
   async continueOn(page: Page): Promise<void> {

@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/clearHearingOptions/submit_content.ts";
 import caseEditPanelComposition_content from "../../../fixtures/content/CaseAPI/editPanelComposition/casePanelComposition_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CasePanelCompositionPage = {
   checkPageLoads(
@@ -68,7 +68,7 @@ const casePanelCompositionPage: CasePanelCompositionPage = {
     ]);
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

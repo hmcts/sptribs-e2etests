@@ -1,5 +1,11 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
+import editCaseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseApplicantDetailsObject_content.ts";
+import editCaseObjectsContacts_content from "../../../fixtures/content/CaseAPI/editCase/editCaseObjectsContacts_content.ts";
+import editCaseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseRepresentativeDetailsObject_content.ts";
+import editCaseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseSubjectDetailsObject_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/editCase/submit_content.ts";
 import commonHelpers, {
   caseRegion,
   Category,
@@ -7,12 +13,6 @@ import commonHelpers, {
   Scheme,
   SubCategory,
 } from "../../../helpers/commonHelpers.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/editCase/submit_content.ts";
-import editCaseObjectsContacts_content from "../../../fixtures/content/CaseAPI/editCase/editCaseObjectsContacts_content.ts";
-import editCaseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseSubjectDetailsObject_content.ts";
-import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
-import editCaseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseApplicantDetailsObject_content.ts";
-import editCaseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/editCase/editCaseRepresentativeDetailsObject_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -118,7 +118,7 @@ const submitPage: SubmitPage = {
       await this.handleRepresentativeLabels(page);
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

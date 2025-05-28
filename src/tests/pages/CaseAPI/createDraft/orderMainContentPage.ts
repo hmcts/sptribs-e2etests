@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
 import orderMainContent_content from "../../../fixtures/content/CaseAPI/createDraft/orderMainContent_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
 
 type OrderMainContentPage = {
   previous: string;
@@ -102,7 +102,7 @@ const orderMainContentPage: OrderMainContentPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -1,10 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import previewTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/previewTemplate_content.ts";
 import commonHelpers, {
   CaseNoticeType,
 } from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import previewTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/previewTemplate_content.ts";
 import { Template } from "./selectTemplatePage.ts";
 
 type PreviewTemplatePage = {
@@ -65,7 +65,7 @@ const previewTemplatePage: PreviewTemplatePage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

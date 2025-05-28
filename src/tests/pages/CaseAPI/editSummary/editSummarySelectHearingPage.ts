@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editSummarySelectHearingContent from "../../../fixtures/content/CaseAPI/editSummary/editSummarySelectHearing_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditSummarySelectHearingPage = {
   previous: string;
@@ -51,7 +50,7 @@ const editSummarySelectHearingPage: EditSummarySelectHearingPage = {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

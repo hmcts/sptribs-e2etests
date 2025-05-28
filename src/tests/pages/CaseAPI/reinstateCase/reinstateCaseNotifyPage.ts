@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 import reinstateCaseNotifyPage_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateCaseNotifyPage_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ReinstateCaseNotifyPage = {
   checkPageLoads(
@@ -59,8 +59,9 @@ const reinstateCaseNotifyPage: ReinstateCaseNotifyPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
+    ``;
   },
 
   async continueOn(page: Page): Promise<void> {

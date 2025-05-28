@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingOtherInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingOtherInformation_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditListingOtherInformationPage = {
   importantInfo: string;
@@ -32,6 +32,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingotherInformation`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -61,7 +62,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

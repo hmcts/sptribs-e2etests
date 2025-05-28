@@ -1,13 +1,13 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/reinstateCase/submit_content.ts";
-import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { ReinstateReason } from "./reinstateReasonPage.ts";
 import path from "path";
 import config from "../../../config.ts";
-import reinstateUploadDocument_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateUploadDocument_content.ts";
+import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
 import reinstateReason_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateReason_content.ts";
+import reinstateUploadDocument_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateUploadDocument_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/reinstateCase/submit_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { ReinstateReason } from "./reinstateReasonPage.ts";
 
 type SubmitPage = {
   continue: string;
@@ -80,7 +80,7 @@ const submitPage: SubmitPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

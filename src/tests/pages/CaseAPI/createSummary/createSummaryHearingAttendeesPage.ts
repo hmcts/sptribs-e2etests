@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createSummaryHearingAttendeesContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendees_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -35,6 +34,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingAttendees`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -89,7 +89,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
     }
 
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

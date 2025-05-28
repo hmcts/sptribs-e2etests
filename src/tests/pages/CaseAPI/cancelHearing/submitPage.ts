@@ -1,11 +1,11 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import cancelHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingNotifyPage_content.ts";
+import cancelHearingReason_content from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
+import submitContent from "../../../fixtures/content/CaseAPI/cancelHearing/submit_content.ts";
 import commonHelpers, {
   hearingCancelledReasons,
 } from "../../../helpers/commonHelpers.ts";
-import submitContent from "../../../fixtures/content/CaseAPI/cancelHearing/submit_content.ts";
-import cancelHearingReason_content from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
-import cancelHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingNotifyPage_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -71,7 +71,7 @@ const submitPage: SubmitPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

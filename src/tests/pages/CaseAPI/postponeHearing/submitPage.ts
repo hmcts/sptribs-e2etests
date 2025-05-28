@@ -1,11 +1,11 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import postponeHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingNotifyPage_content.ts";
+import postponeHearingReasonContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingReason_content.ts";
+import submitContent from "../../../fixtures/content/CaseAPI/postponeHearing/submit_content.ts";
 import commonHelpers, {
   hearingPostponedReasons,
 } from "../../../helpers/commonHelpers.ts";
-import submitContent from "../../../fixtures/content/CaseAPI/postponeHearing/submit_content.ts";
-import postponeHearingReasonContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingReason_content.ts";
-import postponeHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingNotifyPage_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -38,6 +38,7 @@ const submitPage: SubmitPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-postpone-hearing/submit`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -74,7 +75,7 @@ const submitPage: SubmitPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

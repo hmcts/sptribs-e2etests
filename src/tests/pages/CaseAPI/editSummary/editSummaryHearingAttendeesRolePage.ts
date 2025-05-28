@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryHearingAttendeesRole_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -70,7 +70,7 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
       ]);
 
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 

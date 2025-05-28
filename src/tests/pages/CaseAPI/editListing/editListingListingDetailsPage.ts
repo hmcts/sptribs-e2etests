@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
 import commonHelpers, {
   hearingSession,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
 
 type CreateListingListingDetailsPage = {
   venue: string;
@@ -120,7 +119,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       ).toHaveText(`${editListingListingDetailsContent.textOnPage3}`);
     }
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

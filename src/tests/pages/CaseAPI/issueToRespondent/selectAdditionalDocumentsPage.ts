@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import selectAdditionalDocuments_content from "../../../fixtures/content/CaseAPI/issueToRespondent/selectAdditionalDocuments_content.ts";
 import path from "path";
 import config from "../../../config.ts";
+import selectAdditionalDocuments_content from "../../../fixtures/content/CaseAPI/issueToRespondent/selectAdditionalDocuments_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type SelectAdditionalDocumentsPage = {
@@ -39,7 +39,7 @@ const selectAdditionalDocuments: SelectAdditionalDocumentsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 
