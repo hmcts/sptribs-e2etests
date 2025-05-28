@@ -76,9 +76,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@npm:^1.0.18":
-  version: 1.0.18
-  resolution: "@hmcts/playwright-common@npm:1.0.18"
+"@hmcts/playwright-common@npm:^1.0.19":
+  version: 1.0.19
+  resolution: "@hmcts/playwright-common@npm:1.0.19"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@playwright/test": "npm:^1.48.2"
@@ -88,7 +88,7 @@ __metadata:
     playwright: "npm:^1.48.2"
     playwright-core: "npm:^1.48.2"
     playwright-lighthouse: "npm:^4.0.0"
-  checksum: 10/2c3caf78a00b90d03e4501195e6ffbe1f5ae0fab42bf2cd1e92b23e5d423580040f1e27ef3e20d65576954bdc5377974ace6a8ef9ad24ebc3172a1ffe5083e5e
+  checksum: 10/57a28871ad8c83a09bee1f8041aa8f1b9d8854da008ba87fe7a6665bb9c74f4189d8be424974867322b98d8137de1fcb00e0fa3766c1c0422694ea8ce70704a4
   languageName: node
   linkType: hard
 
@@ -2796,7 +2796,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
-    "@hmcts/playwright-common": "npm:^1.0.18"
+    "@hmcts/playwright-common": "npm:^1.0.19"
     "@playwright/test": "npm:^1.46.1"
     "@types/node": "npm:^20.10.0"
     axios: "npm:^1.7.5"

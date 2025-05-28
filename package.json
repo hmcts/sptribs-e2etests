@@ -7,6 +7,7 @@
   },
   "scripts": {
     "configure": "yarn playwright install --with-deps",
+    "load-secrets": "yarn node scripts/get-secrets.js",
     "test:ui": "npx playwright test --project chromium --headed",
     "test:fullfunctional": "npx playwright test --project chromium",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox",
@@ -36,7 +37,7 @@
     "lint"
   ],
   "dependencies": {
-    "@hmcts/playwright-common": "^1.0.18",
+    "@hmcts/playwright-common": "^1.0.19",
     "axios": "^1.7.5",
     "dependency-check": "^4.1.0",
     "dotenv": "^16.4.7",
