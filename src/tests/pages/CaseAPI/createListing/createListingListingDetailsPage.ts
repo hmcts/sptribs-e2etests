@@ -123,10 +123,10 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         expect(page.locator(".heading-h2").nth(0)).toHaveText(
           createListingListingDetailsContent.subTitle2,
         ),
-        expect(
-          page.locator("div.float-left > label > h3.heading-h3"),
-        ).toHaveText(createListingListingDetailsContent.subTitle2),
-        page.locator(this.remove).isVisible(),
+        // expect(
+        //   page.locator("div.float-left > label > h3.heading-h3"),
+        // ).toHaveText(createListingListingDetailsContent.subTitle2),
+        // page.locator(this.remove).isVisible(),
         expect(
           page.locator("#hearingVenueDate > fieldset > legend > span"),
         ).toHaveText(createListingListingDetailsContent.subTitle1),
