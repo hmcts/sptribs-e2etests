@@ -462,7 +462,7 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
     );
   });
 
-  test.only("Task is completable via next steps link - assign to me - Awaiting hearing", async ({
+  test("Task is completable via next steps link - assign to me - Awaiting hearing", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
