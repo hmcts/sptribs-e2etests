@@ -14,6 +14,7 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import createListing from "../journeys/CaseAPI/createListing.ts";
 
 const priorityReview = null;
 const priorityProcess = " low ";
@@ -460,6 +461,147 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       subjectName,
     );
   });
+
+  test.only("Task is completable via next steps link - assign to me - Awaiting hearing", async ({
+    page,
+  }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber117 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber117, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "7-Wales",
+      "Final",
+      "Telephone",
+      "Morning",
+      false,
+      "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
+      false,
+      caseNumber117,
+      subjectName,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Stay request",
+      false,
+      caseNumber117,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewStayRequestCaseListedJudge,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleJudge,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber117,
+      taskNames_content.reviewStayRequestCaseListedJudge,
+      priorityReview,
+      authors_content.assignedUserJudge,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC10 - Strike Out Warning",
+      caseNumber117,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewStayRequestCaseListedJudge,
+      caseNumber117,
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processStayDirectionsListed,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber117,
+      taskNames_content.processStayDirectionsListed,
+      priorityProcess,
+      authors_content.assignedUserAdmin,
+      numberOfDaysProcess,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber117,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.processStayDirectionsListed,
+      caseNumber117,
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+  });
+
   test("Process task is cancellable through close case", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber116 = await createCase.createCase(
