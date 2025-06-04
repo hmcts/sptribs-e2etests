@@ -50,5 +50,5 @@
     "prettier": "3.5.3",
     "ts-node": "^10.9.2"
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "yarn@4.9.2"
 }
