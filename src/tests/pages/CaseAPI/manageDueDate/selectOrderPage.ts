@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import selectOrder_content from "../../../fixtures/content/CaseAPI/manageDueDate/selectOrder_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type SelectOrderPage = {
   previous: string;
@@ -48,7 +47,7 @@ const selectOrderPage: SelectOrderPage = {
       ),
     ]);
     if (accessibilityTest) {
-      //await axeTest(page);
+      //await new AxeUtils(page).audit();
       //awaiting XUI bug fix
     }
   },

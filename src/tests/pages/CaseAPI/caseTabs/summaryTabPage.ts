@@ -1,14 +1,16 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import summaryTabContent from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
-import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
-import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
-import createEditStaySubmit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
-import removeStaySubmit_content from "../../../fixtures/content/CaseAPI/removeStay/submit_content.ts";
+import {
+  default as summaryTab_content,
+  default as summaryTabContent,
+} from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
 import addStay_content from "../../../fixtures/content/CaseAPI/createEditStay/addStay_content.ts";
-import summaryTab_content from "../../../fixtures/content/CaseAPI/caseTabs/summaryTab_content.ts";
+import createEditStaySubmit_content from "../../../fixtures/content/CaseAPI/createEditStay/submit_content.ts";
 import removeStay_content from "../../../fixtures/content/CaseAPI/removeStay/removeStay_content.ts";
+import removeStaySubmit_content from "../../../fixtures/content/CaseAPI/removeStay/submit_content.ts";
+import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
+import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type SummaryTabPage = {
   summaryTab: string;
@@ -80,7 +82,7 @@ const summaryTabPage: SummaryTabPage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

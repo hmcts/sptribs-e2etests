@@ -1,5 +1,14 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import path from "path";
+import config from "../../../config.ts";
+import caseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
+import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
+import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
+import caseObjectsContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectsContacts_content.ts";
+import caseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseRepresentativeDetailsObject_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/createCase/submit_content.ts";
 import commonHelpers, {
   caseRegion,
   Category,
@@ -7,15 +16,6 @@ import commonHelpers, {
   Scheme,
   SubCategory,
 } from "../../../helpers/commonHelpers.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/createCase/submit_content.ts";
-import caseDateObjects_content from "../../../fixtures/content/CaseAPI/createCase/casedateObjects_content.ts";
-import caseObjectsContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectsContacts_content.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import caseObjectContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectContacts_content.ts";
-import caseApplicantDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseApplicantDetailsObject_content.ts";
-import caseRepresentativeDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseRepresentativeDetailsObject_content.ts";
-import path from "path";
-import config from "../../../config.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -112,7 +112,7 @@ const submitPage: SubmitPage = {
     }
     await this.handleDocumentLabels(page, multipleFiles);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

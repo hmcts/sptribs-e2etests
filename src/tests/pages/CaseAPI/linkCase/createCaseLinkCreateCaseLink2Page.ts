@@ -1,9 +1,8 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import createCaseLinkcreateCaseLink2_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
+import createCaseLinkcreateCaseLink2_content from "../../../fixtures/content/CaseAPI/LinkCase/createCaseLinkcreateCaseLink2_content.ts";
 import states_content from "../../../fixtures/content/states_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CreateCaseLinkCreateCaseLink2Page = {
   next: string;
@@ -59,7 +58,7 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
     );
 
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // } Disabled due to input field for case number breaking accessibility tests.
   },
 

@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editCICACaseDetailsEditCaseDetailsContent from "../../../fixtures/content/CaseAPI/editCICACaseDetails/editCICACaseDetailsEditCaseDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditCICACaseDetailsEditCaseDetailsPage = {
   continue: string;
@@ -62,7 +62,7 @@ const editCICACaseDetailsEditCaseDetailsPage: EditCICACaseDetailsEditCaseDetails
       ]);
 
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 

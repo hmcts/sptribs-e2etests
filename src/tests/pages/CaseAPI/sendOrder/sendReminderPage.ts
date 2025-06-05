@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import sendReminder_content from "../../../fixtures/content/CaseAPI/sendOrder/sendReminder_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 export type ReminderDays = "1" | "3" | "5" | "7" | void;
 
@@ -65,7 +65,7 @@ const sendReminderPage: SendReminderPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

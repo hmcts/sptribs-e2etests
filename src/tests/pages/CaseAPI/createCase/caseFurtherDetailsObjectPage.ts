@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import { caseFurtherDetailsObject_content } from "../../../fixtures/content/CaseAPI/createCase/caseFurtherDetailsObject_content.ts";
 import { caseRegion, Scheme } from "../../../helpers/commonHelpers.ts";
 
@@ -86,7 +86,7 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

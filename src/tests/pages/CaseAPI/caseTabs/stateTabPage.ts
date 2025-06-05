@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import stateTabContent from "../../../fixtures/content/CaseAPI/caseTabs/stateTab_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import states_content from "../../../fixtures/content/states_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type StateTabPage = {
   caseStateTab: string;
@@ -27,7 +27,7 @@ const stateTabPage: StateTabPage = {
   ): Promise<void> {
     await commonHelpers.checkAllCaseTabs(page, caseNumber, false, subjectName);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

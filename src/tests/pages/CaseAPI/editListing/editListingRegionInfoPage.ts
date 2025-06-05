@@ -1,9 +1,8 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editListingRegionInfoContent from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
 import commonHelpers, {
   caseRegionCode,
 } from "../../../helpers/commonHelpers.ts";
-import editListingRegionInfoContent from "../../../fixtures/content/CaseAPI/editListing/editListingRegionInfo_content.ts";
 
 type EditListingRegionInfoPage = {
   region: string;
@@ -38,6 +37,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingregionInfo`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -61,7 +61,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

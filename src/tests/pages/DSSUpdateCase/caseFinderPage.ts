@@ -1,8 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
 import CaseFinderDetails from "../../fixtures/content/DSSUpdateCase/CaseFinder_content.ts";
-import CommonHelpers from "../../helpers/commonHelpers.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
+import {
+  default as CommonHelpers,
+  default as commonHelpers,
+} from "../../helpers/commonHelpers.ts";
 
 type CaseFinderPage = {
   caseReferenceNumber: string;
@@ -77,7 +79,7 @@ const caseFinderPage: CaseFinderPage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

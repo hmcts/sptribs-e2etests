@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import cancelHearingReasonContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
 import commonHelpers, {
   hearingCancelledReasons,
@@ -63,7 +63,7 @@ const cancelHearingReasonPage: CancelHearingReasonPage = {
     ]);
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

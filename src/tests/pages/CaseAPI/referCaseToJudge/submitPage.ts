@@ -1,9 +1,9 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { referralReason } from "./referCaseToJudgeReasonPage.ts";
+import referCaseToJudgeReasonContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/referCaseToJudgeReason_content.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import referCaseToJudgeReasonContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/referCaseToJudgeReason_content.ts";
+import { referralReason } from "./referCaseToJudgeReasonPage.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -75,7 +75,7 @@ const submitPage: SubmitPage = {
       );
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

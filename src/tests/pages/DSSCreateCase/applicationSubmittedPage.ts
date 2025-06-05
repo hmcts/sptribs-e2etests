@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
 import applicationSubmittedContent from "../../fixtures/content/DSSCreateCase/applicationSubmitted_content.ts";
 
 type ApplicationSubmittedPage = {
@@ -82,7 +82,7 @@ const applicationSubmittedPage: ApplicationSubmittedPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

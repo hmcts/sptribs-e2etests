@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import cancelHearingNotifyPageContent from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingNotifyPage_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CancelHearingNotifyPage = {
   checkPageLoads(
@@ -55,7 +55,7 @@ const cancelHearingNotifyPage: CancelHearingNotifyPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

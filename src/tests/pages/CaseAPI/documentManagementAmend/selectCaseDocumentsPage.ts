@@ -1,8 +1,8 @@
 import { expect, Page } from "@playwright/test";
+import path from "path";
+import config from "../../../config.ts";
 import selectCaseDocuments_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/selectCaseDocuments_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import config from "../../../config.ts";
-import path from "path";
 // import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
 type SelectCaseDocumentsPage = {
@@ -53,7 +53,7 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

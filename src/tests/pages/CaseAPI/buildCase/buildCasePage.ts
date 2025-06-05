@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import buildCase_content from "../../../fixtures/content/CaseAPI/buildCase/buildCase_content.ts";
 
 type BuildCasePage = {
@@ -33,7 +33,7 @@ const builtCasePage: BuildCasePage = {
     ]);
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

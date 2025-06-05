@@ -1,10 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import reinstateUploadDocument_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateUploadDocument_content.ts";
-import uploadDocuments_content from "../../../fixtures/content/CaseAPI/closeCase/uploadDocuments_content.ts";
 import config from "../../../config.ts";
+import uploadDocuments_content from "../../../fixtures/content/CaseAPI/closeCase/uploadDocuments_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import reinstateUploadDocument_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateUploadDocument_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ReinstateUploadDocumentPage = {
   continue: string;
@@ -92,7 +92,7 @@ const reinstateUploadDocumentPage: ReinstateUploadDocumentPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

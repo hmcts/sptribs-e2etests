@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../config.ts";
-import axeTest from "../../helpers/accessibilityTestHelper";
 import uploadOtherInformationContent from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
@@ -241,7 +241,7 @@ const uploadOtherInformationPage: UploadOtherInformationPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

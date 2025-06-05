@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
 type AddCaseNotePage = {
   previous: string;
@@ -59,7 +59,7 @@ const addCaseNotePage: AddCaseNotePage = {
     ]);
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

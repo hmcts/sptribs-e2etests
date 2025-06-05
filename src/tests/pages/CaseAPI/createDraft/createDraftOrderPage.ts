@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createDraftOrder_content from "../../../fixtures/content/CaseAPI/createDraft/createDraftOrder_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { Template } from "../issueFinalDecision/selectTemplatePage.ts";
 
 type CreateDraftOrderPage = {
   previous: string;
@@ -58,7 +58,7 @@ const createDraftOrderPage: CreateDraftOrderPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

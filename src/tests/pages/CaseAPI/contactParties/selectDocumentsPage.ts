@@ -1,10 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 import path from "path";
 import config from "../../../config.ts";
+import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
+import selectDocument_content from "../../../fixtures/content/CaseAPI/contactParties/selectDocument_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type SelectDocumentsPage = {
   continue: string;
@@ -70,7 +70,7 @@ const selectDocumentsPage: SelectDocumentsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
   async continueOn(page: Page): Promise<void> {

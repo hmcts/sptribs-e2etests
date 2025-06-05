@@ -1,21 +1,21 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import { RejectionReason } from "./rejectionDetailsPage.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/closeCase/submit_content.ts";
-import { CaseCloseReason } from "./selectReasonPage.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import uploadDocuments_content from "../../../fixtures/content/CaseAPI/closeCase/uploadDocuments_content.ts";
 import path from "path";
 import config from "../../../config.ts";
-import selectReason_content from "../../../fixtures/content/CaseAPI/closeCase/selectReason_content.ts";
-import withdrawalDetails_content from "../../../fixtures/content/CaseAPI/closeCase/withdrawalDetails_content.ts";
-import rejectionDetails_content from "../../../fixtures/content/CaseAPI/closeCase/rejectionDetails_content.ts";
-import { StrikeoutReason } from "./strikeoutDetailsPage.ts";
-import strikeoutDetails_content from "../../../fixtures/content/CaseAPI/closeCase/strikeoutDetails_content.ts";
 import concessionDetails_content from "../../../fixtures/content/CaseAPI/closeCase/concessionDetails_content.ts";
 import consentOrder_content from "../../../fixtures/content/CaseAPI/closeCase/consentOrder_content.ts";
+import rejectionDetails_content from "../../../fixtures/content/CaseAPI/closeCase/rejectionDetails_content.ts";
 import rule27_content from "../../../fixtures/content/CaseAPI/closeCase/rule27_content.ts";
+import selectReason_content from "../../../fixtures/content/CaseAPI/closeCase/selectReason_content.ts";
+import strikeoutDetails_content from "../../../fixtures/content/CaseAPI/closeCase/strikeoutDetails_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/closeCase/submit_content.ts";
+import uploadDocuments_content from "../../../fixtures/content/CaseAPI/closeCase/uploadDocuments_content.ts";
+import withdrawalDetails_content from "../../../fixtures/content/CaseAPI/closeCase/withdrawalDetails_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { RejectionReason } from "./rejectionDetailsPage.ts";
+import { CaseCloseReason } from "./selectReasonPage.ts";
+import { StrikeoutReason } from "./strikeoutDetailsPage.ts";
 
 type SubmitPage = {
   continue: string;
@@ -205,7 +205,7 @@ const submitPage: SubmitPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

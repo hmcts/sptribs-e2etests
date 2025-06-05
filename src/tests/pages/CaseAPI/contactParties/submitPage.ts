@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/contactParties/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import partiesToContact_content from "../../../fixtures/content/CaseAPI/contactParties/partiesToContact_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -70,7 +70,7 @@ const submitPage: SubmitPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

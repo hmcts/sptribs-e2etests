@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import { SubCategory } from "../../../helpers/commonHelpers.ts";
 import caseObjectsContacts_content from "../../../fixtures/content/CaseAPI/createCase/caseObjectsContacts_content.ts";
+import { SubCategory } from "../../../helpers/commonHelpers.ts";
 
 type CaseObjectsContactsPage = {
   continue: string;
@@ -42,7 +42,7 @@ const caseObjectsContactsPage: CaseObjectsContactsPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

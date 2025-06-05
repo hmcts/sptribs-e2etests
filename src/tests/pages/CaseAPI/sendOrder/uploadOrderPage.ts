@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import uploadOrder_Content from "../../../fixtures/content/CaseAPI/sendOrder/uploadOrder_Content.ts";
 import config from "../../../config.ts";
+import uploadOrder_Content from "../../../fixtures/content/CaseAPI/sendOrder/uploadOrder_Content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type UploadOrderPage = {
   previous: string;
@@ -94,7 +94,7 @@ const uploadOrderPage: UploadOrderPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

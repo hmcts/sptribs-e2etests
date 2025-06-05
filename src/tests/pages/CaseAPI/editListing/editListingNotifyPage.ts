@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingNotifyPageContent from "../../../fixtures/content/CaseAPI/editListing/editListingNotifyPage_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditListingNotifyPage = {
   checkPageLoads(
@@ -55,7 +55,7 @@ const editListingNotifyPage: EditListingNotifyPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

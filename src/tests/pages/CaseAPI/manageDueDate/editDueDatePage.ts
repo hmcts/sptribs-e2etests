@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Locator, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
 import orderDueDates_content from "../../../fixtures/content/CaseAPI/sendOrder/orderDueDates_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditDueDatePage = {
   previous: string;
@@ -84,7 +84,7 @@ const editDueDatePage: EditDueDatePage = {
       expect(page.locator(this.addNew)).toBeVisible(),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

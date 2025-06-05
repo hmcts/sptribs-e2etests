@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import reinstateWarning_content from "../../../fixtures/content/CaseAPI/reinstateCase/reinstateWarning_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ReinstateWarningPage = {
   continue: string;
@@ -56,7 +56,7 @@ const reinstateWarningPage: ReinstateWarningPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

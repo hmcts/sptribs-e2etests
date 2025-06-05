@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingRemoteHearingInformation_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditListingRemoteHearingInformationPage = {
   videoLink: string;
@@ -35,6 +35,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingremoteHearingInformation`,
+        { timeout: 30_000 },
       );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -64,7 +65,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
         ),
       ]);
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 
