@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type AddDocumentFooterPage = {
   previous: string;
@@ -66,7 +66,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -1,15 +1,15 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/submit_content.ts";
-import { NoticeType } from "./noticeOptionPage.ts";
-import decisionUpload_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/decisionUpload_content.ts";
 import path from "path";
 import config from "../../../config.ts";
-import { Template } from "./selectTemplatePage.ts";
-import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
+import decisionUpload_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/decisionUpload_content.ts";
+import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/submit_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
+import { NoticeType } from "./noticeOptionPage.ts";
+import { Template } from "./selectTemplatePage.ts";
 
 type SubmitPage = {
   continue: string;
@@ -102,7 +102,7 @@ const submitPage: SubmitPage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

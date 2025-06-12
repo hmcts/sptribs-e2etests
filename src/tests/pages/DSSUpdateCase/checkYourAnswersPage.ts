@@ -1,10 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
-import CheckYourAnswersContent from "../../fixtures/content/DSSUpdateCase/CheckYourAnswers_content.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
-import uploadDocuments_content from "../../fixtures/content/DSSUpdateCase/UploadDocuments_content.ts";
 import path from "path";
 import config from "../../config.ts";
+import CheckYourAnswersContent from "../../fixtures/content/DSSUpdateCase/CheckYourAnswers_content.ts";
+import uploadDocuments_content from "../../fixtures/content/DSSUpdateCase/UploadDocuments_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type CheckYourAnswersPage = {
   continueButton: string;
@@ -201,7 +201,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -1,8 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import config from "../../../config.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CreateSummaryHearingRecordingUploadPage = {
   previous: string;
@@ -34,6 +33,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingRecordingUploadPage`,
+        { timeout: 30_000 },
       );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -106,7 +106,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
       await page.locator("button[title='Remove']").click();
 
       // if (accessibilityTest) {
-      //   await axeTest(page);
+      //   await new AxeUtils(page).audit();
       // }
     },
 

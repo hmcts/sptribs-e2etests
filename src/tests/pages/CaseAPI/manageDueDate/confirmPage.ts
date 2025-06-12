@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/manageDueDate/confirm-content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -38,7 +38,7 @@ const manageDueDateConfirmPage: ConfirmPage = {
     ]);
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

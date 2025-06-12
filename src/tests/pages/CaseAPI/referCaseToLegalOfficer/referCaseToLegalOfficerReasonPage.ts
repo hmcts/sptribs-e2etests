@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import referCaseToLegalOfficerReasonContent from "../../../fixtures/content/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerReason_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 import { referralReason } from "../referCaseToJudge/referCaseToJudgeReasonPage.ts";
 
 type ReferCaseToLegalOfficerReasonPage = {
@@ -53,7 +53,7 @@ const referCaseToLegalOfficerReasonPage: ReferCaseToLegalOfficerReasonPage = {
       referCaseToLegalOfficerReasonContent.textOnPage2,
     );
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

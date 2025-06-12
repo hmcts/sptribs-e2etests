@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
@@ -32,6 +32,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingAttendeesRole`,
+        { timeout: 30_000 },
       );
       await Promise.all([
         expect(page.locator(".govuk-caption-l")).toHaveText(
@@ -84,7 +85,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         .click();
 
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 
