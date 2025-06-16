@@ -337,7 +337,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@npm:^1.0.22":
+"@hmcts/playwright-common@npm:^1.0.20":
   version: 1.0.22
   resolution: "@hmcts/playwright-common@npm:1.0.22"
   dependencies:
@@ -487,7 +487,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.48.2, @playwright/test@npm:^1.53.0":
+"@playwright/test@npm:^1.46.1, @playwright/test@npm:^1.48.2":
   version: 1.53.0
   resolution: "@playwright/test@npm:1.53.0"
   dependencies:
@@ -615,16 +615,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 24.0.1
-  resolution: "@types/node@npm:24.0.1"
-  dependencies:
-    undici-types: "npm:~7.8.0"
-  checksum: 10/6b77554f8308148e00e9c7c264ccad3e9a3d360f10b75a727d44b9bba2377022179a76905fbe1bb426ea4c6ee9f45186797ec335a5dcab803435336576db18c6
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^22.15.31, @types/node@npm:^22.6.1":
+"@types/node@npm:*, @types/node@npm:^22.0.0, @types/node@npm:^22.6.1":
   version: 22.15.31
   resolution: "@types/node@npm:22.15.31"
   dependencies:
@@ -923,14 +914,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.5":
-  version: 1.9.0
-  resolution: "axios@npm:1.9.0"
+"axios@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "axios@npm:1.10.0"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10/a2f90bba56820883879f32a237e2b9ff25c250365dcafd41cec41b3406a3df334a148f90010182dfdadb4b41dc59f6f0b3e8898ff41b666d1157b5f3f4523497
+  checksum: 10/d43c80316a45611fd395743e15d16ea69a95f2b7f7095f2bb12cb78f9ca0a905194a02e52a3bf4e0db9f85fd1186d6c690410644c10ecd8bb0a468e57c2040e4
   languageName: node
   linkType: hard
 
@@ -3201,7 +3192,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.53.0, playwright-core@npm:^1.48.2, playwright-core@npm:^1.53.0":
+"playwright-core@npm:1.53.0, playwright-core@npm:^1.46.1, playwright-core@npm:^1.48.2":
   version: 1.53.0
   resolution: "playwright-core@npm:1.53.0"
   bin:
@@ -3666,16 +3657,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
-    "@hmcts/playwright-common": "npm:^1.0.22"
-    "@playwright/test": "npm:^1.53.0"
-    "@types/node": "npm:^22.15.31"
-    axios: "npm:^1.7.5"
+    "@hmcts/playwright-common": "npm:^1.0.20"
+    "@playwright/test": "npm:^1.46.1"
+    "@types/node": "npm:^22.0.0"
+    axios: "npm:^1.10.0"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    playwright-core: "npm:^1.53.0"
+    playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.5.3"
-    tsx: "npm:^4.20.2"
+    tsx: "npm:^4.19.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
   linkType: soft
@@ -3884,7 +3875,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.20.2":
+"tsx@npm:^4.19.4":
   version: 4.20.2
   resolution: "tsx@npm:4.20.2"
   dependencies:
@@ -3993,13 +3984,6 @@ __metadata:
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
-  languageName: node
-  linkType: hard
-
-"undici-types@npm:~7.8.0":
-  version: 7.8.0
-  resolution: "undici-types@npm:7.8.0"
-  checksum: 10/fcff3fbab234f067fbd69e374ee2c198ba74c364ceaf6d93db7ca267e784457b5518cd01d0d2329b075f412574205ea3172a9a675facb49b4c9efb7141cd80b7
   languageName: node
   linkType: hard
 
