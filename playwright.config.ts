@@ -8,7 +8,7 @@ module.exports = defineConfig({
   expect: {
     timeout: 2 * 60 * 1000,
   },
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 10 : 10,
   retries: 4, // Set the number of retries for all projects
   projects: [
     {
