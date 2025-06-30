@@ -1,5 +1,5 @@
 const createSummaryHearingRecordingUpload_content = {
-  pageHint: "Hearings:Create summary",
+  pageHint: "Hearings: Create summary",
   pageTitle: "Upload hearing recording",
   caseReference: "Case number: ",
   title: "Upload the recording of the hearing (Optional)",

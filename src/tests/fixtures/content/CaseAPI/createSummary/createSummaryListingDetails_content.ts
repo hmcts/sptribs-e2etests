@@ -1,5 +1,5 @@
 const createSummaryListingDetails_content = {
-  pageHint: "Hearings:Create summary",
+  pageHint: "Hearings: Create summary",
   pageTitle: "Listing Details",
   caseReference: "Case number: ",
   textOnPage1: "Venue Name",
