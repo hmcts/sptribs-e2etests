@@ -135,9 +135,7 @@ const myWorkPage: MyWorkPage = {
         has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(`exui-task-field:text-is("${taskName}")`);
-    const paginationLocator = page.locator("ccd-pagination a span", {
-      hasText: /^[1-9][0-9]*$/,
-    });
+    const paginationLocator = page.locator('[aria-label="Pagination"]');
 
     while (true) {
       let locatorFound = false;
