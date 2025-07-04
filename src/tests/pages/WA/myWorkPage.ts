@@ -135,7 +135,7 @@ const myWorkPage: MyWorkPage = {
         has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(`exui-task-field:text-is("${taskName}")`);
-    const paginationLocator = `a span:text-matches("^[1-9][0-9]*$", "i")`;
+    const paginationLocator = page.locator('[aria-label="Pagination"]');
 
     while (true) {
       let locatorFound = false;
@@ -143,41 +143,19 @@ const myWorkPage: MyWorkPage = {
         break;
       }
 
-      const paginationExists =
-        (await page.locator(paginationLocator).count()) > 0;
+      const paginationExists = (await paginationLocator.count()) > 0;
       if (!paginationExists) {
         await page.goto(this.availableTasksUrl);
         await page.waitForTimeout(3000); // // waiting for cron job before rechecking
       } else {
-        const paginationCount = await page.locator(paginationLocator).count();
-        for (let i = 0; i < paginationCount; i++) {
-          const nextPage = page.locator(paginationLocator).nth(i);
-          const nextPageNumber = await nextPage.textContent();
-
-          if (nextPageNumber) {
-            await page.waitForSelector(paginationLocator);
-            await nextPage.click();
-            await page.waitForSelector(`li span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(5000); // waiting for cron job before rechecking
-            const subjectTask = page
-              .locator("tr")
-              .filter({
-                has: page.locator(`td:has-text("${subjectName}")`),
-              })
-              .locator(`exui-task-field:text-is("${taskName}")`);
-
-            if (await subjectTask.isVisible()) {
-              locatorFound = true;
-              break;
-            }
-          }
+        await page.getByLabel("Next Page").click();
+        await page.waitForTimeout(3000);
+        if (await subjectTask.isVisible()) {
+          locatorFound = true;
+          break;
         }
         if (locatorFound) {
           break;
-        } else {
-          await page.getByText("page 1").click();
-          await page.waitForSelector(`li span:text("1")`);
-          await page.waitForTimeout(3000); // waiting for cron job before rechecking
         }
       }
     }

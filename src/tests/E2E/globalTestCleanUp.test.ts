@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import globalDataCleanUp from "../journeys/CaseAPI/globalDataCleanUp";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import globalDataCleanUp from "../journeys/CaseAPI/globalDataCleanUp";
 
 test.describe("Global Data Cleanup. @dataCleanup", () => {
   test("Global automation test data clean up. - Admin", async ({
