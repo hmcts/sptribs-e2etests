@@ -87,7 +87,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test.only("Create hearing summary - hearing outcome is allowed. @CaseAPI1", async ({
+  test("Create hearing summary - hearing outcome is allowed. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
