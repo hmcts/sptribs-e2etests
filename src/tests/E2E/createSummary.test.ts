@@ -1,14 +1,14 @@
 import { test } from "@playwright/test";
-import waUsers_content from "../fixtures/content/waUsers_content.ts";
-import createCase from "../journeys/CaseAPI/createCase.ts";
-import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
+import taskNames_content from "../fixtures/content/taskNames_content.ts";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
+import createCase from "../journeys/CaseAPI/createCase.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
-import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import task from "../journeys/CaseAPI/task.ts";
-import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Create hearing summary tests @CaseAPI", (): void => {
   test("Check for redundant test data  @CaseAPI1", async ({ page }) => {
@@ -87,7 +87,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is allowed. @CaseAPI1", async ({
+  test.only("Create hearing summary - hearing outcome is allowed. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

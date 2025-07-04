@@ -337,9 +337,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@npm:^1.0.28":
-  version: 1.0.28
-  resolution: "@hmcts/playwright-common@npm:1.0.28"
+"@hmcts/playwright-common@npm:^1.0.20":
+  version: 1.0.29
+  resolution: "@hmcts/playwright-common@npm:1.0.29"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
@@ -354,7 +354,7 @@ __metadata:
     typescript-eslint: "npm:^8.8.0"
   peerDependencies:
     "@playwright/test": ^1.53.0
-  checksum: 10/8032ea4a39a861aac3a2e0abc2012a1196e0fe04f9b51497de5ad52f35455416eec47d35da575bbce9dd4c82a3c808acf38c42e1e9e305048be64d0711beb7af
+  checksum: 10/397feb0bcca06371b60aec0dc270771d2f0559acce425fbbced968b6dd4e81fa48abc95242acbd7c4d23387ffa40211e96d09a8d8e4c2778838372c2e0fcc9ea
   languageName: node
   linkType: hard
 
@@ -622,7 +622,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.16.0":
+"@types/node@npm:^22.0.0":
   version: 22.16.0
   resolution: "@types/node@npm:22.16.0"
   dependencies:
@@ -3664,9 +3664,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
-    "@hmcts/playwright-common": "npm:^1.0.28"
+    "@hmcts/playwright-common": "npm:^1.0.20"
     "@playwright/test": "npm:^1.46.1"
-    "@types/node": "npm:^22.16.0"
+    "@types/node": "npm:^22.0.0"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
