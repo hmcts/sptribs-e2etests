@@ -143,26 +143,21 @@ const myWorkPage: MyWorkPage = {
         break;
       }
 
-      const paginationExists = (await paginationLocator.count()) > 0;
-      if (!paginationExists) {
-        await page.goto(this.availableTasksUrl);
-        await page.waitForTimeout(3000); // waiting for cron job before rechecking
-      } else {
-        const nextPageButton = page.getByLabel("Next page", { exact: true });
-        const nextPageButtonExists = await nextPageButton.count();
+      const nextPageButton = page.getByLabel("Next page", { exact: true });
+      const nextPageButtonExists = await nextPageButton.count();
 
-        if (nextPageButtonExists > 0) {
-          await nextPageButton.click();
+      if (nextPageButtonExists > 0) {
+        await nextPageButton.click();
+        await page.waitForTimeout(3000);
+      } else {
+        const pageOneButton = page.getByLabel("Page 1", { exact: true });
+        const pageOneExists = await pageOneButton.count();
+
+        if (pageOneExists > 0) {
+          await pageOneButton.click();
           await page.waitForTimeout(3000);
-          if (await subjectTask.isVisible()) {
-            locatorFound = true;
-            break;
-          }
-          if (locatorFound) {
-            break;
-          }
         } else {
-          await page.getByLabel("Page 1", { exact: true }).click();
+          await page.reload();
           await page.waitForTimeout(3000);
         }
       }
