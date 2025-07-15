@@ -77,7 +77,7 @@ const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
       expect(page.locator(".case-field__label").nth(2)).toHaveText(
         createSummaryListingDetailsContent.textOnPage1,
       ),
-      expect(page.locator(".form-label").nth(1)).toHaveText(
+      expect(page.locator(".form-label").nth(2)).toHaveText(
         createSummaryListingDetailsContent.textOnPage2,
       ),
       expect(page.locator("markdown > h4")).toHaveText(

@@ -73,7 +73,7 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
       expect(page.locator(".case-field__label").nth(2)).toHaveText(
         editSummaryListingDetailsContent.textOnPage1,
       ),
-      expect(page.locator(".form-label").nth(1)).toHaveText(
+      expect(page.locator(".form-label").nth(2)).toHaveText(
         editSummaryListingDetailsContent.textOnPage2,
       ),
       expect(page.locator("markdown > h4")).toHaveText(
