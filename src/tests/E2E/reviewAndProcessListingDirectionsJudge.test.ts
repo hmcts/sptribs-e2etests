@@ -574,7 +574,9 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     );
   });
 
-  test("Task is completable via next steps link - assign to me - Ready to list", async ({ page }) => {
+  test("Task is completable via next steps link - assign to me - Ready to list", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber219 = await createCase.createCase(
       page,

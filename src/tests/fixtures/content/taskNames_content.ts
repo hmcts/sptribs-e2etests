@@ -15,7 +15,8 @@ const taskNames_content = {
   processDirectionsReturned: "Process directions returned",
   reviewListingDirectionsLO: "Review listing directions - Legal Officer",
   reviewListingDirectionsJudge: "Review listing directions - Judge",
-  reviewListingDirectionsCaseListedJudge: "Review listing directions case listed - Judge",
+  reviewListingDirectionsCaseListedJudge:
+    "Review listing directions case listed - Judge",
   processListingDirections: "Process listing directions",
   reviewListCaseLO: "Review list case - Legal Officer",
   reviewListCaseJudge: "Review list case - Judge",
