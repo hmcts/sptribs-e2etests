@@ -14,6 +14,7 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
 const priorityReview = null;
 const priorityProcess = " medium ";
@@ -569,6 +570,138 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       taskNames_content.reviewListingDirectionsJudge,
       caseNumber19,
       states_content.closedState,
+      subjectName,
+    );
+  });
+
+  test("Task is completable via next steps link - assign to me - Ready to list", async ({ page }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber219 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber219, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber219,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Listing directions",
+      false,
+      caseNumber219,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewListingDirectionsCaseListedJudge,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleJudge,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber219,
+      taskNames_content.reviewListingDirectionsCaseListedJudge,
+      priorityReview,
+      authors_content.assignedUserJudge,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.readyToListState,
+      subjectName,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC10 - Strike Out Warning",
+      caseNumber219,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewListingDirectionsCaseListedJudge,
+      caseNumber219,
+      states_content.readyToListState,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processListingDirections,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber219,
+      taskNames_content.processListingDirections,
+      priorityProcess,
+      authors_content.assignedUserAdmin,
+      numberOfDaysProcess,
+      "Orders: Send order",
+      states_content.readyToListState,
+      subjectName,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber219,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "5",
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.processListingDirections,
+      caseNumber219,
+      states_content.readyToListState,
       subjectName,
     );
   });
