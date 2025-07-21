@@ -826,7 +826,7 @@ test("Accessibility test - Close case @accessibility", async ({
   await closeCase.closeCase(
     page,
     true,
-    true,
+    false,
     "rule27",
     false,
     null,

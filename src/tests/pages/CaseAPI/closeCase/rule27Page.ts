@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import rule27_content from "../../../fixtures/content/CaseAPI/closeCase/rule27_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type Rule27Page = {
   continue: string;
@@ -56,7 +56,7 @@ const rule27Page: Rule27Page = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 
@@ -67,6 +67,8 @@ const rule27Page: Rule27Page = {
       `${rule27_content.month}`,
     );
     await page.fill(`#closeRule27DecisionDate-year`, `${rule27_content.year}`);
+    // Workaround to remove the date error which stops the continue button from being clicked
+    await page.locator("h1").click();
     await page.click(this.continue);
   },
 

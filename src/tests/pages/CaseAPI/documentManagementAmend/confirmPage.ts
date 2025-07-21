@@ -1,6 +1,6 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import confirm_content from "../../../fixtures/content/CaseAPI/documentManagementAmend/confirm_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 
 type ConfirmPage = {
   continue: string;
@@ -34,7 +34,7 @@ const confirmPage: ConfirmPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
   async continueOn(page: Page): Promise<void> {

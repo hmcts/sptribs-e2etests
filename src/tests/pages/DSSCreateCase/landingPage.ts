@@ -1,6 +1,6 @@
-import config from "../../config";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
+import config from "../../config";
 import LandingPageDetails from "../../fixtures/content/DSSCreateCase/LandingPage_content";
 
 type LandingPage = {
@@ -79,12 +79,12 @@ const landingPage: LandingPage = {
           expect(page.locator(landingPage.startButton)).toHaveText("Start now"),
         ]);
         if (accessibilityTest) {
-          await axeTest(page);
+          await new AxeUtils(page).audit();
         }
         break;
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

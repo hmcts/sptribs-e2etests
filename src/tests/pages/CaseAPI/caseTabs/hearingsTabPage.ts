@@ -1,34 +1,34 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import path from "path";
+import config from "../../../config.ts";
+import cancelHearingReason_content from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
+import hearingsTab_content from "../../../fixtures/content/CaseAPI/caseTabs/hearingsTab_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import createListingOtherInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingOtherInformation_content.ts";
+import createListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingRemoteHearingInformation_content.ts";
+import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
+import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
+import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
+import casePanelComposition_content from "../../../fixtures/content/CaseAPI/panelComposition/casePanelComposition_content.ts";
+import postponeHearingReason_content from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingReason_content.ts";
+import commonHelpers, {
+  caseRegionCode,
+  hearingAdjournedReasons,
+  hearingCancelledReasons,
+  hearingFormat,
+  hearingOutcome,
+  hearingPostponedReasons,
+  hearingSession,
+  hearingType,
+  hearingVenueNames,
+  hearingVenues,
+} from "../../../helpers/commonHelpers.ts";
 import {
   Panel2,
   Panel3,
 } from "../panelComposition/casePanelCompositionPage.ts";
-import commonHelpers, {
-  hearingVenues,
-  caseRegionCode,
-  hearingType,
-  hearingFormat,
-  hearingSession,
-  hearingVenueNames,
-  hearingAdjournedReasons,
-  hearingOutcome,
-  hearingCancelledReasons,
-  hearingPostponedReasons,
-} from "../../../helpers/commonHelpers.ts";
-import hearingsTab_content from "../../../fixtures/content/CaseAPI/caseTabs/hearingsTab_content.ts";
-import casePanelComposition_content from "../../../fixtures/content/CaseAPI/panelComposition/casePanelComposition_content.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import createListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingRemoteHearingInformation_content.ts";
-import createListingOtherInformationContent from "../../../fixtures/content/CaseAPI/createListing/createListingOtherInformation_content.ts";
-import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
-import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
-import path from "path";
-import config from "../../../config.ts";
-import cancelHearingReason_content from "../../../fixtures/content/CaseAPI/cancelHearing/cancelHearingReason_content.ts";
-import postponeHearingReason_content from "../../../fixtures/content/CaseAPI/postponeHearing/postponeHearingReason_content.ts";
-import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
 
 type HearingsTabPage = {
   hearingsTab: string;
@@ -512,7 +512,7 @@ const hearingTabPage: HearingsTabPage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

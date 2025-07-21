@@ -1,5 +1,5 @@
 const createSummaryHearingAttendees_content = {
-  pageHint: "Hearings:Create summary",
+  pageHint: "Hearings: Create summary",
   pageTitle: "Hearing attendees",
   caseReference: "Case number: ",
   textOnPage1: "Which judge heard the case? (Optional)",

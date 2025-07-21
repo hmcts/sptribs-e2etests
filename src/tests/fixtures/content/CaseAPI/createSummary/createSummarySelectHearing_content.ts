@@ -1,5 +1,5 @@
 const createSummarySelectHearing_content = {
-  pageHint: "Hearings:Create summary",
+  pageHint: "Hearings: Create summary",
   pageTitle: "Select hearing",
   caseReference: "Case number: ",
   textOnPage: "Choose a hearing",

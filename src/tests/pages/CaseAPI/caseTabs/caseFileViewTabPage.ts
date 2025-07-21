@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../../config.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import caseFileViewTabContent from "../../../fixtures/content/CaseAPI/caseTabs/caseFileViewTab_content.ts";
 import uploadedDocumentsContent from "../../../fixtures/content/CaseAPI/caseTabs/uploadedDocuments_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
@@ -47,7 +47,7 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

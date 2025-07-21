@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/LinkCase/confirm_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type CreateCaseLinkCreateCaseLink3Page = {
   closeAndReturn: string;
@@ -24,7 +24,7 @@ const createCaseLinkCreateCaseLink3: CreateCaseLinkCreateCaseLink3Page = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

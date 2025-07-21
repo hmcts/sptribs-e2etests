@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import casesContent from "../../../fixtures/content/CaseAPI/caseList/cases_content.ts";
 
 type CasesPage = {
@@ -20,7 +19,7 @@ const casesPage: CasesPage = {
       `.govuk-heading-xl:text-is("${casesContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("h2[aria-label='Filters']")).toHaveText(
+      expect(page.locator("fieldset[aria-label='Filters']")).toHaveText(
         casesContent.subTitle1,
       ),
       expect(page.locator("label[for='wb-jurisdiction']")).toHaveText(
@@ -62,7 +61,7 @@ const casesPage: CasesPage = {
     }
 
     if (accessibilityTest) {
-      // await axeTest(page); disabled due to EXUI accessibility issues DTSSTCI-733.
+      // await new AxeUtils(page).audit(); disabled due to EXUI accessibility issues DTSSTCI-733.
     }
   },
 

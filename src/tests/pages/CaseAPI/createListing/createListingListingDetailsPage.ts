@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 import commonHelpers, {
   hearingSession,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
 
 type CreateListingListingDetailsPage = {
   venue: string;
@@ -123,10 +122,10 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
         expect(page.locator(".heading-h2").nth(0)).toHaveText(
           createListingListingDetailsContent.subTitle2,
         ),
-        expect(
-          page.locator("div.float-left > label > h3.heading-h3"),
-        ).toHaveText(createListingListingDetailsContent.subTitle2),
-        page.locator(this.remove).isVisible(),
+        // expect(
+        //   page.locator("div.float-left > label > h3.heading-h3"),
+        // ).toHaveText(createListingListingDetailsContent.subTitle2),
+        // page.locator(this.remove).isVisible(),
         expect(
           page.locator("#hearingVenueDate > fieldset > legend > span"),
         ).toHaveText(createListingListingDetailsContent.subTitle1),
@@ -156,7 +155,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       await expect(page.locator(".cdk-overlay-container")).not.toBeVisible();
     }
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

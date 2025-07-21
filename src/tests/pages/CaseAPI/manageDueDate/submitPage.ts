@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
+import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
 import submit_content from "../../../fixtures/content/CaseAPI/manageDueDate/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
-import editDueDate_content from "../../../fixtures/content/CaseAPI/manageDueDate/editDueDate_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import editDueDatePage from "./editDueDatePage.ts";
 
 type SubmitPage = {
@@ -99,7 +99,7 @@ const submitPage: SubmitPage = {
       }
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 
@@ -136,6 +136,7 @@ const submitPage: SubmitPage = {
     await page.locator(`[aria-label="Change Due Date"]`).click();
     await page.waitForURL(
       /.*\/caseworker-amend-due-datecaseworkerAmendDueDateEditDueDate$/,
+      { timeout: 30_000 },
     );
     await editDueDatePage.checkPageLoads(
       page,
@@ -144,7 +145,7 @@ const submitPage: SubmitPage = {
       subjectName,
     );
     await page.click(this.continue);
-    await page.waitForURL(/.*\/submit$/);
+    await page.waitForURL(/.*\/submit$/, { timeout: 30_000 });
   },
 
   async saveAndContinue(page: Page): Promise<void> {

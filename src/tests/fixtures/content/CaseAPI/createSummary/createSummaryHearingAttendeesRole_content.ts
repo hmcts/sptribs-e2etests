@@ -1,5 +1,5 @@
 const createSummaryHearingAttendeesRole_content = {
-  pageHint: "Hearings:Create summary",
+  pageHint: "Hearings: Create summary",
   pageTitle: "Hearing attendees",
   caseReference: "Case number: ",
   errorBanner: "There is a problem",

@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryListingDetails_content.ts";
 import commonHelpers, {
   hearingSession,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import editSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/editSummary/editSummaryListingDetails_content.ts";
 
 type EditSummaryListingDetailsPage = {
   venue: string;
@@ -74,7 +73,7 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
       expect(page.locator(".case-field__label").nth(2)).toHaveText(
         editSummaryListingDetailsContent.textOnPage1,
       ),
-      expect(page.locator(".form-label").nth(1)).toHaveText(
+      expect(page.locator(".form-label").nth(2)).toHaveText(
         editSummaryListingDetailsContent.textOnPage2,
       ),
       expect(page.locator("markdown > h4")).toHaveText(
@@ -120,7 +119,7 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
       ).toHaveText(`${editSummaryListingDetailsContent.textOnPage3}`);
     }
     // if (accessibilityTest) {
-    //   await axeTest(page);
+    //   await new AxeUtils(page).audit();
     // }
   },
 

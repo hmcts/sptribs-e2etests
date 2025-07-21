@@ -1,81 +1,33 @@
-import { defineConfig, devices } from "@playwright/test";
+import { CommonConfig, ProjectsConfig } from "@hmcts/playwright-common";
+import { defineConfig } from "@playwright/test";
 
 module.exports = defineConfig({
+  ...CommonConfig.recommended,
   testDir: "./src/tests/E2E",
-  /* Run tests in files in parallel */
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: 4, // Set the number of retries for all projects
-
   timeout: 7 * 60 * 1000,
   expect: {
     timeout: 2 * 60 * 1000,
   },
-
-  use: {
-    actionTimeout: 2 * 60 * 1000,
-    navigationTimeout: 2 * 60 * 1000,
-  },
-
-  reportSlowTests: null,
-
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
-  reporter: process.env.CI ? "html" : "list",
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 10 : 10,
+  retries: 4, // Set the number of retries for all projects
   projects: [
     {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        channel: "chrome",
-        trace: "on",
-        javaScriptEnabled: true,
-      },
+      ...ProjectsConfig.chromium,
     },
     {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"],
-        screenshot: "off",
-        trace: "on",
-        javaScriptEnabled: true,
-      },
+      ...ProjectsConfig.firefox,
     },
     {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-        screenshot: "off",
-        trace: "on",
-        javaScriptEnabled: true,
-      },
+      ...ProjectsConfig.webkit,
     },
     {
-      name: "MobileChrome",
-      use: {
-        ...devices["Pixel 5"],
-        screenshot: "only-on-failure",
-        trace: "off",
-      },
+      ...ProjectsConfig.tabletChrome,
     },
     {
-      name: "MobileSafari",
-      use: {
-        ...devices["iPhone 12"],
-        screenshot: "only-on-failure",
-        trace: "off",
-      },
+      ...ProjectsConfig.tabletWebkit,
     },
     {
-      name: "MicrosoftEdge",
-      use: {
-        ...devices["Desktop Edge"],
-        channel: "msedge",
-        screenshot: "only-on-failure",
-        trace: "off",
-      },
+      ...ProjectsConfig.edge,
     },
   ],
 });
