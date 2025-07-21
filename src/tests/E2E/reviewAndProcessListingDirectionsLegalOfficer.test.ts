@@ -885,7 +885,10 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       caseNumber221,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, "Refer case to legal officer");
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
     await referCaseToLegalOfficer.referCaseToLegalOfficer(
       page,
       false,
@@ -932,4 +935,4 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       subjectName,
     );
   });
-})
+});
