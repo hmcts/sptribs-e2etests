@@ -1,11 +1,11 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 import commonHelpers, {
   hearingSession,
   hearingVenueNames,
   hearingVenues,
 } from "../../../helpers/commonHelpers.ts";
-import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
 
 type CreateSummaryListingDetailsPage = {
   venueNotListed: string;
@@ -77,7 +77,7 @@ const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
       expect(page.locator(".case-field__label").nth(2)).toHaveText(
         createSummaryListingDetailsContent.textOnPage1,
       ),
-      expect(page.locator(".form-label").nth(1)).toHaveText(
+      expect(page.locator(".form-label").nth(2)).toHaveText(
         createSummaryListingDetailsContent.textOnPage2,
       ),
       expect(page.locator("markdown > h4")).toHaveText(
@@ -162,7 +162,7 @@ const createSummaryListingDetailsPage: CreateSummaryListingDetailsPage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

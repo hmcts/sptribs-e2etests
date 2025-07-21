@@ -1,4 +1,7 @@
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const githubToken = process.env.GITHUB_TOKEN;
 const owner = "hmcts";

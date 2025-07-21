@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import confirm_content from "../../../fixtures/content/CaseAPI/editDraft/confirm_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ConfirmPage = {
   closeAndReturn: string;
@@ -41,7 +41,7 @@ const createCaseConfirmPage: ConfirmPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

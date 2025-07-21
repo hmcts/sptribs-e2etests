@@ -60,7 +60,7 @@ const createSummary: CreateSummary = {
   ): Promise<string | void> {
     await commonHelpers.chooseEventFromDropdown(
       page,
-      "Hearings:Create summary",
+      "Hearings: Create summary",
     );
     if (caseNumber !== undefined) {
       switch (errorMessaging) {

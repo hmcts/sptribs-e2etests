@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectOrderIssuingType_content from "../../../fixtures/content/CaseAPI/sendOrder/selectOrderIssueingType_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 export type OrderType = "DraftOrder" | "UploadOrder";
 
@@ -61,7 +61,7 @@ const selectOrderIssuingTypePage: SelectOrderIssuingTypePage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

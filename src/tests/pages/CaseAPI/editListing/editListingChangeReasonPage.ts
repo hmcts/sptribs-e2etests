@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type EditListingChangeReasonPage = {
   reason: string;
@@ -53,7 +53,7 @@ const editListingChangeReasonPage: EditListingChangeReasonPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 import hearingOptionsRegionDataContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsRegionData_content.ts";
 import commonHelpers, {
   caseRegionCode,
 } from "../../../helpers/commonHelpers.ts";
-import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 
 type HearingOptionsRegionDataPage = {
   region: string;
@@ -56,7 +55,7 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
       ),
     ]);
     if (accessibilityTest) {
-      // await axeTest(page);
+      // await new AxeUtils(page).audit();
     }
   },
 

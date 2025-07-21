@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
-import waUsers_content from "../fixtures/content/waUsers_content.ts";
-import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
-import commonHelpers from "../helpers/commonHelpers.ts";
 import config from "../config.ts";
-import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
+import waUsers_content from "../fixtures/content/waUsers_content.ts";
+import commonHelpers from "../helpers/commonHelpers.ts";
+import task from "../journeys/CaseAPI/task.ts";
+import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 
 test.describe("DSS Create case tests.", (): void => {
   test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit. ", async ({

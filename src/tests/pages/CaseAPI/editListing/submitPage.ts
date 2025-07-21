@@ -1,18 +1,18 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
+import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
+import editListingNotifyPageContent from "../../../fixtures/content/CaseAPI/editListing/editListingNotifyPage_content.ts";
+import editListingOtherInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingOtherInformation_content.ts";
+import editListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingRemoteHearingInformation_content.ts";
+import submitContent from "../../../fixtures/content/CaseAPI/editListing/submit_content.ts";
 import commonHelpers, {
   caseRegionCode,
   hearingFormat,
+  hearingSession,
   hearingType,
   hearingVenues,
-  hearingSession,
 } from "../../../helpers/commonHelpers.ts";
-import submitContent from "../../../fixtures/content/CaseAPI/editListing/submit_content.ts";
-import editListingListingDetailsContent from "../../../fixtures/content/CaseAPI/editListing/editListingListingDetails_content.ts";
-import editListingRemoteHearingInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingRemoteHearingInformation_content.ts";
-import editListingOtherInformationContent from "../../../fixtures/content/CaseAPI/editListing/editListingOtherInformation_content.ts";
-import editListingNotifyPageContent from "../../../fixtures/content/CaseAPI/editListing/editListingNotifyPage_content.ts";
-import editListingChangeReasonContent from "../../../fixtures/content/CaseAPI/editListing/editListingChangeReason_content.ts";
 
 type SubmitPage = {
   saveAndContinue: string;
@@ -179,7 +179,7 @@ const submitPage: SubmitPage = {
       ]);
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

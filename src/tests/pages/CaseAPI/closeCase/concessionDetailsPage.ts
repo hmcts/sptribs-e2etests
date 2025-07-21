@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import concessionDetails_content from "../../../fixtures/content/CaseAPI/closeCase/concessionDetails_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ConcessionDetailsPage = {
   continue: string;
@@ -60,7 +60,7 @@ const concessionDetailsPage: ConcessionDetailsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 
@@ -77,6 +77,8 @@ const concessionDetailsPage: ConcessionDetailsPage = {
       `#closeConcessionDate-year`,
       `${concessionDetails_content.year}`,
     );
+    // Workaround to remove the date error which stops the continue button from being clicked
+    await page.locator("h1").click();
     await page.click(this.continue);
   },
 

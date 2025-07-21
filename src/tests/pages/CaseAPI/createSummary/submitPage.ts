@@ -1,22 +1,22 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers, {
-  hearingType,
-  hearingFormat,
-  hearingSession,
-  hearingOutcome,
-  hearingAdjournedReasons,
-  hearingVenueNames,
-  hearingVenues,
-} from "../../../helpers/commonHelpers.ts";
-import submitContent from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
-import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
-import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
-import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
 import path from "path";
 import config from "../../../config.ts";
 import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import createSummaryHearingAttendeesRoleContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingAttendeesRole_content.ts";
 import createSummaryHearingOutcomeContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingOutcome_content.ts";
+import createSummaryHearingRecordingUploadContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryHearingRecordingUpload_content.ts";
+import createSummaryListingDetailsContent from "../../../fixtures/content/CaseAPI/createSummary/createSummaryListingDetails_content.ts";
+import submitContent from "../../../fixtures/content/CaseAPI/createSummary/submit_content.ts";
+import commonHelpers, {
+  hearingAdjournedReasons,
+  hearingFormat,
+  hearingOutcome,
+  hearingSession,
+  hearingType,
+  hearingVenueNames,
+  hearingVenues,
+} from "../../../helpers/commonHelpers.ts";
 
 type SubmitPage = {
   hearingAttendees: string[];
@@ -91,6 +91,7 @@ const submitPage: SubmitPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/submit`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -258,7 +259,7 @@ const submitPage: SubmitPage = {
       }
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

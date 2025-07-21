@@ -1,9 +1,9 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper.ts";
 import config from "../../config.ts";
 import myWork_content from "../../fixtures/content/CaseAPI/myWork/myWork_content.ts";
-import commonHelpers from "../../helpers/commonHelpers.ts";
 import waUsers_content from "../../fixtures/content/waUsers_content.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type MyWorkPage = {
   myTasksTab: string;
@@ -101,13 +101,13 @@ const myWorkPage: MyWorkPage = {
       );
     }
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 
   async selectAvailableTasks(page: Page, user: any): Promise<void> {
     await page.locator(this.availableTasksTab).click();
-    await page.waitForURL(/.*\/available$/);
+    await page.waitForURL(/.*\/available$/, { timeout: 30_000 });
     await page.waitForTimeout(7000);
 
     if (user === waUsers_content.userRoleJudge) {
@@ -135,7 +135,7 @@ const myWorkPage: MyWorkPage = {
         has: page.locator(`td:has-text("${subjectName}")`),
       })
       .locator(`exui-task-field:text-is("${taskName}")`);
-    const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
+    const paginationLocator = page.locator('[aria-label="Pagination"]');
 
     while (true) {
       let locatorFound = false;
@@ -143,41 +143,22 @@ const myWorkPage: MyWorkPage = {
         break;
       }
 
-      const paginationExists =
-        (await page.locator(paginationLocator).count()) > 0;
-      if (!paginationExists) {
-        await page.goto(this.availableTasksUrl);
-        await page.waitForTimeout(3000); // // waiting for cron job before rechecking
+      const nextPageButton = page.getByLabel("Next page", { exact: true });
+      const nextPageButtonExists = await nextPageButton.count();
+
+      if (nextPageButtonExists > 0) {
+        await nextPageButton.click();
+        await page.waitForTimeout(3000);
       } else {
-        const paginationCount = await page.locator(paginationLocator).count();
-        for (let i = 0; i < paginationCount; i++) {
-          const nextPage = page.locator(paginationLocator).nth(i);
-          const nextPageNumber = await nextPage.textContent();
+        const pageOneButton = page.getByLabel("Page 1", { exact: true });
+        const pageOneExists = await pageOneButton.count();
 
-          if (nextPageNumber) {
-            await page.waitForSelector(paginationLocator);
-            await nextPage.click();
-            await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(5000); // waiting for cron job before rechecking
-            const subjectTask = page
-              .locator("tr")
-              .filter({
-                has: page.locator(`td:has-text("${subjectName}")`),
-              })
-              .locator(`exui-task-field:text-is("${taskName}")`);
-
-            if (await subjectTask.isVisible()) {
-              locatorFound = true;
-              break;
-            }
-          }
-        }
-        if (locatorFound) {
-          break;
+        if (pageOneExists > 0) {
+          await pageOneButton.click();
+          await page.waitForTimeout(3000);
         } else {
-          await page.getByText("page 1").click();
-          await page.waitForSelector(`li > span:text("1")`);
-          await page.waitForTimeout(3000); // waiting for cron job before rechecking
+          await page.reload();
+          await page.waitForTimeout(3000);
         }
       }
     }
@@ -233,7 +214,9 @@ const myWorkPage: MyWorkPage = {
       .locator(
         `exui-task-field > exui-task-name-field > exui-url-field > a:text-is("${taskName}")`,
       );
-    const paginationLocator = `a > span:text-matches("^[1-9][0-9]*$", "i")`;
+    const paginationLocator = page.locator("ccd-pagination a span", {
+      hasText: /^[1-9][0-9]*$/,
+    });
 
     await page.locator(this.myTasksTab).click();
     await page.locator(subjectAutoTesting).first().waitFor();
@@ -244,37 +227,22 @@ const myWorkPage: MyWorkPage = {
         break;
       }
 
-      const paginationExists =
-        (await page.locator(paginationLocator).count()) > 0;
+      const paginationExists = (await paginationLocator.count()) > 0;
       if (!paginationExists) {
         await page.goto(this.myTasksUrl);
         await page.waitForTimeout(3000);
       } else {
-        const paginationCount = await page.locator(paginationLocator).count();
-        for (let i = 0; i < paginationCount; i++) {
-          const nextPage = page.locator(paginationLocator).nth(i);
-          const nextPageNumber = await nextPage.textContent();
+        await page.getByLabel("Next Page").click();
+        await page.waitForTimeout(3000);
 
-          if (nextPageNumber) {
-            await page.waitForSelector(paginationLocator);
-            await nextPage.click();
-            await page.waitForSelector(`li > span:text("${nextPageNumber}")`);
-            await page.waitForTimeout(3000);
-
-            if (await subjectTask.isVisible()) {
-              locatorFound = true;
-              await subjectTask.click();
-              break;
-            }
-          }
+        if (await subjectTask.isVisible()) {
+          locatorFound = true;
+          await subjectTask.click();
+          break;
         }
         if (locatorFound) {
           await subjectTask.click();
           break;
-        } else {
-          await page.getByText("page 1").click();
-          await page.waitForSelector(`li > span:text("1")`);
-          await page.waitForTimeout(3000);
         }
       }
     }

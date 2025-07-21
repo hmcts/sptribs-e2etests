@@ -4,6 +4,7 @@ properties([
         // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
         pipelineTriggers([cron('H 8 * * 1-5')]),
         parameters([
+                string(name: 'ENVIRONMENT', defaultValue: 'aat', description: 'Environment to test'),
                 string(
                         name: 'SPTRIBS_FRONTEND_URL',
                         defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
@@ -21,7 +22,7 @@ properties([
                 ),
                 string(
                         name: 'FUNCTIONAL_TESTS_WORKERS',
-                        defaultValue: '5',
+                        defaultValue: '10',
                         description: 'Number of workers running functional tests'
                 ),
                 booleanParam(
@@ -100,11 +101,14 @@ def secrets = [
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
-  loadVaultSecrets(secrets)
   env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
   env.DSS_BASE_URL = params.SPTRIBS_FRONTEND_URL
   env.UC_BASE_URL = params.SPTRIBS_UPDATE_URL
   env.skipDSSCreateTests = params.skipDSSCreateTests
+  overrideVaultEnvironments([
+          'aat': params.ENVIRONMENT
+  ])
+  loadVaultSecrets(secrets)
   enableSlackNotifications('#special-tribunals-builds')
   afterAlways('DependencyCheckNightly') {
     stage('Delete nightly dev branch') {

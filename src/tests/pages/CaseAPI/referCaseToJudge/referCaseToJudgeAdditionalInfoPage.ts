@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import referCaseToJudgeAdditionalInfoContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/referCaseToJudgeAdditionalInfo_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ReferCaseToJudgeAdditionalInfoPage = {
   continue: string;
@@ -30,6 +30,7 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
   ): Promise<void> {
     await page.waitForURL(
       `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-judge/refer-to-judgereferToJudgeAdditionalInfo`,
+      { timeout: 30_000 },
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -50,7 +51,7 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

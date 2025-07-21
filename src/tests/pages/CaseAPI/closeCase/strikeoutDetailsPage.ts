@@ -1,8 +1,7 @@
 import { expect, Page } from "@playwright/test";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import strikeoutDetails_content from "../../../fixtures/content/CaseAPI/closeCase/strikeoutDetails_content.ts";
+import createListingListingDetailsContent from "../../../fixtures/content/CaseAPI/createListing/createListingListingDetails_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 export type StrikeoutReason = "noncomplianceWithDirections" | "other";
 
@@ -67,7 +66,7 @@ const strikeoutDetailsPage: StrikeoutDetailsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      // await axeTest(page);
+      // await new AxeUtils(page).audit();
     }
   },
 

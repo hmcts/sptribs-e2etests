@@ -1,5 +1,5 @@
 const createSummaryHearingTypeAndFormat_content = {
-  pageHint: "Hearings:Create summary",
+  pageHint: "Hearings: Create summary",
   pageTitle: "Hearing type and format",
   caseReference: "Case number: ",
   textOnPage1: "Hearing type",
