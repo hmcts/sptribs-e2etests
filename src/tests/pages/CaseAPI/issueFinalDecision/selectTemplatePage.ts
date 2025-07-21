@@ -1,8 +1,8 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import selectTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/selectTemplate_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 export type Template =
   | "--Select a value--"
@@ -70,7 +70,7 @@ const selectTemplatePage: SelectTemplatePage = {
       ),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

@@ -22,7 +22,7 @@ properties([
                 ),
                 string(
                         name: 'FUNCTIONAL_TESTS_WORKERS',
-                        defaultValue: '5',
+                        defaultValue: '10',
                         description: 'Number of workers running functional tests'
                 ),
                 booleanParam(

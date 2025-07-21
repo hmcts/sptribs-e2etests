@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
+import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
+import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
 import commonHelpers, {
   hearingFormat,
 } from "../../../helpers/commonHelpers.ts";
-import hearingOptionsHearingDetailsContent from "../../../fixtures/content/CaseAPI/hearingOptions/hearingOptionsHearingDetails_content.ts";
-import addCaseNotes_content from "../../../fixtures/content/CaseAPI/addNote/addCaseNotes_content.ts";
 
 type HearingOptionsHearingDetailsPage = {
   venue: string;
@@ -70,7 +69,7 @@ const hearingOptionsHearingDetails: HearingOptionsHearingDetailsPage = {
       ),
     ]);
     if (accessibilityTest) {
-      // await axeTest(page);
+      // await new AxeUtils(page).audit();
     }
   },
 

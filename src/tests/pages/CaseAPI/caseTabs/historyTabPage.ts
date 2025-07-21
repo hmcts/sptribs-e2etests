@@ -1,10 +1,10 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { UserRole } from "../../../config.ts";
 import allTabTitles_content from "../../../fixtures/content/CaseAPI/caseTabs/allTabTitles_content.ts";
 import historyTabContent from "../../../fixtures/content/CaseAPI/caseTabs/historyTab_content.ts";
 import submitContent from "../../../fixtures/content/CaseAPI/referCaseToJudge/submit_content.ts";
 import authorsContent from "../../../fixtures/content/authors_content.ts";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
 import commonHelpers, { allEvents } from "../../../helpers/commonHelpers.ts";
 
 type HistoryTabPage = {
@@ -64,7 +64,7 @@ const historyTabPage: HistoryTabPage = {
       }).filter(Boolean),
     ]);
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

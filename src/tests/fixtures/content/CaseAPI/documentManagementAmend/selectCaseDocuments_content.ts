@@ -3,7 +3,7 @@ const selectCaseDocuments_content = {
   pageTitle: "Select documents",
   caseReference: "Case number: ",
   category: "TG - Other",
-  textOnPage1: "Select an option from the dropdown",
+  textOnPage1: "Amended Document",
 };
 
 export default selectCaseDocuments_content;

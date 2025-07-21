@@ -1,5 +1,5 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../helpers/accessibilityTestHelper";
 import SubjectDetailsContent from "../../fixtures/content/DSSUpdateCase/SubjectDetails_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
@@ -106,7 +106,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
     }
 
     if (accessibilityTest) {
-      await axeTest(page);
+      await new AxeUtils(page).audit();
     }
   },
 

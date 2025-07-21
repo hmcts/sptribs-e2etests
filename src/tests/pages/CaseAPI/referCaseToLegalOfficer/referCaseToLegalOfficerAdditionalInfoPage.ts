@@ -1,7 +1,7 @@
+import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import axeTest from "../../../helpers/accessibilityTestHelper.ts";
-import commonHelpers from "../../../helpers/commonHelpers.ts";
 import referCaseToLegalOfficerAdditionalInfoContent from "../../../fixtures/content/CaseAPI/referCaseToLegalOfficer/referCaseToLegalOfficerAdditionalInfo_content.ts";
+import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ReferCaseToLegalOfficerAdditionalInfoPage = {
   continue: string;
@@ -31,6 +31,7 @@ const referCaseToLegalOfficerAdditionalInfoPage: ReferCaseToLegalOfficerAddition
     ): Promise<void> {
       await page.waitForURL(
         `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-legal-officer/refer-to-legal-officerreferToLegalOfficerAdditionalInfo`,
+        { timeout: 30_000 },
       );
       await Promise.all([
         expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -52,7 +53,7 @@ const referCaseToLegalOfficerAdditionalInfoPage: ReferCaseToLegalOfficerAddition
         ),
       ]);
       if (accessibilityTest) {
-        await axeTest(page);
+        await new AxeUtils(page).audit();
       }
     },
 
