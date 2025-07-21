@@ -15,6 +15,7 @@ import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 
 const priorityReview = " low ";
 const priorityProcess = " low ";
@@ -837,4 +838,98 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       subjectName,
     );
   });
-});
+
+  test("Review listing directions for a listed case - Ready to list", async ({
+    page,
+  }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber221 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber221, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await hearingOptions.hearingOptions(
+      page,
+      false,
+      false,
+      null,
+      false,
+      false,
+      "Face to Face",
+      false,
+      false,
+      caseNumber221,
+      subjectName,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to legal officer");
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Listing directions",
+      false,
+      caseNumber221,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewListingDirectionsCaseListedLO,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleLO,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber221,
+      taskNames_content.reviewListingDirectionsCaseListedLO,
+      priorityReview,
+      authors_content.assignedUserLO,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.readyToListState,
+      subjectName,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC10 - Strike Out Warning",
+      caseNumber221,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewListingDirectionsCaseListedLO,
+      caseNumber221,
+      states_content.readyToListState,
+      subjectName,
+    );
+  });
+})
