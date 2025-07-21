@@ -574,11 +574,11 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     );
   });
 
-  test("Task is completable via next steps link - assign to me - Ready to list", async ({
+  test("Review and process listing directions for a listed case - Ready to list", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber219 = await createCase.createCase(
+    const caseNumber220 = await createCase.createCase(
       page,
       waUsers_content.userRoleAdmin,
       false,
@@ -600,7 +600,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       false,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber219, subjectName);
+    await buildCase.buildCase(page, false, caseNumber220, subjectName);
     await task.removeTask(
       page,
       taskNames_content.issueCaseToRespondentTask,
@@ -617,7 +617,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       "Face to Face",
       false,
       false,
-      caseNumber219,
+      caseNumber220,
       subjectName,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
@@ -626,7 +626,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       false,
       "Listing directions",
       false,
-      caseNumber219,
+      caseNumber220,
       subjectName,
     );
     await task.seeTask(
@@ -641,7 +641,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       waUsers_content.userRoleJudge,
       "Link: Assign Task to Me",
       false,
-      caseNumber219,
+      caseNumber220,
       taskNames_content.reviewListingDirectionsCaseListedJudge,
       priorityReview,
       authors_content.assignedUserJudge,
@@ -655,22 +655,14 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       false,
       false,
       "CIC10 - Strike Out Warning",
-      caseNumber219,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.reviewListingDirectionsCaseListedJudge,
-      caseNumber219,
-      states_content.readyToListState,
+      caseNumber220,
       subjectName,
     );
     await task.seeTask(
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processListingDirections,
+      taskNames_content.processListingDirectionsListed,
       subjectName,
     );
     await task.initiateTask(
@@ -678,18 +670,18 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       waUsers_content.userRoleAdmin,
       "Link: Assign Task to Me",
       false,
-      caseNumber219,
-      taskNames_content.processListingDirections,
-      priorityProcess,
+      caseNumber220,
+      taskNames_content.processListingDirectionsListed,
+      priorityReview,
       authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
+      numberOfDaysReview,
       "Orders: Send order",
       states_content.readyToListState,
       subjectName,
     );
     await sendOrder.sendOrder(
       page,
-      caseNumber219,
+      caseNumber220,
       "DraftOrder",
       false,
       false,
@@ -701,10 +693,10 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processListingDirections,
-      caseNumber219,
+      taskNames_content.processListingDirectionsListed,
+      caseNumber220,
       states_content.readyToListState,
       subjectName,
     );
   });
-});
+ });
