@@ -14,8 +14,13 @@ const taskNames_content = {
   reviewNewCaseJudge: "Review new case and provide directions - Judge",
   processDirectionsReturned: "Process directions returned",
   reviewListingDirectionsLO: "Review listing directions - Legal Officer",
+  reviewListingDirectionsCaseListedLO:
+    "Review listing directions case listed - Legal Officer",
   reviewListingDirectionsJudge: "Review listing directions - Judge",
+  reviewListingDirectionsCaseListedJudge:
+    "Review listing directions case listed - Judge",
   processListingDirections: "Process listing directions",
+  processListingDirectionsListed: "Process listing directions listed",
   reviewListCaseLO: "Review list case - Legal Officer",
   reviewListCaseJudge: "Review list case - Judge",
   processDirectionsListCase: "Process directions re. listed case",
@@ -26,6 +31,8 @@ const taskNames_content = {
   reviewStayLO: "Review stay request - Legal Officer",
   reviewStayJudge: "Review stay request - Judge",
   processStay: "Process stay directions",
+  reviewStayRequestCaseListedJudge: "Review stay request case listed - Judge",
+  processStayDirectionsListed: "Process stay directions listed",
   reviewOtherRequestLO: "Review other request - Legal Officer",
   reviewOtherRequestJudge: "Review other request - Judge",
   processOtherDirectionsReturned: "Process other directions returned",
@@ -41,6 +48,10 @@ const taskNames_content = {
   reviewWithdrawalLO: "Review withdrawal request - Legal Officer",
   reviewWithdrawalJudge: "Review withdrawal request - Judge",
   processWithdrawal: "Process case withdrawal directions",
+  reviewWithdrawalRequestCaseListedJudge:
+    "Review withdrawal request case listed - Judge",
+  processCaseWithdrawalDirectionsListed:
+    "Process case withdrawal directions listed",
   reviewSetAside: "Review set aside request",
   processSetAside: "Process set aside directions",
   reviewCorrectionsRequest: "Review corrections request",

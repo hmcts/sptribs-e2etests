@@ -14,6 +14,7 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import referCaseToJudge from "../journeys/CaseAPI/referCaseToJudge.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import createListing from "../journeys/CaseAPI/createListing.ts";
 
 const priorityReview = null;
 const priorityProcess = " low ";
@@ -383,6 +384,146 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       taskNames_content.processWithdrawal,
       caseNumber144,
       states_content.caseManagementState,
+      subjectName,
+    );
+  });
+
+  test("Task is completable via next steps link - assign to me and go to task - Awaiting hearing", async ({
+    page,
+  }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber147 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber147, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "7-Wales",
+      "Final",
+      "Telephone",
+      "Morning",
+      false,
+      "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
+      false,
+      caseNumber147,
+      subjectName,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, "Refer case to judge");
+    await referCaseToJudge.referCaseToJudge(
+      page,
+      false,
+      "Withdrawal request",
+      false,
+      caseNumber147,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleJudge,
+      false,
+      taskNames_content.reviewWithdrawalRequestCaseListedJudge,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleJudge,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber147,
+      taskNames_content.reviewWithdrawalRequestCaseListedJudge,
+      priorityReview,
+      authors_content.assignedUserJudge,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC8 - ME Joint Instruction",
+      caseNumber147,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewWithdrawalRequestCaseListedJudge,
+      caseNumber147,
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processCaseWithdrawalDirectionsListed,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber147,
+      taskNames_content.processCaseWithdrawalDirectionsListed,
+      priorityProcess,
+      authors_content.assignedUserAdmin,
+      numberOfDaysProcess,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber147,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.processCaseWithdrawalDirectionsListed,
+      caseNumber147,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });
