@@ -511,7 +511,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       page,
       waUsers_content.userRoleAdmin,
       false,
-      taskNames_content.processRule27,
+      taskNames_content.processRule27DecisionListed,
       subjectName,
     );
     await task.initiateTask(
@@ -520,7 +520,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       "Link: Assign Task to Me and Go To Task",
       false,
       caseNumber108,
-      taskNames_content.processRule27,
+      taskNames_content.processRule27DecisionListed,
       priorityProcess,
       authors_content.assignedUserAdmin,
       numberOfDaysProcess,
@@ -542,7 +542,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processRule27,
+      taskNames_content.processRule27DecisionListed,
       caseNumber108,
       states_content.awaitingHearingState,
       subjectName,
