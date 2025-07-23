@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+import config from "../config.ts";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import authors_content from "../fixtures/content/authors_content.ts";
 import states_content from "../fixtures/content/states_content.ts";
@@ -6,6 +7,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createListing from "../journeys/CaseAPI/createListing.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -394,6 +396,155 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       taskNames_content.processRule27,
       caseNumber105,
       states_content.caseManagementState,
+      subjectName,
+    );
+  });
+
+  test("Task is completable via next steps link - assign to me and go to task - Awaiting hearing", async ({
+    page,
+  }) => {
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    const caseNumber108 = await createCase.createCase(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      "Assessment",
+      "Other",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      false,
+      "1996",
+      "Scotland",
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+    await buildCase.buildCase(page, false, caseNumber108, subjectName);
+    await task.removeTask(
+      page,
+      taskNames_content.issueCaseToRespondentTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Hearings: Create listing",
+    );
+    await createListing.createListing(
+      page,
+      false,
+      true,
+      "7-Wales",
+      "Final",
+      "Telephone",
+      "Morning",
+      false,
+      "Cardiff Social Security And Child Support Tribunal-Cardiff Eastgate House, 35-43, Newport Road",
+      false,
+      caseNumber108,
+      subjectName,
+      false,
+    );
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      waUsers_content.userRoleLO,
+      config.CaseAPIBaseURL,
+      caseNumber108,
+    );
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      "Refer case to legal officer",
+    );
+    await referCaseToLegalOfficer.referCaseToLegalOfficer(
+      page,
+      false,
+      "Rule 27 request",
+      false,
+      caseNumber108,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleLO,
+      false,
+      taskNames_content.reviewRule27RequestCaseListedLO,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleLO,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber108,
+      taskNames_content.reviewRule27RequestCaseListedLO,
+      priorityReview,
+      authors_content.assignedUserLO,
+      numberOfDaysReview,
+      "Orders: Create draft",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await createDraft.createDraft(
+      page,
+      false,
+      false,
+      "CIC8 - ME Joint Instruction",
+      caseNumber108,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.reviewRule27RequestCaseListedLO,
+      caseNumber108,
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.processRule27DecisionListed,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber108,
+      taskNames_content.processRule27DecisionListed,
+      priorityProcess,
+      authors_content.assignedUserAdmin,
+      numberOfDaysProcess,
+      "Orders: Send order",
+      states_content.awaitingHearingState,
+      subjectName,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber108,
+      "DraftOrder",
+      false,
+      false,
+      true,
+      true,
+      "1",
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.processRule27DecisionListed,
+      caseNumber108,
+      states_content.awaitingHearingState,
       subjectName,
     );
   });

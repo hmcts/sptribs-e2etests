@@ -39,6 +39,9 @@ const taskNames_content = {
   reviewRule27LO: "Review Rule 27 request - Legal Officer",
   reviewRule27Judge: "Review Rule 27 request - Judge",
   processRule27: "Process Rule 27 decision",
+  processRule27DecisionListed: "Process Rule 27 decision listed",
+  reviewRule27RequestCaseListedLO:
+    "Review Rule 27 request case listed - Legal Officer",
   reviewReinstatementLO: "Review reinstatement request - Legal Officer",
   reviewReinstatementJudge: "Review reinstatement request - Judge",
   processReinstatement: "Process reinstatement decision notice",
