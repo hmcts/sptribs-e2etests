@@ -507,46 +507,6 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       states_content.awaitingHearingState,
       subjectName,
     );
-    // await task.seeTask(
-    //   page,
-    //   waUsers_content.userRoleAdmin,
-    //   false,
-    //   taskNames_content.processWithdrawal,
-    //   subjectName,
-    // );
-    // await task.initiateTask(
-    //   page,
-    //   waUsers_content.userRoleAdmin,
-    //   "Link: Assign Task to Me",
-    //   false,
-    //   caseNumber0150,
-    //   taskNames_content.processWithdrawal,
-    //   priorityProcess,
-    //   authors_content.assignedUserAdmin,
-    //   numberOfDaysProcess,
-    //   "Orders: Send order",
-    //   states_content.awaitingHearingState,
-    //   subjectName,
-    // );
-    // await sendOrder.sendOrder(
-    //   page,
-    //   caseNumber0150,
-    //   "DraftOrder",
-    //   false,
-    //   false,
-    //   true,
-    //   true,
-    //   "1",
-    //   subjectName,
-    // );
-    // await task.checkCompletedTask(
-    //   page,
-    //   false,
-    //   taskNames_content.processWithdrawal,
-    //   caseNumber0150,
-    //   states_content.awaitingHearingState,
-    //   subjectName,
-    // );
   });
 
   test("Review task is cancellable through close case", async ({ page }) => {
