@@ -337,24 +337,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@npm:^1.0.20":
-  version: 1.0.32
-  resolution: "@hmcts/playwright-common@npm:1.0.32"
+"@hmcts/playwright-common@npm:^1.0.33":
+  version: 1.0.33
+  resolution: "@hmcts/playwright-common@npm:1.0.33"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
     "@typescript-eslint/eslint-plugin": "npm:^8.8.0"
     eslint: "npm:^9.11.1"
-    eslint-plugin-playwright: "npm:^1.6.2"
+    eslint-plugin-playwright: "npm:^2.0.0"
     get-port: "npm:^7.1.0"
-    globals: "npm:^15.10.0"
+    globals: "npm:^16.0.0"
     lighthouse: "npm:^12.2.1"
     playwright-lighthouse: "npm:^4.0.0"
     typescript: "npm:^5.6.2"
     typescript-eslint: "npm:^8.8.0"
   peerDependencies:
     "@playwright/test": ^1.53.0
-  checksum: 10/cec3a079d220c2402e9621693d3b0581b3e6bac8e33304c93d418ae8de73f05f18611413d9d26697a5c5a55d31610d75381388e79ed2eabd7bc6d21764163496
+  checksum: 10/bcdde79e4dfd16635614493c234ed49fc6ecd7d8c0d33d649c8b368e262d37a986fbfcaf9ea99d30b00899304986ede7626ab02626dc5b8ea6e5fd4b53953052
   languageName: node
   linkType: hard
 
@@ -613,16 +613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 24.1.0
-  resolution: "@types/node@npm:24.1.0"
-  dependencies:
-    undici-types: "npm:~7.8.0"
-  checksum: 10/02c3d91e1407a93a2363f97a245475fa0f6209d3f3e6ba9fdaabe65389e3e078f648da81b8738125dec6b6bf98c50fb928f36f4e72b8b015817bc21479a868c2
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^22.17.0":
+"@types/node@npm:*, @types/node@npm:^22.0.0":
   version: 22.17.0
   resolution: "@types/node@npm:22.17.0"
   dependencies:
@@ -1615,18 +1606,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-playwright@npm:^1.6.2":
-  version: 1.8.3
-  resolution: "eslint-plugin-playwright@npm:1.8.3"
+"eslint-plugin-playwright@npm:^2.0.0":
+  version: 2.2.2
+  resolution: "eslint-plugin-playwright@npm:2.2.2"
   dependencies:
     globals: "npm:^13.23.0"
   peerDependencies:
     eslint: ">=8.40.0"
-    eslint-plugin-jest: ">=25"
-  peerDependenciesMeta:
-    eslint-plugin-jest:
-      optional: true
-  checksum: 10/8a0b9f51ba1eb09e64e15452cc78ab7fc82a68e45a432185acc2851eb0ad67b683e9bb2ca9ac9791267608ca0ceb0fca2b551868d494831e1ed62b2c566c099e
+  checksum: 10/861bb486e30e607a3c38bf46b69b01e759a2e7db3d7e79eabb18aa006c505b632b6c6f24e8402b59b8a9b5f94a72ed454fd5a934265081028a1ca0dd4582019f
   languageName: node
   linkType: hard
 
@@ -1907,12 +1894,12 @@ __metadata:
   linkType: hard
 
 "follow-redirects@npm:^1.15.6":
-  version: 1.15.9
-  resolution: "follow-redirects@npm:1.15.9"
+  version: 1.15.10
+  resolution: "follow-redirects@npm:1.15.10"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10/e3ab42d1097e90d28b913903841e6779eb969b62a64706a3eb983e894a5db000fbd89296f45f08885a0e54cd558ef62e81be1165da9be25a6c44920da10f424c
+  checksum: 10/29a0e970ad81390f71423438395b8bcda433393d57596b4fd6f6eb68c0d3bf81cd29dc05b20b18c57fe2fe92eb53bb0c9f64760d7a631395ee351a63764b8e33
   languageName: node
   linkType: hard
 
@@ -2135,10 +2122,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^15.10.0":
-  version: 15.15.0
-  resolution: "globals@npm:15.15.0"
-  checksum: 10/7f561c87b2fd381b27fc2db7df8a4ea7a9bb378667b8a7193e61fd2ca3a876479174e2a303a74345fbea6e1242e16db48915c1fd3bf35adcf4060a795b425e18
+"globals@npm:^16.0.0":
+  version: 16.3.0
+  resolution: "globals@npm:16.3.0"
+  checksum: 10/accb0939d993a1c461df8d961ce9911a9a96120929e0a61057ae8e75b7df0a8bf8089da0f4e3a476db0211156416fbd26e222a56f74b389a140b34481c0a72b0
   languageName: node
   linkType: hard
 
@@ -3664,9 +3651,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
-    "@hmcts/playwright-common": "npm:^1.0.20"
+    "@hmcts/playwright-common": "npm:^1.0.33"
     "@playwright/test": "npm:^1.46.1"
-    "@types/node": "npm:^22.17.0"
+    "@types/node": "npm:^22.0.0"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
@@ -3998,13 +3985,6 @@ __metadata:
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
-  languageName: node
-  linkType: hard
-
-"undici-types@npm:~7.8.0":
-  version: 7.8.0
-  resolution: "undici-types@npm:7.8.0"
-  checksum: 10/fcff3fbab234f067fbd69e374ee2c198ba74c364ceaf6d93db7ca267e784457b5518cd01d0d2329b075f412574205ea3172a9a675facb49b4c9efb7141cd80b7
   languageName: node
   linkType: hard
 
