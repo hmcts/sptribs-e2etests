@@ -26,9 +26,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Edit a CIC3 draft in the Case Management state. @crossbrowserCaseAPI", async ({
-    page,
-  }) => {
+  test("Edit a CIC3 draft in the Case Management state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1500 = await createCase.createCase(
       page,
