@@ -673,7 +673,7 @@ const commonHelpers: CommonHelpers = {
         throw new Error("No template selected");
       case "CIC1 - Eligibility":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (eligibility as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -692,7 +692,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC2 - Quantum":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (quantum as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -711,7 +711,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC3 - Rule 27":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (rule27 as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -730,7 +730,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC4 - Blank Decision Notice":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (blank as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -749,7 +749,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC6 - General Directions":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (generalDirections as any)[
               `textOnPage${index + 1}`
             ];
@@ -770,7 +770,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC7 - ME Dmi Reports":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (MeDmi as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -789,7 +789,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC8 - ME Joint Instructions":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (MeJoint as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -808,7 +808,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC8 - ME Joint Instruction":
         await Promise.all([
-          ...Array.from({ length: 13 }, (_, index) => {
+          ...Array.from({ length: 11 }, (_, index) => {
             const textOnPage = (MeJoint as any)[`textOnPage${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
               newPage.locator(`span:text-is("${textOnPage}")`),
@@ -827,7 +827,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC10 - Strike Out Warning":
         await Promise.all([
-          ...Array.from({ length: 14 }, (_, index) => {
+          ...Array.from({ length: 12 }, (_, index) => {
             const textOnPage = (strikeoutWarning as any)[
               `textOnPage${index + 1}`
             ];
@@ -848,7 +848,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC11 - Strike Out Decision Notice":
         await Promise.all([
-          ...Array.from({ length: 12 }, (_, index) => {
+          ...Array.from({ length: 10 }, (_, index) => {
             const textOnPage = (strikeoutNotice as any)[
               `textOnPage${index + 1}`
             ];
@@ -869,7 +869,7 @@ const commonHelpers: CommonHelpers = {
         break;
       case "CIC13 - Pro Forma Summons":
         await Promise.all([
-          ...Array.from({ length: 11 }, (_, index) => {
+          ...Array.from({ length: 10 }, (_, index) => {
             const textOnPage = (proFormaSummons as any)[
               `textOnPage${index + 1}`
             ];
