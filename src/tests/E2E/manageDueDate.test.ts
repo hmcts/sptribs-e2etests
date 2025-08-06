@@ -27,7 +27,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("User is able to manage due date in state 'Ready to list' Orders sent in state Case management @crossbrowserCaseAPI", async ({
+  test("User is able to manage due date in state 'Ready to list' Orders sent in state Case management", async ({
     page,
   }) => {
     const numberOfDaysReview = 5;
