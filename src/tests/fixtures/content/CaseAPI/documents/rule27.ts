@@ -9,10 +9,8 @@ const rule27 = {
   textOnPage7: "Appellant:",
   textOnPage8: "Respondent:  Criminal Injuries Compensation Authority (CICA)",
   textOnPage9: "Reference:",
-  textOnPage10: "Tribunal Members:",
-  textOnPage11: "Venue/Hearing type:",
-  textOnPage12: "Decision Notice made under Rule 27.",
-  textOnPage13: "To the Appellant and to the Respondents",
+  textOnPage10: "Decision Notice made under Rule 27.",
+  textOnPage11: "To the Appellant and to the Respondents",
 } as const;
 
 export default rule27;

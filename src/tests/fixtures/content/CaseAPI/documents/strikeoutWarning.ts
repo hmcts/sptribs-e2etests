@@ -9,11 +9,9 @@ const strikeoutWarning = {
   textOnPage7: "Appellant:",
   textOnPage8: "Respondent:  Criminal Injuries Compensation Authority (CICA).",
   textOnPage9: "Reference:",
-  textOnPage10: "Tribunal Members:",
-  textOnPage11: "Venue/Hearing type:",
-  textOnPage12: "Strike Out Directions Warning Notice",
-  textOnPage13: "Warning of possible Strike Out",
-  textOnPage14: "To the Appellant and to the Respondents",
+  textOnPage10: "Strike Out Directions Warning Notice",
+  textOnPage11: "Warning of possible Strike Out",
+  textOnPage12: "To the Appellant and to the Respondents",
 } as const;
 
 export default strikeoutWarning;

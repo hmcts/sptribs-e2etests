@@ -7,10 +7,9 @@ const proFormaSummons = {
   textOnPage5: "Appellant",
   textOnPage6: "Respondent:  Criminal Injuries Compensation Authority",
   textOnPage7: "Reference:",
-  textOnPage8: "Hearing Venue:",
-  textOnPage9: "Hearing Date:",
-  textOnPage10: "Hearing Time:",
-  textOnPage11: "Directions Notice – SUMMONS",
+  textOnPage8: "Hearing Date:",
+  textOnPage9: "Hearing Time:",
+  textOnPage10: "Directions Notice – SUMMONS",
 } as const;
 
 export default proFormaSummons;
