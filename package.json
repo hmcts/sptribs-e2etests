@@ -16,7 +16,7 @@
     "test:WebkitDSS": "npx playwright test --project webkit --grep @createDSSWebkit",
     "test:CrossDeviceDSS": "npx playwright test --project tabletWebkit --project tabletchrome --grep @DSSCreate",
     "test:ChromeCaseAPI": "npx playwright test --project chromium --grep @CaseAPI",
-    "test:FirefoxCaseAPI": "npx playwright test --project firefox --grep @crossbrowserCaseAPI --headed",
+    "test:FirefoxCaseAPI": "npx playwright test --project firefox --grep @crossbrowserCaseAPI",
     "test:WebkitCaseAPI": "npx playwright test --project webkit --grep @crossbrowserCaseAPI",
     "test:CrossDeviceCaseAPI": "npx playwright test --project tabletWebkit --project tabletchrome --grep @CaseAPI",
     "test:ChromeUC": "npx playwright test --project chromium --grep @DSSUpdate",
