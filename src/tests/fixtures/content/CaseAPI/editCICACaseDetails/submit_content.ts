@@ -1,5 +1,5 @@
 const submit_content = {
-  pageTitle: "Case: Edit case details",
+  pageTitle: "Case: Edit CICA details",
   caseReference: "Case number: ",
   subTitle1: "Check your answers",
   textOnPage1: "Check the information below carefully.",
