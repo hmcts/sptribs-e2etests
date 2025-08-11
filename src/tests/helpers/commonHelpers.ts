@@ -1018,7 +1018,7 @@ export type allEvents =
   | "Case: Panel Composition"
   | "Case: Edit Panel Composition"
   | "Case: Close case"
-  | "Case: Edit case"
+  | "Case: Edit CICA details"
   | "Case: Reinstate case"
   | "Case: Edit case details"
   | "Case: Contact parties"

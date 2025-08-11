@@ -33,7 +33,7 @@ const editCICACaseDetails: EditCICACaseDetails = {
     }
     await commonHelpers.chooseEventFromDropdown(
       page,
-      "Case: Edit case details",
+      "Case: Edit CICA details",
     );
     await editCICACaseDetailsEditCaseDetailsPage.checkPageLoads(
       page,

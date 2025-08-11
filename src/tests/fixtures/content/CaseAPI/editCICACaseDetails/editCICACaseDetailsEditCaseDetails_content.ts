@@ -1,5 +1,5 @@
 const editCICACaseDetailsEditCaseDetails_content = {
-  pageHint: "Case: Edit case details",
+  pageHint: "Case: Edit CICA details",
   pageTitle: "Case details",
   caseReference: "Case number: ",
   textOnPage1: "CICA reference number (Optional)",
