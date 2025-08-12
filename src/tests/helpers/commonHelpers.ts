@@ -1021,6 +1021,7 @@ export type allEvents =
   | "Case: Edit CICA details"
   | "Case: Reinstate case"
   | "Case: Edit case details"
+  | "Case: Edit case"
   | "Case: Contact parties"
   | "Case: CICA Contact parties"
   | "Stays: Create/edit stay"

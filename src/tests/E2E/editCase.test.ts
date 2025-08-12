@@ -142,7 +142,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     );
   });
 
-  test("Edit case in State Awaiting hearing - Assessment - Sexual Abuse Category, Email Contact. @crossbrowserCaseAPI", async ({
+  test("Edit case in State Awaiting hearing - Assessment - Sexual Abuse Category, Email Contact.", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

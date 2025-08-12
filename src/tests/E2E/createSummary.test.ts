@@ -16,7 +16,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Create hearing summary - hearing outcome is allowed. @crossbrowserCaseAPI", async ({
+  test("Create hearing summary - hearing outcome is allowed.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
