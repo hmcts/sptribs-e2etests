@@ -505,7 +505,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing listing, 2-Midlands, CaseManagement, Face to face, Morning, Venue not listed. @crossbrowserCaseAPI", async ({
+  test("Edit hearing listing, 2-Midlands, CaseManagement, Face to face, Morning, Venue not listed.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

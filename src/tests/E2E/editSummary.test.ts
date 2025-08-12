@@ -364,7 +364,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Case Management, Paper, Morning, Fox Court, Adjourned, Other. @crossbrowserCaseAPI", async ({
+  test("Edit hearing summary - Case Management, Paper, Morning, Fox Court, Adjourned, Other.", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
