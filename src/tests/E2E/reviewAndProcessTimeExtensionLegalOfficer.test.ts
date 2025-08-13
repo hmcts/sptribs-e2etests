@@ -27,7 +27,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI ", (): voi
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions @CaseAPI3", async ({
+  test("Task is completable via next steps link - assign to me and go to task - CIC14 - General Directions", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
