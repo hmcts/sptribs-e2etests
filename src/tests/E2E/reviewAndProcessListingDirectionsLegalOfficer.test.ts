@@ -29,7 +29,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task @CaseAPI2", async ({
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
