@@ -167,7 +167,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
     );
   });
 
-  test("Task is completable via next steps link - assign to me @CaseAPI2", async ({
+  test("Task is completable via next steps link - assign to me", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
