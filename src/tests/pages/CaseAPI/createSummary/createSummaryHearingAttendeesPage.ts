@@ -43,7 +43,7 @@ const createSummaryHearingAttendeesPage: CreateSummaryHearingAttendeesPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createSummaryHearingAttendeesContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createSummaryHearingAttendeesContent.caseReference + caseNumber,
       ),

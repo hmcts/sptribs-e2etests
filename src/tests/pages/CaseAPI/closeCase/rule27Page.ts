@@ -37,7 +37,7 @@ const rule27Page: Rule27Page = {
         page.locator(`.govuk-caption-l:text-is("${rule27_content.pageHint}")`),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingListingDetailsContent.caseReference + caseNumber,
       ),

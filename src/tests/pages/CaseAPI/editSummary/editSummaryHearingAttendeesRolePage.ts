@@ -37,7 +37,7 @@ const editSummaryHearingAttendeesRolePage: EditSummaryHearingAttendeesRolePage =
         expect(page.locator(".govuk-caption-l")).toHaveText(
           editSummaryHearingAttendeesRoleContent.pageHint,
         ),
-        expect(page.locator("markdown > h3")).toContainText(subjectName),
+        expect(page.locator("markdown > h2")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           editSummaryHearingAttendeesRoleContent.caseReference + caseNumber,
         ),

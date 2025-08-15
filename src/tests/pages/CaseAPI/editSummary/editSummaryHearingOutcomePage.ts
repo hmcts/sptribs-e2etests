@@ -49,7 +49,7 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editSummaryHearingOutcomeContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(subjectName),
+      expect(page.locator("markdown > h2")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editSummaryHearingOutcomeContent.caseReference + caseNumber,
       ),

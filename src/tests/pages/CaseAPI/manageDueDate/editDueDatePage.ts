@@ -57,7 +57,7 @@ const editDueDatePage: EditDueDatePage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         `${editDueDate_content.pageHint}`,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").first()).toContainText(
         editDueDate_content.caseReference + caseNumber,
       ),

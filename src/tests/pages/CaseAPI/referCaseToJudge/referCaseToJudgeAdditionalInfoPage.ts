@@ -36,7 +36,7 @@ const referCaseToJudgeAdditionalInfoPage: ReferCaseToJudgeAdditionalInfoPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         referCaseToJudgeAdditionalInfoContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         referCaseToJudgeAdditionalInfoContent.caseReference + caseNumber,
       ),

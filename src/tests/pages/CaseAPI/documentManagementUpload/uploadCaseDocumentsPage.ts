@@ -45,7 +45,7 @@ const uploadCaseDocumentsPage: UploadCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         uploadCaseDocumentsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         uploadCaseDocumentsContent.caseReference + caseNumber,
       ),

@@ -39,7 +39,7 @@ const createCaseConfirmPage: ConfirmPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`markdown > h3:text-is("${subjectName}")`),
+        page.locator(`markdown > h2:text-is("${subjectName}")`),
         1,
       ),
       await expect(page.locator("markdown > p").nth(0)).toContainText(
