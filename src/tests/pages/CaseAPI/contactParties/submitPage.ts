@@ -39,7 +39,7 @@ const submitPage: SubmitPage = {
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(pageHintRegex),
-      expect(page.locator("markdown > h2")).toHaveText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toHaveText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toHaveText(
         partiesToContact_content.caseReference + caseNumber,
       ),

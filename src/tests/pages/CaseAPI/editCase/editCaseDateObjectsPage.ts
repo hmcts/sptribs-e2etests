@@ -42,7 +42,7 @@ const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editCaseDateObjectsContent.pageHint,
       ),
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editCaseDateObjectsContent.caseReference + caseNumber,
       ),

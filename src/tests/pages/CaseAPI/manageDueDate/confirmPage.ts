@@ -31,7 +31,7 @@ const manageDueDateConfirmPage: ConfirmPage = {
         page.locator(`markdown > h1:text-is("${confirm_content.subTitle1}")`),
         1,
       ),
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         confirm_content.caseReference + caseNumber,
       ),

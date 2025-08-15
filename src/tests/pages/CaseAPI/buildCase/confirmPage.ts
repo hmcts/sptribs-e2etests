@@ -27,7 +27,7 @@ const buildCaseConfirmPage: ConfirmPage = {
       expect(page.locator("markdown > h1")).toContainText(
         confirm_content.subTitle1,
       ),
-      expect(page.locator("markdown > h2")).toContainText(subjectName),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p")).toContainText(
         buildCase_content.caseReference + caseNumber,
       ),

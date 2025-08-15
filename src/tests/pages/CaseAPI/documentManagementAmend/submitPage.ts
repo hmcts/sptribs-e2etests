@@ -35,7 +35,7 @@ const submitPage: SubmitPage = {
     );
     await Promise.all([
       expect(page.locator(".heading-h2")).toHaveText(submit_content.pageTitle),
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),

@@ -36,7 +36,7 @@ const createDraftOrderPage: CreateDraftOrderPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         createDraftOrder_content.pageHint,
       ),
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createDraftOrder_content.caseReference + caseNumber,
       ),
