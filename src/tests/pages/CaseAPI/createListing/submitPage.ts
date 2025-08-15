@@ -60,7 +60,7 @@ const submitPage: SubmitPage = {
       `.govuk-heading-l:text-is("${submitContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submitContent.caseReference + caseNumber,
       ),

@@ -66,7 +66,7 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editSummaryListingDetailsContent.pageHint,
       ),
-      expect(page.locator("markdown > h2")).toContainText(subjectName),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editSummaryListingDetailsContent.caseReference + caseNumber,
       ),

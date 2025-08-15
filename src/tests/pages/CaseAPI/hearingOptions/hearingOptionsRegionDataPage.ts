@@ -40,7 +40,7 @@ const hearingOptionsRegionData: HearingOptionsRegionDataPage = {
       `.govuk-heading-l:text-is("${hearingOptionsRegionDataContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p")).toContainText(
         addCaseNotes_content.caseReference + caseNumber,
       ),

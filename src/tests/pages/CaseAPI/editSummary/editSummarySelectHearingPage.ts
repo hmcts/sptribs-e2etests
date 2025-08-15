@@ -35,7 +35,7 @@ const editSummarySelectHearingPage: EditSummarySelectHearingPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editSummarySelectHearingContent.pageHint,
       ),
-      expect(page.locator("markdown > h2")).toContainText(subjectName),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editSummarySelectHearingContent.caseReference + caseNumber,
       ),

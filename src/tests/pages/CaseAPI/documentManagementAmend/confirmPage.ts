@@ -25,7 +25,7 @@ const confirmPage: ConfirmPage = {
       `.govuk-heading-l:text-is("${confirm_content.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         confirm_content.caseReference + caseNumber,
       ),

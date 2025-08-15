@@ -313,11 +313,11 @@ const commonHelpers: CommonHelpers = {
   ): Promise<void> {
     if (docNumber === 0) {
       if (docManagementUpload) {
-        await expect(page.locator(".heading-h2")).toHaveText(
+        await expect(page.locator(".heading-h3")).toHaveText(
           uploadCaseDocuments_content.subTitle1,
         );
       } else {
-        await expect(page.locator(".heading-h2")).toHaveText(
+        await expect(page.locator(".heading-h3")).toHaveText(
           caseDocumentsUploadObject_content.subSubTitle1,
         );
       }
@@ -378,7 +378,7 @@ const commonHelpers: CommonHelpers = {
     await Promise.all([
       expect(
         page.locator(
-          "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h2",
+          "ccd-case-header > div > ccd-label-field > dl > dt > ccd-markdown > div > markdown > h3",
         ),
       ).toHaveText(subjectName),
       expect(page.locator(".case-field").first()).toContainText(
