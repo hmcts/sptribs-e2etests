@@ -42,7 +42,7 @@ const uploadOrderPage: UploadOrderPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         uploadOrder_Content.caseReference + caseNumber,
       ),

@@ -31,7 +31,7 @@ const submitPage: SubmitPage = {
     await page.waitForSelector(`h1:text-is("${submit_content.pageTitle}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`h2:text-is("${subjectName}")`),
+        page.locator(`h3:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

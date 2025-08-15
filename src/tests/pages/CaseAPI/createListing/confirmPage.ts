@@ -26,7 +26,7 @@ const confirmPage: ConfirmPage = {
       `.heading-h1:text-is("${confirmContent.pageHint}")`,
     );
     await Promise.all([
-      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         confirmContent.caseReference + caseNumber,
       ),

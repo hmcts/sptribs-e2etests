@@ -43,7 +43,7 @@ const editSummaryHearingRecordingUploadPage: EditSummaryHearingRecordingUploadPa
         expect(page.locator(".govuk-heading-l")).toHaveText(
           editSummaryHearingRecordingUploadContent.pageTitle,
         ),
-        expect(page.locator("markdown > h2").nth(0)).toContainText(subjectName),
+        expect(page.locator("markdown > h3").nth(0)).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           editSummaryHearingRecordingUploadContent.caseReference + caseNumber,
         ),

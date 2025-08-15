@@ -35,7 +35,7 @@ const postponeHearingSelectHearingPage: PostponeHearingSelectHearingPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         postponeHearingSelectHearingContent.pageHint,
       ),
-      expect(page.locator("markdown > h2")).toContainText(subjectName),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         postponeHearingSelectHearingContent.caseReference + caseNumber,
       ),

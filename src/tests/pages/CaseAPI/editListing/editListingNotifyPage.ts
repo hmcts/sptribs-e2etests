@@ -28,7 +28,7 @@ const editListingNotifyPage: EditListingNotifyPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingNotifyPageContent.pageHint,
       ),
-      expect(page.locator("markdown > h2")).toContainText(subjectName),
+      expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingNotifyPageContent.caseReference + caseNumber,
       ),
