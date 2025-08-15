@@ -36,7 +36,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
         addDocumentFooter_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`div > markdown > h3:text-is("${subjectName}")`),
+        page.locator(`div > markdown > h2:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

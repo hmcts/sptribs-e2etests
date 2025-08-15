@@ -37,7 +37,7 @@ const referCaseToLegalOfficerAdditionalInfoPage: ReferCaseToLegalOfficerAddition
         expect(page.locator(".govuk-heading-l")).toHaveText(
           referCaseToLegalOfficerAdditionalInfoContent.pageHint,
         ),
-        expect(page.locator("markdown > h3")).toContainText(subjectName),
+        expect(page.locator("markdown > h2")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           referCaseToLegalOfficerAdditionalInfoContent.caseReference +
             caseNumber,

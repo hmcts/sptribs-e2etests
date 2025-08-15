@@ -34,7 +34,7 @@ const selectOrderPage: SelectOrderPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         `${selectOrder_content.pageHint}`,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p")).toContainText(
         selectOrder_content.caseReference + caseNumber,
       ),

@@ -41,7 +41,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editListingOtherInformationContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(subjectName),
+      expect(page.locator("markdown > h2")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingOtherInformationContent.caseReference + caseNumber,
       ),

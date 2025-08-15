@@ -26,7 +26,7 @@ const builtCasePage: BuildCasePage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         buildCase_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p")).toContainText(
         buildCase_content.caseReference + caseNumber,
       ),

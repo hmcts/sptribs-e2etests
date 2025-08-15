@@ -32,7 +32,7 @@ const submitPage: SubmitPage = {
     );
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`h3:text-is("${subjectName}")`),
+        page.locator(`h2:text-is("${subjectName}")`),
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

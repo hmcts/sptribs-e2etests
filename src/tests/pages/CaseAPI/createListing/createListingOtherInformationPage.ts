@@ -41,7 +41,7 @@ const createListingOtherInformationPage: CreateListingOtherInformationPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createListingOtherInformationContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingOtherInformationContent.caseReference + caseNumber,
       ),

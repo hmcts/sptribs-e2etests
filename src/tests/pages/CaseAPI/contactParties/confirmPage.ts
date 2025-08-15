@@ -39,7 +39,7 @@ const confirmPage: ConfirmPage = {
       );
     }
     await Promise.all([
-      expect(page.locator("markdown > h3").nth(0)).toHaveText(`${subjectName}`),
+      expect(page.locator("markdown > h2").nth(0)).toHaveText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toHaveText(
         partiesToContact_content.caseReference + caseNumber,
       ),

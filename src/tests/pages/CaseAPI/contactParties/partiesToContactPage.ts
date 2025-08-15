@@ -46,7 +46,7 @@ const partiesToContactPage: PartiesToContactPage = {
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toContainText(pageHintRegex),
-      expect(page.locator("markdown > h3").nth(0)).toContainText(
+      expect(page.locator("markdown > h2").nth(0)).toContainText(
         `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

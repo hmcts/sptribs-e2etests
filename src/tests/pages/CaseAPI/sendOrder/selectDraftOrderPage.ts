@@ -38,7 +38,7 @@ const selectDraftOrderPage: SelectDraftOrderPage = {
         ),
         1,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         selectDraftOrder_content.caseReference + caseNumber,
       ),

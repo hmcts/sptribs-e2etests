@@ -51,7 +51,7 @@ const editCaseObjectsContactsPage: EditCaseObjectsContactsPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         editCaseObjectsContactsContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editCaseObjectsContactsContent.caseReference + caseNumber,
       ),

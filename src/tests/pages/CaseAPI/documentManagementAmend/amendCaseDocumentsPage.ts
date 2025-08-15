@@ -38,7 +38,7 @@ const amendDocumentsPage: AmendCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         amendCaseDocuments_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         amendCaseDocuments_content.caseReference + caseNumber,
       ),

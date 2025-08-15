@@ -41,7 +41,7 @@ const createSummaryHearingAttendeesRolePage: CreateSummaryHearingAttendeesRolePa
         expect(page.locator(".govuk-heading-l")).toHaveText(
           createSummaryHearingAttendeesRoleContent.pageTitle,
         ),
-        expect(page.locator("markdown > h3")).toContainText(subjectName),
+        expect(page.locator("markdown > h2")).toContainText(subjectName),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createSummaryHearingAttendeesRoleContent.caseReference + caseNumber,
         ),

@@ -66,7 +66,7 @@ const createListingListingDetailsPage: CreateListingListingDetailsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         editListingListingDetailsContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(subjectName),
+      expect(page.locator("markdown > h2")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         editListingListingDetailsContent.caseReference + caseNumber,
       ),
