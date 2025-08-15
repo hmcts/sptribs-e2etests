@@ -46,7 +46,7 @@ const createListingRegionInfoPage: CreateListingRegionInfoPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         createListingRegionInfoContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3")).toContainText(subjectName),
+      expect(page.locator("markdown > h2")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         createListingRegionInfoContent.caseReference + caseNumber,
       ),

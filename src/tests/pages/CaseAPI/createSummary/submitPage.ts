@@ -97,7 +97,7 @@ const submitPage: SubmitPage = {
       expect(page.locator(".govuk-heading-l")).toHaveText(
         submitContent.pageTitle,
       ),
-      expect(page.locator("markdown > h3").first()).toContainText(
+      expect(page.locator("markdown > h2").first()).toContainText(
         `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(

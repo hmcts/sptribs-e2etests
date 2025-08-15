@@ -44,7 +44,7 @@ const createSummaryHearingTypeAndFormatPage: CreateSummaryHearingTypeAndFormatPa
         expect(page.locator(".govuk-caption-l")).toHaveText(
           createSummaryHearingTypeAndFormatContent.pageHint,
         ),
-        expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+        expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
         expect(page.locator("markdown > p").nth(0)).toContainText(
           createSummaryHearingTypeAndFormatContent.caseReference + caseNumber,
         ),

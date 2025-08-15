@@ -38,7 +38,7 @@ const selectDocumentsPage: SelectCaseDocumentsPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         selectCaseDocuments_content.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > h2")).toContainText(`${subjectName}`),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         selectCaseDocuments_content.caseReference + caseNumber,
       ),

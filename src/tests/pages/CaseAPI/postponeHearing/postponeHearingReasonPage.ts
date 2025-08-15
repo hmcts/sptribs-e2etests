@@ -41,7 +41,7 @@ const postponeHearingReasonPage: PostponeHearingReasonPage = {
       expect(page.locator(".govuk-caption-l")).toHaveText(
         postponeHearingReasonContent.pageHint,
       ),
-      expect(page.locator("markdown > h3")).toContainText(subjectName),
+      expect(page.locator("markdown > h2")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         postponeHearingReasonContent.caseReference + caseNumber,
       ),
