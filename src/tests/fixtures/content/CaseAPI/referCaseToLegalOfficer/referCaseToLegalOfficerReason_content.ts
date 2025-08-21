@@ -1,5 +1,5 @@
 const referCaseToLegalOfficerReason_content = {
-  pageTitle: "Refer case to legal officer",
+  pageTitle: "Referral reasons",
   caseReference: "Case number: ",
   textOnPage1: "Why are you referring this case?",
   textOnPage2: "Reason for referral",
