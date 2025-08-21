@@ -1,5 +1,5 @@
 const hearingOptionsHearingDetails_content = {
-  pageTitle: "Case: Hearing Options",
+  pageTitle: "Hearing Details",
   textOnPage1: "Hearing venue (Optional)",
   textOnPage2: "Venue not listed",
   textOnPage3: "Room at venue (Optional)",
