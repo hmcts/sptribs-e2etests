@@ -1,5 +1,5 @@
 const sendOrderNotifyPage_content = {
-  pageHint: "Orders: Send order",
+  pageHint: "Contact parties",
   caseReference: "Case number: ",
   textOnPage1: "Who should receive this Order?",
   textOnPage2: "Order information recipient (Optional)",

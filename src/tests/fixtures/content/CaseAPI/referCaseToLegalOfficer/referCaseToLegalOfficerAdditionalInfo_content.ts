@@ -1,5 +1,5 @@
 const referCaseToLegalOfficerAdditionalInfo_content = {
-  pageHint: "Refer case to legal officer",
+  pageHint: "Additional information",
   pageTitle: "Additional information",
   caseReference: "Case number: ",
   textOnPage: "Provide additional details (Optional)",
