@@ -1,5 +1,5 @@
 const referCaseToJudgeAdditionalInfo_content = {
-  pageHint: "Refer case to judge",
+  pageHint: "Additional information",
   pageTitle: "Additional information",
   caseReference: "Case number: ",
   textOnPage: "Provide additional details (Optional)",
