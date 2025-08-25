@@ -486,7 +486,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.55.0":
+"@playwright/test@npm:^1.46.1":
   version: 1.55.0
   resolution: "@playwright/test@npm:1.55.0"
   dependencies:
@@ -3208,7 +3208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.55.0, playwright-core@npm:^1.55.0":
+"playwright-core@npm:1.55.0, playwright-core@npm:^1.46.1":
   version: 1.55.0
   resolution: "playwright-core@npm:1.55.0"
   bin:
@@ -3674,15 +3674,15 @@ __metadata:
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
     "@hmcts/playwright-common": "npm:^1.0.20"
-    "@playwright/test": "npm:^1.55.0"
+    "@playwright/test": "npm:^1.46.1"
     "@types/node": "npm:^22.0.0"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    playwright-core: "npm:^1.55.0"
+    playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
-    tsx: "npm:^4.19.4"
+    tsx: "npm:^4.20.5"
     typescript: "npm:^5.5.4"
   languageName: unknown
   linkType: soft
@@ -3898,9 +3898,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.19.4":
-  version: 4.20.4
-  resolution: "tsx@npm:4.20.4"
+"tsx@npm:^4.20.5":
+  version: 4.20.5
+  resolution: "tsx@npm:4.20.5"
   dependencies:
     esbuild: "npm:~0.25.0"
     fsevents: "npm:~2.3.3"
@@ -3910,7 +3910,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/dc5d7b7a15fc67f9e3bd20a6d0b3322bd798aa544ce6ab1e857134ea5803f2cd7ac8f4a2099e4ca842dd6e22f2d5a5ea0e0057f571f4d2101ba64b676ffaea3d
+  checksum: 10/161420678027c43d07b60b7b6b512cc67ff86ae3cca0641a19b0d3e742c5e262bca57034c4bff6d9346f9269e9ada24b6030e1d2bc890df5e1a9754865d3c08a
   languageName: node
   linkType: hard
 
