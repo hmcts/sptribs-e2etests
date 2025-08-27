@@ -9,6 +9,7 @@ import subjectContactDetailsPage from "../../pages/DSSCreateCase/subjectContactD
 import representationPage from "../../pages/DSSCreateCase/representationPage.ts";
 import representationQualifiedPage from "../../pages/DSSCreateCase/representationQualifiedPage.ts";
 import representativeDetailsPage from "../../pages/DSSCreateCase/representativeDetailsPage.ts";
+import cicaReferencePage from "../../pages/DSSCreateCase/cicaReferencePage.ts";
 import uploadAppealFormPage from "../../pages/DSSCreateCase/uploadAppealFormPage.ts";
 import uploadSupportingDocumentsPage from "../../pages/DSSCreateCase/uploadSupportingDocumentsPage.ts";
 import uploadOtherInformationPage from "../../pages/DSSCreateCase/uploadOtherInformationPage.ts";
@@ -24,6 +25,7 @@ type CreateFeApplication = {
     user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
+    cicaReferenceNumber: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     completeApplication: boolean,
@@ -38,6 +40,7 @@ type CreateFeApplication = {
     user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
+    cicaReferenceNumber: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     completeApplication: boolean,
@@ -58,6 +61,7 @@ type CreateFeApplication = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     representationQualified: boolean,
+    cicaReferenceNumber: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     subjectName: string,
@@ -72,6 +76,7 @@ const createFEApplication: CreateFeApplication = {
     user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
+    cicaReferenceNumber: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     completeApplication: boolean,
@@ -88,6 +93,7 @@ const createFEApplication: CreateFeApplication = {
           user,
           representationPresent,
           representationQualified,
+          cicaReferenceNumber,
           uploadOtherInfo,
           multipleDocuments,
           completeApplication,
@@ -131,6 +137,9 @@ const createFEApplication: CreateFeApplication = {
           await representativeDetailsPage.triggerErrorMessages(page, cy);
           await representativeDetailsPage.fillInFields(page);
         }
+        await cicaReferencePage.checkPageLoads(page, cy, accessibilityTest);
+        await cicaReferencePage.triggerErrorMessages(page, cy);
+        await cicaReferencePage.fillInFields(page, cicaReferenceNumber);
         await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadAppealFormPage.triggerErrorMessages(page, cy);
         await uploadAppealFormPage.uploadDocumentsSection(
@@ -165,6 +174,7 @@ const createFEApplication: CreateFeApplication = {
     user: UserRole,
     representationPresent: boolean,
     representationQualified: boolean,
+    cicaReferenceNumber: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     completeApplication: boolean,
@@ -189,6 +199,9 @@ const createFEApplication: CreateFeApplication = {
         accessibilityTest,
       );
     }
+    await cicaReferencePage.checkPageLoads(page, cy, accessibilityTest);
+    await cicaReferencePage.triggerErrorMessages(page, cy);
+    await cicaReferencePage.fillInFields(page, cicaReferenceNumber);
     await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
     await uploadAppealFormPage.uploadDocumentsSection(
       page,
@@ -244,6 +257,7 @@ const createFEApplication: CreateFeApplication = {
         accessibilityTest,
         representationPresent,
         representationQualified,
+        cicaReferenceNumber,
         uploadOtherInfo,
         multipleDocuments,
         subjectName,
@@ -280,6 +294,7 @@ const createFEApplication: CreateFeApplication = {
     accessibilityTest: boolean,
     representationPresent: boolean,
     representationQualified: boolean,
+    cicaReferenceNumber: string,
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     subjectName: string,
