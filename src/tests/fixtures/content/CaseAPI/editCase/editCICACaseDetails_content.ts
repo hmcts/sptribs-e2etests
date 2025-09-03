@@ -1,4 +1,4 @@
-const editCICACaseDetails_content = {
+const editCicaCaseDetails_content = {
   pageHint: "Case: Edit case",
   pageTitle: "Case details",
   caseReference: "Case number: ",
@@ -10,4 +10,4 @@ const editCICACaseDetails_content = {
   presentingOfficer: "Test CICA Presenting Officer",
 } as const;
 
-export default editCICACaseDetails_content;
+export default editCicaCaseDetails_content;

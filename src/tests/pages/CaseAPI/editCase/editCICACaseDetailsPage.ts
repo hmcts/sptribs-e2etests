@@ -1,9 +1,9 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
-import editCICACaseDetailsContent from "../../../fixtures/content/CaseAPI/editCase/editCicaCaseDetails_content.ts";
+import editCicaCaseDetails_content from "../../../fixtures/content/CaseAPI/editCase/editCICACaseDetails_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
-type EditCICACaseDetailsPage = {
+type EditCicaCaseDetailsPage = {
   continue: string;
   previous: string;
   cancel: string;
@@ -17,7 +17,7 @@ type EditCICACaseDetailsPage = {
   continueOn(page: Page): Promise<void>;
 };
 
-const editCICACaseDetailsPage: EditCICACaseDetailsPage = {
+const editCicaCaseDetailsPage: EditCicaCaseDetailsPage = {
   continue: '[type="submit"]',
   previous: ".button-secondary[disabled]",
   cancel: ".cancel",
@@ -29,22 +29,22 @@ const editCICACaseDetailsPage: EditCICACaseDetailsPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${editCICACaseDetailsContent.pageTitle}")`,
+      `.govuk-heading-l:text-is("${editCicaCaseDetails_content.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        editCICACaseDetailsContent.pageHint,
+        editCicaCaseDetails_content.pageHint,
       ),
       expect(page.locator("markdown > h3")).toContainText(subjectName),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        editCICACaseDetailsContent.caseReference + caseNumber,
+        editCicaCaseDetails_content.caseReference + caseNumber,
       ),
 
       expect(page.locator(".form-label").nth(0)).toHaveText(
-        editCICACaseDetailsContent.textOnPage1,
+        editCicaCaseDetails_content.textOnPage1,
       ),
       ...Array.from({ length: 3 }, (_, index) => {
-        const textOnPage = (editCICACaseDetailsContent as any)[
+        const textOnPage = (editCicaCaseDetails_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -68,15 +68,15 @@ const editCICACaseDetailsPage: EditCICACaseDetailsPage = {
   async fillFields(page: Page): Promise<void> {
     await page.fill(
       "#editCicaCaseDetails_cicaReferenceNumber",
-      editCICACaseDetailsContent.referenceNumber,
+      editCicaCaseDetails_content.referenceNumber,
     );
     await page.fill(
       "#editCicaCaseDetails_cicaCaseWorker",
-      editCICACaseDetailsContent.caseWorker,
+      editCicaCaseDetails_content.caseWorker,
     );
     await page.fill(
       "#editCicaCaseDetails_cicaCasePresentingOfficer",
-      editCICACaseDetailsContent.presentingOfficer,
+      editCicaCaseDetails_content.presentingOfficer,
     );
   },
 
@@ -85,4 +85,4 @@ const editCICACaseDetailsPage: EditCICACaseDetailsPage = {
   },
 };
 
-export default editCICACaseDetailsPage;
+export default editCicaCaseDetailsPage;
