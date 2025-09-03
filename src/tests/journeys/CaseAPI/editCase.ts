@@ -7,7 +7,7 @@ import {
   SubCategory,
 } from "../../helpers/commonHelpers.ts";
 import editCaseCategorisationDetailsPage from "../../pages/CaseAPI/editCase/editCaseCategorisationDetailsPage.ts";
-import editCicaCaseDetailsPage from "../../pages/CaseAPI/editCase/editCicaCaseDetailsPage.ts";
+import editCicaCaseDetailsPage from "../../pages/CaseAPI/editCase/editCICACaseDetailsPage.ts";
 import editCaseDateObjectsPage from "../../pages/CaseAPI/editCase/editCaseDateObjectsPage.ts";
 import editCaseObjectsSubjectsPage from "../../pages/CaseAPI/editCase/editCaseObjectsSubjectsPage.ts";
 import editCaseSubjectDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseSubjectDetailsObjectPage.ts";
