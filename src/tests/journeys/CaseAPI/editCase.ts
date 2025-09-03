@@ -96,12 +96,8 @@ const editCase: EditCase = {
           accessibilityTest,
           subjectName,
         );
-        await editCicaCaseDetailsPage.fillFields(
-          page
-        );
-        await editCicaCaseDetailsPage.continueOn(
-          page
-        );
+        await editCicaCaseDetailsPage.fillFields(page);
+        await editCicaCaseDetailsPage.continueOn(page);
         await editCaseDateObjectsPage.checkPageLoads(
           page,
           caseNumber,
