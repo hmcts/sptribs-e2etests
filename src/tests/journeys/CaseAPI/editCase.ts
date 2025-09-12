@@ -7,6 +7,7 @@ import {
   SubCategory,
 } from "../../helpers/commonHelpers.ts";
 import editCaseCategorisationDetailsPage from "../../pages/CaseAPI/editCase/editCaseCategorisationDetailsPage.ts";
+import editCicaCaseDetailsPage from "../../pages/CaseAPI/editCase/editCICACaseDetailsPage.ts";
 import editCaseDateObjectsPage from "../../pages/CaseAPI/editCase/editCaseDateObjectsPage.ts";
 import editCaseObjectsSubjectsPage from "../../pages/CaseAPI/editCase/editCaseObjectsSubjectsPage.ts";
 import editCaseSubjectDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseSubjectDetailsObjectPage.ts";
@@ -32,6 +33,9 @@ type EditCase = {
     initialState: initialState,
     category: Category,
     subCategory: SubCategory,
+    referenceNumber: string,
+    caseWorker: string,
+    presentingOfficer: string,
     representative: boolean,
     applicant: boolean,
     contactPreference: ContactPreference,
@@ -55,6 +59,9 @@ const editCase: EditCase = {
     initialState: initialState,
     category: Category,
     subCategory: SubCategory,
+    referenceNumber: string,
+    caseWorker: string,
+    presentingOfficer: string,
     representative: boolean,
     applicant: boolean,
     contactPreference: ContactPreference,
@@ -83,6 +90,14 @@ const editCase: EditCase = {
           category,
           subCategory,
         );
+        await editCicaCaseDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
+        await editCicaCaseDetailsPage.fillFields(page);
+        await editCicaCaseDetailsPage.continueOn(page);
         await editCaseDateObjectsPage.checkPageLoads(
           page,
           caseNumber,

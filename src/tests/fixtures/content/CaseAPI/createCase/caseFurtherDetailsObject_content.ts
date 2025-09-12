@@ -4,7 +4,7 @@ export const caseFurtherDetailsObject_content = {
   textOnPage1: "Scheme",
   textOnPage2: "Case Region",
   textOnPage3: "Have any claims linked to this case been lodged with CICA?",
-  textOnPage4: "CICA reference number",
+  textOnPage4: "Linked CICA reference number",
   textOnPage5: "Are there any ongoing compensation claims linked to this case?",
   textOnPage6: "Have the tribunal forms been received in time?",
   textOnPage7: "Has the applicant explained why they missed the deadline?",
@@ -15,7 +15,7 @@ export const caseFurtherDetailsObject_content = {
   regionError: "Case Region is required",
   linksError:
     "Have any claims linked to this case been lodged with CICA? is required",
-  CICAError: "CICA reference number is required",
+  CICAError: "Linked CICA reference number is required",
   compensationError:
     "Are there any ongoing compensation claims linked to this case? is required",
   tribunalError: "Have the tribunal forms been received in time? is required",
