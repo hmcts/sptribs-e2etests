@@ -1,6 +1,6 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import cicaReferenceContent from "../../fixtures/content/DSSCreateCase/CICAReference_content.ts";
+import cicaReferenceContent from "../../fixtures/content/DSSCreateCase/cicaReference_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
 type CICAReferencePage = {

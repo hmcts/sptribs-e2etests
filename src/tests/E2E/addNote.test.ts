@@ -28,7 +28,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
         waUsers_content.userRoleCitizen,
         true,
         true,
-        "1234567890",
+        "X1234567890",
         false,
         false,
         true,
