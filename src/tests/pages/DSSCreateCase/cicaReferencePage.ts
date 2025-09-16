@@ -29,10 +29,6 @@ const cicaReferencePage: CICAReferencePage = {
     switch (cy) {
       case true:
         await page.waitForSelector(
-          `.govuk-heading-l:text-is("${cicaReferenceContent.pageTitle}")`,
-        );
-        await page.locator(".govuk-link.language").click();
-        await page.waitForSelector(
           `.govuk-heading-l:text-is("${cicaReferenceContent.pageTitleCy}")`,
         );
         await Promise.all([
@@ -48,7 +44,7 @@ const cicaReferencePage: CICAReferencePage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-label:text-is("${cicaReferenceContent.hintTextCy1}")`,
+              `.govuk-hint:text-is("${cicaReferenceContent.hintTextCy1}")`,
             ),
             1,
           ),
