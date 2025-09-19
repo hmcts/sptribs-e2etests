@@ -51,5 +51,8 @@
     "prettier": "3.6.2",
     "tsx": "^4.19.4"
   },
+  "resolutions": {
+    "@eslint/plugin-kit": "^0.3.4"
+  },
   "packageManager": "yarn@4.9.4"
 }
