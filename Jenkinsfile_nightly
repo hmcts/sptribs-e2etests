@@ -40,6 +40,11 @@ properties([
                         defaultValue: false,
                         description: 'Tick the checkbox for skipping DSS Update Case application tests.'
                 ),
+                booleanParam(
+                  name: 'runFailedTestFiles',
+                  defaultValue: false,
+                  description: 'Rerun only failed/not executed test files from previous build'
+                ),
         ])
 ])
 
@@ -137,37 +142,62 @@ withNightlyPipeline(type, product, component, 600) {
 
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
-        try {
-          yarnBuilder.yarn('test:ChromeDSS')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'DSS Create Case Application Chrome E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+        steps {
+          script {
+            copyArtifacts(
+              projectName: env.JOB_NAME,
+              selector: lastSuccessful(),
+              filter: 'e2e/test-results/**/test-results.json',
+              target: '.',
+              flatten: true,
+              optional: true
+            )
+            sh 'cp test-results.json prevTestFilesReport.json || true'
+            sh './e2e/run-tests.sh test:ChromeDSS DSSFunctional chromium'
+          }
+        }
+        post {
+          always {
+            publishHTML([
+              allowMissing: true,
+              alwaysLinkToLastBuild: true,
+              keepAll: true,
+              reportDir: "playwright-report",
+              reportFiles: 'index.html',
+              reportName: 'DSS Create Case Application Chrome E2E Test Report'
+            ])
+            archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+          }
         }
       }
       stage('DSS Create Case Application E2E tests - Firefox') {
-        try {
-          yarnBuilder.yarn('test:FirefoxDSS')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'DSS Create Case Application Firefox E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+        steps {
+          script {
+            copyArtifacts(
+              projectName: env.JOB_NAME,
+              selector: lastSuccessful(),
+              filter: 'e2e/test-results/**/test-results.json',
+              target: '.',
+              flatten: true,
+              optional: true
+            )
+            sh 'cp test-results.json prevTestFilesReport.json || true'
+
+            sh './e2e/run-tests.sh test:FirefoxDSS DSSFunctional firefox'
+          }
+        }
+        post {
+          always {
+            publishHTML([
+              allowMissing: true,
+              alwaysLinkToLastBuild: true,
+              keepAll: true,
+              reportDir: "playwright-report",
+              reportFiles: 'index.html',
+              reportName: 'DSS Create Case Application Firefox E2E Test Report'
+            ])
+            archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+          }
         }
       }
       stage('DSS Create Case Application E2E tests - Webkit') {
