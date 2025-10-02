@@ -194,21 +194,30 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       stage('DSS Create Case Application E2E tests - Webkit') {
-        try {
-          yarnBuilder.yarn('test:WebkitDSS')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
+          try {
+              copyArtifacts(
+                projectName: env.JOB_NAME,
+                selector: lastSuccessful(),
+                filter: 'e2e/test-results/**/test-results.json',
+                target: '.',
+                flatten: true,
+                optional: true
+              )
+              sh 'cp test-results.json prevTestFilesReport.json || true'
+              sh './e2e/run-tests.sh test:WebkitDSS DSSFunctional webkit'
+          } catch (err) {
+              unstable("Stage failed: ${err}")
+          } finally {
+              publishHTML([
                   allowMissing: true,
                   alwaysLinkToLastBuild: true,
                   keepAll: true,
                   reportDir: "playwright-report",
                   reportFiles: 'index.html',
                   reportName: 'DSS Create Case Application Webkit E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
-        }
+              ])
+              archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
+          }
       }
     }
     if (!params.skipDSSUpdateTests) {
