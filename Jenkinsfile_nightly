@@ -152,7 +152,7 @@ withNightlyPipeline(type, product, component, 600) {
                 optional: true
             )
             sh 'cp test-results.json prevTestFilesReport.json || true'
-            sh './e2e/run-tests.sh test:ChromeDSS DSSFunctional chromium'
+            sh 'yarn test:ChromeDSS'
         } catch (err) {
             unstable("Stage failed: ${err}")
         } finally {
@@ -178,7 +178,7 @@ withNightlyPipeline(type, product, component, 600) {
                   optional: true
               )
               sh 'cp test-results.json prevTestFilesReport.json || true'
-              sh './e2e/run-tests.sh test:FirefoxDSS DSSFunctional firefox'
+              sh 'yarn test:FirefoxDSS'
           } catch (err) {
               unstable("Stage failed: ${err}")
           } finally {
@@ -204,7 +204,7 @@ withNightlyPipeline(type, product, component, 600) {
                 optional: true
               )
               sh 'cp test-results.json prevTestFilesReport.json || true'
-              sh './e2e/run-tests.sh test:WebkitDSS DSSFunctional webkit'
+              sh 'yarn test:WebkitDSS'
           } catch (err) {
               unstable("Stage failed: ${err}")
           } finally {
