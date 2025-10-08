@@ -56,6 +56,7 @@ const task: Task = {
     subjectName: string,
   ): Promise<any> {
     await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForTimeout(5000);
     await page.waitForLoadState("domcontentloaded");
     await caseAPILoginPage.SignInUser(page, user);
     await myWorkPage.checkPageLoads(page, accessibilityTest, user);
