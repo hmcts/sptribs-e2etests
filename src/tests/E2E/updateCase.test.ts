@@ -34,6 +34,7 @@ test.describe("DSS Update case tests.", () => {
       caseNumber01,
     );
     await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForTimeout(5000);
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
       page,
@@ -218,6 +219,7 @@ test.describe("DSS Update case tests.", () => {
       waUsers_content.userRoleAdmin,
     );
     await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForTimeout(5000);
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
       page,
