@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import config from "../../config";
 import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
 import loginPage from "../../pages/DSSUpdateCase/loginPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
@@ -39,7 +38,8 @@ const updateCaseJourney: UpdateCaseJourney = {
   ): Promise<void> {
     switch (errorMessaging) {
       default:
-        await page.goto(config.UpdateCaseBaseURL);
+        await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
+        await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
@@ -79,7 +79,8 @@ const updateCaseJourney: UpdateCaseJourney = {
         await confirmPage.returnCaseNumber(page, caseNumber);
         break;
       case true:
-        await page.goto(config.UpdateCaseBaseURL);
+        await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
+        await landingPage.continueOn(page);
         await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.triggerErrorMessages(page, cy);
