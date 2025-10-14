@@ -663,7 +663,7 @@ const commonHelpers: CommonHelpers = {
     const context = page.context();
     const [newPage] = await Promise.all([
       context.waitForEvent("page"),
-      page.click(`ccd-read-document-field > a`, {
+      page.click(`ccd-read-document-field > button`, {
         modifiers: ["ControlOrMeta"],
       }),
     ]);

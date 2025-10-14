@@ -100,7 +100,7 @@ const editSummaryHearingRecordingUploadPage: EditSummaryHearingRecordingUploadPa
       ).toHaveValue(editSummaryHearingRecordingUploadContent.description);
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `ccd-read-document-field > a:text-is("${path.basename(config.testMP3File)}")`,
+          `ccd-read-document-field > button:text-is("${path.basename(config.testMP3File)}")`,
         ),
         1,
       );

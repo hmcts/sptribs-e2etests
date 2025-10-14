@@ -153,7 +153,7 @@ const submitPage: SubmitPage = {
         break;
       case "UploadOrder":
         await page.waitForSelector(
-          `ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
+          `ccd-read-document-field > button:text-is("${path.basename(config.testPdfFile)}")`,
         );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
@@ -166,7 +166,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
+              `ccd-read-document-field > button:text-is("${path.basename(config.testPdfFile)}")`,
             ),
             1,
           ),
