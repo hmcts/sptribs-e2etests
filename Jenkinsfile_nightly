@@ -142,8 +142,7 @@ withNightlyPipeline(type, product, component, 600) {
 
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
-        steps {
-          script {
+        try {
             copyArtifacts(
               projectName: env.JOB_NAME,
               selector: lastSuccessful(),
@@ -156,10 +155,9 @@ withNightlyPipeline(type, product, component, 600) {
             withEnv(["RUN_PREV_FAILED_AND_NOT_EXECUTED_TEST_FILES=${params.runFailedTestFiles}"]) {
               sh './e2e/run-tests.sh test:ChromeDSS DSSFunctional chromium'
             }
-          }
-        }
-        post {
-          always {
+          } catch (err) {
+            unstable(message: "${STAGE_NAME} is unstable: ${err}")
+          } finally {
             publishHTML([
               allowMissing: true,
               alwaysLinkToLastBuild: true,
@@ -171,10 +169,8 @@ withNightlyPipeline(type, product, component, 600) {
             archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
           }
         }
-      }
       stage('DSS Create Case Application E2E tests - Firefox') {
-         steps {
-          script {
+         try {
             copyArtifacts(
               projectName: env.JOB_NAME,
               selector: lastSuccessful(),
@@ -184,12 +180,12 @@ withNightlyPipeline(type, product, component, 600) {
               optional: true
             )
             sh 'cp test-results.json prevTestFilesReport.json || true'
-
-            sh './e2e/run-tests.sh test:FirefoxDSS DSSFunctional firefox'
-          }
-        }
-        post {
-          always {
+            withEnv(["RUN_PREV_FAILED_AND_NOT_EXECUTED_TEST_FILES=${params.runFailedTestFiles}"]) {
+              sh './e2e/run-tests.sh test:FirefoxDSS DSSFunctional firefox'
+            }
+          } catch (err) {
+            unstable(message: "${STAGE_NAME} is unstable: ${err}")
+          } finally {
             publishHTML([
               allowMissing: true,
               alwaysLinkToLastBuild: true,
@@ -201,10 +197,8 @@ withNightlyPipeline(type, product, component, 600) {
             archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
           }
         }
-      }
       stage('DSS Create Case Application E2E tests - Webkit') {
-        steps {
-          script {
+        try {
             copyArtifacts(
               projectName: env.JOB_NAME,
               selector: lastSuccessful(),
@@ -215,11 +209,12 @@ withNightlyPipeline(type, product, component, 600) {
             )
             sh 'cp test-results.json prevTestFilesReport.json || true'
 
-            sh './e2e/run-tests.sh test:WebkitDSS DSSFunctional webkit'
-          }
-        }
-        post {
-          always {
+            withEnv(["RUN_PREV_FAILED_AND_NOT_EXECUTED_TEST_FILES=${params.runFailedTestFiles}"]) {
+              sh './e2e/run-tests.sh test:WebkitDSS DSSFunctional webkit'
+            }
+          } catch (err) {
+            unstable(message: "${STAGE_NAME} is unstable: ${err}")
+          } finally {
             publishHTML([
               allowMissing: true,
               alwaysLinkToLastBuild: true,
@@ -231,8 +226,6 @@ withNightlyPipeline(type, product, component, 600) {
             archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
           }
         }
-      }
-    }
     if (!params.skipDSSUpdateTests) {
       stage('DSS Update Case Application E2E tests - Chrome') {
         try {
