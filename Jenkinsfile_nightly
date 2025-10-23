@@ -132,13 +132,13 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
 
-    stage('Global data clean up') {
-      try {
-        yarnBuilder.yarn('test:dataCleanUp')
-      } catch (Error) {
-        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-      }
-    }
+    // stage('Global data clean up') {
+    //   try {
+    //     yarnBuilder.yarn('test:dataCleanUp')
+    //   } catch (Error) {
+    //     unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+    //   }
+    // }
 
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
