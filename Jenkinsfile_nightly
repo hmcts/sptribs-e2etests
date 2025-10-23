@@ -144,7 +144,7 @@ withNightlyPipeline(type, product, component, 600) {
       stage('DSS Create Case Application E2E tests - Chrome') {
         try {
             copyArtifacts(
-              projectName: env.JOB_NAME,
+              projectName: currentBuild.projectName,
               selector: lastSuccessful(),
               filter: 'e2e/test-results/**/test-results.json',
               target: '.',
@@ -173,7 +173,7 @@ withNightlyPipeline(type, product, component, 600) {
       stage('DSS Create Case Application E2E tests - Firefox') {
          try {
             copyArtifacts(
-              projectName: env.JOB_NAME,
+              projectName: currentBuild.projectName,
               selector: lastSuccessful(),
               filter: 'e2e/test-results/**/test-results.json',
               target: '.',
@@ -202,7 +202,7 @@ withNightlyPipeline(type, product, component, 600) {
       stage('DSS Create Case Application E2E tests - Webkit') {
         try {
             copyArtifacts(
-              projectName: env.JOB_NAME,
+              projectName: currentBuild.projectName,
               selector: lastSuccessful(),
               filter: 'e2e/test-results/**/test-results.json',
               target: '.',
