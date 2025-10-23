@@ -553,6 +553,7 @@ const commonHelpers: CommonHelpers = {
     caseNumber: string,
   ): Promise<void> {
     await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForTimeout(5000);
     await page.waitForLoadState("domcontentloaded");
     await idamLoginHelper.signInUser(page, user, baseURL);
     await page.waitForTimeout(2000);
