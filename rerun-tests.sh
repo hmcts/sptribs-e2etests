@@ -27,7 +27,8 @@ if [ "${RUN_PREV_FAILED_AND_NOT_EXECUTED_TEST_FILES:-false}" = "true" ] && [ -f 
 
     exit 0
   else
-    echo "No failed tests for project $PROJECT. Running full suite."
+    echo "No failed tests for project $PROJECT. Skipping..."
+    exit 0
   fi
 fi
 
