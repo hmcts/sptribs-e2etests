@@ -144,7 +144,7 @@ withNightlyPipeline(type, product, component, 600) {
       stage('DSS Create Case Application E2E tests - Chrome') {
         try {
             copyArtifacts(
-              projectName: currentBuild.projectName,
+              projectName: 'HMCTS_j_to_z_Nightly/sptribs-e2etests/nightly-dev',
               selector: lastSuccessful(),
               filter: 'e2e/test-results/**/test-results.json',
               target: '.',
