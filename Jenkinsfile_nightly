@@ -226,6 +226,7 @@ withNightlyPipeline(type, product, component, 600) {
             archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/DSSFunctional/*'
           }
         }
+      } 
     if (!params.skipDSSUpdateTests) {
       stage('DSS Update Case Application E2E tests - Chrome') {
         try {
