@@ -931,13 +931,13 @@ const submitPage: SubmitPage = {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `ccd-field-read-label > div > ccd-read-document-field > a:text-is("${path.basename(config.testWordFile)}")`,
+            `ccd-field-read-label > div > ccd-read-document-field > button:text-is("${path.basename(config.testWordFile)}")`,
           ),
           1,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `ccd-field-read-label > div > ccd-read-document-field > a:text-is("${path.basename(config.testFile)}")`,
+            `ccd-field-read-label > div > ccd-read-document-field > button:text-is("${path.basename(config.testFile)}")`,
           ),
           1,
         ),
@@ -958,7 +958,7 @@ const submitPage: SubmitPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `ccd-field-read-label > div > ccd-read-document-field > a:text-is("${path.basename(config.testPdfFile)}")`,
+          `ccd-field-read-label > div > ccd-read-document-field > button:text-is("${path.basename(config.testPdfFile)}")`,
         ),
         1,
       ),
