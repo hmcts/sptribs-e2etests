@@ -52,7 +52,9 @@
     "tsx": "^4.19.4"
   },
   "resolutions": {
-    "@eslint/plugin-kit": "^0.3.4"
+    "@eslint/plugin-kit": "^0.3.4",
+    "playwright": "^1.55.1",
+    "tar-fs": "^3.1.1"
   },
   "packageManager": "yarn@4.9.4"
 }
