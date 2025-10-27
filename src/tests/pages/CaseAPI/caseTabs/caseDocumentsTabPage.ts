@@ -264,7 +264,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`button:text-is("${path.basename(config.testPdfFile)}")`),
+            page.locator(
+              `button:text-is("${path.basename(config.testPdfFile)}")`,
+            ),
             1,
           ),
 
@@ -286,7 +288,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`button:text-is("${path.basename(config.testWordFile)}")`),
+            page.locator(
+              `button:text-is("${path.basename(config.testWordFile)}")`,
+            ),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
@@ -306,7 +310,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`button:text-is("${path.basename(config.testPdfFile)}")`),
+            page.locator(
+              `button:text-is("${path.basename(config.testPdfFile)}")`,
+            ),
             1,
           ),
 
@@ -413,7 +419,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           4,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`button:text-is("${path.basename(config.testPdfFile)}")`),
+          page.locator(
+            `button:text-is("${path.basename(config.testPdfFile)}")`,
+          ),
           4,
         ),
         commonHelpers.checkVisibleAndPresent(
@@ -430,7 +438,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           4,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`button:text-is("${path.basename(config.testWordFile)}")`),
+          page.locator(
+            `button:text-is("${path.basename(config.testWordFile)}")`,
+          ),
           4,
         ),
         commonHelpers.checkVisibleAndPresent(
@@ -450,7 +460,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
           4,
         ),
         commonHelpers.checkVisibleAndPresent(
-          page.locator(`button:text-is("${path.basename(config.testPdfFile)}")`),
+          page.locator(
+            `button:text-is("${path.basename(config.testPdfFile)}")`,
+          ),
           4,
         ),
         commonHelpers.checkVisibleAndPresent(
@@ -536,7 +548,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             3,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`button:text-is("${path.basename(config.testWordFile)}")`),
+            page.locator(
+              `button:text-is("${path.basename(config.testWordFile)}")`,
+            ),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
@@ -555,7 +569,9 @@ const caseDocumentsTabPage: CaseDocumentsTabPage = {
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`button:text-is("${path.basename(config.testWordFile)}")`),
+            page.locator(
+              `button:text-is("${path.basename(config.testWordFile)}")`,
+            ),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
