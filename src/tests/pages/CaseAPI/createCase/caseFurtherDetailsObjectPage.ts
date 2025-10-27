@@ -66,22 +66,22 @@ const caseFurtherDetailsObjectPage: CaseFurtherDetailsObjectPage = {
       expect(page.locator(".form-label").nth(4)).toHaveText(
         caseFurtherDetailsObject_content.no,
       ),
-      expect(page.locator(".form-label").nth(6)).toHaveText(
+      expect(page.locator(".form-label").nth(5)).toHaveText(
         caseFurtherDetailsObject_content.textOnPage5,
       ),
-      expect(page.locator(".form-label").nth(7)).toHaveText(
+      expect(page.locator(".form-label").nth(6)).toHaveText(
         caseFurtherDetailsObject_content.yes,
       ),
-      expect(page.locator(".form-label").nth(8)).toHaveText(
+      expect(page.locator(".form-label").nth(7)).toHaveText(
         caseFurtherDetailsObject_content.no,
       ),
-      expect(page.locator(".form-label").nth(9)).toHaveText(
+      expect(page.locator(".form-label").nth(8)).toHaveText(
         caseFurtherDetailsObject_content.textOnPage6,
       ),
-      expect(page.locator(".form-label").nth(10)).toHaveText(
+      expect(page.locator(".form-label").nth(9)).toHaveText(
         caseFurtherDetailsObject_content.yes,
       ),
-      expect(page.locator(".form-label").nth(11)).toHaveText(
+      expect(page.locator(".form-label").nth(10)).toHaveText(
         caseFurtherDetailsObject_content.no,
       ),
     ]);
