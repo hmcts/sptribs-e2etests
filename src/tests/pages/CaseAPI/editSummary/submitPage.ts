@@ -86,7 +86,7 @@ const submitPage: SubmitPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
-      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/submit`,
+      `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/submit`,
       { timeout: 30_000 },
     );
     await Promise.all([

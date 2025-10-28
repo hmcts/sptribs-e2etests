@@ -31,7 +31,7 @@ const editListingOtherInformationPage: EditListingOtherInformationPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
-      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingotherInformation`,
+      `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingotherInformation`,
       { timeout: 30_000 },
     );
     await Promise.all([

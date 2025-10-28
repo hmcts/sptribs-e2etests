@@ -31,7 +31,7 @@ const createListingOtherInformationPage: CreateListingOtherInformationPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
-      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-record-listing/caseworker-record-listingotherInformation`,
+      `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/caseworker-record-listing/caseworker-record-listingotherInformation`,
       { timeout: 30_000 },
     );
     await Promise.all([

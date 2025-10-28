@@ -32,7 +32,7 @@ const createSummaryHearingRecordingUploadPage: CreateSummaryHearingRecordingUplo
       subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
-        `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingRecordingUploadPage`,
+        `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/create-hearing-summary/create-hearing-summaryhearingRecordingUploadPage`,
         { timeout: 30_000 },
       );
       await Promise.all([
