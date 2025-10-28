@@ -39,7 +39,7 @@ const editSummaryHearingOutcomePage: EditSummaryHearingOutcomePage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
-      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/edit-hearing-summaryhearingOutcome`,
+      `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/edit-hearing-summary/edit-hearing-summaryhearingOutcome`,
       { timeout: 30_000 },
     );
     await Promise.all([

@@ -36,7 +36,7 @@ const editListingRegionInfoPage: EditListingRegionInfoPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForURL(
-      `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingregionInfo`,
+      `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingregionInfo`,
       { timeout: 30_000 },
     );
     await Promise.all([

@@ -34,7 +34,7 @@ const editListingRemoteHearingInformationPage: EditListingRemoteHearingInformati
       subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
-        `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingremoteHearingInformation`,
+        `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/caseworker-edit-record-listing/caseworker-edit-record-listingremoteHearingInformation`,
         { timeout: 30_000 },
       );
       await Promise.all([

@@ -30,7 +30,7 @@ const referCaseToLegalOfficerAdditionalInfoPage: ReferCaseToLegalOfficerAddition
       subjectName: string,
     ): Promise<void> {
       await page.waitForURL(
-        `**/case-details/${caseNumber.replace(/-/g, "")}/trigger/refer-to-legal-officer/refer-to-legal-officerreferToLegalOfficerAdditionalInfo`,
+        `**/case-details/ST_CIC/CriminalInjuriesCompensation/${caseNumber.replace(/-/g, "")}/trigger/refer-to-legal-officer/refer-to-legal-officerreferToLegalOfficerAdditionalInfo`,
         { timeout: 30_000 },
       );
       await Promise.all([
