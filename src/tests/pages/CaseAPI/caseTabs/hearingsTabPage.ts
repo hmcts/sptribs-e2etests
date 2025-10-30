@@ -923,7 +923,7 @@ const hearingTabPage: HearingsTabPage = {
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           this.listingTable +
-            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a:has-text("${path.basename(config.testMP3File)}")`,
+            `ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > button:has-text("${path.basename(config.testMP3File)}")`,
         ),
         1,
       ),
