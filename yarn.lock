@@ -929,13 +929,13 @@ __metadata:
   linkType: hard
 
 "axios@npm:^1.7.5":
-  version: 1.13.1
-  resolution: "axios@npm:1.13.1"
+  version: 1.13.0
+  resolution: "axios@npm:1.13.0"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.4"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10/8046c15f3ffb5d5d45ce33074f69a9226d4c4312b205307d8a8f0d38bd549fdec7612b307a092b82d7af51d8f3a211ae27589f56a65643655acd01c6ee9bfdac
+  checksum: 10/b06319dda4dc5a9520a47e47f99b0335fcd82a573596fef7ff0dd745d2e4907d440c1a1060fdb12906d355b6cd1c45b69005ecb01af1431901b90946c8379e7e
   languageName: node
   linkType: hard
 
@@ -1388,10 +1388,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.4.7":
-  version: 16.6.1
-  resolution: "dotenv@npm:16.6.1"
-  checksum: 10/1d1897144344447ffe62aa1a6d664f4cd2e0784e0aff787eeeec1940ded32f8e4b5b506d665134fc87157baa086fce07ec6383970a2b6d2e7985beaed6a4cc14
+"dotenv@npm:^17.0.0":
+  version: 17.2.3
+  resolution: "dotenv@npm:17.2.3"
+  checksum: 10/f8b78626ebfff6e44420f634773375c9651808b3e1a33df6d4cc19120968eea53e100f59f04ec35f2a20b2beb334b6aba4f24040b2f8ad61773f158ac042a636
   languageName: node
   linkType: hard
 
@@ -3690,7 +3690,7 @@ __metadata:
     "@types/node": "npm:^22.0.0"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
-    dotenv: "npm:^16.4.7"
+    dotenv: "npm:^17.0.0"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
