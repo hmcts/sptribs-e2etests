@@ -54,7 +54,8 @@
   "resolutions": {
     "@eslint/plugin-kit": "^0.3.4",
     "playwright": "^1.55.1",
-    "tar-fs": "^3.1.1"
+    "tar-fs": "^3.1.1",
+    "tar": "^7.5.2"
   },
   "packageManager": "yarn@4.9.4"
 }
