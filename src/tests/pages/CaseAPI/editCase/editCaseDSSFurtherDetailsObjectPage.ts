@@ -7,7 +7,7 @@ import commonHelpers, {
 } from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
 
-type EditCaseTaskFurtherDetailsObjectPage = {
+type editCaseDSSFurtherDetailsObjectPage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -41,7 +41,7 @@ type EditCaseTaskFurtherDetailsObjectPage = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const editCaseFurtherDetailsObjectPage: EditCaseTaskFurtherDetailsObjectPage = {
+const editCaseFurtherDetailsObjectPage: editCaseDSSFurtherDetailsObjectPage = {
   previous: "button[name='Previous']",
   continue: '[type="submit"]',
   cancel: ".cancel",

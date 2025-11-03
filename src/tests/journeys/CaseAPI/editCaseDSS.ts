@@ -15,7 +15,7 @@ import editCaseApplicantDetailsObjectPage from "../../pages/CaseAPI/editCase/edi
 import editCaseRepresentativeDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseRepresentativeDetailsObjectPage.ts";
 import editCaseObjectsContactsPage from "../../pages/CaseAPI/editCase/editCaseObjectsContactsPage.ts";
 import editCaseFurtherDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseFurtherDetailsObjectPage.ts";
-import editCaseTaskFurtherDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseTaskFurtherDetailsObjectPage.ts";
+import editCaseDSSFurtherDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseDSSFurtherDetailsObjectPage.ts";
 import submitPage from "../../pages/CaseAPI/editCase/submitPage.ts";
 import confirmPage from "../../pages/CaseAPI/editCase/confirmPage.ts";
 
@@ -27,8 +27,8 @@ export type initialState =
   | "Awaiting hearing"
   | "Awaiting outcome";
 
-type EditCaseTask = {
-  editCaseTask(
+type editCaseDSS = {
+  editCaseDSS(
     page: Page,
     accessibilityTest: boolean,
     initialState: initialState,
@@ -53,8 +53,8 @@ type EditCaseTask = {
   ): Promise<void>;
 };
 
-const editCaseTask: EditCaseTask = {
-  async editCaseTask(
+const editCaseDSS: editCaseDSS = {
+  async editCaseDSS(
     page: Page,
     accessibilityTest: boolean,
     initialState: initialState,
@@ -182,14 +182,14 @@ const editCaseTask: EditCaseTask = {
           representative,
           applicant,
         );
-        await editCaseTaskFurtherDetailsObjectPage.checkPageLoads(
+        await editCaseDSSFurtherDetailsObjectPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
           subjectName,
         );
-        await editCaseTaskFurtherDetailsObjectPage.checkFields(page, initialState);
-        await editCaseTaskFurtherDetailsObjectPage.fillInFields(
+        await editCaseDSSFurtherDetailsObjectPage.checkFields(page, initialState);
+        await editCaseDSSFurtherDetailsObjectPage.fillInFields(
           page,
           schemeSelection,
           caseRegionSelection,
@@ -320,16 +320,16 @@ const editCaseTask: EditCaseTask = {
           representative,
           applicant,
         );
-        await editCaseTaskFurtherDetailsObjectPage.checkPageLoads(
+        await editCaseDSSFurtherDetailsObjectPage.checkPageLoads(
           page,
           caseNumber,
           accessibilityTest,
           subjectName,
         );
-        await editCaseTaskFurtherDetailsObjectPage.triggerErrorMessages(page);
+        await editCaseDSSFurtherDetailsObjectPage.triggerErrorMessages(page);
         break;
     }
   },
 };
 
-export default editCaseTask;
+export default editCaseDSS;
