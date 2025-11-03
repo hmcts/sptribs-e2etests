@@ -6,7 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import editCase from "../journeys/CaseAPI/editCase.ts";
-import editCaseTask from "../journeys/CaseAPI/editCaseTask.ts";
+import editCaseDSS from "../journeys/CaseAPI/editCaseDSS.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 
@@ -58,7 +58,7 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       states_content.DSSSubmittedState,
       subjectName,
     );
-    await editCaseTask.editCaseTask(
+    await editCaseDSS.editCaseDSS(
       page,
       false,
       "DSS Submitted",
@@ -423,7 +423,7 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       states_content.DSSSubmittedState,
       subjectName,
     );
-    await editCaseTask.editCaseTask(
+    await editCaseDSS.editCaseDSS(
       page,
       false,
       "DSS Submitted",
@@ -560,7 +560,7 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     states_content.DSSSubmittedState,
     subjectName,
   );
-  await editCaseTask.editCaseTask(
+  await editCaseDSS.editCaseDSS(
     page,
     true,
     "DSS Submitted",
