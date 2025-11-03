@@ -560,7 +560,7 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     states_content.DSSSubmittedState,
     subjectName,
   );
-  await editCase.editCase(
+  await editCaseTask.editCaseTask(
     page,
     true,
     "DSS Submitted",

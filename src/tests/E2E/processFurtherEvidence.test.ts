@@ -12,6 +12,7 @@ import documentManagementUpload from "../journeys/CaseAPI/documentManagementUplo
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import editCase from "../journeys/CaseAPI/editCase.ts";
+import editCaseTask from "../journeys/CaseAPI/editCaseTask.ts";
 import updateCaseJourney from "../journeys/DSSUpdateCase/updateCase.ts";
 import config from "../config.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
@@ -432,7 +433,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber160,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Case: Edit case");
-    await editCase.editCase(
+    await editCaseTask.editCaseTask(
       page,
       false,
       "DSS Submitted",
@@ -463,6 +464,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       taskNames_content.vetNewCaseDocuments,
     ]);
     await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForTimeout(5000);
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
       page,
