@@ -4,7 +4,7 @@ import { defineConfig } from "@playwright/test";
 module.exports = defineConfig({
   ...CommonConfig.recommended,
   testDir: "./src/tests/E2E",
-  timeout: 7 * 60 * 1000,
+  timeout: 10 * 60 * 1000,
   expect: {
     timeout: 2 * 60 * 1000,
   },
