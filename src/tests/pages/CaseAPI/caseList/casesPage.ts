@@ -73,6 +73,7 @@ const casesPage: CasesPage = {
   async searchForCaseNumber(page: Page, caseNumber: string): Promise<void> {
     await page.fill(this.searchCaseNumber, caseNumber);
     await page.locator("button[title='Apply filter']").click();
+    await page.waitForTimeout(5000);
     await page.locator("ccd-read-text-field").nth(0).click();
   },
 
