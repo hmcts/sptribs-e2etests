@@ -188,7 +188,10 @@ const editCaseDSS: editCaseDSS = {
           accessibilityTest,
           subjectName,
         );
-        await editCaseDSSFurtherDetailsObjectPage.checkFields(page, initialState);
+        await editCaseDSSFurtherDetailsObjectPage.checkFields(
+          page,
+          initialState,
+        );
         await editCaseDSSFurtherDetailsObjectPage.fillInFields(
           page,
           schemeSelection,
