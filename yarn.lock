@@ -489,14 +489,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.46.1":
-  version: 1.55.0
-  resolution: "@playwright/test@npm:1.55.0"
+"@playwright/test@npm:^1.56.1":
+  version: 1.56.1
+  resolution: "@playwright/test@npm:1.56.1"
   dependencies:
-    playwright: "npm:1.55.0"
+    playwright: "npm:1.56.1"
   bin:
     playwright: cli.js
-  checksum: 10/bfaede669b0583ee6ec48bfe9ff531cac58da1b83031907d5d0fd71c33bab6766669a23359e401066d97c8e8fa76566900f71be7b290d12213ebb3530a82afbb
+  checksum: 10/9933fa9f8eb9e775e792421b99c984c310b92092e65de57508ae1951a2589d87bbb5f1c4114bfdf7f69c15c0a3acb3f31259e143fa597aa28e97f4b223e37637
   languageName: node
   linkType: hard
 
@@ -928,7 +928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.13.2":
+"axios@npm:^1.7.5":
   version: 1.13.2
   resolution: "axios@npm:1.13.2"
   dependencies:
@@ -3202,21 +3202,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.56.1":
+"playwright-core@npm:1.56.1, playwright-core@npm:^1.56.1":
   version: 1.56.1
   resolution: "playwright-core@npm:1.56.1"
   bin:
     playwright-core: cli.js
   checksum: 10/df785eb3b3a8392b10dcde5f768e09b7fe459a7b06ed81180da69e048f2154b761f86d79572c2b62037a1f18a44e4ace72f5b6547f4f473b4ab13ab1d94007d2
-  languageName: node
-  linkType: hard
-
-"playwright-core@npm:^1.46.1":
-  version: 1.55.0
-  resolution: "playwright-core@npm:1.55.0"
-  bin:
-    playwright-core: cli.js
-  checksum: 10/843376a8e2c1100d3f0625b2c85a69dc4418a0b268bdc7da6cf28252f6dc50c299c734f090a67c7f36cfa9140dacf5b95e817664e69642bcbaf06eea4d216c35
   languageName: node
   linkType: hard
 
@@ -3686,12 +3677,12 @@ __metadata:
   resolution: "sptribs-e2etests@workspace:."
   dependencies:
     "@hmcts/playwright-common": "npm:^1.0.20"
-    "@playwright/test": "npm:^1.46.1"
+    "@playwright/test": "npm:^1.56.1"
     "@types/node": "npm:^22.0.0"
-    axios: "npm:^1.13.2"
+    axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    playwright-core: "npm:^1.46.1"
+    playwright-core: "npm:^1.56.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
     tsx: "npm:^4.19.4"
