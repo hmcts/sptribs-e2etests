@@ -8,6 +8,7 @@
   "scripts": {
     "configure": "yarn playwright install --with-deps",
     "load-secrets": "yarn node scripts/get-secrets.js",
+    "ensure:idam-user": "yarn tsx src/tests/helpers/runIdamUserSetup.ts",
     "test:ui": "npx playwright test --project chromium --headed",
     "test:fullfunctional": "npx playwright test --project chromium",
     "test:crossbrowser": "npx playwright test --project webkit --project firefox",
