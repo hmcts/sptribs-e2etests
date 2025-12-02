@@ -13,7 +13,10 @@ ensureWaPresidentOfTribunalUser().catch((error) => {
       axiosError.response?.data ?? axiosError.message ?? error,
     );
   } else {
-    console.error("[idam-user-helper] Failed to ensure IDAM user exists.", error);
+    console.error(
+      "[idam-user-helper] Failed to ensure IDAM user exists.",
+      error,
+    );
   }
   process.exit(1);
 });

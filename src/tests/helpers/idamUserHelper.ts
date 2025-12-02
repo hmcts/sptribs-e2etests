@@ -18,8 +18,7 @@ const waPresidentOfTribunalUsername =
   process.env.WA_PRESIDENT_OF_TRIBUNAL_USERNAME;
 const waPresidentOfTribunalPassword =
   process.env.WA_PRESIDENT_OF_TRIBUNAL_PASSWORD;
-const waPresidentOfTribunalId =
-  process.env.WA_PRESIDENT_OF_TRIBUNAL_ID;
+const waPresidentOfTribunalId = process.env.WA_PRESIDENT_OF_TRIBUNAL_ID;
 
 const roleNames = [
   "caseworker",
