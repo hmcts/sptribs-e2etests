@@ -62,6 +62,8 @@ def secrets = [
         'sptribs-${env}': [
                 secret('github-branch-secret', 'GITHUB_TOKEN'),
                 secret('idam-ui-secret', 'IDAM_SECRET'),
+                secret('idam-secret', 'OAUTH2_CLIENT_SECRET'),
+                secret('idam-client-id', 'IDAM_CLIENT_ID'),
                 secret('idam-systemupdate-password', 'TEST_PASSWORD'),
                 secret('respondent-user', 'RESPONDENT_USERNAME'),
                 secret('respondent-password', 'RESPONDENT_PASSWORD'),
@@ -91,6 +93,7 @@ def secrets = [
                 secret('wa-respondent-password', 'WA_RESPONDENT_PASSWORD'),
                 secret('wa-presidentOfTribunal-username', 'WA_PRESIDENT_OF_TRIBUNAL_USERNAME'),
                 secret('wa-presidentOfTribunal-password', 'WA_PRESIDENT_OF_TRIBUNAL_PASSWORD'),
+                secret('wa-presidentOfTribunal-id', 'WA_PRESIDENT_OF_TRIBUNAL_ID'),
                 secret('wa-tribunalJudgeSalaried-username', 'WA_TRIBUNAL_JUDGE_SALARIED_USERNAME'),
                 secret('wa-tribunalJudgeSalaried-password', 'WA_TRIBUNAL_JUDGE_SALARIED_PASSWORD'),
                 secret('wa-tribunalJudgeFeePaid-username', 'WA_TRIBUNAL_JUDGE_FEE_PAID_USERNAME'),
@@ -134,6 +137,14 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
+
+      stage('Ensure IDAM test user exists') {
+          try {
+              yarnBuilder.yarn('ensure:idam-user')
+          } catch (Error) {
+              unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+          }
+      }
 
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
