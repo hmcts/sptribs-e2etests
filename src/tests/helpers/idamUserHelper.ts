@@ -4,13 +4,7 @@ type AccessTokenResponse = {
   access_token: string;
 };
 
-type IdamUser = {
-  id: string;
-  email: string;
-  roleNames?: string[];
-};
-
-const environment = process.env.ENVIRONMENT || "aat";
+const environment = "aat";
 const idamBaseUrl =
   process.env.IDAM_BASE_URL ||
   `https://idam-web-public.${environment}.platform.hmcts.net`;
@@ -83,89 +77,29 @@ export const getClientAccessToken = async (): Promise<string> => {
   return data.access_token;
 };
 
-const fetchUserByEmail = async (
+const userExists = async (
   accessToken: string,
   email: string,
-): Promise<IdamUser | null> => {
+): Promise<boolean> => {
   try {
-    const { data } = await axios.get<IdamUser>(
-      `${idamTestSupportBaseUrl}/test/idam/users`,
-      {
-        params: { email },
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+    await axios.get(`${idamTestSupportBaseUrl}/test/idam/users`, {
+      params: { email },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
-    );
-    return data;
+    });
+    return true;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 404) {
-      return null;
+      return false;
     }
     throw error;
   }
 };
 
-const deleteUser = async (
-  accessToken: string,
-  userId: string,
-): Promise<void> => {
-  await axios.delete(
-    `${idamTestSupportBaseUrl}/test/idam/users/${encodeURIComponent(userId)}`,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-};
-
-const rolesMatch = (
-  existing: string[] | undefined,
-  expected: string[],
-): boolean => {
-  const normalize = (list: string[] = []) =>
-    [...new Set(list)].map((r) => r.trim()).filter(Boolean).sort();
-
-  const existingSorted = normalize(existing || []);
-  const expectedSorted = normalize(expected);
-
-  if (existingSorted.length !== expectedSorted.length) {
-    return false;
-  }
-
-  return existingSorted.every((role, index) => role === expectedSorted[index]);
-};
-
-const ensureRolesExist = async (accessToken: string): Promise<void> => {
-  await Promise.all(
-    roleNames.map(async (role) => {
-      try {
-        await axios.post(
-          `${idamTestSupportBaseUrl}/test/idam/roles`,
-          { name: role },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
-          },
-        );
-      } catch (error) {
-        if (axios.isAxiosError(error) && error.response?.status === 409) {
-          // Role already exists
-          return;
-        }
-        throw error;
-      }
-    }),
-  );
-};
-
 const createUser = async (accessToken: string): Promise<void> => {
   assertEnv(waPresidentOfTribunalUsername, "WA_PRESIDENT_OF_TRIBUNAL_USERNAME");
   assertEnv(waPresidentOfTribunalPassword, "WA_PRESIDENT_OF_TRIBUNAL_PASSWORD");
-  assertEnv(waPresidentOfTribunalId, "WA_PRESIDENT_OF_TRIBUNAL_ID");
 
   await axios.post(
     `${idamTestSupportBaseUrl}/test/idam/users`,
@@ -192,26 +126,12 @@ export const ensureWaPresidentOfTribunalUser = async (): Promise<void> => {
   assertEnv(waPresidentOfTribunalUsername, "WA_PRESIDENT_OF_TRIBUNAL_USERNAME");
 
   const accessToken = await getClientAccessToken();
-  await ensureRolesExist(accessToken);
+  const exists = await userExists(accessToken, waPresidentOfTribunalUsername);
 
-  const existingUser = await fetchUserByEmail(
-    accessToken,
-    waPresidentOfTribunalUsername,
-  );
-
-  if (existingUser) {
-    if (rolesMatch(existingUser.roleNames, roleNames)) {
-      console.log(
-        `[idam-user-helper] User ${waPresidentOfTribunalUsername} already exists with expected roles.`,
-      );
-      return;
-    }
-
+  if (exists) {
     console.log(
-      `[idam-user-helper] User ${waPresidentOfTribunalUsername} has out-of-date roles. Deleting and recreating.`,
+      `[idam-user-helper] User ${waPresidentOfTribunalUsername} already exists.`,
     );
-    await deleteUser(accessToken, existingUser.id);
-    await createUser(accessToken);
     return;
   }
 
