@@ -92,7 +92,7 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
             page.locator(
               `.node__count:text-is("${uploadedDocumentsContent.totalDocuments}")`,
             ),
-            1,
+            2,
           ),
           expect(page.locator(".node-name-document").nth(0)).toHaveText(
             path.basename(config.testFile),
