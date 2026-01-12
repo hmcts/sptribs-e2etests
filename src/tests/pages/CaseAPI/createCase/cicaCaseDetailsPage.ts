@@ -6,9 +6,7 @@ import commonHelpers from "../../../helpers/commonHelpers.ts";
 type CicaCaseDetailsPage = {
   continue: string;
   checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void>;
-  fillInFields(
-    page: Page,
-  ): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
 };
 
 const cicaCaseDetailsPage: CicaCaseDetailsPage = {
@@ -33,9 +31,7 @@ const cicaCaseDetailsPage: CicaCaseDetailsPage = {
     }
   },
 
-  async fillInFields(
-    page: Page,
-  ): Promise<void> {
+  async fillInFields(page: Page): Promise<void> {
     await page.click(this.continue);
   },
 };
