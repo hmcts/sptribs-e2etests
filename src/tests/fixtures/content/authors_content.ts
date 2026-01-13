@@ -12,7 +12,7 @@ const authors_content = {
   assignedUserAdmin: "sptribswa hearingcentreadmin",
   assignedUserJudge: config.FEBaseURL.includes("demo")
     ? "Mr Logan Everett"
-    : "Ms Whitney Lamb",
+    : "Tribunal Judge John Jones",
 
   postCode: "SW1A 1AA",
   selectOption: "Buckingham Palace, London",
