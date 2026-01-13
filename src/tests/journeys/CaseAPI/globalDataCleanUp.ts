@@ -9,6 +9,28 @@ type GlobalDataCleanUp = {
   signOut(page: Page): Promise<void>;
 };
 
+async function getNextValidAutoTestingRow(page: Page, cutoff: Date) {
+  const rows = page.locator('tr', { hasText: 'Subject AutoTesting' });
+  const count = await rows.count();
+
+  for (let i = 0; i < count; i++) {
+    const row = rows.nth(i);
+
+    const createdDateText = await row
+      .locator('td:nth-child(6)')
+      .innerText();
+
+    if (!createdDateText.trim()) continue;
+    const createdDate = new Date(createdDateText.trim());
+    if (createdDate > cutoff) {
+      return row;
+    }
+  }
+  return null;
+}
+
+const cutoffDate = new Date("2026-01-03");
+
 const globalDataCleanUp: GlobalDataCleanUp = {
   async dataCleanUpByUser(page, UserCleanUp) {
     await caseAPILoginPage.SignInUser(page, UserCleanUp);
@@ -18,17 +40,17 @@ const globalDataCleanUp: GlobalDataCleanUp = {
     const subjectAutoTesting = `exui-task-field:has-text("Subject AutoTesting")`;
     if (!(UserCleanUp === waUsers_content.userRoleCaseWorker)) {
       while (true) {
-        while (await page.locator(subjectAutoTesting).first().isVisible()) {
-          await page
-            .locator("tr", { hasText: "Subject AutoTesting" })
-            .first()
-            .locator(`button:has-text("Manage")`)
-            .click({ force: true });
+        while (true) {
+        const row = await getNextValidAutoTestingRow(page, cutoffDate);
+        if (!row) break;
+
+        await row.locator('button:has-text("Manage")').click({ force: true });
           if (page.url().includes("service-down")) {
             continue;
           }
           await page.waitForSelector("#action_claim");
           await page.locator("#action_claim").click({ force: true });
+          await page.waitForTimeout(2000); 
           if (page.url().includes("service-down")) {
             continue;
           }
@@ -39,7 +61,8 @@ const globalDataCleanUp: GlobalDataCleanUp = {
           }
         }
 
-        if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
+        const row = await getNextValidAutoTestingRow(page, cutoffDate);
+        if (!row) {
           const nextPageButton = page.locator(`a[aria-label="Next page"]`);
           if (await nextPageButton.isVisible()) {
             await nextPageButton.click({ force: true });
@@ -59,26 +82,28 @@ const globalDataCleanUp: GlobalDataCleanUp = {
     await page.waitForTimeout(5000);
 
     while (true) {
-      while (await page.locator(subjectAutoTesting).first().isVisible()) {
-        await page
-          .locator("tr", { hasText: "Subject AutoTesting" })
-          .first()
-          .locator(`button:has-text("Manage")`)
-          .click();
+      while (true) {
+        const row = await getNextValidAutoTestingRow(page, cutoffDate);
+        if (!row) break;
+
+        await row.locator('button:has-text("Manage")').click();
         await page.waitForSelector("#action_cancel");
         await page.locator("#action_cancel").click({ force: true });
+        await page.waitForTimeout(2000); 
         if (page.url().includes("service-down")) {
           continue;
         }
         await page.waitForSelector(`button:text-is("Cancel task")`);
         await page.locator("#submit-button").click({ force: true });
+        await page.waitForTimeout(2000); 
         if (page.url().includes("service-down")) {
           continue;
         }
         await page.waitForTimeout(7000);
       }
 
-      if (!(await page.locator(subjectAutoTesting).first().isVisible())) {
+        const row = await getNextValidAutoTestingRow(page, cutoffDate);
+        if (!row) {
         const nextPageButton = page.locator(`a[aria-label="Next page"]`);
         if (await nextPageButton.isVisible()) {
           await nextPageButton.click({ force: true });
