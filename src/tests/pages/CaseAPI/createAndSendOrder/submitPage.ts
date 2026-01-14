@@ -46,7 +46,9 @@ const submitPage: SubmitPage = {
       ...Array.from({ length: 6 }, (_, index) => {
         const textOnPage = (submit_content as any)[`textOnPage${index + 2}`];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("${textOnPage}")`).filter({ visible: true }),
+          page
+            .locator(`.text-16:text-is("${textOnPage}")`)
+            .filter({ visible: true }),
           1,
         );
       }),
