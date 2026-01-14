@@ -6,4 +6,3 @@ const confirm_content = {
 };
 
 export default confirm_content;
-

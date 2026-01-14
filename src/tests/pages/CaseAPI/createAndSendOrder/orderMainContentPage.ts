@@ -52,7 +52,9 @@ const orderMainContentPage: OrderMainContentPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`p:has-text("${orderMainContentPage_content.textOnPage2}")`),
+        page.locator(
+          `p:has-text("${orderMainContentPage_content.textOnPage2}")`,
+        ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
@@ -87,7 +89,9 @@ const orderMainContentPage: OrderMainContentPage = {
         expect(textBoxValue).toEqual(`${orderMainContentPage_content.rule27}`);
         break;
       case "CIC7 - ME Dmi Reports":
-        expect(textBoxValue).toEqual(`${orderMainContentPage_content.dmiReports}`);
+        expect(textBoxValue).toEqual(
+          `${orderMainContentPage_content.dmiReports}`,
+        );
         break;
       case "CIC8 - ME Joint Instruction":
         expect(textBoxValue).toEqual(`${orderMainContentPage_content.joint}`);
@@ -98,7 +102,9 @@ const orderMainContentPage: OrderMainContentPage = {
         );
         break;
       case "CIC13 - Pro Forma Summons":
-        expect(textBoxValue).toEqual(`${orderMainContentPage_content.proForma}`);
+        expect(textBoxValue).toEqual(
+          `${orderMainContentPage_content.proForma}`,
+        );
         break;
     }
     if (accessibilityTest) {

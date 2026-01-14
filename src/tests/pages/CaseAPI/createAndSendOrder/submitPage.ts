@@ -69,7 +69,9 @@ const submitPage: SubmitPage = {
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`span:text-is("${orderMainContentPage_content.description}")`),
+        page.locator(
+          `span:text-is("${orderMainContentPage_content.description}")`,
+        ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(

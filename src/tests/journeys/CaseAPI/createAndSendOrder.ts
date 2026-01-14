@@ -67,10 +67,10 @@ const createAndSendOrder: CreateAndSendOrder = {
         );
         await selectOrderIssuingTypePage.fillInFields(page, orderType);
         await createOrderPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-            subjectName,
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
         );
         await createOrderPage.fillInFields(page, template);
         await orderMainContentPage.checkPageLoads(
@@ -137,10 +137,10 @@ const createAndSendOrder: CreateAndSendOrder = {
         );
         await selectOrderIssuingTypePage.fillInFields(page, orderType);
         await createOrderPage.checkPageLoads(
-            page,
-            caseNumber,
-            accessibilityTest,
-            subjectName,
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
         );
         await createOrderPage.fillInFields(page, template);
         await orderMainContentPage.checkPageLoads(

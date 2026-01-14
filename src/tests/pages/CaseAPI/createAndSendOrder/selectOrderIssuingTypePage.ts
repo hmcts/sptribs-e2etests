@@ -45,9 +45,9 @@ const selectOrderIssuingTypePage: SelectOrderIssuingTypePage = {
         selectOrderPage_content.caseReference + caseNumber,
       ),
       ...Array.from({ length: 3 }, (_, index: number) => {
-        const textOnPage: ArrayConstructor = (
-          selectOrderPage_content as any
-        )[`textOnPage${index + 1}`];
+        const textOnPage: ArrayConstructor = (selectOrderPage_content as any)[
+          `textOnPage${index + 1}`
+        ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
