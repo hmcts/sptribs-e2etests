@@ -66,7 +66,7 @@ const selectOrderIssuingTypePage: SelectOrderIssuingTypePage = {
   },
 
   async fillInFields(page: Page, orderType: OrderType): Promise<void> {
-    await page.click(`#cicCaseOrderIssuingType-${orderType}`);
+    await page.getByLabel("Create and send a new order").click();
     await page.click(this.continue);
   },
 

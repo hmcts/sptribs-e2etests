@@ -42,12 +42,12 @@ const applyAnonymityPage: ApplyAnonymityPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         anonymityPage_content.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 2 }, (_, index) => {
+      ...Array.from({ length: 1 }, (_, index) => {
         const textOnPage = (anonymityPage_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`p:text-is("${textOnPage}")`),
+          page.locator(`span.form-label:text-is("${textOnPage}")`),
           1,
         );
       }),

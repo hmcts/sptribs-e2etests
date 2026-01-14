@@ -1031,6 +1031,7 @@ export type allEvents =
   | "Refer case to legal officer"
   | "Decision: Issue final decision"
   | "Case: Add note"
+  | "Orders: Create and send order"
   | "Orders: Create draft"
   | "Orders: Send order"
   | "Orders: Edit draft"

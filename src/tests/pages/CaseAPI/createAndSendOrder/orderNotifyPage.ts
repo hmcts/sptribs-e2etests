@@ -25,7 +25,7 @@ const orderNotifyPage: OrderNotifyPage = {
     );
     await Promise.all([
       expect(page.locator(".govuk-heading-l")).toHaveText(
-        orderNotifyPage_content.pageHint,
+        orderNotifyPage_content.pageTitle,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`markdown > h3:text-is("${subjectName}")`),

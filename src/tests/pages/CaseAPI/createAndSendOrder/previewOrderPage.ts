@@ -56,15 +56,6 @@ const previewOrderPage: PreviewOrderPage = {
         ),
         1,
       ),
-      ...Array.from({ length: 2 }, (_, index) => {
-        const textOnPage = (previewOrderPage_content as any)[
-          `textOnPage${index + 2}`
-        ];
-        return commonHelpers.checkVisibleAndPresent(
-          page.locator(`p:text-is("${textOnPage}")`),
-          1,
-        );
-      }),
       commonHelpers.checkForButtons(
         page,
         this.continue,

@@ -63,7 +63,7 @@ const createOrderPage: CreateOrderPage = {
   },
 
   async fillInFields(page: Page, template: Template): Promise<void> {
-    await page.selectOption(`#orderContentOrderTemplate`, template);
+    await page.selectOption(`#cicCaseTemplateDynamicList`, template);
     await page.click(this.continue);
   },
 

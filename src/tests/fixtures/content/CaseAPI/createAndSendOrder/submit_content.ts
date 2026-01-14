@@ -8,8 +8,7 @@ const submit_content = {
   textOnPage4: "Template",
   textOnPage5: "Main content",
   textOnPage6: "Order signature",
-  textOnPage7: "Order information recipient",
-  textOnPage8: "Preview order",
+  textOnPage7: "Preview order",
 } as const;
 
 export default submit_content;
