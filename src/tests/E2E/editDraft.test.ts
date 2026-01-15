@@ -215,9 +215,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     );
   });
 
-  test("Edit a CIC7 draft in the Awaiting Hearing state.", async ({
-    page,
-  }) => {
+  test("Edit a CIC7 draft in the Awaiting Hearing state.", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1502 = await createCase.createCase(
       page,
