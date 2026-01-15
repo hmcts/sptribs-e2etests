@@ -18,7 +18,7 @@ const priorityReview = " low ";
 const numberOfDaysReview = 5;
 
 test.describe("Case-API Create draft tests. @CaseAPI", () => {
-  test("Check for redundant test data @CaseAPI1", async ({ page }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -112,56 +113,18 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.awaitingHearingState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC8 - ME Joint Instruction",
       caseNumber01,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.reviewListCase5DaysLO,
-      caseNumber01,
-      states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase5Days,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber01,
-      taskNames_content.processDirectionsListCase5Days,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.awaitingHearingState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber01,
       "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
       subjectName,
     );
     await task.checkCompletedTask(

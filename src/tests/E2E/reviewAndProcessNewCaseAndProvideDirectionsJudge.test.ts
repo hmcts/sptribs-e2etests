@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -87,56 +88,18 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       priorityReview,
       authors_content.assignedUserJudge,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC3 - Rule 27",
       caseNumber62,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.reviewNewCaseJudge,
-      caseNumber62,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber62,
-      taskNames_content.processDirectionsReturned,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber62,
       "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
       subjectName,
     );
     await task.checkCompletedTask(
@@ -329,56 +292,18 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       priorityReview,
       authors_content.assignedUserJudge,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC7 - ME Dmi Reports",
       caseNumber64,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.reviewNewCaseJudge,
-      caseNumber64,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber64,
-      taskNames_content.processDirectionsReturned,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber64,
       "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "5",
       subjectName,
     );
     await task.checkCompletedTask(
@@ -797,56 +722,18 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     priorityReview,
     authors_content.assignedUserJudge,
     numberOfDaysReview,
-    "Orders: Create draft",
+    "Orders: Create and send order",
     states_content.caseManagementState,
     subjectName,
   );
-  await createDraft.createDraft(
+  await createAndSendOrder.createAndSendOrder(
     page,
-    true,
     false,
+    false,
+    true,
     "CIC3 - Rule 27",
     caseNumber68,
-    subjectName,
-  );
-  await task.checkCompletedTask(
-    page,
-    true,
-    taskNames_content.reviewNewCaseJudge,
-    caseNumber68,
-    states_content.caseManagementState,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.processDirectionsReturned,
-    subjectName,
-  );
-  await task.initiateTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    "Link: Assign Task to Me and Go To Task",
-    true,
-    caseNumber68,
-    taskNames_content.processDirectionsReturned,
-    priorityProcess,
-    authors_content.assignedUserAdmin,
-    numberOfDaysProcess,
-    "Orders: Send order",
-    states_content.caseManagementState,
-    subjectName,
-  );
-  await sendOrder.sendOrder(
-    page,
-    caseNumber68,
     "UploadOrder",
-    true,
-    false,
-    true,
-    true,
-    "1",
     subjectName,
   );
   await task.checkCompletedTask(

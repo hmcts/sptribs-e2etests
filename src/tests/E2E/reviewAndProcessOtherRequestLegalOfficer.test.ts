@@ -7,6 +7,7 @@ import config from "../config.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -416,56 +417,18 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.closedState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC13 - Pro Forma Summons",
       caseNumber83,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      caseNumber83,
-      states_content.closedState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber83,
-      taskNames_content.processOtherDirectionsReturned,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.closedState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber83,
       "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
       subjectName,
     );
     await task.checkCompletedTask(

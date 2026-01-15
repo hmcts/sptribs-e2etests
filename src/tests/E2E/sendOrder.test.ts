@@ -21,7 +21,7 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 7;
 
 test.describe("Send order tests @CaseAPI ", () => {
-  test("Check for redundant test data @CaseAPI3", async ({ page }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
@@ -282,7 +282,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     );
   });
 
-  test("Send a upload order in the Ready to list state @CaseAPI3", async ({
+  test("Send a upload order in the Ready to list state", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

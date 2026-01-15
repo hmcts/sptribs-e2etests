@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -336,56 +337,18 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC7 - ME Dmi Reports",
       caseNumber71,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.reviewNewCaseLO,
-      caseNumber71,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber71,
-      taskNames_content.processDirectionsReturned,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber71,
       "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "5",
       subjectName,
     );
     await task.checkCompletedTask(
@@ -816,56 +779,18 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     priorityReview,
     authors_content.assignedUserLO,
     numberOfDaysReview,
-    "Orders: Create draft",
+    "Orders: Create and send order",
     states_content.caseManagementState,
     subjectName,
   );
-  await createDraft.createDraft(
+  await createAndSendOrder.createAndSendOrder(
     page,
     false,
     false,
+    true,
     "CIC3 - Rule 27",
     caseNumber75,
-    subjectName,
-  );
-  await task.checkCompletedTask(
-    page,
-    true,
-    taskNames_content.reviewNewCaseLO,
-    caseNumber75,
-    states_content.caseManagementState,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.processDirectionsReturned,
-    subjectName,
-  );
-  await task.initiateTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    "Event DropDown",
-    false,
-    caseNumber75,
-    taskNames_content.processDirectionsReturned,
-    priorityProcess,
-    authors_content.assignedUserAdmin,
-    numberOfDaysProcess,
-    "Orders: Send order",
-    states_content.caseManagementState,
-    subjectName,
-  );
-  await sendOrder.sendOrder(
-    page,
-    caseNumber75,
     "DraftOrder",
-    false,
-    false,
-    true,
-    true,
-    "5",
     subjectName,
   );
   await task.checkCompletedTask(
