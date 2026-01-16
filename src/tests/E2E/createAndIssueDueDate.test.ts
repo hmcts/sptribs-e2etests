@@ -93,18 +93,56 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       priority,
       authors_content.assignedUserAdmin,
       numberOfDays,
-      "Orders: Create and send order",
+      "Orders: Create draft",
       states_content.caseManagementState,
       subjectName,
     );
-    await createAndSendOrder.createAndSendOrder(
+    await createDraft.createDraft(
       page,
       false,
       false,
-      true,
       "CIC6 - General Directions",
       caseNumber2800,
+      subjectName,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.createDueDate,
+      caseNumber2800,
+      states_content.caseManagementState,
+      subjectName,
+    );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.issueDueDate,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me and Go To Task",
+      false,
+      caseNumber2800,
+      taskNames_content.issueDueDate,
+      priority,
+      authors_content.assignedUserAdmin,
+      numberOfDays,
+      "Orders: Send order",
+      states_content.caseManagementState,
+      subjectName,
+    );
+    await sendOrder.sendOrder(
+      page,
+      caseNumber2800,
       "DraftOrder",
+      false,
+      false,
+      true,
+      false,
+      "7",
       subjectName,
     );
     await task.checkCompletedTask(
