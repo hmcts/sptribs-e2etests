@@ -288,62 +288,24 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       priorityReview,
       authors_content.assignedUserJudge,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC13 - Pro Forma Summons",
       caseNumber177,
+      "DraftOrder",
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNames_content.reviewListingDirectionsJudge,
-      caseNumber177,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirections,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber177,
-      taskNames_content.processListingDirections,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber177,
-      "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "5",
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.processListingDirections,
       caseNumber177,
       states_content.caseManagementState,
       subjectName,

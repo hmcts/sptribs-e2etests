@@ -364,7 +364,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processCorrections,
+      taskNames_content.reviewCorrectionsRequest,
       caseNumber22,
       states_content.closedState,
       subjectName,

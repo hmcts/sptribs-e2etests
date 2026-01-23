@@ -271,7 +271,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processListingDirections,
+      taskNames_content.reviewListingDirectionsLO,
       caseNumber46,
       states_content.caseManagementState,
       subjectName,
