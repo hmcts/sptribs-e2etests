@@ -110,7 +110,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processWithdrawal,
+      taskNames_content.reviewWithdrawalLO,
       caseNumber147,
       states_content.caseManagementState,
       subjectName,

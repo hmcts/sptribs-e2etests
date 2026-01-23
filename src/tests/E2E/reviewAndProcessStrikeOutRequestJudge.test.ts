@@ -102,7 +102,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processStrikeOut,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber122,
       states_content.caseManagementState,
       subjectName,
@@ -185,7 +185,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processStrikeOut,
+      taskNames_content.reviewStrikeOutJudge,
       caseNumber123,
       states_content.caseManagementState,
       subjectName,

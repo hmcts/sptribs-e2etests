@@ -115,7 +115,7 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): 
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processReinstatement,
+      taskNames_content.reviewReinstatementJudge,
       caseNumber92,
       states_content.closedState,
       subjectName,

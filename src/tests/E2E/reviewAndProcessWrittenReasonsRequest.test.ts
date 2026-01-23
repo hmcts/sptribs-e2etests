@@ -114,7 +114,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI ", ()
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processWrittenReasons,
+      taskNames_content.reviewWrittenReasons,
       caseNumber153,
       states_content.closedState,
       subjectName,

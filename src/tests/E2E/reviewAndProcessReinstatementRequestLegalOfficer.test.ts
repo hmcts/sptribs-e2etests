@@ -117,7 +117,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processReinstatement,
+      taskNames_content.reviewReinstatementLO,
       caseNumber95,
       states_content.closedState,
       subjectName,

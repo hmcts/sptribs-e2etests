@@ -393,7 +393,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processStay,
+      taskNames_content.reviewStayLO,
       caseNumber119,
       states_content.caseManagementState,
       subjectName,

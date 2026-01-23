@@ -110,7 +110,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processRule27,
+      taskNames_content.reviewRule27LO,
       caseNumber103,
       states_content.caseManagementState,
       subjectName,
@@ -318,7 +318,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processRule27,
+      taskNames_content.reviewRule27LO,
       caseNumber105,
       states_content.caseManagementState,
       subjectName,

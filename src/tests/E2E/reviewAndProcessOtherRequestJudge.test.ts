@@ -384,7 +384,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.reviewOtherRequestJudge,
       caseNumber78,
       states_content.closedState,
       subjectName,

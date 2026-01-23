@@ -225,7 +225,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processRule27,
+      taskNames_content.reviewRule27Judge,
       caseNumber99,
       states_content.caseManagementState,
       subjectName,

@@ -128,7 +128,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processPostponementDirections,
+      taskNames_content.reviewPostponementJudge,
       caseNumber86,
       states_content.awaitingHearingState,
       subjectName,

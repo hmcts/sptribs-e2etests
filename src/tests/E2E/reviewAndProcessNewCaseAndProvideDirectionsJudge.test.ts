@@ -105,7 +105,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processDirectionsReturned,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber62,
       states_content.caseManagementState,
       subjectName,
@@ -309,7 +309,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processDirectionsReturned,
+      taskNames_content.reviewNewCaseJudge,
       caseNumber64,
       states_content.caseManagementState,
       subjectName,

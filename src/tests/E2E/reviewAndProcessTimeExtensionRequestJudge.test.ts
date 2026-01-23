@@ -224,7 +224,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processTimeExtensionDirections,
+      taskNames_content.reviewTimeExtensionJudge,
       caseNumber138,
       states_content.caseManagementState,
       subjectName,

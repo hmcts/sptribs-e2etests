@@ -115,7 +115,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processSetAside,
+      taskNames_content.reviewSetAside,
       caseNumber109,
       states_content.closedState,
       subjectName,

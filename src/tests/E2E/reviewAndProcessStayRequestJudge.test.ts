@@ -224,7 +224,7 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processStay,
+      taskNames_content.reviewStayJudge,
       caseNumber113,
       states_content.caseManagementState,
       subjectName,

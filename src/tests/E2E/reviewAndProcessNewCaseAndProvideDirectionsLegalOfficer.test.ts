@@ -354,7 +354,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processDirectionsReturned,
+      taskNames_content.reviewNewCaseLO,
       caseNumber71,
       states_content.caseManagementState,
       subjectName,

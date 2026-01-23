@@ -434,7 +434,7 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processOtherDirectionsReturned,
+      taskNames_content.reviewOtherRequestLO,
       caseNumber83,
       states_content.closedState,
       subjectName,

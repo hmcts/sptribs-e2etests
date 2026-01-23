@@ -103,7 +103,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processListingDirections,
+      taskNames_content.reviewListingDirectionsJudge,
       caseNumber16,
       states_content.caseManagementState,
       subjectName,

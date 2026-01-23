@@ -344,7 +344,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processWithdrawal,
+      taskNames_content.reviewWithdrawalJudge,
       caseNumber144,
       states_content.caseManagementState,
       subjectName,
