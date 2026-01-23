@@ -553,39 +553,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       subjectName,
       waUsers_content.userRoleAdmin,
     );
-    await commonHelpers.chooseEventFromDropdown(
-      page,
-      "Refer case to legal officer",
-    );
-    await referCaseToLegalOfficer.referCaseToLegalOfficer(
-      page,
-      false,
-      "Other",
-      false,
-      caseNumber1505,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleLO,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber1505,
-      taskNames_content.reviewOtherRequestLO,
-      priorityReview,
-      authors_content.assignedUserLO,
-      numberOfDaysReview,
-      "Orders: Create draft",
-      states_content.caseManagementState,
-      subjectName,
-    );
+    await commonHelpers.chooseEventFromDropdown(page, "Orders: Create draft");
     await createDraft.createDraft(
       page,
       false,
