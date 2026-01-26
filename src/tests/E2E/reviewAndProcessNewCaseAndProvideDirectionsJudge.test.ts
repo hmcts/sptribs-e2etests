@@ -739,7 +739,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await task.checkCompletedTask(
     page,
     true,
-    taskNames_content.processDirectionsReturned,
+    taskNames_content.reviewNewCaseJudge,
     caseNumber68,
     states_content.caseManagementState,
     subjectName,

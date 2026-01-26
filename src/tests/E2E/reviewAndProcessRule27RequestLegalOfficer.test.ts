@@ -739,7 +739,7 @@ test("Task completion: Accessibility test @accessibility ", async ({
   await task.checkCompletedTask(
     page,
     false,
-    taskNames_content.processRule27,
+    taskNames_content.reviewRule27LO,
     caseNumber108,
     states_content.caseManagementState,
     subjectName,
