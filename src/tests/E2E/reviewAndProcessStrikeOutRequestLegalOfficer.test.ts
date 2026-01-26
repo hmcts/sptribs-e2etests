@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -91,62 +92,24 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
+      false,
       false,
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber127,
+      "DraftOrder",
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNames_content.reviewStrikeOutLO,
-      caseNumber127,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStrikeOut,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber127,
-      taskNames_content.processStrikeOut,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber127,
-      "DraftOrder",
-      false,
-      false,
-      false,
-      true,
-      "7",
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.processStrikeOut,
       caseNumber127,
       states_content.caseManagementState,
       subjectName,
@@ -375,62 +338,24 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
+      false,
       false,
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber129,
+      "DraftOrder",
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNames_content.reviewStrikeOutLO,
-      caseNumber129,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStrikeOut,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber129,
-      taskNames_content.processStrikeOut,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber129,
-      "DraftOrder",
-      false,
-      false,
-      false,
-      true,
-      "5",
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.processStrikeOut,
       caseNumber129,
       states_content.caseManagementState,
       subjectName,

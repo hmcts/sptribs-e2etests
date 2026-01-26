@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -253,62 +254,24 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
+      false,
       false,
       false,
       "CIC10 - Strike Out Warning",
       caseNumber46,
+      "UploadOrder",
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNames_content.reviewListingDirectionsLO,
-      caseNumber46,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirections,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me",
-      false,
-      caseNumber46,
-      taskNames_content.processListingDirections,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber46,
-      "UploadOrder",
-      false,
-      false,
-      false,
-      false,
-      "1",
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.processListingDirections,
       caseNumber46,
       states_content.caseManagementState,
       subjectName,

@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
@@ -346,54 +347,24 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
       priorityReview,
       authors_content.assignedUserJudge,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.closedState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC8 - ME Joint Instruction",
       caseNumber22,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processCorrections,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber22,
-      taskNames_content.processCorrections,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.closedState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber22,
       "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
-      taskNames_content.processCorrections,
+      taskNames_content.reviewCorrectionsRequest,
       caseNumber22,
       states_content.closedState,
       subjectName,

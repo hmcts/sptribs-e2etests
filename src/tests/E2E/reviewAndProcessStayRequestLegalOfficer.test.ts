@@ -6,6 +6,7 @@ import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
@@ -375,62 +376,24 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       priorityReview,
       authors_content.assignedUserLO,
       numberOfDaysReview,
-      "Orders: Create draft",
+      "Orders: Create and send order",
       states_content.caseManagementState,
       subjectName,
     );
-    await createDraft.createDraft(
+    await createAndSendOrder.createAndSendOrder(
       page,
       false,
       false,
+      true,
       "CIC13 - Pro Forma Summons",
       caseNumber119,
+      "DraftOrder",
       subjectName,
     );
     await task.checkCompletedTask(
       page,
       false,
       taskNames_content.reviewStayLO,
-      caseNumber119,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStay,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Event DropDown",
-      false,
-      caseNumber119,
-      taskNames_content.processStay,
-      priorityProcess,
-      authors_content.assignedUserAdmin,
-      numberOfDaysProcess,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await sendOrder.sendOrder(
-      page,
-      caseNumber119,
-      "DraftOrder",
-      false,
-      false,
-      true,
-      true,
-      "1",
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.processStay,
       caseNumber119,
       states_content.caseManagementState,
       subjectName,

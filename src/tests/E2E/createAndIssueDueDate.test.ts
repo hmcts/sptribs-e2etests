@@ -12,6 +12,7 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import myWorkPage from "../pages/WA/myWorkPage.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
+import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 
 const priority = " low ";

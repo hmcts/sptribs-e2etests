@@ -1,5 +1,5 @@
-const previewTemplate_content = {
-  pageHint: "Orders: Create draft",
+const previewOrder_content = {
+  pageHint: "Orders: Create and send order",
   pageTitle: "Preview order",
   caseReference: "Case number: ",
   textOnPage1: "Preview order",
@@ -8,4 +8,4 @@ const previewTemplate_content = {
   textOnPage3: "If you are happy, continue to the next screen.",
 } as const;
 
-export default previewTemplate_content;
+export default previewOrder_content;
