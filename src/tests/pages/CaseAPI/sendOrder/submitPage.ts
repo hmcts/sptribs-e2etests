@@ -62,7 +62,7 @@ const submitPage: SubmitPage = {
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.text-16:text-is("${textOnPage}")`),
+          page.locator(`.text-16:text-is("${textOnPage}"):visible`),
           1,
         );
       }),
@@ -142,7 +142,7 @@ const submitPage: SubmitPage = {
       default: //draft order
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
-            page.locator(`.text-16:text-is("${submit_content.draft}")`),
+            page.locator(`.text-16:text-is("${submit_content.draft}"):visible`),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
