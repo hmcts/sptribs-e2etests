@@ -626,12 +626,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.0.0":
-  version: 22.18.6
-  resolution: "@types/node@npm:22.18.6"
+"@types/node@npm:*":
+  version: 25.0.10
+  resolution: "@types/node@npm:25.0.10"
+  dependencies:
+    undici-types: "npm:~7.16.0"
+  checksum: 10/e5fc1fe0e585957f91ff3ad8ee01b051ce0c9da9658c5ba68d11d557522450783ab61ac2778355e8f566b83bc3bd18e78576569162e9729ed52af36999f81c9a
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.19.7":
+  version: 22.19.7
+  resolution: "@types/node@npm:22.19.7"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/d816882476fa4f2d2db238139e9d65299414ac54bf81aa85dae850589b480cfe0c1722dc845295d446e2babd6ddfe64b79a8c56d771bf5345ddb1c48950f029e
+  checksum: 10/0a5c9cc3bdd2a2d8105735b136e280a2dec90136679adfe82faa7e4de375dcc6b4cebaa6b2de35cc6b37e5e135cdc9486373d574782a4ca22f5eeab299111aa6
   languageName: node
   linkType: hard
 
@@ -2646,9 +2655,9 @@ __metadata:
   linkType: hard
 
 "lru-cache@npm:^11.0.0, lru-cache@npm:^11.1.0, lru-cache@npm:^11.2.1":
-  version: 11.2.4
-  resolution: "lru-cache@npm:11.2.4"
-  checksum: 10/3b2da74c0b6653767f8164c38c4c4f4d7f0cc10c62bfa512663d94a830191ae6a5af742a8d88a8b30d5f9974652d3adae53931f32069139ad24fa2a18a199aca
+  version: 11.2.5
+  resolution: "lru-cache@npm:11.2.5"
+  checksum: 10/be50f66c6e23afeaab9c7eefafa06344dd13cde7b3528809c2660c4ad70d93b9ba537366634623cbb2eb411671f526b5a4af2c602507b9258aead0fa8d713f6c
   languageName: node
   linkType: hard
 
@@ -3177,12 +3186,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.57.0":
-  version: 1.57.0
-  resolution: "playwright-core@npm:1.57.0"
+"playwright-core@npm:1.58.0":
+  version: 1.58.0
+  resolution: "playwright-core@npm:1.58.0"
   bin:
     playwright-core: cli.js
-  checksum: 10/ec066602f0196f036006caee14a30d0a57533a76673bb9a0c609ef56e21decf018f0e8d402ba2fb18251393be6a1c9e193c83266f1670fe50838c5340e220de0
+  checksum: 10/718549cdcd22e55f42887e7b832276c9a50e112b278d22a2242bb00c401021623fedf9554c7090f132e389b5bbe11a987ce71e3c877e767eed4dd9bfe573019c
   languageName: node
   linkType: hard
 
@@ -3212,17 +3221,17 @@ __metadata:
   linkType: hard
 
 "playwright@npm:^1.55.1":
-  version: 1.57.0
-  resolution: "playwright@npm:1.57.0"
+  version: 1.58.0
+  resolution: "playwright@npm:1.58.0"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.57.0"
+    playwright-core: "npm:1.58.0"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/241559210f98ef11b6bd6413f2d29da7ef67c7865b72053192f0d164fab9e0d3bd47913b3351d5de6433a8aff2d8424d4b8bd668df420bf4dda7ae9fcd37b942
+  checksum: 10/5ef5d0977906046400cee9a359f18c87eafb3e3193a33a22351cc84740c0dffb3cff7b9f2320d1e200817dbf24e63b747a0546b6c671a9fd95937e2402682ad9
   languageName: node
   linkType: hard
 
@@ -3662,14 +3671,13 @@ __metadata:
   dependencies:
     "@hmcts/playwright-common": "npm:^1.0.20"
     "@playwright/test": "npm:^1.46.1"
-    "@types/node": "npm:^22.0.0"
+    "@types/node": "npm:^22.19.7"
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
-    tar: "npm:^7.5.4"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
@@ -4015,6 +4023,13 @@ __metadata:
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~7.16.0":
+  version: 7.16.0
+  resolution: "undici-types@npm:7.16.0"
+  checksum: 10/db43439f69c2d94cc29f75cbfe9de86df87061d6b0c577ebe9bb3255f49b22c50162a7d7eb413b0458b6510b8ca299ac7cff38c3a29fbd31af9f504bcf7fbc0d
   languageName: node
   linkType: hard
 
