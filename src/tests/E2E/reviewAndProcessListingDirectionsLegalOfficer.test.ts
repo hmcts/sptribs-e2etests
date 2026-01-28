@@ -276,6 +276,44 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       states_content.caseManagementState,
       subjectName,
     );
+    await task.seeTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      taskNames_content.nonComplianceDirections,
+      subjectName,
+    );
+    await task.initiateTask(
+      page,
+      waUsers_content.userRoleAdmin,
+      "Link: Assign Task to Me",
+      false,
+      caseNumber46,
+      taskNames_content.nonComplianceDirections,
+      priorityNonCompliance,
+      authors_content.assignedUserAdmin,
+      numberOfDaysNonCompliance,
+      "Case: Contact parties",
+      states_content.caseManagementState,
+      subjectName,
+    );
+    await contactParties.contactParties(
+      page,
+      waUsers_content.userRoleAdmin,
+      false,
+      false,
+      caseNumber46,
+      subjectName,
+      true,
+    );
+    await task.checkCompletedTask(
+      page,
+      false,
+      taskNames_content.nonComplianceDirections,
+      caseNumber46,
+      states_content.caseManagementState,
+      subjectName,
+    );
   });
 
   test("Task is completed via event dropdown", async ({ page }) => {

@@ -744,4 +744,42 @@ test("Task completion: Accessibility test @accessibility ", async ({
     states_content.caseManagementState,
     subjectName,
   );
+  await task.seeTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    false,
+    taskNames_content.nonComplianceDirections,
+    subjectName,
+  );
+  await task.initiateTask(
+    page,
+    waUsers_content.userRoleAdmin,
+    "Event DropDown",
+    true,
+    caseNumber108,
+    taskNames_content.nonComplianceDirections,
+    priorityNonCompliance,
+    authors_content.assignedUserAdmin,
+    numberOfDaysNonCompliance,
+    "Orders: Manage due date",
+    states_content.caseManagementState,
+    subjectName,
+  );
+  await manageDueDate.manageDueDate(
+    page,
+    true,
+    false,
+    false,
+    false,
+    caseNumber108,
+    subjectName,
+  );
+  await task.checkCompletedTask(
+    page,
+    true,
+    taskNames_content.nonComplianceDirections,
+    caseNumber108,
+    states_content.caseManagementState,
+    subjectName,
+  );
 });
