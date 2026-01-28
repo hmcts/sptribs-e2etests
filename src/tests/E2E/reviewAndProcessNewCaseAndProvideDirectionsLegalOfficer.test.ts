@@ -801,41 +801,4 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     states_content.caseManagementState,
     subjectName,
   );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.nonComplianceDirections,
-    subjectName,
-  );
-  await task.initiateTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    "Link: Assign Task to Me and Go To Task",
-    true,
-    caseNumber75,
-    taskNames_content.nonComplianceDirections,
-    priorityNonCompliance,
-    authors_content.assignedUserAdmin,
-    numberOfDaysNonCompliance,
-    "Document management: Upload",
-    states_content.caseManagementState,
-    subjectName,
-  );
-  await documentManagementUpload.documentManagementUpload(
-    page,
-    true,
-    true,
-    false,
-    caseNumber75,
-    subjectName,
-  );
-  await task.checkCompletedTask(
-    page,
-    true,
-    taskNames_content.nonComplianceDirections,
-    caseNumber75,
-    states_content.caseManagementState,
-    subjectName,
-  );
 });

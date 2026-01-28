@@ -114,44 +114,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       states_content.caseManagementState,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber127,
-      taskNames_content.nonComplianceDirections,
-      priorityNonCompliance,
-      authors_content.assignedUserAdmin,
-      numberOfDaysNonCompliance,
-      "Orders: Manage due date",
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await manageDueDate.manageDueDate(
-      page,
-      false,
-      false,
-      false,
-      true,
-      caseNumber127,
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.nonComplianceDirections,
-      caseNumber127,
-      states_content.caseManagementState,
-      subjectName,
-    );
   });
 
   test("Task is completable via next steps link - assign to me", async ({

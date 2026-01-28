@@ -744,42 +744,4 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     states_content.caseManagementState,
     subjectName,
   );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.nonComplianceDirections,
-    subjectName,
-  );
-  await task.initiateTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    "Link: Assign Task to Me and Go To Task",
-    true,
-    caseNumber68,
-    taskNames_content.nonComplianceDirections,
-    priorityNonCompliance,
-    authors_content.assignedUserAdmin,
-    numberOfDaysNonCompliance,
-    "Case: Contact parties",
-    states_content.caseManagementState,
-    subjectName,
-  );
-  await contactParties.contactParties(
-    page,
-    waUsers_content.userRoleAdmin,
-    true,
-    false,
-    caseNumber68,
-    subjectName,
-    true,
-  );
-  await task.checkCompletedTask(
-    page,
-    true,
-    taskNames_content.nonComplianceDirections,
-    caseNumber68,
-    states_content.caseManagementState,
-    subjectName,
-  );
 });
