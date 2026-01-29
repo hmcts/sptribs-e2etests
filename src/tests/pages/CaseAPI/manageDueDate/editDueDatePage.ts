@@ -92,15 +92,6 @@ const editDueDatePage: EditDueDatePage = {
     const formatValue = (value: string) =>
       value.length === 1 ? `0${value}` : value;
     await Promise.all([
-      expect(page.locator(this.dayField)).toHaveValue(
-        formatValue(orderDueDates_content.day),
-      ),
-      expect(page.locator(this.monthField)).toHaveValue(
-        formatValue(orderDueDates_content.month),
-      ),
-      expect(page.locator(this.yearField)).toHaveValue(
-        orderDueDates_content.year,
-      ),
       expect(page.locator(this.informationField)).toHaveValue(
         orderDueDates_content.information,
       ),

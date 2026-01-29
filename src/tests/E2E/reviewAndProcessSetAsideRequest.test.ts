@@ -107,6 +107,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
       false,
       false,
       true,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC8 - ME Joint Instruction",
       caseNumber109,
       "DraftOrder",

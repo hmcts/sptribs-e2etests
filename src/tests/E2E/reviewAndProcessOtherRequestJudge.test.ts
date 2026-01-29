@@ -376,6 +376,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       false,
       false,
       true,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC13 - Pro Forma Summons",
       caseNumber78,
       "DraftOrder",
