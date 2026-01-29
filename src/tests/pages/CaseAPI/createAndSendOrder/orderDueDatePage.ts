@@ -14,7 +14,7 @@ type OrderDueDatePage = {
     accessibilityTest: boolean,
     subjectName: string,
   ): Promise<void>;
-  fillInFields(page: Page, completed: boolean, dueDate: Date,): Promise<void>;
+  fillInFields(page: Page, completed: boolean, dueDate: Date): Promise<void>;
 };
 
 const orderDueDatePage: OrderDueDatePage = {
@@ -69,7 +69,11 @@ const orderDueDatePage: OrderDueDatePage = {
     }
   },
 
-  async fillInFields(page: Page, completed: boolean, dueDate: Date,): Promise<void> {
+  async fillInFields(
+    page: Page,
+    completed: boolean,
+    dueDate: Date,
+  ): Promise<void> {
     const day = String(dueDate.getDate());
     const month = String(dueDate.getMonth() + 1);
     const year = String(dueDate.getFullYear());
