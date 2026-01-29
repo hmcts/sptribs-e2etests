@@ -14,7 +14,7 @@ type OrderDueDatePage = {
     accessibilityTest: boolean,
     subjectName: string,
   ): Promise<void>;
-  fillInFields(page: Page, completed: boolean): Promise<void>;
+  fillInFields(page: Page, completed: boolean, dueDate: Date,): Promise<void>;
 };
 
 const orderDueDatePage: OrderDueDatePage = {
@@ -69,10 +69,13 @@ const orderDueDatePage: OrderDueDatePage = {
     }
   },
 
-  async fillInFields(page: Page, completed: boolean): Promise<void> {
-    await page.fill(`#dueDate-day`, orderDueDatePage_content.day);
-    await page.fill(`#dueDate-month`, orderDueDatePage_content.month);
-    await page.fill(`#dueDate-year`, orderDueDatePage_content.year);
+  async fillInFields(page: Page, completed: boolean, dueDate: Date,): Promise<void> {
+    const day = String(dueDate.getDate());
+    const month = String(dueDate.getMonth() + 1);
+    const year = String(dueDate.getFullYear());
+    await page.fill(`#dueDate-day`, day);
+    await page.fill(`#dueDate-month`, month);
+    await page.fill(`#dueDate-year`, year);
     await page.fill(
       `#cicCaseOrderDueDates_0_information`,
       orderDueDatePage_content.information,
