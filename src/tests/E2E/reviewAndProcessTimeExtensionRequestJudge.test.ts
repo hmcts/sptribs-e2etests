@@ -216,6 +216,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       false,
       false,
       false,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC10 - Strike Out Warning",
       caseNumber138,
       "UploadOrder",

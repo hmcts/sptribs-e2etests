@@ -102,6 +102,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
       false,
       false,
       true,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC8 - ME Joint Instruction",
       caseNumber147,
       "DraftOrder",

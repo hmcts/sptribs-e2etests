@@ -237,6 +237,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       false,
       false,
       true,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC8 - ME Joint Instruction",
       caseNumber2701,
       "DraftOrder",

@@ -385,6 +385,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       false,
       false,
       true,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC13 - Pro Forma Summons",
       caseNumber119,
       "DraftOrder",

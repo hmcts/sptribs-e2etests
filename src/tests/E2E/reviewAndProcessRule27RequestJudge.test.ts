@@ -217,6 +217,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       false,
       false,
       false,
+      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC10 - Strike Out Warning",
       caseNumber99,
       "UploadOrder",
