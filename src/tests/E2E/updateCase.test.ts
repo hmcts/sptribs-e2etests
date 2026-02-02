@@ -352,6 +352,7 @@ test("Check for an existing case to update - aXe test as it proceeds. @accessibi
     caseNumber07,
   );
   await page.locator(`a:text-is(" Sign out ")`).click();
+  await page.waitForTimeout(5000);
   await page.waitForLoadState("domcontentloaded");
   await updateCaseJourney.updateCase(
     page,
