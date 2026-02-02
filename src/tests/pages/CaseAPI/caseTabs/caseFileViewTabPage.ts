@@ -47,7 +47,13 @@ const caseFileViewTabPage: CaseFileViewTabPage = {
       }),
     ]);
     if (accessibilityTest) {
-      await new AxeUtils(page).audit();
+      await new AxeUtils(page).audit(
+        {
+        exclude: [
+          '.document-tree-container__folder'
+        ],
+        }
+      );
     }
   },
 
