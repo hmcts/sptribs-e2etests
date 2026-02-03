@@ -57,7 +57,8 @@
     "tar-fs": "^3.1.1",
     "tar": "^7.5.2",
     "js-yaml": "^4.1.1",
-    "glob": "^11.1.0"
+    "glob": "^11.1.0",
+    "lodash-es": "^4.17.23"
   },
   "packageManager": "yarn@4.9.4"
 }
