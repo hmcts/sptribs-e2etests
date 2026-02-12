@@ -61,5 +61,5 @@
     "glob": "^13.0.1",
     "lodash-es": "^4.17.23"
   },
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.12.0"
 }
