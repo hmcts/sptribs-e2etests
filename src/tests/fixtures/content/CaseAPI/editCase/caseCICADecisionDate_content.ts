@@ -12,7 +12,8 @@ const caseCICADecisionDate_content = {
   errorBanner: "There is a problem",
   dateError: "Date of CICA initial review decision letter is required",
   validDateError: "Date of CICA initial review decision letter is required",
-  inlineValidDateError: "The data entered is not valid for Date of CICA initial review decision letter",
+  inlineValidDateError:
+    "The data entered is not valid for Date of CICA initial review decision letter",
 } as const;
 
 export default caseCICADecisionDate_content;

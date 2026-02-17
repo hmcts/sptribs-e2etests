@@ -48,8 +48,8 @@ const caseCICADecisionDatePage: CaseCICADecisionDatePage = {
     await page.fill(this.month, `${currentDate.getMonth()}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);
     await Promise.all([
-        page.waitForLoadState("domcontentloaded"),
-        page.click(this.continue),
+      page.waitForLoadState("domcontentloaded"),
+      page.click(this.continue),
     ]);
   },
 
