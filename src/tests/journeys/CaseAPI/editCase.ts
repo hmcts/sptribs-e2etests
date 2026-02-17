@@ -8,6 +8,7 @@ import {
 } from "../../helpers/commonHelpers.ts";
 import editCaseCategorisationDetailsPage from "../../pages/CaseAPI/editCase/editCaseCategorisationDetailsPage.ts";
 import editCicaCaseDetailsPage from "../../pages/CaseAPI/editCase/editCICACaseDetailsPage.ts";
+import caseCICADecisionDatePage from "../../pages/CaseAPI/editCase/caseCICADecisionDatePage.ts";
 import editCaseDateObjectsPage from "../../pages/CaseAPI/editCase/editCaseDateObjectsPage.ts";
 import editCaseObjectsSubjectsPage from "../../pages/CaseAPI/editCase/editCaseObjectsSubjectsPage.ts";
 import editCaseSubjectDetailsObjectPage from "../../pages/CaseAPI/editCase/editCaseSubjectDetailsObjectPage.ts";
@@ -98,6 +99,8 @@ const editCase: EditCase = {
         );
         await editCicaCaseDetailsPage.fillFields(page);
         await editCicaCaseDetailsPage.continueOn(page);
+        await caseCICADecisionDatePage.checkPageLoads(page, accessibilityTest);
+        await caseCICADecisionDatePage.fillInFields(page);
         await editCaseDateObjectsPage.checkPageLoads(
           page,
           caseNumber,

@@ -196,7 +196,7 @@ const submitPage: SubmitPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage45}")`,
+          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
         ),
         1,
       ),
@@ -224,11 +224,17 @@ const submitPage: SubmitPage = {
         ),
         1,
       ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage50}")`,
+        ),
+        1,
+      ),
     ]);
     if (!tribunalFormsInTime) {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage50}")`,
+          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage51}")`,
         ),
         1,
       );
@@ -250,45 +256,39 @@ const submitPage: SubmitPage = {
           await Promise.all([
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage21}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage22}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage21}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage22}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage32}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage33}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage32}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage33}")`,
               ),
               1,
-            ),
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
-              ),
-              count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
@@ -305,6 +305,12 @@ const submitPage: SubmitPage = {
             commonHelpers.checkVisibleAndPresent(
               page.locator(
                 `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+              ),
+              count,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),
@@ -315,33 +321,27 @@ const submitPage: SubmitPage = {
           await Promise.all([
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage21}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage22}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage21}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage22}")`,
               ),
               1,
-            ),
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
-              ),
-              count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
@@ -358,6 +358,12 @@ const submitPage: SubmitPage = {
             commonHelpers.checkVisibleAndPresent(
               page.locator(
                 `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+              ),
+              count,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),
@@ -368,33 +374,27 @@ const submitPage: SubmitPage = {
           await Promise.all([
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage32}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage33}")`,
               ),
               1,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage32}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage33}")`,
               ),
               1,
-            ),
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
-              ),
-              count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
@@ -411,6 +411,12 @@ const submitPage: SubmitPage = {
             commonHelpers.checkVisibleAndPresent(
               page.locator(
                 `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+              ),
+              count,
+            ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),
@@ -420,19 +426,13 @@ const submitPage: SubmitPage = {
           await Promise.all([
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage9}")`,
+                `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage9}")`,
-              ),
-              count,
-            ),
-            commonHelpers.checkVisibleAndPresent(
-              page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage10}")`,
+                `.complex-panel-title > dt > span.text-16:text-is("${submit_content.textOnPage10}")`,
               ),
               count,
             ),
@@ -454,20 +454,26 @@ const submitPage: SubmitPage = {
               ),
               count,
             ),
+            commonHelpers.checkVisibleAndPresent(
+              page.locator(
+                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
+              ),
+              count,
+            ),
           ]);
         }
         break;
       case "Email":
         await commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage15}")`,
+            `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage16}")`,
           ),
           1,
         );
         if (applicant) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage20}")`,
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage21}")`,
             ),
             1,
           );
@@ -475,7 +481,7 @@ const submitPage: SubmitPage = {
         if (representative) {
           await commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage31}")`,
+              `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage32}")`,
             ),
             1,
           );
@@ -489,12 +495,6 @@ const submitPage: SubmitPage = {
 
   async handleApplicantLabels(page: Page): Promise<void> {
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage16}")`,
-        ),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage17}")`,
@@ -513,17 +513,17 @@ const submitPage: SubmitPage = {
         ),
         1,
       ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage20}")`,
+        ),
+        1,
+      ),
     ]);
   },
 
   async handleRepresentativeLabels(page: Page): Promise<void> {
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage26}")`,
-        ),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage27}")`,
@@ -545,6 +545,12 @@ const submitPage: SubmitPage = {
       commonHelpers.checkVisibleAndPresent(
         page.locator(
           `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage30}")`,
+        ),
+        1,
+      ),
+      commonHelpers.checkVisibleAndPresent(
+        page.locator(
+          `th.case-field-label > span.text-16:text-is("${submit_content.textOnPage31}")`,
         ),
         1,
       ),
