@@ -61,7 +61,7 @@ const cicaDecisionDatePage: CicaDecisionDatePage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-label:text-is("${cicaDecisionDateContent.subHeading1}")`,
+              `.govuk-fieldset__legend:text-is("${cicaDecisionDateContent.subHeading1}")`,
             ),
             1,
           ),

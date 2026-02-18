@@ -248,6 +248,17 @@ const editCase: EditCase = {
           category,
           subCategory,
         );
+        await editCicaCaseDetailsPage.checkPageLoads(
+          page,
+          caseNumber,
+          accessibilityTest,
+          subjectName,
+        );
+        await editCicaCaseDetailsPage.fillFields(page);
+        await editCicaCaseDetailsPage.continueOn(page);
+        await caseCICADecisionDatePage.checkPageLoads(page, accessibilityTest);
+        await caseCICADecisionDatePage.triggerErrorMessages(page);
+        await caseCICADecisionDatePage.fillInFields(page);
         await editCaseDateObjectsPage.checkPageLoads(
           page,
           caseNumber,
