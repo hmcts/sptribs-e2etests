@@ -11,7 +11,7 @@ type CicaDecisionDatePage = {
   checkPageLoads(
     page: Page,
     cy: boolean,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
