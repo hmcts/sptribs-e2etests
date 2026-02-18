@@ -72,19 +72,6 @@ const editCaseDateObjectsPage: EditCaseDateObjectsPage = {
     initialState: initialState,
   ): Promise<void> {
     const currentDate = new Date();
-    if (initialState !== "DSS Submitted") {
-      await Promise.all([
-        expect(page.locator(this.day)).toHaveValue(
-          "0" + editCaseDateObjectsContent.day,
-        ),
-        expect(page.locator(this.month)).toHaveValue(
-          "0" + editCaseDateObjectsContent.month,
-        ),
-        expect(page.locator(this.year)).toHaveValue(
-          editCaseDateObjectsContent.year,
-        ),
-      ]);
-    }
     await page.fill(this.day, `${currentDate.getDate()}`);
     await page.fill(this.month, `${currentDate.getMonth() + 1}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);

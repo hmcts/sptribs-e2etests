@@ -72,10 +72,10 @@ const summaryTabPage: SummaryTabPage = {
       await Promise.all([
         ...Array.from({ length: 5 }, (_, index) => {
           const textOnPage = (summaryTabContent as any)[
-            `textOnPage${index + 5}`
+            `textOnPage${index + 6}`
           ];
           return expect(
-            page.locator(".case-viewer-label").nth(index + 4),
+            page.locator(".case-viewer-label").nth(index + 5),
           ).toHaveText(textOnPage);
         }),
       ]);
@@ -212,21 +212,21 @@ const summaryTabPage: SummaryTabPage = {
     state: string,
   ): Promise<void> {
     await page.waitForSelector(
-      `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
+      `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
     );
     await expect(page.locator("markdown.markdown > h4")).toContainText(
       summaryTab_content.caseState + state,
     );
     await expect(
       page.locator(
-        `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage14}")`,
+        `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
       ),
     ).toBeVisible();
 
     if (removeReason === "Other") {
       await expect(
         page.locator(
-          `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
+          `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage16}")`,
         ),
       ).toBeVisible();
       await expect(

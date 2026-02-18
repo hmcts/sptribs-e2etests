@@ -12,6 +12,7 @@ import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
 import caseFilterPage from "../../pages/CaseAPI/createCase/caseFilterPage.ts";
 import caseCategorisationDetailsPage from "../../pages/CaseAPI/createCase/caseCategorisationDetailsPage.ts";
 import cicaCaseDetailsPage from "../../pages/CaseAPI/createCase/cicaCaseDetailsPage.ts";
+import caseCICADecisionDatePage from "../../pages/CaseAPI/createCase/caseCICADecisionDatePage.ts";
 import caseDateObjectsPage from "../../pages/CaseAPI/createCase/caseDateObjectsPage.ts";
 import caseObjectsSubjectsPage from "../../pages/CaseAPI/createCase/caseObjectsSubjectsPage.ts";
 import caseSubjectDetailsObjectPage from "../../pages/CaseAPI/createCase/caseSubjectDetailsObjectPage.ts";
@@ -90,6 +91,8 @@ const createCase: CreateCase = {
         );
         await cicaCaseDetailsPage.checkPageLoads(page, accessibilityTest);
         await cicaCaseDetailsPage.fillInFields(page);
+        await caseCICADecisionDatePage.checkPageLoads(page, accessibilityTest);
+        await caseCICADecisionDatePage.fillInFields(page);
         await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
         await caseDateObjectsPage.fillInFields(page);
         await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);

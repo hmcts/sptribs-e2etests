@@ -10,6 +10,7 @@ import representationPage from "../../pages/DSSCreateCase/representationPage.ts"
 import representationQualifiedPage from "../../pages/DSSCreateCase/representationQualifiedPage.ts";
 import representativeDetailsPage from "../../pages/DSSCreateCase/representativeDetailsPage.ts";
 import cicaReferencePage from "../../pages/DSSCreateCase/cicaReferencePage.ts";
+import cicaDecisionDatePage from "../../pages/DSSCreateCase/cicaDecisionDatePage.ts";
 import uploadAppealFormPage from "../../pages/DSSCreateCase/uploadAppealFormPage.ts";
 import uploadSupportingDocumentsPage from "../../pages/DSSCreateCase/uploadSupportingDocumentsPage.ts";
 import uploadOtherInformationPage from "../../pages/DSSCreateCase/uploadOtherInformationPage.ts";
@@ -140,6 +141,9 @@ const createFEApplication: CreateFeApplication = {
         await cicaReferencePage.checkPageLoads(page, cy, accessibilityTest);
         await cicaReferencePage.triggerErrorMessages(page, cy);
         await cicaReferencePage.fillInFields(page, cicaReferenceNumber);
+        await cicaDecisionDatePage.checkPageLoads(page, cy, accessibilityTest);
+        await cicaDecisionDatePage.triggerErrorMessages(page);
+        await cicaDecisionDatePage.fillInFields(page);
         await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadAppealFormPage.triggerErrorMessages(page, cy);
         await uploadAppealFormPage.uploadDocumentsSection(
@@ -200,8 +204,9 @@ const createFEApplication: CreateFeApplication = {
       );
     }
     await cicaReferencePage.checkPageLoads(page, cy, accessibilityTest);
-    await cicaReferencePage.triggerErrorMessages(page, cy);
     await cicaReferencePage.fillInFields(page, cicaReferenceNumber);
+    await cicaDecisionDatePage.checkPageLoads(page, cy, accessibilityTest);
+    await cicaDecisionDatePage.fillInFields(page);
     await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
     await uploadAppealFormPage.uploadDocumentsSection(
       page,
