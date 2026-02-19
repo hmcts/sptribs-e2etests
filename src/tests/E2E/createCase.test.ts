@@ -30,7 +30,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
-    test("Assessment - Fatal Category, Email Contact, multiple documents, Out of time @CaseAPI1", async ({
+  test("Assessment - Fatal Category, Email Contact, multiple documents, Out of time @CaseAPI1", async ({
     page,
   }) => {
     const outOfTimeDate = new Date();
@@ -56,7 +56,7 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
       false,
       true,
       false,
-      outOfTimeDate
+      outOfTimeDate,
     );
   });
 
