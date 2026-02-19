@@ -20,6 +20,7 @@ type DSSVerifyDetails = {
     multipleDocuments: boolean,
     user: UserRole,
     subjectName: string,
+    outOfTimeDate?: Date,
   ): Promise<any>;
 };
 
@@ -35,6 +36,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
     multipleDocuments: boolean,
     user: UserRole,
     subjectName: string,
+    outOfTimeDate?: Date,
   ): Promise<any> {
     await historyTabPage.checkPageLoads(
       page,
@@ -63,6 +65,7 @@ const DSSVerifyCaseDetails: DSSVerifyDetails = {
       representationPresent,
       representationQualified,
       subjectName,
+      outOfTimeDate,
     );
     await stateTabPage.changeToStateTab(page);
     await stateTabPage.checkPageLoads(

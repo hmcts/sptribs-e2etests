@@ -28,6 +28,7 @@ type SummaryTabPage = {
     representationPresent: boolean,
     representationQualified: boolean,
     subjectName: string,
+    outOfTimeDate?: Date,
   ): Promise<void>;
   checkStayDetails(
     page: Page,
@@ -96,7 +97,9 @@ const summaryTabPage: SummaryTabPage = {
     representationPresent: boolean,
     representationQualified: boolean,
     subjectName: string,
+    decisionDate?: Date,
   ): Promise<void> {
+    const expectedInTimeValue = decisionDate ? "No" : "Yes";
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
@@ -110,6 +113,9 @@ const summaryTabPage: SummaryTabPage = {
       expect(
         page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(1),
       ).toHaveText(caseNumber),
+      expect(
+        page.locator("#case-viewer-field-read--cicCaseIsCaseInTime")
+      ).toHaveText(expectedInTimeValue),
     ]);
     if (representationPresent) {
       await Promise.all([

@@ -68,6 +68,7 @@ type CreateFeApplication = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     subjectName: string,
+    decisionDate?: Date,
   ): Promise<any>;
   handleBackButtonJourney(page: Page): Promise<any>;
 };
@@ -271,6 +272,7 @@ const createFEApplication: CreateFeApplication = {
         uploadOtherInfo,
         multipleDocuments,
         subjectName,
+        decisionDate,
       );
     }
     if (backButtonJourney) {
@@ -308,6 +310,7 @@ const createFEApplication: CreateFeApplication = {
     uploadOtherInfo: boolean,
     multipleDocuments: boolean,
     subjectName: string,
+    outOfTimeDate?: Date,
   ): Promise<string> {
     await checkYourAnswersPage.continueOn(page);
     await applicationSubmittedPage.checkPageLoads(page, cy, accessibilityTest);
@@ -328,6 +331,7 @@ const createFEApplication: CreateFeApplication = {
       multipleDocuments,
       user,
       subjectName,
+      outOfTimeDate,
     );
     return caseNumber;
   },
