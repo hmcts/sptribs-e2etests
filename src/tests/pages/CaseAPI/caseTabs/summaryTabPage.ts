@@ -114,7 +114,7 @@ const summaryTabPage: SummaryTabPage = {
         page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(1),
       ).toHaveText(caseNumber),
       expect(
-        page.locator("#case-viewer-field-read--cicCaseIsCaseInTime")
+        page.locator("#case-viewer-field-read--cicCaseIsCaseInTime"),
       ).toHaveText(expectedInTimeValue),
     ]);
     if (representationPresent) {
