@@ -34,6 +34,7 @@ type CreateFeApplication = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     subjectName: string,
+    decisionDate?: Date,
   ): Promise<any>;
   normalFEFlow(
     page: Page,
@@ -48,6 +49,7 @@ type CreateFeApplication = {
     backButtonJourney: boolean,
     accessibilityTest: boolean,
     subjectName: string,
+    decisionDate?: Date,
   ): Promise<any>;
   handleRepresentationLogic(
     page: Page,
@@ -85,6 +87,7 @@ const createFEApplication: CreateFeApplication = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     subjectName: string,
+    decisionDate?: Date,
   ): Promise<any> {
     switch (errorMessaging) {
       default:
@@ -101,6 +104,7 @@ const createFEApplication: CreateFeApplication = {
           backButtonJourney,
           accessibilityTest,
           subjectName,
+          decisionDate,
         );
       case true:
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
@@ -143,7 +147,7 @@ const createFEApplication: CreateFeApplication = {
         await cicaReferencePage.fillInFields(page, cicaReferenceNumber);
         await cicaDecisionDatePage.checkPageLoads(page, cy, accessibilityTest);
         await cicaDecisionDatePage.triggerErrorMessages(page);
-        await cicaDecisionDatePage.fillInFields(page);
+        await cicaDecisionDatePage.fillInFields(page, decisionDate);
         await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
         await uploadAppealFormPage.triggerErrorMessages(page, cy);
         await uploadAppealFormPage.uploadDocumentsSection(
@@ -185,6 +189,7 @@ const createFEApplication: CreateFeApplication = {
     backButtonJourney: boolean,
     accessibilityTest: boolean,
     subjectName: string,
+    decisionDate?: Date,
   ): Promise<any> {
     await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
     await landingPage.continueOn(page);
@@ -206,7 +211,7 @@ const createFEApplication: CreateFeApplication = {
     await cicaReferencePage.checkPageLoads(page, cy, accessibilityTest);
     await cicaReferencePage.fillInFields(page, cicaReferenceNumber);
     await cicaDecisionDatePage.checkPageLoads(page, cy, accessibilityTest);
-    await cicaDecisionDatePage.fillInFields(page);
+    await cicaDecisionDatePage.fillInFields(page, decisionDate);
     await uploadAppealFormPage.checkPageLoads(page, cy, accessibilityTest);
     await uploadAppealFormPage.uploadDocumentsSection(
       page,

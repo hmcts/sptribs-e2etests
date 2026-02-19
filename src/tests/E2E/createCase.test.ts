@@ -30,6 +30,36 @@ test.describe("Case-API Create case tests. @CaseAPI", () => {
     );
   });
 
+    test("Assessment - Fatal Category, Email Contact, multiple documents, Out of time @CaseAPI1", async ({
+    page,
+  }) => {
+    const outOfTimeDate = new Date();
+    outOfTimeDate.setDate(outOfTimeDate.getDate() - 91);
+    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+    await createCase.createCase(
+      page,
+      "waHearingCentreAdmin",
+      false,
+      "Assessment",
+      "Fatal",
+      true,
+      true,
+      "Email",
+      subjectName,
+      true,
+      true,
+      "1996",
+      "Scotland",
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      outOfTimeDate
+    );
+  });
+
   test("Assessment - Medical Re-opening Category, Email Contact @CaseAPI1", async ({
     page,
   }) => {

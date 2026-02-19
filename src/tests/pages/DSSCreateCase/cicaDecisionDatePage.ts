@@ -13,7 +13,7 @@ type CicaDecisionDatePage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page): Promise<void>;
+  fillInFields(page: Page, decisionDate?: Date): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
@@ -73,8 +73,8 @@ const cicaDecisionDatePage: CicaDecisionDatePage = {
     }
   },
 
-  async fillInFields(page: Page): Promise<void> {
-    const currentDate = new Date();
+  async fillInFields(page: Page, decisionDate?: Date): Promise<void> {
+    const currentDate = decisionDate ?? new Date();
     await page.fill(this.day, `${currentDate.getDate() - 1}`);
     await page.fill(this.month, `${currentDate.getMonth() + 1}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);

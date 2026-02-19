@@ -45,6 +45,7 @@ type CreateCase = {
     applicantExplained: boolean,
     needLogin: boolean,
     errorMessaging: boolean,
+    decisionDate?: Date,
   ): Promise<string>;
 };
 
@@ -69,6 +70,7 @@ const createCase: CreateCase = {
     applicantExplained: boolean,
     needLogin: boolean,
     errorMessaging: boolean,
+    decisionDate?: Date,
   ): Promise<string> {
     let caseNumber: any;
     if (needLogin) {
@@ -92,7 +94,7 @@ const createCase: CreateCase = {
         await cicaCaseDetailsPage.checkPageLoads(page, accessibilityTest);
         await cicaCaseDetailsPage.fillInFields(page);
         await caseCICADecisionDatePage.checkPageLoads(page, accessibilityTest);
-        await caseCICADecisionDatePage.fillInFields(page);
+        await caseCICADecisionDatePage.fillInFields(page, decisionDate);
         await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
         await caseDateObjectsPage.fillInFields(page);
         await caseObjectsSubjectsPage.checkPageLoads(page, accessibilityTest);
@@ -195,6 +197,10 @@ const createCase: CreateCase = {
           category,
           subCategory,
         );
+        await cicaCaseDetailsPage.checkPageLoads(page, accessibilityTest);
+        await cicaCaseDetailsPage.fillInFields(page);
+        await caseCICADecisionDatePage.checkPageLoads(page, accessibilityTest);
+        await caseCICADecisionDatePage.fillInFields(page, decisionDate);
         await caseDateObjectsPage.checkPageLoads(page, accessibilityTest);
         await caseDateObjectsPage.triggerErrorMessages(page);
         await caseDateObjectsPage.fillInFields(page);

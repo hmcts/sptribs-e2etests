@@ -7,9 +7,11 @@ import task from "../journeys/CaseAPI/task.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 
 test.describe("DSS Create case tests.", (): void => {
-  test("Create an application with all details, a qualified representative, additional information, no PCQ, and submit. ", async ({
+  test.only("Create an application with all details, a qualified representative, additional information, no PCQ, Out of time @DSSCreate", async ({
     page,
   }) => {
+    const outOfTimeDate = new Date();
+    outOfTimeDate.setDate(outOfTimeDate.getDate() - 91);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber701 = await createFEApplication.createFEApplication(
       page,
@@ -25,6 +27,7 @@ test.describe("DSS Create case tests.", (): void => {
       false,
       false,
       subjectName,
+      outOfTimeDate,
     );
     await commonHelpers.signOutAndGoToCase(
       page,
