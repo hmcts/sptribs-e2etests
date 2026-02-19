@@ -127,11 +127,11 @@ const summaryTabPage: SummaryTabPage = {
         ).toHaveText(representativeDetailsContent.emailAddress),
       ]);
       if (representationQualified) {
-        await expect(page.locator("ccd-read-yes-no-field").nth(0)).toHaveText(
+        await expect(page.locator("ccd-read-yes-no-field").nth(1)).toHaveText(
           "Yes",
         );
       } else {
-        await expect(page.locator("ccd-read-yes-no-field").nth(0)).toHaveText(
+        await expect(page.locator("ccd-read-yes-no-field").nth(1)).toHaveText(
           "No",
         );
       }
