@@ -62,5 +62,5 @@
     "lodash-es": "^4.17.23",
     "minimatch": "^10.2.1"
   },
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.12.0"
 }
