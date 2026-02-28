@@ -3518,7 +3518,6 @@ __metadata:
     axios: "npm:^1.7.5"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    minimatch: "npm:^10.2.3"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
