@@ -4,16 +4,17 @@ const editDueDate_content = {
 
   caseReference: "Case number: ",
 
-  subTitle1: "Due Date (Optional)",
+  subTitle1: "Due Date",
   subTitle2: "Due Date",
   subTitle3: "Due Date 2",
 
-  textOnPage1: "Day",
-  textOnPage2: "Month",
-  textOnPage3: "Year",
-  textOnPage4: "Due Date information (Optional)",
-  textOnPage5: "Completed (Optional)",
-  textOnPage6: "Yes",
+  textOnPage1: "14 days",
+  textOnPage2: "21 days",
+  textOnPage3: "28 days",
+  textOnPage4: "120 days",
+  textOnPage5: "Other",
+  textOnPage6: "Completed (Optional)",
+  textOnPage7: "Yes",
 
   errorBanner: " There is a problem ",
   errorBlank1: " Field is not valid ",

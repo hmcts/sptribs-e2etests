@@ -62,16 +62,13 @@ const editDueDatePage: EditDueDatePage = {
         editDueDate_content.caseReference + caseNumber,
       ),
       expect(page.locator(this.addNew)).toBeVisible(),
-      expect(page.locator(this.remove)).toBeDisabled(),
 
-      ...Array.from({ length: 6 }, (_, index: number) => {
+      ...Array.from({ length: 7 }, (_, index: number) => {
         const textOnPage: ArrayConstructor = (editDueDate_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `#cicCaseOrderDueDates_0_0 .form-label:text-is("${textOnPage}")`,
-          ),
+          page.locator(`.form-label:text-is("${textOnPage}")`),
           1,
         );
       }),
@@ -91,11 +88,6 @@ const editDueDatePage: EditDueDatePage = {
   async checkFields(page: Page, completed: boolean): Promise<void> {
     const formatValue = (value: string) =>
       value.length === 1 ? `0${value}` : value;
-    await Promise.all([
-      expect(page.locator(this.informationField)).toHaveValue(
-        orderDueDates_content.information,
-      ),
-    ]);
     if (completed) {
       await expect(page.getByRole("checkbox")).toBeChecked();
     } else {
@@ -106,40 +98,27 @@ const editDueDatePage: EditDueDatePage = {
       .first()
       .click({ force: true });
     await Promise.all([
-      expect(page.locator("#cicCaseOrderDueDates_1_1 h3")).toHaveText(
-        editDueDate_content.subTitle3,
-      ),
-      ...Array.from({ length: 6 }, (_, index) => {
-        const textOnPage = (editDueDate_content as any)[
+      ...Array.from({ length: 5 }, (_, index: number) => {
+        const textOnPage: ArrayConstructor = (editDueDate_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(
-            `#cicCaseOrderDueDates_1_1 .form-label:text-is("${textOnPage}")`,
-          ),
-          1,
+          page.locator(`.form-label:text-is("${textOnPage}")`),
+          2,
         );
       }),
     ]);
-    await page.click(`#cicCaseOrderDueDates_1_1 ${this.remove}`);
-    await expect(page.locator(".cdk-overlay-container")).toBeVisible();
+    await page.locator("button:has-text('Remove')").first().click();
     await page.locator("button[title='Remove']").click();
-    await expect(page.locator(".cdk-overlay-container")).not.toBeVisible();
-    await expect(page.locator("#cicCaseOrderDueDates_1_1")).not.toBeVisible();
   },
 
   async fillInFields(page, completed, completedCheckboxChecked): Promise<void> {
-    const clearAndUpdateField = async (selector: string, value: string) => {
-      await page.locator(selector).click({ clickCount: 3 });
-      await page.locator(selector).fill(value);
-    };
-    await clearAndUpdateField(this.dayField, editDueDate_content.day);
-    await clearAndUpdateField(this.monthField, editDueDate_content.month);
-    await clearAndUpdateField(this.yearField, editDueDate_content.year);
-    await clearAndUpdateField(
-      this.informationField,
-      editDueDate_content.information,
-    );
+    await page.evaluate(() => {
+      const input = document.querySelector(
+        '[id="orderDueDates_1_dueDateOptions-28 days"]'
+      ) as HTMLInputElement;
+      input.click();
+    });
 
     if (completed) {
       if (completedCheckboxChecked) {

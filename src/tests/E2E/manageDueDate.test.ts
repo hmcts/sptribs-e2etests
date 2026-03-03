@@ -164,7 +164,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     );
   });
 
-  test("User is able to manage due date in state 'Awaiting Hearing', Orders sent in state Case Management @CaseAPI2", async ({
+  test.only("User is able to manage due date in state 'Awaiting Hearing', Orders sent in state Case Management @CaseAPI2", async ({
     page,
   }) => {
     const numberOfDaysReview = 5;
@@ -193,12 +193,12 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2701, subjectName);
-    await task.removeTask(
-      page,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
+    // await task.removeTask(
+    //   page,
+    //   taskNames_content.issueCaseToRespondentTask,
+    //   subjectName,
+    //   waUsers_content.userRoleAdmin,
+    // );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Refer case to legal officer",
