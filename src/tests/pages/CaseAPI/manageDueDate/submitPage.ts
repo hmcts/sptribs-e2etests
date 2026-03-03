@@ -109,9 +109,7 @@ const submitPage: SubmitPage = {
   ): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.text-16:text-is("28 days")`,
-        ),
+        page.locator(`.text-16:text-is("28 days")`),
         1,
       ),
     ]);

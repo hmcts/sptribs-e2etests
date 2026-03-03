@@ -33,7 +33,7 @@ const orderDueDatePage: OrderDueDatePage = {
       `h2:text-is("${orderDueDatePage_content.subTitle1}")`,
     );
     await page.click(this.addNew);
-    await expect(page.locator('#orderDueDates_0_dueDateOptions')).toBeVisible();
+    await expect(page.locator("#orderDueDates_0_dueDateOptions")).toBeVisible();
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -77,7 +77,7 @@ const orderDueDatePage: OrderDueDatePage = {
   ): Promise<void> {
     await page.evaluate(() => {
       const input = document.querySelector(
-        '[id="orderDueDates_0_dueDateOptions-21 days"]'
+        '[id="orderDueDates_0_dueDateOptions-21 days"]',
       ) as HTMLInputElement;
       input.click();
     });
@@ -87,7 +87,7 @@ const orderDueDatePage: OrderDueDatePage = {
       );
     }
     await page.click(this.continue);
-  }
+  },
 };
 
 export default orderDueDatePage;

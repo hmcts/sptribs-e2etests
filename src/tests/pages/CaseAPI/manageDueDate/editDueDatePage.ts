@@ -115,7 +115,7 @@ const editDueDatePage: EditDueDatePage = {
   async fillInFields(page, completed, completedCheckboxChecked): Promise<void> {
     await page.evaluate(() => {
       const input = document.querySelector(
-        '[id="orderDueDates_1_dueDateOptions-28 days"]'
+        '[id="orderDueDates_1_dueDateOptions-28 days"]',
       ) as HTMLInputElement;
       input.click();
     });
