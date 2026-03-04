@@ -70,10 +70,7 @@ const orderDueDatePage: OrderDueDatePage = {
     }
   },
 
-  async fillInFields(
-    page: Page,
-    completed: boolean,
-  ): Promise<void> {
+  async fillInFields(page: Page, completed: boolean): Promise<void> {
     await page.evaluate(() => {
       const input = document.querySelector(
         '[id="orderDueDates_0_dueDateOptions-21 days"]',
