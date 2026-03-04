@@ -48,7 +48,7 @@ const orderDueDatesPage: OrderDueDatesPage = {
         page.locator(`h3:text-is("${orderDueDates_content.subTitle2}")`),
         1,
       ),
-      ...Array.from({ length: 6 }, (_, index: number) => {
+      ...Array.from({ length: 7 }, (_, index: number) => {
         const textOnPage: ArrayConstructor = (orderDueDates_content as any)[
           `textOnPage${index + 1}`
         ];
@@ -70,16 +70,15 @@ const orderDueDatesPage: OrderDueDatesPage = {
   },
 
   async fillInFields(page: Page, completed: boolean): Promise<void> {
-    await page.fill(`#dueDate-day`, orderDueDates_content.day);
-    await page.fill(`#dueDate-month`, orderDueDates_content.month);
-    await page.fill(`#dueDate-year`, orderDueDates_content.year);
-    await page.fill(
-      `#cicCaseOrderDueDates_0_information`,
-      orderDueDates_content.information,
-    );
+    await page.evaluate(() => {
+      const input = document.querySelector(
+        '[id="orderDueDates_0_dueDateOptions-21 days"]',
+      ) as HTMLInputElement;
+      input.click();
+    });
     if (completed) {
       await page.click(
-        `[id^="cicCaseOrderDueDates_0_orderMarkAsCompleted-Mark"]`,
+        `[id^="orderDueDates_0_orderMarkAsCompleted-Mark as completed"]`,
       );
     }
     await page.click(this.continue);

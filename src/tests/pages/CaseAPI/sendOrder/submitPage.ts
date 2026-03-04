@@ -66,7 +66,7 @@ const submitPage: SubmitPage = {
           1,
         );
       }),
-      ...Array.from({ length: 3 }, (_, index: number) => {
+      ...Array.from({ length: 2 }, (_, index: number) => {
         const dueDate: ArrayConstructor = (submit_content as any)[
           `dueDate${index + 1}`
         ];
@@ -175,13 +175,7 @@ const submitPage: SubmitPage = {
     }
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.text-16:text-is("${orderDueDates_content.day} ${await commonHelpers.shortMonths(parseInt(orderDueDates_content.month))} ${orderDueDates_content.year}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`span:text-is("${orderDueDates_content.information}")`),
+        page.locator(`.text-16:text-is("21 days")`),
         1,
       ),
     ]);
