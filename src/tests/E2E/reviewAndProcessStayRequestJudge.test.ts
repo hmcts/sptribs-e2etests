@@ -216,7 +216,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       false,
       false,
       true,
-      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       "CIC10 - Strike Out Warning",
       caseNumber113,
       "DraftOrder",

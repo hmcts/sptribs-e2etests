@@ -2,19 +2,15 @@ const orderDueDatePage_content = {
   pageHint: "Orders: Create and send order",
   pageTitle: "Add a due date",
   caseReference: "Case number: ",
-  subTitle1: "Due Date (Optional)",
+  subTitle1: "Due Date",
   subTitle2: "Due Date",
-  textOnPage1: "Day",
-  textOnPage2: "Month",
-  textOnPage3: "Year",
-  textOnPage4: "Due Date information (Optional)",
-  textOnPage5: "Completed (Optional)",
-  textOnPage6: "Yes",
-
-  day: "1",
-  month: "1",
-  year: "2027",
-  information: "Lorem ipsum information",
+  textOnPage1: "14 days",
+  textOnPage2: "21 days",
+  textOnPage3: "28 days",
+  textOnPage4: "120 days",
+  textOnPage5: "Other",
+  textOnPage6: "Completed (Optional)",
+  textOnPage7: "Yes",
 } as const;
 
 export default orderDueDatePage_content;

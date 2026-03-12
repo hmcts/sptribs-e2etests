@@ -20,7 +20,6 @@ type CreateAndSendOrder = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     completed: boolean,
-    dueDate: Date,
     template: Template,
     caseNumber: string,
     orderType: OrderType,
@@ -34,7 +33,6 @@ const createAndSendOrder: CreateAndSendOrder = {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     completed: boolean,
-    dueDate: Date,
     template: Template,
     caseNumber: string,
     orderType: OrderType,
@@ -96,7 +94,7 @@ const createAndSendOrder: CreateAndSendOrder = {
           accessibilityTest,
           subjectName,
         );
-        await orderDueDatePage.fillInFields(page, completed, dueDate);
+        await orderDueDatePage.fillInFields(page, completed);
         await orderNotifyPage.checkPageLoads(
           page,
           caseNumber,
@@ -166,7 +164,7 @@ const createAndSendOrder: CreateAndSendOrder = {
           accessibilityTest,
           subjectName,
         );
-        await orderDueDatePage.fillInFields(page, completed, dueDate);
+        await orderDueDatePage.fillInFields(page, completed);
         await orderNotifyPage.checkPageLoads(
           page,
           caseNumber,

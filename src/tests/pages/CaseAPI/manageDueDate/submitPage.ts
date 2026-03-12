@@ -58,7 +58,7 @@ const submitPage: SubmitPage = {
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
       ),
-      ...Array.from({ length: 3 }, (_, index: number) => {
+      ...Array.from({ length: 2 }, (_, index: number) => {
         const dueDate: ArrayConstructor = (submit_content as any)[
           `dueDate${index + 1}`
         ];
@@ -109,13 +109,7 @@ const submitPage: SubmitPage = {
   ): Promise<void> {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.text-16:text-is("${editDueDate_content.day} ${await commonHelpers.shortMonths(parseInt(editDueDate_content.month))} ${editDueDate_content.year}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`span:text-is("${editDueDate_content.information}")`),
+        page.locator(`.text-16:text-is("28 days")`),
         1,
       ),
     ]);
