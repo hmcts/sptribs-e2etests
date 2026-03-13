@@ -63,5 +63,5 @@
     "minimatch": "^10.2.1",
     "basic-ftp": "^5.2.0"
   },
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.12.0"
 }
