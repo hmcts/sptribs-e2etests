@@ -51,6 +51,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2200, subjectName);
     await task.removeTask(
       page,
+      caseNumber2200,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -111,6 +112,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2201, subjectName);
     await task.removeTask(
       page,
+      caseNumber2201,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -171,6 +173,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2202, subjectName);
     await task.removeTask(
       page,
+      caseNumber2202,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -231,6 +234,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2203, subjectName);
     await task.removeTask(
       page,
+      caseNumber2203,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -291,6 +295,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2204, subjectName);
     await task.removeTask(
       page,
+      caseNumber2204,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -351,6 +356,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2205, subjectName);
     await task.removeTask(
       page,
+      caseNumber2205,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -411,6 +417,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2206, subjectName);
     await task.removeTask(
       page,
+      caseNumber2206,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -477,6 +484,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2207, subjectName);
     await task.removeTask(
       page,
+      caseNumber2207,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -543,6 +551,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2208, subjectName);
     await task.removeTask(
       page,
+      caseNumber2208,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -609,6 +618,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2209, subjectName);
     await task.removeTask(
       page,
+      caseNumber2209,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -675,6 +685,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2210, subjectName);
     await task.removeTask(
       page,
+      caseNumber2210,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -741,6 +752,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2211, subjectName);
     await task.removeTask(
       page,
+      caseNumber2211,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -807,6 +819,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2212, subjectName);
     await task.removeTask(
       page,
+      caseNumber2212,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -890,6 +903,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2213, subjectName);
     await task.removeTask(
       page,
+      caseNumber2213,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -973,6 +987,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2214, subjectName);
     await task.removeTask(
       page,
+      caseNumber2214,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1056,6 +1071,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2215, subjectName);
     await task.removeTask(
       page,
+      caseNumber2215,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1139,6 +1155,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2216, subjectName);
     await task.removeTask(
       page,
+      caseNumber2216,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1222,6 +1239,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2217, subjectName);
     await task.removeTask(
       page,
+      caseNumber2217,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1305,6 +1323,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2218, subjectName);
     await task.removeTask(
       page,
+      caseNumber2218,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1394,6 +1413,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2219, subjectName);
     await task.removeTask(
       page,
+      caseNumber2219,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1452,6 +1472,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2220, subjectName);
     await task.removeTask(
       page,
+      caseNumber2220,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1510,6 +1531,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2221, subjectName);
     await task.removeTask(
       page,
+      caseNumber2221,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1568,6 +1590,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2222, subjectName);
     await task.removeTask(
       page,
+      caseNumber2222,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1626,6 +1649,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2223, subjectName);
     await task.removeTask(
       page,
+      caseNumber2223,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1684,6 +1708,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2224, subjectName);
     await task.removeTask(
       page,
+      caseNumber2224,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1742,6 +1767,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2225, subjectName);
     await task.removeTask(
       page,
+      caseNumber2225,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1806,6 +1832,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2226, subjectName);
     await task.removeTask(
       page,
+      caseNumber2226,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1866,6 +1893,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2227, subjectName);
     await task.removeTask(
       page,
+      caseNumber2227,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1926,6 +1954,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2228, subjectName);
     await task.removeTask(
       page,
+      caseNumber2228,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1986,6 +2015,7 @@ test.describe("Case-API Refer case to legal officer tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2229, subjectName);
     await task.removeTask(
       page,
+      caseNumber2229,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

@@ -60,6 +60,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await buildCase.buildCase(page, false, caseNumber103, subjectName);
     await task.removeTask(
       page,
+      caseNumber103,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -146,6 +147,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await buildCase.buildCase(page, false, caseNumber104, subjectName);
     await task.removeTask(
       page,
+      caseNumber104,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -268,6 +270,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await buildCase.buildCase(page, false, caseNumber105, subjectName);
     await task.removeTask(
       page,
+      caseNumber105,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -354,6 +357,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await buildCase.buildCase(page, false, caseNumber108, subjectName);
     await task.removeTask(
       page,
+      caseNumber108,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -501,6 +505,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await buildCase.buildCase(page, false, caseNumber106, subjectName);
     await task.removeTask(
       page,
+      caseNumber106,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -579,6 +584,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     await buildCase.buildCase(page, false, caseNumber107, subjectName);
     await task.removeTask(
       page,
+      caseNumber107,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -689,6 +695,7 @@ test("Task completion: Accessibility test @accessibility ", async ({
   await buildCase.buildCase(page, false, caseNumber108, subjectName);
   await task.removeTask(
     page,
+    caseNumber108,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

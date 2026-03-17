@@ -55,6 +55,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2400, subjectName);
     await task.removeTask(
       page,
+      caseNumber2400,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -184,6 +185,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2401, subjectName);
     await task.removeTask(
       page,
+      caseNumber2401,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -311,6 +313,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2402, subjectName);
     await task.removeTask(
       page,
+      caseNumber2402,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -440,6 +443,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2403, subjectName);
     await task.removeTask(
       page,
+      caseNumber2403,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

@@ -54,6 +54,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await buildCase.buildCase(page, false, caseNumber95, subjectName);
     await task.removeTask(
       page,
+      caseNumber95,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -153,6 +154,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await buildCase.buildCase(page, false, caseNumber96, subjectName);
     await task.removeTask(
       page,
+      caseNumber96,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -280,6 +282,7 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
     await buildCase.buildCase(page, false, caseNumber97, subjectName);
     await task.removeTask(
       page,
+      caseNumber97,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

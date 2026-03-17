@@ -54,6 +54,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber20, subjectName);
     await task.removeTask(
       page,
+      caseNumber20,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -180,6 +181,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber21, subjectName);
     await task.removeTask(
       page,
+      caseNumber21,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -304,6 +306,7 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber22, subjectName);
     await task.removeTask(
       page,
+      caseNumber22,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

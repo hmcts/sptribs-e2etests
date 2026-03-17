@@ -55,6 +55,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber122, subjectName);
     await task.removeTask(
       page,
+      caseNumber122,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -138,6 +139,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber123, subjectName);
     await task.removeTask(
       page,
+      caseNumber123,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -221,6 +223,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber124, subjectName);
     await task.removeTask(
       page,
+      caseNumber124,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -340,6 +343,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber125, subjectName);
     await task.removeTask(
       page,
+      caseNumber125,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -415,6 +419,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber126, subjectName);
     await task.removeTask(
       page,
+      caseNumber126,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

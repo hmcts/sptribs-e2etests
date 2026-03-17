@@ -48,6 +48,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1600, subjectName);
     await task.removeTask(
       page,
+      caseNumber1600,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -129,6 +130,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1601, subjectName);
     await task.removeTask(
       page,
+      caseNumber1601,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -210,6 +212,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1602, subjectName);
     await task.removeTask(
       page,
+      caseNumber1602,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -291,6 +294,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1603, subjectName);
     await task.removeTask(
       page,
+      caseNumber1603,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -372,6 +376,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1604, subjectName);
     await task.removeTask(
       page,
+      caseNumber1604,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -453,6 +458,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1605, subjectName);
     await task.removeTask(
       page,
+      caseNumber1605,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -534,6 +540,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1606, subjectName);
     await task.removeTask(
       page,
+      caseNumber1606,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -613,6 +620,7 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1607, subjectName);
     await task.removeTask(
       page,
+      caseNumber1607,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -695,6 +703,7 @@ test("Accessibility Test - Edit Listing. @accessibility", async ({
   await buildCase.buildCase(page, false, caseNumber1608, subjectName);
   await task.removeTask(
     page,
+    caseNumber1608,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

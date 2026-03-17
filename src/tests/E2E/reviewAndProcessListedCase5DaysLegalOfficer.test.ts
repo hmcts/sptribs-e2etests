@@ -55,6 +55,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     await buildCase.buildCase(page, false, caseNumber01, subjectName);
     await task.removeTask(
       page,
+      caseNumber01,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -166,6 +167,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     await buildCase.buildCase(page, false, caseNumber02, subjectName);
     await task.removeTask(
       page,
+      caseNumber02,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -305,6 +307,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     await buildCase.buildCase(page, false, caseNumber03, subjectName);
     await task.removeTask(
       page,
+      caseNumber03,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

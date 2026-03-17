@@ -45,6 +45,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2000, subjectName);
     await task.removeTask(
       page,
+      caseNumber2000,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -107,6 +108,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2001, subjectName);
     await task.removeTask(
       page,
+      caseNumber2001,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -169,6 +171,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2002, subjectName);
     await task.removeTask(
       page,
+      caseNumber2002,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -231,6 +234,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2003, subjectName);
     await task.removeTask(
       page,
+      caseNumber2003,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -293,6 +297,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2004, subjectName);
     await task.removeTask(
       page,
+      caseNumber2004,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -355,6 +360,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2005, subjectName);
     await task.removeTask(
       page,
+      caseNumber2005,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -417,6 +423,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2006, subjectName);
     await task.removeTask(
       page,
+      caseNumber2006,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -479,6 +486,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2007, subjectName);
     await task.removeTask(
       page,
+      caseNumber2007,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -541,6 +549,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2008, subjectName);
     await task.removeTask(
       page,
+      caseNumber2008,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -603,6 +612,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2009, subjectName);
     await task.removeTask(
       page,
+      caseNumber2009,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -665,6 +675,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2010, subjectName);
     await task.removeTask(
       page,
+      caseNumber2010,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -727,6 +738,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2011, subjectName);
     await task.removeTask(
       page,
+      caseNumber2011,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -789,6 +801,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2012, subjectName);
     await task.removeTask(
       page,
+      caseNumber2012,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -851,6 +864,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2013, subjectName);
     await task.removeTask(
       page,
+      caseNumber2013,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -913,6 +927,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2014, subjectName);
     await task.removeTask(
       page,
+      caseNumber2014,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -975,6 +990,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2015, subjectName);
     await task.removeTask(
       page,
+      caseNumber2015,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1037,6 +1053,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2016, subjectName);
     await task.removeTask(
       page,
+      caseNumber2016,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1099,6 +1116,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2017, subjectName);
     await task.removeTask(
       page,
+      caseNumber2017,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1159,6 +1177,7 @@ test.describe("Postpone hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2018, subjectName);
     await task.removeTask(
       page,
+      caseNumber2018,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1222,6 +1241,7 @@ test("Accessibility test - postpone hearing @accessibility.", async ({
   await buildCase.buildCase(page, false, caseNumber2019, subjectName);
   await task.removeTask(
     page,
+    caseNumber2019,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

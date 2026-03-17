@@ -39,6 +39,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber500, subjectName);
     await task.removeTask(
       page,
+      caseNumber500,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -100,6 +101,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber501, subjectName);
     await task.removeTask(
       page,
+      caseNumber501,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -161,6 +163,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber502, subjectName);
     await task.removeTask(
       page,
+      caseNumber502,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -222,6 +225,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber503, subjectName);
     await task.removeTask(
       page,
+      caseNumber503,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -283,6 +287,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber504, subjectName);
     await task.removeTask(
       page,
+      caseNumber504,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -344,6 +349,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber505, subjectName);
     await task.removeTask(
       page,
+      caseNumber505,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -405,6 +411,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber506, subjectName);
     await task.removeTask(
       page,
+      caseNumber506,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -466,6 +473,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber507, subjectName);
     await task.removeTask(
       page,
+      caseNumber507,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -527,6 +535,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber508, subjectName);
     await task.removeTask(
       page,
+      caseNumber508,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -588,6 +597,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber509, subjectName);
     await task.removeTask(
       page,
+      caseNumber509,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -649,6 +659,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber510, subjectName);
     await task.removeTask(
       page,
+      caseNumber510,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -710,6 +721,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber511, subjectName);
     await task.removeTask(
       page,
+      caseNumber511,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -769,6 +781,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber512, subjectName);
     await task.removeTask(
       page,
+      caseNumber512,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -818,6 +831,7 @@ test("Accessibility test - Close case @accessibility", async ({
   await buildCase.buildCase(page, false, caseNumber513, subjectName);
   await task.removeTask(
     page,
+    caseNumber513,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

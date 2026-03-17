@@ -105,6 +105,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await addNote.addNote(page, false, caseNumber202, subjectName);
     await task.removeTask(
       page,
+      caseNumber202,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -140,6 +141,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber203, subjectName);
     await task.removeTask(
       page,
+      caseNumber203,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -189,6 +191,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber204, subjectName);
     await task.removeTask(
       page,
+      caseNumber204,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -244,6 +247,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber205, subjectName);
     await task.removeTask(
       page,
+      caseNumber205,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -316,6 +320,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber206, subjectName);
     await task.removeTask(
       page,
+      caseNumber206,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -366,6 +371,7 @@ test("Accessibility test - Add a note to a case stayed case. @accessibility", as
   await buildCase.buildCase(page, false, caseNumber207, subjectName);
   await task.removeTask(
     page,
+    caseNumber207,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

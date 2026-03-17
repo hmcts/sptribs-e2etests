@@ -56,6 +56,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber132, subjectName);
     await task.removeTask(
       page,
+      caseNumber132,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -217,6 +218,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber133, subjectName);
     await task.removeTask(
       page,
+      caseNumber133,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -339,6 +341,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber134, subjectName);
     await task.removeTask(
       page,
+      caseNumber134,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -461,6 +464,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber135, subjectName);
     await task.removeTask(
       page,
+      caseNumber135,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -539,6 +543,7 @@ test.describe("Review Time Extension Request - Legal Officer @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber136, subjectName);
     await task.removeTask(
       page,
+      caseNumber136,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

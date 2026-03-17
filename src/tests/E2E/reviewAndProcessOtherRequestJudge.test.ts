@@ -57,6 +57,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber76, subjectName);
     await task.removeTask(
       page,
+      caseNumber76,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -178,6 +179,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber77, subjectName);
     await task.removeTask(
       page,
+      caseNumber77,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -324,6 +326,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber78, subjectName);
     await task.removeTask(
       page,
+      caseNumber78,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -418,6 +421,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber79, subjectName);
     await task.removeTask(
       page,
+      caseNumber79,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -493,6 +497,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber80, subjectName);
     await task.removeTask(
       page,
+      caseNumber80,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

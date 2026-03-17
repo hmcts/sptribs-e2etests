@@ -55,6 +55,7 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
     await buildCase.buildCase(page, false, caseNumber89, subjectName);
     await task.removeTask(
       page,
+      caseNumber89,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -204,6 +205,7 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
     await buildCase.buildCase(page, false, caseNumber90, subjectName);
     await task.removeTask(
       page,
+      caseNumber90,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -351,6 +353,7 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
     await buildCase.buildCase(page, false, caseNumber91, subjectName);
     await task.removeTask(
       page,
+      caseNumber91,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

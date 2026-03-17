@@ -58,6 +58,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await buildCase.buildCase(page, false, caseNumber69, subjectName);
     await task.removeTask(
       page,
+      caseNumber69,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -182,6 +183,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await buildCase.buildCase(page, false, caseNumber70, subjectName);
     await task.removeTask(
       page,
+      caseNumber70,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -304,6 +306,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await buildCase.buildCase(page, false, caseNumber71, subjectName);
     await task.removeTask(
       page,
+      caseNumber71,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -388,6 +391,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await buildCase.buildCase(page, false, caseNumber72, subjectName);
     await task.removeTask(
       page,
+      caseNumber72,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -466,6 +470,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await buildCase.buildCase(page, false, caseNumber73, subjectName);
     await task.removeTask(
       page,
+      caseNumber73,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -583,6 +588,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
     await buildCase.buildCase(page, false, caseNumber74, subjectName);
     await task.removeTask(
       page,
+      caseNumber74,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -746,6 +752,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await buildCase.buildCase(page, false, caseNumber75, subjectName);
   await task.removeTask(
     page,
+    caseNumber75,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

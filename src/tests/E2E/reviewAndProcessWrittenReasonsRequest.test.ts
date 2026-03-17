@@ -54,6 +54,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI ", ()
     await buildCase.buildCase(page, false, caseNumber153, subjectName);
     await task.removeTask(
       page,
+      caseNumber153,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -150,6 +151,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI ", ()
     await buildCase.buildCase(page, false, caseNumber154, subjectName);
     await task.removeTask(
       page,
+      caseNumber154,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -274,6 +276,7 @@ test.describe("Review and Process Written Reasons request - Judge @CaseAPI ", ()
     await buildCase.buildCase(page, false, caseNumber155, subjectName);
     await task.removeTask(
       page,
+      caseNumber155,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

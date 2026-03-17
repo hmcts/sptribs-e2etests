@@ -49,6 +49,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1400, subjectName);
     await task.removeTask(
       page,
+      caseNumber1400,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -90,6 +91,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1401, subjectName);
     await task.removeTask(
       page,
+      caseNumber1401,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -150,6 +152,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1402, subjectName);
     await task.removeTask(
       page,
+      caseNumber1402,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -227,6 +230,7 @@ test.describe("Edit CICA case details tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1403, subjectName);
     await task.removeTask(
       page,
+      caseNumber1403,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -280,6 +284,7 @@ test("Accessibility test - edit CICA case details - case closed @accessibility."
   await buildCase.buildCase(page, false, caseNumber1404, subjectName);
   await task.removeTask(
     page,
+    caseNumber1404,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

@@ -59,6 +59,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2700, subjectName);
     await task.removeTask(
       page,
+      caseNumber2700,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -195,6 +196,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2701, subjectName);
     await task.removeTask(
       page,
+      caseNumber2701,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -307,6 +309,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2702, subjectName);
     await task.removeTask(
       page,
+      caseNumber2702,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -443,6 +446,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2703, subjectName);
     await task.removeTask(
       page,
+      caseNumber2703,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

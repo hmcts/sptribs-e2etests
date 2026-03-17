@@ -46,6 +46,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1300, subjectName);
     await task.removeTask(
       page,
+      caseNumber1300,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -105,6 +106,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1301, subjectName);
     await task.removeTask(
       page,
+      caseNumber1301,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -177,6 +179,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1302, subjectName);
     await task.removeTask(
       page,
+      caseNumber1302,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -255,6 +258,7 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1303, subjectName);
     await task.removeTask(
       page,
+      caseNumber1303,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

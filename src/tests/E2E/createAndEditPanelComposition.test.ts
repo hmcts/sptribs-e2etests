@@ -39,6 +39,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1700, subjectName);
     await task.removeTask(
       page,
+      caseNumber1700,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -83,6 +84,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1701, subjectName);
     await task.removeTask(
       page,
+      caseNumber1701,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -127,6 +129,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1702, subjectName);
     await task.removeTask(
       page,
+      caseNumber1702,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -171,6 +174,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1703, subjectName);
     await task.removeTask(
       page,
+      caseNumber1703,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -215,6 +219,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1704, subjectName);
     await task.removeTask(
       page,
+      caseNumber1704,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -269,6 +274,7 @@ test("Accessibility test - Create and Edit Panel composition @accessibility", as
   await buildCase.buildCase(page, false, caseNumber1705, subjectName);
   await task.removeTask(
     page,
+    caseNumber1705,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

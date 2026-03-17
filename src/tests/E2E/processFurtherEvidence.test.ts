@@ -127,6 +127,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2600,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -248,12 +249,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2601,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2601,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -655,6 +658,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber162, subjectName);
     await task.removeTask(
       page,
+      caseNumber162,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -754,6 +758,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber163, subjectName);
     await task.removeTask(
       page,
+      caseNumber163,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -863,6 +868,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2604, subjectName);
     await task.removeTask(
       page,
+      caseNumber2604,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -933,12 +939,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2604,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2604,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -996,6 +1004,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2605, subjectName);
     await task.removeTask(
       page,
+      caseNumber2605,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1066,12 +1075,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2605,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2605,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1105,6 +1116,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2606, subjectName);
     await task.removeTask(
       page,
+      caseNumber2606,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1215,6 +1227,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2607, subjectName);
     await task.removeTask(
       page,
+      caseNumber2607,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1311,6 +1324,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2608, subjectName);
     await task.removeTask(
       page,
+      caseNumber2608,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1430,6 +1444,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2609, subjectName);
     await task.removeTask(
       page,
+      caseNumber2609,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1506,12 +1521,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2609,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2609,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1569,6 +1586,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2610, subjectName);
     await task.removeTask(
       page,
+      caseNumber2610,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1645,12 +1663,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2610,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2610,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1684,6 +1704,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2611, subjectName);
     await task.removeTask(
       page,
+      caseNumber2611,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1800,6 +1821,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2612, subjectName);
     await task.removeTask(
       page,
+      caseNumber2612,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1902,6 +1924,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2613, subjectName);
     await task.removeTask(
       page,
+      caseNumber2613,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2027,6 +2050,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2614, subjectName);
     await task.removeTask(
       page,
+      caseNumber2614,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2120,12 +2144,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2614,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2614,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2183,6 +2209,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2615, subjectName);
     await task.removeTask(
       page,
+      caseNumber2615,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2276,12 +2303,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2615,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2615,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2315,6 +2344,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2616, subjectName);
     await task.removeTask(
       page,
+      caseNumber2616,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2450,6 +2480,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2617, subjectName);
     await task.removeTask(
       page,
+      caseNumber2617,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2569,6 +2600,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2618, subjectName);
     await task.removeTask(
       page,
+      caseNumber2618,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2711,6 +2743,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2619, subjectName);
     await task.removeTask(
       page,
+      caseNumber2619,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2832,6 +2865,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2620, subjectName);
     await task.removeTask(
       page,
+      caseNumber2620,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -2929,6 +2963,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2621, subjectName);
     await task.removeTask(
       page,
+      caseNumber2621,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3025,6 +3060,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2622, subjectName);
     await task.removeTask(
       page,
+      caseNumber2622,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3144,6 +3180,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2623, subjectName);
     await task.removeTask(
       page,
+      caseNumber2623,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3212,12 +3249,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2623,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2623,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3275,6 +3314,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2624, subjectName);
     await task.removeTask(
       page,
+      caseNumber2624,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3343,12 +3383,14 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber2624,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber2624,
       taskNames_content.vetNewCaseDocuments,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3382,6 +3424,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2625, subjectName);
     await task.removeTask(
       page,
+      caseNumber2625,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3476,6 +3519,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber2626, subjectName);
     await task.removeTask(
       page,
+      caseNumber2626,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3567,6 +3611,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber164, subjectName);
     await task.removeTask(
       page,
+      caseNumber164,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -3646,6 +3691,7 @@ test("Task completion: Accessibility test @accessibility", async ({ page }) => {
   await buildCase.buildCase(page, false, caseNumber165, subjectName);
   await task.removeTask(
     page,
+    caseNumber165,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

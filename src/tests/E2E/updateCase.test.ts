@@ -57,12 +57,14 @@ test.describe("DSS Update case tests.", () => {
     );
     await task.removeTask(
       page,
+      caseNumber01,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber01,
       taskNames_content.processFurtherEvidence,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -116,12 +118,14 @@ test.describe("DSS Update case tests.", () => {
     );
     await task.removeTask(
       page,
+      caseNumber02,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber02,
       taskNames_content.processFurtherEvidence,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -175,12 +179,14 @@ test.describe("DSS Update case tests.", () => {
     );
     await task.removeTask(
       page,
+      caseNumber03,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
     );
     await task.removeTask(
       page,
+      caseNumber03,
       taskNames_content.processFurtherEvidence,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -214,6 +220,7 @@ test.describe("DSS Update case tests.", () => {
     );
     await task.removeTask(
       page,
+      caseNumber04,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -260,6 +267,7 @@ test.describe("DSS Update case tests.", () => {
     );
     await task.removeTask(
       page,
+      caseNumber05,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -305,6 +313,7 @@ test.describe("DSS Update case tests.", () => {
     );
     await task.removeTask(
       page,
+      caseNumber06,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -374,12 +383,14 @@ test("Check for an existing case to update - aXe test as it proceeds. @accessibi
   );
   await task.removeTask(
     page,
+    caseNumber07,
     taskNames_content.registerNewCaseTask,
     subjectName,
     waUsers_content.userRoleAdmin,
   );
   await task.removeTask(
     page,
+    caseNumber07,
     taskNames_content.processFurtherEvidence,
     subjectName,
     waUsers_content.userRoleAdmin,

@@ -55,6 +55,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber07, subjectName);
     await task.removeTask(
       page,
+      caseNumber07,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -163,6 +164,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber08, subjectName);
     await task.removeTask(
       page,
+      caseNumber08,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -299,6 +301,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber09, subjectName);
     await task.removeTask(
       page,
+      caseNumber09,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -435,6 +438,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber60, subjectName);
     await task.removeTask(
       page,
+      caseNumber60,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -542,6 +546,7 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
   await buildCase.buildCase(page, false, caseNumber61, subjectName);
   await task.removeTask(
     page,
+    caseNumber61,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

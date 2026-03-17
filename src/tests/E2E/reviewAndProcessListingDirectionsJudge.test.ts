@@ -56,6 +56,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber16, subjectName);
     await task.removeTask(
       page,
+      caseNumber16,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -139,6 +140,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber17, subjectName);
     await task.removeTask(
       page,
+      caseNumber17,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -258,6 +260,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber177, subjectName);
     await task.removeTask(
       page,
+      caseNumber177,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -339,6 +342,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber18, subjectName);
     await task.removeTask(
       page,
+      caseNumber18,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -414,6 +418,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber19, subjectName);
     await task.removeTask(
       page,
+      caseNumber19,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -528,6 +533,7 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
     await buildCase.buildCase(page, false, caseNumber220, subjectName);
     await task.removeTask(
       page,
+      caseNumber220,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

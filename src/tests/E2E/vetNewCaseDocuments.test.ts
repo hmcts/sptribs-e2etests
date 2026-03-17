@@ -100,6 +100,7 @@ test.describe("Vet new case documents task tests @CaseAPI ", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber156,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -187,6 +188,7 @@ test.describe("Vet new case documents task tests @CaseAPI ", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber157,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -272,6 +274,7 @@ test.describe("Vet new case documents task tests @CaseAPI ", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber158,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -360,6 +363,7 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
   );
   await task.removeTask(
     page,
+    caseNumber159,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

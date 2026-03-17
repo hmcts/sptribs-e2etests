@@ -55,6 +55,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber13, subjectName);
     await task.removeTask(
       page,
+      caseNumber13,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -196,6 +197,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber14, subjectName);
     await task.removeTask(
       page,
+      caseNumber14,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -335,6 +337,7 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber15, subjectName);
     await task.removeTask(
       page,
+      caseNumber15,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

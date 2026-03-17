@@ -59,6 +59,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber45, subjectName);
     await task.removeTask(
       page,
+      caseNumber45,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -221,6 +222,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber46, subjectName);
     await task.removeTask(
       page,
+      caseNumber46,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -343,6 +345,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber47, subjectName);
     await task.removeTask(
       page,
+      caseNumber47,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -503,6 +506,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber48, subjectName);
     await task.removeTask(
       page,
+      caseNumber48,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -581,6 +585,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber49, subjectName);
     await task.removeTask(
       page,
+      caseNumber49,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -690,6 +695,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber50, subjectName);
     await task.removeTask(
       page,
+      caseNumber50,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -831,6 +837,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber221, subjectName);
     await task.removeTask(
       page,
+      caseNumber221,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

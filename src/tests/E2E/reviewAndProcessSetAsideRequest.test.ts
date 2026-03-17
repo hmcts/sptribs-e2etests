@@ -55,6 +55,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await buildCase.buildCase(page, false, caseNumber109, subjectName);
     await task.removeTask(
       page,
+      caseNumber109,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -151,6 +152,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await buildCase.buildCase(page, false, caseNumber110, subjectName);
     await task.removeTask(
       page,
+      caseNumber110,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -275,6 +277,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await buildCase.buildCase(page, false, caseNumber111, subjectName);
     await task.removeTask(
       page,
+      caseNumber111,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

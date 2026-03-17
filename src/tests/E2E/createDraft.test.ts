@@ -50,6 +50,7 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber802, subjectName);
     await task.removeTask(
       page,
+      caseNumber802,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

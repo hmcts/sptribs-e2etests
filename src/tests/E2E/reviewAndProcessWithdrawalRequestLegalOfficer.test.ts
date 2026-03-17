@@ -60,6 +60,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber147, subjectName);
     await task.removeTask(
       page,
+      caseNumber147,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -146,6 +147,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber148, subjectName);
     await task.removeTask(
       page,
+      caseNumber148,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -268,6 +270,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber149, subjectName);
     await task.removeTask(
       page,
+      caseNumber149,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -392,6 +395,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber0150, subjectName);
     await task.removeTask(
       page,
+      caseNumber0150,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -499,6 +503,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber150, subjectName);
     await task.removeTask(
       page,
+      caseNumber150,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -577,6 +582,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber151, subjectName);
     await task.removeTask(
       page,
+      caseNumber151,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -692,6 +698,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     await buildCase.buildCase(page, false, caseNumber152, subjectName);
     await task.removeTask(
       page,
+      caseNumber152,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

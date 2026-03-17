@@ -45,6 +45,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1800, subjectName);
     await task.removeTask(
       page,
+      caseNumber1800,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -132,6 +133,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1801, subjectName);
     await task.removeTask(
       page,
+      caseNumber1801,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -219,6 +221,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1802, subjectName);
     await task.removeTask(
       page,
+      caseNumber1802,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -306,6 +309,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1803, subjectName);
     await task.removeTask(
       page,
+      caseNumber1803,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -393,6 +397,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1804, subjectName);
     await task.removeTask(
       page,
+      caseNumber1804,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -480,6 +485,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber1805, subjectName);
     await task.removeTask(
       page,
+      caseNumber1805,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -568,6 +574,7 @@ test("Accessibility test - edit summary @accessibility", async ({
   await buildCase.buildCase(page, false, caseNumber1806, subjectName);
   await task.removeTask(
     page,
+    caseNumber1806,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

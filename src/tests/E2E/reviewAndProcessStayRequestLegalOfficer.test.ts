@@ -59,6 +59,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber117, subjectName);
     await task.removeTask(
       page,
+      caseNumber117,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -221,6 +222,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber118, subjectName);
     await task.removeTask(
       page,
+      caseNumber118,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -343,6 +345,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber119, subjectName);
     await task.removeTask(
       page,
+      caseNumber119,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -427,6 +430,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber120, subjectName);
     await task.removeTask(
       page,
+      caseNumber120,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -505,6 +509,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber121, subjectName);
     await task.removeTask(
       page,
+      caseNumber121,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
