@@ -156,7 +156,13 @@ const task: Task = {
     );
   },
 
-  async removeTask(page, caseNumber, taskRemoved, subjectName, user): Promise<void> {
+  async removeTask(
+    page,
+    caseNumber,
+    taskRemoved,
+    subjectName,
+    user,
+  ): Promise<void> {
     await commonHelpers.signOutAndGoToCase(
       page,
       user,

@@ -173,10 +173,7 @@ const tasksPage: TasksPage = {
     }
   },
 
-  async navigateToTaskTab(
-    page: Page,
-    caseNumber: string,
-  ): Promise<void> {
+  async navigateToTaskTab(page: Page, caseNumber: string): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
       `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
@@ -201,7 +198,9 @@ const tasksPage: TasksPage = {
     const specificTask = page.locator("exui-case-task", {
       hasText: `${nextTriggeredTaskCleanUp}`,
     });
-    const taskLocator = page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`);
+    const taskLocator = page.locator(
+      `p strong:text-is("${nextTriggeredTaskCleanUp}")`,
+    );
     while (true) {
       if (await taskLocator.isVisible().catch(() => false)) {
         const cancelTask = page.locator('a:text-is("Cancel task")');
@@ -212,9 +211,9 @@ const tasksPage: TasksPage = {
         }
         break;
       } else {
-      await page.waitForLoadState("domcontentloaded");
-      await page.reload();
-      await page.waitForTimeout(5000);
+        await page.waitForLoadState("domcontentloaded");
+        await page.reload();
+        await page.waitForTimeout(5000);
       }
     }
   },
@@ -281,9 +280,9 @@ const tasksPage: TasksPage = {
         }
         break;
       } else {
-      await page.waitForLoadState("domcontentloaded");
-      await page.reload();
-      await page.waitForTimeout(5000);
+        await page.waitForLoadState("domcontentloaded");
+        await page.reload();
+        await page.waitForTimeout(5000);
       }
     }
   },
