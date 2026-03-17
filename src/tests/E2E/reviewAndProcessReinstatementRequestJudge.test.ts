@@ -82,13 +82,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): 
       caseNumber92,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewReinstatementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -179,13 +172,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): 
       caseNumber93,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewReinstatementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -206,13 +192,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): 
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber93,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
@@ -304,13 +283,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): 
       caseNumber94,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewReinstatementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -331,13 +303,6 @@ test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): 
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber94,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(

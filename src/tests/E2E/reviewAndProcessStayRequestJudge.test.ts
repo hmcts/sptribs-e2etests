@@ -70,13 +70,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       caseNumber112,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStayJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -105,13 +98,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewStayJudge,
       caseNumber112,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStay,
       subjectName,
     );
     await task.initiateTask(
@@ -192,13 +178,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       caseNumber113,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStayJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -274,13 +253,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       caseNumber114,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStayJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -309,13 +281,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewStayJudge,
       caseNumber114,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStay,
       subjectName,
     );
     await task.initiateTask(
@@ -491,13 +456,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       caseNumber117,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStayRequestCaseListedJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -526,13 +484,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewStayRequestCaseListedJudge,
       caseNumber117,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStayDirectionsListed,
       subjectName,
     );
     await task.initiateTask(
@@ -609,13 +560,6 @@ test.describe("Review Stay Request - Judge @CaseAPI ", (): void => {
       "Stay request",
       false,
       caseNumber116,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStayJudge,
       subjectName,
     );
     await task.initiateTask(

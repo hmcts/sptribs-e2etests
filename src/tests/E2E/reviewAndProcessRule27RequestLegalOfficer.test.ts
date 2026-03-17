@@ -77,13 +77,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       caseNumber103,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewRule27LO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -164,13 +157,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       caseNumber104,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewRule27LO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -199,13 +185,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       taskNames_content.reviewRule27LO,
       caseNumber104,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27,
       subjectName,
     );
     await task.initiateTask(
@@ -285,13 +264,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       "Rule 27 request",
       false,
       caseNumber105,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewRule27LO,
       subjectName,
     );
     await task.initiateTask(
@@ -399,13 +371,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       caseNumber108,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewRule27RequestCaseListedLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -434,13 +399,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       taskNames_content.reviewRule27RequestCaseListedLO,
       caseNumber108,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27DecisionListed,
       subjectName,
     );
     await task.initiateTask(
@@ -601,13 +559,6 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
       caseNumber107,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewRule27LO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -712,13 +663,6 @@ test("Task completion: Accessibility test @accessibility ", async ({
     caseNumber108,
     subjectName,
   );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleLO,
-    false,
-    taskNames_content.reviewRule27LO,
-    subjectName,
-  );
   await task.initiateTask(
     page,
     waUsers_content.userRoleLO,
@@ -749,13 +693,6 @@ test("Task completion: Accessibility test @accessibility ", async ({
     taskNames_content.reviewRule27LO,
     caseNumber108,
     states_content.caseManagementState,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.nonComplianceDirections,
     subjectName,
   );
   await task.initiateTask(

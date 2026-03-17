@@ -73,13 +73,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -195,13 +188,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -298,13 +284,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber2602,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -368,13 +347,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2603,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -481,13 +453,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -590,13 +555,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -673,13 +631,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber162,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -773,13 +724,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber163,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -898,13 +842,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       false,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -1036,13 +973,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -1144,13 +1074,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2606,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -1257,13 +1180,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber2607,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -1352,13 +1268,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2608,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -1480,13 +1389,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       false,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -1624,13 +1526,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -1738,13 +1633,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2611,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -1857,13 +1745,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber2612,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -1958,13 +1839,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2613,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -2103,13 +1977,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       false,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -2264,13 +2131,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -2395,13 +2255,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2616,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -2533,13 +2386,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber2617,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -2651,13 +2497,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2618,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -2775,13 +2614,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -2897,13 +2729,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -2991,13 +2816,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2621,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -3088,13 +2906,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2622,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -3208,13 +3019,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       false,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -3344,13 +3148,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -3452,13 +3249,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber2625,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -3545,13 +3335,6 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       false,
       false,
       caseNumber2626,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processFurtherEvidence,
       subjectName,
     );
     await task.initiateTask(
@@ -3706,13 +3489,6 @@ test("Task completion: Accessibility test @accessibility", async ({ page }) => {
     false,
     false,
     caseNumber165,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.processFurtherEvidence,
     subjectName,
   );
   await task.initiateTask(

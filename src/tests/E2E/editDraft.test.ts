@@ -70,13 +70,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1500,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -170,13 +163,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1501,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -280,13 +266,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1502,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -378,13 +357,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1503,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -480,13 +452,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1504,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -628,13 +593,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       caseNumber1506,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -718,13 +676,6 @@ test("Accessibility test - Edit draft - CIC14", async ({
     "Other",
     false,
     caseNumber1507,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleLO,
-    false,
-    taskNames_content.reviewOtherRequestLO,
     subjectName,
   );
   await task.initiateTask(

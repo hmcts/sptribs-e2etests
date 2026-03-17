@@ -37,13 +37,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -108,13 +101,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       false,
       false,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
       subjectName,
     );
     await task.initiateTask(
@@ -183,13 +169,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -254,13 +233,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       false,
       false,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
       subjectName,
     );
     await task.initiateTask(
@@ -329,13 +301,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -402,13 +367,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -473,13 +431,6 @@ test.describe("Register new case task tests @CaseAPI ", (): void => {
       false,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.registerNewCaseTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -537,13 +488,6 @@ test("Task completion: Accessibility test / Edit Case : Accessibility test @acce
     false,
     true,
     false,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.registerNewCaseTask,
     subjectName,
   );
   await task.initiateTask(

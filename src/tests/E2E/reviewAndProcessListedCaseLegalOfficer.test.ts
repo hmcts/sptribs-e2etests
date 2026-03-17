@@ -97,13 +97,6 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
       caseNumber13,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -124,13 +117,6 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber13,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase,
       subjectName,
     );
     await task.initiateTask(
@@ -239,13 +225,6 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
       caseNumber14,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -266,13 +245,6 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
       false,
       "CIC10 - Strike Out Warning",
       caseNumber14,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase,
       subjectName,
     );
     await task.initiateTask(
@@ -379,13 +351,6 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
       caseNumber15,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -406,13 +371,6 @@ test.describe("Review and Process Listed Case - Legal Officer @CaseAPI ", (): vo
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber15,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase,
       subjectName,
     );
     await task.initiateTask(

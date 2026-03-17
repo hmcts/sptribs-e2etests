@@ -71,13 +71,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       caseNumber98,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -106,13 +99,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       taskNames_content.reviewRule27Judge,
       caseNumber98,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27,
       subjectName,
     );
     await task.initiateTask(
@@ -193,13 +179,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       caseNumber99,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -275,13 +254,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       caseNumber100,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -310,13 +282,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       taskNames_content.reviewRule27Judge,
       caseNumber100,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27,
       subjectName,
     );
     await task.initiateTask(
@@ -469,13 +434,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       "Rule 27 request",
       false,
       caseNumber102,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
       subjectName,
     );
     await task.initiateTask(

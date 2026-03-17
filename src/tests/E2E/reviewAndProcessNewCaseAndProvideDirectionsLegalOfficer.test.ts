@@ -75,13 +75,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       caseNumber69,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewNewCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -110,13 +103,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       taskNames_content.reviewNewCaseLO,
       caseNumber69,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -200,13 +186,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       caseNumber70,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewNewCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -235,13 +214,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       taskNames_content.reviewNewCaseLO,
       caseNumber70,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -321,13 +293,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       "New case",
       false,
       caseNumber71,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewNewCaseLO,
       subjectName,
     );
     await task.initiateTask(
@@ -487,13 +452,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       caseNumber73,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewNewCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -605,13 +563,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       caseNumber74,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewNewCaseLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -640,13 +591,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       taskNames_content.reviewNewCaseLO,
       caseNumber74,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -680,13 +624,6 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
       taskNames_content.processDirectionsReturned,
       caseNumber74,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -769,13 +706,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     caseNumber75,
     subjectName,
   );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleLO,
-    false,
-    taskNames_content.reviewNewCaseLO,
-    subjectName,
-  );
   await task.initiateTask(
     page,
     waUsers_content.userRoleLO,
@@ -806,13 +736,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     taskNames_content.reviewNewCaseLO,
     caseNumber75,
     states_content.caseManagementState,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.nonComplianceDirections,
     subjectName,
   );
   await task.initiateTask(

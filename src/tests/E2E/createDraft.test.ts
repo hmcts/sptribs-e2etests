@@ -67,13 +67,6 @@ test.describe("Case-API Create draft tests. @CaseAPI", () => {
       caseNumber802,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,

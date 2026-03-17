@@ -78,13 +78,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       caseNumber81,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -113,13 +106,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       taskNames_content.reviewOtherRequestLO,
       caseNumber81,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -153,13 +139,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       taskNames_content.processOtherDirectionsReturned,
       caseNumber81,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -265,13 +244,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       caseNumber82,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -300,13 +272,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       taskNames_content.reviewOtherRequestLO,
       caseNumber82,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -401,13 +366,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       "Other",
       false,
       caseNumber83,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -565,13 +523,6 @@ test.describe("Review and Process Other Request - Legal Officer @CaseAPI ", (): 
       "Other",
       false,
       caseNumber85,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(

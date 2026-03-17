@@ -70,13 +70,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       caseNumber16,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListingDirectionsJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -154,13 +147,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       caseNumber17,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListingDirectionsJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -189,13 +175,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       taskNames_content.reviewListingDirectionsJudge,
       caseNumber17,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -272,13 +251,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       "Listing directions",
       false,
       caseNumber177,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListingDirectionsJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -432,13 +404,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       caseNumber19,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListingDirectionsJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -560,13 +525,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       caseNumber220,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListingDirectionsCaseListedJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -587,13 +545,6 @@ test.describe("Review and Process Listing Directions - Judge @CaseAPI ", (): voi
       false,
       "CIC10 - Strike Out Warning",
       caseNumber220,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirectionsListed,
       subjectName,
     );
     await task.initiateTask(

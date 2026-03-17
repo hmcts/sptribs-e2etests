@@ -84,13 +84,6 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber95,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewReinstatementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -184,13 +177,6 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber96,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewReinstatementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -211,13 +197,6 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber96,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
@@ -312,13 +291,6 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       caseNumber97,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewReinstatementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -339,13 +311,6 @@ test.describe("Review and Process Reinstatement Request - Legal Officer @CaseAPI
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber97,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(

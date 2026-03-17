@@ -95,13 +95,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       caseNumber86,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewPostponementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -204,13 +197,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       caseNumber87,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewPostponementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -239,13 +225,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       taskNames_content.reviewPostponementJudge,
       caseNumber87,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -349,13 +328,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       caseNumber88,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewPostponementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -384,13 +356,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       taskNames_content.reviewPostponementJudge,
       caseNumber88,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(

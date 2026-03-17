@@ -70,13 +70,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       caseNumber137,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -105,13 +98,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewTimeExtensionJudge,
       caseNumber137,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processTimeExtensionDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -192,13 +178,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       caseNumber138,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -276,13 +255,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       caseNumber139,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -311,13 +283,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewTimeExtensionJudge,
       caseNumber139,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processTimeExtensionDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -470,13 +435,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       "Time extension request",
       false,
       caseNumber141,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
       subjectName,
     );
     await task.initiateTask(

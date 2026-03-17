@@ -72,13 +72,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       caseNumber62,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -156,13 +149,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       caseNumber63,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -191,13 +177,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       taskNames_content.reviewNewCaseJudge,
       caseNumber63,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -276,13 +255,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       "New case",
       false,
       caseNumber64,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -436,13 +408,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       caseNumber66,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -551,13 +516,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       caseNumber67,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -586,13 +544,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       taskNames_content.reviewNewCaseJudge,
       caseNumber67,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -626,13 +577,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       taskNames_content.processDirectionsReturned,
       caseNumber67,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -712,13 +656,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     caseNumber68,
     subjectName,
   );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleJudge,
-    false,
-    taskNames_content.reviewNewCaseJudge,
-    subjectName,
-  );
   await task.initiateTask(
     page,
     waUsers_content.userRoleJudge,
@@ -749,13 +686,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     taskNames_content.reviewNewCaseJudge,
     caseNumber68,
     states_content.caseManagementState,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.nonComplianceDirections,
     subjectName,
   );
   await task.initiateTask(

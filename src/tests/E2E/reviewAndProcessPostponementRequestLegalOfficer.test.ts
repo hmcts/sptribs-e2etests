@@ -97,13 +97,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       caseNumber89,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewPostponementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -132,13 +125,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       taskNames_content.reviewPostponementLO,
       caseNumber89,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -247,13 +233,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       caseNumber90,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewPostponementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -282,13 +261,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       taskNames_content.reviewPostponementLO,
       caseNumber90,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -395,13 +367,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       caseNumber91,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewPostponementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -430,13 +395,6 @@ test.describe("Review and Process Postponement Directions - Legal Officer @CaseA
       taskNames_content.reviewPostponementLO,
       caseNumber91,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(

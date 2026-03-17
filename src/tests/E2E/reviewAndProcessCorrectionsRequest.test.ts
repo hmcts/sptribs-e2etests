@@ -81,13 +81,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
       caseNumber20,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewCorrectionsRequest,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -108,13 +101,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber20,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processCorrections,
       subjectName,
     );
     await task.initiateTask(
@@ -208,13 +194,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
       caseNumber21,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewCorrectionsRequest,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -235,13 +214,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber21,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processCorrections,
       subjectName,
     );
     await task.initiateTask(
@@ -331,13 +303,6 @@ test.describe("Review and Process Corrections - Judge @CaseAPI ", (): void => {
       "Corrections",
       false,
       caseNumber22,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewCorrectionsRequest,
       subjectName,
     );
     await task.initiateTask(

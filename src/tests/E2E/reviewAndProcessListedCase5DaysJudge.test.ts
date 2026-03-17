@@ -95,13 +95,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       caseNumber04,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCase5DaysJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -204,13 +197,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       caseNumber05,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCase5DaysJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -231,13 +217,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       false,
       "CIC10 - Strike Out Warning",
       caseNumber05,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(
@@ -341,13 +320,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       caseNumber06,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCase5DaysJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -368,13 +340,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber06,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(

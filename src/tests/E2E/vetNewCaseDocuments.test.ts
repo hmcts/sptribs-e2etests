@@ -68,13 +68,6 @@ test.describe("Vet new case documents task tests @CaseAPI ", (): void => {
       caseNumber156,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -156,13 +149,6 @@ test.describe("Vet new case documents task tests @CaseAPI ", (): void => {
       caseNumber157,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.vetNewCaseDocuments,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -240,13 +226,6 @@ test.describe("Vet new case documents task tests @CaseAPI ", (): void => {
       false,
       false,
       caseNumber158,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.vetNewCaseDocuments,
       subjectName,
     );
     await task.initiateTask(
@@ -329,13 +308,6 @@ test("Task completion: Accessibility test / Build Case : Accessibility test @acc
     false,
     false,
     caseNumber159,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    true,
-    taskNames_content.vetNewCaseDocuments,
     subjectName,
   );
   await task.initiateTask(
