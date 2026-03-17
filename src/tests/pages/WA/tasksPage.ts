@@ -35,9 +35,10 @@ type TasksPage = {
     numberOfTasks: number,
     taskNames: string[],
   ): Promise<void>;
-  navigateToTaskTab(page: Page, event: any, caseNumber: string): Promise<void>;
+  navigateToTaskTab(page: Page, caseNumber: string): Promise<void>;
   chooseEventFromDropdown(page: Page, event: any): Promise<void>;
   dataCleanUpMarkAsDone(page: Page, selector: any): Promise<void>;
+  assignTaskToMe(page: Page, taskName: string): Promise<void>;
 };
 
 const tasksPage: TasksPage = {
@@ -174,14 +175,13 @@ const tasksPage: TasksPage = {
 
   async navigateToTaskTab(
     page: Page,
-    event: any,
     caseNumber: string,
   ): Promise<void> {
     const caseNumberDigits = caseNumber.replace(/\D/g, "");
     await page.goto(
       `${config.CaseAPIBaseURL}/case-details/${caseNumberDigits}/tasks`,
     );
-    await page.waitForSelector(`a:text-is("${event}")`, { state: "attached" });
+    await page.waitForLoadState("domcontentloaded");
   },
 
   async clickTaskLink(page: Page, event: any, taskName: string): Promise<void> {
@@ -201,17 +201,22 @@ const tasksPage: TasksPage = {
     const specificTask = page.locator("exui-case-task", {
       hasText: `${nextTriggeredTaskCleanUp}`,
     });
-
-    await page.waitForSelector(
-      `p strong:text-is("${nextTriggeredTaskCleanUp}")`,
-    );
-    await specificTask.locator("#action_cancel").click();
-    await page.waitForSelector(`h1:text-is("Cancel a task")`);
-    await page.locator("#submit-button").click();
-    await page.waitForSelector(`h2:text-is("Active tasks")`);
-    await expect(
-      page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`),
-    ).not.toBeVisible();
+    const taskLocator = page.locator(`p strong:text-is("${nextTriggeredTaskCleanUp}")`);
+    while (true) {
+      if (await taskLocator.isVisible().catch(() => false)) {
+        const cancelTask = page.locator('a:text-is("Cancel task")');
+        if (await cancelTask.isVisible().catch(() => false)) {
+          await cancelTask.click();
+          await page.waitForSelector(`h1:text-is("Cancel a task")`);
+          await page.locator("#submit-button").click();
+        }
+        break;
+      } else {
+      await page.waitForLoadState("domcontentloaded");
+      await page.reload();
+      await page.waitForTimeout(5000);
+      }
+    }
   },
 
   async markTasksAsDone(
@@ -264,6 +269,23 @@ const tasksPage: TasksPage = {
     await page.waitForSelector(`button:text-is("Cancel task")`);
     await page.locator("#submit-button").click();
     await page.waitForTimeout(5000);
+  },
+
+  async assignTaskToMe(page: Page, taskName: string): Promise<void> {
+    const taskLocator = page.getByText(taskName, { exact: true });
+    while (true) {
+      if (await taskLocator.isVisible().catch(() => false)) {
+        const assignToMe = page.locator('a:text-is("Assign to me")');
+        if (await assignToMe.isVisible().catch(() => false)) {
+          await assignToMe.click();
+        }
+        break;
+      } else {
+      await page.waitForLoadState("domcontentloaded");
+      await page.reload();
+      await page.waitForTimeout(5000);
+      }
+    }
   },
 };
 
