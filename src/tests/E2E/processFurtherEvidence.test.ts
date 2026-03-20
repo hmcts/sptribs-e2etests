@@ -2374,6 +2374,13 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
       caseNumber2617,
       subjectName,
     );
+    await task.removeTask(
+      page,
+      caseNumber2617,
+      taskNames_content.issueDecisionNotice,
+      subjectName,
+      waUsers_content.userRoleJudge,
+    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Document management: Upload",
