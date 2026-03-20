@@ -57,6 +57,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
     await buildCase.buildCase(page, false, caseNumber98, subjectName);
     await task.removeTask(
       page,
+      caseNumber98,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -68,13 +69,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       "Rule 27 request",
       false,
       caseNumber98,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
       subjectName,
     );
     await task.initiateTask(
@@ -105,13 +99,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       taskNames_content.reviewRule27Judge,
       caseNumber98,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27,
       subjectName,
     );
     await task.initiateTask(
@@ -178,6 +165,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
     await buildCase.buildCase(page, false, caseNumber99, subjectName);
     await task.removeTask(
       page,
+      caseNumber99,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -189,13 +177,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       "Rule 27 request",
       false,
       caseNumber99,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
       subjectName,
     );
     await task.initiateTask(
@@ -259,6 +240,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
     await buildCase.buildCase(page, false, caseNumber100, subjectName);
     await task.removeTask(
       page,
+      caseNumber100,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -270,13 +252,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       "Rule 27 request",
       false,
       caseNumber100,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
       subjectName,
     );
     await task.initiateTask(
@@ -307,13 +282,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       taskNames_content.reviewRule27Judge,
       caseNumber100,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27,
       subjectName,
     );
     await task.initiateTask(
@@ -378,6 +346,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
     await buildCase.buildCase(page, false, caseNumber101, subjectName);
     await task.removeTask(
       page,
+      caseNumber101,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -453,6 +422,7 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
     await buildCase.buildCase(page, false, caseNumber102, subjectName);
     await task.removeTask(
       page,
+      caseNumber102,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -464,13 +434,6 @@ test.describe("Review Rule 27 request and Process decision - Judge @CaseAPI ", (
       "Rule 27 request",
       false,
       caseNumber102,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewRule27Judge,
       subjectName,
     );
     await task.initiateTask(

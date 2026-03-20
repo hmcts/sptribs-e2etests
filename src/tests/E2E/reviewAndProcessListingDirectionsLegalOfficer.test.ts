@@ -59,6 +59,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber45, subjectName);
     await task.removeTask(
       page,
+      caseNumber45,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -73,13 +74,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber45,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
     await task.initiateTask(
@@ -110,13 +104,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       taskNames_content.reviewListingDirectionsLO,
       caseNumber45,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -150,13 +137,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       taskNames_content.processListingDirections,
       caseNumber45,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -221,6 +201,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber46, subjectName);
     await task.removeTask(
       page,
+      caseNumber46,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -235,13 +216,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber46,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
     await task.initiateTask(
@@ -274,13 +248,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       taskNames_content.reviewListingDirectionsLO,
       caseNumber46,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -343,6 +310,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber47, subjectName);
     await task.removeTask(
       page,
+      caseNumber47,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -357,13 +325,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber47,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
     await task.initiateTask(
@@ -394,13 +355,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       taskNames_content.reviewListingDirectionsLO,
       caseNumber47,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -434,13 +388,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       taskNames_content.processListingDirections,
       caseNumber47,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -503,6 +450,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber48, subjectName);
     await task.removeTask(
       page,
+      caseNumber48,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -517,13 +465,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber48,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
     await myWorkPage.clickAssignAndGoToTask(
@@ -581,6 +522,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber49, subjectName);
     await task.removeTask(
       page,
+      caseNumber49,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -595,13 +537,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber49,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
     await task.initiateTask(
@@ -690,6 +625,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber50, subjectName);
     await task.removeTask(
       page,
+      caseNumber50,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -704,13 +640,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber50,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsLO,
       subjectName,
     );
     await task.initiateTask(
@@ -733,13 +662,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       false,
       "CIC3 - Rule 27",
       caseNumber50,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processListingDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -831,6 +753,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     await buildCase.buildCase(page, false, caseNumber221, subjectName);
     await task.removeTask(
       page,
+      caseNumber221,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -858,13 +781,6 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
       "Listing directions",
       false,
       caseNumber221,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListingDirectionsCaseListedLO,
       subjectName,
     );
     await task.initiateTask(

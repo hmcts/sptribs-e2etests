@@ -44,6 +44,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2300, subjectName);
     await task.removeTask(
       page,
+      caseNumber2300,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -101,6 +102,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2301, subjectName);
     await task.removeTask(
       page,
+      caseNumber2301,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -158,6 +160,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2302, subjectName);
     await task.removeTask(
       page,
+      caseNumber2302,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -215,6 +218,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2303, subjectName);
     await task.removeTask(
       page,
+      caseNumber2303,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -272,6 +276,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2304, subjectName);
     await task.removeTask(
       page,
+      caseNumber2304,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -329,6 +334,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2305, subjectName);
     await task.removeTask(
       page,
+      caseNumber2305,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -386,6 +392,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2306, subjectName);
     await task.removeTask(
       page,
+      caseNumber2306,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -443,6 +450,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2307, subjectName);
     await task.removeTask(
       page,
+      caseNumber2307,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -501,6 +509,7 @@ test("Accessibility test - Reinstate case. @accessibility", async ({
   await buildCase.buildCase(page, false, caseNumber2308, subjectName);
   await task.removeTask(
     page,
+    caseNumber2308,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

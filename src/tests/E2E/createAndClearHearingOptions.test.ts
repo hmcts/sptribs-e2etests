@@ -39,6 +39,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber401, subjectName);
     await task.removeTask(
       page,
+      caseNumber401,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -93,6 +94,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber402, subjectName);
     await task.removeTask(
       page,
+      caseNumber402,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -141,6 +143,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber403, subjectName);
     await task.removeTask(
       page,
+      caseNumber403,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -189,6 +192,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber404, subjectName);
     await task.removeTask(
       page,
+      caseNumber404,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -237,6 +241,7 @@ test.describe("Create and clear hearing options tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber405, subjectName);
     await task.removeTask(
       page,
+      caseNumber405,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -284,6 +289,7 @@ test("Accessibility test @accessibility", async ({ page }): Promise<void> => {
   await buildCase.buildCase(page, false, caseNumber406, subjectName);
   await task.removeTask(
     page,
+    caseNumber406,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

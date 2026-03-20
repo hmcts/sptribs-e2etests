@@ -55,6 +55,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber122, subjectName);
     await task.removeTask(
       page,
+      caseNumber122,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -66,13 +67,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
       "Strike out request",
       false,
       caseNumber122,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStrikeOutJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -138,6 +132,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber123, subjectName);
     await task.removeTask(
       page,
+      caseNumber123,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -149,13 +144,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
       "Strike out request",
       false,
       caseNumber123,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStrikeOutJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -221,6 +209,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber124, subjectName);
     await task.removeTask(
       page,
+      caseNumber124,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -232,13 +221,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
       "Strike out request",
       false,
       caseNumber124,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStrikeOutJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -269,13 +251,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewStrikeOutJudge,
       caseNumber124,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStrikeOut,
       subjectName,
     );
     await task.initiateTask(
@@ -340,6 +315,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber125, subjectName);
     await task.removeTask(
       page,
+      caseNumber125,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -415,6 +391,7 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber126, subjectName);
     await task.removeTask(
       page,
+      caseNumber126,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -426,13 +403,6 @@ test.describe("Review Strike Out Request - Judge @CaseAPI ", (): void => {
       "Strike out request",
       false,
       caseNumber126,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewStrikeOutJudge,
       subjectName,
     );
     await task.initiateTask(

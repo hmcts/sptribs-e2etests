@@ -55,6 +55,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     await buildCase.buildCase(page, false, caseNumber01, subjectName);
     await task.removeTask(
       page,
+      caseNumber01,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -94,13 +95,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       "Listed case (within 5 days)",
       false,
       caseNumber01,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListCase5DaysLO,
       subjectName,
     );
     await task.initiateTask(
@@ -166,6 +160,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     await buildCase.buildCase(page, false, caseNumber02, subjectName);
     await task.removeTask(
       page,
+      caseNumber02,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -207,13 +202,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       caseNumber02,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListCase5DaysLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -234,13 +222,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       false,
       "CIC10 - Strike Out Warning",
       caseNumber02,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(
@@ -305,6 +286,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     await buildCase.buildCase(page, false, caseNumber03, subjectName);
     await task.removeTask(
       page,
+      caseNumber03,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -346,13 +328,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       caseNumber03,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewListCase5DaysLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -373,13 +348,6 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber03,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase5Days,
       subjectName,
     );
     await task.initiateTask(

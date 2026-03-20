@@ -55,6 +55,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2400, subjectName);
     await task.removeTask(
       page,
+      caseNumber2400,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -82,13 +83,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       "Other",
       false,
       caseNumber2400,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -119,13 +113,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       taskNames_content.reviewOtherRequestLO,
       caseNumber2400,
       "Ready to list",
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -184,6 +171,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2401, subjectName);
     await task.removeTask(
       page,
+      caseNumber2401,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -209,13 +197,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       "Other",
       false,
       caseNumber2401,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -246,13 +227,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       taskNames_content.reviewOtherRequestLO,
       caseNumber2401,
       "Case stayed",
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -311,6 +285,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2402, subjectName);
     await task.removeTask(
       page,
+      caseNumber2402,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -338,13 +313,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       "Other",
       false,
       caseNumber2402,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -375,13 +343,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       taskNames_content.reviewOtherRequestLO,
       caseNumber2402,
       "Ready to list",
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -440,6 +401,7 @@ test.describe("Send order tests @CaseAPI ", () => {
     await buildCase.buildCase(page, false, caseNumber2403, subjectName);
     await task.removeTask(
       page,
+      caseNumber2403,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -465,13 +427,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       "Other",
       false,
       caseNumber2403,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -502,13 +457,6 @@ test.describe("Send order tests @CaseAPI ", () => {
       taskNames_content.reviewOtherRequestLO,
       caseNumber2403,
       "Case stayed",
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(

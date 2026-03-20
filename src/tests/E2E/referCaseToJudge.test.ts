@@ -50,6 +50,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2100, subjectName);
     await task.removeTask(
       page,
+      caseNumber2100,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -107,6 +108,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2101, subjectName);
     await task.removeTask(
       page,
+      caseNumber2101,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -164,6 +166,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2102, subjectName);
     await task.removeTask(
       page,
+      caseNumber2102,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -221,6 +224,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2103, subjectName);
     await task.removeTask(
       page,
+      caseNumber2103,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -278,6 +282,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2104, subjectName);
     await task.removeTask(
       page,
+      caseNumber2104,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -335,6 +340,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2105, subjectName);
     await task.removeTask(
       page,
+      caseNumber2105,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -392,6 +398,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2106, subjectName);
     await task.removeTask(
       page,
+      caseNumber2106,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -455,6 +462,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2107, subjectName);
     await task.removeTask(
       page,
+      caseNumber2107,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -518,6 +526,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2108, subjectName);
     await task.removeTask(
       page,
+      caseNumber2108,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -581,6 +590,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2109, subjectName);
     await task.removeTask(
       page,
+      caseNumber2109,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -644,6 +654,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2110, subjectName);
     await task.removeTask(
       page,
+      caseNumber2110,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -707,6 +718,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2111, subjectName);
     await task.removeTask(
       page,
+      caseNumber2111,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -770,6 +782,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2112, subjectName);
     await task.removeTask(
       page,
+      caseNumber2112,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -850,6 +863,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2113, subjectName);
     await task.removeTask(
       page,
+      caseNumber2113,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -930,6 +944,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2114, subjectName);
     await task.removeTask(
       page,
+      caseNumber2114,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1010,6 +1025,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2115, subjectName);
     await task.removeTask(
       page,
+      caseNumber2115,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1090,6 +1106,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2116, subjectName);
     await task.removeTask(
       page,
+      caseNumber2116,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1170,6 +1187,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2117, subjectName);
     await task.removeTask(
       page,
+      caseNumber2117,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1250,6 +1268,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2118, subjectName);
     await task.removeTask(
       page,
+      caseNumber2118,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1336,6 +1355,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2119, subjectName);
     await task.removeTask(
       page,
+      caseNumber2119,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1391,6 +1411,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2120, subjectName);
     await task.removeTask(
       page,
+      caseNumber2120,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1446,6 +1467,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2121, subjectName);
     await task.removeTask(
       page,
+      caseNumber2121,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1501,6 +1523,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2122, subjectName);
     await task.removeTask(
       page,
+      caseNumber2122,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1556,6 +1579,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2123, subjectName);
     await task.removeTask(
       page,
+      caseNumber2123,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1611,6 +1635,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2124, subjectName);
     await task.removeTask(
       page,
+      caseNumber2124,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1666,6 +1691,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2125, subjectName);
     await task.removeTask(
       page,
+      caseNumber2125,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -1727,6 +1753,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber2126, subjectName);
     await task.removeTask(
       page,
+      caseNumber2126,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,

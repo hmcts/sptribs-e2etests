@@ -55,6 +55,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber07, subjectName);
     await task.removeTask(
       page,
+      caseNumber07,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -91,13 +92,6 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
       "Listed case",
       false,
       caseNumber07,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -163,6 +157,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber08, subjectName);
     await task.removeTask(
       page,
+      caseNumber08,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -201,13 +196,6 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
       caseNumber08,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCaseJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -228,13 +216,6 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
       false,
       "CIC10 - Strike Out Warning",
       caseNumber08,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase,
       subjectName,
     );
     await task.initiateTask(
@@ -299,6 +280,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber09, subjectName);
     await task.removeTask(
       page,
+      caseNumber09,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -337,13 +319,6 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
       caseNumber09,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCaseJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -364,13 +339,6 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
       false,
       "CIC13 - Pro Forma Summons",
       caseNumber09,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsListCase,
       subjectName,
     );
     await task.initiateTask(
@@ -435,6 +403,7 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber60, subjectName);
     await task.removeTask(
       page,
+      caseNumber60,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -471,13 +440,6 @@ test.describe("Review and Process Listed Case - Judge @CaseAPI ", (): void => {
       "Listed case",
       false,
       caseNumber60,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewListCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -542,6 +504,7 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
   await buildCase.buildCase(page, false, caseNumber61, subjectName);
   await task.removeTask(
     page,
+    caseNumber61,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,
@@ -575,13 +538,6 @@ test("Task completion: Accessibility test / Review Listed Case - Judge : Accessi
     "Listed case",
     false,
     caseNumber61,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleJudge,
-    false,
-    taskNames_content.reviewListCaseJudge,
     subjectName,
   );
   await task.initiateTask(

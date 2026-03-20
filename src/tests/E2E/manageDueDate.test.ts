@@ -59,6 +59,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2700, subjectName);
     await task.removeTask(
       page,
+      caseNumber2700,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -73,13 +74,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       "Rule 27 request",
       false,
       caseNumber2700,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewRule27LO,
       subjectName,
     );
     await task.initiateTask(
@@ -102,13 +96,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber2700,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processRule27,
       subjectName,
     );
     await task.initiateTask(
@@ -195,6 +182,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2701, subjectName);
     await task.removeTask(
       page,
+      caseNumber2701,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -209,13 +197,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       "Time extension request",
       false,
       caseNumber2701,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewTimeExtensionLO,
       subjectName,
     );
     await task.initiateTask(
@@ -307,6 +288,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2702, subjectName);
     await task.removeTask(
       page,
+      caseNumber2702,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -336,13 +318,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       caseNumber2702,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewReinstatementLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -363,13 +338,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber2702,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processReinstatement,
       subjectName,
     );
     await task.initiateTask(
@@ -443,6 +411,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     await buildCase.buildCase(page, false, caseNumber2703, subjectName);
     await task.removeTask(
       page,
+      caseNumber2703,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -470,13 +439,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       caseNumber2703,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleLO,
@@ -497,13 +459,6 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber2703,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(

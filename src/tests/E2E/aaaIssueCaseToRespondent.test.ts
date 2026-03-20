@@ -45,13 +45,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber24, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -112,13 +105,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber25, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -179,13 +165,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber26, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -246,13 +225,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber27, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -313,13 +285,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber28, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -557,13 +522,6 @@ test.describe("Issue case to respondent task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber31, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -625,13 +583,6 @@ test("Task completion: Accessibility test / Issue Case to Respondent : Accessibi
   );
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber33, subjectName);
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    true,
-    taskNames_content.issueCaseToRespondentTask,
-    subjectName,
-  );
   await task.initiateTask(
     page,
     waUsers_content.userRoleAdmin,

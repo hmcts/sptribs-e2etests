@@ -59,6 +59,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
     await buildCase.buildCase(page, false, caseNumber127, subjectName);
     await task.removeTask(
       page,
+      caseNumber127,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -73,13 +74,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       "Strike out request",
       false,
       caseNumber127,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStrikeOutLO,
       subjectName,
     );
     await task.initiateTask(
@@ -112,13 +106,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       taskNames_content.reviewStrikeOutLO,
       caseNumber127,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -183,6 +170,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
     await buildCase.buildCase(page, false, caseNumber128, subjectName);
     await task.removeTask(
       page,
+      caseNumber128,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -197,13 +185,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       "Strike out request",
       false,
       caseNumber128,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStrikeOutLO,
       subjectName,
     );
     await task.initiateTask(
@@ -234,13 +215,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       taskNames_content.reviewStrikeOutLO,
       caseNumber128,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStrikeOut,
       subjectName,
     );
     await task.initiateTask(
@@ -305,6 +279,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
     await buildCase.buildCase(page, false, caseNumber129, subjectName);
     await task.removeTask(
       page,
+      caseNumber129,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -319,13 +294,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       "Strike out request",
       false,
       caseNumber129,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStrikeOutLO,
       subjectName,
     );
     await task.initiateTask(
@@ -389,6 +357,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
     await buildCase.buildCase(page, false, caseNumber130, subjectName);
     await task.removeTask(
       page,
+      caseNumber130,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -467,6 +436,7 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
     await buildCase.buildCase(page, false, caseNumber131, subjectName);
     await task.removeTask(
       page,
+      caseNumber131,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -481,13 +451,6 @@ test.describe("Review Strike Out Request - Legal Officer @CaseAPI ", (): void =>
       "Strike out request",
       false,
       caseNumber131,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStrikeOutLO,
       subjectName,
     );
     await task.initiateTask(

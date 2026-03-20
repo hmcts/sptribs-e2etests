@@ -53,6 +53,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1500, subjectName);
     await task.removeTask(
       page,
+      caseNumber1500,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -67,13 +68,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1500,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -141,6 +135,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1501, subjectName);
     await task.removeTask(
       page,
+      caseNumber1501,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -168,13 +163,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1501,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -242,6 +230,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1502, subjectName);
     await task.removeTask(
       page,
+      caseNumber1502,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -275,13 +264,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1502,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -349,6 +331,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1503, subjectName);
     await task.removeTask(
       page,
+      caseNumber1503,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -374,13 +357,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1503,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -448,6 +424,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1504, subjectName);
     await task.removeTask(
       page,
+      caseNumber1504,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -475,13 +452,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1504,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -549,6 +519,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1505, subjectName);
     await task.removeTask(
       page,
+      caseNumber1505,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -605,6 +576,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber1506, subjectName);
     await task.removeTask(
       page,
+      caseNumber1506,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -619,13 +591,6 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
       "Other",
       false,
       caseNumber1506,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewOtherRequestLO,
       subjectName,
     );
     await task.initiateTask(
@@ -696,6 +661,7 @@ test("Accessibility test - Edit draft - CIC14", async ({
   await buildCase.buildCase(page, false, caseNumber1507, subjectName);
   await task.removeTask(
     page,
+    caseNumber1507,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,
@@ -710,13 +676,6 @@ test("Accessibility test - Edit draft - CIC14", async ({
     "Other",
     false,
     caseNumber1507,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleLO,
-    false,
-    taskNames_content.reviewOtherRequestLO,
     subjectName,
   );
   await task.initiateTask(

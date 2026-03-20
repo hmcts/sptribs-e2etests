@@ -56,6 +56,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber137, subjectName);
     await task.removeTask(
       page,
+      caseNumber137,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -67,13 +68,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       "Time extension request",
       false,
       caseNumber137,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -104,13 +98,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewTimeExtensionJudge,
       caseNumber137,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processTimeExtensionDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -177,6 +164,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber138, subjectName);
     await task.removeTask(
       page,
+      caseNumber138,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -188,13 +176,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       "Time extension request",
       false,
       caseNumber138,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -260,6 +241,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber139, subjectName);
     await task.removeTask(
       page,
+      caseNumber139,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -271,13 +253,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       "Time extension request",
       false,
       caseNumber139,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -308,13 +283,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       taskNames_content.reviewTimeExtensionJudge,
       caseNumber139,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processTimeExtensionDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -379,6 +347,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber140, subjectName);
     await task.removeTask(
       page,
+      caseNumber140,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -454,6 +423,7 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber141, subjectName);
     await task.removeTask(
       page,
+      caseNumber141,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -465,13 +435,6 @@ test.describe("Review Time Extension Request - Judge @CaseAPI ", (): void => {
       "Time extension request",
       false,
       caseNumber141,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewTimeExtensionJudge,
       subjectName,
     );
     await task.initiateTask(

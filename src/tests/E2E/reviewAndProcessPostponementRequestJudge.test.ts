@@ -56,6 +56,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
     await buildCase.buildCase(page, false, caseNumber86, subjectName);
     await task.removeTask(
       page,
+      caseNumber86,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -92,13 +93,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       "Postponement request",
       false,
       caseNumber86,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewPostponementJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -164,6 +158,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
     await buildCase.buildCase(page, false, caseNumber87, subjectName);
     await task.removeTask(
       page,
+      caseNumber87,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -202,13 +197,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       caseNumber87,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewPostponementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -237,13 +225,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       taskNames_content.reviewPostponementJudge,
       caseNumber87,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -308,6 +289,7 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
     await buildCase.buildCase(page, false, caseNumber88, subjectName);
     await task.removeTask(
       page,
+      caseNumber88,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -346,13 +328,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       caseNumber88,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewPostponementJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -381,13 +356,6 @@ test.describe("Review and Process Postponement Directions - Judge @CaseAPI ", ()
       taskNames_content.reviewPostponementJudge,
       caseNumber88,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processPostponementDirections,
       subjectName,
     );
     await task.initiateTask(

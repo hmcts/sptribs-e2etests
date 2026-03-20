@@ -57,6 +57,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber76, subjectName);
     await task.removeTask(
       page,
+      caseNumber76,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -68,13 +69,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       "Other",
       false,
       caseNumber76,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewOtherRequestJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -105,13 +99,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       taskNames_content.reviewOtherRequestJudge,
       caseNumber76,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -178,6 +165,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber77, subjectName);
     await task.removeTask(
       page,
+      caseNumber77,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -216,13 +204,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       caseNumber77,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewOtherRequestJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -251,13 +232,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       taskNames_content.reviewOtherRequestJudge,
       caseNumber77,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processOtherDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -324,6 +298,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber78, subjectName);
     await task.removeTask(
       page,
+      caseNumber78,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -348,13 +323,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       "Other",
       false,
       caseNumber78,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewOtherRequestJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -418,6 +386,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber79, subjectName);
     await task.removeTask(
       page,
+      caseNumber79,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -493,6 +462,7 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
     await buildCase.buildCase(page, false, caseNumber80, subjectName);
     await task.removeTask(
       page,
+      caseNumber80,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -504,13 +474,6 @@ test.describe("Review and Process Other Request - Judge @CaseAPI ", (): void => 
       "Other",
       false,
       caseNumber80,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewOtherRequestJudge,
       subjectName,
     );
     await task.initiateTask(

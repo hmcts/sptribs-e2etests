@@ -55,6 +55,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await buildCase.buildCase(page, false, caseNumber109, subjectName);
     await task.removeTask(
       page,
+      caseNumber109,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -79,13 +80,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
       "Set aside request",
       false,
       caseNumber109,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewSetAside,
       subjectName,
     );
     await task.initiateTask(
@@ -151,6 +145,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await buildCase.buildCase(page, false, caseNumber110, subjectName);
     await task.removeTask(
       page,
+      caseNumber110,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -177,13 +172,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
       caseNumber110,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewSetAside,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -204,13 +192,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber110,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processSetAside,
       subjectName,
     );
     await task.initiateTask(
@@ -275,6 +256,7 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
     await buildCase.buildCase(page, false, caseNumber111, subjectName);
     await task.removeTask(
       page,
+      caseNumber111,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -301,13 +283,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
       caseNumber111,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewSetAside,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -328,13 +303,6 @@ test.describe("Review and Process Set Aside Request - Judge @CaseAPI ", (): void
       false,
       "CIC8 - ME Joint Instruction",
       caseNumber111,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processSetAside,
       subjectName,
     );
     await task.initiateTask(

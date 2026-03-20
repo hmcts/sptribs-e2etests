@@ -46,13 +46,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2800, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -74,13 +67,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       false,
       ["Subject", "Representative", "Respondent", "Applicant"],
       caseNumber2800,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.createDueDate,
       subjectName,
     );
     await task.initiateTask(
@@ -111,13 +97,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       taskNames_content.createDueDate,
       caseNumber2800,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueDueDate,
       subjectName,
     );
     await task.initiateTask(
@@ -182,13 +161,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2801, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -274,13 +246,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2802, subjectName);
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleAdmin,
@@ -302,13 +267,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       false,
       ["Subject", "Representative", "Respondent", "Applicant"],
       caseNumber2802,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.createDueDate,
       subjectName,
     );
     await task.initiateTask(

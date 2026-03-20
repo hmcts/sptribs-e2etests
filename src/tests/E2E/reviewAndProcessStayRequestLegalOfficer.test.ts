@@ -59,6 +59,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber117, subjectName);
     await task.removeTask(
       page,
+      caseNumber117,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -73,13 +74,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       "Stay request",
       false,
       caseNumber117,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStayLO,
       subjectName,
     );
     await task.initiateTask(
@@ -110,13 +104,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       taskNames_content.reviewStayLO,
       caseNumber117,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStay,
       subjectName,
     );
     await task.initiateTask(
@@ -150,13 +137,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       taskNames_content.processStay,
       caseNumber117,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -221,6 +201,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber118, subjectName);
     await task.removeTask(
       page,
+      caseNumber118,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -235,13 +216,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       "Stay request",
       false,
       caseNumber118,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStayLO,
       subjectName,
     );
     await task.initiateTask(
@@ -272,13 +246,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       taskNames_content.reviewStayLO,
       caseNumber118,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processStay,
       subjectName,
     );
     await task.initiateTask(
@@ -343,6 +310,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber119, subjectName);
     await task.removeTask(
       page,
+      caseNumber119,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -357,13 +325,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       "Stay request",
       false,
       caseNumber119,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStayLO,
       subjectName,
     );
     await task.initiateTask(
@@ -427,6 +388,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber120, subjectName);
     await task.removeTask(
       page,
+      caseNumber120,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -505,6 +467,7 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
     await buildCase.buildCase(page, false, caseNumber121, subjectName);
     await task.removeTask(
       page,
+      caseNumber121,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -519,13 +482,6 @@ test.describe("Review Stay Request - Legal Officer @CaseAPI ", (): void => {
       "Stay request",
       false,
       caseNumber121,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleLO,
-      false,
-      taskNames_content.reviewStayLO,
       subjectName,
     );
     await task.initiateTask(

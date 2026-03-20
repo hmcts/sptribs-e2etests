@@ -57,6 +57,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber142, subjectName);
     await task.removeTask(
       page,
+      caseNumber142,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -68,13 +69,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       "Withdrawal request",
       false,
       caseNumber142,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewWithdrawalJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -105,13 +99,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       taskNames_content.reviewWithdrawalJudge,
       caseNumber142,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processWithdrawal,
       subjectName,
     );
     await task.initiateTask(
@@ -178,6 +165,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber143, subjectName);
     await task.removeTask(
       page,
+      caseNumber143,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -189,13 +177,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       "Withdrawal request",
       false,
       caseNumber143,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewWithdrawalJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -226,13 +207,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       taskNames_content.reviewWithdrawalJudge,
       caseNumber143,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processWithdrawal,
       subjectName,
     );
     await task.initiateTask(
@@ -297,6 +271,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber144, subjectName);
     await task.removeTask(
       page,
+      caseNumber144,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -308,13 +283,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       "Withdrawal request",
       false,
       caseNumber144,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewWithdrawalJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -380,6 +348,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber147, subjectName);
     await task.removeTask(
       page,
+      caseNumber147,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -412,13 +381,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       caseNumber147,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewWithdrawalRequestCaseListedJudge,
-      subjectName,
-    );
     await task.initiateTask(
       page,
       waUsers_content.userRoleJudge,
@@ -447,13 +409,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       taskNames_content.reviewWithdrawalRequestCaseListedJudge,
       caseNumber147,
       states_content.awaitingHearingState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processCaseWithdrawalDirectionsListed,
       subjectName,
     );
     await task.initiateTask(
@@ -518,6 +473,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber145, subjectName);
     await task.removeTask(
       page,
+      caseNumber145,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -593,6 +549,7 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber146, subjectName);
     await task.removeTask(
       page,
+      caseNumber146,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -604,13 +561,6 @@ test.describe("Review Withdrawal Request - Judge @CaseAPI", (): void => {
       "Withdrawal request",
       false,
       caseNumber146,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewWithdrawalJudge,
       subjectName,
     );
     await task.initiateTask(

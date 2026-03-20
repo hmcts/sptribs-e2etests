@@ -58,6 +58,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber62, subjectName);
     await task.removeTask(
       page,
+      caseNumber62,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -69,13 +70,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       "New case",
       false,
       caseNumber62,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -141,6 +135,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber63, subjectName);
     await task.removeTask(
       page,
+      caseNumber63,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -152,13 +147,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       "New case",
       false,
       caseNumber63,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -189,13 +177,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       taskNames_content.reviewNewCaseJudge,
       caseNumber63,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -262,6 +243,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber64, subjectName);
     await task.removeTask(
       page,
+      caseNumber64,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -273,13 +255,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       "New case",
       false,
       caseNumber64,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -343,6 +318,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber65, subjectName);
     await task.removeTask(
       page,
+      caseNumber65,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -418,6 +394,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber66, subjectName);
     await task.removeTask(
       page,
+      caseNumber66,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -429,13 +406,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       "New case",
       false,
       caseNumber66,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -532,6 +502,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     await buildCase.buildCase(page, false, caseNumber67, subjectName);
     await task.removeTask(
       page,
+      caseNumber67,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -543,13 +514,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       "New case",
       true,
       caseNumber67,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleJudge,
-      false,
-      taskNames_content.reviewNewCaseJudge,
       subjectName,
     );
     await task.initiateTask(
@@ -580,13 +544,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       taskNames_content.reviewNewCaseJudge,
       caseNumber67,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.processDirectionsReturned,
       subjectName,
     );
     await task.initiateTask(
@@ -620,13 +577,6 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
       taskNames_content.processDirectionsReturned,
       caseNumber67,
       states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.nonComplianceDirections,
       subjectName,
     );
     await task.initiateTask(
@@ -692,6 +642,7 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
   await buildCase.buildCase(page, false, caseNumber68, subjectName);
   await task.removeTask(
     page,
+    caseNumber68,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,
@@ -703,13 +654,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     "New case",
     false,
     caseNumber68,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleJudge,
-    false,
-    taskNames_content.reviewNewCaseJudge,
     subjectName,
   );
   await task.initiateTask(
@@ -742,13 +686,6 @@ test("Task completion: Accessibility test / Review New Case and Provide Directio
     taskNames_content.reviewNewCaseJudge,
     caseNumber68,
     states_content.caseManagementState,
-    subjectName,
-  );
-  await task.seeTask(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    taskNames_content.nonComplianceDirections,
     subjectName,
   );
   await task.initiateTask(

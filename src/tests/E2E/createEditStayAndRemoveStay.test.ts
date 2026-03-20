@@ -47,6 +47,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber900, subjectName);
     await task.removeTask(
       page,
+      caseNumber900,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -103,6 +104,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber901, subjectName);
     await task.removeTask(
       page,
+      caseNumber901,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -159,6 +161,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber902, subjectName);
     await task.removeTask(
       page,
+      caseNumber902,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -215,6 +218,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber903, subjectName);
     await task.removeTask(
       page,
+      caseNumber903,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -271,6 +275,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber904, subjectName);
     await task.removeTask(
       page,
+      caseNumber904,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -327,6 +332,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber905, subjectName);
     await task.removeTask(
       page,
+      caseNumber905,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -383,6 +389,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber906, subjectName);
     await task.removeTask(
       page,
+      caseNumber906,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -439,6 +446,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber907, subjectName);
     await task.removeTask(
       page,
+      caseNumber907,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -498,6 +506,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber908, subjectName);
     await task.removeTask(
       page,
+      caseNumber908,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -557,6 +566,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber909, subjectName);
     await task.removeTask(
       page,
+      caseNumber909,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -616,6 +626,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber910, subjectName);
     await task.removeTask(
       page,
+      caseNumber910,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -675,6 +686,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber911, subjectName);
     await task.removeTask(
       page,
+      caseNumber911,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -734,6 +746,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber912, subjectName);
     await task.removeTask(
       page,
+      caseNumber912,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -793,6 +806,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber913, subjectName);
     await task.removeTask(
       page,
+      caseNumber913,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -852,6 +866,7 @@ test.describe("Case-API Create/edit stay tests. @CaseAPI", () => {
     await buildCase.buildCase(page, false, caseNumber914, subjectName);
     await task.removeTask(
       page,
+      caseNumber914,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -909,6 +924,7 @@ test("Accessibility test - Create/Edit stay @accessibility", async ({
   await buildCase.buildCase(page, false, caseNumber915, subjectName);
   await task.removeTask(
     page,
+    caseNumber915,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,

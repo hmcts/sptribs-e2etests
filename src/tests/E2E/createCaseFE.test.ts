@@ -37,6 +37,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber701,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -70,6 +71,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber702,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -103,6 +105,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber703,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -136,6 +139,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber704,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -169,6 +173,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber705,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -202,6 +207,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber706,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -235,6 +241,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber707,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -268,6 +275,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber708,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -301,6 +309,7 @@ test.describe("DSS Create case tests.", (): void => {
     );
     await task.removeTask(
       page,
+      caseNumber709,
       taskNames_content.registerNewCaseTask,
       subjectName,
       waUsers_content.userRoleAdmin,

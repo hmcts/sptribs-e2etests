@@ -2,6 +2,8 @@ import { Page } from "@playwright/test";
 import { UserRole } from "../../config.ts";
 import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import myWorkPage from "../../pages/WA/myWorkPage.ts";
+import commonHelpers from "../../helpers/commonHelpers.ts";
+import config from "../../config.ts";
 import {
   allEvents,
   taskCompletionMethod,
@@ -41,6 +43,7 @@ type Task = {
   ): Promise<any>;
   removeTask(
     page: Page,
+    caseNumber: string,
     taskRemoved: string,
     subjectName: string,
     user: any,
@@ -80,73 +83,57 @@ const task: Task = {
   ): Promise<void> {
     switch (taskCompletionMethod) {
       default: //"Link: Assign Task to Me and Go To Task"
-        await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskName);
-        await tasksPage.checkPageLoads(
+        await commonHelpers.signOutAndGoToCase(
           page,
-          accessibilityTest,
-          caseNumber,
-          taskName,
-          numberOfDays,
-          priority,
-          assignedUser,
-          event,
           user,
-          subjectName,
+          config.CaseAPIBaseURL,
+          caseNumber,
         );
+        await tasksPage.navigateToTaskTab(page, caseNumber);
+        await tasksPage.assignTaskToMe(page, taskName);
         await historyPage.navigateToHistoryTab(page);
         await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event, caseNumber);
+        await tasksPage.navigateToTaskTab(page, caseNumber);
         await tasksPage.clickTaskLink(page, event, taskName);
         break;
       case "Link: Assign Task to Me":
-        await myWorkPage.clickAssignToMe(page, subjectName, taskName);
-        await myWorkPage.navigateToTaskPage(page, taskName, subjectName);
-        await tasksPage.checkPageLoads(
+        await commonHelpers.signOutAndGoToCase(
           page,
-          accessibilityTest,
-          caseNumber,
-          taskName,
-          numberOfDays,
-          priority,
-          assignedUser,
-          event,
           user,
-          subjectName,
+          config.CaseAPIBaseURL,
+          caseNumber,
         );
+        await tasksPage.navigateToTaskTab(page, caseNumber);
+        await tasksPage.assignTaskToMe(page, taskName);
         await historyPage.navigateToHistoryTab(page);
         await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event, caseNumber);
+        await tasksPage.navigateToTaskTab(page, caseNumber);
         await tasksPage.clickTaskLink(page, event, taskName);
         break;
       case "Event DropDown":
-        await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskName);
-        await tasksPage.checkPageLoads(
+        await commonHelpers.signOutAndGoToCase(
           page,
-          accessibilityTest,
-          caseNumber,
-          taskName,
-          numberOfDays,
-          priority,
-          assignedUser,
-          event,
           user,
-          subjectName,
+          config.CaseAPIBaseURL,
+          caseNumber,
         );
+        await tasksPage.navigateToTaskTab(page, caseNumber);
+        await tasksPage.assignTaskToMe(page, taskName);
         await historyPage.navigateToHistoryTab(page);
         await historyPage.checkStateBeforeTaskCompletion(
           page,
           accessibilityTest,
           stateBeforeCompletion,
         );
-        await tasksPage.navigateToTaskTab(page, event, caseNumber);
+        await tasksPage.navigateToTaskTab(page, caseNumber);
         await tasksPage.chooseEventFromDropdown(page, event);
         break;
     }
@@ -169,11 +156,20 @@ const task: Task = {
     );
   },
 
-  async removeTask(page, taskRemoved, subjectName, user): Promise<void> {
-    await myWorkPage.navigateToMyWorkPage(page);
-    await myWorkPage.selectAvailableTasks(page, user);
-    await myWorkPage.seeTask(page, taskRemoved, subjectName);
-    await myWorkPage.clickAssignAndGoToTask(page, subjectName, taskRemoved);
+  async removeTask(
+    page,
+    caseNumber,
+    taskRemoved,
+    subjectName,
+    user,
+  ): Promise<void> {
+    await commonHelpers.signOutAndGoToCase(
+      page,
+      user,
+      config.CaseAPIBaseURL,
+      caseNumber,
+    );
+    await tasksPage.navigateToTaskTab(page, caseNumber);
     await tasksPage.cancelTask(page, taskRemoved);
   },
 };

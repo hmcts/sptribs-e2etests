@@ -37,6 +37,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber301, subjectName);
     await task.removeTask(
       page,
+      caseNumber301,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -99,6 +100,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber302, subjectName);
     await task.removeTask(
       page,
+      caseNumber302,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -161,6 +163,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber303, subjectName);
     await task.removeTask(
       page,
+      caseNumber303,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -223,6 +226,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber304, subjectName);
     await task.removeTask(
       page,
+      caseNumber304,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -285,6 +289,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber305, subjectName);
     await task.removeTask(
       page,
+      caseNumber305,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -347,6 +352,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber306, subjectName);
     await task.removeTask(
       page,
+      caseNumber306,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -407,6 +413,7 @@ test.describe("Cancel hearing tests @CaseAPI", (): void => {
     await buildCase.buildCase(page, false, caseNumber307, subjectName);
     await task.removeTask(
       page,
+      caseNumber307,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -470,6 +477,7 @@ test("Accessibility test - cancel hearing - other @accessibility.", async ({
   await buildCase.buildCase(page, false, caseNumber308, subjectName);
   await task.removeTask(
     page,
+    caseNumber308,
     taskNames_content.issueCaseToRespondentTask,
     subjectName,
     waUsers_content.userRoleAdmin,
