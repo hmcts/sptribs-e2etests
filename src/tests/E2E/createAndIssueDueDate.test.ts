@@ -69,7 +69,10 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2800,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, events_content.createDraft);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      events_content.createDraft,
+    );
     await createDraft.createDraft(
       page,
       false,
@@ -207,7 +210,10 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2802,
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, events_content.createDraft);
+    await commonHelpers.chooseEventFromDropdown(
+      page,
+      events_content.createDraft,
+    );
     await createDraft.createDraft(
       page,
       false,
