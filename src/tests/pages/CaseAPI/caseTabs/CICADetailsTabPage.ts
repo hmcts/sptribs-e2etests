@@ -27,7 +27,9 @@ const cicaDetailsTabPage: CICADetailsTabPage = {
   ): Promise<void> {
     await Promise.all([
       commonHelpers.checkAllCaseTabs(page, caseNumber, true, subjectName),
-      expect(page.locator("h4")).toContainText(CICADetailsTabContent.title),
+      expect(page.locator("h4").first()).toContainText(
+        CICADetailsTabContent.title,
+      ),
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (CICADetailsTabContent as any)[
           `textOnPage${index + 1}`
