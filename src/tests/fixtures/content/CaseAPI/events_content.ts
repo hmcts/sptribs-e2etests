@@ -10,6 +10,8 @@ const events_content = {
   reinstateCase: "Case: Reinstate case",
   createEditStay: "Stays: Create/edit stay",
   removeStay: "Stays: Remove stay",
+  createDraft: "Orders: Create draft",
+  sendOrder: "Orders: Send order",
 } as const;
 
 export default events_content;

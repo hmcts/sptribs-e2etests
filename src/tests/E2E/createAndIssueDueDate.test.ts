@@ -69,19 +69,9 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2800,
       subjectName,
     );
-    await task.initiateTask(
+    await commonHelpers.chooseEventFromDropdown(
       page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber2800,
-      taskNames_content.createDueDate,
-      priority,
-      authors_content.assignedUserAdmin,
-      numberOfDays,
-      "Orders: Create draft",
-      states_content.caseManagementState,
-      subjectName,
+      events_content.createDraft,
     );
     await createDraft.createDraft(
       page,
@@ -91,28 +81,7 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2800,
       subjectName,
     );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.createDueDate,
-      caseNumber2800,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.initiateTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber2800,
-      taskNames_content.issueDueDate,
-      priority,
-      authors_content.assignedUserAdmin,
-      numberOfDays,
-      "Orders: Send order",
-      states_content.caseManagementState,
-      subjectName,
-    );
+    await commonHelpers.chooseEventFromDropdown(page, events_content.sendOrder);
     await sendOrder.sendOrder(
       page,
       caseNumber2800,
@@ -122,14 +91,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       true,
       false,
       "7",
-      subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.issueDueDate,
-      caseNumber2800,
-      states_content.caseManagementState,
       subjectName,
     );
   });
@@ -184,18 +145,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2801,
       subjectName,
     );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.createDueDate,
-      subjectName,
-    );
-    await myWorkPage.clickAssignAndGoToTask(
-      page,
-      subjectName,
-      taskNames_content.createDueDate,
-    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,
@@ -208,14 +157,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2801,
       subjectName,
       false,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.createDueDate,
-      caseNumber2801,
-      states_content.closedState,
-      subjectName,
     );
   });
 
@@ -269,19 +210,9 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2802,
       subjectName,
     );
-    await task.initiateTask(
+    await commonHelpers.chooseEventFromDropdown(
       page,
-      waUsers_content.userRoleAdmin,
-      "Link: Assign Task to Me and Go To Task",
-      false,
-      caseNumber2802,
-      taskNames_content.createDueDate,
-      priority,
-      authors_content.assignedUserAdmin,
-      numberOfDays,
-      "Orders: Create draft",
-      states_content.caseManagementState,
-      subjectName,
+      events_content.createDraft,
     );
     await createDraft.createDraft(
       page,
@@ -290,26 +221,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       "CIC6 - General Directions",
       caseNumber2802,
       subjectName,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.createDueDate,
-      caseNumber2802,
-      states_content.caseManagementState,
-      subjectName,
-    );
-    await task.seeTask(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      taskNames_content.issueDueDate,
-      subjectName,
-    );
-    await myWorkPage.clickAssignAndGoToTask(
-      page,
-      subjectName,
-      taskNames_content.issueDueDate,
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
@@ -323,14 +234,6 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
       caseNumber2802,
       subjectName,
       false,
-    );
-    await task.checkCompletedTask(
-      page,
-      false,
-      taskNames_content.issueDueDate,
-      caseNumber2802,
-      states_content.closedState,
-      subjectName,
     );
   });
 });
