@@ -45,7 +45,7 @@ const caseCICADecisionDatePage: CaseCICADecisionDatePage = {
   async fillInFields(page: Page): Promise<void> {
     const currentDate = new Date();
     await page.fill(this.day, `${currentDate.getDate() - 1}`);
-    await page.fill(this.month, `${currentDate.getMonth()}`);
+    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
     await page.fill(this.year, `${currentDate.getFullYear()}`);
     await Promise.all([
       page.waitForLoadState("domcontentloaded"),
