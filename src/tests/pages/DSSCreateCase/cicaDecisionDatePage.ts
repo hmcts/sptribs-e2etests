@@ -75,9 +75,11 @@ const cicaDecisionDatePage: CicaDecisionDatePage = {
 
   async fillInFields(page: Page, decisionDate?: Date): Promise<void> {
     const currentDate = decisionDate ?? new Date();
-    await page.fill(this.day, `${currentDate.getDate() - 1}`);
-    await page.fill(this.month, `${currentDate.getMonth() + 1}`);
-    await page.fill(this.year, `${currentDate.getFullYear()}`);
+    const yesterday = new Date(currentDate);
+    yesterday.setDate(currentDate.getDate() - 1);
+    await page.fill(this.day, `${yesterday.getDate()}`);
+    await page.fill(this.month, `${yesterday.getMonth() + 1}`);
+    await page.fill(this.year, `${yesterday.getFullYear()}`);
     await Promise.all([
       page.waitForLoadState("domcontentloaded"),
       page.click(this.continue),
