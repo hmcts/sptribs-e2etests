@@ -989,9 +989,9 @@ __metadata:
   linkType: hard
 
 "basic-ftp@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "basic-ftp@npm:5.2.0"
-  checksum: 10/f5a15d789aa98859af4da9e976154b2aeae19052e1762dc68d259d2bce631dafa40c667aa06d7346cd630aa6f9cc9a26f515b468e0bd24243fbae2149c7d01ad
+  version: 5.2.1
+  resolution: "basic-ftp@npm:5.2.1"
+  checksum: 10/1530d83a41b184fb2d091e910350981a3f9dc4cf1485370efed6535ad833955e43343300a496fec81849cbf625efeab42a170a734a5596701280812dba5e5f5c
   languageName: node
   linkType: hard
 
@@ -2544,9 +2544,9 @@ __metadata:
   linkType: hard
 
 "lru-cache@npm:^11.0.0, lru-cache@npm:^11.1.0, lru-cache@npm:^11.2.1":
-  version: 11.2.7
-  resolution: "lru-cache@npm:11.2.7"
-  checksum: 10/fbff4b8dee8189dde9b52cdfb3ea89b4c9cec094c1538cd30d1f47299477ff312efdb35f7994477ec72328f8e754e232b26a143feda1bd1f79ff22da6664d2c5
+  version: 11.3.3
+  resolution: "lru-cache@npm:11.3.3"
+  checksum: 10/d45c1992232d0ab6ee5a9b93f62f43205ba5eeca51b2cfe6fa40a6aeb91b3cb0a318b273ab29ab36b66f779d4111df514c01bb7613ca4d4028953de49ecb82a9
   languageName: node
   linkType: hard
 
@@ -3514,9 +3514,9 @@ __metadata:
     "@playwright/test": "npm:^1.46.1"
     "@types/node": "npm:^22.0.0"
     axios: "npm:1.14.0"
+    basic-ftp: "npm:^5.2.1"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    lodash-es: "npm:^4.18.1"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
@@ -3665,12 +3665,12 @@ __metadata:
   linkType: hard
 
 "tinyglobby@npm:^0.2.12":
-  version: 0.2.15
-  resolution: "tinyglobby@npm:0.2.15"
+  version: 0.2.16
+  resolution: "tinyglobby@npm:0.2.16"
   dependencies:
     fdir: "npm:^6.5.0"
-    picomatch: "npm:^4.0.3"
-  checksum: 10/d72bd826a8b0fa5fa3929e7fe5ba48fceb2ae495df3a231b6c5408cd7d8c00b58ab5a9c2a76ba56a62ee9b5e083626f1f33599734bed1ffc4b792406408f0ca2
+    picomatch: "npm:^4.0.4"
+  checksum: 10/5c2c41b572ada38449e7c86a5fe034f204a1dbba577225a761a14f29f48dc3f2fc0d81a6c56fcc67c5a742cc3aa9fb5e2ca18dbf22b610b0bc0e549b34d5a0f8
   languageName: node
   linkType: hard
 
