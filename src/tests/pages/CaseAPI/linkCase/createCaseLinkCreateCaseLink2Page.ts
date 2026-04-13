@@ -87,14 +87,8 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
       "#otherDescription",
       createCaseLinkcreateCaseLink2_content.otherInput,
     );
-    await page.click(".govuk-button--secondary");
+    await page.click("#propose");
     await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `td > span:text-is("${caseSubjectDetailsObject_content.name}")`,
-        ),
-        1,
-      ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(`td > span:text-is("${caseNumber2}")`),
         1,
@@ -136,7 +130,7 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
         1,
       ),
     ]);
-    await page.click(this.next);
+    await page.click(this.submit);
   },
 
   async triggerErrorMessage(page: Page): Promise<void> {
@@ -149,7 +143,7 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
         createCaseLinkcreateCaseLink2_content.errorMessageSubmit,
       ),
     ]);
-    await page.click(this.next);
+    await page.click(this.submit);
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
         createCaseLinkcreateCaseLink2_content.errorBanner,
@@ -158,7 +152,7 @@ const createCaseLinkCreateCaseLink2: CreateCaseLinkCreateCaseLink2Page = {
         createCaseLinkcreateCaseLink2_content.errorMessagePropose,
       ),
     ]);
-    await page.click(".govuk-button--secondary");
+    await page.click("#propose");
     await Promise.all([
       expect(page.locator("#error-summary-title")).toHaveText(
         createCaseLinkcreateCaseLink2_content.errorBanner,

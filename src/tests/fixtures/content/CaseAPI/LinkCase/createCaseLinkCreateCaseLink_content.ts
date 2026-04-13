@@ -1,5 +1,6 @@
 const createCaseLinkCreateCaseLink_content = {
   pageTitle: "Before you start",
+  caseReference: "Case number: ",
   textOnPage1:
     "If a group of linked cases has a lead case, you must start from the lead case.",
   textOnPage2:
