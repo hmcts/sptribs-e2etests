@@ -141,9 +141,7 @@ test.describe("Linking cases tests @CaseAPI", (): void => {
     );
   });
 
-  test("Test error messaging", async ({
-     page 
-  }): Promise<void> => {
+  test("Test error messaging", async ({ page }): Promise<void> => {
     let previousEvents1: allEvents[] = [];
     let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -203,63 +201,61 @@ test.describe("Linking cases tests @CaseAPI", (): void => {
   });
 });
 
-test("Accessibility test @accessibility", async ({
-  page,
-  }): Promise<void> => {
-    let previousEvents1: allEvents[] = [];
-    let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
-    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber7: string = await createCase.createCase(
-      page,
-      "waHearingCentreAdmin",
-      false,
-      "Assessment",
-      "Fatal",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      true,
-      false,
-    );
-    await page.locator(`a:text-is(" Sign out ")`).click();
-    const caseNumber8: string = await createCase.createCase(
-      page,
-      "waHearingCentreAdmin",
-      false,
-      "Assessment",
-      "Fatal",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      false,
-      true,
-      false,
-      true,
-      false,
-    );
-    await linkCases.linkCase(
-      page,
-      caseNumber7,
-      caseNumber8,
-      previousEvents1,
-      eventTimes1,
-      false,
-      "default",
-      subjectName,
-    );
+test("Accessibility test @accessibility", async ({ page }): Promise<void> => {
+  let previousEvents1: allEvents[] = [];
+  let eventTimes1: string[] = []; // Only checking for one of both as the second is covered by this code.
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber7: string = await createCase.createCase(
+    page,
+    "waHearingCentreAdmin",
+    false,
+    "Assessment",
+    "Fatal",
+    true,
+    true,
+    "Email",
+    subjectName,
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+  );
+  await page.locator(`a:text-is(" Sign out ")`).click();
+  const caseNumber8: string = await createCase.createCase(
+    page,
+    "waHearingCentreAdmin",
+    false,
+    "Assessment",
+    "Fatal",
+    true,
+    true,
+    "Email",
+    subjectName,
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+  );
+  await linkCases.linkCase(
+    page,
+    caseNumber7,
+    caseNumber8,
+    previousEvents1,
+    eventTimes1,
+    false,
+    "default",
+    subjectName,
+  );
 });

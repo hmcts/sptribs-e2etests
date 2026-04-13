@@ -39,7 +39,12 @@ const linkCases: LinkCases = {
   ): Promise<void> {
     switch (journeyType) {
       default:
-        await this.startJourney(page, caseNumber1, accessibilityTest, subjectName);
+        await this.startJourney(
+          page,
+          caseNumber1,
+          accessibilityTest,
+          subjectName,
+        );
         await createCaseLinkCreateCaseLink.fillInFields(page);
         await createCaseLinkCreateCaseLink2.checkPageLoads(
           page,
