@@ -16,11 +16,13 @@ type LinkCases = {
     eventTimes: string[],
     accessibilityTest: boolean,
     journeyType: string,
+    subjectName: string,
   ): Promise<void>;
   startJourney(
     page: Page,
     caseNumber1: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
 };
 
@@ -33,10 +35,16 @@ const linkCases: LinkCases = {
     eventTimes: string[],
     accessibilityTest: boolean,
     journeyType: string,
+    subjectName: string,
   ): Promise<void> {
     switch (journeyType) {
       default:
-        await this.startJourney(page, caseNumber1, accessibilityTest);
+        await this.startJourney(
+          page,
+          caseNumber1,
+          accessibilityTest,
+          subjectName,
+        );
         await createCaseLinkCreateCaseLink.fillInFields(page);
         await createCaseLinkCreateCaseLink2.checkPageLoads(
           page,
@@ -68,6 +76,7 @@ const linkCases: LinkCases = {
     page: Page,
     caseNumber1: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     let caseURL = await commonHelpers.generateUrl(
       config.CaseAPIBaseURL,
@@ -79,6 +88,7 @@ const linkCases: LinkCases = {
       page,
       caseNumber1,
       accessibilityTest,
+      subjectName,
     );
   },
 };

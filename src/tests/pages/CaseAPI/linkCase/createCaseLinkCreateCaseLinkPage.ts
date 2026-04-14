@@ -12,6 +12,7 @@ type CreateCaseLinkCreateCaseLinkPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessage(page: Page): Promise<void>;
@@ -27,12 +28,16 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLinkPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-xl:text-is("${createCaseLinkCreateCaseLink_content.pageTitle}")`,
     );
     await Promise.all([
-      commonHelpers.checkNumberAndSubject(page, caseNumber),
+      expect(page.locator("markdown > h3")).toContainText(`${subjectName}`),
+      expect(page.locator("markdown > p").nth(0)).toContainText(
+        createCaseLinkCreateCaseLink_content.caseReference + caseNumber,
+      ),
       expect(page.locator(".govuk-body").nth(0)).toHaveText(
         createCaseLinkCreateCaseLink_content.textOnPage1,
       ),
@@ -53,7 +58,7 @@ const createCaseLinkCreateCaseLink: CreateCaseLinkCreateCaseLinkPage = {
   },
 
   async fillInFields(page: Page): Promise<void> {
-    await page.click(this.next);
+    await page.click(this.submit);
   },
 
   async triggerErrorMessage(page: Page): Promise<void> {
