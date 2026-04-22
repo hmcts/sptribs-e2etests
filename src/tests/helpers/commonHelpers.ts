@@ -1007,6 +1007,7 @@ export type allEvents =
   | "Case: Build case"
   | "To link related cases"
   | "Case: Issue to respondent"
+  | "Create Flag"
   | "Case: Hearing Options"
   | "Case: Clear Hearing Options"
   | "Hearings: Create listing"
