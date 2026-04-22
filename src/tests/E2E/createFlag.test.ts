@@ -44,58 +44,44 @@ test.describe("Create case flags @CaseAPI", (): void => {
       waUsers_content.userRoleAdmin,
     );
     await commonHelpers.chooseEventFromDropdown(page, "Create Flag");
-    await createFlag.createFlag(
-        page,
-        false,
-        caseNumber1000,
-        subjectName,
-        1,
-        2,
-    );
+    await createFlag.createFlag(page, false, caseNumber1000, subjectName, 1, 2);
   });
 });
 
 test("Accessibility test - Create case flag @accessibility", async ({
+  page,
+}): Promise<void> => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber1000 = await createCase.createCase(
     page,
-  }): Promise<void> => {
-    const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1000 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      true,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
-    await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, true, caseNumber1000, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber1000,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
-    await commonHelpers.chooseEventFromDropdown(page, "Create Flag");
-    await createFlag.createFlag(
-        page,
-        true,
-        caseNumber1000,
-        subjectName,
-        1,
-        2,
-    );
-  });
+    waUsers_content.userRoleAdmin,
+    true,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    subjectName,
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  await buildCase.buildCase(page, true, caseNumber1000, subjectName);
+  await task.removeTask(
+    page,
+    caseNumber1000,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Create Flag");
+  await createFlag.createFlag(page, true, caseNumber1000, subjectName, 1, 2);
+});

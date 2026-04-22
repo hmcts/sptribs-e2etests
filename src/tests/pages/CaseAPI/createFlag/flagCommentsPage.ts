@@ -13,9 +13,7 @@ type FlagCommentsPage = {
     accessibilityTest: boolean,
     subjectName: string,
   ): Promise<void>;
-  fillInFields(
-    page: Page,
-  ): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
 };
 
 const flagCommentsPage: FlagCommentsPage = {
@@ -37,9 +35,7 @@ const flagCommentsPage: FlagCommentsPage = {
       `.govuk-caption-l:text-is("${flagCommentsPage_content.pageHint}")`,
     );
 
-    await page.waitForSelector(
-      `markdown > h3:text-is("${subjectName}")`,
-    );
+    await page.waitForSelector(`markdown > h3:text-is("${subjectName}")`);
 
     await page.waitForSelector(
       `markdown > p:text-is("${flagCommentsPage_content.caseReference + caseNumber}")`,
@@ -50,11 +46,11 @@ const flagCommentsPage: FlagCommentsPage = {
     }
   },
 
-    async fillInFields(page): Promise<void> {
+  async fillInFields(page): Promise<void> {
     const selector = `#flagComments`;
-    await page.fill(selector, 'Lorem Ipsum');
+    await page.fill(selector, "Lorem Ipsum");
     await page.click(this.continue);
-    },
+  },
 };
 
 export default flagCommentsPage;

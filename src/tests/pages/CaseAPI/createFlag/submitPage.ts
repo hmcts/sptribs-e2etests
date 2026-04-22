@@ -13,12 +13,8 @@ type SubmitPage = {
     accessibilityTest: boolean,
     subjectName: string,
   ): Promise<void>;
-  fillInFields(
-    page: Page,
-  ): Promise<void>;
-  verifyFlagCreated(
-    page: Page,
-  ): Promise<void>;
+  fillInFields(page: Page): Promise<void>;
+  verifyFlagCreated(page: Page): Promise<void>;
 };
 
 const submitPage: SubmitPage = {
@@ -36,9 +32,7 @@ const submitPage: SubmitPage = {
       `.govuk-heading-l:text-is("${submit_content.pageTitle}")`,
     );
 
-    await page.waitForSelector(
-      `markdown > h3:text-is("${subjectName}")`,
-    );
+    await page.waitForSelector(`markdown > h3:text-is("${subjectName}")`);
 
     await page.waitForSelector(
       `markdown > p:text-is("${submit_content.caseReference + caseNumber}")`,
@@ -55,7 +49,7 @@ const submitPage: SubmitPage = {
   },
 
   async verifyFlagCreated(page): Promise<void> {
-    const banner = page.locator('.govuk-notification-banner');
+    const banner = page.locator(".govuk-notification-banner");
     await expect(banner).toBeVisible();
   },
 };

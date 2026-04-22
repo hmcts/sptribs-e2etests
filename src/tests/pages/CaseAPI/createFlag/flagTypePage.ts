@@ -13,10 +13,7 @@ type FlagTypePage = {
     accessibilityTest: boolean,
     subjectName: string,
   ): Promise<void>;
-  fillInFields(
-    page: Page,
-    flagType: number,
-  ): Promise<void>;
+  fillInFields(page: Page, flagType: number): Promise<void>;
 };
 
 const flagTypePage: FlagTypePage = {
@@ -38,9 +35,7 @@ const flagTypePage: FlagTypePage = {
       `.govuk-caption-l:text-is("${flagTypePage_content.pageHint}")`,
     );
 
-    await page.waitForSelector(
-      `markdown > h3:text-is("${subjectName}")`,
-    );
+    await page.waitForSelector(`markdown > h3:text-is("${subjectName}")`);
 
     await page.waitForSelector(
       `markdown > p:text-is("${flagTypePage_content.caseReference + caseNumber}")`,
