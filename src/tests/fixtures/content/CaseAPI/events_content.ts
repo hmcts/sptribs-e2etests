@@ -12,6 +12,7 @@ const events_content = {
   removeStay: "Stays: Remove stay",
   createDraft: "Orders: Create draft",
   sendOrder: "Orders: Send order",
+  createFlag: "Create Flag",
 } as const;
 
 export default events_content;
