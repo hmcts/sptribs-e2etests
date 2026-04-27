@@ -16,7 +16,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Edit hearing summary - Case management, hybrid, morning, Fox Court, Allowed. @CaseAPI1", async ({
+  test("Edit hearing summary - Case management, hybrid, morning, East London, Allowed. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -192,7 +192,7 @@ test.describe("Edit hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Edit hearing summary - Interlocutory, Video, Afternoon, Fox Court, Withdrawn at hearing. @CaseAPI1", async ({
+  test("Edit hearing summary - Interlocutory, Video, Afternoon, East London, Withdrawn at hearing. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -127,7 +127,9 @@ const editSummaryListingDetailsPage: EditSummaryListingDetailsPage = {
     const currentDate = new Date();
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
-        page.locator(`ccd-read-text-field > span.text-16:text-is("Fox Court")`),
+        page.locator(
+          `ccd-read-text-field > span.text-16:text-is("East London Tribunal Hearing Centre")`,
+        ),
         1,
       ),
       expect(page.locator(this.roomAtVenue)).toHaveValue(
