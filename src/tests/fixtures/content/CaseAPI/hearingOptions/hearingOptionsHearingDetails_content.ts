@@ -3,7 +3,8 @@ const hearingOptionsHearingDetails_content = {
   textOnPage1: "Hearing venue (Optional)",
   textOnPage2: "Venue not listed",
   textOnPage3: "Room at venue (Optional)",
-  textOnPage4: "Additional instructions and directions - Please do not enter the '&' character. (Optional)",
+  textOnPage4:
+    "Additional instructions and directions - Please do not enter the '&' character. (Optional)",
   textOnPage5: "Hearing format (Optional)",
   textOnPage6: "Face to Face",
   textOnPage7: "Hybrid",

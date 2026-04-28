@@ -6,7 +6,8 @@ const createListingListingDetails_content = {
   textOnPage2: "Venue not listed",
   textOnPage3: "Hearing Venue",
   textOnPage4: "Room at venue (Optional)",
-  textOnPage5: "Additional instructions and directions - Please do not enter the '&' character. (Optional)",
+  textOnPage5:
+    "Additional instructions and directions - Please do not enter the '&' character. (Optional)",
   subTitle1: "Hearing date",
   textOnPage6: "Hearing Date",
   textOnPage7: "Day",
