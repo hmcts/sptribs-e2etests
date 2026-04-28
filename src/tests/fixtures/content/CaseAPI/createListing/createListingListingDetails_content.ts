@@ -4,9 +4,10 @@ const createListingListingDetails_content = {
   caseReference: "Case number: ",
   textOnPage1: "Hearing venue (Optional)",
   textOnPage2: "Venue not listed",
-  textOnPage3: "Hearing Venue",
+  textOnPage3: "Hearing Venue - Please do not enter the '&' character.",
   textOnPage4: "Room at venue (Optional)",
-  textOnPage5: "Additional instructions and directions (Optional)",
+  textOnPage5:
+    "Additional instructions and directions - Please do not enter the '&' character. (Optional)",
   subTitle1: "Hearing date",
   textOnPage6: "Hearing Date",
   textOnPage7: "Day",
