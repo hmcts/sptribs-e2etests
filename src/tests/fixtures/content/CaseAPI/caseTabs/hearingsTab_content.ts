@@ -16,7 +16,7 @@ const hearingsTab_content = {
   textOnPage12: "Hearing Venue",
   textOnPage13: "Venue Name",
   textOnPage14: "Room at venue",
-  textOnPage15: "Additional instructions and directions",
+  textOnPage15: "Additional instructions and directions - Please do not enter the '&' character.",
   textOnPage16: "Hearing Date",
   textOnPage17: "Start time (24 hour format; e.g. 14:30)",
   textOnPage18: "Session",
