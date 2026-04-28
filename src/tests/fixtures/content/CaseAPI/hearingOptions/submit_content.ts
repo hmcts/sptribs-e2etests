@@ -5,7 +5,8 @@ const submit_content = {
   textOnPage2: "Region",
   textOnPage3: "Hearing venue",
   textOnPage4: "Room at venue",
-  textOnPage5: "Additional instructions and directions",
+  textOnPage5:
+    "Additional instructions and directions - Please do not enter the '&' character.",
   textOnPage6: "Hearing format",
   textOnPage7: "Case eligible for a short notice hearing?",
 } as const;

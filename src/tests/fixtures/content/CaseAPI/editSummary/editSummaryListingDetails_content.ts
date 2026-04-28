@@ -4,7 +4,7 @@ const editSummaryListingDetails_content = {
   caseReference: "Case number: ",
   textOnPage1: "Venue Name",
   textOnPage2: "Venue not listed",
-  textOnPage3: "Hearing Venue",
+  textOnPage3: "Hearing Venue - Please do not enter the '&' character.",
   textOnPage4: "Room at venue (Optional)",
   subTitle1: "Hearing date",
   textOnPage5: "Hearing Date",
