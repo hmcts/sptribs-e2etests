@@ -20,7 +20,7 @@ const submit_content = {
     "Conference call number - Please do not enter the '&' character.",
   textOnPage15: "Other important information",
   textOnPage16: "Listing information recipient",
-  venueNull: "Hearing Venue",
+  venueNull: "Hearing Venue - Please do not enter the '&' character.",
   additionalHearingDateTitle: "Additional Hearing date",
   additionalHearingDate: "Hearing date",
   additionalHearingDateTime: "Start time (24hr format)",
