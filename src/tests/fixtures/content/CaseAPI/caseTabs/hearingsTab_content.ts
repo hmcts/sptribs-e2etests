@@ -11,7 +11,7 @@ const hearingsTab_content = {
   textOnPage7: "Hearing type",
   textOnPage8: "Hearing format",
   textOnPage9: "Is venue listed?",
-  textOnPage10: "Hearing venue",
+  textOnPage10: "Hearing Venue - Please do not enter the '&' character.",
   textOnPage11: "Region",
   textOnPage12: "Hearing Venue",
   textOnPage13: "Venue Name",
