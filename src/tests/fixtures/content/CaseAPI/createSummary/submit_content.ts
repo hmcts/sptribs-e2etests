@@ -7,7 +7,7 @@ const submit_content = {
   textOnPage3: "Hearing type",
   textOnPage4: "Hearing format",
   textOnPage5: "Venue Name",
-  textOnPage6: "Hearing Venue",
+  textOnPage6: "Hearing Venue - Please do not enter the '&' character.",
   textOnPage7: "Room at venue",
   textOnPage8: "Hearing Date",
   textOnPage9: "Session",
