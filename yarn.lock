@@ -960,11 +960,11 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "brace-expansion@npm:5.0.5"
+  version: 5.0.6
+  resolution: "brace-expansion@npm:5.0.6"
   dependencies:
     balanced-match: "npm:^4.0.2"
-  checksum: 10/f259b2ddf04489da9512ad637ba6b4ef2d77abd4445d20f7f1714585f153435200a53fa6a2e4a5ee974df14ddad4cd16421f6f803e96e8b452bd48598878d0ee
+  checksum: 10/a7acf120fefa79e9d7c9c92898114f57c07596a3920197f3c5917e6a628b04220a5f7f9618c30bdd973a6576a32113b99f9c3f1c8245ccc399dd2a9a718d81d8
   languageName: node
   linkType: hard
 
@@ -2464,9 +2464,9 @@ __metadata:
   linkType: hard
 
 "lru-cache@npm:^11.0.0":
-  version: 11.3.6
-  resolution: "lru-cache@npm:11.3.6"
-  checksum: 10/d69ab552776954c7d310a6b2843e7d6be3a1c36c0ce45fca373c225ce5a06b95fd4ed724305d9d15fa55aa24d3cd42f854aa061bc481241225b3accf32993eab
+  version: 11.4.0
+  resolution: "lru-cache@npm:11.4.0"
+  checksum: 10/c6bb5bb7cd1938c6a96ec70e8cae4b2181bca3852013b51b64c3a40dadb14271f1a3337d5f34350d03d9506970e73be5161eddcf7df524fdf4ad0e390e7d534c
   languageName: node
   linkType: hard
 
@@ -2870,12 +2870,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.59.1":
-  version: 1.59.1
-  resolution: "playwright-core@npm:1.59.1"
+"playwright-core@npm:1.60.0":
+  version: 1.60.0
+  resolution: "playwright-core@npm:1.60.0"
   bin:
     playwright-core: cli.js
-  checksum: 10/d27857a6701587c2a9bfa26fed9a5d8c617a392299b99b187f2ddc198d012a1e296449806bc907220debea938152677e8b4d91d304ed00645f762f778de3abec
+  checksum: 10/66c0f83d627e673261c848dd6fe1f2856d5b5b6859268acb61a45c00f5bf926e596a351a9c481a3a4e82a45022c7c6b5d99ebc3906fc6876ac582ed6f7e16190
   languageName: node
   linkType: hard
 
@@ -2905,17 +2905,17 @@ __metadata:
   linkType: hard
 
 "playwright@npm:^1.55.1":
-  version: 1.59.1
-  resolution: "playwright@npm:1.59.1"
+  version: 1.60.0
+  resolution: "playwright@npm:1.60.0"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.59.1"
+    playwright-core: "npm:1.60.0"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/17b2df42effa362adc6aa3192b625bd80f26b91a0c253a2375ac89ace68407b746dd87b4081629c50c58c3cb031c5b837a32fef43a3c98c60ea504e0b001e5fa
+  checksum: 10/8569770637ee35d08cca3b53a5b56c21e9236bd1ac4718456d5988fb8acd51c5b3cc2cf90748363a36199529e870a9b6c68d6fc9e19571261cd867005d6331c1
   languageName: node
   linkType: hard
 
@@ -3167,11 +3167,11 @@ __metadata:
   linkType: hard
 
 "semver@npm:^7.3.5":
-  version: 7.7.4
-  resolution: "semver@npm:7.7.4"
+  version: 7.8.0
+  resolution: "semver@npm:7.8.0"
   bin:
     semver: bin/semver.js
-  checksum: 10/26bdc6d58b29528f4142d29afb8526bc335f4fc04c4a10f2b98b217f277a031c66736bf82d3d3bb354a2f6a3ae50f18fd62b053c4ac3f294a3d10a61f5075b75
+  checksum: 10/039a8f68a581c03c1ac17c990316da57a79a93af9b109b712739c50cd4d464079f7e3fee31c008b472e390c7ba48a11ed2b86e91d8602bf06059d4a266db1426
   languageName: node
   linkType: hard
 
@@ -3328,6 +3328,7 @@ __metadata:
     "@playwright/test": "npm:^1.46.1"
     "@types/node": "npm:^22.0.0"
     axios: "npm:1.15.2"
+    brace-expansion: "npm:^5.0.6"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
     playwright-core: "npm:^1.46.1"
@@ -3433,15 +3434,15 @@ __metadata:
   linkType: hard
 
 "tar@npm:^7.5.9":
-  version: 7.5.14
-  resolution: "tar@npm:7.5.14"
+  version: 7.5.15
+  resolution: "tar@npm:7.5.15"
   dependencies:
     "@isaacs/fs-minipass": "npm:^4.0.0"
     chownr: "npm:^3.0.0"
     minipass: "npm:^7.1.2"
     minizlib: "npm:^3.1.0"
     yallist: "npm:^5.0.0"
-  checksum: 10/4399a2cedf42cf8fbc24b1d732a0bc709ed5cda6bef5bd8b60ccbff94d213bf33f81afb5b99e849dd51626954c048062631b23f6619255be9199a3ceb5950cad
+  checksum: 10/b4cb6acd822159867f81ebda8d765c6941ec8292f1cf2f870d3713f4933c14bf0ed7bf4a92338143c31e8815ca0a1fdd62aa03ddb48a42ae187f7ef696583ffe
   languageName: node
   linkType: hard
 
@@ -3462,9 +3463,9 @@ __metadata:
   linkType: hard
 
 "third-party-web@npm:latest":
-  version: 0.29.0
-  resolution: "third-party-web@npm:0.29.0"
-  checksum: 10/c0f26d7b6127171bd29d8e16f8f59b16ddc0a568c352bdc4dc0536a070df67c15bfbdf0aa4e8a6601ccf914e54f9330fe368757cf07412d1627a2b9c4948388a
+  version: 0.29.2
+  resolution: "third-party-web@npm:0.29.2"
+  checksum: 10/e6554db54772048f7a9154f19ae73bc3dfe7b8969aee71df74345b8be81305d3985ff662c8a8e57f0785038d7564e5be4efe02059cf820fdd7b9823ca13bc636
   languageName: node
   linkType: hard
 
