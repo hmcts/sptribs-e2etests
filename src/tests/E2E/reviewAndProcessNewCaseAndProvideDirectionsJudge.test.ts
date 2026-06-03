@@ -25,7 +25,7 @@ const numberOfDaysProcess = 7;
 const numberOfDaysNonCompliance = 1;
 
 test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): void => {
-  test("Check for redundant test data @CaseAPI2", async ({ page }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

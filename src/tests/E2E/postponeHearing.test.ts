@@ -11,7 +11,7 @@ import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Postpone hearing tests @CaseAPI", (): void => {
-  test("Check for redundant test data @CaseAPI2", async ({ page }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

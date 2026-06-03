@@ -12,7 +12,7 @@ import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 
 test.describe("Edit hearing listing tests @CaseAPI", (): void => {
-  test("Check for redundant test data @crossbrowserCaseAPI @CaseAPI1", async ({
+  test("Check for redundant test data", async ({
     page,
   }) => {
     test.setTimeout(10 * 60 * 1000);
