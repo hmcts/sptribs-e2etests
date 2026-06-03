@@ -21,7 +21,7 @@ const numberOfDaysReview = 5;
 const numberOfDaysProcess = 5;
 
 test.describe("Review and Process Reinstatement Request - Judge @CaseAPI ", (): void => {
-  test("Check for redundant test data @CaseAPI3", async ({ page }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });

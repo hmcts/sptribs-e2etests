@@ -11,7 +11,7 @@ import createSummary from "../journeys/CaseAPI/createSummary.ts";
 import task from "../journeys/CaseAPI/task.ts";
 
 test.describe("Create hearing summary tests @CaseAPI", (): void => {
-  test("Check for redundant test data  @CaseAPI1", async ({ page }) => {
+  test("Check for redundant test data", async ({ page }) => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
