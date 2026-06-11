@@ -7,7 +7,7 @@ import task from "../journeys/CaseAPI/task.ts";
 import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 
 test.describe("DSS Create case tests.", (): void => {
-  test.only("Create an application with all details, a qualified representative, additional information, no PCQ, Out of time @DSSCreate", async ({
+  test("Create an application with all details, a qualified representative, additional information, no PCQ, Out of time @DSSCreate", async ({
     page,
   }) => {
     const outOfTimeDate = new Date();
