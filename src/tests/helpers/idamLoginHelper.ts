@@ -88,7 +88,6 @@ const idamLoginHelper: IdamLoginHelper = {
 
     const userCredentials: UserCredentials | string = config[user];
     if (isUserCredentials(userCredentials)) {
-
       await page.getByRole("button", { name: "Sign in" }).click();
       await page.waitForLoadState("domcontentloaded");
 
@@ -99,7 +98,6 @@ const idamLoginHelper: IdamLoginHelper = {
       await page.fill("#password", userCredentials.password);
       await page.getByRole("button", { name: "Continue" }).click();
       await page.waitForLoadState("domcontentloaded");
-
     } else {
       console.error("Invalid credential type");
     }
