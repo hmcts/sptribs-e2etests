@@ -40,6 +40,11 @@ properties([
                         defaultValue: false,
                         description: 'Tick the checkbox for skipping DSS Update Case application tests.'
                 ),
+                booleanParam(
+                        name: 'runContinuousIntegrationTests',
+                        defaultValue: false,
+                        description: 'Tick to only run tests tagged with @continuousIntegration'
+                ),
         ])
 ])
 
@@ -134,6 +139,26 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
+
+    if (params.runContinuousIntegrationTests) {
+      stage('Continuous Integration Tests') {
+          try {
+              yarnBuilder.yarn('test:ci')
+          } catch (Error) {
+              unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+          } finally {
+              publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Continuous Integration Test Report'
+              ])
+              steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/**/*'
+          }
+      }
+  } else {
 
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
@@ -334,7 +359,7 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-
+    }
 //      stage('Case-API Application E2E tests - Webkit') {
 //        try {
 //          yarnBuilder.yarn('test:WebkitCaseAPI')
@@ -381,3 +406,4 @@ withNightlyPipeline(type, product, component, 600) {
     }
   }
 }
+

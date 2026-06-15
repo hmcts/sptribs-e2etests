@@ -31,7 +31,8 @@
     "test:ChromeCaseAPI1": "npx playwright test --project chromium --grep @CaseAPI1",
     "test:ChromeCaseAPI2": "npx playwright test --project chromium --grep @CaseAPI2",
     "test:ChromeCaseAPI3": "npx playwright test --project chromium --grep @CaseAPI3",
-    "test:errorMessaging": "npx playwright test --project chromium --grep @ErrorMessaging"
+    "test:errorMessaging": "npx playwright test --project chromium --grep @ErrorMessaging",
+    "test:ci": "npx playwright test --project chromium --grep @continuousIntegration"
   },
   "pre-commit": [
     "lint"
