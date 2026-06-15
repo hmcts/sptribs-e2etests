@@ -139,6 +139,7 @@ withNightlyPipeline(type, product, component, 600) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
+    }
 
     if (params.runContinuousIntegrationTests) {
       stage('Continuous Integration Tests') {
@@ -405,5 +406,4 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
   }
-}
 }
