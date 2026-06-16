@@ -1744,7 +1744,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned due to insufficient time. @CaseAPI1", async ({
+  test("Create hearing summary - hearing outcome is adjourned due to insufficient time. @CaseAPI1 @continuousIntegration", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
