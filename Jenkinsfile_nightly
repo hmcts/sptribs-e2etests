@@ -131,15 +131,6 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
-    if (!params.runContinuousIntegrationTests) {
-      stage('Global data clean up') {
-        try {
-          yarnBuilder.yarn('test:dataCleanUp')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
-    }
 
     if (params.runContinuousIntegrationTests) {
       stage('Continuous Integration Tests') {
@@ -161,6 +152,13 @@ withNightlyPipeline(type, product, component, 600) {
       }
   } else {
 
+    stage('Global data clean up') {
+      try {
+        yarnBuilder.yarn('test:dataCleanUp')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      }
+    }
     if (!params.skipDSSCreateTests) {
       stage('DSS Create Case Application E2E tests - Chrome') {
         try {
@@ -380,7 +378,7 @@ withNightlyPipeline(type, product, component, 600) {
 //      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
 //        and then these will be turned back on.
 
-      stage('Accessibility tests') {
+    stage('Accessibility tests') {
         try {
           yarnBuilder.yarn('test:accessibility')
         } catch (Error) {
@@ -397,8 +395,6 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
         }
       }
-    }
-  if (!params.runContinuousIntegrationTests) {
     stage('Global data clean up') {
       try {
         yarnBuilder.yarn('test:dataCleanUp')
