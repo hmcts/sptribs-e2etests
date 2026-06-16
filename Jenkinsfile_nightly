@@ -398,6 +398,7 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
     }
+  if (!params.runContinuousIntegrationTests) {
     stage('Global data clean up') {
       try {
         yarnBuilder.yarn('test:dataCleanUp')
@@ -405,5 +406,6 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
+  }
   }
 }
