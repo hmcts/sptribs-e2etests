@@ -378,7 +378,7 @@ withNightlyPipeline(type, product, component, 600) {
 //      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
 //        and then these will be turned back on.
 
-    stage('Accessibility tests') {
+      stage('Accessibility tests') {
         try {
           yarnBuilder.yarn('test:accessibility')
         } catch (Error) {
