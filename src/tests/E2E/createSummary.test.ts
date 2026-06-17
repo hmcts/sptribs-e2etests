@@ -1672,7 +1672,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned as further police evidence required - HMCTS (Summons).", async ({
+  test("Create hearing summary - hearing outcome is adjourned as further police evidence required - HMCTS (Summons). @continuousIntegration", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -1699,13 +1699,6 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1124, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber1124,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await commonHelpers.chooseEventFromDropdown(
       page,
       "Hearings: Create listing",
@@ -1719,7 +1712,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Hybrid",
       "Morning",
       false,
-      "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
       false,
       caseNumber1124,
       subjectName,
@@ -1732,8 +1725,8 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
       "Hybrid",
       "Morning",
       false,
-      "Fox Court - London (Central) SSCS Tribunal-4th Floor, Fox Court, 30 Brooke Street, London",
-      "Fox Court",
+      "East London Tribunal Hearing Centre-2 Clove Crescent, East India Dock London",
+      "East London Tribunal Hearing Centre",
       "Adjourned",
       "Further police evidence required - HMCTS (Summons)",
       true,
@@ -1744,7 +1737,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
     );
   });
 
-  test("Create hearing summary - hearing outcome is adjourned due to insufficient time. @CaseAPI1 @continuousIntegration", async ({
+  test("Create hearing summary - hearing outcome is adjourned due to insufficient time. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
