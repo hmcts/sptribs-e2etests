@@ -8,7 +8,7 @@ type CasesPage = {
   changeCaseType(page: Page): Promise<void>;
   searchForCaseNumber(page: Page, caseNumber: string): Promise<void>;
   createCase(page: Page): Promise<void>;
-  navigateToCaseListIfNeeded(page: Page): Promise<void>
+  navigateToCaseListIfNeeded(page: Page): Promise<void>;
 };
 
 const casesPage: CasesPage = {
@@ -17,11 +17,15 @@ const casesPage: CasesPage = {
 
   async navigateToCaseListIfNeeded(page: Page): Promise<void> {
     await page.waitForSelector('a.hmcts-header__link[href="/"]');
-    const myWorkHeading = page.locator('h3.govuk-heading-xl', { hasText: 'My work' });
+    const myWorkHeading = page.locator("h3.govuk-heading-xl", {
+      hasText: "My work",
+    });
     const isOnMyWorkPage = await myWorkHeading.isVisible();
 
     if (isOnMyWorkPage) {
-      await page.locator('a.hmcts-primary-navigation__link[href="/cases"]').click();
+      await page
+        .locator('a.hmcts-primary-navigation__link[href="/cases"]')
+        .click();
     }
   },
 
