@@ -40,11 +40,6 @@ properties([
                         defaultValue: false,
                         description: 'Tick the checkbox for skipping DSS Update Case application tests.'
                 ),
-                booleanParam(
-                        name: 'runContinuousIntegrationTests',
-                        defaultValue: false,
-                        description: 'Tick to only run tests tagged with @continuousIntegration'
-                ),
         ])
 ])
 
@@ -131,26 +126,6 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
-
-    if (params.runContinuousIntegrationTests) {
-      stage('Continuous Integration Tests') {
-          try {
-              yarnBuilder.yarn('test:ci')
-          } catch (Error) {
-              unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          } finally {
-              publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Continuous Integration Test Report'
-              ])
-              steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/**/*'
-          }
-      }
-  } else {
 
     stage('Global data clean up') {
       try {
@@ -378,23 +353,23 @@ withNightlyPipeline(type, product, component, 600) {
 //      } Disabled due to ExUI not supporting WebKit - To be addressed in the future
 //        and then these will be turned back on.
 
-      stage('Accessibility tests') {
-        try {
-          yarnBuilder.yarn('test:accessibility')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Accessibility Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
-        }
+    stage('Accessibility tests') {
+      try {
+        yarnBuilder.yarn('test:accessibility')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      } finally {
+        publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: "playwright-report",
+                reportFiles: 'index.html',
+                reportName: 'Accessibility Test Report'
+        ])
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CaseAPIFunctional/*'
       }
+    }
     stage('Global data clean up') {
       try {
         yarnBuilder.yarn('test:dataCleanUp')
@@ -402,6 +377,5 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
-  }
   }
 }
