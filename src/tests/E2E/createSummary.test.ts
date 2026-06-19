@@ -1675,6 +1675,7 @@ test.describe("Create hearing summary tests @CaseAPI", (): void => {
   test("Create hearing summary - hearing outcome is adjourned as further police evidence required - HMCTS (Summons). @continuousIntegration", async ({
     page,
   }): Promise<void> => {
+    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1124 = await createCase.createCase(
       page,

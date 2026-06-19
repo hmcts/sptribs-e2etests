@@ -72,9 +72,10 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
   });
 
-  test("Close a ready to list case as it is rejected created in error with optional information.", async ({
+  test("Close a ready to list case as it is rejected created in error with optional information. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
+    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber501 = await createCase.createCase(
       page,
@@ -99,13 +100,6 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber501, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber501,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,

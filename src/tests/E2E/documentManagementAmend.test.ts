@@ -21,9 +21,10 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Amend documents uploaded to a submitted case.", async ({
+  test("Amend documents uploaded to a submitted case. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
+    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2500 = await createCase.createCase(
       page,

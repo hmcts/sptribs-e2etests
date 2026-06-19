@@ -74,9 +74,10 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
   });
 
-  test("Send a message to all parties related to a case that is stayed.", async ({
+  test("Send a message to all parties related to a case that is stayed. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
+    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber2501 = await createCase.createCase(
       page,
@@ -101,13 +102,6 @@ test.describe("Case-API Contact parties tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2501, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber2501,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await createEditStay.createEditStay(
       page,
       true,

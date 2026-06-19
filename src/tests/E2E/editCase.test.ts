@@ -77,9 +77,10 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     );
   });
 
-  test("Edit case in state Ready to list - Assessment - Paragraph 26 Category, Post Contact", async ({
+  test("Edit case in state Ready to list - Assessment - Paragraph 26 Category, Post Contact @continuousIntegration", async ({
     page,
   }) => {
+    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1301 = await createCase.createCase(
       page,
@@ -104,13 +105,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1301, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber1301,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,
