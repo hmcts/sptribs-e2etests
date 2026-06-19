@@ -1,5 +1,30 @@
 #!groovy
 
+properties([
+    parameters([
+        string(
+            name: 'ENVIRONMENT',
+            defaultValue: 'aat',
+            description: 'Environment to test'
+        ),
+        string(
+            name: 'SPTRIBS_CASEAPI_URL',
+            defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+            description: 'The Case-API URL to test against'
+        ),
+        string(
+            name: 'SPTRIBS_FRONTEND_URL',
+            defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
+            description: 'The DSS URL to test against'
+        ),
+        string(
+            name: 'SPTRIBS_UPDATE_URL',
+            defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/',
+            description: 'The Update Case URL to test against'
+        ),
+    ])
+])
+
 @Library("Infrastructure")
 
 def type = "nodejs"
@@ -55,34 +80,9 @@ def secrets = [
     ]
 ]
 
-properties([
-    parameters([
-        string(
-            name: 'ENVIRONMENT',
-            defaultValue: 'aat',
-            description: 'Environment to test'
-        ),
-        string(
-            name: 'SPTRIBS_CASEAPI_URL',
-            defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
-            description: 'The Case-API URL to test against'
-        ),
-        string(
-            name: 'SPTRIBS_FRONTEND_URL',
-            defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
-            description: 'The DSS URL to test against'
-        ),
-        string(
-            name: 'SPTRIBS_UPDATE_URL',
-            defaultValue: 'https://sptribs-dss-update-case-web.aat.platform.hmcts.net/',
-            description: 'The Update Case URL to test against'
-        ),
-    ])
-])
-
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-withPipeline(type, product, component) {
+withNightlyPipeline(type, product, component, 600) {
     env.CASEAPI_BASE_URL = params.SPTRIBS_CASEAPI_URL
     env.DSS_BASE_URL = params.SPTRIBS_FRONTEND_URL
     env.UC_BASE_URL = params.SPTRIBS_UPDATE_URL
@@ -93,29 +93,31 @@ withPipeline(type, product, component) {
     loadVaultSecrets(secrets)
     enableSlackNotifications('#special-tribunals-builds')
 
-    afterSuccess('checkout') {
-        try {
-            yarnBuilder.yarn('configure')
-        } catch (Error) {
-            unstable(message: "Install Playwright and dependencies is unstable: " + Error.toString())
+    afterAlways('DependencyCheckNightly') {
+        stage('Install Playwright and dependencies') {
+            try {
+                yarnBuilder.yarn('configure')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            }
         }
-    }
 
-    afterSuccess('build') {
-        try {
-            yarnBuilder.yarn('test:ci')
-        } catch (Error) {
-            unstable(message: "Continuous Integration Tests is unstable: " + Error.toString())
-        } finally {
-            publishHTML([
-                allowMissing         : true,
-                alwaysLinkToLastBuild: true,
-                keepAll              : true,
-                reportDir            : "playwright-report",
-                reportFiles          : 'index.html',
-                reportName           : 'Continuous Integration Test Report'
-            ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/**/*'
+        stage('Continuous Integration Tests') {
+            try {
+                yarnBuilder.yarn('test:ci')
+            } catch (Error) {
+                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            } finally {
+                publishHTML([
+                    allowMissing         : true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll              : true,
+                    reportDir            : "playwright-report",
+                    reportFiles          : 'index.html',
+                    reportName           : 'Continuous Integration Test Report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/**/*'
+            }
         }
     }
 }
