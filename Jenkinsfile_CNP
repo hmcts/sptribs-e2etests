@@ -93,19 +93,19 @@ withPipeline(type, product, component) {
     loadVaultSecrets(secrets)
     enableSlackNotifications('#special-tribunals-builds')
 
-    stage('Install Playwright and dependencies') {
+    afterSuccess('checkout') {
         try {
             yarnBuilder.yarn('configure')
         } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            unstable(message: "Install Playwright and dependencies is unstable: " + Error.toString())
         }
     }
 
-    stage('Continuous Integration Tests') {
+    afterSuccess('build') {
         try {
             yarnBuilder.yarn('test:ci')
         } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+            unstable(message: "Continuous Integration Tests is unstable: " + Error.toString())
         } finally {
             publishHTML([
                 allowMissing         : true,
