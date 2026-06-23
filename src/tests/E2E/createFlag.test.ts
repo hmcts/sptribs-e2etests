@@ -50,7 +50,6 @@ test.describe("Create case flags @CaseAPI", (): void => {
   test("Create flag at Case Level, type Urgent Case. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
-    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1000 = await createCase.createCase(
       page,

@@ -102,7 +102,6 @@ test.describe("Edit hearing listing tests @CaseAPI", (): void => {
   test("Edit hearing listing, 11-Scotland, Final, Hybrid, Morning, Aberdeen. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
-    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1601 = await createCase.createCase(
       page,

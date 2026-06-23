@@ -50,7 +50,6 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
   test("Add a note to a Submitted case case. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
-    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber201 = await createCase.createCase(
       page,

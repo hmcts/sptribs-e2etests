@@ -80,7 +80,6 @@ test.describe("Case-API Edit case tests. @CaseAPI", () => {
   test("Edit case in state Ready to list - Assessment - Paragraph 26 Category, Post Contact @continuousIntegration", async ({
     page,
   }) => {
-    test.setTimeout(5 * 60 * 1000);
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber1301 = await createCase.createCase(
       page,
