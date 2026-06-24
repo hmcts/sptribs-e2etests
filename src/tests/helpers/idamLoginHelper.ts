@@ -33,9 +33,8 @@ const idamLoginHelper: IdamLoginHelper = {
         await page.goto(application);
       } catch (e) {
         if (
-          !(e instanceof Error) ||
-          (!e.message.includes("interrupted by another navigation") &&
-            !e.message.includes("ERR_ABORTED"))
+          !(e as Error).message.includes("interrupted by another navigation") &&
+          !(e as Error).message.includes("ERR_ABORTED")
         ) {
           throw e;
         }
