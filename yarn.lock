@@ -656,16 +656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 26.0.0
-  resolution: "@types/node@npm:26.0.0"
-  dependencies:
-    undici-types: "npm:~8.3.0"
-  checksum: 10/ed23034d159b58541de1f59d2ae3988d64124f94a50fb9f1825a217b38f034fc9846e2117770a2bc9372e87de1b0d2b3c6f5ec953b4da4ac943b9a6008b2cc2b
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^22.20.0":
+"@types/node@npm:*, @types/node@npm:^22.0.0":
   version: 22.20.0
   resolution: "@types/node@npm:22.20.0"
   dependencies:
@@ -2818,8 +2809,8 @@ __metadata:
   linkType: hard
 
 "puppeteer-core@npm:^25.0.2":
-  version: 25.2.0
-  resolution: "puppeteer-core@npm:25.2.0"
+  version: 25.2.1
+  resolution: "puppeteer-core@npm:25.2.1"
   dependencies:
     "@puppeteer/browsers": "npm:3.0.5"
     chromium-bidi: "npm:16.0.1"
@@ -2827,7 +2818,7 @@ __metadata:
     typed-query-selector: "npm:^2.12.2"
     webdriver-bidi-protocol: "npm:0.4.2"
     ws: "npm:^8.21.0"
-  checksum: 10/34b4337ad4ed68da0ca9e94a51236adf93af7c118662ada089a33ff091d6c9974b03599be134e791b133c094b5988be4cd456999e60b740f99491c4ff1c9bbd2
+  checksum: 10/af6d5c22f5528fd440365721266dd6554f74b169e2c6e62adb3b8a1bc4200d8fcd0f22fc6fd50545d80bdfe2ea25316ed6b21d232d9a6d6c88ea3133959ef2fe
   languageName: node
   linkType: hard
 
@@ -3081,7 +3072,7 @@ __metadata:
   dependencies:
     "@hmcts/playwright-common": "npm:^1.0.20"
     "@playwright/test": "npm:^1.46.1"
-    "@types/node": "npm:^22.20.0"
+    "@types/node": "npm:^22.0.0"
     axios: "npm:1.16.0"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
@@ -3383,13 +3374,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~8.3.0":
-  version: 8.3.0
-  resolution: "undici-types@npm:8.3.0"
-  checksum: 10/6681d2837ac75a75ac1cc46090aa2b8ddc7c6b8ecc295a6cdb06838752a730da3d8afeecf05e5ab7903160eafad3a8b6ffa1927e5ded260590f4d4fef18646d5
-  languageName: node
-  linkType: hard
-
 "undici@npm:^6.25.0":
   version: 6.27.0
   resolution: "undici@npm:6.27.0"
@@ -3517,18 +3501,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^7.5.11":
-  version: 7.5.11
-  resolution: "ws@npm:7.5.11"
+"ws@npm:^8.0.0":
+  version: 8.21.0
+  resolution: "ws@npm:8.21.0"
   peerDependencies:
     bufferutil: ^4.0.1
-    utf-8-validate: ^5.0.2
+    utf-8-validate: ">=5.0.2"
   peerDependenciesMeta:
     bufferutil:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10/486141e4a01bb75883f9ba39317309c2427e24db1cb75e340fad6e5886b65c03d994a34209f0e4ba06dd6cb9ec95dd1b6a09c52c05eed9a34d6376f4fbbf617c
+  checksum: 10/088411956432c8f876158409d5a285cb9ad1382f593391f51d3a599bd0a5b277f876609ebd00fc3596321c4a4c9064d6fffe1ebad960e8ea7fd9ae25324f35c2
   languageName: node
   linkType: hard
 
