@@ -29,7 +29,13 @@ const idamLoginHelper: IdamLoginHelper = {
     application: string,
   ): Promise<void> {
     if (!page.url().includes("idam-web-public.")) {
-      await page.goto(application, { waitUntil: "commit" });
+      try {
+        await page.goto(application);
+      } catch (e) {
+        if (!(e instanceof Error) || !e.message.includes("interrupted by another navigation") && !e.message.includes("ERR_ABORTED")) {
+          throw e;
+        }
+      }
     }
     if (page.url().includes("demo")) {
       await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
