@@ -102,21 +102,23 @@ withNightlyPipeline(type, product, component, 600) {
             }
         }
 
-        stage('Continuous Integration Tests') {
-            try {
-                yarnBuilder.yarn('test:ci')
-            } catch (Error) {
-                unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-            } finally {
-                publishHTML([
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : "playwright-report",
-                    reportFiles          : 'index.html',
-                    reportName           : 'Continuous Integration Test Report'
-                ])
-                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/**/*'
+        if (params.SPTRIBS_CASEAPI_URL.contains('preview')) {
+            stage('Continuous Integration Tests') {
+                try {
+                    yarnBuilder.yarn('test:ci')
+                } catch (Error) {
+                    unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+                } finally {
+                    publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : "playwright-report",
+                        reportFiles          : 'index.html',
+                        reportName           : 'Continuous Integration Test Report'
+                    ])
+                    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/**/*'
+                }
             }
         }
     }
