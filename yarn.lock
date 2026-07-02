@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 10
   cacheKey: 10
 
 "@apm-js-collab/code-transformer-bundler-plugins@npm:^0.5.0":
@@ -3308,7 +3308,6 @@ __metadata:
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.6.2"
-    tar: "npm:^7.5.17"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
