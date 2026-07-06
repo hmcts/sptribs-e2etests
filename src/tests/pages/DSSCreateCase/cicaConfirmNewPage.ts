@@ -73,10 +73,7 @@ const cicaConfirmNewPage: CicaConfirmNewPage = {
     }
   },
 
-  async fillInFields(
-    page: Page,
-    newAppeal: boolean,
-  ): Promise<void> {
+  async fillInFields(page: Page, newAppeal: boolean): Promise<void> {
     if (newAppeal) {
       await page.click(this.startNewAppealYes);
     } else {

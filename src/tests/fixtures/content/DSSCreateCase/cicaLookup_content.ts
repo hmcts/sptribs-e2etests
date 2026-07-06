@@ -1,6 +1,5 @@
 const cicaLookupContent = {
-  pageTitle:
-    "Enter your HMCTS reference number",
+  pageTitle: "Enter your HMCTS reference number",
   hintText1:
     "If you have an existing case, entering your HMCTS reference number will take you to it. Otherwise, a new application will be started.",
   hintText2:
@@ -9,8 +8,7 @@ const cicaLookupContent = {
   button: "Continue",
   errorBanner: "There is a problem",
   selectionError: "Enter your HMCTS reference number",
-  pageTitleCy:
-    "Nodwch eich cyfeirnod HMCTS",
+  pageTitleCy: "Nodwch eich cyfeirnod HMCTS",
   hintTextCy1:
     "Os oes gennych achos presennol, bydd nodi eich cyfeirnod HMCTS yn mynd â chi ato. Fel arall, bydd cais newydd yn cael ei ddechrau.",
   hintTextCy2:

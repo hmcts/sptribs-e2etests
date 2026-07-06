@@ -5,8 +5,7 @@ const cicaConfirmNewContent = {
   button: "Continue",
   errorBanner: "There is a problem",
   selectionError: "Select yes if you want to start a new appeal",
-  pageTitleCy:
-    "Nid yw eich cyfeirnod HMCTS yn cyfateb i achos presennol",
+  pageTitleCy: "Nid yw eich cyfeirnod HMCTS yn cyfateb i achos presennol",
   textOnPageCy1: "Ydw, dechrau apêl newydd",
   textOnPageCy2: "Na, gadewch i mi ail-nodi fy nghyfeirnod HMCTS",
   buttonCy: "Parhau",
