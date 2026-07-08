@@ -1,7 +1,7 @@
 const cicaLookupContent = {
   pageTitle: "Enter your HMCTS reference number",
   hintText1:
-    "If you have an existing case, entering your HMCTS reference number will take you to it. Otherwise, a new application will be started.",
+    "If you have an existing appeal, entering your HMCTS reference number will take you to it. Otherwise, a new application will be started.",
   hintText2:
     "You can find this on any correspondence that you've received from HMCTS. HMCTS reference numbers are 16 digits long.",
   subHeading1: "HMCTS reference number",

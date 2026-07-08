@@ -1,5 +1,5 @@
 const cicaConfirmNewContent = {
-  pageTitle: "Your HMCTS reference number doesn't match an existing case",
+  pageTitle: "Your HMCTS reference number doesn't match an existing appeal",
   textOnPage1: "Yes, start a new appeal",
   textOnPage2: "No, let me re-enter my HMCTS reference number",
   button: "Continue",
