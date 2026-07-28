@@ -8,10 +8,7 @@ type SignInPage = {
 
 const signInPage: SignInPage = {
   async SignInUser(page: Page, user: UserRole): Promise<void> {
-    await page.waitForSelector(
-      `#skiplinktarget:text("Sign in or create an account")`,
-    );
-    await idamLoginHelper.signInUser(page, user, config.FEBaseURL);
+    await idamLoginHelper.signInUserDSS(page, user, config.FEBaseURL);
   },
 };
 

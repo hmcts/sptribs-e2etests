@@ -25,7 +25,7 @@ const landingPage: LandingPage = {
     await page.goto(config.UpdateCaseBaseURL);
     switch (cy) {
       case true:
-        await page.locator(".govuk-link").nth(1).click();
+        await page.locator('a[href="?lang=cy"]').click();
         await Promise.all([
           commonHelpers.feedbackBanner(page, true, true),
           expect(page.locator(".govuk-header__service-name")).toHaveText(
