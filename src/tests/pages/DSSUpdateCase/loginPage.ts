@@ -12,7 +12,7 @@ const signInPage: SignInPage = {
     await idamLoginHelper.signInUserDSS(
       page,
       waUsers_content.userRoleCitizen,
-      config.FEBaseURL,
+      config.UpdateCaseBaseURL,
     );
   },
 };
