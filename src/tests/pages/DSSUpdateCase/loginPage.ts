@@ -1,14 +1,15 @@
 import { Page } from "@playwright/test";
 import idamLoginHelper from "../../helpers/idamLoginHelper.ts";
-import config, { UserRole } from "../../config.ts";
+import config from "../../config.ts";
+import waUsers_content from "../../fixtures/content/waUsers_content.ts";
 
 type SignInPage = {
-  SignInUser(page: Page, user: UserRole): Promise<void>;
+  SignInUser(page: Page): Promise<void>;
 };
 
 const signInPage: SignInPage = {
-  async SignInUser(page: Page, user: UserRole): Promise<void> {
-    await idamLoginHelper.signInUserDSS(page, user, config.FEBaseURL);
+  async SignInUser(page: Page): Promise<void> {
+    await idamLoginHelper.signInUserDSS(page, waUsers_content.userRoleCitizen, config.FEBaseURL);
   },
 };
 
