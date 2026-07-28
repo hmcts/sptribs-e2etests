@@ -8,11 +8,26 @@ type CasesPage = {
   changeCaseType(page: Page): Promise<void>;
   searchForCaseNumber(page: Page, caseNumber: string): Promise<void>;
   createCase(page: Page): Promise<void>;
+  navigateToCaseListIfNeeded(page: Page): Promise<void>;
 };
 
 const casesPage: CasesPage = {
   searchCaseNumber: "input#\\[CASE_REFERENCE\\]",
   caseType: "#wb-case-type",
+
+  async navigateToCaseListIfNeeded(page: Page): Promise<void> {
+    await page.waitForSelector('a.hmcts-header__link[href="/"]');
+    const myWorkHeading = page.locator("h3.govuk-heading-xl", {
+      hasText: "My work",
+    });
+    const isOnMyWorkPage = await myWorkHeading.isVisible();
+
+    if (isOnMyWorkPage) {
+      await page
+        .locator('a.hmcts-primary-navigation__link[href="/cases"]')
+        .click();
+    }
+  },
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
     await page.waitForSelector(

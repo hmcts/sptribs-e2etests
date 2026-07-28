@@ -73,7 +73,7 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     );
   });
 
-  test("Reinstate a case which has had a withdrawal decision with no optional text.", async ({
+  test("Reinstate a case which has had a withdrawal decision with no optional text. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -100,13 +100,6 @@ test.describe("Case-API Close Reinstate case tests. @CaseAPI ", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2301, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber2301,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await commonHelpers.chooseEventFromDropdown(page, events_content.closeCase);
     await closeCase.closeCase(
       page,

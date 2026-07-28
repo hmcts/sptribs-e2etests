@@ -38,7 +38,7 @@ const builtCasePage: BuildCasePage = {
   },
 
   async continueOn(page: Page): Promise<void> {
-    await page.getByRole("button", { name: "Submit" }).click();
+    await page.getByRole("button", { name: "Save and continue" }).click();
   },
 };
 

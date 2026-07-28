@@ -75,6 +75,7 @@ const createCase: CreateCase = {
     let caseNumber: any;
     if (needLogin) {
       await caseAPILoginPage.SignInUser(page, user);
+      await casesPage.navigateToCaseListIfNeeded(page);
       await casesPage.checkPageLoads(page, accessibilityTest);
     }
     await casesPage.createCase(page);

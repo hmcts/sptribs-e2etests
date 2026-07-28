@@ -56,9 +56,10 @@ const selectDocumentsPage: SelectDocumentsPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page
-          .locator(
-            `markdown > p:text-is("${path.basename(config.testPdfFile)} ${selectDocument_content.category}")`,
-          )
+          .locator("markdown > p")
+          .filter({
+            hasText: `${path.basename(config.testPdfFile)} ${selectDocument_content.category}`,
+          })
           .first(),
         1,
       ),

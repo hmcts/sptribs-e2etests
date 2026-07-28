@@ -21,7 +21,7 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Refer case to judge - ready to list, listing directions", async ({
+  test("Refer case to judge - ready to list, listing directions @continuousIntegration", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -48,13 +48,6 @@ test.describe("Case-API Refer case to judge tests. @CaseAPI", () => {
     );
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2100, subjectName);
-    await task.removeTask(
-      page,
-      caseNumber2100,
-      taskNames_content.issueCaseToRespondentTask,
-      subjectName,
-      waUsers_content.userRoleAdmin,
-    );
     await hearingOptions.hearingOptions(
       page,
       false,

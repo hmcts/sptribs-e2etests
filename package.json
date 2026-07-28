@@ -31,14 +31,15 @@
     "test:ChromeCaseAPI1": "npx playwright test --project chromium --grep @CaseAPI1",
     "test:ChromeCaseAPI2": "npx playwright test --project chromium --grep @CaseAPI2",
     "test:ChromeCaseAPI3": "npx playwright test --project chromium --grep @CaseAPI3",
-    "test:errorMessaging": "npx playwright test --project chromium --grep @ErrorMessaging"
+    "test:errorMessaging": "npx playwright test --project chromium --grep @ErrorMessaging",
+    "test:ci": "npx playwright test --project chromium --grep @continuousIntegration --timeout 300000"
   },
   "pre-commit": [
     "lint"
   ],
   "dependencies": {
     "@hmcts/playwright-common": "^1.0.20",
-    "axios": "1.16.0",
+    "axios": "1.18.1",
     "dependency-check": "^4.1.0",
     "dotenv": "^16.4.7",
     "playwright-core": "^1.46.1",
@@ -48,7 +49,7 @@
   "devDependencies": {
     "@playwright/test": "^1.46.1",
     "@types/node": "^22.0.0",
-    "prettier": "3.6.2",
+    "prettier": "3.9.5",
     "tsx": "^4.19.4"
   },
   "resolutions": {
@@ -56,8 +57,8 @@
     "@isaacs/brace-expansion": "5.0.1",
     "playwright": "^1.55.1",
     "tar-fs": "^3.1.1",
-    "tar": "^7.5.9",
-    "js-yaml": "^4.1.1",
+    "tar": "^7.5.16",
+    "js-yaml": "^4.2.0",
     "glob": "^13.0.1",
     "lodash-es": "^4.17.23",
     "minimatch": "^10.2.1",
@@ -67,7 +68,10 @@
     "brace-expansion": "^5.0.5",
     "follow-redirects": "^1.16.0",
     "ip-address": "^10.1.1",
-    "lighthouse": "^13.3.0"
+    "lighthouse": "^13.3.0",
+    "ws": "^7.5.11",
+    "form-data": "4.0.6",
+    "@sentry/node": "10.66.0"
   },
   "packageManager": "yarn@4.9.4"
 }

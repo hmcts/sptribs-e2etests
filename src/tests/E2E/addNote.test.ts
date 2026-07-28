@@ -47,7 +47,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     });
   }
 
-  test("Add a note to a Submitted case case.", async ({
+  test("Add a note to a Submitted case case. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

@@ -21,7 +21,7 @@ test.describe("Case-API Amend document tests. @CaseAPI", () => {
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Amend documents uploaded to a submitted case.", async ({
+  test("Amend documents uploaded to a submitted case. @continuousIntegration", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
