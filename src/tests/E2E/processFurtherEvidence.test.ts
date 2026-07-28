@@ -64,6 +64,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2600,
       true,
@@ -179,6 +180,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2601,
       true,
@@ -444,6 +446,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber160,
       true,
@@ -546,6 +549,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber161,
       true,
@@ -835,6 +839,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2604,
       true,
@@ -964,6 +969,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2605,
       true,
@@ -1382,6 +1388,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2609,
       true,
@@ -1517,6 +1524,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2610,
       true,
@@ -1970,6 +1978,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2614,
       true,
@@ -2122,6 +2131,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2615,
       true,
@@ -2612,6 +2622,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2619,
       true,
@@ -2727,6 +2738,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2620,
       true,
@@ -3019,6 +3031,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2623,
       true,
@@ -3146,6 +3159,7 @@ test.describe("Process further evidence task tests @CaseAPI", (): void => {
     await updateCaseJourney.updateCase(
       page,
       false,
+      waUsers_content.userRoleCitizen,
       false,
       caseNumber2624,
       true,
