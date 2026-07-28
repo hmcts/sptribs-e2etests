@@ -8,7 +8,7 @@ import config from "../config.ts";
 import task from "../journeys/CaseAPI/task.ts";
 
 test.describe("DSS Update case tests.", () => {
-  test.only("Check for an existing case to update, upload one document and additional information - CY @DSSUpdate", async ({
+  test("Check for an existing case to update, upload one document and additional information - CY @DSSUpdate", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -33,20 +33,19 @@ test.describe("DSS Update case tests.", () => {
       config.CaseAPIBaseURL,
       caseNumber01,
     );
-    // await task.removeTask(
-    //   page,
-    //   caseNumber01,
-    //   taskNames_content.registerNewCaseTask,
-    //   subjectName,
-    //   waUsers_content.userRoleAdmin,
-    // );
+    await task.removeTask(
+      page,
+      caseNumber01,
+      taskNames_content.registerNewCaseTask,
+      subjectName,
+      waUsers_content.userRoleAdmin,
+    );
     await page.locator(`a:text-is(" Sign out ")`).click();
     await page.waitForTimeout(5000);
     await page.waitForLoadState("domcontentloaded");
     await updateCaseJourney.updateCase(
       page,
       true,
-      waUsers_content.userRoleCitizen,
       false,
       caseNumber01,
       true,
@@ -109,7 +108,6 @@ test.describe("DSS Update case tests.", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
-      waUsers_content.userRoleCitizen,
       false,
       caseNumber02,
       false,
@@ -171,7 +169,6 @@ test.describe("DSS Update case tests.", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
-      waUsers_content.userRoleCitizen,
       false,
       caseNumber03,
       true,
@@ -234,7 +231,6 @@ test.describe("DSS Update case tests.", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
-      waUsers_content.userRoleCitizen,
       false,
       caseNumber04,
       true,
@@ -281,7 +277,6 @@ test.describe("DSS Update case tests.", () => {
     await updateCaseJourney.updateCase(
       page,
       false,
-      waUsers_content.userRoleCitizen,
       false,
       caseNumber05,
       true,
@@ -328,7 +323,6 @@ test.describe("DSS Update case tests.", () => {
     await updateCaseJourney.updateCase(
       page,
       true,
-      waUsers_content.userRoleCitizen,
       false,
       caseNumber06,
       true,
@@ -379,7 +373,6 @@ test("Check for an existing case to update - aXe test as it proceeds. @accessibi
   await updateCaseJourney.updateCase(
     page,
     false,
-    waUsers_content.userRoleCitizen,
     true,
     caseNumber07,
     true,

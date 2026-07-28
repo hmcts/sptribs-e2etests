@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../config.ts";
 import landingPage from "../../pages/DSSUpdateCase/landingPage.ts";
 import loginPage from "../../pages/DSSUpdateCase/loginPage.ts";
 import caseFinderPage from "../../pages/DSSUpdateCase/caseFinderPage.ts";
@@ -12,7 +11,6 @@ type UpdateCaseJourney = {
   updateCase(
     page: Page,
     cy: boolean,
-    user: UserRole,
     accessibilityTest: boolean,
     caseNumber: string | void,
     additionalInformation: boolean,
@@ -29,7 +27,6 @@ const updateCaseJourney: UpdateCaseJourney = {
   async updateCase(
     page: Page,
     cy: boolean,
-    user: UserRole,
     accessibilityTest: boolean,
     caseNumber: string,
     additionalInformation: boolean,
@@ -43,7 +40,7 @@ const updateCaseJourney: UpdateCaseJourney = {
       default:
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
-        await loginPage.SignInUser(page, user);
+        await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.fillInFields(page, caseNumber);
         await caseFinderPage.continueOn(page);
@@ -84,7 +81,7 @@ const updateCaseJourney: UpdateCaseJourney = {
       case true:
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
-        await loginPage.SignInUser(page, user);
+        await loginPage.SignInUser(page);
         await caseFinderPage.checkPageLoads(page, cy, accessibilityTest);
         await caseFinderPage.triggerErrorMessages(page, cy);
         await caseFinderPage.fillInFields(page, caseNumber);
