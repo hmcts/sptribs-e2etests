@@ -14,7 +14,7 @@ type IdamLoginHelper = {
     user: keyof typeof config,
     application: string,
   ): Promise<void>;
-  signInUserDSS(
+  signInUserIDAM(
     page: Page,
     user: keyof typeof config,
     application: string,
@@ -72,21 +72,25 @@ const idamLoginHelper: IdamLoginHelper = {
       console.error("Invalid credential type");
     }
   },
-  async signInUserDSS(
+  async signInUserIDAM(
     page: Page,
     user: keyof typeof config,
     application: string,
   ): Promise<void> {
     if (!page.url().includes("idam-web-public.")) {
-      await page.goto(application);
-      await page.waitForLoadState("domcontentloaded");
+      try {
+        await page.goto(application);
+      } catch (e) {
+        if (
+          !(e as Error).message.includes("interrupted by another navigation") &&
+          !(e as Error).message.includes("ERR_ABORTED")
+        ) {
+          throw e;
+        }
+      }
     }
 
-    if (page.url().includes("demo")) {
-      await page.waitForSelector(`h1:has-text("Sign in")`);
-    } else {
-      await page.waitForSelector(`h1:has-text("Sign in or create an account")`);
-    }
+    await page.waitForSelector(`h1:has-text("Sign in or create an account")`);
 
     const isUserCredentials = (
       value: UserCredentials | string,
