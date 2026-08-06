@@ -8,13 +8,14 @@ type CICALookupPage = {
     ccdReference: string;
   };
   continueButton: string;
+  newAppealButton: string;
   rejectCookiesButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  fillInFields(page: Page, ccdReference: string): Promise<void>;
+  createNewAppeal(page: Page): Promise<void>;
 };
 
 const cicaLookupPage: CICALookupPage = {
@@ -22,11 +23,16 @@ const cicaLookupPage: CICALookupPage = {
     ccdReference: "#ccdReference",
   },
   continueButton: "#main-form-submit",
+  newAppealButton: "#main-form-cancel",
   rejectCookiesButton: ".cookie-banner-reject-button",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
       case true:
+        await page.waitForSelector(
+          `.govuk-heading-l:text-is("${cicaLookupContent.pageTitle}")`,
+        );
+        await page.locator(".govuk-link.language").click();
         await page.waitForSelector(
           `.govuk-heading-l:text-is("${cicaLookupContent.pageTitleCy}")`,
         );
@@ -49,7 +55,7 @@ const cicaLookupPage: CICALookupPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-hint:text-is("${cicaLookupContent.hintTextCy2}")`,
+              `.govuk-body:text-is("${cicaLookupContent.hintTextCy2}")`,
             ),
             1,
           ),
@@ -80,10 +86,9 @@ const cicaLookupPage: CICALookupPage = {
     }
   },
 
-  async fillInFields(page: Page, ccdReference: string) {
-    await page.waitForSelector("#ccdReference");
-    await page.fill(this.fields.ccdReference, `${ccdReference}`);
-    await page.click(this.continueButton);
+  async createNewAppeal(page: Page) {
+    await page.waitForSelector("#main-form-cancel");
+    await page.click(this.newAppealButton);
   },
 };
 
