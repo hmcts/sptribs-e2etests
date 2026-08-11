@@ -71,7 +71,7 @@
     "lighthouse": "^13.3.0",
     "ws": "^7.5.11",
     "form-data": "4.0.6",
-    "@sentry/node": "10.69.0"
+    "@sentry/node": "10.70.0"
   },
   "packageManager": "yarn@4.9.4"
 }
