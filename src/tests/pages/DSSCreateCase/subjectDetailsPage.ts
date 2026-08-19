@@ -35,10 +35,6 @@ const subjectDetailsPage: SubjectDetailsPage = {
     switch (cy) {
       case true:
         await page.waitForSelector(
-          `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitle}")`,
-        );
-        await page.locator(".govuk-link.language").click();
-        await page.waitForSelector(
           `.govuk-heading-l:text-is("${subjectDetailsContent.pageTitleCy}")`,
         );
         await Promise.all([

@@ -3,9 +3,9 @@ const randomLetters = Array.from({ length: 5 }, () =>
 ).join("");
 
 const subjectDetailsContent = {
-  pageTitle: "Who is the subject of this case?",
+  pageTitle: "Who is the subject of this appeal?",
   hintText1:
-    "The subject of a case may be you, or the person who you are submitting this tribunal form on behalf of.",
+    "The subject of an appeal may be you, or the person who you are submitting this tribunal form on behalf of.",
   subHeading1: "Full name",
   subHeading2: "Date of birth",
   hintText2: "For example, 31 3 1980",

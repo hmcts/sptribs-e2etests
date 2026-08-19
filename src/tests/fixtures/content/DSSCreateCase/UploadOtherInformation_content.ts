@@ -1,8 +1,8 @@
 const uploadOtherInformation_content = {
-  pageTitle: "Add information to a case",
+  pageTitle: "Add information to an appeal",
   subTitle1: "Additional documents",
   textOnPage1:
-    "You may want to submit other documents, files or evidence that provides the Tribunal with more information about your case.",
+    "You may want to submit other documents, files or evidence that provides the Tribunal with more information about your appeal.",
   textOnPage2:
     "This will depend on the nature of your appeal, application or claim. Specific examples can be found in your completed tribunal form.",
   textOnPage3: "These may include:",
@@ -11,7 +11,7 @@ const uploadOtherInformation_content = {
   textOnPage6: "written statements",
   textOnPage7: "related reports",
   textOnPage8:
-    "For each piece of additional information or evidence you are submitting, please state why it is relevant to your case.",
+    "For each piece of additional information or evidence you are submitting, please state why it is relevant to your appeal.",
   dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
@@ -26,10 +26,10 @@ const uploadOtherInformation_content = {
   button: "Upload file",
   subTitle2: "Document relevance",
   textOnPage16:
-    "Please explain why you feel this document is relevant to your case",
+    "Please explain why you feel this document is relevant to your appeal",
   subTitle3: "Additional information",
   textOnPage17:
-    "Please provide any additional relevant information that you would like to add to this case. Don't include personal financial information, such as your bank details.",
+    "Please provide any additional relevant information that you would like to add to this appeal. Don't include personal financial information, such as your bank details.",
   documentRelevance: "Lorem ipsum relevance",
   additionalInfo: "Lorem ipsum additional information",
   button2: "Continue",
