@@ -14,7 +14,7 @@ type IdamLoginHelper = {
     user: keyof typeof config,
     application: string,
   ): Promise<void>;
-  signInUserIDAM(
+  signInUserDSS(
     page: Page,
     user: keyof typeof config,
     application: string,
@@ -45,13 +45,8 @@ const idamLoginHelper: IdamLoginHelper = {
         }
       }
     }
-    if (page.url().includes("demo")) {
-      await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
-    } else {
-      await page.waitForSelector(
-        `#skiplinktarget:text("Sign in or create an account")`,
-      );
-    }
+
+    await page.waitForSelector(`h1:has-text("Enter your email address")`);
 
     const isUserCredentials = (
       value: UserCredentials | string,
@@ -61,18 +56,18 @@ const idamLoginHelper: IdamLoginHelper = {
 
     const userCredentials: UserCredentials | string = config[user];
     if (isUserCredentials(userCredentials)) {
-      await page.fill(
-        this.fields.username,
-        userCredentials.email.replace("mailto:", ""),
-      );
-      await page.fill(this.fields.password, userCredentials.password);
-      await page.click(this.submitButton);
+      await page.fill("#email", userCredentials.email.replace("mailto:", ""));
+      await page.getByRole("button", { name: "Continue" }).click();
+      await page.waitForLoadState("domcontentloaded");
+
+      await page.fill("#password", userCredentials.password);
+      await page.getByRole("button", { name: "Continue" }).click();
       await page.waitForLoadState("domcontentloaded");
     } else {
       console.error("Invalid credential type");
     }
   },
-  async signInUserIDAM(
+  async signInUserDSS(
     page: Page,
     user: keyof typeof config,
     application: string,
