@@ -3,7 +3,7 @@ const representativeDetailsContent = {
   textOnPage1:
     "Please enter details of the representative as stated on your tribunal form.",
   textOnPage2:
-    "We will only use these details to contact this representative about this case.",
+    "We will only use these details to contact this representative about this appeal.",
   subHeading1: "Full name",
   subHeading2: "Organisation or business name",
   subHeading3: "Contact number",
