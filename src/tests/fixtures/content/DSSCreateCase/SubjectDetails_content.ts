@@ -3,9 +3,9 @@ const randomLetters = Array.from({ length: 5 }, () =>
 ).join("");
 
 const subjectDetailsContent = {
-  pageTitle: "Who is the subject of this case?",
+  pageTitle: "Who is the subject of this appeal?",
   hintText1:
-    "The subject of a case may be you, or the person who you are submitting this tribunal form on behalf of.",
+    "The subject of an appeal may be you, or the person who you are submitting this tribunal form on behalf of.",
   subHeading1: "Full name",
   subHeading2: "Date of birth",
   hintText2: "For example, 31 3 1980",
@@ -27,9 +27,9 @@ const subjectDetailsContent = {
   futureDOBError: "Date of birth must be in the past",
   htmlError: "Full name must not include HTML",
 
-  pageTitleCy: "Pwy yw testun yr achos hwn?",
+  pageTitleCy: "Pwy sy'n destun yr apêl hon?",
   hintTextCy1:
-    "Gall testun yr achos fod yn chi, neu’r unigolyn rydych yn cyflwyno’r ffurflen tribiwnlys hon ar ei ran.",
+    "Gall y sawl sy'n destun yr apêl fod yn chi, neu’r unigolyn rydych yn cyflwyno’r ffurflen tribiwnlys hon ar eu rhan.",
   subHeadingCy1: "Enw llawn",
   subHeadingCy2: "Dyddiad geni",
   hintTextCy2: "Er enghraifft, 31 3 1980",

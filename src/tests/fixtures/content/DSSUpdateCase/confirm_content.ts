@@ -12,8 +12,8 @@ const confirm_content = {
   feedbackBannerLink: "Please leave your your feedback",
   button: "Close and exit",
 
-  pageTitleCy: "Achos wedi’i ddiweddaru",
-  textOnPageCy1: "Diolch i chi am ddiweddaru eich achos.",
+  pageTitleCy: "Apêl wedi’i diweddaru:",
+  textOnPageCy1: "Diolch i chi am ddiweddaru eich apêl.",
   textOnPageCy2:
     "Fe anfonir yr wybodaeth ychwanegol rydych wedi’i chyflwyno i’r Tribiwnlys.",
   textOnPageCy3:

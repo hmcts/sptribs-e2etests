@@ -23,7 +23,7 @@ type IdamLoginHelper = {
 
 const idamLoginHelper: IdamLoginHelper = {
   fields: {
-    username: "#username",
+    username: "#email",
     password: "#password",
   },
   submitButton: 'input[value="Sign in"]',

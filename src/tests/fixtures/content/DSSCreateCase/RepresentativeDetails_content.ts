@@ -3,7 +3,7 @@ const representativeDetailsContent = {
   textOnPage1:
     "Please enter details of the representative as stated on your tribunal form.",
   textOnPage2:
-    "We will only use these details to contact this representative about this case.",
+    "We will only use these details to contact this representative about this appeal.",
   subHeading1: "Full name",
   subHeading2: "Organisation or business name",
   subHeading3: "Contact number",
@@ -35,7 +35,7 @@ const representativeDetailsContent = {
   textOnPageCy1:
     "Rhowch fanylion y cynrychiolydd fel y’u nodir ar eich ffurflen tribiwnlys.",
   textOnPageCy2:
-    "Byddwn ond yn defnyddio’r manylion hyn i gysylltu â’r cynrychiolydd ynghylch yr achos hwn.",
+    "Byddwn ond yn defnyddio’r manylion hyn i gysylltu â’r cynrychiolydd ynghylch yr apêl hon.",
   subHeadingCy1: "Enw llawn",
   subHeadingCy2: "Enw’r sefydliad neu’r busnes",
   subHeadingCy3: "Rhif cyswllt",

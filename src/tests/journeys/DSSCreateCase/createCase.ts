@@ -4,6 +4,7 @@ import caseAPILoginPage from "../../pages/CaseAPI/caseList/caseAPILoginPage.ts";
 import casesPage from "../../pages/CaseAPI/caseList/casesPage.ts";
 import landingPage from "../../pages/DSSCreateCase/landingPage.ts";
 import loginPage from "../../pages/DSSCreateCase/loginPage.ts";
+import cicaLookupPage from "../../pages/DSSCreateCase/cicaLookupPage.ts";
 import subjectDetailsPage from "../../pages/DSSCreateCase/subjectDetailsPage.ts";
 import subjectContactDetailsPage from "../../pages/DSSCreateCase/subjectContactDetailsPage.ts";
 import representationPage from "../../pages/DSSCreateCase/representationPage.ts";
@@ -111,6 +112,8 @@ const createFEApplication: CreateFeApplication = {
         await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
         await landingPage.continueOn(page);
         await loginPage.SignInUser(page, user);
+        await cicaLookupPage.checkPageLoads(page, cy, accessibilityTest);
+        await cicaLookupPage.createNewAppeal(page);
         await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
         await subjectDetailsPage.triggerErrorMessages(page, cy);
         await subjectDetailsPage.fillInFields(page, subjectName);
@@ -195,6 +198,8 @@ const createFEApplication: CreateFeApplication = {
     await landingPage.seeTheLandingPage(page, cy, accessibilityTest);
     await landingPage.continueOn(page);
     await loginPage.SignInUser(page, user);
+    await cicaLookupPage.checkPageLoads(page, cy, accessibilityTest);
+    await cicaLookupPage.createNewAppeal(page);
     await subjectDetailsPage.checkPageLoads(page, cy, accessibilityTest);
     await subjectDetailsPage.fillInFields(page, subjectName);
     await subjectContactDetailsPage.checkPageLoads(page, cy, accessibilityTest);

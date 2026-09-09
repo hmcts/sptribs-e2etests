@@ -1,8 +1,8 @@
 const uploadOtherInformation_content = {
-  pageTitle: "Add information to a case",
+  pageTitle: "Add information to an appeal",
   subTitle1: "Additional documents",
   textOnPage1:
-    "You may want to submit other documents, files or evidence that provides the Tribunal with more information about your case.",
+    "You may want to submit other documents, files or evidence that provides the Tribunal with more information about your appeal.",
   textOnPage2:
     "This will depend on the nature of your appeal, application or claim. Specific examples can be found in your completed tribunal form.",
   textOnPage3: "These may include:",
@@ -11,7 +11,7 @@ const uploadOtherInformation_content = {
   textOnPage6: "written statements",
   textOnPage7: "related reports",
   textOnPage8:
-    "For each piece of additional information or evidence you are submitting, please state why it is relevant to your case.",
+    "For each piece of additional information or evidence you are submitting, please state why it is relevant to your appeal.",
   dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
@@ -26,10 +26,10 @@ const uploadOtherInformation_content = {
   button: "Upload file",
   subTitle2: "Document relevance",
   textOnPage16:
-    "Please explain why you feel this document is relevant to your case",
+    "Please explain why you feel this document is relevant to your appeal",
   subTitle3: "Additional information",
   textOnPage17:
-    "Please provide any additional relevant information that you would like to add to this case. Don't include personal financial information, such as your bank details.",
+    "Please provide any additional relevant information that you would like to add to this appeal. Don't include personal financial information, such as your bank details.",
   documentRelevance: "Lorem ipsum relevance",
   additionalInfo: "Lorem ipsum additional information",
   button2: "Continue",
@@ -42,10 +42,10 @@ const uploadOtherInformation_content = {
   docRelevanceError: "Document relevance must not include HTML",
   addInfoError: "Additional information must not include HTML",
 
-  pageTitleCy: "Ychwanegu gwybodaeth at achos",
+  pageTitleCy: "Ychwanegu gwybodaeth i apêl",
   subTitleCy1: "Dogfennau ychwanegol",
   textOnPageCy1:
-    "Efallai y byddwch eisiau cyflwyno dogfennau, ffeiliau neu dystiolaeth arall sy’n rhoi mwy o wybodaeth i’r Tribiwnlys am eich achos.",
+    "Efallai y byddwch eisiau cyflwyno dogfennau, ffeiliau neu dystiolaeth arall sy’n rhoi mwy o wybodaeth i’r Tribiwnlys am eich apêl.",
   textOnPageCy2:
     "Bydd hyn yn dibynnu ar natur eich apêl, cais neu hawliad. Gellir dod o hyd i enghreifftiau penodol yn y ffurflen tribiwnlys rydych wedi’i llenwi.",
   textOnPageCy3: "Gallai'r rhain gynnwys:",
@@ -54,7 +54,7 @@ const uploadOtherInformation_content = {
   textOnPageCy6: "datganiadau ysgrifenedig",
   textOnPageCy7: "adroddiadau perthnasol",
   textOnPageCy8:
-    "Ar gyfer pob darn o dystiolaeth ychwanegol rydych yn ei chyflwyno, nodwch pam ei bod yn berthnasol i’ch achos.",
+    "Ar gyfer pob darn o wybodaeth neu dystiolaeth ychwanegol rydych yn ei chyflwyno, nodwch pam ei bod yn berthnasol i’ch apêl.",
   dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
   textOnPageCy9:
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF, MP4, MP3",
@@ -69,10 +69,10 @@ const uploadOtherInformation_content = {
   buttonCy: "Llwytho ffeil",
   subTitleCy2: "Perthnasedd dogfennau",
   textOnPageCy16:
-    "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch achos",
+    "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch apêl",
   subTitleCy3: "Gwybodaeth ychwanegol",
   textOnPageCy17:
-    "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr achos hwn. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
+    "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr apêl hon. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
   buttonCy2: "Parhau",
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",

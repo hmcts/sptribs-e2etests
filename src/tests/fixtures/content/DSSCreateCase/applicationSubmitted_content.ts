@@ -2,7 +2,7 @@ import subjectDetailsContent from "./SubjectContactDetails_content.ts";
 
 const applicationSubmittedContent = {
   pageTitle: "Tribunal form sent",
-  subTitle1: "Case Number:",
+  subTitle1: "HMCTS Number:",
   textOnPage1: "Your tribunal form and related documents have been sent.",
   textOnPage2:
     "An email will be sent to " +
@@ -16,7 +16,7 @@ const applicationSubmittedContent = {
   button: "Close and exit",
 
   pageTitleCy: "Ffurflen y tribiwnlys wedi’i hanfon",
-  subTitleCy1: "Rhif Achos:",
+  subTitleCy1: "Rhif GLlTEF:",
   textOnPageCy1:
     "Mae ffurflenni’r tribiwnlys a’ch dogfennau perthnasol wedi’u hanfon.",
   textOnPageCy2:
