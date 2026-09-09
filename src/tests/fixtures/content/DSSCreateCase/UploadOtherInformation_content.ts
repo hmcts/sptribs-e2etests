@@ -42,10 +42,10 @@ const uploadOtherInformation_content = {
   docRelevanceError: "Document relevance must not include HTML",
   addInfoError: "Additional information must not include HTML",
 
-  pageTitleCy: "Ychwanegu gwybodaeth at achos",
+  pageTitleCy: "Ychwanegu gwybodaeth i apêl",
   subTitleCy1: "Dogfennau ychwanegol",
   textOnPageCy1:
-    "Efallai y byddwch eisiau cyflwyno dogfennau, ffeiliau neu dystiolaeth arall sy’n rhoi mwy o wybodaeth i’r Tribiwnlys am eich achos.",
+    "Efallai y byddwch eisiau cyflwyno dogfennau, ffeiliau neu dystiolaeth arall sy’n rhoi mwy o wybodaeth i’r Tribiwnlys am eich apêl.",
   textOnPageCy2:
     "Bydd hyn yn dibynnu ar natur eich apêl, cais neu hawliad. Gellir dod o hyd i enghreifftiau penodol yn y ffurflen tribiwnlys rydych wedi’i llenwi.",
   textOnPageCy3: "Gallai'r rhain gynnwys:",
@@ -54,7 +54,7 @@ const uploadOtherInformation_content = {
   textOnPageCy6: "datganiadau ysgrifenedig",
   textOnPageCy7: "adroddiadau perthnasol",
   textOnPageCy8:
-    "Ar gyfer pob darn o dystiolaeth ychwanegol rydych yn ei chyflwyno, nodwch pam ei bod yn berthnasol i’ch achos.",
+    "Ar gyfer pob darn o wybodaeth neu dystiolaeth ychwanegol rydych yn ei chyflwyno, nodwch pam ei bod yn berthnasol i’ch apêl.",
   dropdownLinkCy: "Gofynion uwchlwytho ffeiliau",
   textOnPageCy9:
     "Fformatau ffeiliau: MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT, RTF, MP4, MP3",
@@ -69,10 +69,10 @@ const uploadOtherInformation_content = {
   buttonCy: "Llwytho ffeil",
   subTitleCy2: "Perthnasedd dogfennau",
   textOnPageCy16:
-    "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch achos",
+    "Eglurwch pam eich bod yn teimlo bod y ddogfen hon yn berthnasol i’ch apêl",
   subTitleCy3: "Gwybodaeth ychwanegol",
   textOnPageCy17:
-    "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr achos hwn. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
+    "Darparwch unrhyw wybodaeth berthnasol ychwanegol yr hoffech ei hychwanegu at yr apêl hon. Peidiwch â chynnwys unrhyw wybodaeth ariannol bersonol, megis eich manylion banc.",
   buttonCy2: "Parhau",
   deleteButtonCy: "Dileu",
   errorBannerCy: "Mae yna broblem",

@@ -27,9 +27,9 @@ const subjectDetailsContent = {
   futureDOBError: "Date of birth must be in the past",
   htmlError: "Full name must not include HTML",
 
-  pageTitleCy: "Pwy yw testun yr achos hwn?",
+  pageTitleCy: "Pwy sy'n destun yr apêl hon?",
   hintTextCy1:
-    "Gall testun yr achos fod yn chi, neu’r unigolyn rydych yn cyflwyno’r ffurflen tribiwnlys hon ar ei ran.",
+    "Gall y sawl sy'n destun yr apêl fod yn chi, neu’r unigolyn rydych yn cyflwyno’r ffurflen tribiwnlys hon ar eu rhan.",
   subHeadingCy1: "Enw llawn",
   subHeadingCy2: "Dyddiad geni",
   hintTextCy2: "Er enghraifft, 31 3 1980",

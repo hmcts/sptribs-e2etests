@@ -35,7 +35,7 @@ const representativeDetailsContent = {
   textOnPageCy1:
     "Rhowch fanylion y cynrychiolydd fel y’u nodir ar eich ffurflen tribiwnlys.",
   textOnPageCy2:
-    "Byddwn ond yn defnyddio’r manylion hyn i gysylltu â’r cynrychiolydd ynghylch yr achos hwn.",
+    "Byddwn ond yn defnyddio’r manylion hyn i gysylltu â’r cynrychiolydd ynghylch yr apêl hon.",
   subHeadingCy1: "Enw llawn",
   subHeadingCy2: "Enw’r sefydliad neu’r busnes",
   subHeadingCy3: "Rhif cyswllt",

@@ -24,7 +24,7 @@ const subjectContactDetailsContent = {
 
   pageTitleCy: "Rhowch fanylion cyswllt",
   textOnPageCy1:
-    "Rhowch y manylion cyswllt sydd fwyaf addas ar gyfer yr achos hwn.",
+    "Rhowch eich manylion cyswllt i'w defnyddio ar gyfer yr apêl hon.",
   subHeadingCy1: "Cyfeiriad e-bost",
   subHeadingCy2: "Rhif cyswllt",
   emailHintCy:
@@ -32,7 +32,7 @@ const subjectContactDetailsContent = {
   numberHintCy:
     "Rhowch rif cyswllt yn y fformat cywir, fel 01632 960 001 neu 07700 900 982",
   textOnPageCy2:
-    "Rwy’n cytuno i’r llys gysylltu â mi am yr achos hwn gan ddefnyddio’r manylion rwyf wedi’u darparu",
+    "Rwy’n cytuno i’r llys gysylltu â mi am yr apêl hon trwy ddefnyddio’r manylion rwyf wedi'i darparu",
   buttonCy: "Parhau",
   errorBannerCy: "Mae yna broblem",
   emailErrorCy: "Nodwch gyfeiriad e-bost",

@@ -8,15 +8,15 @@ const cicaLookupContent = {
   button: "Continue",
   errorBanner: "There is a problem",
   selectionError: "Enter your HMCTS reference number",
-  pageTitleCy: "Nodwch eich cyfeirnod HMCTS",
+  pageTitleCy: "Nodwch eich cyfeirnod GLlTEF",
   hintTextCy1:
-    "Os oes gennych achos presennol, bydd nodi eich cyfeirnod HMCTS yn mynd â chi ato. Fel arall, bydd cais newydd yn cael ei ddechrau.",
+    "Os oes gennych apêl sy'n bodoli eisoes, bydd nodi eich cyfeirnod GLlTEF yn mynd â chi ato. Os nad oes gennych gyfeirnod, bydd angen cyflwyno apêl newydd.",
   hintTextCy2:
-    "Gallwch ddod o hyd i hwn ar unrhyw ohebiaeth rydych wedi'i derbyn gan HMCTS. Mae cyfeirnodau ADAT yn dechrau gyda'r lythyren X neu G.",
-  subHeadingCy1: "Cyfeirnod HMCTS",
+    "Gallwch ddod o hyd i hyn ar unrhyw ohebiaeth rydych chi wedi'i derbyn gan GLlTEF. Mae cyfeirnodau GLlTEF yn 16 rhif o hyd.",
+  subHeadingCy1: "Cyfeirnod GLlTEF",
   buttonCy: "Parhau",
   errorBannerCy: "Mae yna broblem",
-  selectionErrorCy: "Nodwch eich cyfeirnod HMCTS",
+  selectionErrorCy: "Nodwch eich cyfeirnod GLlTEF",
 } as const;
 
 export default cicaLookupContent;

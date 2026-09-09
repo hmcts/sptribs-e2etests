@@ -24,20 +24,20 @@ const subjectDetailsContent = {
     "Please enter a valid date of birth. For example, 31 3 1980",
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
-  pageTitleCy: "Testun yr achos hwn",
+  pageTitleCy: "Testun yr apêl hon",
   subHeadingCy1: "Enw llawn",
   subHeadingCy2: "Dyddiad geni",
-  nameHintCy: "Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr achos",
+  nameHintCy: "Rhaid i’r enw hwn fod yn union yr un fath â chofnod yr apêl",
   DOBHintCy: "Er enghraifft, 31 3 1980",
   textOnPageCy1: "Diwrnod",
   textOnPageCy2: "Mis",
   textOnPageCy3: "Blwyddyn",
   errorBannerCy: "Mae yna broblem",
   fullNameErrorCy:
-    "Nodwch enw llawn. Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr achos",
+    "Nodwch enw llawn. Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr apêl",
   dateOfBirthErrorCy: "Nodwch ddyddiad geni. Er enghraifft, 31 3 1980",
   validFullNameErrorCy:
-    "Rhowch enw dilys. Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr achos",
+    "Rhowch enw dilys. Rhaid i'r enw hwn gyd-fynd yn union â chofnod yr apêl",
   validDateOfBirthErrorCy:
     "Nodwch ddyddiad geni dilys. Er enghraifft, 31 3 1980",
 } as const;

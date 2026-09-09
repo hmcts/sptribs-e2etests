@@ -10,13 +10,13 @@ const landingPageContent = {
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
   pageTitleCy:
-    "Diweddaru achos sy’n bodoli’n barod yn y Tribiwnlys Haen Gyntaf",
+    "Diweddaru apêl presennol y Tribiwnlys Haen Gyntaf",
   hintMessageCy:
-    "Defnyddiwch y gwasanaeth hwn i ddiweddaru achos sydd wedi’i gyflwyno’n barod i’r Tribiwnlys Haen Gyntaf.",
+    "Defnyddiwch y gwasanaeth hwn i ddiweddaru apêl sydd wedi’i gyflwyno’n barod i’r Tribiwnlys Haen Gyntaf.",
   textOnPageCy1:
-    "Efallai y byddwch eisiau anfon gwaith papur ychwanegol i’r tribiwnlys nad oedd ar gael adeg cyflwyno eich ffurflen tribiwnlys wreiddiol. Neu efallai yr hoffech roi mwy o fanylion i’r Tribiwnlys am rai agweddau o’ch achos.",
+    "Efallai y byddwch eisiau anfon gwaith papur ychwanegol i’r tribiwnlys nad oedd ar gael adeg cyflwyno eich ffurflen tribiwnlys wreiddiol. Neu efallai yr hoffech roi mwy o fanylion i’r Tribiwnlys am rai agweddau o’ch apêl.",
   textOnPageCy2:
-    "I ddiweddaru achos sy’n bodoli’n barod, byddwch angen cyfeirnod yr achos.",
+    "I ddiweddaru apêl sy’n bodoli’n barod, byddwch angen cyfeirnod GLlTEF.",
 } as const;
 
 export default landingPageContent;

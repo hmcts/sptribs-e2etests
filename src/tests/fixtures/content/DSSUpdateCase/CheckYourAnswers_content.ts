@@ -13,9 +13,9 @@ const checkYourAnswersContent = {
   textOnPageCy1: "Gwybodaeth ychwanegol",
   textOnPageCy2: "Dogfennau ychwanegol",
   textOnPageCy3: "Perthnasedd y ddogfen",
-  subTitleCy: "Diweddarwch eich achos nawr",
+  subTitleCy: "Diweddarwch eich apêl nawr",
   textOnPageCy4:
-    "Trwy ddiweddaru’r achos hwn rydych yn cadarnhau, hyd eithaf eich gwybodaeth, bod y manylion rydych yn eu darparu yn gywir.",
+    "Drwy ddiweddaru’r apêl hon rydych yn cadarnhau, hyd eithaf eich gwybodaeth, bod y manylion a ddarperir gennych yn gywir.",
 } as const;
 
 export default checkYourAnswersContent;

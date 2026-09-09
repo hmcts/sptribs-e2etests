@@ -13,10 +13,10 @@ const caseFinderContent = {
   validReferenceNumberError: "Please enter a valid reference number",
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
-  pageTitleCy: "Manylion achos sy’n bodoli’n barod",
+  pageTitleCy: "Manylion apêl presennol",
   hintMessageCy:
     "Gallwch ddod o hyd i'r wybodaeth hon yn yr e-bost a gawsoch ar ôl cyflwyno eich ffurflenni tribiwnlys.",
-  subTitleCy: "Cyfeirnod yr achos",
+  subTitleCy: "Cyfeirnod GLlTEF",
   textOnPageCy1:
     "Bydd y rhif hwn yn cynnwys 16 digid. Ni ddylai gynnwys bylchau neu unrhyw un o'r nodau canlynol: - * ( ) & ! / ;",
   errorBannerCy: "Mae yna broblem",
