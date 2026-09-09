@@ -9,7 +9,7 @@ type SignInPage = {
 
 const signInPage: SignInPage = {
   async SignInUser(page: Page): Promise<void> {
-    await idamLoginHelper.signInUserIDAM(
+    await idamLoginHelper.signInUserDSS(
       page,
       waUsers_content.userRoleCitizen,
       config.UpdateCaseBaseURL,
