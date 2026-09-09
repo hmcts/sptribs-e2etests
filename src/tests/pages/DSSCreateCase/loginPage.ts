@@ -8,7 +8,7 @@ type SignInPage = {
 
 const signInPage: SignInPage = {
   async SignInUser(page: Page, user: UserRole): Promise<void> {
-    await idamLoginHelper.signInUserIDAM(page, user, config.FEBaseURL);
+    await idamLoginHelper.signInUserDSS(page, user, config.FEBaseURL);
   },
 };
 

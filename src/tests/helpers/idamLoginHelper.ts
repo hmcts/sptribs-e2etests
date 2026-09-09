@@ -14,7 +14,7 @@ type IdamLoginHelper = {
     user: keyof typeof config,
     application: string,
   ): Promise<void>;
-  signInUserIDAM(
+  signInUserDSS(
     page: Page,
     user: keyof typeof config,
     application: string,
@@ -45,9 +45,8 @@ const idamLoginHelper: IdamLoginHelper = {
         }
       }
     }
-    await page.waitForSelector(
-      `h1:has-text("Enter your email address")`,
-    );
+
+    await page.waitForSelector(`h1:has-text("Enter your email address")`);
 
     const isUserCredentials = (
       value: UserCredentials | string,
@@ -57,10 +56,10 @@ const idamLoginHelper: IdamLoginHelper = {
 
     const userCredentials: UserCredentials | string = config[user];
     if (isUserCredentials(userCredentials)) {
-      await page.waitForLoadState("domcontentloaded");
       await page.fill("#email", userCredentials.email.replace("mailto:", ""));
       await page.getByRole("button", { name: "Continue" }).click();
       await page.waitForLoadState("domcontentloaded");
+
       await page.fill("#password", userCredentials.password);
       await page.getByRole("button", { name: "Continue" }).click();
       await page.waitForLoadState("domcontentloaded");
@@ -68,7 +67,7 @@ const idamLoginHelper: IdamLoginHelper = {
       console.error("Invalid credential type");
     }
   },
-  async signInUserIDAM(
+  async signInUserDSS(
     page: Page,
     user: keyof typeof config,
     application: string,
