@@ -419,7 +419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@npm:^1.1.5":
+"@hmcts/playwright-common@npm:^1.0.20":
   version: 1.1.5
   resolution: "@hmcts/playwright-common@npm:1.1.5"
   dependencies:
@@ -3041,16 +3041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.62.1":
-  version: 1.62.1
-  resolution: "playwright-core@npm:1.62.1"
-  bin:
-    playwright-core: cli.js
-  checksum: 10/2dab88793a6a5cbfa27641664548ded72a4f869d7eab8d3541e070081b5e09595253aa3dbd42eb4e6eca1b03d96a727c60704359b5b309e71ca58b12549a4c06
-  languageName: node
-  linkType: hard
-
-"playwright-core@npm:^1.46.1":
+"playwright-core@npm:1.63.0, playwright-core@npm:^1.46.1":
   version: 1.63.0
   resolution: "playwright-core@npm:1.63.0"
   bin:
