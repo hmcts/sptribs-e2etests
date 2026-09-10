@@ -4,6 +4,9 @@ import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/
 import commonHelpers, {
   ContactPreference,
 } from "../../../helpers/commonHelpers.ts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 type CaseSubjectDetailsObjectPage = {
   continue: string;
@@ -88,11 +91,9 @@ const caseSubjectDetailsObjectPage: CaseSubjectDetailsObjectPage = {
     await page.fill(this.year, caseSubjectDetailsObject_content.yearOfBirth);
     await commonHelpers.postcodeHandler(page, "Subject");
     if (contactPreference === "Email") {
+      const citizenEmail = process.env.CITIZEN_USERNAME;
       await page.click(this.selectEmail);
-      await page.fill(
-        this.emailAddress,
-        caseSubjectDetailsObject_content.emailAddress,
-      );
+      await page.fill(this.emailAddress, citizenEmail as string);
     } else if (contactPreference === "Post") {
       await page.click(this.selectPost);
     }
