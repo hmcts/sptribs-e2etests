@@ -9,8 +9,7 @@ const landingPageContent = {
     "To update an existing case, you will need the case reference number.",
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
-  pageTitleCy:
-    "Diweddaru apêl presennol y Tribiwnlys Haen Gyntaf",
+  pageTitleCy: "Diweddaru apêl presennol y Tribiwnlys Haen Gyntaf",
   hintMessageCy:
     "Defnyddiwch y gwasanaeth hwn i ddiweddaru apêl sydd wedi’i gyflwyno’n barod i’r Tribiwnlys Haen Gyntaf.",
   textOnPageCy1:

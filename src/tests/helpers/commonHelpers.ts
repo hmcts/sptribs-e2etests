@@ -1044,11 +1044,7 @@ export type allEvents =
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 
 export type hearingFormat =
-  | "Face to Face"
-  | "Hybrid"
-  | "Video"
-  | "Telephone"
-  | "Paper";
+  "Face to Face" | "Hybrid" | "Video" | "Telephone" | "Paper";
 
 export type hearingSession = "Morning" | "Afternoon" | "All day";
 
@@ -1095,10 +1091,7 @@ export type hearingVenueNames =
   | "Brighton Tribunal Hearing Centre";
 
 export type hearingOutcome =
-  | "Adjourned"
-  | "Allowed"
-  | "Refused"
-  | "Withdrawn at Hearing";
+  "Adjourned" | "Allowed" | "Refused" | "Withdrawn at Hearing";
 
 export type hearingAdjournedReasons =
   | "Adjourned to face to face"

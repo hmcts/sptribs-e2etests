@@ -21,7 +21,9 @@ test.describe("Citizen dashboard tests. @CaseAPI", () => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Citizen views dashboard with a document, bundle and order", async ({ page }) => {
+  test("Citizen views dashboard with a document, bundle and order", async ({
+    page,
+  }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber732 = await createCase.createCase(
       page,
@@ -84,11 +86,10 @@ test.describe("Citizen dashboard tests. @CaseAPI", () => {
       "7",
       subjectName,
     );
-    await commonHelpers.chooseEventFromDropdown(page, "Bundle: Create a bundle");
-    await createBundle.createBundle(
+    await commonHelpers.chooseEventFromDropdown(
       page,
-      caseNumber732,
-      subjectName,
+      "Bundle: Create a bundle",
     );
+    await createBundle.createBundle(page, caseNumber732, subjectName);
   });
 });

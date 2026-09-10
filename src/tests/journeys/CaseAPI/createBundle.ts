@@ -15,15 +15,9 @@ const createBundle: CreateBundle = {
     caseNumber: string,
     subjectName: string,
   ): Promise<void> {
-    await submitPage.checkPageLoads(
-      page,
-      caseNumber,
-      subjectName,
-    );
-    await submitPage.continueOn(
-      page,
-    );
+    await submitPage.checkPageLoads(page, caseNumber, subjectName);
+    await submitPage.continueOn(page);
   },
 };
 
-export default createBundle
+export default createBundle;
