@@ -1,11 +1,11 @@
 const uploadDocumentsContent = {
   header: "Update an appeal to the First-tier Tribunal",
-  pageTitle: "Add information to a case",
+  pageTitle: "Add information to an appeal",
   hintText:
-    "Please provide any additional relevant information that you would like to add to this case. Don't include any personal financial information, such as your banking details.",
+    "Please provide any additional relevant information that you would like to add to this appeal. Don't include personal financial information, such as your bank details.",
   subTitle1: "Additional documents",
   textOnPage1:
-    "You may want to submit other documents, files, or evidence that provides the Tribunal with more information about your case.",
+    "You may want to submit other documents, files, or evidence that provides the Tribunal with more information about your appeal.",
   textOnPage2:
     "This will depend on the nature of your appeal, application or claim. Specific examples can be found in your completed tribunal form.",
   textOnPage3: "These may include:",
@@ -14,7 +14,7 @@ const uploadDocumentsContent = {
   textOnPage6: "written statements",
   textOnPage7: "related reports",
   textOnPage8:
-    "For each piece of additional information or evidence you are submitting, please state why it is relevant to your case.",
+    "For each piece of additional information or evidence you are submitting, please state why it is relevant to your appeal.",
   dropdownLink: "File uploads requirements",
   textOnPage9:
     "File formats: MS Word, MS Excel, PDF, JPG, PNG, TXT, RTF, MP4, MP3",
@@ -25,7 +25,7 @@ const uploadDocumentsContent = {
     "You can't upload executable (.exe), zip or other archive files due to virus risks.",
   textOnPage14: "Upload a file",
   textOnPage15:
-    "Please explain why you feel this document is relevant to your case.",
+    "Please explain why you feel this document is relevant to your appeal.",
   textOnPage16:
     'Once you have selected the file click "Upload file" to upload it.',
   button: "Upload file",
