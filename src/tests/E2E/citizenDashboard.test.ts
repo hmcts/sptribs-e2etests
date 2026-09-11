@@ -1,19 +1,17 @@
 import { test } from "@playwright/test";
-import config from "../config.ts";
 import waUsers_content from "../fixtures/content/waUsers_content.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 import commonHelpers from "../helpers/commonHelpers.ts";
-import editCaseDSS from "../journeys/CaseAPI/editCaseDSS.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
-import createFEApplication from "../journeys/DSSCreateCase/createCase.ts";
 import createCase from "../journeys/CaseAPI/createCase.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import createBundle from "../journeys/CaseAPI/createBundle.ts";
+import viewDashboard from "../journeys/DSSCreateCase/viewDashboard.ts";
 
 test.describe("Citizen dashboard tests. @CaseAPI", () => {
   test("Check for redundant test data", async ({ page }) => {
@@ -21,7 +19,7 @@ test.describe("Citizen dashboard tests. @CaseAPI", () => {
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
 
-  test("Citizen views dashboard with a document, bundle and order", async ({ page }) => {
+  test("Citizen views dashboard with a document, bundle and order @CaseAPI1", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber732 = await createCase.createCase(
       page,
@@ -87,6 +85,17 @@ test.describe("Citizen dashboard tests. @CaseAPI", () => {
     await commonHelpers.chooseEventFromDropdown(page, "Bundle: Create a bundle");
     await createBundle.createBundle(
       page,
+      caseNumber732,
+      subjectName,
+    );
+    await page.locator(`a:text-is(" Sign out ")`).click();
+    await page.waitForTimeout(5000);
+    await page.waitForLoadState("domcontentloaded");
+    await viewDashboard.viewDashboard(
+      page,
+      false,
+      waUsers_content.userRoleCitizen,
+      false,
       caseNumber732,
       subjectName,
     );
