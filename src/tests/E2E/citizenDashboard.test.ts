@@ -101,3 +101,85 @@ test.describe("Citizen dashboard tests. @CaseAPI", () => {
     );
   });
 });
+
+test("Citizen views dashboard with a document, bundle and order: Accessibility test @accessibility", async ({ page }) => {
+  const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
+  const caseNumber733 = await createCase.createCase(
+    page,
+    waUsers_content.userRoleAdmin,
+    true,
+    "Assessment",
+    "Other",
+    true,
+    true,
+    "Email",
+    subjectName,
+    true,
+    false,
+    "1996",
+    "Scotland",
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
+  await buildCase.buildCase(page, true, caseNumber733, subjectName);
+  await task.removeTask(
+    page,
+    caseNumber733,
+    taskNames_content.issueCaseToRespondentTask,
+    subjectName,
+    waUsers_content.userRoleAdmin,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Case: Contact parties");
+  await contactParties.contactParties(
+    page,
+    waUsers_content.userRoleAdmin,
+    true,
+    false,
+    caseNumber733,
+    subjectName,
+    false,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Orders: Create draft");
+  await createDraft.createDraft(
+    page,
+    true,
+    false,
+    "CIC8 - ME Joint Instruction",
+    caseNumber733,
+    subjectName,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Orders: Send order");
+  await sendOrder.sendOrder(
+    page,
+    caseNumber733,
+    "DraftOrder",
+    true,
+    false,
+    false,
+    true,
+    "7",
+    subjectName,
+  );
+  await commonHelpers.chooseEventFromDropdown(page, "Bundle: Create a bundle");
+  await createBundle.createBundle(
+    page,
+    caseNumber733,
+    subjectName,
+  );
+  await page.locator(`a:text-is(" Sign out ")`).click();
+  await page.waitForTimeout(5000);
+  await page.waitForLoadState("domcontentloaded");
+  await viewDashboard.viewDashboard(
+    page,
+    false,
+    waUsers_content.userRoleCitizen,
+    true,
+    caseNumber733,
+    subjectName,
+  );
+});
