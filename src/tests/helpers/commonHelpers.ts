@@ -1038,7 +1038,8 @@ export type allEvents =
   | "Orders: Edit draft"
   | "Document management: Upload"
   | "Document management: Amend"
-  | "Orders: Manage due date";
+  | "Orders: Manage due date"
+  | "Bundle: Create a bundle";
 
 export type hearingType = "Case management" | "Final" | "Interlocutory";
 

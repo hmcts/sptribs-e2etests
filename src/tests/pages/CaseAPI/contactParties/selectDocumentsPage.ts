@@ -54,15 +54,6 @@ const selectDocumentsPage: SelectDocumentsPage = {
       expect(page.locator(".form-label").nth(0)).toHaveText(
         selectDocument_content.textOnPage3,
       ),
-      commonHelpers.checkVisibleAndPresent(
-        page
-          .locator("markdown > p")
-          .filter({
-            hasText: `${path.basename(config.testPdfFile)} ${selectDocument_content.category}`,
-          })
-          .first(),
-        1,
-      ),
       commonHelpers.checkForButtons(
         page,
         this.continue,

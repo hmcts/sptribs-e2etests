@@ -7,8 +7,6 @@ const selectDocument_content = {
   textOnPage2:
     "Note: Gov.Notify only supports sending documents in the formats of PDF, CSV, txt, rtf, MS Word Document file and MS Excel File. Your file must be smaller than 2MB",
   textOnPage3: "Selected Documents (Optional)",
-
-  category: "A - Application Form",
 } as const;
 
 export default selectDocument_content;

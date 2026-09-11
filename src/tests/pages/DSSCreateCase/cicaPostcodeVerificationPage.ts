@@ -1,40 +1,32 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import cicaLookupContent from "../../fixtures/content/DSSCreateCase/cicaLookup_content.ts";
+import cicaPostcodeVerificationContent from "../../fixtures/content/DSSCreateCase/cicaPostcodeVerification_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
 
-type CICALookupPage = {
-  ccdReference: string;
+type CICAPostCodeVerificationPage = {
+  postcode: string;
   continueButton: string;
-  newAppealButton: string;
   rejectCookiesButton: string;
   checkPageLoads(
     page: Page,
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void>;
-  createNewAppeal(page: Page): Promise<void>;
   fillInFields(
     page: Page,
-    caseNumber: string
   ): Promise<void>;
 };
 
-const cicaLookupPage: CICALookupPage = {
-  ccdReference: "#ccdReference",
+const cicaPostCodeVerificationPage: CICAPostCodeVerificationPage = {
+  postcode: "#postcode",
   continueButton: "#main-form-submit",
-  newAppealButton: "#main-form-cancel",
   rejectCookiesButton: ".cookie-banner-reject-button",
 
   async checkPageLoads(page: Page, cy: boolean, accessibilityTest: boolean) {
     switch (cy) {
       case true:
         await page.waitForSelector(
-          `.govuk-heading-l:text-is("${cicaLookupContent.pageTitle}")`,
-        );
-        await page.locator(".govuk-link.language").click();
-        await page.waitForSelector(
-          `.govuk-heading-l:text-is("${cicaLookupContent.pageTitleCy}")`,
+          `.govuk-heading-l:text-is("${cicaPostcodeVerificationContent.pageTitleCy}")`,
         );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
@@ -43,19 +35,19 @@ const cicaLookupPage: CICALookupPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-l:text-is("${cicaLookupContent.pageTitleCy}")`,
+              `.govuk-heading-l:text-is("${cicaPostcodeVerificationContent.pageTitleCy}")`,
             ),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-hint:text-is("${cicaLookupContent.hintTextCy1}")`,
+              `.govuk-hint:text-is("${cicaPostcodeVerificationContent.hintTextCy1}")`,
             ),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-body:text-is("${cicaLookupContent.hintTextCy2}")`,
+              `.govuk-label:text-is("${cicaPostcodeVerificationContent.subHeadingCy1}")`,
             ),
             1,
           ),
@@ -63,18 +55,24 @@ const cicaLookupPage: CICALookupPage = {
         break;
       default:
         await page.waitForSelector(
-          `.govuk-heading-l:text-is("${cicaLookupContent.pageTitle}")`,
+          `.govuk-heading-l:text-is("${cicaPostcodeVerificationContent.pageTitle}")`,
         );
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-l:text-is("${cicaLookupContent.pageTitle}")`,
+              `.govuk-heading-l:text-is("${cicaPostcodeVerificationContent.pageTitle}")`,
             ),
             1,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-label:text-is("${cicaLookupContent.subHeading1}")`,
+              `.govuk-hint:text-is("${cicaPostcodeVerificationContent.hintText1}")`,
+            ),
+            1,
+          ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `.govuk-label:text-is("${cicaPostcodeVerificationContent.subHeading1}")`,
             ),
             1,
           ),
@@ -86,16 +84,11 @@ const cicaLookupPage: CICALookupPage = {
     }
   },
 
-  async createNewAppeal(page: Page) {
-    await page.waitForSelector("#main-form-cancel");
-    await page.click(this.newAppealButton);
-  },
-
-  async fillInFields(page: Page, caseNumber: String) {
-    await page.waitForSelector("#ccdReference");
-    await page.fill(this.ccdReference, caseNumber.replace(/\D/g, ""));
+  async fillInFields(page: Page) {
+    await page.waitForSelector("#postcode");
+    await page.fill(this.postcode, cicaPostcodeVerificationContent.postCode);
     await page.click(this.continueButton);
   }
 };
 
-export default cicaLookupPage;
+export default cicaPostCodeVerificationPage;
