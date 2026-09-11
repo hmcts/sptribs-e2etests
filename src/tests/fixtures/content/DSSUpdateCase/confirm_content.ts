@@ -1,6 +1,6 @@
 const confirm_content = {
-  pageTitle: "Case Updated:",
-  textOnPage1: "Thank you for updating your case.",
+  pageTitle: "Appeal Updated:",
+  textOnPage1: "Thank you for updating your appeal.",
   textOnPage2:
     "The additional information that you have submitted will be sent to the Tribunal.",
   textOnPage3:

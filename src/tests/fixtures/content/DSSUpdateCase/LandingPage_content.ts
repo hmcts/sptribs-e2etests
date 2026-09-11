@@ -1,12 +1,12 @@
 const landingPageContent = {
   header: "Update an appeal to the First-tier Tribunal",
-  pageTitle: "Update an existing First-tier Tribunal case",
+  pageTitle: "Update an existing First-tier Tribunal appeal",
   hintMessage:
-    "Use this service to update a case that has already been submitted to the First-tier Tribunal.",
+    "Use this service to update an appeal that has already been submitted to the First-tier Tribunal.",
   textOnPage1:
-    "You may want to send the Tribunal some extra paperwork that was not available at the time you initially submitted your tribunal form. Or you may want to give the Tribunal some extra details about aspects of your case.",
+    "You may want to send the Tribunal some extra paperwork that was not available at the time you initially submitted your tribunal form. Or you may want to give the Tribunal some extra details about aspects of your appeal.",
   textOnPage2:
-    "To update an existing case, you will need the case reference number.",
+    "To update an existing appeal, you will need the HMCTS reference number.",
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
   pageTitleCy:

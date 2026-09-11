@@ -4,9 +4,9 @@ const checkYourAnswersContent = {
   textOnPage1: "Additional information",
   textOnPage2: "Additional document",
   textOnPage3: "Document relevance",
-  subTitle: "Now update your case",
+  subTitle: "Now update your appeal",
   textOnPage4:
-    "By updating this case you are confirming that, to the best of your knowledge, the details you are providing are correct.",
+    "By updating this appeal you are confirming that, to the best of your knowledge, the details you are providing are correct.",
 
   headerCy: "Diweddaru apêl i’r Tribiwnlys Haen Gyntaf",
   pageTitleCy: "Gwiriwch eich atebion cyn cyflwyno eich diweddariad",

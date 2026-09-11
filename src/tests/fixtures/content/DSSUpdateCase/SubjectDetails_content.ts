@@ -2,10 +2,10 @@ import subjectDetails_content from "../DSSCreateCase/SubjectDetails_content.ts";
 
 const subjectDetailsContent = {
   header: "Update an appeal to the First-tier Tribunal",
-  pageTitle: "Subject of this case",
+  pageTitle: "Subject of this appeal",
   subHeading1: "Full name",
   subHeading2: "Date of birth",
-  nameHint: "This name must match exactly with the case record",
+  nameHint: "This name must match exactly with the appeal record",
   DOBHint: "For example, 31 3 1980",
   textOnPage1: "Day",
   textOnPage2: "Month",
@@ -16,10 +16,10 @@ const subjectDetailsContent = {
   yearOfBirth: "2000",
   errorBanner: "There is a problem",
   fullNameError:
-    "Please enter a full name. This name must match exactly with the case record",
+    "Please enter a full name. This name must match exactly with the appeal record",
   dateOfBirthError: "Please enter a full date of birth. For example, 31 3 1980",
   validFullNameError:
-    "Please enter a valid name. This name must match exactly with the case record",
+    "Please enter a valid name. This name must match exactly with the appeal record",
   validDateOfBirthError:
     "Please enter a valid date of birth. For example, 31 3 1980",
 
