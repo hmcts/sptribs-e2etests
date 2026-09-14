@@ -6,6 +6,9 @@ import commonHelpers, {
   ContactPreference,
 } from "../../../helpers/commonHelpers.ts";
 import { initialState } from "../../../journeys/CaseAPI/editCase.ts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 type EditCaseSubjectDetailsObjectPage = {
   previous: string;
@@ -110,6 +113,7 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
     initialState: initialState,
     subjectName: string,
   ): Promise<void> {
+    const citizenEmail = process.env.CITIZEN_USERNAME;
     await Promise.all([
       expect(page.locator(this.fullName)).toHaveValue(subjectName),
       expect(page.locator(this.phoneNumber)).toHaveValue(
@@ -123,7 +127,7 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
       ),
       expect(page.getByLabel("Email", { exact: true })).toBeChecked(),
       expect(page.locator(this.emailAddress)).toHaveValue(
-        editCaseSubjectDetailsObjectContent.emailAddress,
+        citizenEmail as string,
       ),
     ]);
     if (initialState !== "DSS Submitted") {
