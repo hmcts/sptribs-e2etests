@@ -2,6 +2,9 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import subjectContactDetailsContent from "../../fixtures/content/DSSCreateCase/SubjectContactDetails_content";
 import commonHelpers from "../../helpers/commonHelpers.ts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 type SubjectContactDetailsPage = {
   fields: {
@@ -130,9 +133,10 @@ const subjectContactDetailsPage: SubjectContactDetailsPage = {
   },
 
   async fillInFields(page: Page) {
+    const citizenEmail = process.env.CITIZEN_USERNAME;
     await page.fill(
-      this.fields.email,
-      subjectContactDetailsContent.emailAddress,
+      this.fields.email, 
+      citizenEmail as string,
     );
     await page.fill(
       this.fields.mobileNumber,

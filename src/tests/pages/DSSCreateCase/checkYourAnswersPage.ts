@@ -10,6 +10,9 @@ import {
   default as uploadOtherInformationContent,
 } from "../../fixtures/content/DSSCreateCase/UploadOtherInformation_content.ts";
 import commonHelpers from "../../helpers/commonHelpers.ts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 type CheckYourAnswersPage = {
   continueButton: string;
@@ -396,6 +399,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
     const no = "No";
     const yesCy = "Ydy";
     const noCy = "Nac ydy";
+    const citizenEmail = process.env.CITIZEN_USERNAME;
 
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -410,7 +414,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.govuk-summary-list__value:text-is("${subjectContactDetailsContent.emailAddress}")`,
+          `.govuk-summary-list__value:text-is("${citizenEmail as string}")`,
         ),
         1,
       ),

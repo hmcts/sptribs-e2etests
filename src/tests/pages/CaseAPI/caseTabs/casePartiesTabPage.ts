@@ -6,6 +6,9 @@ import representativeDetailsContent from "../../../fixtures/content/DSSCreateCas
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import respondentDetailsContent from "../../../fixtures/content/RespondentDetails_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 type CasePartiesTabPage = {
   casePartiesTab: string;
@@ -93,13 +96,14 @@ const casePartiesTabPage: CasePartiesTabPage = {
     representationQualified: boolean,
     subjectName: string,
   ): Promise<void> {
+    const citizenEmail = process.env.CITIZEN_USERNAME;
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
       ).toHaveText(subjectName),
       expect(
         page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
-      ).toHaveText(subjectContactDetailsContent.emailAddress),
+      ).toHaveText(citizenEmail as string),
       expect(
         page.locator("td[id='case-viewer-field-read--cicCasePhoneNumber']"),
       ).toHaveText(subjectContactDetailsContent.contactNumber),
