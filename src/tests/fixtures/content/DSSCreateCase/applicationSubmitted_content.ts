@@ -1,12 +1,16 @@
 import subjectDetailsContent from "./SubjectContactDetails_content.ts";
+import dotenv from "dotenv";
 
+dotenv.config();
+
+const citizenEmail = process.env.CITIZEN_USERNAME;
 const applicationSubmittedContent = {
   pageTitle: "Tribunal form sent",
   subTitle1: "HMCTS Number:",
   textOnPage1: "Your tribunal form and related documents have been sent.",
   textOnPage2:
     "An email will be sent to " +
-    subjectDetailsContent.emailAddress +
+    citizenEmail +
     ", that explains what happens next.",
   subTitle2: "Feedback",
   textOnPage3: "We would like to hear your thoughts",

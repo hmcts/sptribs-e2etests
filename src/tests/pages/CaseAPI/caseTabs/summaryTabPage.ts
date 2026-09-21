@@ -11,6 +11,9 @@ import removeStaySubmit_content from "../../../fixtures/content/CaseAPI/removeSt
 import representativeDetailsContent from "../../../fixtures/content/DSSCreateCase/RepresentativeDetails_content.ts";
 import subjectContactDetailsContent from "../../../fixtures/content/DSSCreateCase/SubjectContactDetails_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 type SummaryTabPage = {
   summaryTab: string;
@@ -100,6 +103,7 @@ const summaryTabPage: SummaryTabPage = {
     decisionDate?: Date,
   ): Promise<void> {
     const expectedInTimeValue = decisionDate ? "No" : "Yes";
+    const citizenEmail = process.env.CITIZEN_USERNAME;
     await Promise.all([
       expect(
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
@@ -109,7 +113,7 @@ const summaryTabPage: SummaryTabPage = {
       ).toHaveText(await commonHelpers.convertDate(true)),
       expect(
         page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
-      ).toHaveText(subjectContactDetailsContent.emailAddress),
+      ).toHaveText(citizenEmail as string),
       expect(
         page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(1),
       ).toHaveText(caseNumber),
