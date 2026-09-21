@@ -25,7 +25,7 @@ const applicationSubmittedContent = {
     "Mae ffurflenni’r tribiwnlys a’ch dogfennau perthnasol wedi’u hanfon.",
   textOnPageCy2:
     "Fe anfonir neges e-bost i " +
-    subjectDetailsContent.emailAddress +
+    citizenEmail +
     ", i esbonio beth fydd yn digwydd nesaf.",
   subTitleCy2: "Adborth",
   textOnPageCy3: "Hoffwn glywed eich barn",
