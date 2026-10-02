@@ -17,6 +17,7 @@ import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import contactParties from "../journeys/CaseAPI/contactParties.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 const priorityReview = " low ";
 const priorityProcess = " low ";
@@ -176,27 +177,7 @@ test.describe("Review and Process Listing Directions - Legal Officer @CaseAPI ",
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber46 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber46 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber46, subjectName);
     await task.removeTask(

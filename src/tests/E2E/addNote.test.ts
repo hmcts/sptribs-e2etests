@@ -15,6 +15,7 @@ import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 test.describe("Case-API Add note tests. @CaseAPI", () => {
   if (!config.skipDSSCreateTests) {
@@ -79,27 +80,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber202 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber202 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber202, subjectName);
     await addNote.addNote(page, false, caseNumber202, subjectName);
@@ -295,27 +276,7 @@ test.describe("Case-API Add note tests. @CaseAPI", () => {
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber206 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber206 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber206, subjectName);
     await task.removeTask(
@@ -346,27 +307,7 @@ test("Accessibility test - Add a note to a case stayed case. @accessibility", as
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber207 = await createCase.createCase(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    subjectName,
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
+  const caseNumber207 = await createCaseViaApi(page, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber207, subjectName);
   await task.removeTask(

@@ -8,33 +8,14 @@ import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 test.describe("Case-API Close case tests. @CaseAPI", () => {
   test("Close a ready to list case as it is withdrawn with no optional information. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber500 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber500 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber500, subjectName);
     await task.removeTask(
@@ -689,27 +670,7 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber511 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber511 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber511, subjectName);
     await task.removeTask(
@@ -795,31 +756,11 @@ test.describe("Case-API Close case tests. @CaseAPI", () => {
   });
 });
 
-test("Accessibility test - Close case @accessibility", async ({
+test("Accessibility test - Close case ", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber513 = await createCase.createCase(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    subjectName,
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
+  const caseNumber513 = await createCaseViaApi(page, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber513, subjectName);
   await task.removeTask(

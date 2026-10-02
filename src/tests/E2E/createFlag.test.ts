@@ -7,33 +7,14 @@ import events_content from "../fixtures/content/CaseAPI/events_content";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
 import createFlag from "../journeys/CaseAPI/createFlag.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 test.describe("Create case flags @CaseAPI", (): void => {
   test("Create flag at Case Level, type Urgent Case. @CaseAPI1", async ({
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1000 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber1000 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1000, subjectName);
     await task.removeTask(
@@ -83,27 +64,7 @@ test("Accessibility test - Create case flag @accessibility", async ({
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber1000 = await createCase.createCase(
-    page,
-    waUsers_content.userRoleAdmin,
-    true,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    subjectName,
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
+  const caseNumber1000 = await createCaseViaApi(page, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, true, caseNumber1000, subjectName);
   await task.removeTask(

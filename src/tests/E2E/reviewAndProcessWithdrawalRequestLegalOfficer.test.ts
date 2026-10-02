@@ -18,6 +18,7 @@ import manageDueDate from "../journeys/CaseAPI/manageDueDate.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import config from "../config.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 const priorityReview = " low ";
 const priorityProcess = " low ";
@@ -35,27 +36,7 @@ test.describe("Review Withdrawal Request - Legal Officer @CaseAPI", (): void => 
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber147 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber147 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber147, subjectName);
     await task.removeTask(

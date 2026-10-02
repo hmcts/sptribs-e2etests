@@ -8,6 +8,7 @@ import events_content from "../fixtures/content/CaseAPI/events_content.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import taskNames_content from "../fixtures/content/taskNames_content.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 test.describe("Panel Composition tests @CaseAPI", () => {
   test("Make a panel composition only one panel member and no specialism information. @crossbrowserCaseAPI", async ({
@@ -149,27 +150,7 @@ test.describe("Panel Composition tests @CaseAPI", () => {
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1703 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber1703 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1703, subjectName);
     await task.removeTask(
@@ -249,27 +230,7 @@ test("Accessibility test - Create and Edit Panel composition @accessibility", as
   page,
 }): Promise<void> => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-  const caseNumber1705 = await createCase.createCase(
-    page,
-    waUsers_content.userRoleAdmin,
-    false,
-    "Assessment",
-    "Other",
-    true,
-    true,
-    "Email",
-    subjectName,
-    true,
-    false,
-    "1996",
-    "Scotland",
-    true,
-    true,
-    true,
-    false,
-    true,
-    false,
-  );
+  const caseNumber1705 = await createCaseViaApi(page, subjectName);
   await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
   await buildCase.buildCase(page, false, caseNumber1705, subjectName);
   await task.removeTask(

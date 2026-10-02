@@ -17,6 +17,7 @@ import createListing from "../journeys/CaseAPI/createListing.ts";
 import closeCase from "../journeys/CaseAPI/closeCase.ts";
 import config from "../config.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 const priorityReview = " low ";
 const numberOfDaysReview = 5;
@@ -494,27 +495,7 @@ test.describe("Case-API Edit draft tests. @CaseAPI", () => {
 
   test("Edit a CIC13 draft. @CaseAPI1", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1505 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber1505 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber1505, subjectName);
     await task.removeTask(

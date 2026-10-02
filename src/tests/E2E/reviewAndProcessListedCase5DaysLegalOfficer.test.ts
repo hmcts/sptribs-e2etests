@@ -15,6 +15,7 @@ import config from "../config.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
 import referCaseToLegalOfficer from "../journeys/CaseAPI/referCaseToLegalOfficer.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 const priorityReview = " medium ";
 const priorityProcess = " medium ";
@@ -30,27 +31,7 @@ test.describe("Review and Process Listed Case (Within 5 days) - Judge @CaseAPI "
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber01 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber01 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber01, subjectName);
     await task.removeTask(

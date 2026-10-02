@@ -18,6 +18,7 @@ import hearingOptions from "../journeys/CaseAPI/hearingOptions.ts";
 import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createEditStay from "../journeys/CaseAPI/createEditStay.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 const priorityReview = " low ";
 const priorityProcess = " low ";
@@ -157,27 +158,7 @@ test.describe("User is able to Manage Due Date of an order @CaseAPI", (): void =
     const numberOfDaysReview = 5;
     const numberOfDaysProcess = 1;
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber2701 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber2701 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2701, subjectName);
     await task.removeTask(
