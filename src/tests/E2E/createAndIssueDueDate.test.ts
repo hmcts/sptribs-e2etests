@@ -14,6 +14,7 @@ import myWorkPage from "../pages/WA/myWorkPage.ts";
 import createDraft from "../journeys/CaseAPI/createDraft.ts";
 import createAndSendOrder from "../journeys/CaseAPI/createAndSendOrder.ts";
 import sendOrder from "../journeys/CaseAPI/sendOrder.ts";
+import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
 const priority = " low ";
 const numberOfDays = 2;
@@ -23,27 +24,7 @@ test.describe("Create and issue due date task tests @CaseAPI", (): void => {
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber2800 = await createCase.createCase(
-      page,
-      waUsers_content.userRoleAdmin,
-      false,
-      "Assessment",
-      "Other",
-      true,
-      true,
-      "Email",
-      subjectName,
-      true,
-      false,
-      "1996",
-      "Scotland",
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-    );
+    const caseNumber2800 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
     await buildCase.buildCase(page, false, caseNumber2800, subjectName);
     await task.initiateTask(

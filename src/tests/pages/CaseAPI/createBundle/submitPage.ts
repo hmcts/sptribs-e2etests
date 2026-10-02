@@ -45,6 +45,7 @@ const submitPage: SubmitPage = {
 
   async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);
+    await page.waitForTimeout(5000);
   },
 };
 
