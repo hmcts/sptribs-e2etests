@@ -76,7 +76,7 @@ const globalDataCleanUp: GlobalDataCleanUp = {
     if (page.url().includes("service-down")) {
       await page.locator(`a:text-is("My work")`).click({ force: true });
     }
-    await page.waitForSelector(`h3:text-is("My work")`);
+    await page.waitForSelector(`h1:text-is("My work")`);
     await page.waitForTimeout(5000);
 
     while (true) {
