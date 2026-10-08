@@ -40,7 +40,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
+          `markdown > h3:text-is("${subjectName}")`,
         ),
         1,
       ),

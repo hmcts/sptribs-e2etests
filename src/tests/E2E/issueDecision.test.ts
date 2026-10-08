@@ -7,6 +7,7 @@ import testDataCleanUp from "../helpers/testDataCleanUp.ts";
 import buildCase from "../journeys/CaseAPI/buildCase.ts";
 import createListing from "../journeys/CaseAPI/createListing.ts";
 import createSummary from "../journeys/CaseAPI/createSummary.ts";
+import issueFinalDecision from "../journeys/CaseAPI/issueFinalDecision.ts";
 import task from "../journeys/CaseAPI/task.ts";
 import { createCaseViaApi } from "../helpers/api/ApiCreateCase.ts";
 
@@ -20,12 +21,12 @@ test.describe("Issue decision tests @CaseAPI", (): void => {
     page,
   }): Promise<void> => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
-    const caseNumber1102 = await createCaseViaApi(page, subjectName);
+    const caseNumber1202 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
-    await buildCase.buildCase(page, false, caseNumber1102, subjectName);
+    await buildCase.buildCase(page, false, caseNumber1202, subjectName);
     await task.removeTask(
       page,
-      caseNumber1102,
+      caseNumber1202,
       taskNames_content.issueCaseToRespondentTask,
       subjectName,
       waUsers_content.userRoleAdmin,
@@ -45,7 +46,7 @@ test.describe("Issue decision tests @CaseAPI", (): void => {
       false,
       null,
       false,
-      caseNumber1102,
+      caseNumber1202,
       subjectName,
       false,
     );
@@ -63,9 +64,18 @@ test.describe("Issue decision tests @CaseAPI", (): void => {
       false,
       true,
       false,
-      caseNumber1102,
+      caseNumber1202,
       subjectName,
     );
+    await issueFinalDecision.issueFinalDecision(
+      page,
+      false,
+      false,
+      caseNumber1202,
+      subjectName,
+      "CIC6 - General Directions",
+      "Create",
+      "Final",
+    );
   });
-
 });

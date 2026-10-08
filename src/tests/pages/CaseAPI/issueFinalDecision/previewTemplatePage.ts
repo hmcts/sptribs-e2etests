@@ -45,7 +45,7 @@ const previewTemplatePage: PreviewTemplatePage = {
         previewTemplate_content.pageHint,
       ),
       expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         previewTemplate_content.caseReference + caseNumber,

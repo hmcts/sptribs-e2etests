@@ -38,7 +38,7 @@ const addDocumentFooterPage: AddDocumentFooterPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `div > markdown > h3:text-is("${caseSubjectDetailsObject_content.name}")`,
+          `div > markdown > h3:text-is("${subjectName}")`,
         ),
         1,
       ),

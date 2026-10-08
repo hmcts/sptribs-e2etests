@@ -28,7 +28,7 @@ type IssueFinalDecision = {
   ): Promise<string | void>;
 };
 
-const IssueFinalDecision = {
+const issueFinalDecision: IssueFinalDecision = {
   async issueFinalDecision(
     page: Page,
     accessibilityTest: boolean,
@@ -57,5 +57,64 @@ const IssueFinalDecision = {
         subjectName
     );
     await selectTemplatePage.fillInFields(page, template);
+    await finalDecisionMainPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+        template,
+        subjectName
+    );
+    await finalDecisionMainPage.fillInFields(
+        page
+    );
+    await addDocumentFooterPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+        subjectName
+    );
+    await addDocumentFooterPage.fillInFields(
+        page
+    );
+    await previewTemplatePage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+        subjectName
+    );
+    await previewTemplatePage.fillInFields(
+        page,
+        template,
+        caseNumber,
+        caseNoticeType,
+        subjectName
+    );
+    await issueFinalDecisionNotifyPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+        subjectName
+    );
+    await issueFinalDecisionNotifyPage.continueOn(page);
+    await submitPage.checkPageLoads(
+        page,
+        caseNumber,
+        accessibilityTest,
+        noticeType,
+        subjectName
+    );
+    await submitPage.checkAllInfo(
+        page,
+        noticeType,
+        template
+    );
+    await submitPage.continueOn(page);
+    await confirmPage.checkPageLoads(
+        page,
+        accessibilityTest
+    );
+    await confirmPage.closeAndReturnToCase(page);
   },
 };
+
+export default issueFinalDecision;
