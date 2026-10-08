@@ -36,7 +36,7 @@ const cicaDetailsTabPage: CICADetailsTabPage = {
         ];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${textOnPage}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${textOnPage}")`,
           ),
           1,
         );
