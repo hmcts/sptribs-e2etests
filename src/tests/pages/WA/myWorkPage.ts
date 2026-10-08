@@ -253,7 +253,7 @@ const myWorkPage: MyWorkPage = {
     while (page.url().includes("service-down")) {
       await page.locator(this.myWorkLink).click();
     }
-    await page.waitForSelector(`h3:text-is("My work")`);
+    await page.waitForSelector(`h1:text-is("My work")`);
   },
 
   async dataCleanUpAssignTask(page: Page, selector: any): Promise<void> {
