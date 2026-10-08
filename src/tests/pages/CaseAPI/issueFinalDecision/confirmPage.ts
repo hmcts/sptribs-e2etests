@@ -9,7 +9,7 @@ type ConfirmPage = {
   closeAndReturnToCase(page: Page): Promise<void>;
 };
 
-const createCaseConfirmPage: ConfirmPage = {
+const confirmPage: ConfirmPage = {
   closeAndReturn: ".button",
 
   async checkPageLoads(page: Page, accessibilityTest: boolean): Promise<void> {
@@ -38,4 +38,4 @@ const createCaseConfirmPage: ConfirmPage = {
   },
 };
 
-export default createCaseConfirmPage;
+export default confirmPage;

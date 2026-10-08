@@ -10,6 +10,7 @@ type IssueFinalDecisionNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   continueOn(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -20,6 +21,7 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${issueFinalDecisionNotifyPage_content.pageTitle}")`,

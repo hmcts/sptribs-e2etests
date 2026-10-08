@@ -14,6 +14,7 @@ type NoticeOptionPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page, noticeType: NoticeType): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -28,6 +29,7 @@ const noticeOptionPage: NoticeOptionPage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${noticeOption_content.pageTitle}")`,
@@ -37,7 +39,7 @@ const noticeOptionPage: NoticeOptionPage = {
         noticeOption_content.pageHint,
       ),
       expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         noticeOption_content.caseReference + caseNumber,

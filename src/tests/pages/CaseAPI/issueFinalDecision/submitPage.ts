@@ -15,12 +15,13 @@ type SubmitPage = {
   continue: string;
   previous: string;
   cancel: string;
-  checkCommon(page: Page, caseNumber: string): Promise<void>;
+  checkCommon(page: Page, caseNumber: string, subjectName: string,): Promise<void>;
   checkPageLoads(
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
     noticeType: NoticeType,
+    subjectName: string,
   ): Promise<void>;
   checkCommonInfo(page: Page): Promise<void>;
   checkAllInfo(
@@ -36,7 +37,7 @@ const submitPage: SubmitPage = {
   previous: ".button-secondary",
   cancel: ".cancel",
 
-  async checkCommon(page: Page, caseNumber: string): Promise<void> {
+  async checkCommon(page: Page, caseNumber: string, subjectName: string,): Promise<void> {
     await page.waitForSelector(`span:text-is("${submit_content.textOnPage1}")`);
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
@@ -67,6 +68,7 @@ const submitPage: SubmitPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     noticeType: NoticeType,
+    subjectName: string,
   ): Promise<void> {
     switch (noticeType) {
       default:
@@ -84,7 +86,7 @@ const submitPage: SubmitPage = {
             page.locator(`.text-16:text-is("${submit_content.upload1}")`),
             2,
           ),
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
         ]);
         break;
       case "Create":
@@ -96,7 +98,7 @@ const submitPage: SubmitPage = {
               1,
             );
           }),
-          this.checkCommon(page, caseNumber),
+          this.checkCommon(page, caseNumber, subjectName),
         ]);
         break;
     }

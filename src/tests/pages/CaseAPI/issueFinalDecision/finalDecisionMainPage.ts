@@ -13,6 +13,7 @@ type FinalDecisionMainPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     template: Template,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -28,6 +29,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     caseNumber: string,
     accessibilityTest: boolean,
     template: Template,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${finalDecisionMain_content.pageTitle}")`,

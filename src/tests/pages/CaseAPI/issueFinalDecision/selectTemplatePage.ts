@@ -28,6 +28,7 @@ type SelectTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page, template: Template): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -42,6 +43,7 @@ const selectTemplatePage: SelectTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${selectTemplate_content.pageTitle}")`,
