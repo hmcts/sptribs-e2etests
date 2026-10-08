@@ -58,7 +58,7 @@ async function testDataCleanUp(page: Page, user: any): Promise<void> {
     }
   }
   await page.locator(`a:text-is("My work")`).click();
-  await page.waitForSelector(`h3:text-is("My work")`);
+  await page.waitForSelector(`h1:text-is("My work")`);
   await page.waitForTimeout(7000);
   const autotestingTaskLocator1: any = page
     .locator("tr", { hasText: "Subject AutoTesting" })
