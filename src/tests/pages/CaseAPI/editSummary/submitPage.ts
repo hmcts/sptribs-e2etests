@@ -147,7 +147,7 @@ const submitPage: SubmitPage = {
         const textOnPage = (submitContent as any)[`textOnPage${index + 21}`];
         return commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${textOnPage}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${textOnPage}")`,
           ),
           1,
         );
@@ -184,19 +184,19 @@ const submitPage: SubmitPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.additionalHearingDate}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.additionalHearingDate}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.textOnPage9}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.textOnPage9}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.additionalHearingTime}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.additionalHearingTime}")`,
           ),
           3,
         ),
@@ -218,13 +218,13 @@ const submitPage: SubmitPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.panelMemberName}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.panelMemberName}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.panelMemberRole}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.panelMemberRole}")`,
           ),
           3,
         ),

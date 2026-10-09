@@ -34,7 +34,7 @@ const casesPage: CasesPage = {
       `.govuk-heading-xl:text-is("${casesContent.pageTitle}")`,
     );
     await Promise.all([
-      expect(page.locator("fieldset[aria-label='Filters']")).toHaveText(
+      expect(page.locator(".heading-h2", { hasText: casesContent.subTitle1 })).toHaveText(
         casesContent.subTitle1,
       ),
       expect(page.locator("label[for='wb-jurisdiction']")).toHaveText(

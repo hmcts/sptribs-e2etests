@@ -160,19 +160,19 @@ const submitPage: SubmitPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.additionalHearingDate}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.additionalHearingDate}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.textOnPage9}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.textOnPage9}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${submitContent.additionalHearingDateTime}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${submitContent.additionalHearingDateTime}")`,
           ),
           3,
         ),
