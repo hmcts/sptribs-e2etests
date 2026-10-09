@@ -3,10 +3,10 @@ import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../../config.ts";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
-import decisionUpload_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/decisionUpload_content.ts";
-import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
-import submit_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/submit_content.ts";
+import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueDecision/addDocumentFooter_content.ts";
+import decisionUpload_content from "../../../fixtures/content/CaseAPI/issueDecision/decisionUpload_content.ts";
+import decisionMain_content from "../../../fixtures/content/CaseAPI/issueDecision/decisionMain_content.ts";
+import submit_content from "../../../fixtures/content/CaseAPI/issueDecision/submit_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import { NoticeType } from "./noticeOptionPage.ts";
 import { Template } from "./selectTemplatePage.ts";
@@ -173,7 +173,7 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `span:text-is("${finalDecisionMain_content.description}")`,
+              `span:text-is("${decisionMain_content.description}")`,
             ),
             1,
           ),

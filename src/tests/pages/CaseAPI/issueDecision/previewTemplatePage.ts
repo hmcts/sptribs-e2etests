@@ -1,7 +1,7 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import previewTemplate_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/previewTemplate_content.ts";
+import previewTemplate_content from "../../../fixtures/content/CaseAPI/issueDecision/previewTemplate_content.ts";
 import commonHelpers, {
   CaseNoticeType,
 } from "../../../helpers/commonHelpers.ts";

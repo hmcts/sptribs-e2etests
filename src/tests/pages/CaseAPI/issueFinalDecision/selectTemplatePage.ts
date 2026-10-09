@@ -28,6 +28,7 @@ type SelectTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void>;
   fillInFields(page: Page, template: Template): Promise<void>;
   triggerErrorMessages(page: Page): Promise<void>;
@@ -42,6 +43,7 @@ const selectTemplatePage: SelectTemplatePage = {
     page: Page,
     caseNumber: string,
     accessibilityTest: boolean,
+    subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
       `.govuk-heading-l:text-is("${selectTemplate_content.pageTitle}")`,
@@ -51,7 +53,7 @@ const selectTemplatePage: SelectTemplatePage = {
         selectTemplate_content.pageHint,
       ),
       expect(page.locator("markdown > h3")).toContainText(
-        caseSubjectDetailsObject_content.name,
+        `${subjectName}`,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         selectTemplate_content.caseReference + caseNumber,

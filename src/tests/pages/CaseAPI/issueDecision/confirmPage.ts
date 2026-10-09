@@ -1,6 +1,6 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import confirm_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/confirm_content.ts";
+import confirm_content from "../../../fixtures/content/CaseAPI/issueDecision/confirm_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
 type ConfirmPage = {

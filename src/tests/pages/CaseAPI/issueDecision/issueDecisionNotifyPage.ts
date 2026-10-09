@@ -2,10 +2,10 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import createListingNotifyPageContent from "../../../fixtures/content/CaseAPI/createListing/createListingNotifyPage_content.ts";
-import issueFinalDecisionNotifyPage_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/issueFinalDecisionNotifyPage_content.ts";
+import issueDecisionNotifyPage_content from "../../../fixtures/content/CaseAPI/issueDecision/issueDecisionNotifyPage_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 
-type IssueFinalDecisionNotifyPage = {
+type IssueDecisionNotifyPage = {
   checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -16,7 +16,7 @@ type IssueFinalDecisionNotifyPage = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
+const issueDecisionNotifyPage: IssueDecisionNotifyPage = {
   async checkPageLoads(
     page: Page,
     caseNumber: string,
@@ -24,11 +24,11 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${issueFinalDecisionNotifyPage_content.pageTitle}")`,
+      `.govuk-heading-l:text-is("${issueDecisionNotifyPage_content.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        issueFinalDecisionNotifyPage_content.pageHint,
+        issueDecisionNotifyPage_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -41,18 +41,12 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `dt > ccd-markdown > div > markdown > p:text-is("${issueFinalDecisionNotifyPage_content.textOnPage1}")`,
-        ),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.form-label:text-is("${issueFinalDecisionNotifyPage_content.textOnPage2}")`,
+          `.form-label:text-is("${issueDecisionNotifyPage_content.textOnPage2}")`,
         ),
         4,
       ),
       ...Array.from({ length: 4 }, (_, index: number) => {
-        const textOnPage = (issueFinalDecisionNotifyPage_content as any)[
+        const textOnPage = (issueDecisionNotifyPage_content as any)[
           `textOnPage${index + 3}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -81,13 +75,13 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.error-summary-heading:has-text("${issueFinalDecisionNotifyPage_content.errorTitle}")`,
+          `.error-summary-heading:has-text("${issueDecisionNotifyPage_content.errorTitle}")`,
         ),
         1,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.error-summary-list:has-text("${issueFinalDecisionNotifyPage_content.errorMessage}")`,
+          `.error-summary-list:has-text("${issueDecisionNotifyPage_content.errorMessage}")`,
         ),
         1,
       ),
@@ -102,4 +96,4 @@ const issueFinalDecisionNotifyPage: IssueFinalDecisionNotifyPage = {
   },
 };
 
-export default issueFinalDecisionNotifyPage;
+export default issueDecisionNotifyPage;

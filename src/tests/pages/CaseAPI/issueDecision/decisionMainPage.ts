@@ -1,10 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
-import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
+import decisionMain_content from "../../../fixtures/content/CaseAPI/issueDecision/decisionMain_content.ts";
 import commonHelpers from "../../../helpers/commonHelpers.ts";
 import { Template } from "./selectTemplatePage.ts";
 
-type FinalDecisionMainPage = {
+type DecisionMainPage = {
   previous: string;
   continue: string;
   cancel: string;
@@ -19,7 +19,7 @@ type FinalDecisionMainPage = {
   triggerErrorMessages(page: Page): Promise<void>;
 };
 
-const finalDecisionMainPage: FinalDecisionMainPage = {
+const decisionMainPage: DecisionMainPage = {
   previous: ".button-secondary",
   continue: '[type="submit"]',
   cancel: ".cancel",
@@ -32,11 +32,11 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     subjectName: string,
   ): Promise<void> {
     await page.waitForSelector(
-      `.govuk-heading-l:text-is("${finalDecisionMain_content.pageTitle}")`,
+      `.govuk-heading-l:text-is("${decisionMain_content.pageTitle}")`,
     );
     await Promise.all([
       expect(page.locator(".govuk-caption-l")).toHaveText(
-        finalDecisionMain_content.pageHint,
+        decisionMain_content.pageHint,
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
@@ -45,10 +45,10 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
         1,
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
-        finalDecisionMain_content.caseReference + caseNumber,
+        decisionMain_content.caseReference + caseNumber,
       ),
       ...Array.from({ length: 3 }, (_, index) => {
-        const textOnPage = (finalDecisionMain_content as any)[
+        const textOnPage = (decisionMain_content as any)[
           `textOnPage${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -57,7 +57,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
         );
       }),
       ...Array.from({ length: 3 }, (_, index) => {
-        const subTitle = (finalDecisionMain_content as any)[
+        const subTitle = (decisionMain_content as any)[
           `subTitle${index + 1}`
         ];
         return commonHelpers.checkVisibleAndPresent(
@@ -80,40 +80,40 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
       case "CIC1 - Eligibility":
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(
-          `${finalDecisionMain_content.eligibility}`,
+          `${decisionMain_content.eligibility}`,
         );
         break;
       case "CIC2 - Quantum":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.quantum}`);
+        expect(textBoxValue).toEqual(`${decisionMain_content.quantum}`);
         break;
       case "CIC3 - Rule 27":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.rule27}`);
+        expect(textBoxValue).toEqual(`${decisionMain_content.rule27}`);
         break;
       case "CIC7 - ME Dmi Reports":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.dmiReports}`);
+        expect(textBoxValue).toEqual(`${decisionMain_content.dmiReports}`);
         break;
       case "CIC8 - ME Joint Instructions":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.joint}`);
+        expect(textBoxValue).toEqual(`${decisionMain_content.joint}`);
         break;
       case "CIC10 - Strike Out Warning":
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(
-          `${finalDecisionMain_content.strikeoutWarn}`,
+          `${decisionMain_content.strikeoutWarn}`,
         );
         break;
       case "CIC11 - Strike Out Decision Notice":
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(
-          `${finalDecisionMain_content.strikeoutNotice}`,
+          `${decisionMain_content.strikeoutNotice}`,
         );
         break;
       case "CIC13 - Pro Forma Summons":
         textBoxValue = await page.locator(`textarea`).inputValue();
-        expect(textBoxValue).toEqual(`${finalDecisionMain_content.proForma}`);
+        expect(textBoxValue).toEqual(`${decisionMain_content.proForma}`);
         break;
     }
     // if (accessibilityTest) {
@@ -124,7 +124,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
   async fillInFields(page: Page): Promise<void> {
     await page.fill(`textarea`, ``);
     await expect(page.locator(`textarea`)).toBeEmpty();
-    await page.fill(`textarea`, finalDecisionMain_content.description);
+    await page.fill(`textarea`, decisionMain_content.description);
     await page.click(this.continue);
   },
 
@@ -134,7 +134,7 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
     await page.click(this.continue);
     await commonHelpers.checkVisibleAndPresent(
       page.locator(
-        `.error-message:has-text("${finalDecisionMain_content.errorNoEntryDescription}")`,
+        `.error-message:has-text("${decisionMain_content.errorNoEntryDescription}")`,
       ),
       1,
     );
@@ -142,4 +142,4 @@ const finalDecisionMainPage: FinalDecisionMainPage = {
   },
 };
 
-export default finalDecisionMainPage;
+export default decisionMainPage;
