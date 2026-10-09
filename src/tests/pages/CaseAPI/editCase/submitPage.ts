@@ -292,25 +292,25 @@ const submitPage: SubmitPage = {
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage11}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage12}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage13}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),
@@ -345,25 +345,25 @@ const submitPage: SubmitPage = {
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage11}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage12}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage13}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),
@@ -398,25 +398,25 @@ const submitPage: SubmitPage = {
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage11}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage12}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage13}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),
@@ -438,25 +438,25 @@ const submitPage: SubmitPage = {
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage11}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage11}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage12}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage12}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage13}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage13}")`,
               ),
               count,
             ),
             commonHelpers.checkVisibleAndPresent(
               page.locator(
-                `th#complex-panel-simple-field-label > span.text-16:text-is("${submit_content.textOnPage14}")`,
+                `tr.complex-panel-simple-field > th > span.text-16:text-is("${submit_content.textOnPage14}")`,
               ),
               count,
             ),

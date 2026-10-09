@@ -164,7 +164,7 @@ const summaryTabPage: SummaryTabPage = {
     await Promise.all([
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage10}")`,
+          `th[id^="case-viewer-field-label"] > div.text-16:has-text("${summaryTab_content.textOnPage10}")`,
         ),
         1,
       ),
@@ -188,7 +188,7 @@ const summaryTabPage: SummaryTabPage = {
     if (stayReason === "Other") {
       await expect(
         page.locator(
-          `th#case-viewer-field-label > .text-16:has-text("${summaryTab_content.textOnPage13}")`,
+          `th[id^="case-viewer-field-label"] > .text-16:has-text("${summaryTab_content.textOnPage13}")`,
         ),
       ).toBeVisible();
       await expect(
@@ -201,7 +201,7 @@ const summaryTabPage: SummaryTabPage = {
       await Promise.all([
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage12}")`,
+            `th[id^="case-viewer-field-label"] > div.text-16:has-text("${summaryTab_content.textOnPage12}")`,
           ),
           1,
         ),
@@ -222,21 +222,21 @@ const summaryTabPage: SummaryTabPage = {
     state: string,
   ): Promise<void> {
     await page.waitForSelector(
-      `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
+      `th[id^="case-viewer-field-label"] > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
     );
     await expect(page.locator("markdown.markdown > h4")).toContainText(
       summaryTab_content.caseState + state,
     );
     await expect(
       page.locator(
-        `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
+        `th[id^="case-viewer-field-label"] > div.text-16:has-text("${summaryTab_content.textOnPage15}")`,
       ),
     ).toBeVisible();
 
     if (removeReason === "Other") {
       await expect(
         page.locator(
-          `th#case-viewer-field-label > div.text-16:has-text("${summaryTab_content.textOnPage16}")`,
+          `th[id^="case-viewer-field-label"] > div.text-16:has-text("${summaryTab_content.textOnPage16}")`,
         ),
       ).toBeVisible();
       await expect(

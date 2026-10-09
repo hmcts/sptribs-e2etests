@@ -268,19 +268,19 @@ const hearingTabPage: HearingsTabPage = {
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${hearingsTab_content.additionalHearingDate}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${hearingsTab_content.additionalHearingDate}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${hearingsTab_content.additionalHearingDateTime}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${hearingsTab_content.additionalHearingDateTime}")`,
           ),
           3,
         ),
         commonHelpers.checkVisibleAndPresent(
           page.locator(
-            `#complex-panel-simple-field-label > span.text-16:text-is("${hearingsTab_content.textOnPage18}")`,
+            `tr.complex-panel-simple-field > th > span.text-16:text-is("${hearingsTab_content.textOnPage18}")`,
           ),
           4,
         ),
@@ -288,7 +288,7 @@ const hearingTabPage: HearingsTabPage = {
     } else {
       await commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `#complex-panel-simple-field-label > span.text-16:text-is("${hearingsTab_content.textOnPage18}")`,
+          `tr.complex-panel-simple-field > th > span.text-16:text-is("${hearingsTab_content.textOnPage18}")`,
         ),
         1,
       );
@@ -407,13 +407,13 @@ const hearingTabPage: HearingsTabPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `#complex-panel-simple-field-label > span.text-16:text-is("${hearingsTab_content.panelMemberName}")`,
+              `tr.complex-panel-simple-field > th > span.text-16:text-is("${hearingsTab_content.panelMemberName}")`,
             ),
             3,
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `#complex-panel-simple-field-label > span.text-16:text-is("${hearingsTab_content.panelMemberRole}")`,
+              `tr.complex-panel-simple-field > th > span.text-16:text-is("${hearingsTab_content.panelMemberRole}")`,
             ),
             3,
           ),
