@@ -3153,12 +3153,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.9.6":
-  version: 3.9.6
-  resolution: "prettier@npm:3.9.6"
+"prettier@npm:3.9.9":
+  version: 3.9.9
+  resolution: "prettier@npm:3.9.9"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/1dd1a1e0e40ec3b91cda9d294c4a95022aef61880ca3f441aad99b1252279f58a766c4cece81132c01550dcff1fd445efbd8812ea4a2374313e7fc6c8136f11f
+  checksum: 10/3d11a8095a7db50f0fbc8086ad96be676401154b63a2e9023e1274893457dccab19a9c211f4fb2cae7244e800bea2d5185d9bb6fc510f48a53017815e47d4e6d
   languageName: node
   linkType: hard
 
@@ -3495,10 +3495,9 @@ __metadata:
     axios: "npm:1.20.0"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    picomatch: "npm:^4.0.7"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
-    prettier: "npm:3.9.6"
+    prettier: "npm:3.9.9"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
@@ -3840,9 +3839,9 @@ __metadata:
   linkType: hard
 
 "web-features@npm:^3.39.0":
-  version: 3.41.0
-  resolution: "web-features@npm:3.41.0"
-  checksum: 10/e9a863a23e16332d914c791d41aa3a62677a9fb5eb755d863445c8efbc216f7b3e7b44a797517d43da23df001b404014822d981444e04f3ae8d62145951615d0
+  version: 3.42.0
+  resolution: "web-features@npm:3.42.0"
+  checksum: 10/0b9e2f07aee9f73d1364a8783e85aee48f6ef06e0c4db896fa8d1d34259049c05e82d860d3619ef89daca96e89fb25bf3d071269d066cbb818110f0c1d5b16c4
   languageName: node
   linkType: hard
 
