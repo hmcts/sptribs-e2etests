@@ -3495,7 +3495,6 @@ __metadata:
     axios: "npm:1.20.0"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
-    picomatch: "npm:^4.0.7"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.9.6"
@@ -3840,9 +3839,9 @@ __metadata:
   linkType: hard
 
 "web-features@npm:^3.39.0":
-  version: 3.41.0
-  resolution: "web-features@npm:3.41.0"
-  checksum: 10/e9a863a23e16332d914c791d41aa3a62677a9fb5eb755d863445c8efbc216f7b3e7b44a797517d43da23df001b404014822d981444e04f3ae8d62145951615d0
+  version: 3.42.0
+  resolution: "web-features@npm:3.42.0"
+  checksum: 10/0b9e2f07aee9f73d1364a8783e85aee48f6ef06e0c4db896fa8d1d34259049c05e82d860d3619ef89daca96e89fb25bf3d071269d066cbb818110f0c1d5b16c4
   languageName: node
   linkType: hard
 
