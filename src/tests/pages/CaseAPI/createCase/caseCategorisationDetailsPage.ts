@@ -43,6 +43,7 @@ const caseCategorisationDetailsPage: CaseCategorisationDetailsPage = {
       }),
     ]);
     if (accessibilityTest) {
+      await page.mouse.move(0, 0);
       await new AxeUtils(page).audit();
     }
   },
