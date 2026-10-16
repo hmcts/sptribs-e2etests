@@ -1,7 +1,7 @@
 const cicaPostcodeVerificationContent = {
   pageTitle: "Enter the postcode for the appeal",
   hintText1:
-    "This is the postcode used when the appeal was registered",
+    "This is the postcode for the subject of the appeal",
   subHeading1: "Postcode",
   postCode: "SW1A 1AA",
   button: "Continue",
