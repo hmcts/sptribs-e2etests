@@ -16,7 +16,7 @@ type HistoryPage = {
 };
 
 const historyPage: HistoryPage = {
-  caseHistoryTab: `.mat-tab-label-content:text-is("History")`,
+  caseHistoryTab: `.mdc-tab__text-label:text-is("History")`,
 
   async navigateToHistoryTab(page): Promise<void> {
     await page.locator(this.caseHistoryTab).click();

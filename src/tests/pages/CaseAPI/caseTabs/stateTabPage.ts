@@ -17,7 +17,7 @@ type StateTabPage = {
 };
 
 const stateTabPage: StateTabPage = {
-  caseStateTab: `.mat-tab-label-content:text-is("State")`,
+  caseStateTab: `.mdc-tab__text-label:text-is("State")`,
 
   async checkPageLoads(
     page: Page,

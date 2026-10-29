@@ -154,7 +154,9 @@ const submitPage: SubmitPage = {
           ),
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.ng-star-inserted:text-is("${path.basename(config.testPdfFile)}")`,
+              "ccd-read-document-field button", {
+                hasText: path.basename(config.testPdfFile),
+              }
             ),
             1,
           ),

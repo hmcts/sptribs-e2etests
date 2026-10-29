@@ -83,7 +83,7 @@ const editDraft: EditDraft = {
         );
         await confirmPage.closeAndReturnToCase(page);
         await page.click(
-          `.mat-tab-label-content:text-is("Orders & Decisions")`,
+          `.mdc-tab__text-label:text-is("Orders & Decisions")`,
         );
         await ordersAndDecisionsTabPage.checkDraftOrder(page, template, true);
         break;

@@ -27,7 +27,7 @@ const addNote: AddNote = {
       subjectName,
     );
     await addCaseNotePage.fillInFields(page);
-    await page.click(`.mat-tab-label-content:text-is("Notes")`);
+    await page.click(`.mdc-tab__text-label:text-is("Notes")`);
     await notesTabPage.checkAddedNote(page);
   },
 };

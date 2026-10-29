@@ -48,7 +48,7 @@ type SummaryTabPage = {
 };
 
 const summaryTabPage: SummaryTabPage = {
-  summaryTab: `.mat-tab-label-content:text-is("Summary")`,
+  summaryTab: `.mdc-tab__text-label:text-is("Summary")`,
 
   async checkPageLoads(
     page: Page,
@@ -109,13 +109,13 @@ const summaryTabPage: SummaryTabPage = {
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
       ).toHaveText(subjectName),
       expect(
-        page.locator("ccd-read-date-field[class='ng-star-inserted']"),
+        page.locator("ccd-read-date-field"),
       ).toHaveText(await commonHelpers.convertDate(true)),
       expect(
-        page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
+        page.locator("ccd-read-email-field").nth(0),
       ).toHaveText(citizenEmail as string),
       expect(
-        page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(1),
+        page.locator("ccd-read-text-field").nth(1),
       ).toHaveText(caseNumber),
       expect(
         page.locator("#case-viewer-field-read--cicCaseIsCaseInTime"),
@@ -124,16 +124,16 @@ const summaryTabPage: SummaryTabPage = {
     if (representationPresent) {
       await Promise.all([
         expect(
-          page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(2),
+          page.locator("ccd-read-text-field").nth(2),
         ).toHaveText(representativeDetailsContent.Organisation),
         expect(
-          page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(3),
+          page.locator("ccd-read-text-field").nth(3),
         ).toHaveText(representativeDetailsContent.fullName),
         expect(
-          page.locator("ccd-read-text-field[class='ng-star-inserted']").nth(4),
+          page.locator("ccd-read-text-field").nth(4),
         ).toHaveText(representativeDetailsContent.contactNumber),
         expect(
-          page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(1),
+          page.locator("ccd-read-email-field").nth(1),
         ).toHaveText(representativeDetailsContent.emailAddress),
       ]);
       if (representationQualified) {

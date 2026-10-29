@@ -43,7 +43,7 @@ type TasksPage = {
 
 const tasksPage: TasksPage = {
   myTasksTab: `a:text-is(" My tasks ")`,
-  caseTasksTab: `.mat-tab-label-content:text-is("Tasks")`,
+  caseTasksTab: `.mdc-tab__text-label:text-is("Tasks")`,
 
   async checkPageLoads(
     page: Page,

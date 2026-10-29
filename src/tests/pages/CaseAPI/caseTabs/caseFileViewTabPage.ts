@@ -23,7 +23,7 @@ type CaseFileViewTabPage = {
 };
 
 const caseFileViewTabPage: CaseFileViewTabPage = {
-  caseFileViewTab: `.mat-tab-label-content:text-is("Case file view")`,
+  caseFileViewTab: `.mdc-tab__text-label:text-is("Case file view")`,
 
   async checkPageLoads(
     page: Page,

@@ -17,7 +17,7 @@ type CICADetailsTabPage = {
 };
 
 const cicaDetailsTabPage: CICADetailsTabPage = {
-  CICADetailsTab: `.mat-tab-label-content:text-is("CICA Details")`,
+  CICADetailsTab: `.mdc-tab__text-label:text-is("CICA Details")`,
 
   async checkPageLoads(
     page: Page,
