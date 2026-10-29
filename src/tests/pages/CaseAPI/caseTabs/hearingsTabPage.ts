@@ -105,7 +105,7 @@ type HearingsTabPage = {
 };
 
 const hearingTabPage: HearingsTabPage = {
-  hearingsTab: `.mat-tab-label-content:text-is("Hearings")`,
+  hearingsTab: `.mdc-tab__text-label:text-is("Hearings")`,
   listingTable:
     "table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ",
   hearingAttendees: [

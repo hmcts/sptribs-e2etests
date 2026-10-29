@@ -40,7 +40,7 @@ type CaseDocumentsTabPage = {
 };
 
 const caseDocumentsTabPage: CaseDocumentsTabPage = {
-  caseDocumentsTab: `.mat-tab-label-content:text-is("Case Documents")`,
+  caseDocumentsTab: `.mdc-tab__text-label:text-is("Case Documents")`,
 
   async checkPageLoads(
     page: Page,

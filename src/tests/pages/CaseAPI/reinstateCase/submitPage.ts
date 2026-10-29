@@ -166,7 +166,7 @@ const submitPage: SubmitPage = {
       ),
       commonHelpers.checkVisibleAndPresent(
         page.locator(
-          `.ng-star-inserted:text-is("${path.basename(config.testPdfFile)}")`,
+          `.govuk-js-link:text-is("${path.basename(config.testPdfFile)}")`,
         ),
         1,
       ),

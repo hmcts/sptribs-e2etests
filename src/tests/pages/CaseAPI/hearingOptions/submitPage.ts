@@ -162,7 +162,7 @@ const submitPage: SubmitPage = {
   async continueOn(page: Page): Promise<void> {
     await page.click(this.saveAndContinue);
     await page.waitForSelector(`h2:text-is("History")`);
-    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
+    await page.waitForSelector(`.mdc-tab__text-label:text-is("Tasks")`);
   },
 };
 

@@ -29,7 +29,7 @@ type CasePartiesTabPage = {
 };
 
 const casePartiesTabPage: CasePartiesTabPage = {
-  casePartiesTab: `.mat-tab-label-content:text-is("Case Parties")`,
+  casePartiesTab: `.mdc-tab__text-label:text-is("Case Parties")`,
 
   async checkPageLoads(
     page: Page,
@@ -102,7 +102,7 @@ const casePartiesTabPage: CasePartiesTabPage = {
         page.locator("td[id='case-viewer-field-read--cicCaseFullName']"),
       ).toHaveText(subjectName),
       expect(
-        page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
+        page.locator("ccd-read-email-field").nth(0),
       ).toHaveText(citizenEmail as string),
       expect(
         page.locator("td[id='case-viewer-field-read--cicCasePhoneNumber']"),
@@ -112,7 +112,7 @@ const casePartiesTabPage: CasePartiesTabPage = {
       ).toHaveText(await commonHelpers.convertDate(true)),
       expect(
         page
-          .locator("ccd-read-fixed-radio-list-field[class='ng-star-inserted']")
+          .locator("ccd-read-fixed-radio-list-field")
           .first(),
       ).toHaveText(allTabTitlesContent.contactPreference),
       expect(

@@ -37,7 +37,7 @@ const historyTabPage: HistoryTabPage = {
       ...Array.from({ length: 3 }, (_, index) => {
         const textOnPage = (allTabTitles_content as any)[`tab${index + 13}`];
         return commonHelpers.checkVisibleAndPresent(
-          page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+          page.locator(`.mdc-tab__text-label:text-is("${textOnPage}")`),
           1,
         );
       }),

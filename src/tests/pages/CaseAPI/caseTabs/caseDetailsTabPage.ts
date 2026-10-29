@@ -27,7 +27,7 @@ type CaseDetailsTabPage = {
 };
 
 const caseDetailsTabPage: CaseDetailsTabPage = {
-  caseDetailsTab: `.mat-tab-label-content:text-is("Case Details")`,
+  caseDetailsTab: `.mdc-tab__text-label:text-is("Case Details")`,
 
   async checkPageLoads(
     page: Page,
@@ -95,7 +95,7 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
         page.locator("td[id='case-viewer-field-read--cicCaseDateOfBirth']"),
       ).toHaveText(await commonHelpers.convertDate(true)),
       expect(
-        page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(0),
+        page.locator("ccd-read-email-field").nth(0),
       ).toHaveText(citizenEmail as string),
       expect(
         page.locator("td[id='case-viewer-field-read--cicCasePhoneNumber']"),
@@ -127,11 +127,11 @@ const caseDetailsTabPage: CaseDetailsTabPage = {
           ),
         ).toHaveText(representativeDetailsContent.contactNumber),
         expect(
-          page.locator("ccd-read-email-field[class='ng-star-inserted']").nth(1),
+          page.locator("ccd-read-email-field").nth(1),
         ).toHaveText(representativeDetailsContent.emailAddress),
         expect(
           page.locator(
-            "ccd-read-fixed-radio-list-field[class='ng-star-inserted']",
+            "ccd-read-fixed-radio-list-field",
           ),
         ).toHaveText("Email"),
       ]);

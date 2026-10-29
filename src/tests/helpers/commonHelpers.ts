@@ -399,14 +399,14 @@ const commonHelpers: CommonHelpers = {
         Array.from({ length: 11 }, (_, index) => {
           const textOnPage = (allTabTitles_content as any)[`tab${index + 1}`];
           return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            page.locator(`.mdc-tab__text-label:text-is("${textOnPage}")`),
             1,
           );
         }).filter(Boolean),
         Array.from({ length: 2 }, (_, index) => {
           const textOnPage = (allTabTitles_content as any)[`tab${index + 14}`];
           return commonHelpers.checkVisibleAndPresent(
-            page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+            page.locator(`.mdc-tab__text-label:text-is("${textOnPage}")`),
             1,
           );
         }).filter(Boolean),
@@ -418,7 +418,7 @@ const commonHelpers: CommonHelpers = {
             // Exclude tab 12 (index 11)
             const textOnPage = (allTabTitles_content as any)[`tab${index + 1}`];
             return commonHelpers.checkVisibleAndPresent(
-              page.locator(`.mat-tab-label-content:text-is("${textOnPage}")`),
+              page.locator(`.mdc-tab__text-label:text-is("${textOnPage}")`),
               1,
             );
           }
