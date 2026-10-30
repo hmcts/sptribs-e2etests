@@ -42,7 +42,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
       case true:
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             SubjectDetailsContent.headerCy,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -74,7 +74,7 @@ const subjectDetailsPage: SubjectDetailsPage = {
       default:
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             SubjectDetailsContent.header,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(

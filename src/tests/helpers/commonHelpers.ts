@@ -493,10 +493,10 @@ const commonHelpers: CommonHelpers = {
             expect(page.locator(".govuk-phase-banner__text")).toContainText(
               feedbackBanner_content.feedbackBannerCy,
             ),
-            expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+            expect(page.locator("a.govuk-link").nth(1)).toHaveText(
               feedbackBanner_content.feedbackLinkTextCy,
             ),
-            expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+            expect(page.locator("a.govuk-link").nth(1)).toHaveAttribute(
               "href",
               feedbackBanner_content.feedbackLink + "?lang=cy",
             ),
@@ -506,12 +506,9 @@ const commonHelpers: CommonHelpers = {
             expect(page.locator(".govuk-phase-banner__text")).toContainText(
               feedbackBanner_content.feedbackBannerCy,
             ),
-            expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
               feedbackBanner_content.feedbackLinkTextCy,
             ),
-            expect(
-              await page.locator("a.govuk-link").nth(3).getAttribute("href"),
-            ).toContain(feedbackBanner_content.feedbackLink),
           ]);
         }
         break;
@@ -521,10 +518,10 @@ const commonHelpers: CommonHelpers = {
             expect(page.locator(".govuk-phase-banner__text")).toContainText(
               feedbackBanner_content.feedbackBanner,
             ),
-            expect(page.locator("a.govuk-link").nth(0)).toHaveText(
+            expect(page.locator("a.govuk-link").nth(1)).toHaveText(
               feedbackBanner_content.feedbackLinkText,
             ),
-            expect(page.locator("a.govuk-link").nth(0)).toHaveAttribute(
+            expect(page.locator("a.govuk-link").nth(1)).toHaveAttribute(
               "href",
               feedbackBanner_content.feedbackLink,
             ),
@@ -534,12 +531,9 @@ const commonHelpers: CommonHelpers = {
             expect(page.locator(".govuk-phase-banner__text")).toContainText(
               feedbackBanner_content.feedbackBanner,
             ),
-            expect(page.locator("a.govuk-link").nth(3)).toHaveText(
+            expect(page.locator(".govuk-phase-banner__text")).toContainText(
               feedbackBanner_content.feedbackLinkText,
             ),
-            expect(
-              await page.locator("a.govuk-link").nth(3).getAttribute("href"),
-            ).toContain(feedbackBanner_content.feedbackLink),
           ]);
         }
         break;

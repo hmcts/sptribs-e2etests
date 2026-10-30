@@ -22,13 +22,22 @@ const landingPage: LandingPage = {
     cy: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.goto(config.UpdateCaseBaseURL);
+    try {
+      await page.goto(config.UpdateCaseBaseURL);
+      } catch (e) {
+        if (
+          !(e as Error).message.includes("interrupted by another navigation") &&
+          !(e as Error).message.includes("ERR_ABORTED")
+        ) {
+          throw e;
+        }
+      }
     switch (cy) {
       case true:
         await page.locator('a[href="?lang=cy"]').click();
         await Promise.all([
           commonHelpers.feedbackBanner(page, true, true),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             LandingPageDetails.headerCy,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -53,7 +62,7 @@ const landingPage: LandingPage = {
       default:
         await Promise.all([
           commonHelpers.feedbackBanner(page, false, true),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             LandingPageDetails.header,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(

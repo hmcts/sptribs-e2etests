@@ -32,11 +32,11 @@ const caseFinderPage: CaseFinderPage = {
   ): Promise<void> {
     switch (cy) {
       case true:
-        await page.locator(".govuk-link").nth(4).click();
+        await page.locator("[class='govuk-link language']").click();
         await CommonHelpers.checkAndAcceptCookies(page, cy, "UC");
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             CaseFinderDetails.headerCy,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -58,7 +58,7 @@ const caseFinderPage: CaseFinderPage = {
         await CommonHelpers.checkAndAcceptCookies(page, cy, "UC");
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             CaseFinderDetails.header,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(

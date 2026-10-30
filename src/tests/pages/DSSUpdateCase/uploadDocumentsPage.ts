@@ -54,7 +54,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       case true:
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             UploadDocumentsContent.headerCy,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(
@@ -122,7 +122,7 @@ const uploadDocumentsPage: UploadDocumentsPage = {
       default:
         await Promise.all([
           commonHelpers.feedbackBanner(page, cy, false),
-          expect(page.locator(".govuk-header__service-name")).toHaveText(
+          expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
             UploadDocumentsContent.header,
           ),
           expect(page.locator(".govuk-heading-l")).toHaveText(

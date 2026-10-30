@@ -43,7 +43,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         if (!multipleDocuments) {
           await Promise.all([
             commonHelpers.feedbackBanner(page, cy, false),
-            expect(page.locator(".govuk-header__service-name")).toHaveText(
+            expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
               CheckYourAnswersContent.headerCy,
             ),
             expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(
@@ -83,7 +83,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           }
         } else {
           await Promise.all([
-            expect(page.locator(".govuk-header__service-name")).toHaveText(
+            expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
               CheckYourAnswersContent.headerCy,
             ),
             expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(
@@ -123,7 +123,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
         if (!multipleDocuments) {
           await Promise.all([
             commonHelpers.feedbackBanner(page, cy, false),
-            expect(page.locator(".govuk-header__service-name")).toHaveText(
+            expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
               CheckYourAnswersContent.header,
             ),
             expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(
@@ -163,7 +163,7 @@ const checkYourAnswersPage: CheckYourAnswersPage = {
           }
         } else {
           await Promise.all([
-            expect(page.locator(".govuk-header__service-name")).toHaveText(
+            expect(page.locator("a.govuk-link.govuk-link--inverse.app-header__service-name")).toHaveText(
               CheckYourAnswersContent.header,
             ),
             expect(page.locator(".govuk-heading-l").nth(0)).toHaveText(

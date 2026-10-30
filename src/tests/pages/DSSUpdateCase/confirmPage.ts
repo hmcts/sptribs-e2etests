@@ -43,7 +43,7 @@ const createCaseConfirmPage: ConfirmPage = {
           expect(
             page.locator(".govuk-notification-banner__content"),
           ).toContainText(confirm_content.feedbackBannerTextCy),
-          expect(page.locator(".govuk-link").nth(4)).toContainText(
+          expect(page.locator(".govuk-link").nth(6)).toContainText(
             confirm_content.feedbackBannerLinkCy,
           ),
         ]);
@@ -68,7 +68,7 @@ const createCaseConfirmPage: ConfirmPage = {
           expect(
             page.locator(".govuk-notification-banner__content"),
           ).toContainText(confirm_content.feedbackBannerText),
-          expect(page.locator(".govuk-link").nth(4)).toContainText(
+          expect(page.locator(".govuk-link").nth(6)).toContainText(
             confirm_content.feedbackBannerLink,
           ),
         ]);
