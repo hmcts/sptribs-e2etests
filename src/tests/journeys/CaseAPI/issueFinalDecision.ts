@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import commonHelpers, {
   CaseNoticeType,
 } from "../../helpers/commonHelpers.ts";
-import issueFinalDecisionNotifyPage from "../../pages/CaseAPI/issueFinalDecision/issueFinalDecisionNotifyPage";
 import addDocumentFooterPage from "../../pages/CaseAPI/issueFinalDecision/addDocumentFooterPage";
 import confirmPage from "../../pages/CaseAPI/issueFinalDecision/confirmPage";
 import decisionUploadPage from "../../pages/CaseAPI/issueFinalDecision/decisionUploadPage";
@@ -87,13 +86,6 @@ const issueFinalDecision: IssueFinalDecision = {
         null,
         subjectName
     );
-    await issueFinalDecisionNotifyPage.checkPageLoads(
-        page,
-        caseNumber,
-        accessibilityTest,
-        subjectName
-    );
-    await issueFinalDecisionNotifyPage.continueOn(page);
     await submitPage.checkPageLoads(
         page,
         caseNumber,
