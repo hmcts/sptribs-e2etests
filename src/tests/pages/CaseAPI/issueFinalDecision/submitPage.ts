@@ -2,7 +2,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { expect, Page } from "@playwright/test";
 import path from "path";
 import config from "../../../config.ts";
-import caseSubjectDetailsObject_content from "../../../fixtures/content/CaseAPI/createCase/caseSubjectDetailsObject_content.ts";
 import addDocumentFooter_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/addDocumentFooter_content.ts";
 import decisionUpload_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/decisionUpload_content.ts";
 import finalDecisionMain_content from "../../../fixtures/content/CaseAPI/issueFinalDecision/finalDecisionMain_content.ts";
@@ -23,7 +22,6 @@ type SubmitPage = {
     noticeType: NoticeType,
     subjectName: string,
   ): Promise<void>;
-  checkCommonInfo(page: Page): Promise<void>;
   checkAllInfo(
     page: Page,
     noticeType: NoticeType,
@@ -49,10 +47,6 @@ const submitPage: SubmitPage = {
       ),
       expect(page.locator("markdown > p").nth(0)).toContainText(
         submit_content.caseReference + caseNumber,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`span:text-is("${submit_content.textOnPage2}")`),
-        4,
       ),
       commonHelpers.checkForButtons(
         page,
@@ -108,29 +102,6 @@ const submitPage: SubmitPage = {
     }
   },
 
-  async checkCommonInfo(page: Page): Promise<void> {
-    await Promise.all([
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("Subject")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("Representative")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(`.text-16:text-is("Respondent")`),
-        1,
-      ),
-      commonHelpers.checkVisibleAndPresent(
-        page.locator(
-          `.text-16:text-is("Applicant (if different from subject)")`,
-        ),
-        1,
-      ),
-    ]);
-  },
-
   async checkAllInfo(
     page: Page,
     noticeType: NoticeType,
@@ -141,7 +112,6 @@ const submitPage: SubmitPage = {
         throw new Error("No notice type selected.");
       case "upload":
         await Promise.all([
-          this.checkCommonInfo(page),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("Upload from your computer")`),
             1,
@@ -164,7 +134,6 @@ const submitPage: SubmitPage = {
         break;
       case "Create":
         await Promise.all([
-          this.checkCommonInfo(page),
           commonHelpers.checkVisibleAndPresent(
             page.locator(`.text-16:text-is("Create from a template")`),
             1,

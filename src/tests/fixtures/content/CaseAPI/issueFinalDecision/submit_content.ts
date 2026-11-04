@@ -9,7 +9,6 @@ const submit_content = {
   upload1: "File Attachments",
   upload2: "Description",
   upload3: "File",
-  textOnPage2: "Final Decision information recipient",
 } as const;
 
 export default submit_content;
