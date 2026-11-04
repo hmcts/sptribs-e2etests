@@ -30,7 +30,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-l:text-is("${representationQualifiedContent.pageTitleCy}")`,
+              `.govuk-fieldset__heading:text-is("${representationQualifiedContent.pageTitleCy}")`,
             ),
             1,
           ),
@@ -55,7 +55,7 @@ const representationQualifiedPage: RepresentationQualifiedPage = {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-l:text-is("${representationQualifiedContent.pageTitle}")`,
+              `.govuk-fieldset__heading:text-is("${representationQualifiedContent.pageTitle}")`,
             ),
             1,
           ),
