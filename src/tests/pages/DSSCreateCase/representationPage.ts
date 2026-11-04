@@ -34,7 +34,7 @@ const representationPage: RepresentationPage = {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-l:text-is("${representationContent.pageTitleCy}")`,
+              `.govuk-fieldset__heading:text-is("${representationContent.pageTitleCy}")`,
             ),
             1,
           ),
@@ -53,7 +53,7 @@ const representationPage: RepresentationPage = {
         await Promise.all([
           commonHelpers.checkVisibleAndPresent(
             page.locator(
-              `.govuk-heading-l:text-is("${representationContent.pageTitle}")`,
+              `.govuk-fieldset__heading:text-is("${representationContent.pageTitle}")`,
             ),
             1,
           ),
