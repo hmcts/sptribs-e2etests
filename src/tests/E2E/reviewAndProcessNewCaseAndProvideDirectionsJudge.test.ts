@@ -30,7 +30,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27 @CaseAPI2", async ({
+  test("Task is completable via next steps link - assign to me and go to task / Create Draft order CIC3 - Rule 27", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -574,7 +574,7 @@ test.describe("Review New Case and Provide Directions - Judge @CaseAPI ", (): vo
   });
 });
 
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test @accessibility ", async ({
+test("Task completion: Accessibility test / Review New Case and Provide Directions - Judge : Accessibility test", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

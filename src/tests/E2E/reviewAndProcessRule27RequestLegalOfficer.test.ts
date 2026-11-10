@@ -32,7 +32,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     test.setTimeout(10 * 60 * 1000);
     await testDataCleanUp(page, waUsers_content.userRoleAdmin);
   });
-  test("Task is completable via next steps link - assign to me and go to task @CaseAPI3", async ({
+  test("Task is completable via next steps link - assign to me and go to task", async ({
     page,
   }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
@@ -203,7 +203,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
     );
   });
 
-  test("Task is completed via event dropdown @CaseAPI3", async ({ page }) => {
+  test("Task is completed via event dropdown", async ({ page }) => {
     const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;
     const caseNumber105 = await createCaseViaApi(page, subjectName);
     await commonHelpers.chooseEventFromDropdown(page, events_content.buildCase);
@@ -578,7 +578,7 @@ test.describe("Review Rule 27 request and Process decision - Legal Officer @Case
   });
 });
 
-test("Task completion: Accessibility test @accessibility ", async ({
+test("Task completion: Accessibility test", async ({
   page,
 }) => {
   const subjectName = `Subject AutoTesting${commonHelpers.randomLetters(5)}`;

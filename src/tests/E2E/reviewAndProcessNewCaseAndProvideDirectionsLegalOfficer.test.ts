@@ -640,7 +640,7 @@ test.describe("Review and Process  New Case and Provide Directions - Legal Offic
   });
 });
 
-test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test @accessibility", async ({
+test("Task completion: Accessibility test / Review New Case and Provide Directions - Legal Officer : Accessibility test", async ({
   page,
 }) => {
   test.setTimeout(8 * 60 * 1000);
