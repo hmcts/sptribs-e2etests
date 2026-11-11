@@ -31,7 +31,7 @@ const createDraft: CreateDraft = {
       "CIC1 - Eligibility",
       "CIC2 - Quantum",
       "CIC4 - Blank Decision Notice",
-      "CIC11 - Strike Out Decision Notice",
+      "CIC11 - Strike Out Appeal",
     ];
     if (invalidTemplates.includes(template)) {
       throw new Error(
