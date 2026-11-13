@@ -254,21 +254,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/core@npm:^0.15.2":
-  version: 0.15.2
-  resolution: "@eslint/core@npm:0.15.2"
-  dependencies:
-    "@types/json-schema": "npm:^7.0.15"
-  checksum: 10/41d6273bbc6897cca34a2ca4e80a24bf6f1d43519456ebaa3c38f187da2d9e06f442c64f6e2a2813f055dce35e5cea33a21d0ac3b5b0830b7165641c640faf5d
-  languageName: node
-  linkType: hard
-
 "@eslint/core@npm:^0.17.0":
   version: 0.17.0
   resolution: "@eslint/core@npm:0.17.0"
   dependencies:
     "@types/json-schema": "npm:^7.0.15"
   checksum: 10/f9a428cc651ec15fb60d7d60c2a7bacad4666e12508320eafa98258e976fafaa77d7be7be91519e75f801f15f830105420b14a458d4aab121a2b0a59bc43517b
+  languageName: node
+  linkType: hard
+
+"@eslint/core@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@eslint/core@npm:1.2.1"
+  dependencies:
+    "@types/json-schema": "npm:^7.0.15"
+  checksum: 10/e1f9f5534f495b74a4c13c372e8f2feaf0c67f5dd666111c849c97c221d4ba730c98333a2ca94dd28cd7c24e3b1016bd868ca03c42e070732c047053f854cb13
   languageName: node
   linkType: hard
 
@@ -303,13 +303,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/plugin-kit@npm:^0.3.4":
-  version: 0.3.5
-  resolution: "@eslint/plugin-kit@npm:0.3.5"
+"@eslint/plugin-kit@npm:^0.7.0":
+  version: 0.7.3
+  resolution: "@eslint/plugin-kit@npm:0.7.3"
   dependencies:
-    "@eslint/core": "npm:^0.15.2"
+    "@eslint/core": "npm:^1.2.1"
     levn: "npm:^0.4.1"
-  checksum: 10/b8552d79c3091446b07d8b87a9a8ccb8cdee4d933c0ed46b8f61029c3382246fec8d04ea7d1e61656d9275263205ccaa40019fd7581bbce897eca3eda42d5dad
+  checksum: 10/bd603f0438d6829a5b0c8cbb90383e3b0fda3aac3a87faa22c80124ce4121f5dcfe8ef9b933c3308cbed70a27c4f51036403e3f0cb64ca2743e595dd865ccef6
   languageName: node
   linkType: hard
 
@@ -3566,7 +3566,6 @@ __metadata:
     "@playwright/test": "npm:^1.46.1"
     "@types/node": "npm:^22.0.0"
     axios: "npm:1.21.1"
-    brace-expansion: "npm:^5.0.13"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
     playwright-core: "npm:^1.46.1"
@@ -3733,19 +3732,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^7.5.1":
-  version: 7.5.1
-  resolution: "tldts-core@npm:7.5.1"
-  checksum: 10/1778e87a15298514ac573fc559f0388cc4e43b21b3fe788e35474085d969823d0292bd7e9fc0d7ce8a1827669eb3f5b362b37665899b006e282b0c925e32610e
+"tldts-core@npm:^7.5.2":
+  version: 7.5.2
+  resolution: "tldts-core@npm:7.5.2"
+  checksum: 10/06944dfa8413f3ec0c31351fc535970dc281ca634f2843ca2c39b4e61901c74ab3bf96729b63a35b699ef628923bacc65ff7c98366971785c4d0336819019295
   languageName: node
   linkType: hard
 
 "tldts-icann@npm:^7.4.19":
-  version: 7.5.1
-  resolution: "tldts-icann@npm:7.5.1"
+  version: 7.5.2
+  resolution: "tldts-icann@npm:7.5.2"
   dependencies:
-    tldts-core: "npm:^7.5.1"
-  checksum: 10/bed250706eb3065103b129e0b4d11a87fab1e042721a17a0aff45ac678845957c053a9f3b751623b582489ffb0edc6e06aa210dc45253475b9c9a7fe34a7009d
+    tldts-core: "npm:^7.5.2"
+  checksum: 10/9767bf08abda9137971052db048146566272c8dd9bf5f416d6449b12103474373055cffd068e0332a5a81dc7254150950e938d19c17ebae4fad76f64c739018d
   languageName: node
   linkType: hard
 
