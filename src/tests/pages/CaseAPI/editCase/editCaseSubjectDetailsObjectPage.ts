@@ -159,6 +159,7 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
     initialState: initialState,
     subjectName: string,
   ): Promise<void> {
+    const citizenEmail = process.env.CITIZEN_USERNAME;
     await page.fill(this.fullName, `${subjectName}`);
     await page.fill(
       this.phoneNumber,
@@ -177,7 +178,7 @@ const editCaseSubjectDetailsObjectPage: EditCaseSubjectDetailsObjectPage = {
       await page.click(this.selectEmail);
       await page.fill(
         this.emailAddress,
-        editCaseSubjectDetailsObjectContent.emailAddress,
+        citizenEmail as string,
       );
     } else if (contactPreference === "Post") {
       await page.click(this.selectPost);
