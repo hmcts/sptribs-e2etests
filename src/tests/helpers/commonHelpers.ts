@@ -841,7 +841,7 @@ const commonHelpers: CommonHelpers = {
           ),
         ]);
         break;
-      case "CIC11 - Strike Out Decision Notice":
+      case "CIC11 - Strike Out Appeal":
         await Promise.all([
           ...Array.from({ length: 10 }, (_, index) => {
             const textOnPage = (strikeoutNotice as any)[

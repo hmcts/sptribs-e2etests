@@ -8,7 +8,7 @@ const strikeoutNotice = {
   textOnPage6: "Appellant:",
   textOnPage7: "Respondent:  Criminal Injuries Compensation Authority (CICA)",
   textOnPage8: "Reference:",
-  textOnPage9: "Strike Out Decision Notice",
+  textOnPage9: "Strike Out Appeal",
   textOnPage10: "To the Appellant and to the Respondents",
 } as const;
 
