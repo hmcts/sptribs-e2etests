@@ -105,7 +105,7 @@ const decisionMainPage: DecisionMainPage = {
           `${decisionMain_content.strikeoutWarn}`,
         );
         break;
-      case "CIC11 - Strike Out Decision Notice":
+      case "CIC11 - Strike Out Appeal":
         textBoxValue = await page.locator(`textarea`).inputValue();
         expect(textBoxValue).toEqual(
           `${decisionMain_content.strikeoutNotice}`,
