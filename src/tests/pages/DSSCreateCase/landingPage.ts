@@ -34,7 +34,7 @@ const landingPage: LandingPage = {
           expect(page.locator("h1")).toHaveText(
             LandingPageDetails.pageTitleCy,
           ),
-          expect(page.locator(".govuk-body-l").first()).toContainText(
+          expect(page.locator(".govuk-body-l").nth(0)).toContainText(
             LandingPageDetails.hintMessageCy,
           ),
           expect(page.locator("h2").nth(0)).toContainText(
