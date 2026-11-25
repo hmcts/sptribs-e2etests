@@ -48,6 +48,12 @@ const cicaReferencePage: CICAReferencePage = {
             ).nth(0),
             1,
           ),
+          commonHelpers.checkVisibleAndPresent(
+            page.locator(
+              `#cicaReferenceNumber-hint:text-is("${cicaReferenceContent.hintTextCy2}")`,
+            ),
+            1,
+          ),
         ]);
         break;
       default:
