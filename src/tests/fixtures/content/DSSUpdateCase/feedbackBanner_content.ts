@@ -8,7 +8,7 @@ const feedbackBanner_content = {
   feedbackBannerCy:
     "Helpwch ni i wella’r gwasanaeth hwn " +
     "Mae hwn yn wasanaeth newydd. Helpwch ni ei wella i bobl eraill trwy",
-  feedbackLinkTextCy: "roi eich adborth",
+  feedbackLinkTextCy: "roi eich adborth (yn agor mewn tab newydd)",
 } as const;
 
 export default feedbackBanner_content;
