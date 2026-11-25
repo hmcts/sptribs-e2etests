@@ -45,7 +45,7 @@ const cicaReferencePage: CICAReferencePage = {
           commonHelpers.checkVisibleAndPresent(
             page.locator(
               `.govuk-hint:text-is("${cicaReferenceContent.hintTextCy1}")`,
-            ),
+            ).nth(0),
             1,
           ),
         ]);

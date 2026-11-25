@@ -31,20 +31,23 @@ const landingPage: LandingPage = {
         await page.waitForSelector(`.govuk-link:text-is("English")`);
         await Promise.all([
           expect(page.locator(`a.govuk-link:text-is("English")`)).toBeVisible(),
-          expect(page.locator(".govuk-heading-l")).toHaveText(
+          expect(page.locator("h1")).toHaveText(
             LandingPageDetails.pageTitleCy,
           ),
-          expect(page.locator(".govuk-body-l").nth(0)).toContainText(
+          expect(page.locator(".govuk-body-l").first()).toContainText(
             LandingPageDetails.hintMessageCy,
           ),
-          expect(page.locator("h2 > span")).toContainText(
-            LandingPageDetails.subHeadingCy,
+          expect(page.locator("h2").nth(0)).toContainText(
+            LandingPageDetails.subHeadingCy1,
           ),
-          ...Array.from({ length: 2 }, (_, index) => {
+          expect(page.locator("h2").nth(1)).toContainText(
+            LandingPageDetails.subHeadingCy2,
+          ),
+          ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (LandingPageDetails as any)[
               `textOnPageCy${index + 1}`
             ];
-            return expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+            return expect(page.locator(".govuk-body-l").nth(index + 1)).toContainText(
               textOnPage,
             );
           }),
@@ -59,20 +62,23 @@ const landingPage: LandingPage = {
           `h1:text-is("${LandingPageDetails.pageTitle}")`,
         );
         await Promise.all([
-          expect(page.locator(".govuk-heading-l")).toHaveText(
+          expect(page.locator("h1")).toHaveText(
             LandingPageDetails.pageTitle,
           ),
-          expect(page.locator(".govuk-body-l").nth(0)).toContainText(
+          expect(page.locator(".govuk-body-l").first()).toContainText(
             LandingPageDetails.hintMessage,
           ),
-          expect(page.locator("h2 > span")).toContainText(
-            LandingPageDetails.subHeading,
+          expect(page.locator("h2").nth(0)).toContainText(
+            LandingPageDetails.subHeading1,
           ),
-          ...Array.from({ length: 2 }, (_, index) => {
+          expect(page.locator("h2").nth(1)).toContainText(
+            LandingPageDetails.subHeading2,
+          ),
+          ...Array.from({ length: 3 }, (_, index) => {
             const textOnPage = (LandingPageDetails as any)[
               `textOnPage${index + 1}`
             ];
-            return expect(page.locator(".govuk-body-l").nth(1)).toContainText(
+            return expect(page.locator(".govuk-body-l").nth(index + 1)).toContainText(
               textOnPage,
             );
           }),
