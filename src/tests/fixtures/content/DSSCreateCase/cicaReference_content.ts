@@ -10,7 +10,7 @@ const cicaReferenceContent = {
   pageTitleCy:
     "Nodwch eich Cyfeirnod Awdurdod Digolledu am Anafiadau Troseddol",
   hintTextCy1:
-    "Gallwch ddod o hyd i hwn ar unrhyw ohebiaeth rydych wedi'i derbyn gan ADAT, Mae cyfeirnodau ADAT yn dechrau gyda’r lythyren X neu G",
+    "Gallwch ddod o hyd i hwn ar unrhyw ohebiaeth rydych wedi'i derbyn gan ADAT",
   subHeadingCy1: "Cyfeirnod ADAT",
   buttonCy: "Parhau",
   errorBannerCy: "Mae yna broblem",

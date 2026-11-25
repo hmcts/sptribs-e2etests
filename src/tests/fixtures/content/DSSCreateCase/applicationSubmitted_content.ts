@@ -16,7 +16,7 @@ const applicationSubmittedContent = {
   textOnPage3: "We would like to hear your thoughts",
   textOnPage4:
     "Complete this short 5-minutes survey to help improve our services for you and others",
-  textOnPage5: "Please leave your your feedback",
+  textOnPage5: "We would like to hear your thoughtsComplete this short 5-minutes survey to help improve our services for you and others Please leave your feedback (opens in a new tab)",
   button: "Close and exit",
 
   pageTitleCy: "Ffurflen y tribiwnlys wedi’i hanfon",
