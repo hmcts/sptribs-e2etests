@@ -9,7 +9,7 @@ const confirm_content = {
   feedbackBannerMessage: "We would like to hear your thoughts",
   feedbackBannerText:
     "Complete this short 5-minutes survey to help improve our services for you and others",
-  feedbackBannerLink: "Please leave your your feedback",
+  feedbackBannerLink: "Please leave your feedback (opens in a new tab)",
   button: "Close and exit",
 
   pageTitleCy: "Apêl wedi’i diweddaru:",
@@ -22,7 +22,7 @@ const confirm_content = {
   feedbackBannerMessageCy: "Hoffwn gael adborth gennych",
   feedbackBannerTextCy:
     "Cwblhewch yr arolwg byr hwn fydd ond yn cymryd 5 munud o’ch amser i’n helpu ni i wella ein gwasanaethau i chi ac eraill",
-  feedbackBannerLinkCy: "Gadewch eich adborth",
+  feedbackBannerLinkCy: "Gadewch eich adborth (yn agor mewn tab newydd)",
   buttonCy: "Cau a gadael",
 } as const;
 
