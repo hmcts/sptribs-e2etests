@@ -809,16 +809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 26.6.11
-  resolution: "@types/node@npm:26.6.11"
-  dependencies:
-    undici-types: "npm:~8.9.0"
-  checksum: 10/684887f6f6d1fec32605d9707a11614ededc482b270708d7da0aad6ef2a8641d3aad52c060178450373f88d770743cd43f0d43f9d977da6813b020639e800f58
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^22.20.7":
+"@types/node@npm:*, @types/node@npm:^22.0.0":
   version: 22.20.7
   resolution: "@types/node@npm:22.20.7"
   dependencies:
@@ -2860,9 +2851,9 @@ __metadata:
   linkType: hard
 
 "modern-tar@npm:^0.8.6":
-  version: 0.8.6
-  resolution: "modern-tar@npm:0.8.6"
-  checksum: 10/ee62124899907a643bae66465c418925af00dc4cce357751de28ee7e4730a4a12ef8c48e92aacab7eb68b94200f0a2c2c12531367e3b153f805a55bd101a9d91
+  version: 0.8.7
+  resolution: "modern-tar@npm:0.8.7"
+  checksum: 10/809a6eb9f420a61616d1fbe92801fd4df3b1e9251f1a4816aa6de1acdd1b16e28ce32d4f057d9f69a8248b3920625768b6151eec5f5e063cf0edea093941b819
   languageName: node
   linkType: hard
 
@@ -3572,13 +3563,14 @@ __metadata:
   dependencies:
     "@hmcts/playwright-common": "npm:^1.1.7"
     "@playwright/test": "npm:^1.46.1"
-    "@types/node": "npm:^22.20.7"
+    "@types/node": "npm:^22.0.0"
     axios: "npm:1.21.1"
     dependency-check: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.9.10"
+    tar: "npm:^7.5.24"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
@@ -3613,11 +3605,11 @@ __metadata:
   linkType: hard
 
 "string_decoder@npm:^1.1.1":
-  version: 1.3.0
-  resolution: "string_decoder@npm:1.3.0"
+  version: 1.4.0
+  resolution: "string_decoder@npm:1.4.0"
   dependencies:
     safe-buffer: "npm:~5.2.0"
-  checksum: 10/54d23f4a6acae0e93f999a585e673be9e561b65cd4cca37714af1e893ab8cd8dfa52a9e4f58f48f87b4a44918d3a9254326cb80ed194bf2e4c226e2b21767e56
+  checksum: 10/f09fea208d45f4c168da12508252767ff9097dded9cc7359abae2e4b7e42e6e473e56696d9ede4e52ddd9e7cbe43bbc310d556663275c8c156b2d4d4fda54ada
   languageName: node
   linkType: hard
 
@@ -3695,15 +3687,15 @@ __metadata:
   linkType: hard
 
 "tar@npm:^7.5.16":
-  version: 7.5.23
-  resolution: "tar@npm:7.5.23"
+  version: 7.5.24
+  resolution: "tar@npm:7.5.24"
   dependencies:
     "@isaacs/fs-minipass": "npm:^4.0.0"
     chownr: "npm:^3.0.0"
     minipass: "npm:^7.1.2"
     minizlib: "npm:^3.1.0"
     yallist: "npm:^5.0.0"
-  checksum: 10/b8550890576aa494ae1e3bfa85040bb302fb592fd9c64de9972c937ee9a54b3302cac5906d4c81cc0855eabd23b8ef3d0f0d90e499d9d7bc8d17fed3aa81d4f1
+  checksum: 10/9156541c8e99f5bc491aa7fbf5fa778095c774353cc610c9caa65845b3b911000aa3d781a10e649dd57869b6a93270504cac26ec81e58b05b5b2ea828dd8d1db
   languageName: node
   linkType: hard
 
@@ -3731,19 +3723,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^7.6.0":
-  version: 7.6.0
-  resolution: "tldts-core@npm:7.6.0"
-  checksum: 10/36eb253975d180263fa4a7ac9950eba7f3677f76824af387210d3facc39e47028f5eb098637f8b2549fced9cc7e707bfd69016405cea7672ce2788d67654670c
+"tldts-core@npm:^7.6.1":
+  version: 7.6.1
+  resolution: "tldts-core@npm:7.6.1"
+  checksum: 10/cefcd50231ede364ae2cac691c6a2a2062aafccc80b7a3700926601f6e74cb7291505ebdbec2fbd40c17a152190ecd8ef5ff0cb6d9bac2e4efd78aec638ea48e
   languageName: node
   linkType: hard
 
 "tldts-icann@npm:^7.4.19":
-  version: 7.6.0
-  resolution: "tldts-icann@npm:7.6.0"
+  version: 7.6.1
+  resolution: "tldts-icann@npm:7.6.1"
   dependencies:
-    tldts-core: "npm:^7.6.0"
-  checksum: 10/954ee71e1adff8742bdc6ea8cc92ade5b72d484bf4d4e24d4dbd6ad64c5d59e0afbd991891dd42e89219ecf421f809cc5c056cc5343ecf59f0c2238f58b61280
+    tldts-core: "npm:^7.6.1"
+  checksum: 10/ed3cb04684a16fb4f6f76ec5a9d9d83203fa8abc9ab193003081e0667a9905f770a65c350e6da61d168f7f3f8595330f50cb4178198e3259803dc3407a0f6ffd
   languageName: node
   linkType: hard
 
@@ -3891,13 +3883,6 @@ __metadata:
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
-  languageName: node
-  linkType: hard
-
-"undici-types@npm:~8.9.0":
-  version: 8.9.0
-  resolution: "undici-types@npm:8.9.0"
-  checksum: 10/8785591929de2b71d281c684e915c4a8c41becc225adbf42a3e89148f8b384724a21533494c30a1cbb85b4cbccd088d020788ff4f2d605013eb2863cd47a1639
   languageName: node
   linkType: hard
 
