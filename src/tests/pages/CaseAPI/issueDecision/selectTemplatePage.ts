@@ -15,7 +15,7 @@ export type Template =
   | "CIC8 - ME Joint Instructions"
   | "CIC8 - ME Joint Instruction"
   | "CIC10 - Strike Out Warning"
-  | "CIC11 - Strike Out Decision Notice"
+  | "CIC11 - Strike Out Appeal"
   | "CIC13 - Pro Forma Summons"
   | "CIC14 – LO General Directions"
   | null; // for template upload.
