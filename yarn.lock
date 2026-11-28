@@ -3570,7 +3570,6 @@ __metadata:
     playwright-core: "npm:^1.46.1"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:3.9.10"
-    tar: "npm:^7.5.24"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.5.4"
   languageName: unknown
@@ -3723,19 +3722,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^7.6.1":
-  version: 7.6.1
-  resolution: "tldts-core@npm:7.6.1"
-  checksum: 10/cefcd50231ede364ae2cac691c6a2a2062aafccc80b7a3700926601f6e74cb7291505ebdbec2fbd40c17a152190ecd8ef5ff0cb6d9bac2e4efd78aec638ea48e
+"tldts-core@npm:^7.6.2":
+  version: 7.6.2
+  resolution: "tldts-core@npm:7.6.2"
+  checksum: 10/ec41e5d12cce89fa4fec2a23fd6e06e2636c2b56fe6909b9bbe4e945ee8f3531923f6a53eadbf1e09d810cae61f76cde2f9b68445272a2b97b2835d6a7ae90a6
   languageName: node
   linkType: hard
 
 "tldts-icann@npm:^7.4.19":
-  version: 7.6.1
-  resolution: "tldts-icann@npm:7.6.1"
+  version: 7.6.2
+  resolution: "tldts-icann@npm:7.6.2"
   dependencies:
-    tldts-core: "npm:^7.6.1"
-  checksum: 10/ed3cb04684a16fb4f6f76ec5a9d9d83203fa8abc9ab193003081e0667a9905f770a65c350e6da61d168f7f3f8595330f50cb4178198e3259803dc3407a0f6ffd
+    tldts-core: "npm:^7.6.2"
+  checksum: 10/1599135dd10f992b90a36a670b616200095e2fe61c269cbb10fb1eb68e85db9fcdd6e6caa8a6bc45e93b47cbdb3b4510a70ca4a2ce267f17de367f099e8d2da3
   languageName: node
   linkType: hard
 
@@ -3887,9 +3886,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^8.4.1":
-  version: 8.13.1
-  resolution: "undici@npm:8.13.1"
-  checksum: 10/6409e6a4ee7eae5f67f97b92232ab00417db4a0af1b4bc42a13d59ebac0775534b8e340c9dfbf7ce34d4cbde349b6fd52fc95dd92a1fdf00cf951119a5aa431f
+  version: 8.14.0
+  resolution: "undici@npm:8.14.0"
+  checksum: 10/f4b3f60470d43b80e6cf2006672dec42e1eecbacbc697a6092a0e3273cbbbaa15335f59eebdf77f417cb56f8e6bb8f9e4100fc8eff50b3e0531662f13abe32ff
   languageName: node
   linkType: hard
 
@@ -4025,18 +4024,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^7.5.11":
-  version: 7.5.14
-  resolution: "ws@npm:7.5.14"
+"ws@npm:^8.0.0":
+  version: 8.23.1
+  resolution: "ws@npm:8.23.1"
   peerDependencies:
     bufferutil: ^4.0.1
-    utf-8-validate: ^5.0.2
+    utf-8-validate: ">=5.0.2"
   peerDependenciesMeta:
     bufferutil:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10/d79f6836b0571bea996397339b056425cf4678d4bc39661030ed6f02d39c2581853016cd9c3225847a40a184a1ffde3be10cd6874f1a6dbfe1c4130a690985d1
+  checksum: 10/298cbfe36403a85d5bba2fc1dbf389c32d30b206450bfebd27ae3d2b3f137d5d67c35615e8cc027391ce7238669f0883bce32c8489c7c2f7fe724c38023d66c2
   languageName: node
   linkType: hard
 
